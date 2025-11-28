@@ -1,0 +1,43 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+#pragma once
+
+#include "Camera/PlayerCameraManager.h"
+
+#include "DJ01UICameraManagerComponent.generated.h"
+
+class AActor;
+class AHUD;
+class APlayerController;
+class FDebugDisplayInfo;
+class UCanvas;
+class UObject;
+class ADJ01PlayerCameraManager;
+UCLASS(Transient, Within=DJ01PlayerCameraManager)
+class DJ01_API UDJ01UICameraManagerComponent : public UActorComponent
+{
+	GENERATED_BODY()
+
+public:
+	static UDJ01UICameraManagerComponent* GetComponent(APlayerController* PC);
+
+public:
+	UDJ01UICameraManagerComponent();	
+	virtual void InitializeComponent() override;
+
+	bool IsSettingViewTarget() const { return bUpdatingViewTarget; }
+	AActor* GetViewTarget() const { return ViewTarget; }
+	void SetViewTarget(AActor* InViewTarget, FViewTargetTransitionParams TransitionParams = FViewTargetTransitionParams());
+
+	bool NeedsToUpdateViewTarget() const;
+	void UpdateViewTarget(struct FTViewTarget& OutVT, float DeltaTime);
+
+	void OnShowDebugInfo(AHUD* HUD, UCanvas* Canvas, const FDebugDisplayInfo& DisplayInfo, float& YL, float& YPos);
+
+private:
+	UPROPERTY(Transient)
+	TObjectPtr<AActor> ViewTarget;
+	
+	UPROPERTY(Transient)
+	bool bUpdatingViewTarget;
+};
