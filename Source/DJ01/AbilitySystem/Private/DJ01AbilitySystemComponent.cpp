@@ -534,4 +534,47 @@ void UDJ01AbilitySystemComponent::GetAbilityTargetData(const FGameplayAbilitySpe
 	}
 }
 
+//~============================================================================
+// 属性集 Tag 映射
+//~============================================================================
+
+void UDJ01AbilitySystemComponent::RegisterAttributeSetTag(UAttributeSet* AttributeSet, const FGameplayTag& AttributeSetTag)
+{
+	if (AttributeSet && AttributeSetTag.IsValid())
+	{
+		AttributeSetTagMap.Add(AttributeSetTag, AttributeSet);
+		UE_LOG(LogDJ01AbilitySystem, Log, TEXT("RegisterAttributeSetTag: Registered [%s] with tag [%s]"), 
+			*GetNameSafe(AttributeSet), *AttributeSetTag.ToString());
+	}
+}
+
+void UDJ01AbilitySystemComponent::UnregisterAttributeSetTag(UAttributeSet* AttributeSet)
+{
+	if (AttributeSet)
+	{
+		// 找到并移除该属性集的所有映射
+		for (auto It = AttributeSetTagMap.CreateIterator(); It; ++It)
+		{
+			if (It.Value() == AttributeSet)
+			{
+				UE_LOG(LogDJ01AbilitySystem, Log, TEXT("UnregisterAttributeSetTag: Unregistered [%s] from tag [%s]"), 
+					*GetNameSafe(AttributeSet), *It.Key().ToString());
+				It.RemoveCurrent();
+			}
+		}
+	}
+}
+
+const UAttributeSet* UDJ01AbilitySystemComponent::GetAttributeSetByTag(const FGameplayTag& AttributeSetTag) const
+{
+	if (AttributeSetTag.IsValid())
+	{
+		if (const TObjectPtr<UAttributeSet>* FoundSet = AttributeSetTagMap.Find(AttributeSetTag))
+		{
+			return *FoundSet;
+		}
+	}
+	return nullptr;
+}
+
 

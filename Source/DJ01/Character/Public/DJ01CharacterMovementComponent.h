@@ -73,13 +73,11 @@ public:
 	const FDJ01CharacterGroundInfo& GetGroundInfo();
 
 	//~ Begin UMovementComponent Interface
-	// TODO_ABILITY_SYSTEM: GAS 集成后取消注释
-	// 用于通过 GameplayTag 控制移动速度（减速、加速、定身等）
-	// virtual float GetMaxSpeed() const override;
+	/** 根据 GameplayTags 计算最终移动速度 */
+	virtual float GetMaxSpeed() const override;
 	
-	// TODO_ABILITY_SYSTEM: GAS 集成后取消注释
-	// 用于通过 GameplayTag 控制旋转（释放技能时锁定朝向）
-	// virtual FRotator GetDeltaRotation(float DeltaTime) const override;
+	/** 根据 GameplayTags 控制旋转 */
+	virtual FRotator GetDeltaRotation(float DeltaTime) const override;
 	//~ End UMovementComponent Interface
 
 protected:

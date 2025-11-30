@@ -11,9 +11,14 @@ namespace DJ01GameplayTags
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(InitState_GameplayReady, "InitState.GameplayReady", "4: The actor/component is fully ready for active gameplay");
 
     // 输入
+    // Input Tags
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(InputTag_Move, "InputTag.Move", "Move input.");
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(InputTag_Look_Mouse, "InputTag.Look.Mouse", "Look input with mouse.");
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(InputTag_Jump, "InputTag.Jump", "Jump input.");
+
+    // AttributeSet Tags
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(AttributeSet_Health, "AttributeSet.Health", "Health attribute set identifier.");
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(AttributeSet_Combat, "AttributeSet.Combat", "Combat attribute set identifier.");
 
     // Ability System Tags
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability_ActivateFail_ActivationGroup, "Ability.ActivateFail.ActivationGroup", "Ability failed to activate due to activation group constraints.");
@@ -22,4 +27,8 @@ namespace DJ01GameplayTags
     // Status Tags
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Status_Death, "Status.Death", "Target is dead.");
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Status_AutoRunning, "Status.AutoRunning", "Character is auto-running.");
+
+    // Cheat Tags (仅非 Shipping 构建使用)
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Cheat_GodMode, "Cheat.GodMode", "God mode - makes the player invincible.");
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Cheat_UnlimitedHealth, "Cheat.UnlimitedHealth", "Unlimited health - health cannot drop below 1.");
 }

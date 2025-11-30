@@ -45,12 +45,60 @@ public:
 	void AbilityInputTagPressed(const FGameplayTag& InputTag);
 	void AbilityInputTagReleased(const FGameplayTag& InputTag);
 
+	//~============================================================================
+	// 属性集 Tag 映射
+	//~============================================================================
+	
+	/**
+	 * 注册属性集与 Tag 的映射关系
+	 * @param AttributeSet - 已添加到 ASC 的属性集实例
+	 * @param AttributeSetTag - 用于标识该属性集的 Tag
+	 */
+	void RegisterAttributeSetTag(UAttributeSet* AttributeSet, const FGameplayTag& AttributeSetTag);
+
+	/**
+	 * 取消注册属性集的 Tag 映射
+	 * @param AttributeSet - 要取消注册的属性集实例
+	 */
+	void UnregisterAttributeSetTag(UAttributeSet* AttributeSet);
+
+	/**
+	 * 通过 Tag 获取属性集
+	 * @param AttributeSetTag - 属性集的标识 Tag
+	 * @return 对应的属性集实例，如果不存在则返回 nullptr
+	 */
+	UFUNCTION(BlueprintCallable, Category = "DJ01|AbilitySystem|Attributes")
+	const UAttributeSet* GetAttributeSetByTag(const FGameplayTag& AttributeSetTag) const;
+
+	/**
+	 * 通过 Tag 获取属性集（模板版本，用于 C++ 类型安全访问）
+	 */
+	template<class T>
+	const T* GetAttributeSetByTag(const FGameplayTag& AttributeSetTag) const
+	{
+		return Cast<T>(GetAttributeSetByTag(AttributeSetTag));
+	}
+
+public:
+	// 将需要被外部访问的函数移动到public部分
 	void ProcessAbilityInput(float DeltaTime, bool bGamePaused);
 	void ClearAbilityInput();
 
 	bool IsActivationGroupBlocked(EDJ01AbilityActivationGroup Group) const;
 	void AddAbilityToActivationGroup(EDJ01AbilityActivationGroup Group, UDJ01GameplayAbility* DJ01Ability);
 	void RemoveAbilityFromActivationGroup(EDJ01AbilityActivationGroup Group, UDJ01GameplayAbility* DJ01Ability);
+
+	/** Gets the ability target data associated with the given ability handle and activation info */
+	void GetAbilityTargetData(const FGameplayAbilitySpecHandle AbilityHandle, FGameplayAbilityActivationInfo ActivationInfo, FGameplayAbilityTargetDataHandle& OutTargetDataHandle);
+
+	/** Looks at ability tags and gathers additional required and blocking tags */
+	void GetAdditionalActivationTagRequirements(const FGameplayTagContainer& AbilityTags, FGameplayTagContainer& OutActivationRequired, FGameplayTagContainer& OutActivationBlocked) const;
+
+private:
+	// Tag 到属性集实例的映射
+	UPROPERTY()
+	TMap<FGameplayTag, TObjectPtr<UAttributeSet>> AttributeSetTagMap;
+
 	void CancelActivationGroupAbilities(EDJ01AbilityActivationGroup Group, UDJ01GameplayAbility* IgnoreDJ01Ability, bool bReplicateCancelAbility);
 
 	// Uses a gameplay effect to add the specified dynamic granted tag.
@@ -59,14 +107,8 @@ public:
 	// Removes all active instances of the gameplay effect that was used to add the specified dynamic granted tag.
 	void RemoveDynamicTagGameplayEffect(const FGameplayTag& Tag);
 
-	/** Gets the ability target data associated with the given ability handle and activation info */
-	void GetAbilityTargetData(const FGameplayAbilitySpecHandle AbilityHandle, FGameplayAbilityActivationInfo ActivationInfo, FGameplayAbilityTargetDataHandle& OutTargetDataHandle);
-
 	/** Sets the current tag relationship mapping, if null it will clear it out */
 	void SetTagRelationshipMapping(UDJ01AbilityTagRelationshipMapping* NewMapping);
-	
-	/** Looks at ability tags and gathers additional required and blocking tags */
-	void GetAdditionalActivationTagRequirements(const FGameplayTagContainer& AbilityTags, FGameplayTagContainer& OutActivationRequired, FGameplayTagContainer& OutActivationBlocked) const;
 
 protected:
 

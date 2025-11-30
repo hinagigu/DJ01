@@ -18,12 +18,12 @@ class UObject;
 
 
 /**
- * FDJ01AbilitySet_GameplayAbility
- *
- *	Data used by the ability set to grant gameplay abilities.
- */
+* FDJ01AbilitySet_GameplayAbility
+*
+*	Data used by the ability set to grant gameplay abilities.
+*/
 USTRUCT(BlueprintType)
-struct FDJ01AbilitySet_GameplayAbility
+struct DJ01_API FDJ01AbilitySet_GameplayAbility
 {
 	GENERATED_BODY()
 
@@ -44,12 +44,12 @@ public:
 
 
 /**
- * FDJ01AbilitySet_GameplayEffect
- *
- *	Data used by the ability set to grant gameplay effects.
- */
+* FDJ01AbilitySet_GameplayEffect
+*
+*	Data used by the ability set to grant gameplay effects.
+*/
 USTRUCT(BlueprintType)
-struct FDJ01AbilitySet_GameplayEffect
+struct DJ01_API FDJ01AbilitySet_GameplayEffect
 {
 	GENERATED_BODY()
 
@@ -65,12 +65,12 @@ public:
 };
 
 /**
- * FDJ01AbilitySet_AttributeSet
- *
- *	Data used by the ability set to grant attribute sets.
- */
+* FDJ01AbilitySet_AttributeSet
+*
+*	Data used by the ability set to grant attribute sets.
+*/
 USTRUCT(BlueprintType)
-struct FDJ01AbilitySet_AttributeSet
+struct DJ01_API FDJ01AbilitySet_AttributeSet
 {
 	GENERATED_BODY()
 
@@ -82,12 +82,12 @@ public:
 };
 
 /**
- * FDJ01AbilitySet_GrantedHandles
- *
- *	Data used to store handles to what has been granted by the ability set.
- */
+* FDJ01AbilitySet_GrantedHandles
+*
+*	Data used to store handles to what has been granted by the ability set.
+*/
 USTRUCT(BlueprintType)
-struct FDJ01AbilitySet_GrantedHandles
+struct DJ01_API FDJ01AbilitySet_GrantedHandles
 {
 	GENERATED_BODY()
 
@@ -116,12 +116,12 @@ protected:
 
 
 /**
- * UDJ01AbilitySet
- *
- *	Non-mutable data asset used to grant gameplay abilities and gameplay effects.
- */
+* UDJ01AbilitySet
+*
+*	Non-mutable data asset used to grant gameplay abilities and gameplay effects.
+*/
 UCLASS(BlueprintType, Const)
-class UDJ01AbilitySet : public UPrimaryDataAsset
+class DJ01_API UDJ01AbilitySet : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
 

@@ -5,10 +5,9 @@
 #include "GameFramework/Character.h"
 #include "Engine/World.h"
 
-// TODO_ABILITY_SYSTEM: GAS 集成后取消注释
-// #include "AbilitySystemComponent.h"
-// #include "AbilitySystemGlobals.h"
-// #include "GameplayTagContainer.h"
+#include "AbilitySystemComponent.h"
+#include "AbilitySystemGlobals.h"
+#include "NativeGameplayTags.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(DJ01CharacterMovementComponent)
 
@@ -124,40 +123,57 @@ const FDJ01CharacterGroundInfo& UDJ01CharacterMovementComponent::GetGroundInfo()
 }
 
 // ============================================================
-// TODO_ABILITY_SYSTEM: GAS 集成接口
+// 状态相关的 GameplayTags 定义
 // ============================================================
-// 当实现 GAS 后，取消下面代码的注释
+UE_DEFINE_GAMEPLAY_TAG_STATIC(TAG_Status_Stunned, "Status.Condition.Stunned");
+UE_DEFINE_GAMEPLAY_TAG_STATIC(TAG_Status_Rooted, "Status.Condition.Rooted");
+UE_DEFINE_GAMEPLAY_TAG_STATIC(TAG_Status_Slowed, "Status.Condition.Slowed");
+UE_DEFINE_GAMEPLAY_TAG_STATIC(TAG_Status_Hasted, "Status.Condition.Hasted");
+UE_DEFINE_GAMEPLAY_TAG_STATIC(TAG_Status_RotationLocked, "Status.Condition.RotationLocked");
+UE_DEFINE_GAMEPLAY_TAG_STATIC(TAG_Movement_Sprinting, "Status.Movement.Sprinting");
 
-/*
+// ============================================================
+// GAS 集成接口实现
+// ============================================================
+
 float UDJ01CharacterMovementComponent::GetMaxSpeed() const
 {
 	// 获取角色的 AbilitySystemComponent
 	if (UAbilitySystemComponent* ASC = UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(GetOwner()))
 	{
-		// 检查"移动停止"标签（定身、眩晕、石化等效果）
-		if (ASC->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(TEXT("Status.MovementStopped"))))
+		// 检查定身/眩晕标签 - 完全无法移动
+		if (ASC->HasMatchingGameplayTag(TAG_Status_Stunned) || 
+			ASC->HasMatchingGameplayTag(TAG_Status_Rooted))
 		{
-			return 0.0f; // 完全无法移动
+			return 0.0f;
 		}
 
-		// 检查"移动减速"标签（减速效果）
-		if (ASC->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(TEXT("Status.MovementSlowed"))))
+		float FinalSpeed = Super::GetMaxSpeed();
+
+		// 检查减速标签
+		if (ASC->HasMatchingGameplayTag(TAG_Status_Slowed))
 		{
-			// 可以通过 GameplayEffect 的 Magnitude 来动态计算减速比例
-			// 这里简单返回 50% 速度作为示例
-			return Super::GetMaxSpeed() * 0.5f;
+			// TODO: 可以通过 GameplayEffect 的 Magnitude 来动态计算减速比例
+			FinalSpeed *= 0.5f;
 		}
 
-		// 检查"移动加速"标签（加速 Buff、疾跑等）
-		if (ASC->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(TEXT("Status.MovementHasted"))))
+		// 检查加速标签
+		if (ASC->HasMatchingGameplayTag(TAG_Status_Hasted))
 		{
-			// 可以通过 GameplayEffect 的 Magnitude 来动态计算加速比例
-			// 这里简单返回 150% 速度作为示例
-			return Super::GetMaxSpeed() * 1.5f;
+			// TODO: 可以通过 GameplayEffect 的 Magnitude 来动态计算加速比例
+			FinalSpeed *= 1.5f;
 		}
+
+		// 检查冲刺标签
+		if (ASC->HasMatchingGameplayTag(TAG_Movement_Sprinting))
+		{
+			FinalSpeed *= 1.5f;
+		}
+
+		return FinalSpeed;
 	}
 
-	// 没有任何移动相关的标签，返回默认速度
+	// 没有 ASC，返回默认速度
 	return Super::GetMaxSpeed();
 }
 
@@ -167,17 +183,12 @@ FRotator UDJ01CharacterMovementComponent::GetDeltaRotation(float DeltaTime) cons
 	if (UAbilitySystemComponent* ASC = UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(GetOwner()))
 	{
 		// 检查"旋转锁定"标签（释放技能时、被控制时等）
-		if (ASC->HasMatchingGameplayTag(FGameplayTag::RequestGameplayTag(TEXT("Status.RotationLocked"))))
+		if (ASC->HasMatchingGameplayTag(TAG_Status_RotationLocked))
 		{
-			return FRotator::ZeroRotator; // 不允许旋转
+			return FRotator::ZeroRotator;
 		}
-
-		// 检查"强制朝向"标签（某些技能需要强制面向目标）
-		// 这种情况下可能需要从 GameplayEffect 中获取目标朝向
-		// 这里仅作为接口预留
 	}
 
 	// 没有任何旋转相关的标签，返回默认旋转
 	return Super::GetDeltaRotation(DeltaTime);
 }
-*/
