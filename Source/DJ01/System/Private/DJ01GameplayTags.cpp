@@ -32,6 +32,21 @@ namespace DJ01GameplayTags
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability_ActivateFail_IsDead, "Ability.ActivateFail.IsDead", "Ability failed to activate because the owner is dead.");
 
     // ============================================================
+    // 攻击技能标签 (Ability.Attack)
+    // ============================================================
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability_Attack_Light, "Ability.Attack.Light", "Light attack ability.");
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability_Attack_Heavy, "Ability.Attack.Heavy", "Heavy attack ability.");
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability_Dodge, "Ability.Dodge", "Dodge/roll ability.");
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability_Block, "Ability.Block", "Block/parry ability.");
+
+    // ============================================================
+    // 动画事件标签 (Event.Animation)
+    // ============================================================
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Event_Animation_ComboWindow, "Event.Animation.ComboWindow", "Combo window opened - can chain to next attack.");
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Event_Animation_ComboWindowEnd, "Event.Animation.ComboWindowEnd", "Combo window closed.");
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Event_Animation_DamageFrame, "Event.Animation.DamageFrame", "Damage frame - perform hit detection.");
+
+    // ============================================================
     // 状态标签 (Status)
     // ============================================================
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Status_Death, "Status.Death", "Target is dead.");

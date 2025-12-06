@@ -32,6 +32,22 @@ namespace DJ01GameplayTags
 	DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_ActivateFail_IsDead);
 
 	// ============================================================
+	// 攻击技能标签 (Ability.Attack)
+	// ============================================================
+	DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_Attack_Light);
+	DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_Attack_Heavy);
+	DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_Dodge);
+	DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_Block);
+
+	// ============================================================
+	// 动画事件标签 (Event.Animation)
+	// 由动画通知发送，技能监听处理
+	// ============================================================
+	DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Event_Animation_ComboWindow);
+	DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Event_Animation_ComboWindowEnd);
+	DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Event_Animation_DamageFrame);
+
+	// ============================================================
 	// 状态标签 (Status)
 	// ============================================================
 	DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Status_Death);
