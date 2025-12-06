@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+		// Copyright Epic Games, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -19,7 +19,7 @@
  * - 灵活：支持"一对多"关系（一个单位可以同时属于多个阵营）
  * - 可扩展：最多支持32个阵营（uint32）
  */
-UENUM(BlueprintType, Meta = (Bitflags, UseEnumValuesAsMaskValuesInEditor = "true"))
+UENUM(BlueprintType, Meta = (Bitflags, UseEnumValuesAsMaskValuesInEditor = "true", ScriptName = "EDJ01Team"))
 enum class EDJ01Team : uint8
 {
 	// === 基础阵营（每个是一个bit）===
@@ -62,7 +62,7 @@ struct FDJ01TeamConfig
 	 * - NPC：Monster (只攻击怪物，不攻击玩家)
 	 * - 中立生物：None (不攻击任何人)
 	 */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Team", Meta = (Bitmask, BitmaskEnum = "EDJ01Team"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Team", Meta = (Bitmask, BitmaskEnum = "/Script/DJ01.EDJ01Team"))
 	uint8 AttackMask = 0;
 
 	/** 快捷方法：判断是否可以攻击目标 */

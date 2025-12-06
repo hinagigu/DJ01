@@ -59,6 +59,20 @@ void UDJ01AnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	}
 
 	UDJ01CharacterMovementComponent* CharMoveComp = CastChecked<UDJ01CharacterMovementComponent>(Character->GetCharacterMovement());
+	
+	//========================================
+	// 物理状态 - 从 CharacterMovement 读取
+	//========================================
+	
+	// 地面距离
 	const FDJ01CharacterGroundInfo& GroundInfo = CharMoveComp->GetGroundInfo();
 	GroundDistance = GroundInfo.GroundDistance;
+	
+	// 移动速度 (XY平面)
+	GroundSpeed = CharMoveComp->Velocity.Size2D();
+	
+	//========================================
+	// 逻辑状态 - 由 GameplayTagPropertyMap 自动处理
+	// 无需在此手动更新，Tag 变化时会自动同步到对应变量
+	//========================================
 }

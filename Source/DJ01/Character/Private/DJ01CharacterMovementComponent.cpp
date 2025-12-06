@@ -8,6 +8,7 @@
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemGlobals.h"
 #include "NativeGameplayTags.h"
+#include "DJ01/AbilitySystem/Attributes/DJ01CombatSet.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(DJ01CharacterMovementComponent)
 
@@ -139,42 +140,39 @@ UE_DEFINE_GAMEPLAY_TAG_STATIC(TAG_Movement_Sprinting, "Status.Movement.Sprinting
 float UDJ01CharacterMovementComponent::GetMaxSpeed() const
 {
 	// 获取角色的 AbilitySystemComponent
-	if (UAbilitySystemComponent* ASC = UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(GetOwner()))
+	UAbilitySystemComponent* ASC = UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(GetOwner());
+	if (!ASC)
 	{
-		// 检查定身/眩晕标签 - 完全无法移动
-		if (ASC->HasMatchingGameplayTag(TAG_Status_Stunned) || 
-			ASC->HasMatchingGameplayTag(TAG_Status_Rooted))
-		{
-			return 0.0f;
-		}
-
-		float FinalSpeed = Super::GetMaxSpeed();
-
-		// 检查减速标签
-		if (ASC->HasMatchingGameplayTag(TAG_Status_Slowed))
-		{
-			// TODO: 可以通过 GameplayEffect 的 Magnitude 来动态计算减速比例
-			FinalSpeed *= 0.5f;
-		}
-
-		// 检查加速标签
-		if (ASC->HasMatchingGameplayTag(TAG_Status_Hasted))
-		{
-			// TODO: 可以通过 GameplayEffect 的 Magnitude 来动态计算加速比例
-			FinalSpeed *= 1.5f;
-		}
-
-		// 检查冲刺标签
-		if (ASC->HasMatchingGameplayTag(TAG_Movement_Sprinting))
-		{
-			FinalSpeed *= 1.5f;
-		}
-
-		return FinalSpeed;
+		return Super::GetMaxSpeed();
 	}
 
-	// 没有 ASC，返回默认速度
-	return Super::GetMaxSpeed();
+	// ========== 状态检查 (Tag驱动) ==========
+	// 定身/眩晕 - 完全无法移动
+	if (ASC->HasMatchingGameplayTag(TAG_Status_Stunned) || 
+		ASC->HasMatchingGameplayTag(TAG_Status_Rooted))
+	{
+		return 0.0f;
+	}
+
+	// ========== 基础速度 ==========
+	float FinalSpeed = Super::GetMaxSpeed();
+
+	// ========== 属性加成 (从CombatSet读取) ==========
+	// MovementSpeedBonus 是百分比加成：0 = 正常, 50 = +50%, -30 = -30%
+	if (const UDJ01CombatSet* CombatSet = ASC->GetSet<UDJ01CombatSet>())
+	{
+		const float SpeedBonus = CombatSet->GetMovementSpeedBonus();
+		FinalSpeed *= (1.0f + SpeedBonus / 100.0f);
+	}
+
+	// ========== 冲刺状态 (Tag驱动，可独立于属性) ==========
+	if (ASC->HasMatchingGameplayTag(TAG_Movement_Sprinting))
+	{
+		FinalSpeed *= 1.5f;
+	}
+
+	// 确保速度不会为负
+	return FMath::Max(0.0f, FinalSpeed);
 }
 
 FRotator UDJ01CharacterMovementComponent::GetDeltaRotation(float DeltaTime) const

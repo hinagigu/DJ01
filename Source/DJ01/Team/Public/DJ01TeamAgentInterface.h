@@ -27,7 +27,7 @@ inline FGenericTeamId IntegerToGenericTeamId(int32 ID)
 
 /** Interface for actors which can be associated with teams */
 UINTERFACE(meta=(CannotImplementInterfaceInBlueprint))
-class UDJ01TeamAgentInterface : public UGenericTeamAgentInterface
+	class UDJ01TeamAgentInterface : public UGenericTeamAgentInterface
 {
 	GENERATED_UINTERFACE_BODY()
 };

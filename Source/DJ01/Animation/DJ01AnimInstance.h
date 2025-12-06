@@ -54,7 +54,36 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "GameplayTags")
 	FGameplayTagBlueprintPropertyMap GameplayTagPropertyMap;
 
+	//========================================
+	// 物理状态数据 (从 CharacterMovement 读取)
+	// 这些是物理模拟的结果，不由 GAS 控制
+	//========================================
+	
+	/** 
+	 * 实际地面移动速度 (XY平面)
+	 * 用于 BlendSpace 混合: Idle(0) -> Walk(150) -> Run(600)
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Physics")
+	float GroundSpeed = 0.0f;
+	
 	/** 角色到地面的距离，用于跳跃/降落动画控制 */
-	UPROPERTY(BlueprintReadOnly, Category = "Character State Data")
+	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Physics")
 	float GroundDistance = -1.0f;
+
+	//========================================
+	// 逻辑状态数据 (由 GameplayTagPropertyMap 自动映射)
+	// 在动画蓝图的 Class Defaults 中配置 Tag 映射
+	//========================================
+	
+	/** 是否在地面上 (映射自 Status.Movement.Grounded) */
+	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Status")
+	bool bIsGrounded = true;
+	
+	/** 是否在攻击中 (映射自 Status.Action.Attacking) */
+	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Status")
+	bool bIsAttacking = false;
+	
+	/** 是否被眩晕 (映射自 Status.Condition.Stunned) */
+	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Status")
+	bool bIsStunned = false;
 };

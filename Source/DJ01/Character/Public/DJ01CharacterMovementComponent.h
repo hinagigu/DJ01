@@ -8,6 +8,7 @@
 
 class UObject;
 struct FFrame;
+class UDJ01CombatSet;
 
 /**
  * FDJ01CharacterGroundInfo
