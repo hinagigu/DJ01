@@ -1,6 +1,6 @@
 # DJ01 GAS 代码生成器 使用手册
 
-> **版本**: 1.0  
+> **版本**: 1.1  
 > **适用项目**: DJ01 (UE5 + GAS)  
 > **功能**: 通过可视化界面配置属性、GameplayTags 和 Execution，自动生成 C++ 代码
 
@@ -262,6 +262,24 @@ Execution（`UGameplayEffectExecutionCalculation`）用于复杂的数值计算�
 | Attribute | 属性名 | 从属性编辑器中选择 |
 | Layer | 捕获的层 | `Base` / `Flat` / `Percent` / `Total` / `Value` |
 
+#### Tag 条件（Tag Conditions）⭐ 新功能
+根据 Source 或 Target 身上的 GameplayTag 修改计算结果：
+
+| 字段 | 说明 | 可选值 |
+|------|------|--------|
+| 检查对象 | 检查谁的 Tag | `Source`（施法者）/ `Target`（目标） |
+| Tag | 要检查的标签 | 从 Tags 编辑器中选择 |
+| 效果 | 触发的效果 | `Skip` / `Multiply` / `Add` |
+| 数值 | 效果参数 | Skip 不需要，Multiply/Add 需要 |
+
+**效果类型说明**：
+
+| 效果 | 说明 | 应用场景 |
+|------|------|---------|
+| **Skip** | 直接跳过计算，返回 0 | 免疫某元素伤害 |
+| **Multiply** | 最终值乘以倍率 | 弱点加成（1.5x）、抗性减免（0.5x）、暴击（2.0x） |
+| **Add** | 最终值增加固定值 | 固定伤害加成、护盾吸收 |
+
 #### 输出修改（Output）
 将计算结果应用到目标属性：
 
@@ -273,15 +291,22 @@ Execution（`UGameplayEffectExecutionCalculation`）用于复杂的数值计算�
 
 ### 3.4 操作流程
 
-#### 创建伤害公式
-1. 点击 **[+ 新建]**，输入名称 `DamageExec`
+#### 创建伤害公式（含元素免疫/弱点）
+1. 点击 **[+ 新建]**，输入名称 `FireDamage`
 2. 添加捕获属性：
    - Source → Attack → Total（攻击者的攻击力）
    - Target → Defense → Total（目标的防御力）
-3. 添加输出：
-   - Health → Additive → `FinalDamage`（扣减生命值）
-4. 点击 **[生成代码]**
-5. 在生成的 `.cpp` 文件中编写计算逻辑
+3. **添加 Tag 条件**：
+   - Target → `Immunity.Element.Fire` → Skip（火焰免疫）
+   - Target → `Weakness.Element.Fire` → Multiply → 1.5（火焰弱点 +50%）
+   - Target → `Resistance.Element.Fire` → Multiply → 0.5（火焰抗性 -50%）
+4. 添加输出：
+   - Health → Additive（扣减生命值）
+5. 编写计算逻辑：
+   ```cpp
+   float FinalValue = FMath::Max(0.f, AttackValue - DefenseValue);
+   ```
+6. 点击 **[生成代码]**
 
 ### 3.5 生成的代码
 
@@ -290,36 +315,51 @@ Execution（`UGameplayEffectExecutionCalculation`）用于复杂的数值计算�
 | Header | `Source/DJ01/AbilitySystem/Executions/Generated/DJ01Exec_DamageExec.h` |
 | Source | `Source/DJ01/AbilitySystem/Executions/Generated/DJ01Exec_DamageExec.cpp` |
 
-**生成示例**:
+**生成示例（含 Tag 条件）**:
 ```cpp
-// 捕获定义
-struct FDamageExecStatics
+void UDJ01FireDamageExecution::Execute_Implementation(...) const
 {
-    DECLARE_ATTRIBUTE_CAPTUREDEF(Attack);
-    DECLARE_ATTRIBUTE_CAPTUREDEF(Defense);
+    // ... 初始化代码 ...
     
-    FDamageExecStatics()
-    {
-        DEFINE_ATTRIBUTE_CAPTUREDEF(UDJ01StatSet, Attack, Source, true);
-        DEFINE_ATTRIBUTE_CAPTUREDEF(UDJ01StatSet, Defense, Target, true);
-    }
-};
+    // ========== Tag 条件检查 ==========
+    float TagMultiplier = 1.f;
+    float TagAdditive = 0.f;
 
-// Execute 函数（需要手动编写计算逻辑）
-void UDJ01Exec_DamageExec::Execute_Implementation(...) const
-{
-    float SourceAttack = 0.f;
-    float TargetDefense = 0.f;
-    
-    // 获取捕获的属性值
-    ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(..., SourceAttack);
-    ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(..., TargetDefense);
-    
-    // TODO: 在此编写伤害计算逻辑
-    float FinalDamage = FMath::Max(0.f, SourceAttack - TargetDefense);
-    
-    // 输出结果
-    OutExecutionOutput.AddOutputModifier(..., -FinalDamage);
+    // Target 有 Immunity.Element.Fire 标签时跳过
+    if (EvalParams.TargetTags && EvalParams.TargetTags->HasTag(DJ01GameplayTags::Immunity_Element_Fire))
+    {
+        return; // 免疫火焰伤害
+    }
+
+    // Target 有 Weakness.Element.Fire 标签时乘以 1.5
+    if (EvalParams.TargetTags && EvalParams.TargetTags->HasTag(DJ01GameplayTags::Weakness_Element_Fire))
+    {
+        TagMultiplier *= 1.5f; // 弱点 +50%
+    }
+
+    // Target 有 Resistance.Element.Fire 标签时乘以 0.5
+    if (EvalParams.TargetTags && EvalParams.TargetTags->HasTag(DJ01GameplayTags::Resistance_Element_Fire))
+    {
+        TagMultiplier *= 0.5f; // 抗性 -50%
+    }
+
+    // ========== 获取属性值 ==========
+    float AttackValue = 0.f;
+    float DefenseValue = 0.f;
+    // ... 获取属性代码 ...
+
+    // ========== 计算逻辑 ==========
+    float FinalValue = FMath::Max(0.f, AttackValue - DefenseValue);
+
+    // 应用 Tag 条件修正
+    FinalValue = (FinalValue + TagAdditive) * TagMultiplier;
+
+    // ========== 输出结果 ==========
+    if (FinalValue != 0.f)
+    {
+        OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(
+            UDJ01StatSet::GetHealthAttribute(), EGameplayModOp::Additive, -FinalValue));
+    }
 }
 ```
 
@@ -360,6 +400,14 @@ A:
 ### Q: Execution 的计算逻辑在哪写？
 A: 生成器只生成框架代码，计算逻辑需要在生成的 `.cpp` 文件的 `Execute_Implementation` 函数中手动编写。
 
+### Q: Tag 条件是自动生成的吗？
+A: 是的！在 Execution 编辑器中配置的 Tag 条件会自动生成对应的 C++ 代码，包括：
+- 免疫检查（Skip）
+- 倍率修正（Multiply）
+- 固定加成（Add）
+
+你只需要在 Tags 编辑器中先定义好相关的 Tag（如 `Immunity.Element.Fire`），然后在 Execution 中选择即可。
+
 ### Q: 配置文件在哪？
 A:
 | 模块 | 配置文件 |
@@ -374,15 +422,100 @@ A:
 
 ```
 Tools/AttributeGenerator/
-├── main.py              # 主入口
-├── config.py            # 配置常量
-├── attribute_module.py  # 属性编辑器
-├── execution_module.py  # Execution 编辑器
-├── tag_module.py        # Tags 编辑器
-├── build_exe.bat        # 打包脚本
-└── README.md            # 本说明书
+├── main.py               # 主入口
+├── config.py             # 配置常量（路径定义）
+│
+├── attribute_module.py   # 属性编辑器模块
+│
+├── execution_module.py   # Execution 编辑器入口（统一导出）
+├── execution_data.py     # Execution 数据模型
+├── execution_generator.py# Execution C++ 代码生成器
+├── execution_ui.py       # Execution 编辑器 UI
+├── inline_editor.py      # 可复用的行内编辑组件
+│
+├── tag_module.py         # Tags 编辑器模块
+│
+├── build_exe.bat         # 打包脚本
+└── README.md             # 本说明书
+```
+
+### 模块架构
+
+```mermaid
+graph TB
+    subgraph main.py
+        App[GASGeneratorApp]
+    end
+    
+    subgraph 属性模块
+        AM[attribute_module.py]
+    end
+    
+    subgraph Execution模块
+        EM[execution_module.py<br/>统一入口]
+        ED[execution_data.py<br/>数据模型]
+        EG[execution_generator.py<br/>代码生成]
+        EU[execution_ui.py<br/>UI逻辑]
+        IE[inline_editor.py<br/>行内编辑器]
+        
+        EM --> ED
+        EM --> EG
+        EM --> EU
+        EU --> IE
+    end
+    
+    subgraph Tags模块
+        TM[tag_module.py]
+    end
+    
+    App --> AM
+    App --> EM
+    App --> TM
 ```
 
 ---
 
-*最后更新: 2024-12*
+## 工作流示例
+
+### 创建火焰伤害系统
+
+```mermaid
+flowchart LR
+    A[1. 定义属性] --> B[2. 定义 Tags]
+    B --> C[3. 创建 Execution]
+    C --> D[4. 生成代码]
+    D --> E[5. 编译使用]
+    
+    subgraph 属性编辑器
+        A1[Attack - Layered]
+        A2[Defense - Layered]
+        A3[Health - Resource]
+    end
+    
+    subgraph Tags 编辑器
+        B1[Immunity.Element.Fire]
+        B2[Weakness.Element.Fire]
+        B3[Damage.Element.Fire]
+    end
+    
+    subgraph Execution 编辑器
+        C1[捕获: Attack, Defense]
+        C2[Tag条件: 免疫/弱点]
+        C3[输出: Health]
+    end
+```
+
+**步骤详解**：
+
+1. **属性编辑器**：创建 Attack、Defense（Layered），Health（Resource）
+2. **Tags 编辑器**：创建 `Immunity.Element.Fire`、`Weakness.Element.Fire`
+3. **Execution 编辑器**：
+   - 捕获 Source.Attack 和 Target.Defense
+   - 添加 Tag 条件：火焰免疫 → Skip，火焰弱点 → Multiply 1.5
+   - 输出到 Target.Health
+4. **生成代码**：点击各编辑器的 [生成代码] 按钮
+5. **编译使用**：在 UE5 中创建 GameplayEffect，使用生成的 Execution
+
+---
+
+*最后更新: 2025-01*

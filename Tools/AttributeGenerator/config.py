@@ -41,6 +41,10 @@ ATTRIBUTE_CATEGORIES = ["Combat", "Resource", "Element", "Utility"]
 CAPTURE_LAYERS = ["Base", "Flat", "Percent", "Total", "Value"]
 OUTPUT_OPS = ["Additive", "Multiply", "Override"]
 
+# Tag 条件效果类型
+TAG_EFFECTS = ["Skip", "Multiply", "Add"]
+TAG_SOURCES = ["Source", "Target"]
+
 # Tag 分类（基于现有项目结构）
 TAG_CATEGORIES = [
     "InitState",        # 初始化状态

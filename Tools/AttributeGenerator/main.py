@@ -239,6 +239,10 @@ class GASGeneratorApp:
     def get_attributes(self):
         """供 Execution 模块使用：获取属性列表"""
         return self.attr_editor.attributes
+    
+    def get_tags(self):
+        """供 Execution 模块使用：获取标签列表"""
+        return self.tag_editor.tags
 
 
 def main():
