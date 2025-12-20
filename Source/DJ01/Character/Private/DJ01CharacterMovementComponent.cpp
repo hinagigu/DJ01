@@ -8,7 +8,7 @@
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemGlobals.h"
 #include "NativeGameplayTags.h"
-#include "DJ01/AbilitySystem/Attributes/DJ01CombatSet.h"
+#include "DJ01/AbilitySystem/Attributes/Public/DJ01GeneratedAttributes.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(DJ01CharacterMovementComponent)
 
@@ -157,12 +157,12 @@ float UDJ01CharacterMovementComponent::GetMaxSpeed() const
 	// ========== 基础速度 ==========
 	float FinalSpeed = Super::GetMaxSpeed();
 
-	// ========== 属性加成 (从CombatSet读取) ==========
-	// MovementSpeedBonus 是百分比加成：0 = 正常, 50 = +50%, -30 = -30%
-	if (const UDJ01CombatSet* CombatSet = ASC->GetSet<UDJ01CombatSet>())
+	// ========== 属性读取 (从 MovementSet 读取) ==========
+	// 如果存在 Movement 属性集，使用 TotalSpeed (包含 Base+Flat+Percent 计算结果)
+	if (const UDJ01MoveMent* MoveSet = ASC->GetSet<UDJ01MoveMent>())
 	{
-		const float SpeedBonus = CombatSet->GetMovementSpeedBonus();
-		FinalSpeed *= (1.0f + SpeedBonus / 100.0f);
+		// 宏 DECLARE_LAYERED_ATTRIBUTE 生成了 GetTotalSpeed() 函数
+		FinalSpeed = MoveSet->GetTotalSpeed();
 	}
 
 	// ========== 冲刺状态 (Tag驱动，可独立于属性) ==========

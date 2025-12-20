@@ -26,6 +26,13 @@ ATTRIBUTES_CONFIG = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Attributes/Config/
 ATTRIBUTES_HEADER = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Attributes/Public/DJ01GeneratedAttributes.h"
 ATTRIBUTES_SOURCE = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Attributes/Private/DJ01GeneratedAttributes.cpp"
 
+# 属性 CSV 字段头
+ATTRIBUTES_CSV_FIELDS = [
+    'SetName', 'AttributeName', 'Type', 'Category',
+    'DefaultBase', 'DefaultFlat', 'DefaultPercent', 'DefaultCurrent',
+    'Description', 'BehaviorConfig'
+]
+
 # ========== Execution 配置 ==========
 EXECUTIONS_CONFIG = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Executions/Config/ExecutionDefinitions.json"
 EXECUTIONS_OUTPUT = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Executions/Generated"
@@ -34,6 +41,11 @@ EXECUTIONS_OUTPUT = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Executions/Generat
 TAGS_CONFIG = PROJECT_ROOT / "Source/DJ01/System/Config/GameplayTagDefinitions.json"
 TAGS_HEADER = PROJECT_ROOT / "Source/DJ01/System/Public/DJ01GameplayTags.h"
 TAGS_SOURCE = PROJECT_ROOT / "Source/DJ01/System/Private/DJ01GameplayTags.cpp"
+
+# ========== MMC 配置 ==========
+MMC_CONFIG = PROJECT_ROOT / "Source/DJ01/AbilitySystem/MMC/Config/MMCDefinitions.json"
+MMC_HEADER = PROJECT_ROOT / "Source/DJ01/AbilitySystem/MMC/Public/DJ01GeneratedMMC.h"
+MMC_SOURCE = PROJECT_ROOT / "Source/DJ01/AbilitySystem/MMC/Private/DJ01GeneratedMMC.cpp"
 
 # ========== 选项 ==========
 ATTRIBUTE_TYPES = ["Layered", "Simple", "Meta", "Resource"]

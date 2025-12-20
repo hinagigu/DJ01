@@ -9,9 +9,10 @@ from tkinter import ttk, scrolledtext
 from datetime import datetime
 from collections import OrderedDict
 
-from attribute_module import AttributeEditorUI, AttributeCodeGenerator
-from execution_module import ExecutionEditorUI, ExecutionCodeGenerator
-from tag_module import TagEditorUI, TagCodeGenerator
+from attribute import AttributeEditorUI, AttributeCodeGenerator
+from execution import ExecutionEditorUI, ExecutionCodeGenerator
+from mmc import MMCEditorUI, MMCCodeGenerator
+from tag import TagEditorUI, TagCodeGenerator
 
 
 class GASGeneratorApp:
@@ -50,12 +51,22 @@ class GASGeneratorApp:
         self.notebook.add(exec_preview_frame, text=" 📄 Execution 代码预览 ")
         self._create_exec_preview(exec_preview_frame)
         
-        # 5. GameplayTags 编辑器标签页
+        # 5. MMC 编辑器标签页
+        mmc_frame = ttk.Frame(self.notebook)
+        self.notebook.add(mmc_frame, text=" 🔢 MMC 编辑器 ")
+        self.mmc_editor = MMCEditorUI(mmc_frame, self)
+        
+        # 6. MMC 代码预览标签页
+        mmc_preview_frame = ttk.Frame(self.notebook)
+        self.notebook.add(mmc_preview_frame, text=" 📄 MMC 代码预览 ")
+        self._create_mmc_preview(mmc_preview_frame)
+        
+        # 7. GameplayTags 编辑器标签页
         tag_frame = ttk.Frame(self.notebook)
         self.notebook.add(tag_frame, text=" 🏷️ Tags 编辑器 ")
         self.tag_editor = TagEditorUI(tag_frame, self)
         
-        # 6. Tags 代码预览标签页
+        # 8. Tags 代码预览标签页
         tag_preview_frame = ttk.Frame(self.notebook)
         self.notebook.add(tag_preview_frame, text=" 📄 Tags 代码预览 ")
         self._create_tag_preview(tag_preview_frame)
@@ -120,6 +131,28 @@ class GASGeneratorApp:
         h_scroll.pack(fill=tk.X, padx=10)
         self.exec_preview_text.config(xscrollcommand=h_scroll.set)
     
+    def _create_mmc_preview(self, parent):
+        """创建 MMC 代码预览"""
+        top_frame = ttk.Frame(parent)
+        top_frame.pack(fill=tk.X, padx=10, pady=5)
+        
+        ttk.Label(top_frame, text="文件类型:").pack(side=tk.LEFT, padx=5)
+        self.mmc_preview_type = tk.StringVar(value="header")
+        ttk.Radiobutton(top_frame, text="Header (.h)", variable=self.mmc_preview_type, 
+                       value="header", command=self._update_mmc_preview).pack(side=tk.LEFT, padx=10)
+        ttk.Radiobutton(top_frame, text="Source (.cpp)", variable=self.mmc_preview_type, 
+                       value="source", command=self._update_mmc_preview).pack(side=tk.LEFT, padx=10)
+        
+        ttk.Button(top_frame, text="🔄 刷新", command=self._update_mmc_preview).pack(side=tk.RIGHT, padx=5)
+        
+        self.mmc_preview_text = scrolledtext.ScrolledText(
+            parent, font=("Consolas", 10), wrap=tk.NONE)
+        self.mmc_preview_text.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
+        
+        h_scroll = ttk.Scrollbar(parent, orient=tk.HORIZONTAL, command=self.mmc_preview_text.xview)
+        h_scroll.pack(fill=tk.X, padx=10)
+        self.mmc_preview_text.config(xscrollcommand=h_scroll.set)
+    
     def _create_tag_preview(self, parent):
         """创建 Tags 代码预览"""
         top_frame = ttk.Frame(parent)
@@ -150,7 +183,9 @@ class GASGeneratorApp:
         elif current_tab == 3:  # Execution 代码预览
             self._refresh_exec_combo()
             self._update_exec_preview()
-        elif current_tab == 5:  # Tags 代码预览
+        elif current_tab == 5:  # MMC 代码预览
+            self._update_mmc_preview()
+        elif current_tab == 7:  # Tags 代码预览
             self._update_tag_preview()
     
     def _update_attr_preview(self):
@@ -205,6 +240,20 @@ class GASGeneratorApp:
         self.root.bind('<Control-s>', lambda e: self._on_ctrl_s())
         self.root.bind('<Control-S>', lambda e: self._on_ctrl_s())
     
+    def _update_mmc_preview(self):
+        """更新 MMC 代码预览"""
+        valid_mmcs = [m for m in self.mmc_editor.mmcs if m.name]
+        
+        if not valid_mmcs:
+            content = "// 没有 MMC 定义\n// 请在「MMC 编辑器」中添加"
+        else:
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            header, source = MMCCodeGenerator.generate_all(valid_mmcs, timestamp)
+            content = header if self.mmc_preview_type.get() == "header" else source
+        
+        self.mmc_preview_text.delete('1.0', tk.END)
+        self.mmc_preview_text.insert('1.0', content)
+    
     def _update_tag_preview(self):
         """更新 Tags 代码预览"""
         tags_by_category = self.tag_editor.get_tags_by_category()
@@ -228,7 +277,9 @@ class GASGeneratorApp:
             self.attr_editor.save_current_edit()
         elif current_tab in [2, 3]:  # Execution 相关标签页
             self.exec_editor.save_current_edit()
-        elif current_tab in [4, 5]:  # Tags 相关标签页
+        elif current_tab in [4, 5]:  # MMC 相关标签页
+            self.mmc_editor.save_current_edit()
+        elif current_tab in [6, 7]:  # Tags 相关标签页
             self.tag_editor.save_current_edit()
     
     def show_status(self, message):

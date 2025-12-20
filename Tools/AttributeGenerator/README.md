@@ -1,8 +1,9 @@
 # DJ01 GAS 代码生成器 使用手册
 
-> **版本**: 1.1  
+> **版本**: 2.0  
 > **适用项目**: DJ01 (UE5 + GAS)  
-> **功能**: 通过可视化界面配置属性、GameplayTags 和 Execution，自动生成 C++ 代码
+> **功能**: 通过可视化界面配置属性、GameplayTags 和 Execution，自动生成 C++ 代码  
+> **最后更新**: 2025-12-18
 
 ---
 
@@ -29,9 +30,13 @@ python main.py
 
 **方式二：打包的 EXE**
 ```bash
+# 已打包的 exe 在项目根目录
+d:\UnrealProjects\DJ01\DJ01_GAS_Generator.exe
+
+# 或重新打包
 cd d:\UnrealProjects\DJ01\Tools\AttributeGenerator
 build_exe.bat
-# 生成的 exe 在 dist 目录
+# 生成的 exe 会自动复制到项目根目录
 ```
 
 ### 界面概览
@@ -422,21 +427,26 @@ A:
 
 ```
 Tools/AttributeGenerator/
-├── main.py               # 主入口
-├── config.py             # 配置常量（路径定义）
+├── main.py                 # 主入口
+├── config.py               # 配置常量（路径定义）
 │
-├── attribute_module.py   # 属性编辑器模块
+├── attribute_module.py     # 属性编辑器模块
+├── tag_module.py           # Tags 编辑器模块
 │
-├── execution_module.py   # Execution 编辑器入口（统一导出）
-├── execution_data.py     # Execution 数据模型
-├── execution_generator.py# Execution C++ 代码生成器
-├── execution_ui.py       # Execution 编辑器 UI
-├── inline_editor.py      # 可复用的行内编辑组件
+├── execution_module.py     # Execution 编辑器入口（统一导出）
+├── execution_data.py       # Execution 数据模型
+├── execution_generator.py  # Execution C++ 代码生成器
+├── execution_ui.py         # Execution 编辑器 UI
 │
-├── tag_module.py         # Tags 编辑器模块
+├── ui_base/                # 🆕 可复用 UI 组件库
+│   ├── __init__.py         # 模块导出
+│   ├── base_editor.py      # 编辑器基类（快捷键、通用行为）
+│   ├── widgets.py          # 可复用组件（GroupListWidget, ItemTreeWidget, BottomButtonBar）
+│   ├── helpers.py          # 辅助函数
+│   └── inline_editor.py    # 行内编辑器 Mixin
 │
-├── build_exe.bat         # 打包脚本
-└── README.md             # 本说明书
+├── build_exe.bat           # 打包脚本
+└── README.md               # 本说明书
 ```
 
 ### 模块架构
@@ -447,31 +457,53 @@ graph TB
         App[GASGeneratorApp]
     end
     
+    subgraph ui_base[🆕 UI 基础组件库]
+        BE[base_editor.py<br/>BaseEditorUI 基类]
+        WG[widgets.py<br/>GroupListWidget<br/>ItemTreeWidget<br/>BottomButtonBar]
+        IE[inline_editor.py<br/>InlineEditorMixin]
+    end
+    
     subgraph 属性模块
-        AM[attribute_module.py]
+        AM[attribute_module.py<br/>AttributeEditorUI]
+    end
+    
+    subgraph Tags模块
+        TM[tag_module.py<br/>TagEditorUI]
     end
     
     subgraph Execution模块
         EM[execution_module.py<br/>统一入口]
         ED[execution_data.py<br/>数据模型]
         EG[execution_generator.py<br/>代码生成]
-        EU[execution_ui.py<br/>UI逻辑]
-        IE[inline_editor.py<br/>行内编辑器]
+        EU[execution_ui.py<br/>ExecutionEditorUI]
         
         EM --> ED
         EM --> EG
         EM --> EU
-        EU --> IE
-    end
-    
-    subgraph Tags模块
-        TM[tag_module.py]
     end
     
     App --> AM
-    App --> EM
     App --> TM
+    App --> EM
+    
+    AM --> BE
+    AM --> WG
+    TM --> BE
+    TM --> WG
+    EU --> BE
+    EU --> WG
+    EU --> IE
 ```
+
+### UI 组件说明
+
+| 组件 | 说明 | 使用场景 |
+|------|------|---------|
+| **BaseEditorUI** | 编辑器基类，提供 F2/Delete/Escape 快捷键处理 | 所有编辑器继承 |
+| **GroupListWidget** | 左侧分组列表组件，支持新建/删除/选择 | 属性集、标签分类、Execution 列表 |
+| **ItemTreeWidget** | 中间表格组件，基于 Treeview | 属性列表、标签列表 |
+| **BottomButtonBar** | 底部按钮栏组件 | 保存/生成代码等按钮 |
+| **InlineEditorMixin** | 行内编辑器 Mixin，提供下拉框/输入框编辑 | Execution 捕获/输出/Tag 条件编辑 |
 
 ---
 
@@ -518,4 +550,14 @@ flowchart LR
 
 ---
 
-*最后更新: 2025-01*
+## 版本历史
+
+| 版本 | 日期 | 更新内容 |
+|------|------|---------|
+| 2.0 | 2025-12-18 | 🎉 UI 架构重构：引入 ui_base 组件库，所有编辑器继承 BaseEditorUI |
+| 1.1 | 2025-01 | 添加 Tag 条件功能，Execution 编辑器模块拆分 |
+| 1.0 | 2024-12 | 初始版本：属性、Tags、Execution 三大编辑器 |
+
+---
+
+*最后更新: 2025-12-18*
