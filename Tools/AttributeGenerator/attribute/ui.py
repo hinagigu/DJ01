@@ -18,12 +18,12 @@ from config import (
     ATTRIBUTES_CONFIG, ATTRIBUTES_HEADER, ATTRIBUTES_SOURCE,
     ATTRIBUTE_TYPES, ATTRIBUTE_CATEGORIES, ATTRIBUTES_CSV_FIELDS
 )
-from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar
+from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar, InlineEditorMixin
 from attribute.data import AttributeData
 from attribute.generator import AttributeCodeGenerator
 
 
-class AttributeEditorUI(BaseEditorUI):
+class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
     """属性编辑器 UI"""
     
     def __init__(self, parent, app):
@@ -32,6 +32,7 @@ class AttributeEditorUI(BaseEditorUI):
         self._last_selected_idx = None
         
         super().__init__(parent, app)
+        self._init_inline_editor()
         
         self._create_ui()
         self.load_data()
@@ -74,7 +75,19 @@ class AttributeEditorUI(BaseEditorUI):
         self.attr_tree.bind('<<TreeviewSelect>>', self._on_attr_select)
         self.attr_tree.bind('<F2>', self._on_rename_attr)
         self.attr_tree.bind('<Delete>', lambda e: self._delete_attribute())
-        self.attr_tree.bind('<Double-1>', self._on_cell_double_click)
+        
+        # 设置单击即可编辑功能
+        self._setup_single_click_editing(
+            self.attr_tree,
+            column_handlers={
+                0: {'type': 'entry', 'key': 'name', 'value_type': str},          # 属性名
+                1: {'type': 'combo', 'key': 'type', 'values': ATTRIBUTE_TYPES},   # 类型
+                2: {'type': 'combo', 'key': 'category', 'values': ATTRIBUTE_CATEGORIES},  # 分类
+                3: {'type': 'entry', 'key': 'default_base', 'value_type': float}, # 默认值
+                4: {'type': 'entry', 'key': 'description', 'value_type': str},    # 描述
+            },
+            refresh_callback=self._on_inline_edit_refresh
+        )
         
         # 底部按钮
         self.button_bar = BottomButtonBar(middle_frame, buttons=[
@@ -518,9 +531,31 @@ class AttributeEditorUI(BaseEditorUI):
                 attr.name = new_name
                 self._refresh_attr_list()
     
-    def _on_cell_double_click(self, event):
-        # 简化版：直接打开重命名对话框
-        self._on_rename_attr(event)
+    def _on_inline_edit_refresh(self, idx):
+        """单击编辑后刷新表格"""
+        self._refresh_attr_list()
+        # 更新右侧面板
+        if idx < len(self.attributes):
+            attr = self.attributes[idx]
+            self._sync_right_panel(attr)
+    
+    def _get_attribute_value(self, idx, key):
+        """获取属性值 - 用于单击编辑"""
+        if idx >= len(self.attributes):
+            return None
+        attr = self.attributes[idx]
+        return getattr(attr, key, None)
+    
+    def _set_attribute_value(self, idx, key, value):
+        """设置属性值 - 用于单击编辑"""
+        if idx >= len(self.attributes):
+            return
+        attr = self.attributes[idx]
+        setattr(attr, key, value)
+    
+    def _destroy_edit_widget(self):
+        """销毁编辑控件 - 兼容旧接口"""
+        self._destroy_active_editor()
     
     def _save_attribute(self):
         selection = self.attr_tree.selection()

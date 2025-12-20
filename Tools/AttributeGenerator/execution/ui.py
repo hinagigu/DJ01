@@ -17,19 +17,25 @@ from config import (
     EXECUTIONS_CONFIG, EXECUTIONS_OUTPUT,
     CAPTURE_LAYERS, OUTPUT_OPS, TAG_EFFECTS, TAG_SOURCES
 )
-from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar
+from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar, InlineEditorMixin
 from execution.data import ExecutionData
 from execution.generator import ExecutionCodeGenerator
 
 
-class ExecutionEditorUI(BaseEditorUI):
+class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
     """Execution 编辑器 UI"""
     
     def __init__(self, parent, app):
         self.executions = []
         self.current_exe = None
         
+        # 当前编辑的 Treeview 及其数据上下文
+        self._current_tree = None
+        self._current_tree_data = None
+        self._editor_ready = False  # 编辑器就绪标志
+        
         super().__init__(parent, app)
+        self._init_inline_editor()
         
         self._create_ui()
         self.load_data()
@@ -107,7 +113,16 @@ class ExecutionEditorUI(BaseEditorUI):
         self.capture_tree.heading("set", text="属性集")
         self.capture_tree.heading("attr", text="属性")
         self.capture_tree.heading("layer", text="层级")
+        
+        self.capture_tree.column("source", width=80)
+        self.capture_tree.column("set", width=120)
+        self.capture_tree.column("attr", width=120)
+        self.capture_tree.column("layer", width=80)
+        
         self.capture_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        
+        # 绑定单击编辑
+        self.capture_tree.bind('<Button-1>', lambda e: self._on_tree_click(e, self.capture_tree, 'capture'))
         
         btn_frame = ttk.Frame(parent)
         btn_frame.pack(fill=tk.X, padx=5)
@@ -121,7 +136,15 @@ class ExecutionEditorUI(BaseEditorUI):
         self.output_tree.heading("set", text="属性集")
         self.output_tree.heading("attr", text="属性")
         self.output_tree.heading("op", text="操作")
+        
+        self.output_tree.column("set", width=120)
+        self.output_tree.column("attr", width=120)
+        self.output_tree.column("op", width=100)
+        
         self.output_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        
+        # 绑定单击编辑
+        self.output_tree.bind('<Button-1>', lambda e: self._on_tree_click(e, self.output_tree, 'output'))
         
         btn_frame = ttk.Frame(parent)
         btn_frame.pack(fill=tk.X, padx=5)
@@ -136,7 +159,16 @@ class ExecutionEditorUI(BaseEditorUI):
         self.tag_tree.heading("tag", text="Tag")
         self.tag_tree.heading("effect", text="效果")
         self.tag_tree.heading("value", text="值")
+        
+        self.tag_tree.column("source", width=80)
+        self.tag_tree.column("tag", width=150)
+        self.tag_tree.column("effect", width=100)
+        self.tag_tree.column("value", width=80)
+        
         self.tag_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        
+        # 绑定单击编辑
+        self.tag_tree.bind('<Button-1>', lambda e: self._on_tree_click(e, self.tag_tree, 'tag'))
         
         btn_frame = ttk.Frame(parent)
         btn_frame.pack(fill=tk.X, padx=5)
@@ -331,6 +363,197 @@ class ExecutionEditorUI(BaseEditorUI):
         selected = self.tag_tree.selection()
         if selected:
             self.tag_tree.delete(selected[0])
+    
+    # ========== 单击编辑功能 ==========
+    
+    def _on_tree_click(self, event, tree, tree_type):
+        """处理 Treeview 单击事件"""
+        # 检查是否点击在当前编辑器内，如果是则不处理
+        if self._active_editor:
+            try:
+                ex = self._active_editor.winfo_x()
+                ey = self._active_editor.winfo_y()
+                ew = self._active_editor.winfo_width()
+                eh = self._active_editor.winfo_height()
+                if ex <= event.x <= ex + ew and ey <= event.y <= ey + eh:
+                    return  # 点击在编辑器内，不处理
+            except:
+                pass
+        
+        # 先销毁之前的编辑器
+        self._destroy_active_editor()
+        
+        # 延迟处理以区分单击和双击
+        tree.after(180, lambda: self._handle_tree_click(event, tree, tree_type))
+    
+    def _handle_tree_click(self, event, tree, tree_type):
+        """实际处理单击编辑"""
+        cell_info = self._get_cell_info(tree, event)
+        if not cell_info:
+            return
+        
+        item, column, col_idx, bbox = cell_info
+        x, y, w, h = bbox
+        
+        # 先选中行
+        tree.selection_set(item)
+        tree.focus(item)
+        
+        # 获取当前行数据
+        current_values = list(tree.item(item, 'values'))
+        
+        # 根据 tree_type 和 col_idx 决定编辑器类型
+        if tree_type == 'capture':
+            self._edit_capture_cell(tree, item, col_idx, x, y, w, h, current_values)
+        elif tree_type == 'output':
+            self._edit_output_cell(tree, item, col_idx, x, y, w, h, current_values)
+        elif tree_type == 'tag':
+            self._edit_tag_cell(tree, item, col_idx, x, y, w, h, current_values)
+    
+    def _edit_capture_cell(self, tree, item, col_idx, x, y, w, h, current_values):
+        """编辑捕获属性单元格"""
+        # 列: source(0), set(1), attr(2), layer(3)
+        if col_idx == 0:  # source
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, 
+                                    ['Source', 'Target'])
+        elif col_idx == 1:  # set
+            sets = self._get_attribute_sets()
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, sets)
+        elif col_idx == 2:  # attr
+            set_name = current_values[1] if len(current_values) > 1 else ''
+            attrs = self._get_attributes_for_set(set_name)
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, attrs)
+        elif col_idx == 3:  # layer
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, CAPTURE_LAYERS)
+    
+    def _edit_output_cell(self, tree, item, col_idx, x, y, w, h, current_values):
+        """编辑输出属性单元格"""
+        # 列: set(0), attr(1), op(2)
+        if col_idx == 0:  # set
+            sets = self._get_attribute_sets()
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, sets)
+        elif col_idx == 1:  # attr
+            set_name = current_values[0] if len(current_values) > 0 else ''
+            attrs = self._get_attributes_for_set(set_name)
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, attrs)
+        elif col_idx == 2:  # op
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, OUTPUT_OPS)
+    
+    def _edit_tag_cell(self, tree, item, col_idx, x, y, w, h, current_values):
+        """编辑 Tag 条件单元格"""
+        # 列: source(0), tag(1), effect(2), value(3)
+        if col_idx == 0:  # source
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, TAG_SOURCES)
+        elif col_idx == 1:  # tag
+            self._create_cell_entry(tree, item, col_idx, x, y, w, h, current_values)
+        elif col_idx == 2:  # effect
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, TAG_EFFECTS)
+        elif col_idx == 3:  # value
+            self._create_cell_entry(tree, item, col_idx, x, y, w, h, current_values, value_type=float)
+    
+    def _create_cell_combo(self, tree, item, col_idx, x, y, w, h, current_values, options):
+        """创建下拉框编辑器"""
+        self._destroy_active_editor()
+        
+        combo = ttk.Combobox(tree, values=options, width=max(10, w // 8))
+        current_val = current_values[col_idx] if col_idx < len(current_values) else ''
+        combo.set(current_val)
+        combo.place(x=x, y=y, width=w, height=h)
+        self._active_editor = combo
+        self._editor_ready = False  # 标记编辑器尚未就绪
+        
+        def do_save():
+            if self._active_editor != combo:
+                return
+            current_values[col_idx] = combo.get()
+            tree.item(item, values=current_values)
+            self._destroy_active_editor()
+        
+        def on_escape(event):
+            self._destroy_active_editor()
+        
+        def on_focus_out(event):
+            # 只有就绪后才响应 FocusOut
+            if self._editor_ready and self._active_editor == combo:
+                tree.after(50, do_save)
+        
+        # 下拉框选择后保存
+        combo.bind('<<ComboboxSelected>>', lambda e: do_save())
+        # 回车确认
+        combo.bind('<Return>', lambda e: do_save())
+        # Escape 取消
+        combo.bind('<Escape>', on_escape)
+        # 失去焦点时保存（延迟启用）
+        combo.bind('<FocusOut>', on_focus_out)
+        
+        combo.focus_set()
+        # 自动展开下拉框，并在之后标记就绪
+        def post_and_ready():
+            if self._active_editor == combo:
+                try:
+                    combo.tk.call('ttk::combobox::Post', combo)
+                except:
+                    pass
+                # 延迟标记就绪，确保下拉框已完全展开
+                combo.after(200, lambda: setattr(self, '_editor_ready', True))
+        
+        combo.after(80, post_and_ready)
+    
+    def _create_cell_entry(self, tree, item, col_idx, x, y, w, h, current_values, value_type=str):
+        """创建文本框编辑器"""
+        self._destroy_active_editor()
+        
+        entry = ttk.Entry(tree, width=max(5, w // 8))
+        current_val = current_values[col_idx] if col_idx < len(current_values) else ''
+        entry.insert(0, str(current_val))
+        entry.place(x=x, y=y, width=w, height=h)
+        entry.select_range(0, tk.END)
+        self._active_editor = entry
+        self._editor_ready = False  # 标记编辑器尚未就绪
+        
+        def on_confirm(event=None):
+            if self._active_editor != entry:
+                return
+            try:
+                new_value = value_type(entry.get())
+            except ValueError:
+                new_value = 0 if value_type in (int, float) else ''
+            current_values[col_idx] = new_value
+            tree.item(item, values=current_values)
+            self._destroy_active_editor()
+        
+        def on_escape(event):
+            self._destroy_active_editor()
+        
+        def on_focus_out(event):
+            # 只有就绪后才响应 FocusOut
+            if self._editor_ready and self._active_editor == entry:
+                tree.after(50, on_confirm)
+        
+        # 回车确认
+        entry.bind('<Return>', on_confirm)
+        # Escape 取消
+        entry.bind('<Escape>', on_escape)
+        # 失去焦点时保存（延迟启用）
+        entry.bind('<FocusOut>', on_focus_out)
+        
+        entry.focus_set()
+        # 延迟标记就绪
+        entry.after(250, lambda: setattr(self, '_editor_ready', True))
+    
+    def _get_attribute_sets(self):
+        """获取所有属性集名称"""
+        attrs = self.app.get_attributes()
+        if not attrs:
+            return []
+        return list(set(a.set_name for a in attrs))
+    
+    def _get_attributes_for_set(self, set_name):
+        """获取指定属性集的所有属性名"""
+        attrs = self.app.get_attributes()
+        if not attrs:
+            return []
+        return [a.name for a in attrs if a.set_name == set_name]
     
     def generate_code(self):
         """生成代码"""
