@@ -205,10 +205,13 @@ class AttributeCodeGenerator:
         lines.append("")
         lines.append("    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;")
         
+        # Resource 类型需要监听 Max 变化来联动调整 Current
+        has_resource_sync = any(a.type == 'Resource' for a in attributes)
+        
         # 如果需要行为回调，添加 override
         if has_clamp:
             lines.append("    virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;")
-        if has_delegate or has_event or has_cue:
+        if has_delegate or has_event or has_resource_sync:
             lines.append("    virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue) override;")
         # Meta 属性或 Cue 需要 PostGameplayEffectExecute
         has_meta = len(meta) > 0
@@ -233,6 +236,7 @@ class AttributeCodeGenerator:
         lines.append('#include "Net/UnrealNetwork.h"')
         lines.append('#include "GameplayTagsManager.h"')
         lines.append('#include "AbilitySystemComponent.h"')
+        lines.append('#include "GameplayEffectExtension.h"')
         lines.append("")
         lines.append("#include UE_INLINE_GENERATED_CPP_BY_NAME(DJ01GeneratedAttributes)")
         lines.append("")
@@ -323,8 +327,11 @@ class AttributeCodeGenerator:
         if has_clamp:
             lines.extend(AttributeCodeGenerator._generate_pre_attribute_change(class_name, attributes))
         
-        # ========== PostAttributeChange (委托 + 事件) ==========
-        if has_delegate or has_event:
+        # Resource 类型需要监听 Max 变化来联动调整 Current
+        has_resource_sync = any(a.type == 'Resource' for a in attributes)
+        
+        # ========== PostAttributeChange (委托 + 事件 + Resource联动) ==========
+        if has_delegate or has_event or has_resource_sync:
             lines.extend(AttributeCodeGenerator._generate_post_attribute_change(class_name, attributes))
         
         # ========== PostGameplayEffectExecute (Cue + Meta) ==========
@@ -397,13 +404,55 @@ class AttributeCodeGenerator:
     
     @staticmethod
     def _generate_post_attribute_change(class_name: str, attributes: list) -> list:
-        """生成 PostAttributeChange - 委托和事件逻辑"""
+        """生成 PostAttributeChange - 委托、事件和 Resource 联动逻辑"""
         lines = []
         lines.append(f"void {class_name}::PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue)")
         lines.append("{")
         lines.append("    Super::PostAttributeChange(Attribute, OldValue, NewValue);")
         lines.append("")
         
+        # ========== Resource 类型 MaxXxx 变化联动 ==========
+        resource_attrs = [a for a in attributes if a.type == 'Resource']
+        for attr in resource_attrs:
+            mode = attr.resource_config.max_change_mode
+            
+            # 监听 BaseMaxXxx, FlatMaxXxx, PercentMaxXxx 中任一变化
+            lines.append(f"    // ===== Max{attr.name} 变化时联动调整 {attr.name} =====")
+            lines.append(f"    if (Attribute == GetBaseMax{attr.name}Attribute() ||")
+            lines.append(f"        Attribute == GetFlatMax{attr.name}Attribute() ||")
+            lines.append(f"        Attribute == GetPercentMax{attr.name}Attribute())")
+            lines.append("    {")
+            
+            if mode == "KeepRatio":
+                # 保持百分比: 计算旧的百分比，乘以新的最大值
+                lines.append(f"        // KeepRatio: 保持当前值占最大值的百分比")
+                lines.append(f"        const float OldMax = GetTotalMax{attr.name}() - (NewValue - OldValue);")
+                lines.append(f"        const float NewMax = GetTotalMax{attr.name}();")
+                lines.append(f"        if (OldMax > 0.f && NewMax > 0.f)")
+                lines.append("        {")
+                lines.append(f"            const float Ratio = Get{attr.name}() / OldMax;")
+                lines.append(f"            Set{attr.name}(FMath::Clamp(Ratio * NewMax, 0.f, NewMax));")
+                lines.append("        }")
+            elif mode == "AddDifference":
+                # 增加差值: 当前值 += (新最大值 - 旧最大值)
+                lines.append(f"        // AddDifference: 当前值同步增减差值")
+                lines.append(f"        const float MaxDelta = NewValue - OldValue;")
+                lines.append(f"        const float NewCurrent = Get{attr.name}() + MaxDelta;")
+                lines.append(f"        Set{attr.name}(FMath::Clamp(NewCurrent, 0.f, GetTotalMax{attr.name}()));")
+            else:
+                # KeepCurrent (默认): 只做 Clamp，确保不超过新上限
+                lines.append(f"        // KeepCurrent: 保持当前值，超限时 Clamp")
+                lines.append(f"        const float CurrentValue = Get{attr.name}();")
+                lines.append(f"        const float NewMax = GetTotalMax{attr.name}();")
+                lines.append(f"        if (CurrentValue > NewMax)")
+                lines.append("        {")
+                lines.append(f"            Set{attr.name}(NewMax);")
+                lines.append("        }")
+            
+            lines.append("    }")
+            lines.append("")
+        
+        # ========== 委托和事件处理 ==========
         for attr in attributes:
             has_any = (attr.delegate.on_change or attr.delegate.on_increase or attr.delegate.on_decrease or
                       attr.event.on_zero_tag or attr.event.on_full_tag or attr.event.threshold_low is not None)
@@ -451,7 +500,7 @@ class AttributeCodeGenerator:
                 lines.append(f"        // 归零事件")
                 lines.append(f"        if (NewValue <= 0.f && OldValue > 0.f)")
                 lines.append("        {")
-                lines.append(f"            if (UAbilitySystemComponent* ASC = GetAbilitySystemComponent())")
+                lines.append(f"            if (UAbilitySystemComponent* ASC = GetOwningAbilitySystemComponent())")
                 lines.append("            {")
                 lines.append(f'                FGameplayTag Tag = FGameplayTag::RequestGameplayTag(FName("{attr.event.on_zero_tag}"));')
                 lines.append(f"                ASC->AddLooseGameplayTag(Tag);")
@@ -469,7 +518,7 @@ class AttributeCodeGenerator:
                     lines.append(f"        // TODO: 需要配置最大值属性来检测满值")
                     lines.append(f"        // if (NewValue >= MaxValue && OldValue < MaxValue)")
                 lines.append("        {")
-                lines.append(f"            if (UAbilitySystemComponent* ASC = GetAbilitySystemComponent())")
+                lines.append(f"            if (UAbilitySystemComponent* ASC = GetOwningAbilitySystemComponent())")
                 lines.append("            {")
                 lines.append(f'                FGameplayTag Tag = FGameplayTag::RequestGameplayTag(FName("{attr.event.on_full_tag}"));')
                 lines.append(f"                ASC->AddLooseGameplayTag(Tag);")
@@ -486,7 +535,7 @@ class AttributeCodeGenerator:
                     lines.append(f"        float ThresholdValue = {max_getter} * {threshold}f;")
                     lines.append(f"        if (NewValue <= ThresholdValue && OldValue > ThresholdValue)")
                     lines.append("        {")
-                    lines.append(f"            if (UAbilitySystemComponent* ASC = GetAbilitySystemComponent())")
+                    lines.append(f"            if (UAbilitySystemComponent* ASC = GetOwningAbilitySystemComponent())")
                     lines.append("            {")
                     lines.append(f'                FGameplayTag Tag = FGameplayTag::RequestGameplayTag(FName("{attr.event.threshold_low_tag}"));')
                     lines.append(f"                ASC->AddLooseGameplayTag(Tag);")
@@ -567,9 +616,9 @@ class AttributeCodeGenerator:
                         lines.append(f"        // 跨 AttributeSet 访问: 将 Meta 值转发到 {target_class}::{target}")
                         lines.append(f"        if (LocalValue != 0.0f)")
                         lines.append("        {")
-                        lines.append(f"            if (UAbilitySystemComponent* ASC = GetAbilitySystemComponent())")
+                        lines.append(f"            if (UAbilitySystemComponent* ASC = GetOwningAbilitySystemComponent())")
                         lines.append("            {")
-                        lines.append(f"                if ({target_class}* TargetSet = ASC->GetSet<{target_class}>())")
+                        lines.append(f"                if ({target_class}* TargetSet = const_cast<{target_class}*>(ASC->GetSet<{target_class}>()))")
                         lines.append("                {")
                         lines.append(f"                    const float NewValue = TargetSet->Get{target}() + LocalValue;")
                         lines.append(f"                    TargetSet->Set{target}(NewValue);")
@@ -598,7 +647,7 @@ class AttributeCodeGenerator:
                         if attr.meta_config.broadcast_event and attr.meta_config.event_tag:
                             lines.append("")
                             lines.append(f"            // 广播事件")
-                            lines.append(f"            if (UAbilitySystemComponent* ASC = GetAbilitySystemComponent())")
+                            lines.append(f"            if (UAbilitySystemComponent* ASC = GetOwningAbilitySystemComponent())")
                             lines.append("            {")
                             lines.append(f"                FGameplayEventData EventData;")
                             lines.append(f"                EventData.EventMagnitude = FMath::Abs(LocalValue);")
@@ -638,7 +687,7 @@ class AttributeCodeGenerator:
             lines.append(f"    // ===== {attr.name} GameplayCue =====")
             lines.append(f"    if (Data.EvaluatedData.Attribute == {attr_getter}())")
             lines.append("    {")
-            lines.append("        UAbilitySystemComponent* ASC = GetAbilitySystemComponent();")
+            lines.append("        UAbilitySystemComponent* ASC = GetOwningAbilitySystemComponent();")
             lines.append("        if (!ASC) return;")
             lines.append("")
             

@@ -130,6 +130,38 @@ class CueConfig:
         )
 
 
+class ResourceConfig:
+    """Resource 属性配置 - MaxXxx 变化时 Xxx 的联动模式"""
+    
+    # 联动模式常量
+    MODE_KEEP_CURRENT = "KeepCurrent"    # 保持当前值不变（超出上限时 Clamp）
+    MODE_KEEP_RATIO = "KeepRatio"        # 保持百分比（80% → 80%）
+    MODE_ADD_DIFFERENCE = "AddDifference" # 增加差值（MaxHealth +100 → Health +100）
+    
+    MODES = [MODE_KEEP_CURRENT, MODE_KEEP_RATIO, MODE_ADD_DIFFERENCE]
+    MODE_DESCRIPTIONS = {
+        MODE_KEEP_CURRENT: "保持当前值（超限时Clamp）",
+        MODE_KEEP_RATIO: "保持百分比（如 80%→80%）",
+        MODE_ADD_DIFFERENCE: "同步增减差值"
+    }
+    
+    def __init__(self, max_change_mode="KeepCurrent"):
+        self.max_change_mode = max_change_mode  # MaxXxx 变化时的联动模式
+    
+    def to_dict(self):
+        return {
+            'MaxChangeMode': self.max_change_mode
+        }
+    
+    @staticmethod
+    def from_dict(d):
+        if not d:
+            return ResourceConfig()
+        return ResourceConfig(
+            max_change_mode=d.get('MaxChangeMode', 'KeepCurrent')
+        )
+
+
 class MetaConfig:
     """Meta 属性配置 - 用于临时中转值的处理"""
     
@@ -166,7 +198,8 @@ class AttributeData:
     def __init__(self, set_name="", name="", attr_type="Layered", category="Combat",
                  default_base=0.0, default_flat=0.0, default_percent=0.0, 
                  default_current=0.0, description="",
-                 clamp=None, delegate=None, event=None, cue=None, meta_config=None):
+                 clamp=None, delegate=None, event=None, cue=None, 
+                 meta_config=None, resource_config=None):
         # 基础信息
         self.set_name = set_name
         self.name = name
@@ -186,6 +219,7 @@ class AttributeData:
         self.event = event if event else EventConfig()
         self.cue = cue if cue else CueConfig()
         self.meta_config = meta_config if meta_config else MetaConfig()
+        self.resource_config = resource_config if resource_config else ResourceConfig()
     
     def to_dict(self):
         """转换为字典（用于 JSON 保存）"""
@@ -204,7 +238,8 @@ class AttributeData:
             'Delegate': self.delegate.to_dict(),
             'Event': self.event.to_dict(),
             'Cue': self.cue.to_dict(),
-            'MetaConfig': self.meta_config.to_dict()
+            'MetaConfig': self.meta_config.to_dict(),
+            'ResourceConfig': self.resource_config.to_dict()
         }
     
     def to_csv_dict(self):
@@ -225,7 +260,8 @@ class AttributeData:
                 'Delegate': self.delegate.to_dict(),
                 'Event': self.event.to_dict(),
                 'Cue': self.cue.to_dict(),
-                'MetaConfig': self.meta_config.to_dict()
+                'MetaConfig': self.meta_config.to_dict(),
+                'ResourceConfig': self.resource_config.to_dict()
             }, ensure_ascii=False)
         }
 
@@ -237,8 +273,8 @@ class AttributeData:
         delegate = None
         event = None
         cue = None
-        
         meta_config = None
+        resource_config = None
         
         # 方式1: 直接嵌套对象 (JSON 格式)
         if 'Clamp' in d and isinstance(d['Clamp'], dict):
@@ -247,6 +283,7 @@ class AttributeData:
             event = EventConfig.from_dict(d.get('Event'))
             cue = CueConfig.from_dict(d.get('Cue'))
             meta_config = MetaConfig.from_dict(d.get('MetaConfig'))
+            resource_config = ResourceConfig.from_dict(d.get('ResourceConfig'))
         # 方式2: JSON 字符串 (CSV 格式)
         elif 'BehaviorConfig' in d and d['BehaviorConfig']:
             try:
@@ -256,6 +293,7 @@ class AttributeData:
                 event = EventConfig.from_dict(behavior.get('Event'))
                 cue = CueConfig.from_dict(behavior.get('Cue'))
                 meta_config = MetaConfig.from_dict(behavior.get('MetaConfig'))
+                resource_config = ResourceConfig.from_dict(behavior.get('ResourceConfig'))
             except json.JSONDecodeError:
                 pass
         
@@ -282,7 +320,8 @@ class AttributeData:
             delegate=delegate,
             event=event,
             cue=cue,
-            meta_config=meta_config
+            meta_config=meta_config,
+            resource_config=resource_config
         )
     
     def has_behavior_config(self):

@@ -1,13 +1,14 @@
 // ============================================================
 // DJ01 Generated Attributes
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-21 19:24:01
+// 生成时间: 2025-12-21 20:09:41
 // ============================================================
 
 #include "DJ01/AbilitySystem/Attributes/Public/DJ01GeneratedAttributes.h"
 #include "Net/UnrealNetwork.h"
 #include "GameplayTagsManager.h"
 #include "AbilitySystemComponent.h"
+#include "GameplayEffectExtension.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(DJ01GeneratedAttributes)
 
@@ -133,6 +134,40 @@ void UDJ01ResourceSet::PreAttributeChange(const FGameplayAttribute& Attribute, f
 
 }
 
+void UDJ01ResourceSet::PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue)
+{
+    Super::PostAttributeChange(Attribute, OldValue, NewValue);
+
+    // ===== MaxHealth 变化时联动调整 Health =====
+    if (Attribute == GetBaseMaxHealthAttribute() ||
+        Attribute == GetFlatMaxHealthAttribute() ||
+        Attribute == GetPercentMaxHealthAttribute())
+    {
+        // KeepCurrent: 保持当前值，超限时 Clamp
+        const float CurrentValue = GetHealth();
+        const float NewMax = GetTotalMaxHealth();
+        if (CurrentValue > NewMax)
+        {
+            SetHealth(NewMax);
+        }
+    }
+
+    // ===== MaxMana 变化时联动调整 Mana =====
+    if (Attribute == GetBaseMaxManaAttribute() ||
+        Attribute == GetFlatMaxManaAttribute() ||
+        Attribute == GetPercentMaxManaAttribute())
+    {
+        // KeepCurrent: 保持当前值，超限时 Clamp
+        const float CurrentValue = GetMana();
+        const float NewMax = GetTotalMaxMana();
+        if (CurrentValue > NewMax)
+        {
+            SetMana(NewMax);
+        }
+    }
+
+}
+
 
 // ##########################################################
 // UDJ01MetaAttributes
@@ -159,12 +194,18 @@ void UDJ01MetaAttributes::PostGameplayEffectExecute(const FGameplayEffectModCall
         // 获取 Meta 属性的值
         const float LocalValue = GetDamageIncoming();
 
-        // TODO: 在这里处理 DamageIncoming 的逻辑
-        // 示例: 将伤害应用到 Health
-        // if (LocalValue != 0.0f)
-        // {
-        //     SetHealth(GetHealth() + LocalValue);
-        // }
+        // 跨 AttributeSet 访问: 将 Meta 值转发到 UDJ01ResourceSet::Health
+        if (LocalValue != 0.0f)
+        {
+            if (UAbilitySystemComponent* ASC = GetOwningAbilitySystemComponent())
+            {
+                if (UDJ01ResourceSet* TargetSet = const_cast<UDJ01ResourceSet*>(ASC->GetSet<UDJ01ResourceSet>()))
+                {
+                    const float NewValue = TargetSet->GetHealth() + LocalValue;
+                    TargetSet->SetHealth(NewValue);
+                }
+            }
+        }
 
         // 重置 Meta 属性
         SetDamageIncoming(0.0f);

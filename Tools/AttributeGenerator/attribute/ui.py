@@ -19,7 +19,7 @@ from config import (
     ATTRIBUTE_TYPES, ATTRIBUTE_CATEGORIES, ATTRIBUTES_CSV_FIELDS
 )
 from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar, InlineEditorMixin
-from attribute.data import AttributeData
+from attribute.data import AttributeData, ResourceConfig
 from attribute.generator import AttributeCodeGenerator
 
 
@@ -130,6 +130,60 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         
         self.attr_type_var.trace_add('write', self._on_type_changed)
         self._update_ui_by_type()
+    
+    def _set_right_panel_state(self, state):
+        """设置右侧面板的启用状态
+        
+        Args:
+            state: 'normal' 或 'disabled'
+        """
+        # 这里可以遍历并设置所有输入控件的状态
+        # 目前仅作为占位，后续可以根据需要实现
+        pass
+    
+    def _clear_right_panel(self):
+        """清空右侧面板的内容"""
+        self.attr_name_var.set('')
+        self.attr_type_var.set('Layered')
+        self.attr_category_var.set('Combat')
+        self.attr_base_var.set('0')
+        self.attr_flat_var.set('0')
+        self.attr_percent_var.set('0')
+        self.attr_current_var.set('0')
+        self.attr_desc_var.set('')
+        
+        # Clamp
+        self.clamp_enabled_var.set(False)
+        self.clamp_min_var.set('')
+        self.clamp_max_value_var.set('')
+        self.clamp_max_attr_var.set('')
+        
+        # Delegate
+        self.delegate_change_var.set(False)
+        self.delegate_increase_var.set(False)
+        self.delegate_decrease_var.set(False)
+        self.delegate_decrease_alias_var.set('')
+        
+        # Event
+        self.event_zero_tag_var.set('')
+        self.event_full_tag_var.set('')
+        self.event_threshold_low_var.set('')
+        self.event_threshold_low_tag_var.set('')
+        
+        # Cue
+        self.cue_decrease_var.set('')
+        self.cue_zero_var.set('')
+        self.cue_increase_var.set('')
+        
+        # Meta
+        self.meta_target_set_var.set('')
+        self.meta_target_var.set('')
+        self.meta_mode_var.set('Add')
+        self.meta_broadcast_var.set(False)
+        self.meta_event_tag_var.set('')
+        
+        # Resource
+        self.resource_mode_var.set('KeepCurrent')
     
     def _create_basic_tab(self):
         """创建基础信息选项卡"""
@@ -353,7 +407,36 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         ttk.Entry(low_tag_frame, textvariable=self.event_threshold_low_tag_var, width=20).pack(side=tk.LEFT, padx=3)
         ttk.Label(low_tag_frame, text="如 State.LowHealth", font=("", 7), foreground="gray").pack(side=tk.LEFT)
         
-        # ===== 4. Meta 属性配置 =====
+        # ===== 4. Resource 属性配置 =====
+        self.resource_frame = ttk.LabelFrame(scrollable_frame, text="💚 Resource 联动配置")
+        self.resource_frame.pack(fill=tk.X, padx=5, pady=5)
+        
+        ttk.Label(self.resource_frame, text="当 MaxXxx 变化时，Xxx 如何联动？", 
+                 foreground="gray", font=("", 8)).grid(row=0, column=0, columnspan=3, sticky='w', padx=5, pady=2)
+        
+        # 联动模式选择
+        mode_frame = ttk.Frame(self.resource_frame)
+        mode_frame.grid(row=1, column=0, columnspan=3, sticky='w', padx=5, pady=3)
+        ttk.Label(mode_frame, text="联动模式:").pack(side=tk.LEFT)
+        self.resource_mode_var = tk.StringVar(value=ResourceConfig.MODE_KEEP_CURRENT)
+        self.resource_mode_combo = ttk.Combobox(
+            mode_frame, 
+            textvariable=self.resource_mode_var, 
+            values=ResourceConfig.MODES,
+            width=15,
+            state='readonly'
+        )
+        self.resource_mode_combo.pack(side=tk.LEFT, padx=3)
+        
+        # 模式说明
+        self.resource_mode_desc = ttk.Label(self.resource_frame, text="", foreground="blue", font=("", 8))
+        self.resource_mode_desc.grid(row=2, column=0, columnspan=3, sticky='w', padx=5, pady=2)
+        
+        # 绑定事件更新说明
+        self.resource_mode_combo.bind('<<ComboboxSelected>>', self._on_resource_mode_changed)
+        self._update_resource_mode_desc()
+        
+        # ===== 5. Meta 属性配置 =====
         self.meta_frame = ttk.LabelFrame(scrollable_frame, text="🔄 Meta 属性配置")
         self.meta_frame.pack(fill=tk.X, padx=5, pady=5)
         
@@ -404,6 +487,26 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         self.clamp_max_entry.configure(state=state)
         self.clamp_max_attr_entry.configure(state=state)
     
+    def _on_resource_mode_changed(self, event=None):
+        """Resource 联动模式变化时更新说明"""
+        self._update_resource_mode_desc()
+    
+    def _update_resource_mode_desc(self):
+        """更新 Resource 联动模式说明"""
+        mode = self.resource_mode_var.get()
+        desc = ResourceConfig.MODE_DESCRIPTIONS.get(mode, "")
+        
+        # 添加示例说明
+        examples = {
+            ResourceConfig.MODE_KEEP_CURRENT: "例: MaxHP 100→200, HP 80→80 (不变)",
+            ResourceConfig.MODE_KEEP_RATIO: "例: MaxHP 100→200, HP 80→160 (保持80%)",
+            ResourceConfig.MODE_ADD_DIFFERENCE: "例: MaxHP 100→200, HP 80→180 (+100)"
+        }
+        example = examples.get(mode, "")
+        
+        if hasattr(self, 'resource_mode_desc'):
+            self.resource_mode_desc.configure(text=f"{desc}\n{example}")
+    
     def _on_type_changed(self, *args):
         self._update_ui_by_type()
     
@@ -417,6 +520,9 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
                 self.range_auto_label.configure(
                     text="💡 Resource 类型自动限制在 [0, MaxXxx]",
                     foreground="green")
+            # 显示 Resource 配置
+            if hasattr(self, 'resource_frame'):
+                self.resource_frame.pack(fill=tk.X, padx=5, pady=5)
             # 隐藏 Meta 配置
             if hasattr(self, 'meta_frame'):
                 self.meta_frame.pack_forget()
@@ -428,6 +534,9 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
                 self.range_auto_label.configure(
                     text="💡 Meta 类型仅用于临时计算，不参与网络复制",
                     foreground="blue")
+            # 隐藏 Resource 配置
+            if hasattr(self, 'resource_frame'):
+                self.resource_frame.pack_forget()
             # 显示 Meta 配置
             if hasattr(self, 'meta_frame'):
                 self.meta_frame.pack(fill=tk.X, padx=5, pady=5)
@@ -439,6 +548,9 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
                 self.range_auto_label.configure(
                     text="💡 如需限制范围，请勾选下方自定义选项",
                     foreground="gray")
+            # 隐藏 Resource 配置
+            if hasattr(self, 'resource_frame'):
+                self.resource_frame.pack_forget()
             # 隐藏 Meta 配置
             if hasattr(self, 'meta_frame'):
                 self.meta_frame.pack_forget()
@@ -456,6 +568,21 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
     
     def save_config(self):
         try:
+            # 先同步当前编辑中的属性到内存
+            # 优先使用当前选中的索引，其次使用 _last_selected_idx
+            current_idx = None
+            selection = self.attr_tree.selection()
+            if selection:
+                try:
+                    current_idx = int(selection[0])
+                except ValueError:
+                    pass
+            
+            if current_idx is not None and current_idx < len(self.attributes):
+                self._save_attribute_silent(current_idx)
+            elif self._last_selected_idx is not None and self._last_selected_idx < len(self.attributes):
+                self._save_attribute_silent(self._last_selected_idx)
+            
             ATTRIBUTES_CONFIG.parent.mkdir(parents=True, exist_ok=True)
             with open(ATTRIBUTES_CONFIG, 'w', encoding='utf-8', newline='') as f:
                 writer = csv.DictWriter(f, fieldnames=ATTRIBUTES_CSV_FIELDS)
@@ -468,9 +595,19 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
     
     def save_current_edit(self):
         self._destroy_edit_widget()
-        if self._last_selected_idx is not None:
+        # 获取当前选中的属性索引
+        selection = self.attr_tree.selection()
+        if selection:
+            try:
+                current_idx = int(selection[0])
+                if current_idx < len(self.attributes):
+                    self._save_attribute_silent(current_idx)
+                    self._last_selected_idx = current_idx
+            except (ValueError, IndexError):
+                pass
+        elif self._last_selected_idx is not None and self._last_selected_idx < len(self.attributes):
             self._save_attribute_silent(self._last_selected_idx)
-            self._refresh_attr_list()
+        self._refresh_attr_list()
         self.save_config()
     
     def generate_code(self):
@@ -515,18 +652,65 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
             counts[s] = len([a for a in self.attributes if a.set_name == s])
         self.set_widget.refresh(sets, counts)
     
-    def _refresh_attr_list(self):
+    def _refresh_attr_list(self, preserve_selection=True):
+        """刷新属性列表
+        
+        Args:
+            preserve_selection: 是否保持当前选择状态，默认为 True
+        """
+        # 保存当前选择状态
+        selected_iid = None
+        if preserve_selection:
+            selection = self.attr_tree.selection()
+            if selection:
+                selected_iid = selection[0]
+        
         self.attr_tree.delete(*self.attr_tree.get_children())
         if not self._current_set:
             return
+        
         for i, attr in enumerate(self.attributes):
             if attr.set_name == self._current_set:
                 self.attr_tree.insert('', 'end', iid=str(i), values=(
                     attr.name, attr.type, attr.category, attr.default_base, attr.description, '❌'))
+        
+        # 恢复选择状态
+        if preserve_selection and selected_iid:
+            children = self.attr_tree.get_children()
+            if selected_iid in children:
+                self.attr_tree.selection_set(selected_iid)
+                self.attr_tree.focus(selected_iid)
+            elif self._last_selected_idx is not None:
+                # 如果原 iid 不存在，尝试用 _last_selected_idx 恢复
+                fallback_iid = str(self._last_selected_idx)
+                if fallback_iid in children:
+                    self.attr_tree.selection_set(fallback_iid)
+                    self.attr_tree.focus(fallback_iid)
     
     def _on_set_select(self, idx, value):
+        # 保存当前编辑的属性（如果有）
+        if self._last_selected_idx is not None and self._last_selected_idx < len(self.attributes):
+            self._save_attribute_silent(self._last_selected_idx)
+        
         self._current_set = value
-        self._refresh_attr_list()
+        self._last_selected_idx = None
+        self._refresh_attr_list(preserve_selection=False)
+        
+        # 自动选中新属性集的第一个属性
+        children = self.attr_tree.get_children()
+        if children:
+            first_item = children[0]
+            self.attr_tree.selection_set(first_item)
+            self.attr_tree.focus(first_item)
+            try:
+                new_idx = int(first_item)
+                if new_idx < len(self.attributes):
+                    self._last_selected_idx = new_idx
+                    self._sync_right_panel(self.attributes[new_idx])
+            except (ValueError, IndexError):
+                pass
+        else:
+            self._clear_right_panel()
     
     def _add_set(self):
         name = simpledialog.askstring("新建属性集", "属性集名称:")
@@ -553,7 +737,8 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
                 self._refresh_set_list()
     
     def _on_attr_select(self, event):
-        if self._last_selected_idx is not None:
+        # 先保存之前选中的属性（如果有效）
+        if self._last_selected_idx is not None and self._last_selected_idx < len(self.attributes):
             self._save_attribute_silent(self._last_selected_idx)
         
         selection = self.attr_tree.selection()
@@ -561,10 +746,16 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
             self._last_selected_idx = None
             return
         
-        idx = int(selection[0])
-        self._last_selected_idx = idx
-        attr = self.attributes[idx]
-        self._sync_right_panel(attr)
+        try:
+            idx = int(selection[0])
+            if idx >= len(self.attributes):
+                self._last_selected_idx = None
+                return
+            self._last_selected_idx = idx
+            attr = self.attributes[idx]
+            self._sync_right_panel(attr)
+        except (ValueError, IndexError):
+            self._last_selected_idx = None
     
     def _add_attribute(self):
         if not self._current_set:
@@ -595,9 +786,26 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
                 new_attrs.append(attr)
         self.attributes = new_attrs
         
+        # 重置选中索引，避免索引错误
         self._last_selected_idx = None
-        self._refresh_attr_list()
+        
+        # 刷新列表（不保持选择，因为已删除）
+        self._refresh_attr_list(preserve_selection=False)
         self._refresh_set_list()
+        
+        # 自动选中第一个剩余项
+        children = self.attr_tree.get_children()
+        if children:
+            first_item = children[0]
+            self.attr_tree.selection_set(first_item)
+            self.attr_tree.focus(first_item)
+            try:
+                new_idx = int(first_item)
+                if new_idx < len(self.attributes):
+                    self._last_selected_idx = new_idx
+                    self._sync_right_panel(self.attributes[new_idx])
+            except (ValueError, IndexError):
+                pass
     
     def _on_tree_click(self, event):
         """处理树形控件点击 - 检测删除列"""
@@ -636,11 +844,20 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
     
     def _on_inline_edit_refresh(self, idx):
         """单击编辑后刷新表格"""
-        self._refresh_attr_list()
-        # 更新右侧面板
+        # 刷新列表并保持选择
+        self._refresh_attr_list(preserve_selection=True)
+        
+        # 确保选中项和 _last_selected_idx 一致
         if idx < len(self.attributes):
+            self._last_selected_idx = idx
             attr = self.attributes[idx]
             self._sync_right_panel(attr)
+            
+            # 确保 Treeview 选中正确的项
+            iid = str(idx)
+            if iid in self.attr_tree.get_children():
+                self.attr_tree.selection_set(iid)
+                self.attr_tree.focus(iid)
     
     def _get_attribute_value(self, idx, key):
         """获取属性值 - 用于单击编辑"""
@@ -661,12 +878,24 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         self._destroy_active_editor()
     
     def _save_attribute(self):
+        """保存当前编辑的属性（由"保存修改"按钮调用）"""
+        # 优先使用当前选中的项
         selection = self.attr_tree.selection()
-        if not selection:
-            return
-        idx = int(selection[0])
-        self._save_attribute_silent(idx)
-        self._refresh_attr_list()
+        if selection:
+            try:
+                idx = int(selection[0])
+                if idx < len(self.attributes):
+                    self._save_attribute_silent(idx)
+                    self._last_selected_idx = idx
+                    self._refresh_attr_list(preserve_selection=True)
+                    return
+            except (ValueError, IndexError):
+                pass
+        
+        # 如果没有选中项，尝试使用 _last_selected_idx
+        if self._last_selected_idx is not None and self._last_selected_idx < len(self.attributes):
+            self._save_attribute_silent(self._last_selected_idx)
+            self._refresh_attr_list(preserve_selection=True)
     
     def _save_attribute_silent(self, idx):
         if idx is None or idx >= len(self.attributes):
@@ -716,6 +945,9 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
             attr.meta_config.apply_mode = self.meta_mode_var.get()
             attr.meta_config.broadcast_event = self.meta_broadcast_var.get()
             attr.meta_config.event_tag = self.meta_event_tag_var.get()
+            
+            # Resource 配置
+            attr.resource_config.max_change_mode = self.resource_mode_var.get()
         except (ValueError, IndexError):
             pass
     
@@ -764,6 +996,10 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         self.meta_target_set_combo['values'] = sorted(sets)
     
     def _sync_right_panel(self, attr):
+        """同步右侧编辑面板的内容"""
+        # 启用编辑（如果之前被禁用）
+        self._set_right_panel_state('normal')
+        
         # 基础信息
         self.attr_name_var.set(attr.name)
         self.attr_type_var.set(attr.type)
@@ -820,5 +1056,9 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         self.meta_mode_var.set(attr.meta_config.apply_mode)
         self.meta_broadcast_var.set(attr.meta_config.broadcast_event)
         self.meta_event_tag_var.set(attr.meta_config.event_tag)
+        
+        # Resource 配置
+        self.resource_mode_var.set(attr.resource_config.max_change_mode)
+        self._update_resource_mode_desc()
         
         self._update_ui_by_type()
