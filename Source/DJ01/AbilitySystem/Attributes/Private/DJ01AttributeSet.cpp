@@ -3,6 +3,7 @@
 #include "DJ01/AbilitySystem/Attributes/Public/DJ01AttributeSet.h"
 
 #include "DJ01/AbilitySystem/Public/DJ01AbilitySystemComponent.h"
+#include "Net/UnrealNetwork.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(DJ01AttributeSet)
 
@@ -24,5 +25,11 @@ UWorld* UDJ01AttributeSet::GetWorld() const
 UDJ01AbilitySystemComponent* UDJ01AttributeSet::GetDJ01AbilitySystemComponent() const
 {
 	return Cast<UDJ01AbilitySystemComponent>(GetOwningAbilitySystemComponent());
+}
+
+void UDJ01AttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	// 基类不注册任何属性，由子类处理
 }
 

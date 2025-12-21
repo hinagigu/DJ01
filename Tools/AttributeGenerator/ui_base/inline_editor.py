@@ -345,3 +345,60 @@ class InlineEditorMixin:
     def _set_attribute_value(self, idx, key, value):
         """设置属性值 - 子类需要覆写"""
         raise NotImplementedError("子类需要实现 _set_attribute_value")
+    
+    # ========== Delete 键删除功能 ==========
+    
+    def _bind_tree_delete_key(self, tree, on_after_delete=None):
+        """
+        为 Treeview 绑定 Delete/BackSpace 键删除功能
+        
+        Args:
+            tree: Treeview 组件
+            on_after_delete: 删除后的回调函数 (可选)
+        """
+        tree.bind('<Delete>', lambda e: self._handle_tree_delete(tree, on_after_delete))
+        tree.bind('<BackSpace>', lambda e: self._handle_tree_delete(tree, on_after_delete))
+    
+    def _handle_tree_delete(self, tree, on_after_delete=None):
+        """
+        处理 Treeview 的 Delete 键删除
+        删除后自动选中：如果是第一行则选下一行，否则选上一行
+        
+        Args:
+            tree: Treeview 组件
+            on_after_delete: 删除后的回调函数 (可选)
+        """
+        selected = tree.selection()
+        if not selected:
+            return
+        
+        item = selected[0]
+        all_items = list(tree.get_children())
+        
+        if not all_items or item not in all_items:
+            return
+        
+        # 找到当前项的索引
+        current_idx = all_items.index(item)
+        
+        # 计算删除后要选中的项
+        if len(all_items) <= 1:
+            next_item = None
+        elif current_idx == 0:
+            # 第一行，选中下一行（删除后变成第一行）
+            next_item = all_items[1]
+        else:
+            # 其他情况，选中上一行
+            next_item = all_items[current_idx - 1]
+        
+        # 执行删除
+        tree.delete(item)
+        
+        # 选中新的项
+        if next_item and next_item in tree.get_children():
+            tree.selection_set(next_item)
+            tree.focus(next_item)
+        
+        # 调用删除后的回调
+        if on_after_delete:
+            on_after_delete()

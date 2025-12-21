@@ -15,19 +15,21 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from config import TAGS_CONFIG, TAGS_HEADER, TAGS_SOURCE, TAG_CATEGORIES
-from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar
+from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar, InlineEditorMixin
 from tag.data import TagData
 from tag.generator import TagCodeGenerator
 
 
-class TagEditorUI(BaseEditorUI):
+class TagEditorUI(BaseEditorUI, InlineEditorMixin):
     """Tag 编辑器 UI"""
     
     def __init__(self, parent, app):
         self.tags = []
         self.current_category = None
+        self._editor_ready = False
         
         super().__init__(parent, app)
+        self._init_inline_editor()
         
         self._create_ui()
         self.load_data()
@@ -61,7 +63,10 @@ class TagEditorUI(BaseEditorUI):
         self.tag_tree.column('description', width=200)
         self.tag_tree.pack(fill=tk.BOTH, expand=True)
         
-        self.tag_tree.bind('<Delete>', lambda e: self._delete_tag())
+        # 绑定 Delete/BackSpace 删除（自动选中上/下行）
+        self._bind_tree_delete_key(self.tag_tree, on_after_delete=self._on_tag_deleted)
+        # 绑定单击编辑
+        self.tag_tree.bind('<Button-1>', self._on_tree_click)
         
         # 底部按钮
         self.button_bar = BottomButtonBar(middle_frame, buttons=[
@@ -154,12 +159,28 @@ class TagEditorUI(BaseEditorUI):
         self._refresh_cat_list()
     
     def _delete_tag(self):
-        selection = self.tag_tree.selection()
-        if selection:
-            idx = int(selection[0])
-            del self.tags[idx]
-            self._refresh_tag_list()
-            self._refresh_cat_list()
+        """删除选中的 Tag（由按钮调用）"""
+        self._handle_tree_delete(self.tag_tree, on_after_delete=self._on_tag_deleted)
+    
+    def _on_tag_deleted(self):
+        """Tag 删除后的回调：同步删除数据并刷新"""
+        # 重建 tags 列表（根据 tree 中剩余的项）
+        remaining_indices = set()
+        for item in self.tag_tree.get_children():
+            try:
+                remaining_indices.add(int(item))
+            except ValueError:
+                pass
+        
+        # 保留还在 tree 中的 tags
+        new_tags = []
+        for i, tag in enumerate(self.tags):
+            if i in remaining_indices or tag.category != self.current_category:
+                new_tags.append(tag)
+        self.tags = new_tags
+        
+        self._refresh_tag_list()
+        self._refresh_cat_list()
     
     def get_tags_by_category(self):
         """获取按分类分组的 tags"""
@@ -169,6 +190,92 @@ class TagEditorUI(BaseEditorUI):
                 result[tag.category] = []
             result[tag.category].append(tag)
         return result
+    
+    # ========== 行内编辑功能 ==========
+    
+    def _on_tree_click(self, event):
+        """处理 Treeview 单击事件"""
+        if self._active_editor:
+            try:
+                ex = self._active_editor.winfo_x()
+                ey = self._active_editor.winfo_y()
+                ew = self._active_editor.winfo_width()
+                eh = self._active_editor.winfo_height()
+                if ex <= event.x <= ex + ew and ey <= event.y <= ey + eh:
+                    return
+            except:
+                pass
+        
+        self._destroy_active_editor()
+        self.tag_tree.after(180, lambda: self._handle_tree_click(event))
+    
+    def _handle_tree_click(self, event):
+        """实际处理单击编辑"""
+        cell_info = self._get_cell_info(self.tag_tree, event)
+        if not cell_info:
+            return
+        
+        item, column, col_idx, bbox = cell_info
+        x, y, w, h = bbox
+        
+        self.tag_tree.selection_set(item)
+        self.tag_tree.focus(item)
+        
+        # 获取当前行数据和对应的 tag 对象
+        tag_idx = int(item)
+        tag = self.tags[tag_idx]
+        current_values = list(self.tag_tree.item(item, 'values'))
+        
+        # 列: tag(0), variable(1), description(2)
+        if col_idx == 0:  # tag 名
+            self._create_tag_entry(item, col_idx, x, y, w, h, current_values, tag, 'tag')
+        elif col_idx == 1:  # variable_name - 只读，显示自动生成提示
+            pass  # 变量名自动生成，不可编辑
+        elif col_idx == 2:  # description
+            self._create_tag_entry(item, col_idx, x, y, w, h, current_values, tag, 'description')
+    
+    def _create_tag_entry(self, item, col_idx, x, y, w, h, current_values, tag, field_name):
+        """创建文本框编辑器"""
+        self._destroy_active_editor()
+        
+        entry = ttk.Entry(self.tag_tree, width=max(5, w // 8))
+        entry.insert(0, str(current_values[col_idx]))
+        entry.place(x=x, y=y, width=w, height=h)
+        entry.select_range(0, tk.END)
+        self._active_editor = entry
+        self._editor_ready = False
+        
+        def on_confirm(event=None):
+            if self._active_editor != entry:
+                return
+            new_value = entry.get()
+            
+            # 更新 tag 数据
+            if field_name == 'tag':
+                tag.tag = new_value
+                tag.variable_name = new_value.replace('.', '_').replace('-', '_')
+                current_values[0] = tag.tag
+                current_values[1] = tag.variable_name
+            elif field_name == 'description':
+                tag.description = new_value
+                current_values[2] = new_value
+            
+            self.tag_tree.item(item, values=current_values)
+            self._destroy_active_editor()
+        
+        def on_escape(event):
+            self._destroy_active_editor()
+        
+        def on_focus_out(event):
+            if self._editor_ready and self._active_editor == entry:
+                self.tag_tree.after(50, on_confirm)
+        
+        entry.bind('<Return>', on_confirm)
+        entry.bind('<Escape>', on_escape)
+        entry.bind('<FocusOut>', on_focus_out)
+        
+        entry.focus_set()
+        entry.after(250, lambda: setattr(self, '_editor_ready', True))
     
     def generate_code(self):
         tags_by_cat = self.get_tags_by_category()

@@ -1,16 +1,37 @@
-[
-  {
-    "Name": "Damage",
-    "Description": "Damage 计算",
-    "Captures": [
-      {
-        "set": "StatSet",
-        "attr": "AttackPower",
-        "layer": "Total"
-      }
-    ],
-    "Outputs": [],
-    "TagConditions": [],
-    "Formula": "float FinalValue = 0.f;"
-  }
-]
+{
+  "Executions": [
+    {
+      "Name": "Damage",
+      "Description": "Damage 计算",
+      "Captures": [
+        {
+          "source": "Source",
+          "set": "StatSet",
+          "attr": "AttackPower",
+          "layer": "Total"
+        },
+        {
+          "source": "Target",
+          "set": "StatSet",
+          "attr": "Defense",
+          "layer": "Total"
+        }
+      ],
+      "Outputs": [
+        {
+          "set": "MetaAttributes",
+          "attr": "DamageIncoming",
+          "op": "Additive"
+        }
+      ],
+      "TagConditions": [
+        {
+          "source": "Target",
+          "category": "Status",
+          "tag": "Status.Immunity.Damage"
+        }
+      ],
+      "Formula": "float FinalValue = 0.0f;\nFinalValue = FMath::Max(AttackPowerValue - Defense_TargetValue, 0);\nif (bTarget_Status_Immunity_Damage){\nFinalValue = 0;\n}"
+    }
+  ]
+}

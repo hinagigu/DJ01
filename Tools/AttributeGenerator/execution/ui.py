@@ -71,6 +71,59 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
         self.button_bar.add_button("重新加载", self.load_data)
         self.button_bar.add_button("[生成代码]", self.generate_code, side=tk.RIGHT)
         self.button_bar.pack(fill=tk.X, padx=5, pady=5)
+        
+        # 为所有表格绑定 Delete 快捷键
+        self._bind_delete_key()
+    
+    def _bind_delete_key(self):
+        """为所有表格绑定 Delete 快捷键删除功能"""
+        trees = [
+            (self.capture_tree, self._delete_capture),
+            (self.tag_tree, self._delete_tag_cond),
+            (self.output_tree, self._delete_output),
+        ]
+        
+        for tree, delete_func in trees:
+            tree.bind('<Delete>', lambda e, t=tree, f=delete_func: self._on_delete_key(t, f))
+            tree.bind('<BackSpace>', lambda e, t=tree, f=delete_func: self._on_delete_key(t, f))
+    
+    def _on_delete_key(self, tree, delete_func):
+        """处理 Delete 键删除"""
+        selected = tree.selection()
+        if not selected:
+            return
+        
+        item = selected[0]
+        all_items = tree.get_children()
+        
+        if not all_items:
+            return
+        
+        # 找到当前项的索引
+        try:
+            current_idx = list(all_items).index(item)
+        except ValueError:
+            return
+        
+        # 计算删除后要选中的项
+        if len(all_items) <= 1:
+            # 只有一项，删除后无需选中
+            next_item = None
+        elif current_idx == 0:
+            # 第一行，选中下一行（删除后变成第一行）
+            next_item = all_items[1]
+        else:
+            # 其他情况，选中上一行
+            next_item = all_items[current_idx - 1]
+        
+        # 执行删除
+        tree.delete(item)
+        self._refresh_variable_hints()
+        
+        # 选中新的项
+        if next_item and next_item in tree.get_children():
+            tree.selection_set(next_item)
+            tree.focus(next_item)
     
     def _create_edit_area(self, parent):
         """创建编辑区域"""
@@ -81,107 +134,260 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
         self.desc_var = tk.StringVar()
         ttk.Entry(desc_frame, textvariable=self.desc_var, width=60).pack(side=tk.LEFT, padx=5)
         
-        # Notebook 分页
-        notebook = ttk.Notebook(parent)
-        notebook.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        # 使用 PanedWindow 分为上下两部分
+        main_paned = ttk.PanedWindow(parent, orient=tk.VERTICAL)
+        main_paned.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         
-        # 捕获属性页
-        cap_frame = ttk.Frame(notebook)
-        notebook.add(cap_frame, text="捕获属性")
-        self._create_capture_tab(cap_frame)
+        # 上半部分：输入/输出配置（三个表格水平排列）
+        config_frame = ttk.Frame(main_paned)
+        main_paned.add(config_frame, weight=1)
+        self._create_config_panel(config_frame)
         
-        # 输出属性页
-        out_frame = ttk.Frame(notebook)
-        notebook.add(out_frame, text="输出属性")
-        self._create_output_tab(out_frame)
-        
-        # Tag 条件页
-        tag_frame = ttk.Frame(notebook)
-        notebook.add(tag_frame, text="Tag 条件")
-        self._create_tag_tab(tag_frame)
-        
-        # 公式页
-        formula_frame = ttk.Frame(notebook)
-        notebook.add(formula_frame, text="计算公式")
-        self._create_formula_tab(formula_frame)
+        # 下半部分：计算公式
+        formula_frame = ttk.LabelFrame(main_paned, text="计算公式")
+        main_paned.add(formula_frame, weight=1)
+        self._create_formula_panel(formula_frame)
     
-    def _create_capture_tab(self, parent):
-        """创建捕获属性页"""
+    def _create_config_panel(self, parent):
+        """创建配置面板（捕获属性 + Tag捕获 + 输出属性）"""
+        # 使用水平 PanedWindow 放置三个表格
+        config_paned = ttk.PanedWindow(parent, orient=tk.HORIZONTAL)
+        config_paned.pack(fill=tk.BOTH, expand=True)
+        
+        # 捕获属性
+        cap_frame = ttk.LabelFrame(config_paned, text="捕获属性 (输入)")
+        config_paned.add(cap_frame, weight=2)
+        self._create_capture_table(cap_frame)
+        
+        # Tag 捕获
+        tag_frame = ttk.LabelFrame(config_paned, text="Tag 捕获")
+        config_paned.add(tag_frame, weight=1)
+        self._create_tag_table(tag_frame)
+        
+        # 输出属性
+        out_frame = ttk.LabelFrame(config_paned, text="输出属性")
+        config_paned.add(out_frame, weight=1)
+        self._create_output_table(out_frame)
+    
+    def _create_capture_table(self, parent):
+        """创建捕获属性表格"""
         cols = ("source", "set", "attr", "layer")
-        self.capture_tree = ttk.Treeview(parent, columns=cols, show='headings', height=8)
+        self.capture_tree = ttk.Treeview(parent, columns=cols, show='headings', height=6)
         self.capture_tree.heading("source", text="来源")
         self.capture_tree.heading("set", text="属性集")
         self.capture_tree.heading("attr", text="属性")
         self.capture_tree.heading("layer", text="层级")
         
-        self.capture_tree.column("source", width=80)
-        self.capture_tree.column("set", width=120)
-        self.capture_tree.column("attr", width=120)
-        self.capture_tree.column("layer", width=80)
+        self.capture_tree.column("source", width=60)
+        self.capture_tree.column("set", width=80)
+        self.capture_tree.column("attr", width=100)
+        self.capture_tree.column("layer", width=50)
         
-        self.capture_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
-        
-        # 绑定单击编辑
+        self.capture_tree.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
         self.capture_tree.bind('<Button-1>', lambda e: self._on_tree_click(e, self.capture_tree, 'capture'))
         
         btn_frame = ttk.Frame(parent)
-        btn_frame.pack(fill=tk.X, padx=5)
-        ttk.Button(btn_frame, text="添加", command=self._add_capture).pack(side=tk.LEFT, padx=2)
-        ttk.Button(btn_frame, text="删除", command=self._delete_capture).pack(side=tk.LEFT, padx=2)
+        btn_frame.pack(fill=tk.X, padx=2, pady=2)
+        ttk.Button(btn_frame, text="+", width=3, command=self._add_capture).pack(side=tk.LEFT)
+        ttk.Button(btn_frame, text="-", width=3, command=self._delete_capture).pack(side=tk.LEFT)
     
-    def _create_output_tab(self, parent):
-        """创建输出属性页"""
+    def _create_tag_table(self, parent):
+        """创建 Tag 捕获表格（三列：来源、分类、Tag）"""
+        cols = ("source", "category", "tag")
+        self.tag_tree = ttk.Treeview(parent, columns=cols, show='headings', height=6)
+        self.tag_tree.heading("source", text="来源")
+        self.tag_tree.heading("category", text="分类")
+        self.tag_tree.heading("tag", text="Tag")
+        
+        self.tag_tree.column("source", width=60)
+        self.tag_tree.column("category", width=80)
+        self.tag_tree.column("tag", width=120)
+        
+        self.tag_tree.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
+        self.tag_tree.bind('<Button-1>', lambda e: self._on_tree_click(e, self.tag_tree, 'tag'))
+        
+        btn_frame = ttk.Frame(parent)
+        btn_frame.pack(fill=tk.X, padx=2, pady=2)
+        ttk.Button(btn_frame, text="+S", width=3, command=lambda: self._add_tag_cond('Source')).pack(side=tk.LEFT)
+        ttk.Button(btn_frame, text="+T", width=3, command=lambda: self._add_tag_cond('Target')).pack(side=tk.LEFT)
+        ttk.Button(btn_frame, text="-", width=3, command=self._delete_tag_cond).pack(side=tk.LEFT)
+    
+    def _create_output_table(self, parent):
+        """创建输出属性表格"""
         cols = ("set", "attr", "op")
-        self.output_tree = ttk.Treeview(parent, columns=cols, show='headings', height=8)
+        self.output_tree = ttk.Treeview(parent, columns=cols, show='headings', height=6)
         self.output_tree.heading("set", text="属性集")
         self.output_tree.heading("attr", text="属性")
         self.output_tree.heading("op", text="操作")
         
-        self.output_tree.column("set", width=120)
-        self.output_tree.column("attr", width=120)
-        self.output_tree.column("op", width=100)
+        self.output_tree.column("set", width=80)
+        self.output_tree.column("attr", width=80)
+        self.output_tree.column("op", width=60)
         
-        self.output_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
-        
-        # 绑定单击编辑
+        self.output_tree.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
         self.output_tree.bind('<Button-1>', lambda e: self._on_tree_click(e, self.output_tree, 'output'))
         
         btn_frame = ttk.Frame(parent)
-        btn_frame.pack(fill=tk.X, padx=5)
-        ttk.Button(btn_frame, text="添加", command=self._add_output).pack(side=tk.LEFT, padx=2)
-        ttk.Button(btn_frame, text="删除", command=self._delete_output).pack(side=tk.LEFT, padx=2)
+        btn_frame.pack(fill=tk.X, padx=2, pady=2)
+        ttk.Button(btn_frame, text="+", width=3, command=self._add_output).pack(side=tk.LEFT)
+        ttk.Button(btn_frame, text="-", width=3, command=self._delete_output).pack(side=tk.LEFT)
     
-    def _create_tag_tab(self, parent):
-        """创建 Tag 条件页"""
-        cols = ("source", "tag", "effect", "value")
-        self.tag_tree = ttk.Treeview(parent, columns=cols, show='headings', height=8)
-        self.tag_tree.heading("source", text="来源")
-        self.tag_tree.heading("tag", text="Tag")
-        self.tag_tree.heading("effect", text="效果")
-        self.tag_tree.heading("value", text="值")
+    def _create_formula_panel(self, parent):
+        """创建公式编辑面板"""
+        # 顶部：可用变量面板（两行：Source 和 Target）
+        var_container = ttk.LabelFrame(parent, text="可用变量")
+        var_container.pack(fill=tk.X, padx=5, pady=2)
         
-        self.tag_tree.column("source", width=80)
-        self.tag_tree.column("tag", width=150)
-        self.tag_tree.column("effect", width=100)
-        self.tag_tree.column("value", width=80)
+        # Source 行
+        self.source_var_frame = ttk.Frame(var_container)
+        self.source_var_frame.pack(fill=tk.X, padx=2, pady=1)
         
-        self.tag_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        # Target 行
+        self.target_var_frame = ttk.Frame(var_container)
+        self.target_var_frame.pack(fill=tk.X, padx=2, pady=1)
         
-        # 绑定单击编辑
-        self.tag_tree.bind('<Button-1>', lambda e: self._on_tree_click(e, self.tag_tree, 'tag'))
+        # 输出行
+        self.output_var_frame = ttk.Frame(var_container)
+        self.output_var_frame.pack(fill=tk.X, padx=2, pady=1)
         
-        btn_frame = ttk.Frame(parent)
-        btn_frame.pack(fill=tk.X, padx=5)
-        ttk.Button(btn_frame, text="添加", command=self._add_tag_cond).pack(side=tk.LEFT, padx=2)
-        ttk.Button(btn_frame, text="删除", command=self._delete_tag_cond).pack(side=tk.LEFT, padx=2)
+        # 公式编辑区
+        self.formula_text = tk.Text(parent, height=8, font=("Consolas", 10))
+        self.formula_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=2)
+        
+        # 快捷插入
+        snippet_frame = ttk.Frame(parent)
+        snippet_frame.pack(fill=tk.X, padx=5, pady=2)
+        ttk.Label(snippet_frame, text="快捷:", foreground="gray").pack(side=tk.LEFT)
+        for text, snippet in [("Max", "FMath::Max(, )"), ("Min", "FMath::Min(, )"), 
+                               ("Clamp", "FMath::Clamp(, 0.f, 1.f)"), ("Final=", "float FinalValue = ")]:
+            ttk.Button(snippet_frame, text=text, width=6,
+                       command=lambda s=snippet: self._insert_snippet(s)).pack(side=tk.LEFT, padx=1)
     
-    def _create_formula_tab(self, parent):
-        """创建公式页"""
-        hint = "可用变量: 捕获的属性名+Value (如 AttackPowerValue, Defense_TargetValue)"
-        ttk.Label(parent, text=hint, foreground="gray").pack(anchor=tk.W, padx=5, pady=5)
+
+    
+    def _insert_snippet(self, snippet):
+        """插入代码片段到公式"""
+        self.formula_text.insert(tk.INSERT, snippet)
+        self.formula_text.focus_set()
+    
+    def _insert_variable(self, var_name):
+        """插入变量到公式"""
+        self.formula_text.insert(tk.INSERT, var_name)
+        self.formula_text.focus_set()
+    
+    def _refresh_variable_hints(self):
+        """刷新可用变量提示（分 Source/Target 两行显示）"""
+        # 清空三行
+        for widget in self.source_var_frame.winfo_children():
+            widget.destroy()
+        for widget in self.target_var_frame.winfo_children():
+            widget.destroy()
+        for widget in self.output_var_frame.winfo_children():
+            widget.destroy()
         
-        self.formula_text = tk.Text(parent, height=10, font=("Consolas", 10))
-        self.formula_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        source_vars = []  # (display_name, insert_text, desc, var_type)
+        target_vars = []
+        
+        # 获取捕获属性变量
+        for item in self.capture_tree.get_children():
+            values = self.capture_tree.item(item, 'values')
+            source = values[0] if len(values) > 0 else 'Source'
+            attr = values[2] if len(values) > 2 else ''
+            layer = values[3] if len(values) > 3 else 'Total'
+            
+            if not attr:
+                continue
+            
+            suffix = "_Target" if source == "Target" else ""
+            var_name = f"{attr}{suffix}Value"
+            desc = f"{attr}" + (" (Total)" if layer == "Total" else f" ({layer})")
+            
+            var_info = (var_name, var_name, desc, "attr")
+            if source == "Target":
+                target_vars.append(var_info)
+            else:
+                source_vars.append(var_info)
+        
+        # 获取 Tag 变量（生成 if 语句模板）
+        for item in self.tag_tree.get_children():
+            values = self.tag_tree.item(item, 'values')
+            source = values[0] if len(values) > 0 else 'Target'
+            tag = values[2] if len(values) > 2 else ''
+            
+            if not tag:
+                continue
+            
+            var_name = self._get_tag_var_name(source, tag)
+            if_template = f"if ({var_name})\n{{\n    \n}}"
+            desc = f"{tag}\n点击插入 if 语句"
+            
+            var_info = (var_name, if_template, desc, "tag")
+            if source == "Target":
+                target_vars.append(var_info)
+            else:
+                source_vars.append(var_info)
+        
+        if not source_vars and not target_vars:
+            ttk.Label(self.source_var_frame, text="(添加捕获属性/Tag后显示变量)", 
+                      foreground="gray").pack(side=tk.LEFT)
+            return
+        
+        # Source 行
+        if source_vars:
+            ttk.Label(self.source_var_frame, text="Source:", foreground="blue", 
+                      width=8).pack(side=tk.LEFT)
+            for display_name, insert_text, desc, var_type in source_vars:
+                btn_text = f"if({display_name})" if var_type == "tag" else display_name
+                btn = ttk.Button(self.source_var_frame, text=btn_text,
+                                command=lambda t=insert_text: self._insert_variable(t))
+                btn.pack(side=tk.LEFT, padx=1)
+                self._create_tooltip(btn, desc)
+        else:
+            ttk.Label(self.source_var_frame, text="Source:", foreground="gray", 
+                      width=8).pack(side=tk.LEFT)
+            ttk.Label(self.source_var_frame, text="(无)", foreground="gray").pack(side=tk.LEFT)
+        
+        # Target 行
+        if target_vars:
+            ttk.Label(self.target_var_frame, text="Target:", foreground="red", 
+                      width=8).pack(side=tk.LEFT)
+            for display_name, insert_text, desc, var_type in target_vars:
+                btn_text = f"if({display_name})" if var_type == "tag" else display_name
+                btn = ttk.Button(self.target_var_frame, text=btn_text,
+                                command=lambda t=insert_text: self._insert_variable(t))
+                btn.pack(side=tk.LEFT, padx=1)
+                self._create_tooltip(btn, desc)
+        else:
+            ttk.Label(self.target_var_frame, text="Target:", foreground="gray", 
+                      width=8).pack(side=tk.LEFT)
+            ttk.Label(self.target_var_frame, text="(无)", foreground="gray").pack(side=tk.LEFT)
+        
+        # 输出行
+        ttk.Label(self.output_var_frame, text="Output:", foreground="green", 
+                  width=8).pack(side=tk.LEFT)
+        btn = ttk.Button(self.output_var_frame, text="FinalValue",
+                        command=lambda: self._insert_variable("FinalValue"))
+        btn.pack(side=tk.LEFT, padx=1)
+        self._create_tooltip(btn, "输出值 (必须定义)")
+    
+    def _create_tooltip(self, widget, text):
+        """为控件创建简单的 tooltip"""
+        def show_tip(event):
+            tip = tk.Toplevel(widget)
+            tip.wm_overrideredirect(True)
+            tip.wm_geometry(f"+{event.x_root+10}+{event.y_root+10}")
+            label = ttk.Label(tip, text=text, background="#ffffe0", relief="solid", borderwidth=1)
+            label.pack()
+            widget._tip = tip
+            widget.after(1500, lambda: tip.destroy() if hasattr(widget, '_tip') and widget._tip == tip else None)
+        
+        def hide_tip(event):
+            if hasattr(widget, '_tip') and widget._tip:
+                widget._tip.destroy()
+                widget._tip = None
+        
+        widget.bind('<Enter>', show_tip)
+        widget.bind('<Leave>', hide_tip)
     
     # ========== 数据操作 ==========
     
@@ -243,13 +449,14 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
                 'set': values[0], 'attr': values[1], 'op': values[2]
             })
         
-        # 保存 Tag 条件
+        # 保存 Tag 捕获（三列结构）
         self.current_exe.tag_conditions = []
         for item in self.tag_tree.get_children():
             values = self.tag_tree.item(item, 'values')
             self.current_exe.tag_conditions.append({
-                'source': values[0], 'tag': values[1], 'effect': values[2],
-                'value': float(values[3]) if values[3] else 0
+                'source': values[0], 
+                'category': values[1] if len(values) > 1 else '',
+                'tag': values[2] if len(values) > 2 else ''
             })
     
     def _refresh_exec_list(self):
@@ -295,12 +502,16 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
             ))
         
         for cond in exe.tag_conditions:
-            self.tag_tree.insert('', tk.END, values=(
-                cond.get('source', 'Target'), cond.get('tag', ''),
-                cond.get('effect', 'Skip'), cond.get('value', 0)
-            ))
+            source = cond.get('source', 'Target')
+            tag = cond.get('tag', '')
+            # 从 tag 中提取分类（兼容旧数据）
+            category = cond.get('category', '')
+            if not category and tag and '.' in tag:
+                category = tag.split('.')[0]
+            self.tag_tree.insert('', tk.END, values=(source, category, tag))
         
         self.formula_text.insert('1.0', exe.formula)
+        self._refresh_variable_hints()
     
     def _on_add_exec(self):
         """添加"""
@@ -331,11 +542,11 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
             self.capture_tree.insert('', tk.END, values=(
                 'Source', sets[0], attr_names[0] if attr_names else '', 'Total'
             ))
+        self._refresh_variable_hints()
     
     def _delete_capture(self):
-        selected = self.capture_tree.selection()
-        if selected:
-            self.capture_tree.delete(selected[0])
+        """删除捕获属性（由按钮调用）"""
+        self._on_delete_key(self.capture_tree, None)
     
     def _add_output(self):
         """添加输出"""
@@ -352,17 +563,35 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
             ))
     
     def _delete_output(self):
-        selected = self.output_tree.selection()
-        if selected:
-            self.output_tree.delete(selected[0])
+        """删除输出属性（由按钮调用）"""
+        self._on_delete_key(self.output_tree, None)
     
-    def _add_tag_cond(self):
-        self.tag_tree.insert('', tk.END, values=('Target', 'Status.Immunity', 'Skip', 0))
+    def _add_tag_cond(self, source='Target'):
+        """添加 Tag 捕获"""
+        # 获取可用的分类
+        tag_categories = self._get_tag_categories()
+        default_category = tag_categories[0] if tag_categories else 'Status'
+        
+        # 获取该分类下的第一个Tag
+        tags_in_cat = self._get_tags_for_category(default_category)
+        default_tag = tags_in_cat[0] if tags_in_cat else f'{default_category}.Example'
+        
+        self.tag_tree.insert('', tk.END, values=(source, default_category, default_tag))
+        self._refresh_variable_hints()
     
+    def _get_tag_var_name(self, source, tag):
+        """根据 source 和 tag 生成变量名"""
+        # 把 tag 中的 . 替换为 _，生成 bool 变量名
+        tag_clean = tag.replace('.', '_').replace('-', '_')
+        if source == 'Target':
+            return f"bTarget_{tag_clean}"
+        else:
+            return f"bSource_{tag_clean}"
+    
+
     def _delete_tag_cond(self):
-        selected = self.tag_tree.selection()
-        if selected:
-            self.tag_tree.delete(selected[0])
+        """删除 Tag 捕获（由按钮调用）"""
+        self._on_delete_key(self.tag_tree, None)
     
     # ========== 单击编辑功能 ==========
     
@@ -440,18 +669,60 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
             self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, OUTPUT_OPS)
     
     def _edit_tag_cell(self, tree, item, col_idx, x, y, w, h, current_values):
-        """编辑 Tag 条件单元格"""
-        # 列: source(0), tag(1), effect(2), value(3)
+        """编辑 Tag 捕获单元格（三列：来源、分类、Tag）"""
         if col_idx == 0:  # source
-            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, TAG_SOURCES)
-        elif col_idx == 1:  # tag
-            self._create_cell_entry(tree, item, col_idx, x, y, w, h, current_values)
-        elif col_idx == 2:  # effect
-            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, TAG_EFFECTS)
-        elif col_idx == 3:  # value
-            self._create_cell_entry(tree, item, col_idx, x, y, w, h, current_values, value_type=float)
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, 
+                                    ['Source', 'Target'])
+        elif col_idx == 1:  # category - 选择分类后联动更新 Tag 列
+            categories = self._get_tag_categories()
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, 
+                                    categories, on_change=lambda: self._on_tag_category_change(tree, item))
+        elif col_idx == 2:  # tag - 根据当前分类筛选
+            category = current_values[1] if len(current_values) > 1 else ''
+            tags = self._get_tags_for_category(category) if category else self._get_available_tags()
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, tags)
     
-    def _create_cell_combo(self, tree, item, col_idx, x, y, w, h, current_values, options):
+    def _on_tag_category_change(self, tree, item):
+        """当 Tag 分类改变时，自动更新 Tag 列"""
+        current_values = list(tree.item(item, 'values'))
+        category = current_values[1] if len(current_values) > 1 else ''
+        
+        # 获取新分类下的 Tags
+        tags_in_cat = self._get_tags_for_category(category)
+        
+        # 如果当前 Tag 不属于新分类，自动选择第一个
+        current_tag = current_values[2] if len(current_values) > 2 else ''
+        if current_tag not in tags_in_cat and tags_in_cat:
+            current_values[2] = tags_in_cat[0]
+            tree.item(item, values=current_values)
+        
+        self._refresh_variable_hints()
+    
+    def _get_available_tags(self):
+        """获取项目中已定义的 Tag 列表"""
+        tags = self.app.get_tags() if hasattr(self.app, 'get_tags') else []
+        # TagData 对象使用 .tag 属性存储完整标签路径
+        if tags:
+            return [t.tag if hasattr(t, 'tag') else str(t) for t in tags]
+        return []
+    
+    def _get_tag_categories(self):
+        """获取所有 Tag 的顶级分类"""
+        all_tags = self._get_available_tags()
+        categories = set()
+        for tag in all_tags:
+            if '.' in tag:
+                categories.add(tag.split('.')[0])
+            else:
+                categories.add(tag)
+        return sorted(categories)
+    
+    def _get_tags_for_category(self, category):
+        """获取指定分类下的所有 Tag"""
+        all_tags = self._get_available_tags()
+        return sorted([t for t in all_tags if t.startswith(category + '.') or t == category])
+    
+    def _create_cell_combo(self, tree, item, col_idx, x, y, w, h, current_values, options, on_change=None):
         """创建下拉框编辑器"""
         self._destroy_active_editor()
         
@@ -468,6 +739,12 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
             current_values[col_idx] = combo.get()
             tree.item(item, values=current_values)
             self._destroy_active_editor()
+            # 执行自定义回调
+            if on_change:
+                on_change()
+            # 如果是捕获属性或Tag条件表格，刷新变量提示
+            if tree == self.capture_tree or tree == self.tag_tree:
+                self._refresh_variable_hints()
         
         def on_escape(event):
             self._destroy_active_editor()
@@ -499,7 +776,7 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
         
         combo.after(80, post_and_ready)
     
-    def _create_cell_entry(self, tree, item, col_idx, x, y, w, h, current_values, value_type=str):
+    def _create_cell_entry(self, tree, item, col_idx, x, y, w, h, current_values, value_type=str, on_change=None):
         """创建文本框编辑器"""
         self._destroy_active_editor()
         
@@ -521,6 +798,9 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
             current_values[col_idx] = new_value
             tree.item(item, values=current_values)
             self._destroy_active_editor()
+            # 执行自定义回调
+            if on_change:
+                on_change()
         
         def on_escape(event):
             self._destroy_active_editor()

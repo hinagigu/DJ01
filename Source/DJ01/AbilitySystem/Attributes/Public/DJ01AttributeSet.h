@@ -60,4 +60,7 @@ public:
     UWorld* GetWorld() const override;
 
     UDJ01AbilitySystemComponent* GetDJ01AbilitySystemComponent() const;
+
+    /** 网络复制属性注册 */
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 };

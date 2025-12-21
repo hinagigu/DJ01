@@ -14,12 +14,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from config import MMC_CONFIG, MMC_HEADER, MMC_SOURCE, CAPTURE_LAYERS
-from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar
+from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar, InlineEditorMixin
 from mmc.data import MMCData
 from mmc.generator import MMCCodeGenerator
 
 
-class MMCEditorUI(BaseEditorUI):
+class MMCEditorUI(BaseEditorUI, InlineEditorMixin):
     """MMC 编辑器 UI"""
     
     def __init__(self, parent, app):
@@ -27,6 +27,7 @@ class MMCEditorUI(BaseEditorUI):
         self.current_mmc = None
         
         super().__init__(parent, app)
+        self._init_inline_editor()
         
         self._create_ui()
         self.load_data()
@@ -83,6 +84,8 @@ class MMCEditorUI(BaseEditorUI):
         self.capture_tree.heading("attr", text="属性")
         self.capture_tree.heading("layer", text="层级")
         self.capture_tree.pack(fill=tk.BOTH, expand=True, side=tk.LEFT)
+        # 绑定 Delete 键
+        self._bind_tree_delete_key(self.capture_tree)
         
         cap_btn = ttk.Frame(cap_frame)
         cap_btn.pack(side=tk.RIGHT, padx=5)
@@ -99,6 +102,8 @@ class MMCEditorUI(BaseEditorUI):
         self.sbc_tree.heading("default", text="默认值")
         self.sbc_tree.heading("description", text="描述")
         self.sbc_tree.pack(fill=tk.BOTH, expand=True, side=tk.LEFT)
+        # 绑定 Delete 键
+        self._bind_tree_delete_key(self.sbc_tree)
         
         sbc_btn = ttk.Frame(sbc_frame)
         sbc_btn.pack(side=tk.RIGHT, padx=5)
@@ -234,17 +239,15 @@ class MMCEditorUI(BaseEditorUI):
             ))
     
     def _delete_capture(self):
-        selected = self.capture_tree.selection()
-        if selected:
-            self.capture_tree.delete(selected[0])
+        """删除选中的捕获属性"""
+        self._handle_tree_delete(self.capture_tree)
     
     def _add_sbc(self):
         self.sbc_tree.insert('', tk.END, values=('Data.Value', '0', ''))
     
     def _delete_sbc(self):
-        selected = self.sbc_tree.selection()
-        if selected:
-            self.sbc_tree.delete(selected[0])
+        """删除选中的 SetByCaller"""
+        self._handle_tree_delete(self.sbc_tree)
     
     def generate_code(self):
         self._save_current_to_data()

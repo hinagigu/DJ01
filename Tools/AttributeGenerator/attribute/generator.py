@@ -45,6 +45,84 @@ class AttributeCodeGenerator:
         
         return "\n".join(lines)
     
+    # ============================================================
+    # 头文件展开方法 - UHT 需要直接看到 UPROPERTY/UFUNCTION
+    # ============================================================
+    
+    @staticmethod
+    def _expand_layered_attribute_decl(class_name: str, attr_name: str) -> list:
+        """展开三层属性声明 - UHT 需要直接看到 UPROPERTY"""
+        lines = []
+        for prefix in ['Base', 'Flat', 'Percent']:
+            lines.append(f'    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_{prefix}{attr_name}, Category = "DJ01|{attr_name}", Meta = (AllowPrivateAccess = true))')
+            lines.append(f"    FGameplayAttributeData {prefix}{attr_name};")
+            lines.append(f"    ATTRIBUTE_ACCESSORS({class_name}, {prefix}{attr_name})")
+            lines.append("")
+        # GetTotal 计算函数
+        lines.append(f'    UFUNCTION(BlueprintPure, Category = "DJ01|Attributes")')
+        lines.append(f"    float GetTotal{attr_name}() const")
+        lines.append("    {")
+        lines.append(f"        return (GetBase{attr_name}() + GetFlat{attr_name}()) * (1.f + GetPercent{attr_name}());")
+        lines.append("    }")
+        lines.append("")
+        # GetExtra 计算函数
+        lines.append(f'    UFUNCTION(BlueprintPure, Category = "DJ01|Attributes")')
+        lines.append(f"    float GetExtra{attr_name}() const")
+        lines.append("    {")
+        lines.append(f"        return GetTotal{attr_name}() - GetBase{attr_name}();")
+        lines.append("    }")
+        return lines
+    
+    @staticmethod
+    def _expand_simple_attribute_decl(class_name: str, attr_name: str) -> list:
+        """展开简单属性声明"""
+        return [
+            f'    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_{attr_name}, Category = "DJ01|Attributes", Meta = (AllowPrivateAccess = true))',
+            f"    FGameplayAttributeData {attr_name};",
+            f"    ATTRIBUTE_ACCESSORS({class_name}, {attr_name})"
+        ]
+    
+    @staticmethod
+    def _expand_resource_attribute_decl(class_name: str, attr_name: str) -> list:
+        """展开资源属性声明 (Max + Current)"""
+        lines = AttributeCodeGenerator._expand_layered_attribute_decl(class_name, f"Max{attr_name}")
+        lines.append("")
+        lines.extend(AttributeCodeGenerator._expand_simple_attribute_decl(class_name, attr_name))
+        return lines
+    
+    @staticmethod
+    def _expand_meta_attribute_decl(class_name: str, attr_name: str) -> list:
+        """展开元属性声明 (不复制)"""
+        return [
+            f'    UPROPERTY(BlueprintReadOnly, Category = "DJ01|Meta", Meta = (HideFromModifiers, AllowPrivateAccess = true))',
+            f"    FGameplayAttributeData {attr_name};",
+            f"    ATTRIBUTE_ACCESSORS({class_name}, {attr_name})"
+        ]
+    
+    @staticmethod
+    def _expand_layered_onrep_decl(attr_name: str) -> list:
+        """展开三层属性 OnRep 声明"""
+        lines = []
+        for prefix in ['Base', 'Flat', 'Percent']:
+            lines.append("    UFUNCTION()")
+            lines.append(f"    void OnRep_{prefix}{attr_name}(const FGameplayAttributeData& OldValue);")
+        return lines
+    
+    @staticmethod
+    def _expand_simple_onrep_decl(attr_name: str) -> list:
+        """展开简单属性 OnRep 声明"""
+        return [
+            "    UFUNCTION()",
+            f"    void OnRep_{attr_name}(const FGameplayAttributeData& OldValue);"
+        ]
+    
+    @staticmethod
+    def _expand_resource_onrep_decl(attr_name: str) -> list:
+        """展开资源属性 OnRep 声明"""
+        lines = AttributeCodeGenerator._expand_layered_onrep_decl(f"Max{attr_name}")
+        lines.extend(AttributeCodeGenerator._expand_simple_onrep_decl(attr_name))
+        return lines
+
     @staticmethod
     def _generate_class_header(set_name: str, attributes: list) -> list:
         """生成单个类的头文件"""
@@ -81,19 +159,19 @@ class AttributeCodeGenerator:
         lines.append(f"    {class_name}();")
         lines.append("")
         
-        # 生成属性声明
+        # 生成属性声明 - 完全展开以让 UHT 识别 UPROPERTY
         for category, attrs in categories.items():
             lines.append(f"    // ---------- {category} ----------")
             for attr in attrs:
                 lines.append(f"    /** {attr.description} */")
                 if attr.type == 'Layered':
-                    lines.append(f"    DECLARE_LAYERED_ATTRIBUTE({class_name}, {attr.name})")
+                    lines.extend(AttributeCodeGenerator._expand_layered_attribute_decl(class_name, attr.name))
                 elif attr.type == 'Simple':
-                    lines.append(f"    DECLARE_SIMPLE_ATTRIBUTE({class_name}, {attr.name})")
+                    lines.extend(AttributeCodeGenerator._expand_simple_attribute_decl(class_name, attr.name))
                 elif attr.type == 'Resource':
-                    lines.append(f"    DECLARE_RESOURCE_ATTRIBUTE({class_name}, {attr.name})")
+                    lines.extend(AttributeCodeGenerator._expand_resource_attribute_decl(class_name, attr.name))
                 else:  # Meta
-                    lines.append(f"    DECLARE_META_ATTRIBUTE({class_name}, {attr.name})")
+                    lines.extend(AttributeCodeGenerator._expand_meta_attribute_decl(class_name, attr.name))
                 lines.append("")
         
         # 生成委托声明
@@ -116,13 +194,13 @@ class AttributeCodeGenerator:
         
         lines.append("protected:")
         
-        # OnRep 声明
+        # OnRep 声明 - 必须展开 UFUNCTION 让 UHT 识别
         for attr in layered:
-            lines.append(f"    DECLARE_LAYERED_ATTRIBUTE_ONREP({attr.name})")
+            lines.extend(AttributeCodeGenerator._expand_layered_onrep_decl(attr.name))
         for attr in simple:
-            lines.append(f"    DECLARE_SIMPLE_ATTRIBUTE_ONREP({attr.name})")
+            lines.extend(AttributeCodeGenerator._expand_simple_onrep_decl(attr.name))
         for attr in resource:
-            lines.append(f"    DECLARE_RESOURCE_ATTRIBUTE_ONREP({attr.name})")
+            lines.extend(AttributeCodeGenerator._expand_resource_onrep_decl(attr.name))
         
         lines.append("")
         lines.append("    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;")
@@ -132,7 +210,9 @@ class AttributeCodeGenerator:
             lines.append("    virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;")
         if has_delegate or has_event or has_cue:
             lines.append("    virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue) override;")
-        if has_cue:
+        # Meta 属性或 Cue 需要 PostGameplayEffectExecute
+        has_meta = len(meta) > 0
+        if has_cue or has_meta:
             lines.append("    virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;")
         
         lines.append("};")
@@ -163,18 +243,26 @@ class AttributeCodeGenerator:
             lines.append(f"// UDJ01{set_name}")
             lines.append(f"// ##########################################################")
             lines.append("")
-            lines.extend(AttributeCodeGenerator._generate_class_source(set_name, attributes))
+            # 传入所有属性集以支持跨集访问查找
+            lines.extend(AttributeCodeGenerator._generate_class_source(set_name, attributes, attribute_sets))
         
         return "\n".join(lines)
     
     @staticmethod
-    def _generate_class_source(set_name: str, attributes: list) -> list:
-        """生成单个类的源文件"""
+    def _generate_class_source(set_name: str, attributes: list, all_attribute_sets: dict = None) -> list:
+        """生成单个类的源文件
+        
+        Args:
+            set_name: 当前属性集名称
+            attributes: 当前属性集的属性列表
+            all_attribute_sets: 所有属性集字典，用于跨集访问查找
+        """
         class_name = f"UDJ01{set_name}"
         
         layered = [a for a in attributes if a.type == 'Layered']
         simple = [a for a in attributes if a.type == 'Simple']
         resource = [a for a in attributes if a.type == 'Resource']
+        meta = [a for a in attributes if a.type == 'Meta']
         
         # 检查是否需要行为回调
         # Resource 类型自动有 Clamp，所以也需要检查
@@ -182,6 +270,8 @@ class AttributeCodeGenerator:
         has_delegate = any(a.delegate.on_change or a.delegate.on_increase or a.delegate.on_decrease for a in attributes)
         has_event = any(a.event.on_zero_tag or a.event.on_full_tag or a.event.threshold_low is not None for a in attributes)
         has_cue = any(a.cue.on_decrease_cue or a.cue.on_zero_cue or a.cue.on_increase_cue for a in attributes)
+        # Meta 属性需要 PostGameplayEffectExecute 来处理
+        has_meta = len(meta) > 0
         
         lines = []
         
@@ -201,6 +291,9 @@ class AttributeCodeGenerator:
                 lines.append(f"    InitPercentMax{attr.name}({attr.default_percent}f);")
                 current_val = attr.default_current if attr.default_current else attr.default_base
                 lines.append(f"    Init{attr.name}({current_val}f);")
+            elif attr.type == 'Meta':
+                # Meta 属性初始化为 0，每次使用后应该重置
+                lines.append(f"    Init{attr.name}(0.0f);")
         lines.append("}")
         lines.append("")
         
@@ -234,9 +327,9 @@ class AttributeCodeGenerator:
         if has_delegate or has_event:
             lines.extend(AttributeCodeGenerator._generate_post_attribute_change(class_name, attributes))
         
-        # ========== PostGameplayEffectExecute (Cue) ==========
-        if has_cue:
-            lines.extend(AttributeCodeGenerator._generate_post_ge_execute(class_name, attributes))
+        # ========== PostGameplayEffectExecute (Cue + Meta) ==========
+        if has_cue or has_meta:
+            lines.extend(AttributeCodeGenerator._generate_post_ge_execute(class_name, attributes, meta, all_attribute_sets))
         
         return lines
     
@@ -409,14 +502,127 @@ class AttributeCodeGenerator:
         return lines
     
     @staticmethod
-    def _generate_post_ge_execute(class_name: str, attributes: list) -> list:
-        """生成 PostGameplayEffectExecute - GameplayCue 逻辑"""
+    def _generate_post_ge_execute(class_name: str, attributes: list, meta_attrs: list = None, 
+                                   all_attribute_sets: dict = None) -> list:
+        """生成 PostGameplayEffectExecute - GameplayCue 和 Meta 属性处理逻辑
+        
+        Args:
+            class_name: 当前类名
+            attributes: 当前类的所有属性
+            meta_attrs: 当前类的 Meta 属性
+            all_attribute_sets: 所有属性集字典，用于跨集访问查找
+        """
         lines = []
         lines.append(f"void {class_name}::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)")
         lines.append("{")
         lines.append("    Super::PostGameplayEffectExecute(Data);")
         lines.append("")
         
+        # ========== Meta 属性处理 ==========
+        if meta_attrs:
+            for attr in meta_attrs:
+                lines.append(f"    // ===== Meta 属性: {attr.name} =====")
+                lines.append(f"    if (Data.EvaluatedData.Attribute == Get{attr.name}Attribute())")
+                lines.append("    {")
+                lines.append(f"        // 获取 Meta 属性的值")
+                lines.append(f"        const float LocalValue = Get{attr.name}();")
+                lines.append("")
+                
+                # 根据 Meta 属性的配置生成处理逻辑
+                if attr.meta_config and attr.meta_config.target_attribute:
+                    target_full = attr.meta_config.target_attribute
+                    target_set_name = None
+                    target = None
+                    target_attr_obj = None
+                    
+                    # 解析 "SetName.AttributeName" 格式
+                    if '.' in target_full:
+                        target_set_name, target = target_full.split('.', 1)
+                        # 验证并查找目标属性对象
+                        if all_attribute_sets and target_set_name in all_attribute_sets:
+                            for a in all_attribute_sets[target_set_name]:
+                                if a.name == target:
+                                    target_attr_obj = a
+                                    break
+                    else:
+                        # 兼容旧格式：只有属性名，需要查找属于哪个 AttributeSet
+                        target = target_full
+                        if all_attribute_sets:
+                            for set_name, attrs in all_attribute_sets.items():
+                                for a in attrs:
+                                    if a.name == target:
+                                        target_set_name = set_name
+                                        target_attr_obj = a
+                                        break
+                                if target_set_name:
+                                    break
+                    
+                    # 判断是否跨集访问
+                    current_set_name = class_name.replace("UDJ01", "")
+                    is_cross_set = target_set_name and target_set_name != current_set_name
+                    
+                    if is_cross_set:
+                        # 跨 AttributeSet 访问
+                        target_class = f"UDJ01{target_set_name}"
+                        lines.append(f"        // 跨 AttributeSet 访问: 将 Meta 值转发到 {target_class}::{target}")
+                        lines.append(f"        if (LocalValue != 0.0f)")
+                        lines.append("        {")
+                        lines.append(f"            if (UAbilitySystemComponent* ASC = GetAbilitySystemComponent())")
+                        lines.append("            {")
+                        lines.append(f"                if ({target_class}* TargetSet = ASC->GetSet<{target_class}>())")
+                        lines.append("                {")
+                        lines.append(f"                    const float NewValue = TargetSet->Get{target}() + LocalValue;")
+                        lines.append(f"                    TargetSet->Set{target}(NewValue);")
+                        
+                        # 广播事件（如果配置了）
+                        if attr.meta_config.broadcast_event and attr.meta_config.event_tag:
+                            lines.append("")
+                            lines.append(f"                    // 广播事件")
+                            lines.append(f"                    FGameplayEventData EventData;")
+                            lines.append(f"                    EventData.EventMagnitude = FMath::Abs(LocalValue);")
+                            lines.append(f'                    FGameplayTag EventTag = FGameplayTag::RequestGameplayTag(FName("{attr.meta_config.event_tag}"));')
+                            lines.append(f"                    ASC->HandleGameplayEvent(EventTag, &EventData);")
+                        
+                        lines.append("                }")
+                        lines.append("            }")
+                        lines.append("        }")
+                    else:
+                        # 同一 AttributeSet 内访问
+                        lines.append(f"        // 将 Meta 值转发到目标属性: {target}")
+                        lines.append(f"        if (LocalValue != 0.0f)")
+                        lines.append("        {")
+                        lines.append(f"            const float NewValue = Get{target}() + LocalValue;")
+                        lines.append(f"            Set{target}(NewValue);")
+                        
+                        # 广播事件（如果配置了）
+                        if attr.meta_config.broadcast_event and attr.meta_config.event_tag:
+                            lines.append("")
+                            lines.append(f"            // 广播事件")
+                            lines.append(f"            if (UAbilitySystemComponent* ASC = GetAbilitySystemComponent())")
+                            lines.append("            {")
+                            lines.append(f"                FGameplayEventData EventData;")
+                            lines.append(f"                EventData.EventMagnitude = FMath::Abs(LocalValue);")
+                            lines.append(f'                FGameplayTag EventTag = FGameplayTag::RequestGameplayTag(FName("{attr.meta_config.event_tag}"));')
+                            lines.append(f"                ASC->HandleGameplayEvent(EventTag, &EventData);")
+                            lines.append("            }")
+                        
+                        lines.append("        }")
+                else:
+                    # 无配置，生成注释模板
+                    lines.append(f"        // TODO: 在这里处理 {attr.name} 的逻辑")
+                    lines.append(f"        // 示例: 将伤害应用到 Health")
+                    lines.append(f"        // if (LocalValue != 0.0f)")
+                    lines.append(f"        // {{")
+                    lines.append(f"        //     SetHealth(GetHealth() + LocalValue);")
+                    lines.append(f"        // }}")
+                
+                lines.append("")
+                lines.append(f"        // 重置 Meta 属性")
+                lines.append(f"        Set{attr.name}(0.0f);")
+                lines.append("    }")
+                lines.append("")
+        
+        # ========== Cue 处理 ==========
         for attr in attributes:
             if not (attr.cue.on_decrease_cue or attr.cue.on_zero_cue or attr.cue.on_increase_cue):
                 continue

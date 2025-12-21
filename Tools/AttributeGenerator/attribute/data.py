@@ -130,13 +130,43 @@ class CueConfig:
         )
 
 
+class MetaConfig:
+    """Meta 属性配置 - 用于临时中转值的处理"""
+    
+    def __init__(self, target_attribute="", apply_mode="Add", 
+                 broadcast_event=False, event_tag=""):
+        self.target_attribute = target_attribute    # 转发到的目标属性（如 Health）
+        self.apply_mode = apply_mode                # 应用模式: Add, Set, Multiply
+        self.broadcast_event = broadcast_event      # 是否广播事件
+        self.event_tag = event_tag                  # 广播的事件 Tag
+    
+    def to_dict(self):
+        return {
+            'TargetAttribute': self.target_attribute,
+            'ApplyMode': self.apply_mode,
+            'BroadcastEvent': self.broadcast_event,
+            'EventTag': self.event_tag
+        }
+    
+    @staticmethod
+    def from_dict(d):
+        if not d:
+            return MetaConfig()
+        return MetaConfig(
+            target_attribute=d.get('TargetAttribute', ''),
+            apply_mode=d.get('ApplyMode', 'Add'),
+            broadcast_event=d.get('BroadcastEvent', False),
+            event_tag=d.get('EventTag', '')
+        )
+
+
 class AttributeData:
     """属性数据模型 - 扩展版本"""
     
     def __init__(self, set_name="", name="", attr_type="Layered", category="Combat",
                  default_base=0.0, default_flat=0.0, default_percent=0.0, 
                  default_current=0.0, description="",
-                 clamp=None, delegate=None, event=None, cue=None):
+                 clamp=None, delegate=None, event=None, cue=None, meta_config=None):
         # 基础信息
         self.set_name = set_name
         self.name = name
@@ -155,6 +185,7 @@ class AttributeData:
         self.delegate = delegate if delegate else DelegateConfig()
         self.event = event if event else EventConfig()
         self.cue = cue if cue else CueConfig()
+        self.meta_config = meta_config if meta_config else MetaConfig()
     
     def to_dict(self):
         """转换为字典（用于 JSON 保存）"""
@@ -172,7 +203,8 @@ class AttributeData:
             'Clamp': self.clamp.to_dict(),
             'Delegate': self.delegate.to_dict(),
             'Event': self.event.to_dict(),
-            'Cue': self.cue.to_dict()
+            'Cue': self.cue.to_dict(),
+            'MetaConfig': self.meta_config.to_dict()
         }
     
     def to_csv_dict(self):
@@ -192,7 +224,8 @@ class AttributeData:
                 'Clamp': self.clamp.to_dict(),
                 'Delegate': self.delegate.to_dict(),
                 'Event': self.event.to_dict(),
-                'Cue': self.cue.to_dict()
+                'Cue': self.cue.to_dict(),
+                'MetaConfig': self.meta_config.to_dict()
             }, ensure_ascii=False)
         }
 
@@ -205,12 +238,15 @@ class AttributeData:
         event = None
         cue = None
         
+        meta_config = None
+        
         # 方式1: 直接嵌套对象 (JSON 格式)
         if 'Clamp' in d and isinstance(d['Clamp'], dict):
             clamp = ClampConfig.from_dict(d.get('Clamp'))
             delegate = DelegateConfig.from_dict(d.get('Delegate'))
             event = EventConfig.from_dict(d.get('Event'))
             cue = CueConfig.from_dict(d.get('Cue'))
+            meta_config = MetaConfig.from_dict(d.get('MetaConfig'))
         # 方式2: JSON 字符串 (CSV 格式)
         elif 'BehaviorConfig' in d and d['BehaviorConfig']:
             try:
@@ -219,6 +255,7 @@ class AttributeData:
                 delegate = DelegateConfig.from_dict(behavior.get('Delegate'))
                 event = EventConfig.from_dict(behavior.get('Event'))
                 cue = CueConfig.from_dict(behavior.get('Cue'))
+                meta_config = MetaConfig.from_dict(behavior.get('MetaConfig'))
             except json.JSONDecodeError:
                 pass
         
@@ -244,7 +281,8 @@ class AttributeData:
             clamp=clamp,
             delegate=delegate,
             event=event,
-            cue=cue
+            cue=cue,
+            meta_config=meta_config
         )
     
     def has_behavior_config(self):

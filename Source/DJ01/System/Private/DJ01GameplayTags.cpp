@@ -1,7 +1,7 @@
 // ============================================================
 // DJ01 Generated GameplayTags
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-20 19:36:12
+// 生成时间: 2025-12-21 16:00:46
 // ============================================================
 
 #include "DJ01/System/Public/DJ01GameplayTags.h"
@@ -18,6 +18,7 @@ namespace DJ01GameplayTags
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(InputTag_Move, "InputTag.Move", "Move input.");
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(InputTag_Look_Mouse, "InputTag.Look.Mouse", "Look input with mouse.");
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(InputTag_Jump, "InputTag.Jump", "Jump input.");
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(InputTag_Test_CastStone, "InputTag.Test.CastStone", "ability cast stone");
 
     // ========== AttributeSet ==========
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(AttributeSet_Health, "AttributeSet.Health", "Health attribute set identifier.");
@@ -30,6 +31,7 @@ namespace DJ01GameplayTags
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability_Attack_Heavy, "Ability.Attack.Heavy", "Heavy attack ability.");
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability_Dodge, "Ability.Dodge", "Dodge/roll ability.");
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability_Block, "Ability.Block", "Block/parry ability.");
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability_Test_CastStone, "Ability.Test.CastStone", "测试技能，扔个石头");
 
     // ========== Event ==========
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Event_Animation_ComboWindow, "Event.Animation.ComboWindow", "Combo window opened - can chain to next attack.");
@@ -51,6 +53,7 @@ namespace DJ01GameplayTags
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Status_Condition_Silenced, "Status.Condition.Silenced", "Character is silenced - cannot use abilities.");
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Status_Condition_Slowed, "Status.Condition.Slowed", "Character is slowed - reduced movement speed.");
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Status_Condition_Hasted, "Status.Condition.Hasted", "Character is hasted - increased movement speed.");
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Status_Immunity_Damage, "Status.Immunity.Damage", "Character will immunity damage");
 
     // ========== Damage ==========
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Damage_Type_Physical, "Damage.Type.Physical", "Physical damage - reduced by Defense.");

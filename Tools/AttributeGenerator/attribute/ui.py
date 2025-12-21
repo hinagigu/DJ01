@@ -57,26 +57,29 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         
         ttk.Label(middle_frame, text="属性列表", font=("", 12, "bold")).pack(pady=5)
         
-        columns = ('name', 'type', 'category', 'base', 'description')
+        columns = ('name', 'type', 'category', 'base', 'description', 'delete')
         self.attr_tree = ttk.Treeview(middle_frame, columns=columns, show='headings', height=15)
         self.attr_tree.heading('name', text='属性名')
         self.attr_tree.heading('type', text='类型')
         self.attr_tree.heading('category', text='分类')
         self.attr_tree.heading('base', text='默认值')
         self.attr_tree.heading('description', text='描述')
+        self.attr_tree.heading('delete', text='')
         
         self.attr_tree.column('name', width=120)
         self.attr_tree.column('type', width=80)
         self.attr_tree.column('category', width=80)
         self.attr_tree.column('base', width=80)
-        self.attr_tree.column('description', width=200)
+        self.attr_tree.column('description', width=180)
+        self.attr_tree.column('delete', width=40, anchor='center')
         
         self.attr_tree.pack(fill=tk.BOTH, expand=True)
         self.attr_tree.bind('<<TreeviewSelect>>', self._on_attr_select)
         self.attr_tree.bind('<F2>', self._on_rename_attr)
-        self.attr_tree.bind('<Delete>', lambda e: self._delete_attribute())
+        # 绑定 Delete/BackSpace 删除（自动选中上/下行）
+        self._bind_tree_delete_key(self.attr_tree, on_after_delete=self._on_attr_deleted)
         
-        # 设置单击即可编辑功能
+        # 设置单击即可编辑功能（不包括删除列）
         self._setup_single_click_editing(
             self.attr_tree,
             column_handlers={
@@ -85,9 +88,13 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
                 2: {'type': 'combo', 'key': 'category', 'values': ATTRIBUTE_CATEGORIES},  # 分类
                 3: {'type': 'entry', 'key': 'default_base', 'value_type': float}, # 默认值
                 4: {'type': 'entry', 'key': 'description', 'value_type': str},    # 描述
+                # 5 是删除列，不处理编辑
             },
             refresh_callback=self._on_inline_edit_refresh
         )
+        
+        # 绑定删除列的点击事件
+        self.attr_tree.bind('<ButtonRelease-1>', self._on_tree_click)
         
         # 底部按钮
         self.button_bar = BottomButtonBar(middle_frame, buttons=[
@@ -345,6 +352,49 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         self.event_threshold_low_tag_var = tk.StringVar()
         ttk.Entry(low_tag_frame, textvariable=self.event_threshold_low_tag_var, width=20).pack(side=tk.LEFT, padx=3)
         ttk.Label(low_tag_frame, text="如 State.LowHealth", font=("", 7), foreground="gray").pack(side=tk.LEFT)
+        
+        # ===== 4. Meta 属性配置 =====
+        self.meta_frame = ttk.LabelFrame(scrollable_frame, text="🔄 Meta 属性配置")
+        self.meta_frame.pack(fill=tk.X, padx=5, pady=5)
+        
+        ttk.Label(self.meta_frame, text="Meta 属性用于临时存储计算值（如待处理的伤害）", 
+                 foreground="gray", font=("", 8)).grid(row=0, column=0, columnspan=3, sticky='w', padx=5, pady=2)
+        
+        # 目标属性集（下拉选择）
+        target_set_frame = ttk.Frame(self.meta_frame)
+        target_set_frame.grid(row=1, column=0, columnspan=3, sticky='w', padx=5, pady=3)
+        ttk.Label(target_set_frame, text="目标属性集:").pack(side=tk.LEFT)
+        self.meta_target_set_var = tk.StringVar()
+        self.meta_target_set_combo = ttk.Combobox(target_set_frame, textvariable=self.meta_target_set_var, width=15, state='readonly')
+        self.meta_target_set_combo.pack(side=tk.LEFT, padx=3)
+        self.meta_target_set_combo.bind('<<ComboboxSelected>>', self._on_meta_target_set_changed)
+        
+        # 目标属性（下拉选择）
+        target_attr_frame = ttk.Frame(self.meta_frame)
+        target_attr_frame.grid(row=2, column=0, columnspan=3, sticky='w', padx=5, pady=3)
+        ttk.Label(target_attr_frame, text="目标属性:").pack(side=tk.LEFT)
+        self.meta_target_var = tk.StringVar()
+        self.meta_target_combo = ttk.Combobox(target_attr_frame, textvariable=self.meta_target_var, width=15, state='readonly')
+        self.meta_target_combo.pack(side=tk.LEFT, padx=3)
+        
+        # 应用模式
+        mode_frame = ttk.Frame(self.meta_frame)
+        mode_frame.grid(row=3, column=0, columnspan=3, sticky='w', padx=5, pady=3)
+        ttk.Label(mode_frame, text="应用模式:").pack(side=tk.LEFT)
+        self.meta_mode_var = tk.StringVar(value="Add")
+        ttk.Combobox(mode_frame, textvariable=self.meta_mode_var, 
+                    values=["Add", "Set", "Multiply"], width=10).pack(side=tk.LEFT, padx=3)
+        
+        # 事件广播
+        event_frame = ttk.Frame(self.meta_frame)
+        event_frame.grid(row=4, column=0, columnspan=3, sticky='w', padx=5, pady=3)
+        self.meta_broadcast_var = tk.BooleanVar()
+        ttk.Checkbutton(event_frame, text="广播事件", 
+                       variable=self.meta_broadcast_var).pack(side=tk.LEFT)
+        ttk.Label(event_frame, text="Tag:").pack(side=tk.LEFT, padx=(10,2))
+        self.meta_event_tag_var = tk.StringVar()
+        ttk.Entry(event_frame, textvariable=self.meta_event_tag_var, width=20).pack(side=tk.LEFT)
+        ttk.Label(event_frame, text="如 Event.DamageReceived", font=("", 7), foreground="gray").pack(side=tk.LEFT, padx=3)
     
     def _on_clamp_toggle(self):
         """切换自定义范围限制时，更新 UI 状态"""
@@ -367,19 +417,31 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
                 self.range_auto_label.configure(
                     text="💡 Resource 类型自动限制在 [0, MaxXxx]",
                     foreground="green")
+            # 隐藏 Meta 配置
+            if hasattr(self, 'meta_frame'):
+                self.meta_frame.pack_forget()
+        elif attr_type == 'Meta':
+            self.current_label.grid_remove()
+            self.current_entry.grid_remove()
+            # 更新范围提示
+            if hasattr(self, 'range_auto_label'):
+                self.range_auto_label.configure(
+                    text="💡 Meta 类型仅用于临时计算，不参与网络复制",
+                    foreground="blue")
+            # 显示 Meta 配置
+            if hasattr(self, 'meta_frame'):
+                self.meta_frame.pack(fill=tk.X, padx=5, pady=5)
         else:
             self.current_label.grid_remove()
             self.current_entry.grid_remove()
             # 更新范围提示
             if hasattr(self, 'range_auto_label'):
-                if attr_type == 'Meta':
-                    self.range_auto_label.configure(
-                        text="💡 Meta 类型仅用于计算，通常不需要范围限制",
-                        foreground="gray")
-                else:
-                    self.range_auto_label.configure(
-                        text="💡 如需限制范围，请勾选下方自定义选项",
-                        foreground="gray")
+                self.range_auto_label.configure(
+                    text="💡 如需限制范围，请勾选下方自定义选项",
+                    foreground="gray")
+            # 隐藏 Meta 配置
+            if hasattr(self, 'meta_frame'):
+                self.meta_frame.pack_forget()
     
     # ========== 数据操作 ==========
     
@@ -460,7 +522,7 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         for i, attr in enumerate(self.attributes):
             if attr.set_name == self._current_set:
                 self.attr_tree.insert('', 'end', iid=str(i), values=(
-                    attr.name, attr.type, attr.category, attr.default_base, attr.description))
+                    attr.name, attr.type, attr.category, attr.default_base, attr.description, '❌'))
     
     def _on_set_select(self, idx, value):
         self._current_set = value
@@ -513,13 +575,54 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         self._refresh_set_list()
     
     def _delete_attribute(self):
-        selection = self.attr_tree.selection()
-        if selection:
-            idx = int(selection[0])
-            del self.attributes[idx]
-            self._last_selected_idx = None
-            self._refresh_attr_list()
-            self._refresh_set_list()
+        """删除选中的属性（由按钮调用）"""
+        self._handle_tree_delete(self.attr_tree, on_after_delete=self._on_attr_deleted)
+    
+    def _on_attr_deleted(self):
+        """属性删除后的回调：同步删除数据并刷新"""
+        # 重建 attributes 列表（根据 tree 中剩余的项）
+        remaining_indices = set()
+        for item in self.attr_tree.get_children():
+            try:
+                remaining_indices.add(int(item))
+            except ValueError:
+                pass
+        
+        # 保留还在 tree 中的 attributes 或不属于当前 set 的
+        new_attrs = []
+        for i, attr in enumerate(self.attributes):
+            if i in remaining_indices or attr.set_name != self._current_set:
+                new_attrs.append(attr)
+        self.attributes = new_attrs
+        
+        self._last_selected_idx = None
+        self._refresh_attr_list()
+        self._refresh_set_list()
+    
+    def _on_tree_click(self, event):
+        """处理树形控件点击 - 检测删除列"""
+        region = self.attr_tree.identify_region(event.x, event.y)
+        if region != 'cell':
+            return
+        
+        column = self.attr_tree.identify_column(event.x)
+        if column != '#6':  # 第6列是删除列
+            return
+        
+        item = self.attr_tree.identify_row(event.y)
+        if not item:
+            return
+        
+        # 直接删除该行，不需要确认
+        try:
+            idx = int(item)
+            if idx < len(self.attributes):
+                del self.attributes[idx]
+                self._last_selected_idx = None
+                self._refresh_attr_list()
+                self._refresh_set_list()
+        except (ValueError, IndexError):
+            pass
     
     def _on_rename_attr(self, event):
         selection = self.attr_tree.selection()
@@ -602,6 +705,17 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
             attr.cue.on_decrease_cue = self.cue_decrease_var.get()
             attr.cue.on_zero_cue = self.cue_zero_var.get()
             attr.cue.on_increase_cue = self.cue_increase_var.get()
+            
+            # Meta 配置 - 保存为 "SetName.AttributeName" 格式
+            target_set = self.meta_target_set_var.get()
+            target_attr = self.meta_target_var.get()
+            if target_set and target_attr:
+                attr.meta_config.target_attribute = f"{target_set}.{target_attr}"
+            else:
+                attr.meta_config.target_attribute = target_attr  # 兼容空值
+            attr.meta_config.apply_mode = self.meta_mode_var.get()
+            attr.meta_config.broadcast_event = self.meta_broadcast_var.get()
+            attr.meta_config.event_tag = self.meta_event_tag_var.get()
         except (ValueError, IndexError):
             pass
     
@@ -613,6 +727,41 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
             return float(value)
         except ValueError:
             return None
+    
+    def _on_meta_target_set_changed(self, event=None):
+        """当目标属性集改变时，更新目标属性下拉框"""
+        selected_set = self.meta_target_set_var.get()
+        if not selected_set:
+            self.meta_target_combo['values'] = []
+            return
+        
+        # 获取该属性集中的所有属性（排除 Meta 类型）
+        options = []
+        for a in self.attributes:
+            if a.set_name != selected_set:
+                continue
+            if a.type == 'Meta':
+                continue  # Meta 属性不能转发到另一个 Meta
+            
+            # 根据类型生成正确的属性名
+            if a.type == 'Resource':
+                options.append(a.name)  # Health, Mana
+            elif a.type == 'Layered':
+                options.append(a.name)  # 使用基础名，生成器会处理 Base 前缀
+            else:
+                options.append(a.name)
+        
+        self.meta_target_combo['values'] = options
+        
+        # 如果当前选中的属性不在新列表中，清空
+        if self.meta_target_var.get() not in options:
+            self.meta_target_var.set(options[0] if options else '')
+    
+    def _refresh_meta_target_set_options(self):
+        """刷新目标属性集下拉框的选项"""
+        # 获取所有属性集（排除当前 Meta 属性所在的属性集，避免自引用）
+        sets = list(set(a.set_name for a in self.attributes if a.type != 'Meta'))
+        self.meta_target_set_combo['values'] = sorted(sets)
     
     def _sync_right_panel(self, attr):
         # 基础信息
@@ -648,5 +797,28 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         self.cue_decrease_var.set(attr.cue.on_decrease_cue)
         self.cue_zero_var.set(attr.cue.on_zero_cue)
         self.cue_increase_var.set(attr.cue.on_increase_cue)
+        
+        # Meta 配置 - 解析 "SetName.AttributeName" 格式
+        target_full = attr.meta_config.target_attribute or ''
+        if '.' in target_full:
+            target_set, target_attr = target_full.split('.', 1)
+        else:
+            # 兼容旧格式，尝试查找属性所在的集
+            target_attr = target_full
+            target_set = ''
+            if target_attr:
+                for a in self.attributes:
+                    if a.name == target_attr and a.type != 'Meta':
+                        target_set = a.set_name
+                        break
+        
+        self._refresh_meta_target_set_options()
+        self.meta_target_set_var.set(target_set)
+        self._on_meta_target_set_changed()  # 刷新属性列表
+        self.meta_target_var.set(target_attr)
+        
+        self.meta_mode_var.set(attr.meta_config.apply_mode)
+        self.meta_broadcast_var.set(attr.meta_config.broadcast_event)
+        self.meta_event_tag_var.set(attr.meta_config.event_tag)
         
         self._update_ui_by_type()

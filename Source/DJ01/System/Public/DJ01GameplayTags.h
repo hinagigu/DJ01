@@ -1,7 +1,7 @@
 // ============================================================
 // DJ01 Generated GameplayTags
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-20 19:36:12
+// 生成时间: 2025-12-21 16:00:46
 // ============================================================
 
 #pragma once
@@ -20,6 +20,7 @@ namespace DJ01GameplayTags
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_Move);
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_Look_Mouse);
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_Jump);
+    DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_Test_CastStone);
 
     // ========== AttributeSet ==========
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(AttributeSet_Health);
@@ -32,6 +33,7 @@ namespace DJ01GameplayTags
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_Attack_Heavy);
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_Dodge);
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_Block);
+    DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_Test_CastStone);
 
     // ========== Event ==========
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Event_Animation_ComboWindow);
@@ -53,6 +55,7 @@ namespace DJ01GameplayTags
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Status_Condition_Silenced);
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Status_Condition_Slowed);
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Status_Condition_Hasted);
+    DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Status_Immunity_Damage);
 
     // ========== Damage ==========
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Type_Physical);

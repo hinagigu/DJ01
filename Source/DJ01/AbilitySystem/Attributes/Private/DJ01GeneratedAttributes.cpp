@@ -1,7 +1,7 @@
 // ============================================================
 // DJ01 Generated Attributes
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-20 19:36:15
+// 生成时间: 2025-12-21 19:24:01
 // ============================================================
 
 #include "DJ01/AbilitySystem/Attributes/Public/DJ01GeneratedAttributes.h"
@@ -129,6 +129,45 @@ void UDJ01ResourceSet::PreAttributeChange(const FGameplayAttribute& Attribute, f
     {
         // Resource 自动 Clamp: [0, MaxMana]
         NewValue = FMath::Clamp(NewValue, 0.f, GetTotalMaxMana());
+    }
+
+}
+
+
+// ##########################################################
+// UDJ01MetaAttributes
+// ##########################################################
+
+UDJ01MetaAttributes::UDJ01MetaAttributes()
+{
+    InitDamageIncoming(0.0f);
+}
+
+void UDJ01MetaAttributes::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+}
+
+
+void UDJ01MetaAttributes::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
+{
+    Super::PostGameplayEffectExecute(Data);
+
+    // ===== Meta 属性: DamageIncoming =====
+    if (Data.EvaluatedData.Attribute == GetDamageIncomingAttribute())
+    {
+        // 获取 Meta 属性的值
+        const float LocalValue = GetDamageIncoming();
+
+        // TODO: 在这里处理 DamageIncoming 的逻辑
+        // 示例: 将伤害应用到 Health
+        // if (LocalValue != 0.0f)
+        // {
+        //     SetHealth(GetHealth() + LocalValue);
+        // }
+
+        // 重置 Meta 属性
+        SetDamageIncoming(0.0f);
     }
 
 }

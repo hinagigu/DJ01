@@ -21,7 +21,7 @@ class GASGeneratorApp:
     def __init__(self, root):
         self.root = root
         self.root.title("DJ01 GAS 代码生成器")
-        self.root.geometry("1200x800")
+        self.root.geometry("1400x850")
         
         self._create_ui()
         self._bind_shortcuts()
