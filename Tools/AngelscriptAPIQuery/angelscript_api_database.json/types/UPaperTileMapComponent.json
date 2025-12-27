@@ -1,0 +1,423 @@
+{
+  "name": "UPaperTileMapComponent",
+  "inherits": "UMeshComponent",
+  "doc": "A component that handles rendering and collision for a single instance of a UPaperTileMap asset.\n\nThis component is created when you drag a tile map asset from the content browser into a Blueprint, or\ncontained inside of the actor created when you drag one into the level.\n\nNOTE: This is an beta preview class.  While not considered production-ready, it is a step beyond\n'experimental' and is being provided as a preview of things to come:\n - We will try to provide forward-compatibility for content you create.\n - The classes may change significantly in the future.\n - The code is in an early state and may not meet the desired polish / quality bar.\n - There is probably no documentation or example content yet.\n - They will be promoted out of 'beta' when they are production ready.\n\n@see UPrimitiveComponent, UPaperTileMap",
+  "properties": {
+    "UseSingleLayerIndex": [
+      "int",
+      2,
+      "The index of the single layer to use if enabled"
+    ],
+    "bUseSingleLayer": [
+      "bool",
+      2,
+      "Should we draw a single layer?"
+    ],
+    "bShowPerTileGridWhenSelected": [
+      "bool",
+      2,
+      "Should this component show a tile grid when the component is selected?"
+    ],
+    "bShowPerLayerGridWhenSelected": [
+      "bool",
+      2,
+      "Should this component show an outline around each layer when the component is selected?"
+    ],
+    "bShowOutlineWhenUnselected": [
+      "bool",
+      2,
+      "Should this component show an outline around the first layer when the component is not selected?"
+    ],
+    "bShowPerTileGridWhenUnselected": [
+      "bool",
+      2,
+      "Should this component show a tile grid when the component is not selected?"
+    ],
+    "bShowPerLayerGridWhenUnselected": [
+      "bool",
+      2,
+      "Should this component show an outline around each layer when the component is not selected?"
+    ],
+    "TileMap": [
+      "UPaperTileMap",
+      "The tile map used by this component"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddNewLayer",
+      "return": "UPaperTileLayer",
+      "doc": "Creates and adds a new layer to the tile map\nNote: This will only work on components that own their own tile map (OwnsTileMap returns true), you cannot modify standalone tile map assets",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CreateNewTileMap",
+      "return": "void",
+      "doc": "Creates a new tile map of the specified size, replacing the TileMap reference (or dropping the previous owned one)\n\n@param MapWidth Width of the map (in tiles)\n@param MapHeight Height of the map (in tiles)\n@param TileWidth Width of one tile (in pixels)\n@param TileHeight Height of one tile (in pixels)\n@param bCreateLayer Should an empty layer be created?",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MapWidth",
+          "default": "4",
+          "type": "int"
+        },
+        {
+          "name": "MapHeight",
+          "default": "4",
+          "type": "int"
+        },
+        {
+          "name": "TileWidth",
+          "default": "32",
+          "type": "int"
+        },
+        {
+          "name": "TileHeight",
+          "default": "32",
+          "type": "int"
+        },
+        {
+          "name": "PixelsPerUnrealUnit",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bCreateLayer",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetLayerColor",
+      "return": "FLinearColor",
+      "const": true,
+      "doc": "Gets the per-layer color multiplier for a specific layer (multiplied with the tile map color and passed to the material as a vertex color)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Layer",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetMapSize",
+      "return": "void",
+      "doc": "Returns the size of the tile map",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MapWidth",
+          "type": "int&"
+        },
+        {
+          "name": "MapHeight",
+          "type": "int&"
+        },
+        {
+          "name": "NumLayers",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetTile",
+      "return": "FPaperTileInfo",
+      "const": true,
+      "doc": "Returns the contents of a specified tile cell",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Y",
+          "type": "int"
+        },
+        {
+          "name": "Layer",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetTileCenterPosition",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns the position of the center of the specified tile",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TileX",
+          "type": "int"
+        },
+        {
+          "name": "TileY",
+          "type": "int"
+        },
+        {
+          "name": "LayerIndex",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetTileCornerPosition",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns the position of the top left corner of the specified tile",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TileX",
+          "type": "int"
+        },
+        {
+          "name": "TileY",
+          "type": "int"
+        },
+        {
+          "name": "LayerIndex",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetTileMapColor",
+      "return": "FLinearColor",
+      "const": true,
+      "doc": "Gets the tile map global color multiplier (multiplied with the per-layer color and passed to the material as a vertex color)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTilePolygon",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the polygon for the specified tile (will be 4 or 6 vertices as a rectangle, diamond, or hexagon)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TileX",
+          "type": "int"
+        },
+        {
+          "name": "TileY",
+          "type": "int"
+        },
+        {
+          "name": "Points",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "LayerIndex",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MakeTileMapEditable",
+      "return": "void",
+      "doc": "Makes the tile map asset pointed to by this component editable.  Nothing happens if it was already instanced, but\nif the tile map is an asset reference, it is cloned to make a unique instance.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OwnsTileMap",
+      "return": "bool",
+      "const": true,
+      "doc": "Does this component own the tile map (is it instanced instead of being an asset reference)?",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RebuildCollision",
+      "return": "void",
+      "doc": "Rebuilds collision for the tile map",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResizeMap",
+      "return": "void",
+      "doc": "Resizes the tile map (Note: This will only work on components that own their own tile map (OwnsTileMap returns true), you cannot modify standalone tile map assets)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewWidthInTiles",
+          "type": "int"
+        },
+        {
+          "name": "NewHeightInTiles",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetDefaultCollisionThickness",
+      "return": "void",
+      "doc": "Sets the default thickness for any layers that don't override the collision thickness\nNote: This will only work on components that own their own tile map (OwnsTileMap returns true), you cannot modify standalone tile map assets",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Thickness",
+          "type": "float32"
+        },
+        {
+          "name": "bRebuildCollision",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLayerCollision",
+      "return": "void",
+      "doc": "Sets the collision thickness for a specific layer\nNote: This will only work on components that own their own tile map (OwnsTileMap returns true), you cannot modify standalone tile map assets",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Layer",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "bHasCollision",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bOverrideThickness",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "CustomThickness",
+          "default": "50.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bOverrideOffset",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "CustomOffset",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRebuildCollision",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLayerColor",
+      "return": "void",
+      "doc": "Sets the per-layer color multiplier for a specific layer (multiplied with the tile map color and passed to the material as a vertex color)\nNote: This will only work on components that own their own tile map (OwnsTileMap returns true), you cannot modify standalone tile map assets",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Layer",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetTile",
+      "return": "void",
+      "doc": "Modifies the contents of a specified tile cell (Note: This will only work on components that own their own tile map (OwnsTileMap returns true), you cannot modify standalone tile map assets)\nNote: Does not update collision by default, call RebuildCollision after all edits have been done in a frame if necessary",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Y",
+          "type": "int"
+        },
+        {
+          "name": "Layer",
+          "type": "int"
+        },
+        {
+          "name": "NewValue",
+          "type": "FPaperTileInfo"
+        }
+      ]
+    },
+    {
+      "name": "SetTileMap",
+      "return": "bool",
+      "doc": "Change the PaperTileMap used by this instance.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTileMap",
+          "type": "UPaperTileMap"
+        }
+      ]
+    },
+    {
+      "name": "SetTileMapColor",
+      "return": "void",
+      "doc": "Sets the tile map global color multiplier (multiplied with the per-layer color and passed to the material as a vertex color)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewColor",
+          "type": "FLinearColor"
+        }
+      ]
+    }
+  ]
+}

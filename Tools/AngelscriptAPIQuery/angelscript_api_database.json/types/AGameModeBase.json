@@ -1,0 +1,490 @@
+{
+  "name": "AGameModeBase",
+  "inherits": "AInfo",
+  "doc": "The GameModeBase defines the game being played. It governs the game rules, scoring, what actors\nare allowed to exist in this game type, and who may enter the game.\n\nIt is only instanced on the server and will never exist on the client.\n\nA GameModeBase actor is instantiated when the level is initialized for gameplay in\nC++ UGameEngine::LoadMap().\n\nThe class of this GameMode actor is determined by (in order) either the URL ?game=xxx,\nthe GameMode Override value set in the World Settings, or the DefaultGameMode entry set\nin the game's Project Settings.\n\n@see https://docs.unrealengine.com/latest/INT/Gameplay/Framework/GameMode/index.html",
+  "properties": {
+    "OptionsString": [
+      "FString",
+      1,
+      "Save options string and parse it when needed"
+    ],
+    "GameSessionClass": [
+      "TSubclassOf<AGameSession>",
+      "Class of GameSession, which handles login approval and online game interface"
+    ],
+    "GameStateClass": [
+      "TSubclassOf<AGameStateBase>",
+      "Class of GameState associated with this GameMode."
+    ],
+    "PlayerControllerClass": [
+      "TSubclassOf<APlayerController>",
+      "The class of PlayerController to spawn for players logging in."
+    ],
+    "PlayerStateClass": [
+      "TSubclassOf<APlayerState>",
+      "A PlayerState of this class will be associated with every player to replicate relevant player information to all clients."
+    ],
+    "HUDClass": [
+      "TSubclassOf<AHUD>",
+      "HUD class this game uses."
+    ],
+    "DefaultPawnClass": [
+      "TSubclassOf<APawn>",
+      "The default pawn class used by players."
+    ],
+    "SpectatorClass": [
+      "TSubclassOf<ASpectatorPawn>",
+      "The pawn class used by the PlayerController for players when spectating."
+    ],
+    "ReplaySpectatorPlayerControllerClass": [
+      "TSubclassOf<APlayerController>",
+      "The PlayerController class used when spectating a network replay."
+    ],
+    "ServerStatReplicatorClass": [
+      "TSubclassOf<AServerStatReplicator>"
+    ],
+    "DefaultPlayerName": [
+      "FText",
+      2,
+      "The default player name assigned to players that join with no name specified."
+    ],
+    "GameNetDriverReplicationSystem": [
+      "EReplicationSystem",
+      "Can be used to request a specific replication system for a GameNetDriver that will replicate this game mode.\nLeave to Default to use the game engine's preferred system.\nUseful when migrating from one repsystem to another and a game mode does not fully support both repsystem yet."
+    ],
+    "bUseSeamlessTravel": [
+      "bool",
+      "Whether the game perform map travels using SeamlessTravel() which loads in the background and doesn't disconnect clients"
+    ],
+    "bStartPlayersAsSpectators": [
+      "bool",
+      "Whether players should immediately spawn when logging in, or stay as spectators until they manually spawn"
+    ],
+    "bPauseable": [
+      "bool",
+      "Whether the game is pauseable."
+    ]
+  },
+  "methods": [
+    {
+      "name": "CanSpectate",
+      "return": "bool",
+      "callable": false,
+      "doc": "Return whether Viewer is allowed to spectate from the point of view of ViewTarget.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Viewer",
+          "type": "APlayerController"
+        },
+        {
+          "name": "ViewTarget",
+          "type": "APlayerState"
+        }
+      ]
+    },
+    {
+      "name": "ChangeName",
+      "return": "void",
+      "doc": "Sets the name for a controller\n@param Controller    The controller of the player to change the name of\n@param NewName               The name to set the player to\n@param bNameChange   Whether the name is changing or if this is the first time it has been set",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Controller",
+          "type": "AController"
+        },
+        {
+          "name": "NewName",
+          "type": "FString"
+        },
+        {
+          "name": "bNameChange",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ChoosePlayerStart",
+      "return": "AActor",
+      "callable": false,
+      "doc": "Return the 'best' player start for this player to spawn from\nDefault implementation looks for a random unoccupied spot\n\n@param Player is the controller for whom we are choosing a playerstart\n@returns AActor chosen as player start (usually a PlayerStart)",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Player",
+          "type": "AController"
+        }
+      ]
+    },
+    {
+      "name": "FindPlayerStart",
+      "return": "AActor",
+      "callable": false,
+      "doc": "Return the specific player start actor that should be used for the next spawn\nThis will either use a previously saved startactor, or calls ChoosePlayerStart\n\n@param Player The AController for whom we are choosing a Player Start\n@param IncomingName Specifies the tag of a Player Start to use\n@returns Actor chosen as player start (usually a PlayerStart)",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Player",
+          "type": "AController"
+        },
+        {
+          "name": "IncomingName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetDefaultPawnClassForController",
+      "return": "UClass",
+      "doc": "Returns default pawn class for given controller",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InController",
+          "type": "AController"
+        }
+      ]
+    },
+    {
+      "name": "GetNumPlayers",
+      "return": "int",
+      "doc": "Returns number of active human players, excluding spectators",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumSpectators",
+      "return": "int",
+      "doc": "Returns number of human players currently spectating",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HandleStartingNewPlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Signals that a player is ready to enter the game, which may start it up",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayer",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "HasMatchEnded",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the match can be considered ended",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasMatchStarted",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the match start callbacks have been called",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InitializeHUDForPlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Initialize the AHUD object for a player. Games can override this to do something different",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayer",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "InitStartSpot",
+      "return": "void",
+      "callable": false,
+      "doc": "Called from RestartPlayerAtPlayerStart, can be used to initialize the start spawn actor",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartSpot",
+          "type": "AActor"
+        },
+        {
+          "name": "NewPlayer",
+          "type": "AController"
+        }
+      ]
+    },
+    {
+      "name": "K2_FindPlayerStart",
+      "return": "AActor",
+      "doc": "Return the specific player start actor that should be used for the next spawn\nThis will either use a previously saved startactor, or calls ChoosePlayerStart\n\n@param Player The AController for whom we are choosing a Player Start\n@param IncomingName Specifies the tag of a Player Start to use\n@returns Actor chosen as player start (usually a PlayerStart)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Player",
+          "type": "AController"
+        },
+        {
+          "name": "IncomingName",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "OnChangeName",
+      "return": "void",
+      "callable": false,
+      "doc": "Overridable event for GameMode blueprint to respond to a change name call\n@param Controller    The controller of the player to change the name of\n@param NewName               The name to set the player to\n@param bNameChange   Whether the name is changing or if this is the first time it has been set",
+      "event": true,
+      "unrealname": "K2_OnChangeName",
+      "meta": null,
+      "args": [
+        {
+          "name": "Other",
+          "type": "AController"
+        },
+        {
+          "name": "NewName",
+          "type": "FString"
+        },
+        {
+          "name": "bNameChange",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "OnLogout",
+      "return": "void",
+      "callable": false,
+      "doc": "Implementable event when a Controller with a PlayerState leaves the game.",
+      "event": true,
+      "unrealname": "K2_OnLogout",
+      "meta": null,
+      "args": [
+        {
+          "name": "ExitingController",
+          "type": "AController"
+        }
+      ]
+    },
+    {
+      "name": "OnRestartPlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Implementable event called at the end of RestartPlayer",
+      "event": true,
+      "unrealname": "K2_OnRestartPlayer",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayer",
+          "type": "AController"
+        }
+      ]
+    },
+    {
+      "name": "OnSwapPlayerControllers",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when a PlayerController is swapped to a new one during seamless travel",
+      "event": true,
+      "unrealname": "K2_OnSwapPlayerControllers",
+      "meta": null,
+      "args": [
+        {
+          "name": "OldPC",
+          "type": "APlayerController"
+        },
+        {
+          "name": "NewPC",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "OnPostLogin",
+      "return": "void",
+      "callable": false,
+      "doc": "Notification that a player has successfully logged in, and has been given a player controller",
+      "event": true,
+      "unrealname": "K2_PostLogin",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayer",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "MustSpectate",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "doc": "Returns true if NewPlayerController may only join the server as a spectator.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayerController",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "PlayerCanRestart",
+      "return": "bool",
+      "doc": "Returns true if it's valid to call RestartPlayer. By default will call Player->CanRestartPlayer",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Player",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "ResetLevel",
+      "return": "void",
+      "doc": "Overridable function called when resetting level. This is used to reset the game state while staying in the same map\nDefault implementation calls Reset() on all actors except GameMode and Controllers",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RestartPlayer",
+      "return": "void",
+      "doc": "Tries to spawn the player's pawn, at the location returned by FindPlayerStart",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayer",
+          "type": "AController"
+        }
+      ]
+    },
+    {
+      "name": "RestartPlayerAtPlayerStart",
+      "return": "void",
+      "doc": "Tries to spawn the player's pawn at the specified actor's location",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayer",
+          "type": "AController"
+        },
+        {
+          "name": "StartSpot",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "RestartPlayerAtTransform",
+      "return": "void",
+      "doc": "Tries to spawn the player's pawn at a specific location",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayer",
+          "type": "AController"
+        },
+        {
+          "name": "SpawnTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "ReturnToMainMenuHost",
+      "return": "void",
+      "doc": "Return to main menu, and disconnect any players",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ShouldReset",
+      "return": "bool",
+      "callable": false,
+      "doc": "Overridable function to determine whether an Actor should have Reset called when the game has Reset called on it.\nDefault implementation returns true\n@param ActorToReset The actor to make a determination for\n@return true if ActorToReset should have Reset() called on it while restarting the game,\n                false if the GameMode will manually reset it or if the actor does not need to be reset",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorToReset",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SpawnDefaultPawnAtTransform",
+      "return": "APawn",
+      "callable": false,
+      "doc": "Called during RestartPlayer to actually spawn the player's pawn, when using a transform\n@param       NewPlayer - Controller for whom this pawn is spawned\n@param       SpawnTransform - Transform at which to spawn pawn\n@return      a pawn of the default pawn class",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayer",
+          "type": "AController"
+        },
+        {
+          "name": "SpawnTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "SpawnDefaultPawnFor",
+      "return": "APawn",
+      "callable": false,
+      "doc": "Called during RestartPlayer to actually spawn the player's pawn, when using a start spot\n@param       NewPlayer - Controller for whom this pawn is spawned\n@param       StartSpot - Actor at which to spawn pawn\n@return      a pawn of the default pawn class",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayer",
+          "type": "AController"
+        },
+        {
+          "name": "StartSpot",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "StartPlay",
+      "return": "void",
+      "doc": "Transitions to calls BeginPlay on actors.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

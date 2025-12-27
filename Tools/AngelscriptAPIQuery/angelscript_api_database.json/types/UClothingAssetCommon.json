@@ -1,0 +1,18 @@
+{
+  "name": "UClothingAssetCommon",
+  "inherits": "UClothingAssetBase",
+  "doc": "Implementation of non-solver specific, but common Engine related functionality.\n\nSolver specific implementations may wish to override this class to construct\ntheir own default instances of child classes, such as \\c ClothSimConfig and\n\\c CustomData, as well as override the \\c AddNewLod() factory to build their\nown implementation of \\c UClothLODDataBase.",
+  "properties": {
+    "PhysicsAsset": [
+      "UPhysicsAsset",
+      2,
+      "The physics asset to extract collisions from when building a simulation."
+    ],
+    "ClothConfigs": [
+      "TMap<FName,TObjectPtr<UClothConfigBase>>",
+      1,
+      "Simulation specific cloth parameters.\nUse GetClothConfig() to retrieve the correct parameters/config type for the desired cloth simulation system."
+    ]
+  },
+  "methods": []
+}

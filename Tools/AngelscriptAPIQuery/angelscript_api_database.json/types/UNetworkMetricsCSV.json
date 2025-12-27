@@ -1,0 +1,7 @@
+{
+  "name": "UNetworkMetricsCSV",
+  "inherits": "UNetworkMetricsBaseListener",
+  "doc": "A metrics listener that reports an array of metrics to CSV.\n\nThe function SetCategory() is expected to be called before the listener is registered with\nFNetworkMetricsDatabase::Register(). This function will associate the instance of UNetworkMetricsCSV\nwith a category of values in CSV.\n\nTo use UNetworkMetricsCSV in a configuration file, a sub-class of UNetworkMetricsCSV must be\ncreated that calls SetCategory() from the constructor to provide the CSV category to use.\n\nUCLASS()\nclass UNetworkMetricsCSV_ExampleCategory : public UNetworkMetricsCSV\n{\n            GENERATED_BODY()\npublic:\n            virtual ~UNetworkMetricsCSV_ExampleCategory() = default;\n\n            UNetworkMetricsCSV_ExampleCategory() : UNetworkMetricsCSV()\n            {\n                    SetCategory(\"ExampleCategory\");\n            }\n};\n\nThis sub-class can then be used in the configuration file when registering a listener:\n\n    [/Script/Engine.NetworkMetricsConfig]\n    +Listeners=(MetricName=ExampleMetric, ClassName=/Script/Engine.NetworkMetricsCSV_ExampleCategory)\n\nIf the base UNetworkMetricsCSV class is used in the configuration file, CSV stats will be recorded to the default 'Networking' category.",
+  "properties": {},
+  "methods": []
+}

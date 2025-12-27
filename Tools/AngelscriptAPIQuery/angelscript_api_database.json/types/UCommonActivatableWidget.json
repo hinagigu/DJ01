@@ -1,0 +1,220 @@
+{
+  "name": "UCommonActivatableWidget",
+  "inherits": "UCommonUserWidget",
+  "doc": "The base for widgets that are capable of being \"activated\" and \"deactivated\" during their lifetime without being otherwise modified or destroyed.\n\nThis is generally desired for one or more of the following purposes:\n    - This widget can turn on/off without being removed from the hierarchy (or otherwise reconstructing the underlying SWidgets), so Construct/Destruct are insufficient\n    - You'd like to be able to \"go back\" from this widget, whether that means back a breadcrumb, closing a modal, or something else. This is built-in here.\n    - This widget's place in the hierarchy is such that it defines a meaningful node-point in the tree of activatable widgets through which input is routed to all widgets.\n\nBy default, an activatable widget:\n    - Is not automatically activated upon construction\n    - Does not register to receive back actions (or any other actions, for that matter)\n    - If classified as a back handler, is automatically deactivated (but not destroyed) when it receives a back action\n\nNote that removing an activatable widget from the UI (i.e. triggering Destruct()) will always deactivate it, even if the UWidget is not destroyed.\nRe-constructing the underlying SWidget will only result in re-activation if auto-activate is enabled.",
+  "properties": {
+    "bIsBackHandler": [
+      "bool",
+      2,
+      "True to receive \"Back\" actions automatically. Custom back handler behavior can be provided, default is to deactivate."
+    ],
+    "bIsBackActionDisplayedInActionBar": [
+      "bool",
+      2,
+      "True to receive \"Back\" actions automatically. Custom back handler behavior can be provided, default is to deactivate."
+    ],
+    "bAutoActivate": [
+      "bool",
+      2,
+      "True to automatically activate upon construction"
+    ],
+    "bSupportsActivationFocus": [
+      "bool",
+      2,
+      "True if this widget is a candidate to receive/route focus or specify a desired UIInputConfig when active.\nPrimary reason for disabling is for utility sub-widgets within a larger screen that possess actions, but are never\nintended to be involved in navigation or dictate changes to the active UI input config."
+    ],
+    "bIsModal": [
+      "bool",
+      2,
+      "True to have this widget be treated as a root node for input routing, regardless of its actual parentage.\nShould seldom be needed, but useful in cases where a child widget should prevent all action processing by parents, even though they remain active (ex: modal popup menu)."
+    ],
+    "bAutoRestoreFocus": [
+      "bool",
+      2,
+      "True to prefer automatically restoring focus to the widget that was focused when this widget last became the non-leafmost-active-widget.\nIf true and a valid restoration candidate exists, we'll use that. If it doesn't, we rely on GetDesiredFocusTarget()\nIf false, we simply always rely on GetDesiredFocusTarget()"
+    ],
+    "bOverrideActionDomain": [
+      "bool"
+    ],
+    "InputMapping": [
+      "UInputMappingContext",
+      2,
+      "Optional mapping context to be applied & removed on activation & deactivation respectfully."
+    ],
+    "InputMappingPriority": [
+      "int",
+      2,
+      "Enhanced Input priority. Higher priority input mappings will be prioritized over mappings with a lower priority."
+    ],
+    "ActionDomainOverride": [
+      "TSoftObjectPtr<UCommonInputActionDomain>",
+      "Enable to override the inherited ActionDomain from owning CommonActivatableWidget."
+    ],
+    "BP_OnWidgetActivated": [
+      "FOnWidgetActivationChanged",
+      "Fires when the widget is activated."
+    ],
+    "BP_OnWidgetDeactivated": [
+      "FOnWidgetActivationChanged",
+      "Fires when the widget is deactivated."
+    ],
+    "bIsActive": [
+      "bool",
+      1,
+      ""
+    ],
+    "bSetVisibilityOnActivated": [
+      "bool",
+      2,
+      ""
+    ],
+    "ActivatedVisibility": [
+      "ESlateVisibility",
+      2,
+      ""
+    ],
+    "bSetVisibilityOnDeactivated": [
+      "bool",
+      2,
+      ""
+    ],
+    "DeactivatedVisibility": [
+      "ESlateVisibility",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "ActivateWidget",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "BindVisibilityToActivation",
+      "return": "void",
+      "doc": "Bind our visibility to the activation of another widget, useful for making mouse collisions behave similiar to console navigation w.r.t activation\nWill immediately update visibility based on the bound widget activation & visibilites set by SetBindVisibilities.\n\n@param       ActivatableWidget               - The widget whose activation / deactivation will modify our visibility",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActivatableWidget",
+          "type": "UCommonActivatableWidget"
+        }
+      ]
+    },
+    {
+      "name": "BP_GetDesiredFocusTarget",
+      "return": "UWidget",
+      "const": true,
+      "callable": false,
+      "doc": "Implement to provide the desired widget to focus if/when this activatable becomes the primary active widget.\nNote: This is a fallback used only if the native class parentage does not provide a target.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDesiredInputConfig",
+      "return": "FUIInputConfig",
+      "const": true,
+      "callable": false,
+      "doc": "Implement to provide the input config to use when this widget is activated. Keep in mind when all widgets\nare deactivated, CommonUI will not attempt to automatically restore the input config to before any widget was active.\nNote: This is a fallback used only if the native class parentage does not provide an input config.",
+      "event": true,
+      "unrealname": "BP_GetDesiredInputConfig",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnActivated",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnActivated",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnDeactivated",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnDeactivated",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnHandleBackAction",
+      "return": "bool",
+      "callable": false,
+      "doc": "Override in BP implementations to provide custom behavior when receiving a back action\nNote: Only called if native code in the base class hasn't handled it in NativeOnHandleBackAction",
+      "event": true,
+      "unrealname": "BP_OnHandleBackAction",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearFocusRestorationTarget",
+      "return": "void",
+      "doc": "Clears the cached focus target that's set when bAutoRestoreFocus is true",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DeactivateWidget",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDesiredFocusTarget",
+      "return": "UWidget",
+      "const": true,
+      "doc": "Returns the desired widget to focus when this Widget Activates.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsActivated",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RequestRefreshFocus",
+      "return": "void",
+      "doc": "Ask for focus to be re-set to our current DesiredFocusTarget,\nbut only if our node is currently the leaf-most active node (no stealing!).\nThis is useful for complex cases like: the buttons animate in from off-screen,\nor the buttons are deeply nested in a multi-switcher hierarchy and it would be burdensome\nto wrap each element in a CommonActivatableWidget.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBindVisibilities",
+      "return": "void",
+      "protected": true,
+      "doc": "Visibilities to use for when bound widgets in BindVisibilityToActivation are activated.\n\n@param       OnActivatedVisibility   - Visibility for when bound widgets are active\n@param       OnDeactivatedVisibility - Visibility for when bound widgets are not active, not used if this widget has activation / deactivation visibilities\n@param       bInAllActive                    - True if we should switch to activated visibility only when all bound widgets are active",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OnActivatedVisibility",
+          "type": "ESlateVisibility"
+        },
+        {
+          "name": "OnDeactivatedVisibility",
+          "type": "ESlateVisibility"
+        },
+        {
+          "name": "bInAllActive",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

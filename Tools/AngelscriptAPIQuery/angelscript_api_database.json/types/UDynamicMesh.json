@@ -1,0 +1,52 @@
+{
+  "name": "UDynamicMesh",
+  "inherits": "UObject",
+  "doc": "UDynamicMesh is a UObject container for a FDynamicMesh3.",
+  "properties": {
+    "MeshModifiedBPEvent": [
+      "FOnDynamicMeshModifiedBP",
+      "Blueprintable event called when mesh is modified, in the same cases as OnMeshChanged"
+    ],
+    "bEnableMeshGenerator": [
+      "bool",
+      2,
+      "Controls whether the active Generator (if configured) will be applied when rebuilding the mesh"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetTriangleCount",
+      "return": "int",
+      "const": true,
+      "doc": "@return number of triangles in the mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsEmpty",
+      "return": "bool",
+      "const": true,
+      "doc": "@return true if the mesh has no triangles",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Reset",
+      "return": "UDynamicMesh",
+      "doc": "Clear the internal mesh to an empty mesh.\nThis *does not* allocate a new mesh, so any existing mesh pointers/refs are still valid",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResetToCube",
+      "return": "UDynamicMesh",
+      "doc": "Clear the internal mesh to a 100x100x100 cube with base at the origin.\nThis this instead of Reset() if an initially-empty mesh is undesirable (eg for a Component)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

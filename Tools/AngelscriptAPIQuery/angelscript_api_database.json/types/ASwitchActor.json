@@ -1,0 +1,45 @@
+{
+  "name": "ASwitchActor",
+  "inherits": "AActor",
+  "doc": "Switch Actor allows quickly toggling the visibility of its child actors so that\nonly one is visible at a time. It can also be captured with the Variant Manager\nto expose this capability as a property capture",
+  "properties": {
+    "SceneComponent": [
+      "USceneComponent",
+      2,
+      "Exposing our root component like this allows manual Mobility control on the details panel"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetOptions",
+      "return": "TArray<AActor>",
+      "const": true,
+      "doc": "Returns the child actors that are available options, in a fixed order that may differ from the one displayed in the world outliner",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedOption",
+      "return": "int",
+      "const": true,
+      "doc": "If we have exactly one child actor visible, it will return a pointer to it. Returns nullptr otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SelectOption",
+      "return": "void",
+      "doc": "Select one of the available options by index",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OptionIndex",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

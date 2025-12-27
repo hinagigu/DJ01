@@ -243,7 +243,7 @@ class AttributeData:
         }
     
     def to_csv_dict(self):
-        """转换为 CSV 格式字典（向后兼容）"""
+        """转换为 CSV 格式字典（新格式，不含 BehaviorConfig）"""
         return {
             'SetName': self.set_name,
             'AttributeName': self.name,
@@ -253,17 +253,160 @@ class AttributeData:
             'DefaultFlat': str(self.default_flat) if self.default_flat else '',
             'DefaultPercent': str(self.default_percent) if self.default_percent else '',
             'DefaultCurrent': str(self.default_current) if self.default_current else '',
-            'Description': self.description,
-            # 行为配置序列化为 JSON 字符串
-            'BehaviorConfig': json.dumps({
-                'Clamp': self.clamp.to_dict(),
-                'Delegate': self.delegate.to_dict(),
-                'Event': self.event.to_dict(),
-                'Cue': self.cue.to_dict(),
-                'MetaConfig': self.meta_config.to_dict(),
-                'ResourceConfig': self.resource_config.to_dict()
-            }, ensure_ascii=False)
+            'Description': self.description
         }
+    
+    def to_csv_dict_legacy(self):
+        """转换为旧版 CSV 格式字典（含 BehaviorConfig，用于迁移）"""
+        result = self.to_csv_dict()
+        result['BehaviorConfig'] = json.dumps({
+            'Clamp': self.clamp.to_dict(),
+            'Delegate': self.delegate.to_dict(),
+            'Event': self.event.to_dict(),
+            'Cue': self.cue.to_dict(),
+            'MetaConfig': self.meta_config.to_dict(),
+            'ResourceConfig': self.resource_config.to_dict()
+        }, ensure_ascii=False)
+        return result
+    
+    def get_behavior_key(self):
+        """获取行为配置的键名（SetName.AttributeName）"""
+        return f"{self.set_name}.{self.name}"
+    
+    def to_behavior_dict(self):
+        """转换为行为配置字典（只返回非默认值）"""
+        result = {}
+        
+        # Clamp 配置
+        clamp_dict = {}
+        if self.clamp.enabled:
+            clamp_dict['Enabled'] = True
+        if self.clamp.min_value is not None:
+            clamp_dict['Min'] = self.clamp.min_value
+        if self.clamp.max_value is not None:
+            clamp_dict['Max'] = self.clamp.max_value
+        if self.clamp.max_attribute:
+            clamp_dict['MaxAttribute'] = self.clamp.max_attribute
+        if clamp_dict:
+            result['Clamp'] = clamp_dict
+        
+        # Delegate 配置
+        delegate_dict = {}
+        if self.delegate.on_change:
+            delegate_dict['OnChange'] = True
+        if self.delegate.on_increase:
+            delegate_dict['OnIncrease'] = True
+        if self.delegate.on_decrease:
+            delegate_dict['OnDecrease'] = True
+        if self.delegate.decrease_alias:
+            delegate_dict['DecreaseAlias'] = self.delegate.decrease_alias
+        if delegate_dict:
+            result['Delegate'] = delegate_dict
+        
+        # Event 配置
+        event_dict = {}
+        if self.event.on_zero_tag:
+            event_dict['OnZeroTag'] = self.event.on_zero_tag
+        if self.event.on_full_tag:
+            event_dict['OnFullTag'] = self.event.on_full_tag
+        if self.event.threshold_low is not None:
+            event_dict['ThresholdLow'] = self.event.threshold_low
+        if self.event.threshold_low_tag:
+            event_dict['ThresholdLowTag'] = self.event.threshold_low_tag
+        if self.event.threshold_high is not None:
+            event_dict['ThresholdHigh'] = self.event.threshold_high
+        if self.event.threshold_high_tag:
+            event_dict['ThresholdHighTag'] = self.event.threshold_high_tag
+        if event_dict:
+            result['Event'] = event_dict
+        
+        # Cue 配置
+        cue_dict = {}
+        if self.cue.on_decrease_cue:
+            cue_dict['OnDecreaseCue'] = self.cue.on_decrease_cue
+        if self.cue.on_zero_cue:
+            cue_dict['OnZeroCue'] = self.cue.on_zero_cue
+        if self.cue.on_increase_cue:
+            cue_dict['OnIncreaseCue'] = self.cue.on_increase_cue
+        if cue_dict:
+            result['Cue'] = cue_dict
+        
+        # MetaConfig 配置
+        meta_dict = {}
+        if self.meta_config.target_attribute:
+            meta_dict['TargetAttribute'] = self.meta_config.target_attribute
+        if self.meta_config.apply_mode and self.meta_config.apply_mode != 'Add':
+            meta_dict['ApplyMode'] = self.meta_config.apply_mode
+        if self.meta_config.broadcast_event:
+            meta_dict['BroadcastEvent'] = True
+        if self.meta_config.event_tag:
+            meta_dict['EventTag'] = self.meta_config.event_tag
+        if meta_dict:
+            result['MetaConfig'] = meta_dict
+        
+        # ResourceConfig 配置
+        resource_dict = {}
+        if self.resource_config.max_change_mode and self.resource_config.max_change_mode != 'KeepCurrent':
+            resource_dict['MaxChangeMode'] = self.resource_config.max_change_mode
+        if resource_dict:
+            result['ResourceConfig'] = resource_dict
+        
+        return result
+    
+    def has_non_default_behavior(self):
+        """检查是否有非默认的行为配置"""
+        return bool(self.to_behavior_dict())
+    
+    def apply_behavior_dict(self, behavior):
+        """从行为配置字典应用配置"""
+        if not behavior:
+            return
+        
+        # Clamp
+        if 'Clamp' in behavior:
+            clamp = behavior['Clamp']
+            self.clamp.enabled = clamp.get('Enabled', False)
+            self.clamp.min_value = clamp.get('Min')
+            self.clamp.max_value = clamp.get('Max')
+            self.clamp.max_attribute = clamp.get('MaxAttribute')
+        
+        # Delegate
+        if 'Delegate' in behavior:
+            delegate = behavior['Delegate']
+            self.delegate.on_change = delegate.get('OnChange', False)
+            self.delegate.on_increase = delegate.get('OnIncrease', False)
+            self.delegate.on_decrease = delegate.get('OnDecrease', False)
+            self.delegate.decrease_alias = delegate.get('DecreaseAlias', '')
+        
+        # Event
+        if 'Event' in behavior:
+            event = behavior['Event']
+            self.event.on_zero_tag = event.get('OnZeroTag', '')
+            self.event.on_full_tag = event.get('OnFullTag', '')
+            self.event.threshold_low = event.get('ThresholdLow')
+            self.event.threshold_low_tag = event.get('ThresholdLowTag', '')
+            self.event.threshold_high = event.get('ThresholdHigh')
+            self.event.threshold_high_tag = event.get('ThresholdHighTag', '')
+        
+        # Cue
+        if 'Cue' in behavior:
+            cue = behavior['Cue']
+            self.cue.on_decrease_cue = cue.get('OnDecreaseCue', '')
+            self.cue.on_zero_cue = cue.get('OnZeroCue', '')
+            self.cue.on_increase_cue = cue.get('OnIncreaseCue', '')
+        
+        # MetaConfig
+        if 'MetaConfig' in behavior:
+            meta = behavior['MetaConfig']
+            self.meta_config.target_attribute = meta.get('TargetAttribute', '')
+            self.meta_config.apply_mode = meta.get('ApplyMode', 'Add')
+            self.meta_config.broadcast_event = meta.get('BroadcastEvent', False)
+            self.meta_config.event_tag = meta.get('EventTag', '')
+        
+        # ResourceConfig
+        if 'ResourceConfig' in behavior:
+            resource = behavior['ResourceConfig']
+            self.resource_config.max_change_mode = resource.get('MaxChangeMode', 'KeepCurrent')
 
     @staticmethod
     def from_dict(d):

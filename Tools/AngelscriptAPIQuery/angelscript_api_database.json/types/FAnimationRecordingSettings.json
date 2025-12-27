@@ -1,0 +1,94 @@
+{
+  "name": "FAnimationRecordingSettings",
+  "isStruct": true,
+  "doc": "Settings describing how to record an animation",
+  "properties": {
+    "bRecordInWorldSpace": [
+      "bool",
+      2,
+      "Whether to record animation in world space, defaults to true"
+    ],
+    "bRemoveRootAnimation": [
+      "bool",
+      2,
+      "Whether to remove the root bone transform from the animation"
+    ],
+    "bAutoSaveAsset": [
+      "bool",
+      2,
+      "Whether to auto-save asset when recording is completed. Defaults to false"
+    ],
+    "SampleFrameRate": [
+      "FFrameRate",
+      2,
+      "Sample rate of the recorded animation"
+    ],
+    "Length": [
+      "float32",
+      2,
+      "Maximum length of the animation recorded (in seconds). If zero the animation will keep on recording until stopped."
+    ],
+    "Interpolation": [
+      "EAnimInterpolationType",
+      2,
+      "This defines how values between keys are calculated for transforms.*"
+    ],
+    "InterpMode": [
+      "ERichCurveInterpMode",
+      2,
+      "Interpolation mode for the recorded keys."
+    ],
+    "TangentMode": [
+      "ERichCurveTangentMode",
+      2,
+      "Tangent mode for the recorded keys."
+    ],
+    "bRecordTransforms": [
+      "bool",
+      2,
+      "Whether or not to record transforms"
+    ],
+    "bRecordMorphTargets": [
+      "bool",
+      2,
+      "Whether or not to record morph targets"
+    ],
+    "bRecordAttributeCurves": [
+      "bool",
+      2,
+      "Whether or not to record parameter curves"
+    ],
+    "bRecordMaterialCurves": [
+      "bool",
+      2,
+      "Whether or not to record material curves"
+    ],
+    "bTransactRecording": [
+      "bool",
+      2,
+      "Whether or not to transact recording changes"
+    ],
+    "IncludeAnimationNames": [
+      "TArray<FString>",
+      2,
+      "Include only the animation bones/curves that match this list"
+    ],
+    "ExcludeAnimationNames": [
+      "TArray<FString>",
+      2,
+      "Exclude all animation bones/curves that match this list"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimationRecordingSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimationRecordingSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# __ATriggerVolume
+
+## 方法
+
+### StaticClass
+```angelscript
+UClass StaticClass()
+```
+
+### Spawn
+```angelscript
+ATriggerVolume Spawn(FVector Location, FRotator Rotation, FName Name, ULevel Level)
+```
+

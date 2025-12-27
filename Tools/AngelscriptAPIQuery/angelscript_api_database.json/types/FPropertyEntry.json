@@ -1,0 +1,39 @@
+{
+  "name": "FPropertyEntry",
+  "isStruct": true,
+  "doc": "Structure to represent a single property the user wants to bake out for a given set of materials",
+  "properties": {
+    "Property": [
+      "EMaterialProperty",
+      "Property which should be baked out"
+    ],
+    "bUseCustomSize": [
+      "bool",
+      "Whether or not to use the value of custom size for the output texture"
+    ],
+    "CustomSize": [
+      "FIntPoint",
+      "Defines the size of the output textures for the baked out material properties"
+    ],
+    "bUseConstantValue": [
+      "bool",
+      "Wheter or not to use Constant Value as the final 'baked out' value for the this property"
+    ],
+    "ConstantValue": [
+      "float32",
+      "Defines the value representing this property in the final proxy material"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPropertyEntry&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPropertyEntry"
+        }
+      ]
+    }
+  ]
+}

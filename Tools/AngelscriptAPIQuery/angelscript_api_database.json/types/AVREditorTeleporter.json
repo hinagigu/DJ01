@@ -1,0 +1,156 @@
+{
+  "name": "AVREditorTeleporter",
+  "inherits": "AActor",
+  "doc": "VR Editor teleport manager and the visual representation of the teleport",
+  "properties": {},
+  "methods": [
+    {
+      "name": "DoTeleport",
+      "return": "void",
+      "doc": "Do and finalize teleport.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInteractorTryingTeleport",
+      "return": "UViewportInteractor",
+      "const": true,
+      "doc": "Get the actor we're currently trying to teleport with.\nValid during aiming and teleporting.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSlideDelta",
+      "return": "float32",
+      "callable": false,
+      "doc": "Get slide delta to push/pull or scale the teleporter",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Interactor",
+          "type": "UVREditorInteractor"
+        },
+        {
+          "name": "Axis",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetVRMode",
+      "return": "UVREditorMode",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Init",
+      "return": "void",
+      "callable": false,
+      "doc": "Initializes the teleporter",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMode",
+          "type": "UVREditorMode"
+        }
+      ]
+    },
+    {
+      "name": "IsAiming",
+      "return": "bool",
+      "const": true,
+      "doc": "Whether we are currently aiming to teleport.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsTeleporting",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetColor",
+      "return": "void",
+      "doc": "Sets the color for the teleporter visuals",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Color",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetVisibility",
+      "return": "void",
+      "doc": "Hide or show the teleporter visuals",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bVisible",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Shutdown",
+      "return": "void",
+      "callable": false,
+      "doc": "Shuts down the teleporter",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StartAiming",
+      "return": "void",
+      "doc": "Functions we call to handle teleporting in navigation mode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Interactor",
+          "type": "UViewportInteractor"
+        }
+      ]
+    },
+    {
+      "name": "StartTeleport",
+      "return": "void",
+      "callable": false,
+      "doc": "Start teleporting, does a ray trace with the hand passed and calculates the locations for lerp movement in Teleport",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopAiming",
+      "return": "void",
+      "doc": "Cancel teleport aiming mode without doing the teleport",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "TeleportDone",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when teleport is done for cleanup",
+      "event": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

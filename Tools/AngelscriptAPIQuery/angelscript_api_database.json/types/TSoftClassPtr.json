@@ -1,0 +1,149 @@
+{
+  "name": "TSoftClassPtr",
+  "subtypes": [
+    "T"
+  ],
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "ToSoftObjectPath",
+      "return": "FSoftObjectPath",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetLongPackageName",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetAssetName",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsPending",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsNull",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "opAssign",
+      "return": "TSoftObjectPtr<T>&",
+      "args": [
+        {
+          "name": "Path",
+          "type": "FSoftObjectPath"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "TSoftClassPtr<T>&",
+      "args": [
+        {
+          "name": "Object",
+          "type": "UClass"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "TSoftClassPtr<T>&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TSoftClassPtr<T>"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "TSoftClassPtr<T>&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TSubclassOf<T>"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "TSoftClassPtr<T>"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "TSubclassOf<T>"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UClass"
+        }
+      ]
+    },
+    {
+      "name": "Get",
+      "return": "TSubclassOf<T>",
+      "const": true,
+      "doc": "Returns the class selected at the specified path.\nIf the class is not loaded, returns nullptr.",
+      "args": []
+    },
+    {
+      "name": "LoadAsync",
+      "return": "void",
+      "const": true,
+      "doc": "Asynchronously loads the package that contains the referenced class.\nDelegate may be called immediately if class is already loaded.",
+      "args": [
+        {
+          "name": "OnLoaded",
+          "type": "FOnSoftClassLoaded"
+        }
+      ]
+    }
+  ]
+}

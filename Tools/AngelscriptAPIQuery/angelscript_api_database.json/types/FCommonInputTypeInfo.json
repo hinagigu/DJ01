@@ -1,0 +1,48 @@
+{
+  "name": "FCommonInputTypeInfo",
+  "isStruct": true,
+  "properties": {
+    "Key": [
+      "FKey",
+      2,
+      "Key this action is bound to"
+    ],
+    "OverrrideState": [
+      "EInputActionState",
+      2,
+      "EInputActionState::Enabled means that the state isn't overriden and the games dynamic control will work"
+    ],
+    "bActionRequiresHold": [
+      "bool",
+      2,
+      "Enables hold time if true"
+    ],
+    "HoldTime": [
+      "float32",
+      2,
+      "The hold time in seconds"
+    ],
+    "HoldRollbackTime": [
+      "float32",
+      2,
+      "Time (in seconds) for hold progress to go from 1.0 (completed) to 0.0.\nIf the hold interaction was interrupted, then hold progress starts to roll back decreasing its value.\nSet to 0.0 to disable the rollback functionality."
+    ],
+    "OverrideBrush": [
+      "FSlateBrush",
+      2,
+      "Override the brush specified by the Key Display Data"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCommonInputTypeInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCommonInputTypeInfo"
+        }
+      ]
+    }
+  ]
+}

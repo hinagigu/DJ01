@@ -1,0 +1,125 @@
+{
+  "name": "__StringTable",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetKeysFromStringTable",
+      "return": "TArray<FString>",
+      "doc": "Returns an array of all keys within the given string table",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableId",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMetaDataIdsFromStringTableEntry",
+      "return": "TArray<FName>",
+      "doc": "Returns an array of all meta-data IDs within the given string table entry",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableId",
+          "type": "FName"
+        },
+        {
+          "name": "Key",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetRegisteredStringTables",
+      "return": "TArray<FName>",
+      "doc": "Returns an array of all registered string table IDs",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTableEntryMetaData",
+      "return": "FString",
+      "doc": "Returns the specified meta-data of the given string table entry (or an empty string).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableId",
+          "type": "FName"
+        },
+        {
+          "name": "Key",
+          "type": "FString"
+        },
+        {
+          "name": "MetaDataId",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetTableEntrySourceString",
+      "return": "FString",
+      "doc": "Returns the source string of the given string table entry (or an empty string).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableId",
+          "type": "FName"
+        },
+        {
+          "name": "Key",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetTableNamespace",
+      "return": "FString",
+      "doc": "Returns the namespace of the given string table.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableId",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsRegisteredTableEntry",
+      "return": "bool",
+      "doc": "Returns true if the given table ID corresponds to a registered string table, and that table has.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableId",
+          "type": "FName"
+        },
+        {
+          "name": "Key",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsRegisteredTableId",
+      "return": "bool",
+      "doc": "Returns true if the given table ID corresponds to a registered string table.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableId",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

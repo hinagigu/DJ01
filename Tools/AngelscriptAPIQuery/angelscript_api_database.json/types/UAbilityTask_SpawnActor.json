@@ -1,0 +1,15 @@
+{
+  "name": "UAbilityTask_SpawnActor",
+  "inherits": "UAbilityTask",
+  "doc": "Convenience task for spawning actors on the network authority. If not the net authority, we will not spawn and Success will not be called.\nThe nice thing this adds is the ability to modify expose on spawn properties while also implicitly checking network role before spawning.\n\nThough this task doesn't do much - games can implement similiar tasks that carry out game specific rules. For example a 'SpawnProjectile'\ntask that limits the available classes to the games projectile class, and that does game specific stuff on spawn (for example, determining\nfiring position from a weapon attachment - logic that we don't necessarily want in ability blueprints).\n\nLong term we can also use this task as a sync point. If the executing client could wait execution until the server creates and replicates the\nactor down to it. We could potentially also use this to do predictive actor spawning / reconciliation.",
+  "properties": {
+    "Success": [
+      "FSpawnActorDelegate"
+    ],
+    "DidNotSpawn": [
+      "FSpawnActorDelegate",
+      "Called when we can't spawn: on clients or potentially on server if they fail to spawn (rare)"
+    ]
+  },
+  "methods": []
+}

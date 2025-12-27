@@ -1,0 +1,308 @@
+{
+  "name": "FBox",
+  "isStruct": true,
+  "properties": {
+    "Min": [
+      "FVector"
+    ],
+    "Max": [
+      "FVector"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAdd",
+      "return": "FBox",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FBox&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FBox",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FBox&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opIndex",
+      "return": "FVector&",
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetCenter",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetExtent",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetVolume",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetCenterAndExtents",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "Center",
+          "type": "FVector&"
+        },
+        {
+          "name": "Extents",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetClosestPointTo",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "In",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "InverseTransformBy",
+      "return": "FBox",
+      "const": true,
+      "args": [
+        {
+          "name": "M",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "TransformBy",
+      "return": "FBox",
+      "const": true,
+      "args": [
+        {
+          "name": "M",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "Equals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBox"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Intersect",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "IntersectXY",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "Overlap",
+      "return": "FBox",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "ExpandBy",
+      "return": "FBox",
+      "const": true,
+      "args": [
+        {
+          "name": "W",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "ExpandBy",
+      "return": "FBox",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ShiftBy",
+      "return": "FBox",
+      "const": true,
+      "args": [
+        {
+          "name": "Offset",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MoveTo",
+      "return": "FBox",
+      "const": true,
+      "args": [
+        {
+          "name": "Destination",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "IsInside",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "In",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "IsInsideOrOn",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "In",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "IsInside",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "In",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "IsInsideXY",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "In",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "IsInsideOrOnXY",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "In",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "IsInsideXY",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "In",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    }
+  ]
+}

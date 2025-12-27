@@ -1,0 +1,52 @@
+{
+  "name": "UProceduralFoliageSpawner",
+  "inherits": "UObject",
+  "properties": {
+    "RandomSeed": [
+      "int",
+      "The seed used for generating the randomness of the simulation."
+    ],
+    "TileSize": [
+      "float32",
+      "Length of the tile (in cm) along one axis. The total area of the tile will be TileSize*TileSize."
+    ],
+    "NumUniqueTiles": [
+      "int",
+      "The number of unique tiles to generate. The final simulation is a procedurally determined combination of the various unique tiles."
+    ],
+    "MinimumQuadTreeSize": [
+      "float32",
+      "Minimum size of the quad tree used during the simulation. Reduce if too many instances are in splittable leaf quads (as warned in the log)."
+    ],
+    "FoliageTypes": [
+      "TArray<FFoliageTypeObject>",
+      2,
+      "The types of foliage to procedurally spawn."
+    ],
+    "bUseOverrideFoliageTerrainMaterials": [
+      "bool",
+      2,
+      "If checked, will override the default behavior of using the global foliage material list and instead use the Override Foliage Terrain Materials defined here.\nIf the override is used, you must manually provide ALL materials this procedural foliage spawner should spawn on top of."
+    ],
+    "OverrideFoliageTerrainMaterials": [
+      "TArray<TSoftObjectPtr<UMaterialInterface>>",
+      2,
+      "Procedural foliage will only spawn on materials specified here. These are only used if 'Use Override Foliage Terrain Materials' is checked."
+    ]
+  },
+  "methods": [
+    {
+      "name": "Simulate",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumSteps",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

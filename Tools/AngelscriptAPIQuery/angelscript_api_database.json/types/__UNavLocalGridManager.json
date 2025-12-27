@@ -1,0 +1,188 @@
+{
+  "name": "__UNavLocalGridManager",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddLocalNavigationGridForBox",
+      "return": "int",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Extent",
+          "default": "FVector ( 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "Radius2D",
+          "default": "5",
+          "type": "int"
+        },
+        {
+          "name": "Height",
+          "default": "100.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRebuildGrids",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalNavigationGridForCapsule",
+      "return": "int",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "CapsuleRadius",
+          "type": "float32"
+        },
+        {
+          "name": "CapsuleHalfHeight",
+          "type": "float32"
+        },
+        {
+          "name": "Radius2D",
+          "default": "5",
+          "type": "int"
+        },
+        {
+          "name": "Height",
+          "default": "100.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRebuildGrids",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalNavigationGridForPoint",
+      "return": "int",
+      "doc": "creates new grid data for single point",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius2D",
+          "default": "5",
+          "type": "int"
+        },
+        {
+          "name": "Height",
+          "default": "100.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRebuildGrids",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalNavigationGridForPoints",
+      "return": "int",
+      "doc": "creates single grid data for set of points",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Locations",
+          "type": "TArray<FVector>"
+        },
+        {
+          "name": "Radius2D",
+          "default": "5",
+          "type": "int"
+        },
+        {
+          "name": "Height",
+          "default": "100.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRebuildGrids",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "FindLocalNavigationGridPath",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Start",
+          "type": "FVector"
+        },
+        {
+          "name": "End",
+          "type": "FVector"
+        },
+        {
+          "name": "PathPoints",
+          "type": "TArray<FVector>&"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLocalNavigationGrid",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GridId",
+          "type": "int"
+        },
+        {
+          "name": "bRebuildGrids",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalNavigationGridDensity",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CellSize",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

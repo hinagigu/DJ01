@@ -1,0 +1,29 @@
+{
+  "name": "FDynamicMeshChangeInfo",
+  "isStruct": true,
+  "doc": "FDynamicMeshChangeInfo stores information about a change to a UDynamicMesh.\nThis struct is emitted by the UDynamicMesh OnPreMeshChanged() and OnMeshChanged() delegates.",
+  "properties": {
+    "Type": [
+      "EDynamicMeshChangeType"
+    ],
+    "Flags": [
+      "EDynamicMeshAttributeChangeFlags"
+    ],
+    "bIsRevertChange": [
+      "bool",
+      "for changes that are an FChange, indicates whether this is an 'Apply' or 'Revert' of the FChange"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDynamicMeshChangeInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDynamicMeshChangeInfo"
+        }
+      ]
+    }
+  ]
+}

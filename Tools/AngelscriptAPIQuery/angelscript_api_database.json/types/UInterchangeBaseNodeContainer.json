@@ -1,0 +1,223 @@
+{
+  "name": "UInterchangeBaseNodeContainer",
+  "inherits": "UObject",
+  "doc": "The Interchange UInterchangeBaseNode graph is a format used to feed factories and writers when they import, reimport, and\nexport an asset or scene.\n\nThis container holds a flat list of all nodes that have been translated from the source data.\nTranslators fill this container, and the import/export managers read it to execute the import/export process.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddNode",
+      "return": "FString",
+      "doc": "Add a node to the container. The node is added into a TMap.\n\n@param Node - a pointer on the node you want to add\n@return: return the node unique ID of the added item. If the node already exist it will return the existing ID. Return InvalidNodeUid if the node cannot be added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "UInterchangeBaseNode"
+        }
+      ]
+    },
+    {
+      "name": "ComputeChildrenCache",
+      "return": "void",
+      "doc": "Fill the cache of children UIDs to optimize the GetNodeChildrenUids call.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFactoryNode",
+      "return": "UInterchangeFactoryBaseNode",
+      "const": true,
+      "doc": "Get a factory node pointer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeUniqueID",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetNode",
+      "return": "const UInterchangeBaseNode",
+      "const": true,
+      "doc": "Get a node pointer. Once added to the container, nodes are considered const.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeUniqueID",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeChildren",
+      "return": "UInterchangeBaseNode",
+      "doc": "Get the nth const child of the node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeUniqueID",
+          "type": "FString"
+        },
+        {
+          "name": "ChildIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeChildrenCount",
+      "return": "int",
+      "const": true,
+      "doc": "Get the number of children the node has.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeUniqueID",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeChildrenUids",
+      "return": "TArray<FString>",
+      "const": true,
+      "doc": "Get the UIDs of all the node's children.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeUniqueID",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetNodes",
+      "return": "void",
+      "const": true,
+      "doc": "Return all nodes that are of the ClassNode type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClassNode",
+          "type": "const UClass"
+        },
+        {
+          "name": "OutNodes",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetRoots",
+      "return": "void",
+      "const": true,
+      "doc": "Return all nodes that do not have any parent.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RootNodes",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "IsNodeUidValid",
+      "return": "bool",
+      "const": true,
+      "doc": "Return true if the node unique ID exists in the container.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeUniqueID",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "LoadFromFile",
+      "return": "void",
+      "doc": "Serialize the node container from the specified file.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Filename",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceNode",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeUniqueID",
+          "type": "FString"
+        },
+        {
+          "name": "NewNode",
+          "type": "UInterchangeFactoryBaseNode"
+        }
+      ]
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "doc": "Empty the container.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResetChildrenCache",
+      "return": "void",
+      "doc": "Reset the cache of children UIDs.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SaveToFile",
+      "return": "void",
+      "doc": "Serialize the node container into the specified file.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Filename",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeParentUid",
+      "return": "bool",
+      "doc": "Set the ParentUid of the node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeUniqueID",
+          "type": "FString"
+        },
+        {
+          "name": "NewParentNodeUid",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

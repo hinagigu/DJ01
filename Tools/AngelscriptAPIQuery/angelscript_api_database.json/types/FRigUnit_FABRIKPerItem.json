@@ -1,0 +1,53 @@
+{
+  "name": "FRigUnit_FABRIKPerItem",
+  "isStruct": true,
+  "doc": "The FABRIK solver can solve N-Bone chains using\nthe Forward and Backward Reaching Inverse Kinematics algorithm.\nFor now this node supports single effector chains only.",
+  "properties": {
+    "Items": [
+      "FRigElementKeyCollection",
+      "The chain to use"
+    ],
+    "EffectorTransform": [
+      "FTransform",
+      "The transform of the effector in global space"
+    ],
+    "Precision": [
+      "float32",
+      1,
+      "The precision to use for the fabrik solver"
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the solver - how much the IK should be applied."
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      1,
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "MaxIterations": [
+      "int",
+      "The maximum number of iterations. Values between 4 and 16 are common."
+    ],
+    "bSetEffectorTransform": [
+      "bool",
+      "The option to set the effector transform"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_FABRIKPerItem&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_FABRIKPerItem"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "name": "__TakeRecorder",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CancelRecording",
+      "return": "void",
+      "doc": "Cancel recording if there is a recorder currently active",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActiveRecorder",
+      "return": "UTakeRecorder",
+      "doc": "Retrieve the currently active recorder, or None if there none are active",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDefaultParameters",
+      "return": "FTakeRecorderParameters",
+      "doc": "Get the default recorder parameters according to the project and user settings",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTakeRecorderPanel",
+      "return": "UTakeRecorderPanel",
+      "doc": "Get the currently open take recorder panel, if one is open",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsRecording",
+      "return": "bool",
+      "doc": "Check whether a recording is currently active",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsTakeRecorderEnabled",
+      "return": "bool",
+      "doc": "Is the Take Recorder enabled in the build",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OpenTakeRecorderPanel",
+      "return": "UTakeRecorderPanel",
+      "doc": "Get the currently open take recorder panel, if one is open, opening a new one if not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetDefaultParameters",
+      "return": "void",
+      "doc": "Set the default recorder parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DefaultParameters",
+          "type": "FTakeRecorderParameters"
+        }
+      ]
+    },
+    {
+      "name": "SetOnTakeRecorderPanelChanged",
+      "return": "void",
+      "doc": "Called when a Take Panel is constructed or destroyed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OnTakeRecorderPanelChanged",
+          "default": "FOnTakeRecorderPanelChanged ( )",
+          "type": "FOnTakeRecorderPanelChanged"
+        }
+      ]
+    },
+    {
+      "name": "StartRecording",
+      "return": "UTakeRecorder",
+      "doc": "Start a new recording using the specified parameters. Will fail if a recording is currently in progress\n\n@param LevelSequence         The base level sequence to use for the recording. Will be played back during the recording and duplicated to create the starting point for the resulting asset.\n@param Sources               The sources to use for the recording\n@param MetaData              Meta-data pertaining to this recording, duplicated into the resulting recorded sequence\n@param Parameters            Configurable parameters for this recorder instance\n@return The recorder responsible for the recording, or None if a a recording could not be started",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "Sources",
+          "type": "UTakeRecorderSources"
+        },
+        {
+          "name": "MetaData",
+          "type": "UTakeMetaData"
+        },
+        {
+          "name": "Parameters",
+          "type": "FTakeRecorderParameters"
+        }
+      ]
+    },
+    {
+      "name": "StopRecording",
+      "return": "void",
+      "doc": "Stop recording if there is a recorder currently active",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

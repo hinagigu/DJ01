@@ -1,0 +1,274 @@
+{
+  "name": "ALatentAutomationCommandClientExecutor",
+  "inherits": "AActor",
+  "doc": "ALatentAutomationCommandClientExecutor\n\nExecutes a ULatentAutomationCommand on client.\n\nThis Actor replicates. The provided ULatentAutomationCommand will be replicated.\nWhen ticking, this Actor will inject a component into the player controller to be\nable to synchronize execution between client and server.\nThis Actor executes the test on client.\n\nThe executor will use the different replicated properties to communicate the\ndifferent phases of execution from server to client.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AssertFalse",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bExpression",
+          "type": "bool"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotNull",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "const UObject"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotSame",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Expected",
+          "type": "const UObject"
+        },
+        {
+          "name": "Actual",
+          "type": "const UObject"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AssertNull",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "const UObject"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AssertSame",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Expected",
+          "type": "const UObject"
+        },
+        {
+          "name": "Actual",
+          "type": "const UObject"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AssertTrue",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bExpression",
+          "type": "bool"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Fail",
+      "return": "void",
+      "doc": "Client functions",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerAssertFalse",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "bExpression",
+          "type": "bool"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerAssertNotNull",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "const UObject"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerAssertNotSame",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "Expected",
+          "type": "const UObject"
+        },
+        {
+          "name": "Actual",
+          "type": "const UObject"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerAssertNull",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "const UObject"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerAssertSame",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "Expected",
+          "type": "const UObject"
+        },
+        {
+          "name": "Actual",
+          "type": "const UObject"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerAssertTrue",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "bExpression",
+          "type": "bool"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerFail",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerLatentCommandClientChecked",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerLatentCommandClientDone",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerLatentCommandClientReady",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerLatentCommandDescribeOnClient",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewDescription",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

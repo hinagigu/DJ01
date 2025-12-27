@@ -1,0 +1,48 @@
+{
+  "name": "ACameraRig_Rail",
+  "inherits": "AActor",
+  "properties": {
+    "CurrentPositionOnRail": [
+      "float32",
+      "Defines current position of the mount point along the rail, in terms of normalized distance from the beginning of the rail."
+    ],
+    "bLockOrientationToRail": [
+      "bool",
+      "Determines whether the orientation of the mount should be in the direction of the rail."
+    ],
+    "bShowRailVisualization": [
+      "bool",
+      2,
+      "Determines whether or not to show the rail mesh preview."
+    ],
+    "PreviewMeshScale": [
+      "float32",
+      2,
+      "Determines the scale of the rail mesh preview"
+    ],
+    "TransformComponent": [
+      "USceneComponent",
+      2,
+      "Root component to give the whole actor a transform."
+    ],
+    "RailCameraMount": [
+      "USceneComponent",
+      2,
+      "Component to define the attach point for cameras. Moves along the rail."
+    ],
+    "RailSplineComponent": [
+      "USplineComponent",
+      "Spline component to define the rail path."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetRailSplineComponent",
+      "return": "USplineComponent",
+      "doc": "Returns the spline component that defines the rail path",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "name": "UPawnSensingComponent",
+  "inherits": "UActorComponent",
+  "doc": "SensingComponent encapsulates sensory (ie sight and hearing) settings and functionality for an Actor,\nallowing the actor to see/hear Pawns in the world. It does nothing on network clients.",
+  "properties": {
+    "HearingThreshold": [
+      "float32",
+      "Max distance at which a makenoise(1.0) loudness sound can be heard, regardless of occlusion"
+    ],
+    "LOSHearingThreshold": [
+      "float32",
+      "Max distance at which a makenoise(1.0) loudness sound can be heard if unoccluded (LOSHearingThreshold should be > HearingThreshold)"
+    ],
+    "SightRadius": [
+      "float32",
+      "Maximum sight distance."
+    ],
+    "HearingMaxSoundAge": [
+      "float32",
+      "Max age of sounds we can hear. Should be greater than SensingInterval, or you might miss hearing some sounds!"
+    ],
+    "OnSeePawn": [
+      "FSeePawnDelegate__PawnSensingComponent",
+      "Delegate to execute when we see a Pawn."
+    ],
+    "OnHearNoise": [
+      "FHearNoiseDelegate__PawnSensingComponent",
+      "Delegate to execute when we hear a noise from a Pawn's PawnNoiseEmitterComponent."
+    ],
+    "SensingInterval": [
+      "float32",
+      "Amount of time between pawn sensing updates. Use SetSensingInterval() to adjust this at runtime. A value <= 0 prevents any updates."
+    ],
+    "bEnableSensingUpdates": [
+      "bool",
+      "If true, component will perform sensing updates. At runtime change this using SetSensingUpdatesEnabled()."
+    ],
+    "bOnlySensePlayers": [
+      "bool",
+      "If true, will only sense player-controlled pawns in the world. Default: true"
+    ],
+    "bSeePawns": [
+      "bool",
+      "If true, we will perform visibility tests and will trigger notifications when a Pawn is visible. Default: true"
+    ],
+    "bHearNoises": [
+      "bool",
+      "If true, we will perform audibility tests and will be notified when a Pawn makes a noise that can be heard. Default: true\nIMPORTANT NOTE: If we can see pawns (bSeePawns is true), and the pawn is visible, noise notifications are not triggered."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetPeripheralVisionAngle",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPeripheralVisionCosine",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetPeripheralVisionAngle",
+      "return": "void",
+      "doc": "Sets PeripheralVisionAngle. Calculates PeripheralVisionCosine from PeripheralVisionAngle",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPeripheralVisionAngle",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSensingInterval",
+      "return": "void",
+      "doc": "Changes the SensingInterval.\nIf we are currently waiting for an interval, this can either extend or shorten that interval.\nA value <= 0 prevents any updates.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewSensingInterval",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSensingUpdatesEnabled",
+      "return": "void",
+      "doc": "Enables or disables sensing updates. The timer is reset in either case.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

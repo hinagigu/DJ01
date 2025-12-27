@@ -1,0 +1,220 @@
+{
+  "name": "UInterchangePipelineMeshesUtilities",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetAllMeshGeometry",
+      "return": "void",
+      "const": true,
+      "doc": "Get the unique IDs of all mesh geometry.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshGeometryUids",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllMeshGeometryNotInstanced",
+      "return": "void",
+      "const": true,
+      "doc": "Get the unique IDs of all non-instanced mesh geometry.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshGeometryUids",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllMeshInstanceUids",
+      "return": "void",
+      "const": true,
+      "doc": "Get the unique IDs of all mesh instances.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshInstanceUids",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllMeshInstanceUidsUsingMeshGeometryUid",
+      "return": "void",
+      "const": true,
+      "doc": "Get all instanced mesh UIDs that use the mesh geometry unique ID.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshGeometryUid",
+          "type": "FString"
+        },
+        {
+          "name": "MeshInstanceUids",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllSkinnedMeshGeometry",
+      "return": "void",
+      "const": true,
+      "doc": "Get the unique IDs of all skinned mesh geometry.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshGeometryUids",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllSkinnedMeshInstance",
+      "return": "void",
+      "const": true,
+      "doc": "Get the unique IDs of all skinned mesh instances.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshInstanceUids",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllStaticMeshGeometry",
+      "return": "void",
+      "const": true,
+      "doc": "Get the unique IDs of all static mesh geometry.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshGeometryUids",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllStaticMeshInstance",
+      "return": "void",
+      "const": true,
+      "doc": "Get the unique IDs of all static mesh instances.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshInstanceUids",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetMeshGeometryByUid",
+      "return": "FInterchangeMeshGeometry",
+      "const": true,
+      "doc": "Get the geometry mesh from the unique ID.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshGeometryUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetMeshGeometrySkeletonRootUid",
+      "return": "FString",
+      "const": true,
+      "doc": "Return the skeleton root node UID. This is the UID for a UInterchangeSceneNode that has a \"Joint\" specialized type.\nReturn an empty string if the MeshGeometryUid parameter points to nothing.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshGeometryUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetMeshInstanceByUid",
+      "return": "FInterchangeMeshInstance",
+      "const": true,
+      "doc": "Get the instanced mesh from the unique ID.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshInstanceUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetMeshInstanceSkeletonRootUid",
+      "return": "FString",
+      "const": true,
+      "doc": "Return the skeleton root node UID. This is the UID for a UInterchangeSceneNode that has a \"Joint\" specialized type.\nReturn an empty string if the MeshInstanceUid parameter points to nothing.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshInstanceUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsValidMeshGeometryUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Return true if there is an existing FInterchangeMeshGeometry that matches the MeshInstanceUid key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshGeometryUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsValidMeshInstanceUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Return true if there is an existing FInterchangeMeshInstance that matches the MeshInstanceUid key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshInstanceUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetContext",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FInterchangePipelineMeshesUtilitiesContext"
+        }
+      ]
+    }
+  ]
+}

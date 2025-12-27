@@ -1,0 +1,75 @@
+{
+  "name": "FPredictProjectilePathParams",
+  "isStruct": true,
+  "doc": "Input parameters to PredictProjectilePath functions.",
+  "properties": {
+    "StartLocation": [
+      "FVector",
+      "Location of the start of the trace."
+    ],
+    "LaunchVelocity": [
+      "FVector",
+      "Initial launch velocity at the start of the trace."
+    ],
+    "bTraceWithCollision": [
+      "bool",
+      "Whether to trace along the path looking for blocking collision and stopping at the first hit."
+    ],
+    "ProjectileRadius": [
+      "float32",
+      "Projectile radius, used when tracing for collision. If <= 0, a line trace is used instead."
+    ],
+    "MaxSimTime": [
+      "float32",
+      "Maximum simulation time for the virtual projectile."
+    ],
+    "bTraceWithChannel": [
+      "bool",
+      "Whether or not to use TraceChannel, if tracing with collision."
+    ],
+    "TraceChannel": [
+      "ECollisionChannel",
+      "Trace channel to use, if tracing with collision."
+    ],
+    "ObjectTypes": [
+      "TArray<EObjectTypeQuery>",
+      "Object type to use, if tracing with collision."
+    ],
+    "ActorsToIgnore": [
+      "TArray<TObjectPtr<AActor>>",
+      "Actors to ignore when tracing with collision."
+    ],
+    "SimFrequency": [
+      "float32",
+      "Determines size of each sub-step in the simulation (chopping up MaxSimTime). Recommended between 10 to 30 depending on desired quality versus performance."
+    ],
+    "OverrideGravityZ": [
+      "float32",
+      "Optional override of Gravity (if 0, uses WorldGravityZ)."
+    ],
+    "DrawDebugType": [
+      "EDrawDebugTrace",
+      "Debug drawing duration option."
+    ],
+    "DrawDebugTime": [
+      "float32",
+      "Duration of debug lines (only relevant for DrawDebugType::Duration)"
+    ],
+    "bTraceComplex": [
+      "bool",
+      "Trace against complex collision (triangles rather than simple primitives) if tracing with collision."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPredictProjectilePathParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPredictProjectilePathParams"
+        }
+      ]
+    }
+  ]
+}

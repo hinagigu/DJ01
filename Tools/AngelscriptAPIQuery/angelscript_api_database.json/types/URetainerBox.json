@@ -1,0 +1,110 @@
+{
+  "name": "URetainerBox",
+  "inherits": "UContentWidget",
+  "doc": "The Retainer Box renders children widgets to a render target first before\nlater rendering that render target to the screen.  This allows both frequency\nand phase to be controlled so that the UI can actually render less often than the\nfrequency of the main game render.  It also has the side benefit of allow materials\nto be applied to the render target after drawing the widgets to apply a simple post process.\n\n* Single Child\n* Caching / Performance",
+  "properties": {
+    "RenderOnInvalidation": [
+      "bool",
+      "Should this widget redraw the contents it has every time it receives an invalidation request\nfrom it's children, similar to the invalidation panel."
+    ],
+    "RenderOnPhase": [
+      "bool",
+      "Should this widget redraw the contents it has every time the phase occurs."
+    ],
+    "Phase": [
+      "int",
+      "The Phase this widget will draw on.\n\nIf the Phase is 0, and the PhaseCount is 1, the widget will be drawn fresh every frame.\nIf the Phase were 0, and the PhaseCount were 2, this retainer would draw a fresh frame every\nother frame.  So in a 60Hz game, the UI would render at 30Hz."
+    ],
+    "PhaseCount": [
+      "int",
+      "The PhaseCount controls how many phases are possible know what to modulus the current frame\ncount by to determine if this is the current frame to draw the widget on.\n\nIf the Phase is 0, and the PhaseCount is 1, the widget will be drawn fresh every frame.\nIf the Phase were 0, and the PhaseCount were 2, this retainer would draw a fresh frame every\nother frame.  So in a 60Hz game, the UI would render at 30Hz."
+    ],
+    "bShowEffectsInDesigner": [
+      "bool",
+      "If true, retained rendering occurs in designer"
+    ],
+    "bRetainRender": [
+      "bool",
+      "Set the flag for if we retain the render or pass-through"
+    ],
+    "TextureParameter": [
+      "FName",
+      "The texture sampler parameter of the @EffectMaterial, that we'll set to the render target."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetEffectMaterial",
+      "return": "UMaterialInstanceDynamic",
+      "const": true,
+      "doc": "Get the current dynamic effect material applied to the retainer box.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RequestRender",
+      "return": "void",
+      "doc": "Requests the retainer redrawn the contents it has.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetEffectMaterial",
+      "return": "void",
+      "doc": "Set a new effect material to the retainer widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderingPhase",
+      "return": "void",
+      "doc": "Requests the retainer redrawn the contents it has.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderPhase",
+          "type": "int"
+        },
+        {
+          "name": "TotalPhases",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetRetainRendering",
+      "return": "void",
+      "doc": "Set the flag for if we retain the render or pass-through",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInRetainRendering",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTextureParameter",
+      "return": "void",
+      "doc": "Sets the name of the texture parameter to set the render target to on the material.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureParameter",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

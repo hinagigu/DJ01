@@ -1,0 +1,39 @@
+{
+  "name": "FMeterResults",
+  "isStruct": true,
+  "doc": "The results of the meter analysis.",
+  "properties": {
+    "TimeSeconds": [
+      "float32",
+      "The time in seconds since analysis began of this meter analysis result"
+    ],
+    "MeterValue": [
+      "float32",
+      "The meter value"
+    ],
+    "PeakValue": [
+      "float32",
+      "The peak value"
+    ],
+    "NumSamplesClipping": [
+      "int",
+      "The number of samples in the period which were above the clipping threshold. Will be 0 if no clipping was detected."
+    ],
+    "ClippingValue": [
+      "float32",
+      "The value (if non-zero) if clipping was detected above the clipping threshold"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMeterResults&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMeterResults"
+        }
+      ]
+    }
+  ]
+}

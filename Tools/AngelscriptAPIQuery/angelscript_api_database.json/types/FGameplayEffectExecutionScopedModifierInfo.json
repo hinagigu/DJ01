@@ -1,0 +1,44 @@
+{
+  "name": "FGameplayEffectExecutionScopedModifierInfo",
+  "isStruct": true,
+  "doc": "Struct representing modifier info used exclusively for \"scoped\" executions that happen instantaneously. These are\nfolded into a calculation only for the extent of the calculation and never permanently added to an aggregator.",
+  "properties": {
+    "ModifierOp": [
+      "EGameplayModOp",
+      2,
+      "Modifier operation to perform"
+    ],
+    "ModifierMagnitude": [
+      "FGameplayEffectModifierMagnitude",
+      2,
+      "Magnitude of the scoped modifier"
+    ],
+    "EvaluationChannelSettings": [
+      "FGameplayModEvaluationChannelSettings",
+      2,
+      "Evaluation channel settings of the scoped modifier"
+    ],
+    "SourceTags": [
+      "FGameplayTagRequirements",
+      2,
+      "Source tag requirements for the modifier to apply"
+    ],
+    "TargetTags": [
+      "FGameplayTagRequirements",
+      2,
+      "Target tag requirements for the modifier to apply"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayEffectExecutionScopedModifierInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayEffectExecutionScopedModifierInfo"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "name": "USoundEffectPresetWidgetInterface",
+  "inherits": "UAudioPanelWidgetInterface",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetClass",
+      "return": "TSubclassOf<USoundEffectPreset>",
+      "callable": false,
+      "doc": "Returns the class of Preset the widget supports",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnConstructed",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when the preset widget is constructed",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Preset",
+          "type": "USoundEffectPreset"
+        }
+      ]
+    },
+    {
+      "name": "OnPropertyChanged",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when the preset object is changed",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Preset",
+          "type": "USoundEffectPreset"
+        },
+        {
+          "name": "PropertyName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

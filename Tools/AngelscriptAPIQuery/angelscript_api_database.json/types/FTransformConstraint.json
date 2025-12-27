@@ -1,0 +1,35 @@
+{
+  "name": "FTransformConstraint",
+  "isStruct": true,
+  "properties": {
+    "Operator": [
+      "FConstraintDescription",
+      "@note thought of separating this out per each but we'll have an issue with applying transform in what order\nbut something to think about if that seems better"
+    ],
+    "SourceNode": [
+      "FName"
+    ],
+    "TargetNode": [
+      "FName"
+    ],
+    "Weight": [
+      "float32"
+    ],
+    "bMaintainOffset": [
+      "bool",
+      "When the constraint is first applied, maintain the offset from the target node"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTransformConstraint&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransformConstraint"
+        }
+      ]
+    }
+  ]
+}

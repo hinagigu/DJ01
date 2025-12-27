@@ -1,0 +1,64 @@
+{
+  "name": "UDJ01TeamComponent",
+  "inherits": "UActorComponent",
+  "doc": "DJ01团队组件 - 为Actor提供团队功能的组件\n可以挂载到任何需要团队功能的Actor上",
+  "properties": {
+    "OnTeamConfigChanged": [
+      "FDJ01TeamConfigChangedDelegate",
+      "团队配置变化时触发"
+    ],
+    "TeamConfig": [
+      "FDJ01TeamConfig",
+      "当前团队配置"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CanAttackActor",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetTeamConfiguration",
+      "return": "FDJ01TeamConfig",
+      "const": true,
+      "doc": "蓝图访问",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsFriendlyToActor",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetTeamConfiguration",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewConfig",
+          "type": "FDJ01TeamConfig"
+        }
+      ]
+    }
+  ]
+}

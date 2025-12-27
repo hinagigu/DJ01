@@ -1,0 +1,21 @@
+# UNavigationSystemConfig
+
+**继承自**: `UObject`
+
+## 属性
+
+### NavigationSystemClass
+- **类型**: `FSoftClassPath`
+
+### SupportedAgentsMask
+- **类型**: `FNavAgentSelector`
+- **描述**: NavigationSystem's properties in Project Settings define all possible supported agents,
+    but a specific navigation system can choose to support only a subset of agents.
+
+### DefaultAgentName
+- **类型**: `FName`
+- **描述**: If not None indicates which of navigation datas and supported agents are
+going to be used as the default ones. If navigation agent of this type does
+not exist or is not enabled then the first available nav data will be used
+as the default one
+

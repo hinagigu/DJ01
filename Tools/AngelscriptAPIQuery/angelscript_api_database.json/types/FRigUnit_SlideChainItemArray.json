@@ -1,0 +1,36 @@
+{
+  "name": "FRigUnit_SlideChainItemArray",
+  "isStruct": true,
+  "doc": "Slides an existing chain along itself with control over extrapolation.",
+  "properties": {
+    "Items": [
+      "TArray<FRigElementKey>",
+      "The items to slide"
+    ],
+    "SlideAmount": [
+      "float32",
+      "The amount of sliding. This unit is multiple of the chain length."
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      1,
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SlideChainItemArray&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SlideChainItemArray"
+        }
+      ]
+    }
+  ]
+}

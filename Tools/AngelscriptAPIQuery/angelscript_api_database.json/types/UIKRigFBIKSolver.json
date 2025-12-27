@@ -1,0 +1,48 @@
+{
+  "name": "UIKRigFBIKSolver",
+  "inherits": "UIKRigSolver",
+  "properties": {
+    "RootBone": [
+      "FName",
+      1,
+      "All bones above this bone in the hierarchy will be completely ignored by the solver. Typically this is set to\nthe top-most skinned bone in the Skeletal Mesh (ie Pelvis, Hips etc), NOT the actual root of the entire skeleton.\n\nIf you want to use the solver on a single chain of bones, and NOT translate the chain, ensure that \"PinRoot\" is\nchecked on to disable the root from translating to reach the effector goals."
+    ],
+    "Iterations": [
+      "int",
+      "High iteration counts can help solve complex joint configurations with competing constraints, but will increase runtime cost. Default is 20."
+    ],
+    "SubIterations": [
+      "int",
+      "Iterations used for sub-chains defined by the Chain Depth of the effectors. These are solved BEFORE the main iteration pass. Default is 0."
+    ],
+    "MassMultiplier": [
+      "float32",
+      "A global mass multiplier; higher values will make the joints more stiff, but require more iterations. Typical range is 0.0 to 10.0."
+    ],
+    "bAllowStretch": [
+      "bool",
+      "If true, joints will translate to reach the effectors; causing bones to lengthen if necessary. Good for cartoon effects. Default is false."
+    ],
+    "RootBehavior": [
+      "EPBIKRootBehavior",
+      "(Default is PrePull) Set the behavior of the solver root.\nPre Pull: translates and rotates the root (and all children) by the average motion of the stretched effectors to help achieve faster convergence when reaching far.\nPin to Input: locks the translation and rotation of the root bone to the input pose. Overrides any bone settings applied to the root. Good for partial-body solves.\nFree: treats the root bone like any other and allows it to move freely or according to any bone settings applied to it."
+    ],
+    "PrePullRootSettings": [
+      "FRootPrePullSettings",
+      "Settings only applicable when Root Behavior is set to \"PrePull\". Use these values to adjust the gross movement and orientation of the entire skeleton."
+    ],
+    "PullChainAlpha": [
+      "float32",
+      "A global multiplier for all Pull Chain Alpha values on all effectors. Range is 0.0 to 1.0. Default is 1.0."
+    ],
+    "MaxAngle": [
+      "float32",
+      "Maximum angle that a joint can be rotated per constraint iteration. Lower this value if the solve is diverging. Range is 0.0 to 180.0. Default is 30."
+    ],
+    "OverRelaxation": [
+      "float32",
+      "Pushes constraints beyond their normal amount to speed up convergence. Increasing this may speed up convergence, but at the cost of stability. Range is 1.0 - 2.0. Default is 1.3."
+    ]
+  },
+  "methods": []
+}

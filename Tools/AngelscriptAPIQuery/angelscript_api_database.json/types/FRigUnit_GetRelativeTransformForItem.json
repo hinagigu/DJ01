@@ -1,0 +1,40 @@
+{
+  "name": "FRigUnit_GetRelativeTransformForItem",
+  "isStruct": true,
+  "doc": "GetRelativeTransform is used to retrieve a single transform from a hierarchy in the space of another transform",
+  "properties": {
+    "Child": [
+      "FRigElementKey",
+      "The child item to retrieve the transform for"
+    ],
+    "bChildInitial": [
+      "bool",
+      "Defines if the child's transform should be retrieved as current (false) or initial (true).\nInitial transforms for bones and other elements in the hierarchy represent the reference pose's value."
+    ],
+    "Parent": [
+      "FRigElementKey",
+      "The parent item to use.\nThe child transform will be retrieve in the space of the parent."
+    ],
+    "bParentInitial": [
+      "bool",
+      "Defines if the parent's transform should be retrieved as current (false) or initial (true).\nInitial transforms for bones and other elements in the hierarchy represent the reference pose's value."
+    ],
+    "RelativeTransform": [
+      "FTransform",
+      1,
+      "The transform of the given child item relative to the provided parent"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_GetRelativeTransformForItem&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_GetRelativeTransformForItem"
+        }
+      ]
+    }
+  ]
+}

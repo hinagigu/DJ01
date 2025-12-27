@@ -1,0 +1,43 @@
+{
+  "name": "FContentBrowserDataPackageFilter",
+  "isStruct": true,
+  "doc": "Data used to filter object instances by their package.\n@note This will typically limit your query to returning assets.",
+  "properties": {
+    "PackageNamesToInclude": [
+      "TArray<FName>",
+      "Array of package names that should be included in this query"
+    ],
+    "PackageNamesToExclude": [
+      "TArray<FName>",
+      "Array of package names that should be excluded from this query"
+    ],
+    "PackagePathsToInclude": [
+      "TArray<FName>",
+      "Array of package paths that should be included in this query"
+    ],
+    "PackagePathsToExclude": [
+      "TArray<FName>",
+      "Array of package paths that should be excluded from this query"
+    ],
+    "bRecursivePackagePathsToInclude": [
+      "bool",
+      "Whether we should include inclusive package sub-paths in this query"
+    ],
+    "bRecursivePackagePathsToExclude": [
+      "bool",
+      "Whether we should include exclusive package sub-paths in this query"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FContentBrowserDataPackageFilter&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FContentBrowserDataPackageFilter"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+{
+  "name": "__AssetRegistry",
+  "properties": {},
+  "methods": [
+    {
+      "name": "IsLoadingAssets",
+      "return": "bool",
+      "args": []
+    },
+    {
+      "name": "HasAssets",
+      "return": "bool",
+      "args": [
+        {
+          "name": "PackagePath",
+          "type": "FName"
+        },
+        {
+          "name": "bRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetAssetsByPackageName",
+      "return": "bool",
+      "args": [
+        {
+          "name": "PackageName",
+          "type": "FName"
+        },
+        {
+          "name": "OutAssetData",
+          "type": "TArray<FAssetData>&"
+        },
+        {
+          "name": "bIncludeOnlyOnDiskAssets",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetAssetsByPath",
+      "return": "bool",
+      "args": [
+        {
+          "name": "PackagePath",
+          "type": "FName"
+        },
+        {
+          "name": "OutAssetData",
+          "type": "TArray<FAssetData>&"
+        },
+        {
+          "name": "bRecursive",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bIncludeOnlyOnDiskAssets",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetAssetsByClass",
+      "return": "bool",
+      "args": [
+        {
+          "name": "ClassPath",
+          "type": "FTopLevelAssetPath"
+        },
+        {
+          "name": "OutAssetData",
+          "type": "TArray<FAssetData>&"
+        },
+        {
+          "name": "bSearchSubClasses",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetBlueprintCDOsByParentClass",
+      "return": "void",
+      "args": [
+        {
+          "name": "Class",
+          "type": "UClass"
+        },
+        {
+          "name": "OutAssets",
+          "type": "TArray<UObject>&"
+        }
+      ]
+    },
+    {
+      "name": "GetWidgetBlueprintCDOsByParentClass",
+      "return": "void",
+      "args": [
+        {
+          "name": "Class",
+          "type": "UClass"
+        },
+        {
+          "name": "OutAssets",
+          "type": "TArray<UObject>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAssetsByTags",
+      "return": "bool",
+      "args": [
+        {
+          "name": "AssetTags",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "OutAssetData",
+          "type": "TArray<FAssetData>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAssetByObjectPath",
+      "return": "FAssetData",
+      "args": [
+        {
+          "name": "ObjectPath",
+          "type": "FSoftObjectPath"
+        },
+        {
+          "name": "bIncludeOnlyOnDiskAssets",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetAllAssets",
+      "return": "bool",
+      "args": [
+        {
+          "name": "OutAssetData",
+          "type": "TArray<FAssetData>&"
+        },
+        {
+          "name": "bIncludeOnlyOnDiskAssets",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetAssets",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Filter",
+          "type": "FARFilter"
+        },
+        {
+          "name": "OutAssetData",
+          "type": "TArray<FAssetData>&"
+        },
+        {
+          "name": "bSkipARFilteredAssets",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetDependencies",
+      "return": "bool",
+      "args": [
+        {
+          "name": "PackageName",
+          "type": "FName"
+        },
+        {
+          "name": "DependencyOptions",
+          "type": "FAssetRegistryDependencyOptions"
+        },
+        {
+          "name": "OutDependencies",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetReferencers",
+      "return": "bool",
+      "args": [
+        {
+          "name": "PackageName",
+          "type": "FName"
+        },
+        {
+          "name": "ReferenceOptions",
+          "type": "FAssetRegistryDependencyOptions"
+        },
+        {
+          "name": "OutReferencers",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetDerivedClassNames",
+      "return": "void",
+      "args": [
+        {
+          "name": "ClassNames",
+          "type": "TArray<FTopLevelAssetPath>"
+        },
+        {
+          "name": "ExcludedClassNames",
+          "type": "TSet<FTopLevelAssetPath>"
+        },
+        {
+          "name": "OutDerivedClassNames",
+          "type": "TSet<FTopLevelAssetPath>&"
+        }
+      ]
+    },
+    {
+      "name": "GetGeneratedClassName",
+      "return": "bool",
+      "args": [
+        {
+          "name": "AssetData",
+          "type": "FAssetData"
+        },
+        {
+          "name": "OutGeneratedClassName",
+          "type": "FTopLevelAssetPath&"
+        }
+      ]
+    },
+    {
+      "name": "AssetCreated",
+      "return": "void",
+      "args": [
+        {
+          "name": "NewAsset",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "LoadAllBlueprintsUnderPath",
+      "return": "void",
+      "args": [
+        {
+          "name": "PathToLoadFrom",
+          "type": "FName"
+        },
+        {
+          "name": "OptionalFileIncludeRegex",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

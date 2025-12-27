@@ -1,0 +1,440 @@
+{
+  "name": "__FQuat",
+  "properties": {
+    "Identity": [
+      "const FQuat"
+    ]
+  },
+  "methods": [
+    {
+      "name": "MakeFromEuler",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Euler",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromRotator",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Rotator",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "FindBetween",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Vector1",
+          "type": "FVector"
+        },
+        {
+          "name": "Vector2",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "FindBetweenVectors",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Vector1",
+          "type": "FVector"
+        },
+        {
+          "name": "Vector2",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "FindBetweenNormals",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Normal1",
+          "type": "FVector"
+        },
+        {
+          "name": "Normal2",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "FastLerp",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "A",
+          "type": "FQuat"
+        },
+        {
+          "name": "B",
+          "type": "FQuat"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "FastBilerp",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "P00",
+          "type": "FQuat"
+        },
+        {
+          "name": "P10",
+          "type": "FQuat"
+        },
+        {
+          "name": "P01",
+          "type": "FQuat"
+        },
+        {
+          "name": "P11",
+          "type": "FQuat"
+        },
+        {
+          "name": "FracX",
+          "type": "float"
+        },
+        {
+          "name": "FracY",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Slerp_NotNormalized",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat"
+        },
+        {
+          "name": "Slerp",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Slerp",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat"
+        },
+        {
+          "name": "Slerp",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Error",
+      "return": "float",
+      "args": [
+        {
+          "name": "Q1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Q2",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "ErrorAutoNormalize",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "FQuat"
+        },
+        {
+          "name": "B",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SlerpFullPath_NotNormalized",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat"
+        },
+        {
+          "name": "Slerp",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SlerpFullPath",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat"
+        },
+        {
+          "name": "Slerp",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Squad",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Tang1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat"
+        },
+        {
+          "name": "Tang2",
+          "type": "FQuat"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SquadFullPath",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Tang1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat"
+        },
+        {
+          "name": "Tang2",
+          "type": "FQuat"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CalcTangents",
+      "return": "void",
+      "args": [
+        {
+          "name": "PrevP",
+          "type": "FQuat"
+        },
+        {
+          "name": "P",
+          "type": "FQuat"
+        },
+        {
+          "name": "NextP",
+          "type": "FQuat"
+        },
+        {
+          "name": "Tension",
+          "type": "float"
+        },
+        {
+          "name": "OutTan",
+          "type": "FQuat&"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromAxes",
+      "return": "FQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "Forward",
+          "type": "FVector"
+        },
+        {
+          "name": "Right",
+          "type": "FVector"
+        },
+        {
+          "name": "Up",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromX",
+      "return": "FQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "XAxis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromXY",
+      "return": "FQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "XAxis",
+          "type": "FVector"
+        },
+        {
+          "name": "YAxis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromXZ",
+      "return": "FQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "XAxis",
+          "type": "FVector"
+        },
+        {
+          "name": "ZAxis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromY",
+      "return": "FQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "YAxis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromYX",
+      "return": "FQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "YAxis",
+          "type": "FVector"
+        },
+        {
+          "name": "XAxis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromYZ",
+      "return": "FQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "YAxis",
+          "type": "FVector"
+        },
+        {
+          "name": "ZAxis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromZ",
+      "return": "FQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "ZAxis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromZX",
+      "return": "FQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "ZAxis",
+          "type": "FVector"
+        },
+        {
+          "name": "XAxis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromZY",
+      "return": "FQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "ZAxis",
+          "type": "FVector"
+        },
+        {
+          "name": "YAxis",
+          "type": "FVector"
+        }
+      ]
+    }
+  ]
+}

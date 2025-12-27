@@ -1,0 +1,251 @@
+{
+  "name": "UTypedElementCommonActions",
+  "inherits": "UObject",
+  "doc": "A utility to handle higher-level common actions, but default via UTypedElementWorldInterface,\nbut asset editors can customize this behavior via FTypedElementCommonActionsCustomization.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CopyNormalizedElements",
+      "return": "bool",
+      "doc": "* Copy any elements from the given selection set that can be copied into the clipboard.\n* @note This list should have been pre-normalized via UTypedElementSelectionSet::GetNormalizedSelection or UTypedElementSelectionSet::GetNormalizedElementList.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        }
+      ]
+    },
+    {
+      "name": "CopyNormalizedElementsToString",
+      "return": "bool",
+      "doc": "* Copy any elements from the given selection set that can be copied into the clipboard.\n* @note This list should have been pre-normalized via UTypedElementSelectionSet::GetNormalizedSelection or UTypedElementSelectionSet::GetNormalizedElementList.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "OutputString",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "CopySelectedElements",
+      "return": "bool",
+      "doc": "Copy any elements from the given selection set that can be copied into the clipboard\n@note Internally this just calls CopyNormalizedElements on the result of UTypedElementSelectionSet::GetNormalizedSelection.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionSet",
+          "type": "UTypedElementSelectionSet"
+        }
+      ]
+    },
+    {
+      "name": "CopySelectedElementsToString",
+      "return": "bool",
+      "doc": "Copy any elements from the given selection set that can be copied into the string\n@note Internally this just calls CopyNormalizedElements on the result of UTypedElementSelectionSet::GetNormalizedSelection.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionSet",
+          "type": "UTypedElementSelectionSet"
+        },
+        {
+          "name": "OutputString",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "DeleteNormalizedElements",
+      "return": "bool",
+      "doc": "Delete any elements from the given list that can be deleted.\n@note This list should have been pre-normalized via UTypedElementSelectionSet::GetNormalizedSelection or UTypedElementSelectionSet::GetNormalizedElementList.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "InSelectionSet",
+          "type": "UTypedElementSelectionSet"
+        },
+        {
+          "name": "DeletionOptions",
+          "type": "FTypedElementDeletionOptions"
+        }
+      ]
+    },
+    {
+      "name": "DeleteSelectedElements",
+      "return": "bool",
+      "doc": "Delete any elements from the given selection set that can be deleted.\n@note Internally this just calls DeleteNormalizedElements on the result of UTypedElementSelectionSet::GetNormalizedSelection.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionSet",
+          "type": "UTypedElementSelectionSet"
+        },
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "DeletionOptions",
+          "type": "FTypedElementDeletionOptions"
+        }
+      ]
+    },
+    {
+      "name": "DuplicateNormalizedElements",
+      "return": "TArray<FScriptTypedElementHandle>",
+      "doc": "Duplicate any elements from the given list that can be duplicated.\n@note This list should have been pre-normalized via UTypedElementSelectionSet::GetNormalizedSelection or UTypedElementSelectionSet::GetNormalizedElementList.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "LocationOffset",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "DuplicateSelectedElements",
+      "return": "TArray<FScriptTypedElementHandle>",
+      "doc": "Duplicate any elements from the given selection set that can be duplicated.\n@note Internally this just calls DuplicateNormalizedElements on the result of UTypedElementSelectionSet::GetNormalizedSelection.",
+      "ufunction": true,
+      "unrealname": "K2_DuplicateSelectedElements",
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionSet",
+          "type": "const UTypedElementSelectionSet"
+        },
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "LocationOffset",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "PasteElements",
+      "return": "TArray<FScriptTypedElementHandle>",
+      "doc": "Paste any elements from the clipboard\n@note Internally this just calls PasteNormalizedElements on the result of UTypedElementSelectionSet::GetNormalizedSelection.",
+      "ufunction": true,
+      "unrealname": "K2_PasteElements",
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionSet",
+          "type": "UTypedElementSelectionSet"
+        },
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "PasteOption",
+          "type": "FTypedElementPasteOptions"
+        }
+      ]
+    },
+    {
+      "name": "PasteNormalizedElements",
+      "return": "TArray<FScriptTypedElementHandle>",
+      "doc": "Paste any elements from the clipboard\n@note This list should have been pre-normalized via UTypedElementSelectionSet::GetNormalizedSelection or UTypedElementSelectionSet::GetNormalizedElementList.",
+      "ufunction": true,
+      "unrealname": "K2_PasteNormalizedElements",
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "PasteOption",
+          "type": "FTypedElementPasteOptions"
+        }
+      ]
+    },
+    {
+      "name": "PasteElementsFromString",
+      "return": "TArray<FScriptTypedElementHandle>",
+      "doc": "Paste any elements from the given string\n@note Internally this just calls PasteNormalizedElements on the result of UTypedElementSelectionSet::GetNormalizedSelection.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionSet",
+          "type": "UTypedElementSelectionSet"
+        },
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "PasteOption",
+          "type": "FTypedElementPasteOptions"
+        },
+        {
+          "name": "InputString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "PasteNormalizedElementsFromString",
+      "return": "TArray<FScriptTypedElementHandle>",
+      "doc": "Paste any elements from the given string\n@note This list should have been pre-normalized via UTypedElementSelectionSet::GetNormalizedSelection or UTypedElementSelectionSet::GetNormalizedElementList.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "PasteOption",
+          "type": "FTypedElementPasteOptions"
+        },
+        {
+          "name": "InputString",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "name": "UFont",
+  "inherits": "UObject",
+  "doc": "A font object, for use by Slate, UMG, and Canvas.\n\nA font can either be:\n  * Runtime cached - The font contains a series of TTF files that combine to form a composite font. The glyphs are cached on demand when required at runtime.\n  * Offline cached - The font contains a series of textures containing pre-baked cached glyphs and their associated texture coordinates.",
+  "properties": {
+    "FontCacheType": [
+      "EFontCacheType",
+      2,
+      "What kind of font caching should we use? This controls which options we see"
+    ],
+    "FontRasterizationMode": [
+      "EFontRasterizationMode",
+      2,
+      "The preferred rasterization method for this font (enable / disable MSDF)"
+    ],
+    "SdfSettings": [
+      "FFontSdfSettings",
+      2,
+      "Settings for rendering this font using the sdf pipeline"
+    ],
+    "Characters": [
+      "TArray<FFontCharacter>",
+      2,
+      "List of characters in the font.  For a MultiFont, this will include all characters in all sub-fonts!  Thus,\n              the number of characters in this array isn't necessary the number of characters available in the font"
+    ],
+    "EmScale": [
+      "float32",
+      2,
+      "Font metrics."
+    ],
+    "Ascent": [
+      "float32",
+      2,
+      "@todo document"
+    ],
+    "Descent": [
+      "float32",
+      2,
+      "@todo document"
+    ],
+    "Leading": [
+      "float32",
+      2,
+      "@todo document"
+    ],
+    "Kerning": [
+      "int",
+      2,
+      "Default horizontal spacing between characters when rendering text with this font"
+    ],
+    "ImportOptions": [
+      "FFontImportOptionsData",
+      2,
+      "Options used when importing this font"
+    ],
+    "ScalingFactor": [
+      "float32",
+      2,
+      "Scale to apply to the font."
+    ],
+    "LegacyFontSize": [
+      "int",
+      2,
+      "The default size of the font used for legacy Canvas APIs that don't specify a font size"
+    ],
+    "LegacyFontName": [
+      "FName",
+      2,
+      "The default font name to use for legacy Canvas APIs that don't specify a font name"
+    ],
+    "CompositeFont": [
+      "FCompositeFont",
+      2,
+      "Embedded composite font data"
+    ]
+  },
+  "methods": []
+}

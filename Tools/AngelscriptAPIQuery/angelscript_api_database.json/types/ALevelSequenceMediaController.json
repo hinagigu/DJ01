@@ -1,0 +1,61 @@
+{
+  "name": "ALevelSequenceMediaController",
+  "inherits": "AActor",
+  "doc": "Replicated actor class that is responsible for instigating various cinematic assets (Media, Audio, Level Sequences) in a synchronized fasion",
+  "properties": {
+    "ServerStartTimeSeconds": [
+      "float32",
+      1,
+      "Replicated time at which the server started the sequence (taken from AGameStateBase::GetServerWorldTimeSeconds)"
+    ],
+    "Sequence": [
+      "ALevelSequenceActor",
+      "Pointer to the sequence actor to use for playback"
+    ],
+    "MediaComponent": [
+      "UMediaComponent",
+      "Media component that contains the media player to synchronize with"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetMediaComponent",
+      "return": "UMediaComponent",
+      "const": true,
+      "doc": "Access this actor's media component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSequence",
+      "return": "ALevelSequenceActor",
+      "const": true,
+      "doc": "Access this actor's Level Sequence Actor",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Play",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SynchronizeToServer",
+      "return": "void",
+      "doc": "Forcibly synchronize the sequence to the server's position if it has diverged by more than the specified threshold",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DesyncThresholdSeconds",
+          "default": "2.000000",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "FPIELoginSettingsInternal",
+  "isStruct": true,
+  "doc": "Stores PIE login credentials",
+  "properties": {
+    "Id": [
+      "FString",
+      2,
+      "Id of the user logging in (email, display name, facebook id, etc)"
+    ],
+    "Token": [
+      "FString",
+      2,
+      "Credentials of the user logging in (password or auth token)"
+    ],
+    "Type": [
+      "FString",
+      2,
+      "Type of account. Needed to identity the auth method to use (epic, internal, facebook, etc)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPIELoginSettingsInternal&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPIELoginSettingsInternal"
+        }
+      ]
+    }
+  ]
+}

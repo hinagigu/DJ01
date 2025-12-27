@@ -1,0 +1,137 @@
+{
+  "name": "AGameplayCueNotify_Looping",
+  "inherits": "AGameplayCueNotify_Actor",
+  "doc": "AGameplayCueNotify_Looping\n\n    This is an instanced gameplay cue notify for continuous looping effects.\n    The game is responsible for defining the start/stop by adding/removing the gameplay cue.",
+  "properties": {
+    "DefaultSpawnCondition": [
+      "FGameplayCueNotify_SpawnCondition",
+      "Default condition to check before spawning anything.  Applies for all spawns unless overridden."
+    ],
+    "DefaultPlacementInfo": [
+      "FGameplayCueNotify_PlacementInfo",
+      "Default placement rules.  Applies for all spawns unless overridden."
+    ],
+    "ApplicationEffects": [
+      "FGameplayCueNotify_BurstEffects",
+      "List of effects to spawn on application.  These should not be looping effects!"
+    ],
+    "ApplicationSpawnResults": [
+      "FGameplayCueNotify_SpawnResult",
+      1,
+      "Results of spawned application effects."
+    ],
+    "LoopingEffects": [
+      "FGameplayCueNotify_LoopingEffects",
+      "List of effects to spawn on loop start."
+    ],
+    "LoopingSpawnResults": [
+      "FGameplayCueNotify_SpawnResult",
+      1,
+      "Results of spawned looping effects."
+    ],
+    "RecurringEffects": [
+      "FGameplayCueNotify_BurstEffects",
+      "List of effects to spawn for a recurring gameplay effect (e.g. each time a DOT ticks).  These should not be looping effects!"
+    ],
+    "RecurringSpawnResults": [
+      "FGameplayCueNotify_SpawnResult",
+      1,
+      "Results of spawned recurring effects."
+    ],
+    "RemovalEffects": [
+      "FGameplayCueNotify_BurstEffects",
+      "List of effects to spawn on removal.  These should not be looping effects!"
+    ],
+    "RemovalSpawnResults": [
+      "FGameplayCueNotify_SpawnResult",
+      1,
+      "Results of spawned removal effects."
+    ]
+  },
+  "methods": [
+    {
+      "name": "OnApplication",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "SpawnResults",
+          "type": "FGameplayCueNotify_SpawnResult"
+        }
+      ]
+    },
+    {
+      "name": "OnLoopingStart",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "SpawnResults",
+          "type": "FGameplayCueNotify_SpawnResult"
+        }
+      ]
+    },
+    {
+      "name": "OnRecurring",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "SpawnResults",
+          "type": "FGameplayCueNotify_SpawnResult"
+        }
+      ]
+    },
+    {
+      "name": "OnRemoval",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "SpawnResults",
+          "type": "FGameplayCueNotify_SpawnResult"
+        }
+      ]
+    }
+  ]
+}

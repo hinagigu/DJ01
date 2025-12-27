@@ -1,0 +1,39 @@
+{
+  "name": "FFrameMetrics",
+  "isStruct": true,
+  "doc": "Metrics that correspond to a particular frame",
+  "properties": {
+    "TotalElapsedTime": [
+      "float32",
+      1,
+      "The total amount of time, in seconds, since the capture started"
+    ],
+    "FrameDelta": [
+      "float32",
+      1,
+      "The total amount of time, in seconds, that this specific frame took to render (not accounting for dropped frames)"
+    ],
+    "FrameNumber": [
+      "int",
+      1,
+      "The index of this frame from the start of the capture, including dropped frames"
+    ],
+    "NumDroppedFrames": [
+      "int",
+      1,
+      "The number of frames we dropped in-between this frame, and the last one we captured"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FFrameMetrics&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FFrameMetrics"
+        }
+      ]
+    }
+  ]
+}

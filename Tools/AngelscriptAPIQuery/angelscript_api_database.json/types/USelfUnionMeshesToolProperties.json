@@ -1,0 +1,38 @@
+{
+  "name": "USelfUnionMeshesToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Standard properties of the self-union operation",
+  "properties": {
+    "bTrimFlaps": [
+      "bool",
+      2,
+      "If true, remove open, visible geometry"
+    ],
+    "bTryFixHoles": [
+      "bool",
+      2,
+      "Try to fill holes created by the merge, e.g. due to numerical errors"
+    ],
+    "bTryCollapseEdges": [
+      "bool",
+      2,
+      "Try to collapse extra edges created by the merge"
+    ],
+    "WindingThreshold": [
+      "float32",
+      2,
+      "Threshold to determine whether a triangle in one mesh is inside or outside of the other"
+    ],
+    "bShowNewBoundaryEdges": [
+      "bool",
+      2,
+      "Show boundary edges created by the merge (often due to numerical error)"
+    ],
+    "bOnlyUseFirstMeshMaterials": [
+      "bool",
+      2,
+      "If true, only the first mesh will keep its materials assignments; all other triangles will be assigned material 0"
+    ]
+  },
+  "methods": []
+}

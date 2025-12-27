@@ -1,0 +1,34 @@
+{
+  "name": "FReparentSubobjectParams",
+  "isStruct": true,
+  "doc": "Options for reparenting subobjects",
+  "properties": {
+    "NewParentHandle": [
+      "FSubobjectDataHandle",
+      1,
+      "The handle of the subobject to reparent to."
+    ],
+    "BlueprintContext": [
+      "UBlueprint",
+      1,
+      "Pointer to the blueprint context that this subobject is in. If this is null, it is assumed that\nthis subobject is being added to an instance."
+    ],
+    "ActorPreviewContext": [
+      "AActor",
+      1,
+      "The preview actor context to be used if in a blueprint context.\nThis must have a value if BlueprintContext is needed."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FReparentSubobjectParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FReparentSubobjectParams"
+        }
+      ]
+    }
+  ]
+}

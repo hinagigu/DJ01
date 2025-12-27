@@ -1,0 +1,382 @@
+{
+  "name": "UDirectionalLightComponent",
+  "inherits": "ULightComponent",
+  "doc": "A light component that has parallel rays. Will provide a uniform lighting across any affected surface (eg. The Sun). This will affect all objects in the defined light-mass importance volume.",
+  "properties": {
+    "FarShadowCascadeCount": [
+      "int",
+      "0: no Far Shadow Cascades, otherwise the number of cascades between DynamicShadowDistance and FarShadowDistance that are covered by Far Shadow Cascades."
+    ],
+    "FarShadowDistance": [
+      "float32",
+      "Distance at which the far shadow cascade should end.  Far shadows will cover the range between 'Dynamic Shadow Distance' and this distance."
+    ],
+    "DistanceFieldShadowDistance": [
+      "float32",
+      "Distance at which the ray traced shadow cascade should end.  Distance field shadows will cover the range between 'Dynamic Shadow Distance' this distance."
+    ],
+    "TraceDistance": [
+      "float32",
+      "Determines how far shadows can be cast, in world units.  Larger values increase the shadowing cost."
+    ],
+    "AtmosphereSunDiskColorScale": [
+      "FLinearColor",
+      "A color multiplied with the sun disk luminance."
+    ],
+    "CloudShadowStrength": [
+      "float32",
+      "The overall strength of the cloud shadow, higher value will block more light."
+    ],
+    "CloudShadowOnAtmosphereStrength": [
+      "float32",
+      "The strength of the shadow on atmosphere. Disabled when 0."
+    ],
+    "CloudShadowOnSurfaceStrength": [
+      "float32",
+      "The strength of the shadow on opaque and transparent meshes. Disabled when 0."
+    ],
+    "CloudShadowDepthBias": [
+      "float32",
+      "The bias applied to the shadow front depth of the volumetric cloud shadow map."
+    ],
+    "CloudShadowExtent": [
+      "float32",
+      "The world space radius of the cloud shadow map around the camera in kilometers."
+    ],
+    "CloudShadowMapResolutionScale": [
+      "float32",
+      "Scale the cloud shadow map resolution, base resolution is 512. The resolution is still clamped to 'r.VolumetricCloud.ShadowMap.MaxResolution'."
+    ],
+    "CloudShadowRaySampleCountScale": [
+      "float32",
+      "Scale the shadow map tracing sample count.\nThe sample count resolution is still clamped according to scalability setting to 'r.VolumetricCloud.ShadowMap.RaySampleMaxCount'."
+    ],
+    "CloudScatteredLuminanceScale": [
+      "FLinearColor",
+      "Scales the lights contribution when scattered in cloud participating media. This can help counter balance the fact that our multiple scattering solution is only an approximation."
+    ],
+    "LightmassSettings": [
+      "FLightmassDirectionalLightSettings",
+      2,
+      "The Lightmass settings for this object."
+    ],
+    "ModulatedShadowColor": [
+      "FColor",
+      "Color to modulate against the scene color when rendering modulated shadows. (mobile only)"
+    ],
+    "ShadowCascadeBiasDistribution": [
+      "float32",
+      "Controls the depth bias scaling across cascades. This allows to mitigage the shadow acne difference on shadow cascades transition.\nA value of 1 scales shadow bias based on each cascade size (Default).\nA value of 0 scales shadow bias uniformly accross all cacascade."
+    ],
+    "bEnableLightShaftOcclusion": [
+      "bool",
+      "Whether to occlude fog and atmosphere inscattering with screenspace blurred occlusion from this light."
+    ],
+    "OcclusionMaskDarkness": [
+      "float32",
+      "Controls how dark the occlusion masking is, a value of 1 results in no darkening term."
+    ],
+    "OcclusionDepthRange": [
+      "float32",
+      "Everything closer to the camera than this distance will occlude light shafts."
+    ],
+    "LightShaftOverrideDirection": [
+      "FVector",
+      "Can be used to make light shafts come from somewhere other than the light's actual direction.\nThis will only be used when non-zero.  It does not have to be normalized."
+    ],
+    "DynamicShadowDistanceMovableLight": [
+      "float32",
+      "How far Cascaded Shadow Map dynamic shadows will cover for a movable light, measured from the camera.\nA value of 0 disables the dynamic shadow."
+    ],
+    "DynamicShadowDistanceStationaryLight": [
+      "float32",
+      "How far Cascaded Shadow Map dynamic shadows will cover for a stationary light, measured from the camera.\nA value of 0 disables the dynamic shadow."
+    ],
+    "DynamicShadowCascades": [
+      "int",
+      "Number of cascades to split the view frustum into for the whole scene dynamic shadow.\nMore cascades result in better shadow resolution, but adds significant rendering cost."
+    ],
+    "CascadeDistributionExponent": [
+      "float32",
+      "Controls whether the cascades are distributed closer to the camera (larger exponent) or further from the camera (smaller exponent).\nAn exponent of 1 means that cascade transitions will happen at a distance proportional to their resolution."
+    ],
+    "CascadeTransitionFraction": [
+      "float32",
+      "Proportion of the fade region between cascades.\nPixels within the fade region of two cascades have their shadows blended to avoid hard transitions between quality levels.\nA value of zero eliminates the fade region, creating hard transitions.\nHigher values increase the size of the fade region, creating a more gradual transition between cascades.\nThe value is expressed as a percentage proportion (i.e. 0.1 = 10% overlap).\nIdeal values are the smallest possible which still hide the transition.\nAn increased fade region size causes an increase in shadow rendering cost."
+    ],
+    "ShadowDistanceFadeoutFraction": [
+      "float32",
+      "Controls the size of the fade out region at the far extent of the dynamic shadow's influence.\nThis is specified as a fraction of DynamicShadowDistance."
+    ],
+    "bUseInsetShadowsForMovableObjects": [
+      "bool",
+      "Stationary lights only: Whether to use per-object inset shadows for movable components, even though cascaded shadow maps are enabled.\nThis allows dynamic objects to have a shadow even when they are outside of the cascaded shadow map, which is important when DynamicShadowDistanceStationaryLight is small.\nIf DynamicShadowDistanceStationaryLight is large (currently > 8000), this will be forced off.\nDisabling this can reduce shadowing cost significantly with many movable objects."
+    ],
+    "ForwardShadingPriority": [
+      "int",
+      "Forward lighting priority for the single directional light that will be used for forward shading, translucent, single layer water and volumetric fog.\nWhen two lights have equal priorities, the selection will be based on their overall brightness as a fallback."
+    ],
+    "LightSourceAngle": [
+      "float32",
+      "Angle subtended by light source in degrees (also known as angular diameter).\nDefaults to 0.5357 which is the angle for our sun."
+    ],
+    "LightSourceSoftAngle": [
+      "float32",
+      "Angle subtended by soft light source in degrees."
+    ],
+    "ShadowSourceAngleFactor": [
+      "float32",
+      "Shadow source angle factor, relative to the light source angle.\nDefaults to 1.0 to coincide with light source angle."
+    ],
+    "bAtmosphereSunLight": [
+      "bool",
+      "Whether the directional light can interact with the atmosphere, cloud and generate a visual disk. All of which compose the visual sky."
+    ],
+    "AtmosphereSunLightIndex": [
+      "int",
+      "Two atmosphere lights are supported. For instance: a sun and a moon, or two suns."
+    ],
+    "bPerPixelAtmosphereTransmittance": [
+      "bool",
+      "Whether to apply atmosphere transmittance per pixel on opaque meshes, instead of using the light global transmittance. Note: VolumetricCloud per pixel transmittance option is selectable on the VolumetricCloud component itself."
+    ],
+    "bCastShadowsOnClouds": [
+      "bool",
+      "Whether the light should cast any shadows from opaque meshes onto clouds. This is disabled when 'Atmosphere Sun Light Index' is set to 1."
+    ],
+    "bCastShadowsOnAtmosphere": [
+      "bool",
+      "Whether the light should cast any shadows from opaque meshes onto the atmosphere."
+    ],
+    "bCastCloudShadows": [
+      "bool",
+      "Whether the light should cast any shadows from clouds onto the atmosphere and other scene elements."
+    ],
+    "bCastModulatedShadows": [
+      "bool",
+      "Whether the light should cast modulated shadows from dynamic objects (mobile only).  Also requires Cast Shadows to be set to True."
+    ],
+    "ShadowAmount": [
+      "float32",
+      "Control the amount of shadow occlusion. A value of 0 means no occlusion, thus no shadow."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetAtmosphereSunLight",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAtmosphereSunLightIndex",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetCascadeDistributionExponent",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetCascadeTransitionFraction",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDynamicShadowCascades",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetDynamicShadowDistanceMovableLight",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDynamicShadowDistanceStationaryLight",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableLightShaftOcclusion",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetForwardShadingPriority",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetLightShaftOverrideDirection",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetLightSourceAngle",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLightSourceSoftAngle",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOcclusionDepthRange",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOcclusionMaskDarkness",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetShadowAmount",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetShadowCascadeBiasDistribution",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetShadowDistanceFadeoutFraction",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetShadowSourceAngleFactor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

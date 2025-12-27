@@ -1,0 +1,151 @@
+{
+  "name": "UParticleSystem",
+  "inherits": "UFXSystemAsset",
+  "doc": "A ParticleSystem is a complete particle effect that contains any number of ParticleEmitters. By allowing multiple emitters\nin a system, the designer can create elaborate particle effects that are held in a single system. Once created using\nCascade, a ParticleSystem can then be inserted into a level or created in script.",
+  "properties": {
+    "UpdateTime_FPS": [
+      "float32",
+      2,
+      "UpdateTime_FPS - the frame per second to update at in FixedTime mode"
+    ],
+    "WarmupTime": [
+      "float32",
+      2,
+      "WarmupTime - the time to warm-up the particle system when first rendered\nWarning: WarmupTime is implemented by simulating the particle system for the time requested upon activation.\nThis is extremely prone to cause hitches, especially with large particle counts - use with caution."
+    ],
+    "WarmupTickRate": [
+      "float32",
+      2,
+      "WarmupTickRate - the time step for each tick during warm up.\n       Increasing this improves performance. Decreasing, improves accuracy.\n       Set to 0 to use the default tick time."
+    ],
+    "ThumbnailWarmup": [
+      "float32",
+      2,
+      "The time to warm-up the system for the thumbnail image"
+    ],
+    "LODDistanceCheckTime": [
+      "float32",
+      2,
+      "How often (in seconds) the system should perform the LOD distance check."
+    ],
+    "MacroUVRadius": [
+      "float32",
+      2,
+      "World space radius that UVs generated with the ParticleMacroUV material node will tile based on."
+    ],
+    "LODDistances": [
+      "TArray<float32>",
+      2,
+      "The array of distances for each LOD level in the system.\nUsed when LODMethod is set to PARTICLESYSTEMLODMETHOD_Automatic.\n\nExample: System with 3 LOD levels\n        LODDistances(0) = 0.0\n        LODDistances(1) = 2500.0\n        LODDistances(2) = 5000.0\n\n        In this case, when the system is [   0.0 ..   2499.9] from the camera, LOD level 0 will be used.\n                                                                         [2500.0 ..   4999.9] from the camera, LOD level 1 will be used.\n                                                                         [5000.0 .. INFINITY] from the camera, LOD level 2 will be used."
+    ],
+    "FixedRelativeBoundingBox": [
+      "FBox",
+      2,
+      "Fixed relative bounding box for particle system."
+    ],
+    "SecondsBeforeInactive": [
+      "float32",
+      2,
+      "Number of seconds of emitter not being rendered that need to pass before it\nno longer gets ticked/ becomes inactive."
+    ],
+    "Delay": [
+      "float32",
+      2,
+      "How long this Particle system should delay when ActivateSystem is called on it."
+    ],
+    "DelayLow": [
+      "float32",
+      2,
+      "The low end of the emitter delay if using a range."
+    ],
+    "SystemUpdateMode": [
+      "EParticleSystemUpdateMode",
+      2,
+      ""
+    ],
+    "LODMethod": [
+      "ParticleSystemLODMethod",
+      2,
+      "The method of LOD level determination to utilize for this particle system\n  PARTICLESYSTEMLODMETHOD_Automatic - Automatically set the LOD level, checking every LODDistanceCheckTime seconds.\nPARTICLESYSTEMLODMETHOD_DirectSet - LOD level is directly set by the game code.\nPARTICLESYSTEMLODMETHOD_ActivateAutomatic - LOD level is determined at Activation time, then left alone unless directly set by game code."
+    ],
+    "InsignificantReaction": [
+      "EParticleSystemInsignificanceReaction",
+      2,
+      "The reaction this system takes when all emitters are insignificant."
+    ],
+    "OcclusionBoundsMethod": [
+      "EParticleSystemOcclusionBoundsMethod",
+      2,
+      "Which occlusion bounds method to use for this particle system.\nEPSOBM_None - Don't determine occlusion for this system.\nEPSOBM_ParticleBounds - Use the bounds of the component when determining occlusion."
+    ],
+    "MaxSignificanceLevel": [
+      "EParticleSignificanceLevel",
+      2,
+      "The maximum level of significance for emitters in this system. Any emitters with a higher significance will be capped at this significance level."
+    ],
+    "MinTimeBetweenTicks": [
+      "uint",
+      2,
+      "Minimum duration between ticks; 33=tick at max. 30FPS, 16=60FPS, 8=120FPS"
+    ],
+    "InsignificanceDelay": [
+      "float32",
+      2,
+      "Time delay between all emitters becoming insignificant and the systems insignificant reaction."
+    ],
+    "MacroUVPosition": [
+      "FVector",
+      2,
+      "Local space position that UVs generated with the ParticleMacroUV material node will be centered on."
+    ],
+    "CustomOcclusionBounds": [
+      "FBox",
+      2,
+      "The occlusion bounds to use if OcclusionBoundsMethod is set to EPSOBM_CustomBounds"
+    ],
+    "NamedMaterialSlots": [
+      "TArray<FNamedEmitterMaterial>",
+      2,
+      "Array of named material slots for use by emitters of this system.\nEmitters can use these instead of their own materials by providing the name to the NamedMaterialOverrides property of their required module.\nThese materials can be overridden using CreateNamedDynamicMaterialInstance() on a ParticleSystemComponent."
+    ],
+    "bOrientZAxisTowardCamera": [
+      "bool",
+      "If true, the system's Z axis will be oriented toward the camera"
+    ],
+    "bUseFixedRelativeBoundingBox": [
+      "bool",
+      "Whether to use the fixed relative bounding box or calculate it every frame."
+    ],
+    "bUseRealtimeThumbnail": [
+      "bool",
+      "Inidicates the old 'real-time' thumbnail rendering should be used"
+    ],
+    "bUseDelayRange": [
+      "bool",
+      "If true, select the emitter delay from the range\n        [DelayLow..Delay]"
+    ],
+    "bAllowManagedTicking": [
+      "bool",
+      "Whether or not to allow instances of this system to have their ticks managed."
+    ],
+    "bAutoDeactivate": [
+      "bool",
+      "Auto-deactivate system if all emitters are determined to not spawn particles again, regardless of lifetime."
+    ]
+  },
+  "methods": [
+    {
+      "name": "ContainsEmitterType",
+      "return": "bool",
+      "doc": "Returns true if this system contains an emitter of the pasesd type.\n@ param TypeData - The emitter type to check for. Must be a child class of UParticleModuleTypeDataBase",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TypeData",
+          "type": "UClass"
+        }
+      ]
+    }
+  ]
+}

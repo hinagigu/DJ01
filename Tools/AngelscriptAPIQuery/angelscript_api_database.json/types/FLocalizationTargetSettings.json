@@ -1,0 +1,83 @@
+{
+  "name": "FLocalizationTargetSettings",
+  "isStruct": true,
+  "properties": {
+    "Name": [
+      "FString",
+      2,
+      "Unique name for the target."
+    ],
+    "ConflictStatus": [
+      "ELocalizationTargetConflictStatus",
+      2,
+      "Whether the target has outstanding conflicts that require resolution."
+    ],
+    "TargetDependencies": [
+      "TArray<FGuid>",
+      2,
+      "Text present in these targets will not be duplicated in this target."
+    ],
+    "AdditionalManifestDependencies": [
+      "TArray<FFilePath>",
+      2,
+      "Text present in these manifests will not be duplicated in this target."
+    ],
+    "RequiredModuleNames": [
+      "TArray<FString>",
+      2,
+      "The names of modules which must be loaded when gathering text. Use to gather from packages or metadata sourced from a module that isn't the primary game module."
+    ],
+    "GatherFromTextFiles": [
+      "FGatherTextFromTextFilesConfiguration",
+      2,
+      "Parameters for defining what text is gathered from text files and how."
+    ],
+    "GatherFromPackages": [
+      "FGatherTextFromPackagesConfiguration",
+      2,
+      "Parameters for defining what text is gathered from packages and how."
+    ],
+    "GatherFromMetaData": [
+      "FGatherTextFromMetaDataConfiguration",
+      2,
+      "Parameters for defining what text is gathered from metadata and how."
+    ],
+    "ExportSettings": [
+      "FLocalizationExportingSettings",
+      2,
+      "Settings for exporting translations."
+    ],
+    "CompileSettings": [
+      "FLocalizationCompilationSettings",
+      2,
+      "Settings for compiling translations."
+    ],
+    "ImportDialogueSettings": [
+      "FLocalizationImportDialogueSettings",
+      2,
+      "Settings for importing dialogue from WAV files."
+    ],
+    "NativeCultureIndex": [
+      "int",
+      2,
+      "The index of the native culture among the supported cultures."
+    ],
+    "SupportedCulturesStatistics": [
+      "TArray<FCultureStatistics>",
+      2,
+      "Cultures for which the source text is being localized for."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLocalizationTargetSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLocalizationTargetSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "FMovieSceneEvent",
+  "isStruct": true,
+  "properties": {
+    "PayloadVariables": [
+      "TMap<FName,FMovieSceneEventPayloadVariable>",
+      2,
+      "Array of payload variables to be added to the generated function"
+    ],
+    "BoundObjectPinName": [
+      "FName",
+      2,
+      ""
+    ],
+    "WeakEndpoint": [
+      "TWeakObjectPtr<UObject>",
+      2,
+      "Serialized weak pointer to the function entry (UK2Node_FunctionEntry) or custom event node (UK2Node_CustomEvent) within the blueprint graph for this event. Stored as an editor-only UObject so UHT can parse it when building for non-editor."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMovieSceneEvent&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMovieSceneEvent"
+        }
+      ]
+    }
+  ]
+}

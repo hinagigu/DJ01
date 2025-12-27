@@ -1,0 +1,65 @@
+{
+  "name": "ALevelVariantSetsActor",
+  "inherits": "AActor",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetLevelVariantSets",
+      "return": "ULevelVariantSets",
+      "doc": "Returns the LevelVariantSets asset, optionally loading it if necessary",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bLoad",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLevelVariantSets",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariantSets",
+          "type": "ULevelVariantSets"
+        }
+      ]
+    },
+    {
+      "name": "SwitchOnVariantByIndex",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VariantSetIndex",
+          "type": "int"
+        },
+        {
+          "name": "VariantIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SwitchOnVariantByName",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VariantSetName",
+          "type": "FString"
+        },
+        {
+          "name": "VariantName",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

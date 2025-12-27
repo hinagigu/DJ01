@@ -1,0 +1,28 @@
+{
+  "name": "FHardwareCursorReference",
+  "isStruct": true,
+  "properties": {
+    "CursorPath": [
+      "FName",
+      2,
+      "Specify the partial game content path to the hardware cursor.  For example,\n  DO:   Slate/DefaultPointer\n  DONT: Slate/DefaultPointer.cur\n\nNOTE: Having a 'Slate' directory in your game content folder will always be cooked, if\n      you're trying to decide where to locate these cursor files.\n\nThe hardware cursor system will search for platform specific formats first if you want to\ntake advantage of those capabilities.\n\nWindows:\n  .ani -> .cur -> .png\n\nMac:\n  .tiff -> .png\n\nLinux:\n  .png\n\nMulti-Resolution Png Fallback\n Because there's not a universal multi-resolution format for cursors there's a pattern we look for\n on all platforms where pngs are all that is found instead of cur/ani/tiff.\n\n   Pointer.png\n   Pointer@1.25x.png\n   Pointer@1.5x.png\n   Pointer@1.75x.png\n   Pointer@2x.png\n   ...etc"
+    ],
+    "HotSpot": [
+      "FVector2D",
+      2,
+      "HotSpot needs to be in normalized (0..1) coordinates since it may apply to different resolution images.\nNOTE: This HotSpot is only used on formats that do not provide their own hotspot, e.g. Tiff, PNG."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FHardwareCursorReference&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FHardwareCursorReference"
+        }
+      ]
+    }
+  ]
+}

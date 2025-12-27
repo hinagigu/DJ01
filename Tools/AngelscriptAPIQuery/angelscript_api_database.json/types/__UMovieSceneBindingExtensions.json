@@ -1,0 +1,326 @@
+{
+  "name": "__UMovieSceneBindingExtensions",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddTrack",
+      "return": "UMovieSceneTrack",
+      "doc": "Add a new track to the specified binding\n\n@param InBinding     The binding to add tracks to\n@param TrackType     A UMovieSceneTrack class type specifying the type of track to create\n@return The newly created track, if successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "TrackType",
+          "type": "TSubclassOf<UMovieSceneTrack>"
+        }
+      ]
+    },
+    {
+      "name": "FindTracksByExactType",
+      "return": "TArray<UMovieSceneTrack>",
+      "doc": "Find all tracks within a given binding of the specified type, not allowing sub-classed types\n\n@param InBinding     The binding to find tracks in\n@param TrackType     A UMovieSceneTrack class type specifying the exact types of track to return\n@return An array containing any tracks that are exactly the same as the type specified",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "TrackType",
+          "type": "TSubclassOf<UMovieSceneTrack>"
+        }
+      ],
+      "outputTypeIndex": 1
+    },
+    {
+      "name": "FindTracksByType",
+      "return": "TArray<UMovieSceneTrack>",
+      "doc": "Find all tracks within a given binding of the specified type\n\n@param InBinding     The binding to find tracks in\n@param TrackType     A UMovieSceneTrack class type specifying which types of track to return\n@return An array containing any tracks that match the type specified",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "TrackType",
+          "type": "TSubclassOf<UMovieSceneTrack>"
+        }
+      ],
+      "outputTypeIndex": 1
+    },
+    {
+      "name": "GetChildPossessables",
+      "return": "TArray<FMovieSceneBindingProxy>",
+      "doc": "Get all the children of this binding\n\n@param InBinding     The binding to to get children of\n@return An array containing all the binding's children",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "GetDisplayName",
+      "return": "FText",
+      "doc": "Get this binding's name\n\n@param InBinding     The binding to get the name of\n@return The display name of the binding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "GetId",
+      "return": "FGuid",
+      "doc": "Get this binding's ID\n\n@param InBinding     The binding to get the ID of\n@return The guid that uniquely represents this binding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "GetName",
+      "return": "FString",
+      "doc": "Get this binding's object non-display name\n\n@param InBinding     The binding to get the name of\n@return The name of the binding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "GetObjectTemplate",
+      "return": "UObject",
+      "doc": "Get this binding's object template\n\n@param InBinding     The binding to get the object template of\n@return The object template of the binding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "GetParent",
+      "return": "FMovieSceneBindingProxy",
+      "doc": "Get the parent of this binding\n\n@param InBinding     The binding to get the parent of\n@return The binding's parent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "GetPossessedObjectClass",
+      "return": "UClass",
+      "doc": "Get this binding's possessed object class\n\n@param InBinding     The binding to get the possessed object class of\n@return The possessed object class of the binding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "GetSortingOrder",
+      "return": "int",
+      "doc": "Get the sorting order for this binding\n\n@param InBinding        The binding to get the sorting order from\n@return The sorting order of the requested binding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "GetTracks",
+      "return": "TArray<UMovieSceneTrack>",
+      "doc": "Get all the tracks stored within this binding\n\n@param InBinding     The binding to find tracks in\n@return An array containing all the binding's tracks",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "doc": "Check whether the specified binding is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "MoveBindingContents",
+      "return": "void",
+      "doc": "Move all the contents (tracks, child bindings) of the specified binding ID onto another\n\n@param SourceBindingId The identifier of the binding ID to move all tracks and children from\n@param DestinationBindingId The identifier of the binding ID to move the contents to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceBindingId",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "DestinationBindingId",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "Remove",
+      "return": "void",
+      "doc": "Remove the specified binding\n\n@param InBinding     The binding to remove the track from",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "RemoveTrack",
+      "return": "void",
+      "doc": "Remove the specified track from this binding\n\n@param InBinding     The binding to remove the track from\n@param TrackToRemove The track to remove",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "TrackToRemove",
+          "type": "UMovieSceneTrack"
+        }
+      ]
+    },
+    {
+      "name": "SetDisplayName",
+      "return": "void",
+      "doc": "Set this binding's name\n\n@param InBinding     The binding to get the name of\n@param InName The display name of the binding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "InDisplayName",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetName",
+      "return": "void",
+      "doc": "Set this binding's object non-display name\n\n@param InBinding     The binding to get the name of\n@param InName The name of the binding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "InName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetParent",
+      "return": "void",
+      "doc": "Set the parent to this binding\n\n@param InBinding     The binding to set\n@param InParentBinding     The parent to set the InBinding to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "InParentBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "SetSortingOrder",
+      "return": "void",
+      "doc": "Set the sorting order for this binding\n\n@param InBinding        The binding to get the sorting order from\n@param SortingOrder The sorting order to set",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "SortingOrder",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetSpawnableBindingID",
+      "return": "void",
+      "doc": "Set the spawnable id that the possessable binding should possess\n\n@param InBinding     The binding to set\n@param SpawnableBindingID The spawnable's binding id",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "SpawnableBindingID",
+          "type": "FMovieSceneObjectBindingID"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

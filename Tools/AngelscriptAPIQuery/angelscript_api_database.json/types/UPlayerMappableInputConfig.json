@@ -1,0 +1,116 @@
+{
+  "name": "UPlayerMappableInputConfig",
+  "inherits": "UPrimaryDataAsset",
+  "doc": "UPlayerMappableInputConfig\n\nThis represents one set of Player Mappable controller/keymappings. You can use this input config to create\nthe default mappings for your player to start with in your game. It provides an easy way to get only the player\nmappable key actions, and it can be used to add multiple UInputMappingContext's at once to the player.\n\nPopulate this data asset with Input Mapping Contexts that have player mappable actions in them.",
+  "properties": {
+    "ConfigDisplayName": [
+      "FText",
+      "The display name that can be used"
+    ],
+    "bIsDeprecated": [
+      "bool",
+      "A flag that can be used to mark this Input Config as deprecated to your player/designers."
+    ],
+    "Contexts": [
+      "TMap<TObjectPtr<UInputMappingContext>,int>",
+      "Mapping contexts that make up this Input Config with their associated priority."
+    ],
+    "ConfigName": [
+      "FName",
+      "The unique name of this config that can be used when saving it"
+    ],
+    "Metadata": [
+      "UObject",
+      "Metadata that can used to store any other related items to your key mapping such as icons, ability assets, etc."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetConfigName",
+      "return": "FName",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDisplayName",
+      "return": "FText",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetKeysBoundToAction",
+      "return": "TArray<FEnhancedActionKeyMapping>",
+      "const": true,
+      "doc": "Returns all the keys mapped to a specific Input Action in this mapping config.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAction",
+          "type": "const UInputAction"
+        }
+      ]
+    },
+    {
+      "name": "GetMappingByName",
+      "return": "FEnhancedActionKeyMapping",
+      "const": true,
+      "doc": "Returns the action key mapping for the mapping that matches the given name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMappingContexts",
+      "return": "TMap<TObjectPtr<UInputMappingContext>,int>",
+      "const": true,
+      "doc": "Return all the Input Mapping contexts that",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMetadata",
+      "return": "UObject",
+      "const": true,
+      "doc": "Get all the player mappable keys in this config.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlayerMappableKeys",
+      "return": "TArray<FEnhancedActionKeyMapping>",
+      "const": true,
+      "doc": "Get all the player mappable keys in this config.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDeprecated",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResetToDefault",
+      "return": "void",
+      "doc": "Resets this mappable config to use the keys",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

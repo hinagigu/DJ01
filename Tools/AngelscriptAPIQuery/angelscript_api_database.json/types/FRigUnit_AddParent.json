@@ -1,0 +1,31 @@
+{
+  "name": "FRigUnit_AddParent",
+  "isStruct": true,
+  "doc": "Adds a new parent to an element. The weight for the new parent will be 0.0.\nYou can use the SetParentWeights node to change the parent weights later.",
+  "properties": {
+    "Child": [
+      "FRigElementKey",
+      "* The child to be parented under the new parent"
+    ],
+    "Parent": [
+      "FRigElementKey",
+      "* The new parent to be added to the child"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_AddParent&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_AddParent"
+        }
+      ]
+    }
+  ]
+}

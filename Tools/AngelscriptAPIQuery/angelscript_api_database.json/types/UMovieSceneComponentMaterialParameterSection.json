@@ -1,0 +1,92 @@
+{
+  "name": "UMovieSceneComponentMaterialParameterSection",
+  "inherits": "UMovieSceneSection",
+  "doc": "A movie scene section containing data for material parameters.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddColorParameterKey",
+      "return": "void",
+      "doc": "Adds a a key for a specific color parameter at the specified time with the specified value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InParameterInfo",
+          "type": "FMaterialParameterInfo"
+        },
+        {
+          "name": "InTime",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "InLayerName",
+          "type": "FString"
+        },
+        {
+          "name": "InAssetName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AddScalarParameterKey",
+      "return": "void",
+      "doc": "Adds a a key for a specific scalar parameter at the specified time with the specified value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InParameterInfo",
+          "type": "FMaterialParameterInfo"
+        },
+        {
+          "name": "InTime",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        },
+        {
+          "name": "InLayerName",
+          "type": "FString"
+        },
+        {
+          "name": "InAssetName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveColorParameter",
+      "return": "bool",
+      "doc": "Removes a color parameter from this section.\n\n@param InParameterInfo The material parameter info of the color parameter to remove.\n@returns True if a parameter with that name was found and removed, otherwise false.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InParameterInfo",
+          "type": "FMaterialParameterInfo"
+        }
+      ]
+    },
+    {
+      "name": "RemoveScalarParameter",
+      "return": "bool",
+      "doc": "Removes a scalar parameter from this section.\n\n@param InParameterInfo The material parameter info of the scalar parameter to remove.\n@returns True if a parameter with that name was found and removed, otherwise false.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InParameterInfo",
+          "type": "FMaterialParameterInfo"
+        }
+      ]
+    }
+  ]
+}

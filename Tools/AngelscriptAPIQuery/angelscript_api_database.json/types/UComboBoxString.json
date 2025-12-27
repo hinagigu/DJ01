@@ -1,0 +1,194 @@
+{
+  "name": "UComboBoxString",
+  "inherits": "UWidget",
+  "doc": "The combobox allows you to display a list of options to the user in a dropdown menu for them to select one.",
+  "properties": {
+    "DefaultOptions": [
+      "TArray<FString>",
+      2,
+      "The default list of items to be displayed on the combobox."
+    ],
+    "WidgetStyle": [
+      "FComboBoxStyle",
+      "The style."
+    ],
+    "ItemStyle": [
+      "FTableRowStyle",
+      "The item row style."
+    ],
+    "ScrollBarStyle": [
+      "FScrollBarStyle",
+      "The scroll bar style."
+    ],
+    "ContentPadding": [
+      "FMargin"
+    ],
+    "MaxListHeight": [
+      "float32",
+      "The max height of the combobox list that opens"
+    ],
+    "HasDownArrow": [
+      "bool",
+      "When false, the down arrow is not generated and it is up to the API consumer\nto make their own visual hint that this is a drop down."
+    ],
+    "EnableGamepadNavigationMode": [
+      "bool",
+      "When false, directional keys will change the selection. When true, ComboBox\nmust be activated and will only capture arrow input while activated."
+    ],
+    "Font": [
+      "FSlateFontInfo",
+      "The default font to use in the combobox, only applies if you're not implementing OnGenerateWidgetEvent\nto factory each new entry."
+    ],
+    "ForegroundColor": [
+      "FSlateColor",
+      "The foreground color to pass through the hierarchy."
+    ],
+    "bIsFocusable": [
+      "bool"
+    ],
+    "OnGenerateWidgetEvent": [
+      "FGenerateWidgetForString__Widget",
+      2,
+      "Called when the widget is needed for the item."
+    ],
+    "OnSelectionChanged": [
+      "FOnSelectionChangedEvent__ComboBoxString",
+      "Called when a new item is selected in the combobox."
+    ],
+    "OnOpening": [
+      "FOnOpeningEvent__ComboBoxString",
+      "Called when the combobox is opening"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddOption",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Option",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ClearOptions",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearSelection",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FindOptionIndex",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Option",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetOptionAtIndex",
+      "return": "FString",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetOptionCount",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of options",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedIndex",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedOption",
+      "return": "FString",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsOpen",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RefreshOptions",
+      "return": "void",
+      "doc": "Refreshes the list of options.  If you added new ones, and want to update the list even if it's\ncurrently being displayed use this.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveOption",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Option",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectedIndex",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectedOption",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Option",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

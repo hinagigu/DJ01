@@ -1,0 +1,44 @@
+{
+  "name": "FAudioInputDeviceInfoProperty",
+  "isStruct": true,
+  "doc": "Encapsulates audio device properties which are utilized by UI facing classes such as FAudioInputDeviceProperty.",
+  "properties": {
+    "DeviceName": [
+      "FString",
+      1,
+      "User friendly name of the audio device"
+    ],
+    "DeviceId": [
+      "FString",
+      1,
+      "The unique id used to identify the device"
+    ],
+    "InputChannels": [
+      "int",
+      1,
+      "The number input channels this device supports"
+    ],
+    "PreferredSampleRate": [
+      "int",
+      1,
+      "The preferred sample rate for this audio device"
+    ],
+    "bIsDefaultDevice": [
+      "bool",
+      1,
+      "Boolean indicating if this device is the currently the system selected input device"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAudioInputDeviceInfoProperty&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAudioInputDeviceInfoProperty"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# UMovieSceneMarginPropertySystem
+
+**继承自**: `UMovieScenePropertySystem`
+

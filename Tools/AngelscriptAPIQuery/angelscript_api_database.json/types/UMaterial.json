@@ -1,0 +1,427 @@
+{
+  "name": "UMaterial",
+  "inherits": "UMaterialInterface",
+  "doc": "A Material is an asset which can be applied to a mesh to control the visual look of the scene.\nWhen light from the scene hits the surface, the shading model of the material is used to calculate how that light interacts with the surface.\n\nWarning: Creating new materials directly increases shader compile times!  Consider creating a Material Instance off of an existing material instead.",
+  "properties": {
+    "PhysMaterial": [
+      "UPhysicalMaterial",
+      2,
+      "Physical material to use for this graphics material. Used for sounds, effects etc."
+    ],
+    "PhysMaterialMask": [
+      "UPhysicalMaterialMask",
+      2,
+      "Physical material mask to use for this graphics material. Used for sounds, effects etc."
+    ],
+    "PhysicalMaterialMap": [
+      "UPhysicalMaterial",
+      2,
+      "Physical material mask map to use for this graphics material. Used for sounds, effects etc."
+    ],
+    "MaterialDomain": [
+      "EMaterialDomain",
+      "The domain that the material's attributes will be evaluated in.\nCertain pieces of material functionality are only valid in certain domains, for example vertex normal is only valid on a surface."
+    ],
+    "MaterialDecalResponse": [
+      "EMaterialDecalResponse",
+      "Defines how the material reacts on DBuffer decals (Affects look, performance and texture/sample usage).\nNon DBuffer Decals can be disabled on the primitive (e.g. static mesh)"
+    ],
+    "NaniteOverrideMaterial": [
+      "FMaterialOverrideNanite",
+      2,
+      "An override material which will be used instead of this one when rendering with Nanite."
+    ],
+    "DisplacementScaling": [
+      "FDisplacementScaling"
+    ],
+    "ShadingModel": [
+      "EMaterialShadingModel",
+      2,
+      "Determines how inputs are combined to create the material's final color."
+    ],
+    "OpacityMaskClipValue": [
+      "float32",
+      2,
+      "If BlendMode is BLEND_Masked, the surface is not rendered where OpacityMask < OpacityMaskClipValue.\nIf BlendMode is BLEND_Translucent, BLEND_Additive, or BLEND_Modulate, and \"Output Depth and Velocity\" is enabled,\nthe object velocity is not rendered where Opacity < OpacityMaskClipValue."
+    ],
+    "TranslucencyPass": [
+      "EMaterialTranslucencyPass",
+      2,
+      "Specifies the separate pass in which to render translucency.\nThis can be used to avoid artifacts caused by certain post processing effects."
+    ],
+    "TranslucencyLightingMode": [
+      "ETranslucencyLightingMode",
+      2,
+      "Sets the lighting mode that will be used on this material if it is translucent."
+    ],
+    "NumCustomizedUVs": [
+      "int",
+      2,
+      "Number of customized UV inputs to display.  Unconnected customized UV inputs will just pass through the vertex UVs."
+    ],
+    "TranslucencyDirectionalLightingIntensity": [
+      "float32",
+      2,
+      "Useful for artificially increasing the influence of the normal on the lighting result for translucency.\nA value larger than 1 increases the influence of the normal, a value smaller than 1 makes the lighting more ambient."
+    ],
+    "TranslucentShadowDensityScale": [
+      "float32",
+      2,
+      "Scale used to make translucent shadows more or less opaque than the material's actual opacity."
+    ],
+    "TranslucentSelfShadowDensityScale": [
+      "float32",
+      2,
+      "Scale used to make translucent self-shadowing more or less opaque than the material's shadow on other objects.\nThis is only used when the object is casting a volumetric translucent shadow."
+    ],
+    "TranslucentSelfShadowSecondDensityScale": [
+      "float32",
+      2,
+      "Used to make a second self shadow gradient, to add interesting shading in the shadow of the first."
+    ],
+    "TranslucentSelfShadowSecondOpacity": [
+      "float32",
+      2,
+      "Controls the strength of the second self shadow gradient."
+    ],
+    "TranslucentBackscatteringExponent": [
+      "float32",
+      2,
+      "Controls how diffuse the material's backscattering is when using the MSM_Subsurface shading model.\nLarger exponents give a less diffuse look (smaller, brighter backscattering highlight).\nThis is only used when the object is casting a volumetric translucent shadow from a directional light."
+    ],
+    "TranslucentMultipleScatteringExtinction": [
+      "FLinearColor",
+      2,
+      "Colored extinction factor used to approximate multiple scattering in dense volumes.\nThis is only used when the object is casting a volumetric translucent shadow."
+    ],
+    "TranslucentShadowStartOffset": [
+      "float32",
+      2,
+      "Local space distance to bias the translucent shadow.  Positive values move the shadow away from the light."
+    ],
+    "FloatPrecisionMode": [
+      "EMaterialFloatPrecisionMode",
+      "How to use full (highp) precision in the pixel shader.\nhighp is slower than the default (mediump) but can be used to work around precision-related rendering errors.\nUse 'Full-precision for MaterialExpressions only' if you still want to keep the precision of the halfs in .ush/.usf\nThis setting has no effect on older mobile devices that do not support high precision."
+    ],
+    "ShadingRate": [
+      "EMaterialShadingRate",
+      2,
+      "Select what shading rate to apply, on platforms that support variable rate shading.\nNon-1x1 rates will reduce the rasterization fidelity for the material; they will not super-sample the material.\nThis can save GPU performance on materials where reduced fidelity is acceptable."
+    ],
+    "BlendableLocation": [
+      "EBlendableLocation",
+      "Where the node is inserted in the (post processing) graph, only used if domain is PostProcess"
+    ],
+    "StencilCompare": [
+      "EMaterialStencilCompare",
+      2,
+      ""
+    ],
+    "StencilRefValue": [
+      "uint8",
+      2,
+      ""
+    ],
+    "NeuralProfileId": [
+      "int8",
+      2,
+      "Set by reference object cannot be modified."
+    ],
+    "RefractionMethod": [
+      "ERefractionMode",
+      2,
+      "Controls how the Refraction input is interpreted and how the refraction offset into scene color is computed for this material."
+    ],
+    "RefractionCoverageMode": [
+      "ERefractionCoverageMode",
+      2,
+      "Controls whether refraction takes into account the material surface coverage, or not."
+    ],
+    "BlendablePriority": [
+      "int",
+      "If multiple nodes with the same  type are inserted at the same point, this defined order and if they get combined, only used if domain is PostProcess"
+    ],
+    "PreshaderGap": [
+      "uint16",
+      2,
+      "If non-zero, overrides r.Material.PreshaderGapInterval for this material.  Workaround for a platform specific register overflow bug."
+    ],
+    "RefractionDepthBias": [
+      "float32",
+      2,
+      "This is the refraction depth bias, larger values offset distortion to prevent closer objects from rendering into the distorted surface at acute viewing angles but increases the disconnect between surface and where the refraction starts."
+    ],
+    "MaxWorldPositionOffsetDisplacement": [
+      "float32",
+      "Specifies the max world position offset of the material. Use this value to resolve issues with culling and self-occlusion caused by\nWorld Position Offset, and/or to restrict how much offset is permitted (i.e. values are clamped on each axis).\nNOTE: A value of 0.0 effectively means \"no maximum\", and will not clamp the offsets, however it will also not extend culling bounds."
+    ],
+    "bAlwaysEvaluateWorldPositionOffset": [
+      "bool",
+      "Forces World Position Offset to always be evaluated for this material, even if the primitive it's applied to has disabled it\nvia \"Evaluate World Position Offset\" or \"World Position Offset Disable Distance\"."
+    ],
+    "BlendMode": [
+      "EBlendMode",
+      "Determines how the material's color is blended with background colors."
+    ],
+    "bCastDynamicShadowAsMasked": [
+      "bool",
+      "Whether the material should cast shadows as masked even though it has a translucent blend mode."
+    ],
+    "bEnableResponsiveAA": [
+      "bool",
+      "Indicates that the material should be rendered using responsive anti-aliasing. Improves sharpness of small moving particles such as sparks.\nOnly use for small moving features because it will cause aliasing of the background."
+    ],
+    "bScreenSpaceReflections": [
+      "bool",
+      "SSR on translucency"
+    ],
+    "bContactShadows": [
+      "bool",
+      "Contact shadows on translucency"
+    ],
+    "TwoSided": [
+      "bool",
+      "Indicates that the material should be rendered without backface culling and the normal should be flipped for backfaces."
+    ],
+    "bIsThinSurface": [
+      "bool",
+      "Indicates that the material should be rendered as a thin surface (i.e., without inner volume). Only used by Substrate materials. Enabling ThinSurface will disable subsurface profiles."
+    ],
+    "DitheredLODTransition": [
+      "bool",
+      "Whether meshes rendered with the material should support dithered LOD transitions."
+    ],
+    "DitherOpacityMask": [
+      "bool",
+      "Dither opacity mask. When combined with Temporal AA this can be used as a form of limited translucency which supports all lighting features."
+    ],
+    "bAllowNegativeEmissiveColor": [
+      "bool",
+      "Whether the material should allow outputting negative emissive color values.  Only allowed on unlit materials."
+    ],
+    "bHasPixelAnimation": [
+      "bool",
+      "Whether the opaque material has any pixel animations happening, that isn't included in the geometric velocities.\nThis allows to disable renderer's heuristics that assumes animation is fully described with motion vector, such as TSR's anti-flickering heuristic."
+    ],
+    "bEnableTessellation": [
+      "bool",
+      "Whether tessellation is enabled on the material. NOTE: Required for displacement to work."
+    ],
+    "bEnableMobileSeparateTranslucency": [
+      "bool",
+      "Indicates that the translucent material should not be affected by bloom or DOF. (Note: Depth testing is not available)"
+    ],
+    "bDisableDepthTest": [
+      "bool",
+      "Whether to draw on top of opaque pixels even if behind them. This only has meaning for translucency."
+    ],
+    "bWriteOnlyAlpha": [
+      "bool",
+      "Whether the transluency pass should write its alpha, and only the alpha, into the framebuffer"
+    ],
+    "bGenerateSphericalParticleNormals": [
+      "bool",
+      "Whether to generate spherical normals for particles that use this material."
+    ],
+    "bTangentSpaceNormal": [
+      "bool",
+      "Whether the material takes a tangent space normal or a world space normal as input.\n(TangentSpace requires extra instructions but is often more convenient)."
+    ],
+    "bUseEmissiveForDynamicAreaLighting": [
+      "bool",
+      "If enabled, the material's emissive colour is injected into the LightPropagationVolume"
+    ],
+    "bUsedWithSkeletalMesh": [
+      "bool",
+      "Indicates that the material and its instances can be used with skeletal meshes.\nThis will result in the shaders required to support skeletal meshes being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithEditorCompositing": [
+      "bool",
+      "Indicates that the material and its instances can be used with editor compositing\nThis will result in the shaders required to support editor compositing being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithParticleSprites": [
+      "bool",
+      "Indicates that the material and its instances can be used with particle sprites\nThis will result in the shaders required to support particle sprites being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithBeamTrails": [
+      "bool",
+      "Indicates that the material and its instances can be used with beam trails\nThis will result in the shaders required to support beam trails being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithMeshParticles": [
+      "bool",
+      "Indicates that the material and its instances can be used with mesh particles\nThis will result in the shaders required to support mesh particles being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithNiagaraSprites": [
+      "bool",
+      "Indicates that the material and its instances can be used with Niagara sprites (meshes and ribbons, respectively)\nThis will result in the shaders required to support Niagara sprites being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithNiagaraRibbons": [
+      "bool"
+    ],
+    "bUsedWithNiagaraMeshParticles": [
+      "bool"
+    ],
+    "bUsedWithGeometryCache": [
+      "bool"
+    ],
+    "bUsedWithStaticLighting": [
+      "bool",
+      "Indicates that the material and its instances can be used with static lighting\nThis will result in the shaders required to support static lighting being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithMorphTargets": [
+      "bool",
+      "Indicates that the material and its instances can be used with morph targets\nThis will result in the shaders required to support morph targets being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithSplineMeshes": [
+      "bool",
+      "Indicates that the material and its instances can be used with spline meshes\nThis will result in the shaders required to support spline meshes being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithInstancedStaticMeshes": [
+      "bool",
+      "Indicates that the material and its instances can be used with instanced static meshes\nThis will result in the shaders required to support instanced static meshes being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithGeometryCollections": [
+      "bool",
+      "Indicates that the material and its instances can be use with geometry collections\nThis will result in the shaders required to support geometry collections being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithClothing": [
+      "bool",
+      "Indicates that the material and its instances can be used with clothing\nThis will result in the shaders required to support clothing being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithWater": [
+      "bool",
+      "Indicates that the material and its instances can be use with water\nThis will result in the shaders required to support water meshes being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithHairStrands": [
+      "bool",
+      "Indicates that the material and its instances can be use with hair strands\nThis will result in the shaders required to support hair strands geometries being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithLidarPointCloud": [
+      "bool",
+      "Indicates that the material and its instances can be use with LiDAR Point Clouds\nThis will result in the shaders required to support LiDAR Point Cloud geometries being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithVirtualHeightfieldMesh": [
+      "bool",
+      "Indicates that the material and its instances can be used with Virtual Heightfield Mesh.\nThis will result in the shaders required to support Virtual Heightfield Mesh geometries being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithNanite": [
+      "bool",
+      "Indicates that the material and its instances can be used with Nanite meshes.\nThis will result in the shaders required to support Nanite geometries being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithVolumetricCloud": [
+      "bool",
+      "Indicates that the material and its instances with volumetric cloud. Without that flag, it can only be used on volumetric fog.\nThis will result in the shaders required to support Volumetric Cloud rendering being compiled which will increase shader compile time and memory usage."
+    ],
+    "bUsedWithHeterogeneousVolumes": [
+      "bool",
+      "Indicates that the material and its instances with heterogeneous volumes. Without that flag, it can only be used on volumetric fog.\nThis will result in the shaders required to support Heterogeneous Volumes rendering being compiled which will increase shader compile time and memory usage."
+    ],
+    "bAutomaticallySetUsageInEditor": [
+      "bool",
+      "Whether to automatically set usage flags based on what the material is applied to in the editor.\nIt can be useful to disable this on a base material with many instances, where adding another usage flag accidentally (eg bUsedWithSkeletalMeshes) can add a lot of shader permutations."
+    ],
+    "bFullyRough": [
+      "bool",
+      "Forces the material to be completely rough. Saves a number of instructions and one sampler."
+    ],
+    "bUseLightmapDirectionality": [
+      "bool",
+      "Use lightmap directionality and per pixel normals. If disabled, lighting from lightmaps will be flat but cheaper."
+    ],
+    "bMobileEnableHighQualityBRDF": [
+      "bool",
+      "Use the high quality brdf functions on mobile to get better visual effects but adds GPU cost."
+    ],
+    "bUseAlphaToCoverage": [
+      "bool",
+      "Use alpha to coverage for masked material on mobile, make sure MSAA is enabled as well."
+    ],
+    "bForwardRenderUsePreintegratedGFForSimpleIBL": [
+      "bool",
+      "Forward (including mobile) renderer: use preintegrated GF lut for simple IBL, but will use one more sampler."
+    ],
+    "bUseHQForwardReflections": [
+      "bool",
+      "* Forward renderer: enables multiple parallax-corrected reflection captures that blend together."
+    ],
+    "bForwardBlendsSkyLightCubemaps": [
+      "bool",
+      "* Enables blending of sky light cubemap textures. When disabled, the secondary cubemap is only visible when the blend factor is 1."
+    ],
+    "bUsePlanarForwardReflections": [
+      "bool",
+      "Enables planar reflection when using the forward renderer or mobile. Enabling this setting reduces the number of samplers available to the material as one more sampler will be used for the planar reflection."
+    ],
+    "bNormalCurvatureToRoughness": [
+      "bool",
+      "Reduce roughness based on screen space normal changes."
+    ],
+    "AllowTranslucentCustomDepthWrites": [
+      "bool",
+      "Allows a translucent material to be used with custom depth writing by compiling additional shaders."
+    ],
+    "bAllowFrontLayerTranslucency": [
+      "bool",
+      "Allows a translucent material to be used with Front Layer Translucency by compiling additional shaders. Useful for controlling what should be included in Front Layer Translucency."
+    ],
+    "Wireframe": [
+      "bool",
+      "Enables a wireframe view of the mesh the material is applied to."
+    ],
+    "bAllowVariableRateShading": [
+      "bool",
+      "Allows the use of variable rate shading when evaluating this material. This will only apply to the base/translucency pass."
+    ],
+    "bUseMaterialAttributes": [
+      "bool",
+      "when true, the material attributes pin is used instead of the regular pins."
+    ],
+    "bEnableExecWire": [
+      "bool"
+    ],
+    "bEnableNewHLSLGenerator": [
+      "bool"
+    ],
+    "bCastRayTracedShadows": [
+      "bool",
+      "when true, the material casts ray tracing shadows."
+    ],
+    "bUseTranslucencyVertexFog": [
+      "bool",
+      "When true, translucent materials are fogged. Defaults to true."
+    ],
+    "bApplyCloudFogging": [
+      "bool",
+      "When true, translucent materials receive cloud contribution as part of the fog evaluation, per vertex or per pixel according to the other selected options. This is a rough approximation but can help in some cases. Defaults to false. Fog is applied on clouds, so Apply Fogging must be true to use this feature."
+    ],
+    "bIsSky": [
+      "bool",
+      "Unlit and Opaque materials can be used as sky material on a sky dome mesh. When IsSky is true, these meshes will not receive any contribution from the aerial perspective. Height and Volumetric fog effects will still be applied."
+    ],
+    "bComputeFogPerPixel": [
+      "bool",
+      "When true, translucent materials have fog computed for every pixel, which costs more but fixes artifacts due to low tessellation."
+    ],
+    "bOutputTranslucentVelocity": [
+      "bool",
+      "When true, translucent materials will output motion vectors and write to depth buffer in velocity pass."
+    ],
+    "BlendableOutputAlpha": [
+      "bool",
+      "If this is enabled, the blendable will output alpha"
+    ],
+    "bUsedWithNeuralNetworks": [
+      "bool",
+      "Indicates that the material and its instances can be used with neural network engine.\nThis will result in the shaders required to support neural network engine being compiled which will increase shader compile time and memory usage.\nIn addition, an additional pass will run before the postprocess pass for neural network engine, which will increase the rendering cost due to\nbuffer copy and inference."
+    ],
+    "bEnableStencilTest": [
+      "bool",
+      "Selectively execute post process material only for pixels that pass the stencil test against the Custom Depth/Stencil buffer.\nPixels that fail the stencil test are filled with the previous post process material output or scene color."
+    ],
+    "bIsBlendable": [
+      "bool",
+      "Allows blendability to be turned off, only used if domain is PostProcess"
+    ]
+  },
+  "methods": []
+}

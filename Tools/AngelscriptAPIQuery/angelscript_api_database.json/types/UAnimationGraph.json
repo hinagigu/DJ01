@@ -1,0 +1,35 @@
+{
+  "name": "UAnimationGraph",
+  "inherits": "UEdGraph",
+  "properties": {
+    "BlendOptions": [
+      "FAnimGraphBlendOptions",
+      2,
+      "Blending options for animation graphs in Linked Animation Blueprints."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetGraphNodesOfClass",
+      "return": "void",
+      "doc": "Returns contained graph nodes of the specified (or child) class",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeClass",
+          "type": "TSubclassOf<UAnimGraphNode_Base>"
+        },
+        {
+          "name": "GraphNodes",
+          "type": "TArray<UAnimGraphNode_Base>&"
+        },
+        {
+          "name": "bIncludeChildClasses",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

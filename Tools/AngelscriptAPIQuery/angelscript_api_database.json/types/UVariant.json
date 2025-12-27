@@ -1,0 +1,173 @@
+{
+  "name": "UVariant",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetActor",
+      "return": "AActor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetDependency",
+      "return": "FVariantDependency&",
+      "doc": "Get the dependency at index 'Index' by value. Will crash if index is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetDependents",
+      "return": "TArray<UVariant>",
+      "doc": "Returns all the variants that have this variant as a dependency",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelVariantSets",
+          "type": "ULevelVariantSets"
+        },
+        {
+          "name": "bOnlyEnabledDependencies",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetDisplayText",
+      "return": "FText",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumActors",
+      "return": "int",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumDependencies",
+      "return": "int",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetParent",
+      "return": "UVariantSet",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetThumbnail",
+      "return": "UTexture2D",
+      "doc": "Gets the thumbnail currently used for this variant",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsActive",
+      "return": "bool",
+      "doc": "Returns true if none of our properties are dirty",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetDisplayText",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewDisplayText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetThumbnailFromCamera",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CameraTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "FOVDegrees",
+          "default": "50.000000",
+          "type": "float32"
+        },
+        {
+          "name": "MinZ",
+          "default": "50.000000",
+          "type": "float32"
+        },
+        {
+          "name": "Gamma",
+          "default": "2.200000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetThumbnailFromEditorViewport",
+      "return": "void",
+      "doc": "Sets the thumbnail from the active editor viewport. Doesn't do anything if the Editor is not available",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetThumbnailFromFile",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FilePath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetThumbnailFromTexture",
+      "return": "void",
+      "doc": "Sets the thumbnail to use for this variant. Can receive nullptr to clear it",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewThumbnail",
+          "type": "UTexture2D"
+        }
+      ]
+    },
+    {
+      "name": "SwitchOn",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

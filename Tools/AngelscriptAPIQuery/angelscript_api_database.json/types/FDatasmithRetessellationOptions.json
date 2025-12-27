@@ -1,0 +1,38 @@
+{
+  "name": "FDatasmithRetessellationOptions",
+  "isStruct": true,
+  "properties": {
+    "RetessellationRule": [
+      "EDatasmithCADRetessellationRule",
+      "Regenerate deleted surfaces during retesselate or ignore them"
+    ],
+    "ChordTolerance": [
+      "float32",
+      "Maximum distance between any generated triangle and the original surface. Smaller values make more triangles."
+    ],
+    "MaxEdgeLength": [
+      "float32",
+      "Maximum length of any edge in the generated triangles. Smaller values make more triangles."
+    ],
+    "NormalTolerance": [
+      "float32",
+      "Maximum angle between adjacent triangles. Smaller values make more triangles."
+    ],
+    "StitchingTechnique": [
+      "EDatasmithCADStitchingTechnique",
+      "Stitching technique applied on model before tessellation. Sewing could impact number of objects."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDatasmithRetessellationOptions&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDatasmithRetessellationOptions"
+        }
+      ]
+    }
+  ]
+}

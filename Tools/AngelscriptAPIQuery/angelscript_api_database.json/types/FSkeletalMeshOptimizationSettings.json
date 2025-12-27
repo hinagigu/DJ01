@@ -1,0 +1,137 @@
+{
+  "name": "FSkeletalMeshOptimizationSettings",
+  "isStruct": true,
+  "doc": "FSkeletalMeshOptimizationSettings - The settings used to optimize a skeletal mesh LOD.",
+  "properties": {
+    "TerminationCriterion": [
+      "SkeletalMeshTerminationCriterion",
+      2,
+      "The method to use when optimizing the skeletal mesh LOD"
+    ],
+    "NumOfTrianglesPercentage": [
+      "float32",
+      2,
+      "The percentage of triangles to retain as a ratio, e.g. 0.1 indicates 10 percent"
+    ],
+    "NumOfVertPercentage": [
+      "float32",
+      2,
+      "The percentage of vertices to retain as a ratio, e.g. 0.1 indicates 10 percent"
+    ],
+    "MaxNumOfTriangles": [
+      "uint",
+      2,
+      "The maximum number of triangles to retain"
+    ],
+    "MaxNumOfVerts": [
+      "uint",
+      2,
+      "The maximum number of vertices to retain"
+    ],
+    "MaxNumOfTrianglesPercentage": [
+      "uint",
+      2,
+      "The maximum number of triangles to retain when using percentage termination criterion."
+    ],
+    "MaxNumOfVertsPercentage": [
+      "uint",
+      2,
+      "The maximum number of vertices to retain when using percentage termination criterion."
+    ],
+    "MaxDeviationPercentage": [
+      "float32",
+      2,
+      "If ReductionMethod equals MaxDeviation this value is the maximum deviation from the base mesh as a percentage of the bounding sphere.\nIn code, it ranges from [0, 1]. In the editor UI, it ranges from [0, 100]"
+    ],
+    "ReductionMethod": [
+      "SkeletalMeshOptimizationType",
+      2,
+      "The method to use when optimizing the skeletal mesh LOD"
+    ],
+    "SilhouetteImportance": [
+      "SkeletalMeshOptimizationImportance",
+      2,
+      "How important the shape of the geometry is."
+    ],
+    "TextureImportance": [
+      "SkeletalMeshOptimizationImportance",
+      2,
+      "How important texture density is."
+    ],
+    "ShadingImportance": [
+      "SkeletalMeshOptimizationImportance",
+      2,
+      "How important shading quality is."
+    ],
+    "SkinningImportance": [
+      "SkeletalMeshOptimizationImportance",
+      2,
+      "How important skinning quality is."
+    ],
+    "WeldingThreshold": [
+      "float32",
+      2,
+      "The welding threshold distance. Vertices under this distance will be welded."
+    ],
+    "NormalsThreshold": [
+      "float32",
+      2,
+      "If the angle between two triangles are above this value, the normals will not be\n      smooth over the edge between those two triangles. Set in degrees. This is only used when bRecalcNormals is set to true"
+    ],
+    "MaxBonesPerVertex": [
+      "int",
+      2,
+      "Maximum number of bones that can be assigned to each vertex."
+    ],
+    "VolumeImportance": [
+      "float32",
+      2,
+      "Default value of 1 attempts to preserve volume.  Smaller values will loose volume by flattening curved surfaces, and larger values will accentuate curved surfaces."
+    ],
+    "BaseLOD": [
+      "int",
+      2,
+      "Base LOD index to generate this LOD. By default, we generate from LOD 0"
+    ],
+    "bRemapMorphTargets": [
+      "bool",
+      "Remap the morph targets from the base LOD onto the reduce LOD."
+    ],
+    "bRecalcNormals": [
+      "bool",
+      "Whether Normal smoothing groups should be preserved. If true then Hard Edge Angle (NormalsThreshold) is used *"
+    ],
+    "bEnforceBoneBoundaries": [
+      "bool",
+      "Penalize edge collapse between vertices that have different major bones.  This will help articulated segments like tongues but can lead to undesirable results under extreme simplification"
+    ],
+    "bMergeCoincidentVertBones": [
+      "bool",
+      "If enabled this option make sure vertices that share the same location (e.g. UV boundaries) have the same bone weights. This can fix cracks when the characters animate."
+    ],
+    "bLockEdges": [
+      "bool",
+      "Preserve cuts in the mesh surface by locking vertices in place.  Increases the quality of the simplified mesh at edges at the cost of more triangles"
+    ],
+    "bLockColorBounaries": [
+      "bool",
+      "Disallow edge collapse when the vertices do not have a common color"
+    ],
+    "bImproveTrianglesForCloth": [
+      "bool",
+      "Better distribution of triangles on 2d meshes, such as flat cloth, but at the cost of potentially worse UVs in those areas.  This generally has little or no effect for mesh regions that aren't laid out on a plane intersecting the origin such as the xy-plane. When this is disabled, the planar regions may simplify to fewer large triangles."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSkeletalMeshOptimizationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSkeletalMeshOptimizationSettings"
+        }
+      ]
+    }
+  ]
+}

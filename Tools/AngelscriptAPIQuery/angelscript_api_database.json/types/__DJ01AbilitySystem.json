@@ -1,0 +1,66 @@
+{
+  "name": "__DJ01AbilitySystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetAbilitySystemComponent",
+      "return": "UAbilitySystemComponent",
+      "doc": "从 Actor 获取 AbilitySystemComponent\n支持直接实现 IAbilitySystemInterface 的 Actor 或通过 PlayerState 持有 ASC 的 Pawn",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetAttributeSetByTag",
+      "return": "const UAttributeSet",
+      "doc": "通过 Tag 从 Actor 获取属性集\n@param Actor - 拥有 ASC 的 Actor（角色、PlayerState 等）\n@param AttributeSetTag - 属性集的标识 Tag（如 AttributeSet.Health）\n@return 对应的属性集实例，如果不存在则返回 nullptr",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "AttributeSetTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "GetAttributeSetByTagFromASC",
+      "return": "const UAttributeSet",
+      "doc": "通过 Tag 从 ASC 获取属性集",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ASC",
+          "type": "UDJ01AbilitySystemComponent"
+        },
+        {
+          "name": "AttributeSetTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "GetDJ01AbilitySystemComponent",
+      "return": "UDJ01AbilitySystemComponent",
+      "doc": "从 Actor 获取 DJ01AbilitySystemComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    }
+  ]
+}

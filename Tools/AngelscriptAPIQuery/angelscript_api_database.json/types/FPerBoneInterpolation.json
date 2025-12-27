@@ -1,0 +1,28 @@
+{
+  "name": "FPerBoneInterpolation",
+  "isStruct": true,
+  "properties": {
+    "BoneReference": [
+      "FBoneReference",
+      2,
+      ""
+    ],
+    "InterpolationSpeedPerSec": [
+      "float32",
+      2,
+      "If greater than zero, this is the speed at which the sample weights are allowed to change for this specific bone.\n\nA speed of 1 means a sample weight can change from zero to one (or one to zero) in one second.\nA speed of 2 means that this would take half a second.\n\nSmaller values mean slower adjustments of the sample weights, and thus more smoothing. However, a\nvalue of zero disables this smoothing entirely.\n\nIf set, the value overrides the overall Sample Weight Speed which will no longer affect this bone."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPerBoneInterpolation&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPerBoneInterpolation"
+        }
+      ]
+    }
+  ]
+}

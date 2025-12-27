@@ -1,0 +1,48 @@
+{
+  "name": "FSimplifyConvexHullsDataflowNode",
+  "isStruct": true,
+  "properties": {
+    "SimplifyMethod": [
+      "EConvexHullSimplifyMethod",
+      2,
+      ""
+    ],
+    "SimplificationAngleThreshold": [
+      "float32",
+      2,
+      "Simplified hull should preserve angles larger than this (in degrees).  Used by the AngleTolerance simplification method."
+    ],
+    "SimplificationDistanceThreshold": [
+      "float32",
+      2,
+      "Simplified hull should stay within this distance of the initial convex hull. Used by the MeshQSlim simplification method."
+    ],
+    "MinTargetTriangleCount": [
+      "int",
+      2,
+      "The minimum number of faces to use for the convex hull. For MeshQSlim simplification, this is a triangle count, which may be further reduced on conversion back to a convex hull."
+    ],
+    "bUseExistingVertices": [
+      "bool",
+      2,
+      "Whether to restrict the simplified hulls to only use vertices from the original hulls."
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSimplifyConvexHullsDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSimplifyConvexHullsDataflowNode"
+        }
+      ]
+    }
+  ]
+}

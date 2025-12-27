@@ -1,0 +1,27 @@
+{
+  "name": "__EGameplayAbilityNetSecurityPolicy",
+  "isEnum": true,
+  "doc": "What protections does this ability have? Should the client be allowed to request changes to the execution of the ability?",
+  "properties": {
+    "ClientOrServer": [
+      "EGameplayAbilityNetSecurityPolicy",
+      "No security requirements. Client or server can trigger execution and termination of this ability freely."
+    ],
+    "ServerOnlyExecution": [
+      "EGameplayAbilityNetSecurityPolicy",
+      "A client requesting execution of this ability will be ignored by the server. Clients can still request that the server cancel or end this ability."
+    ],
+    "ServerOnlyTermination": [
+      "EGameplayAbilityNetSecurityPolicy",
+      "A client requesting cancellation or ending of this ability will be ignored by the server. Clients can still request execution of the ability."
+    ],
+    "ServerOnly": [
+      "EGameplayAbilityNetSecurityPolicy",
+      "Server controls both execution and termination of this ability. A client making any requests will be ignored."
+    ],
+    "EGameplayAbilityNetSecurityPolicy_MAX": [
+      "EGameplayAbilityNetSecurityPolicy"
+    ]
+  },
+  "methods": []
+}

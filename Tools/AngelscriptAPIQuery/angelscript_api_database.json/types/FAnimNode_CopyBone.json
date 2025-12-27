@@ -1,0 +1,76 @@
+{
+  "name": "FAnimNode_CopyBone",
+  "isStruct": true,
+  "doc": "Simple controller to copy a bone's transform to another one.",
+  "properties": {
+    "SourceBone": [
+      "FBoneReference",
+      2,
+      "Source Bone Name to get transform from"
+    ],
+    "TargetBone": [
+      "FBoneReference",
+      2,
+      "Name of bone to control. This is the main bone chain to modify from. *"
+    ],
+    "bCopyTranslation": [
+      "bool",
+      "If Translation should be copied"
+    ],
+    "bCopyRotation": [
+      "bool",
+      "If Rotation should be copied"
+    ],
+    "bCopyScale": [
+      "bool",
+      "If Scale should be copied"
+    ],
+    "ControlSpace": [
+      "EBoneControlSpace",
+      2,
+      "Space to convert transforms into prior to copying components"
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_CopyBone&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_CopyBone"
+        }
+      ]
+    }
+  ]
+}

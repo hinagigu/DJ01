@@ -1,0 +1,27 @@
+{
+  "name": "__ENiagaraExecutionStateSource",
+  "isEnum": true,
+  "doc": "The source from which a script execution state was set. Used to allow scalability etc to change the state but only if the state has not been defined by something with higher precedence.\nIf this changes, all scripts must be recompiled by bumping the NiagaraCustomVersion",
+  "properties": {
+    "Scalability": [
+      "ENiagaraExecutionStateSource",
+      "State set by Scalability logic. Lowest precedence."
+    ],
+    "Internal": [
+      "ENiagaraExecutionStateSource",
+      "Misc internal state. For example becoming inactive after we finish our set loops."
+    ],
+    "Owner": [
+      "ENiagaraExecutionStateSource",
+      "State requested by the owner. Takes precedence over everything but internal completion logic."
+    ],
+    "InternalCompletion": [
+      "ENiagaraExecutionStateSource",
+      "Internal completion logic. Has to take highest precedence for completion to be ensured."
+    ],
+    "ENiagaraExecutionStateSource_MAX": [
+      "ENiagaraExecutionStateSource"
+    ]
+  },
+  "methods": []
+}

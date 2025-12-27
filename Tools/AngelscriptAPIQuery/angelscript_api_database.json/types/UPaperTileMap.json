@@ -1,0 +1,113 @@
+{
+  "name": "UPaperTileMap",
+  "inherits": "UObject",
+  "doc": "A tile map is a 2D grid with a defined width and height (in tiles).  There can be multiple layers, each of which can specify which tile should appear in each cell of the map for that layer.",
+  "properties": {
+    "MapWidth": [
+      "int",
+      "Width of map (in tiles)"
+    ],
+    "MapHeight": [
+      "int",
+      "Height of map (in tiles)"
+    ],
+    "TileWidth": [
+      "int",
+      "Width of one tile (in pixels)"
+    ],
+    "TileHeight": [
+      "int",
+      "Height of one tile (in pixels)"
+    ],
+    "PixelsPerUnrealUnit": [
+      "float32",
+      2,
+      "The scaling factor between pixels and Unreal units (cm) (e.g., 0.64 would make a 64 pixel wide tile take up 100 cm)"
+    ],
+    "SeparationPerTileX": [
+      "float32",
+      2,
+      "The Z-separation incurred as you travel in X (not strictly applied, batched tiles will be put at the same Z level)"
+    ],
+    "SeparationPerTileY": [
+      "float32",
+      2,
+      "The Z-separation incurred as you travel in Y (not strictly applied, batched tiles will be put at the same Z level)"
+    ],
+    "SeparationPerLayer": [
+      "float32",
+      "The Z-separation between each layer of the tile map"
+    ],
+    "Material": [
+      "UMaterialInterface",
+      "The material to use on a tile map instance if not overridden"
+    ],
+    "TileLayers": [
+      "TArray<TObjectPtr<UPaperTileLayer>>",
+      "The list of layers"
+    ],
+    "CollisionThickness": [
+      "float32",
+      "The extrusion thickness of collision geometry when using a 3D collision domain"
+    ],
+    "SpriteCollisionDomain": [
+      "ESpriteCollisionMode",
+      "Collision domain (no collision, 2D, or 3D)"
+    ],
+    "ProjectionMode": [
+      "ETileMapProjectionMode",
+      "Tile map type"
+    ],
+    "HexSideLength": [
+      "int",
+      2,
+      "The vertical height of the sides of the hex cell for a tile.\nNote: This value should already be included as part of the TileHeight, and is purely cosmetic; it only affects how the tile cursor preview is drawn."
+    ],
+    "AssetImportData": [
+      "UAssetImportData",
+      2,
+      "Importing data and options used for this tile map"
+    ],
+    "BackgroundColor": [
+      "FLinearColor",
+      2,
+      "The background color displayed in the tile map editor"
+    ],
+    "TileGridColor": [
+      "FLinearColor",
+      2,
+      "The color of the tile grid"
+    ],
+    "MultiTileGridColor": [
+      "FLinearColor",
+      2,
+      "The color of the multi tile grid"
+    ],
+    "MultiTileGridWidth": [
+      "int",
+      2,
+      "Number of tiles the multi tile grid spans horizontally. 0 removes vertical lines"
+    ],
+    "MultiTileGridHeight": [
+      "int",
+      2,
+      "Number of tiles the multi tile grid spans vertically. 0 removes horizontal lines"
+    ],
+    "MultiTileGridOffsetX": [
+      "int",
+      2,
+      "Number of tiles the multi tile grid is shifted to the right"
+    ],
+    "MultiTileGridOffsetY": [
+      "int",
+      2,
+      "Number of tiles the multi tile grid is shifted downwards"
+    ],
+    "LayerGridColor": [
+      "FLinearColor",
+      2,
+      "The color of the layer grid"
+    ]
+  },
+  "methods": []
+}

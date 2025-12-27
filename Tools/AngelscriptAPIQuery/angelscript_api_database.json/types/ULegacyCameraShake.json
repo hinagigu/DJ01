@@ -1,0 +1,142 @@
+{
+  "name": "ULegacyCameraShake",
+  "inherits": "UCameraShakeBase",
+  "doc": "Legacy camera shake which can do either oscillation or run camera anims.",
+  "properties": {
+    "OscillationDuration": [
+      "float32",
+      2,
+      "Duration in seconds of current screen shake. Less than 0 means indefinite, 0 means no oscillation."
+    ],
+    "OscillationBlendInTime": [
+      "float32",
+      2,
+      "Duration of the blend-in, where the oscillation scales from 0 to 1."
+    ],
+    "OscillationBlendOutTime": [
+      "float32",
+      2,
+      "Duration of the blend-out, where the oscillation scales from 1 to 0."
+    ],
+    "RotOscillation": [
+      "FROscillator",
+      "Rotational oscillation"
+    ],
+    "LocOscillation": [
+      "FVOscillator",
+      "Positional oscillation"
+    ],
+    "FOVOscillation": [
+      "FFOscillator",
+      "FOV oscillation"
+    ],
+    "AnimPlayRate": [
+      "float32",
+      2,
+      "Scalar defining how fast to play the anim."
+    ],
+    "AnimScale": [
+      "float32",
+      2,
+      "Scalar defining how \"intense\" to play the anim."
+    ],
+    "AnimBlendInTime": [
+      "float32",
+      2,
+      "Linear blend-in time."
+    ],
+    "AnimBlendOutTime": [
+      "float32",
+      2,
+      "Linear blend-out time."
+    ],
+    "RandomAnimSegmentDuration": [
+      "float32",
+      2,
+      "When bRandomAnimSegment is true, this defines how long the anim should play."
+    ],
+    "AnimSequence": [
+      "UCameraAnimationSequence",
+      2,
+      "Source camera animation sequence to play. Can be null."
+    ],
+    "OscillatorTimeRemaining": [
+      "float32",
+      1,
+      "Time remaining for oscillation shakes. Less than 0.f means shake infinitely."
+    ],
+    "bRandomAnimSegment": [
+      "bool",
+      "If true, play a random snippet of the animation of length Duration.  Implies bLoop and bRandomStartTime = true for the AnimSequence.\nIf false, play the full anim once, non-looped. Useful for getting variety out of a single looped AnimSequence asset."
+    ]
+  },
+  "methods": [
+    {
+      "name": "BlueprintUpdateCameraShake",
+      "return": "void",
+      "callable": false,
+      "doc": "Called every tick to let the shake modify the point of view",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTime",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        },
+        {
+          "name": "POV",
+          "type": "FMinimalViewInfo"
+        },
+        {
+          "name": "ModifiedPOV",
+          "type": "FMinimalViewInfo&"
+        }
+      ]
+    },
+    {
+      "name": "IsFinished",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "doc": "Called to allow a shake to decide when it's finished playing.",
+      "event": true,
+      "unrealname": "ReceiveIsFinished",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PlayShake",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when the shake starts playing",
+      "event": true,
+      "unrealname": "ReceivePlayShake",
+      "meta": null,
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "StopShake",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when the shake is explicitly stopped.\n@param bImmediatly           If true, shake stops right away regardless of blend out settings. If false, shake may blend out according to its settings.",
+      "event": true,
+      "unrealname": "ReceiveStopShake",
+      "meta": null,
+      "args": [
+        {
+          "name": "bImmediately",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

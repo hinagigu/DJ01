@@ -1,0 +1,168 @@
+{
+  "name": "UInterchangeShaderGraphNode",
+  "inherits": "UInterchangeShaderNode",
+  "doc": "A shader graph has its own set of inputs on which shader nodes can be connected to.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetCustomBlendMode",
+      "return": "bool",
+      "const": true,
+      "doc": "Set the Blend Mode using EBlendMode to avoid a dependency on the Engine.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomIsAShaderFunction",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomOpacityMaskClipValue",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomScreenSpaceReflections",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomTwoSided",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomTwoSidedTransmission",
+      "return": "bool",
+      "const": true,
+      "doc": "Forces two-sided even for Transmission materials.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomBlendMode",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomIsAShaderFunction",
+      "return": "bool",
+      "doc": "Set whether this shader graph should be considered as a material (false), or a material function (true).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomOpacityMaskClipValue",
+      "return": "bool",
+      "doc": "The shader is transparent if its alpha value is lower than the clip value, or opaque if it is higher.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomScreenSpaceReflections",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomTwoSided",
+      "return": "bool",
+      "doc": "Set if this shader graph should be rendered two-sided or not. Defaults to off.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomTwoSidedTransmission",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

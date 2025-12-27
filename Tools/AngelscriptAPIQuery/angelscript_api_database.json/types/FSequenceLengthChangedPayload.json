@@ -1,0 +1,48 @@
+{
+  "name": "FSequenceLengthChangedPayload",
+  "isStruct": true,
+  "properties": {
+    "PreviousLength": [
+      "float32",
+      1,
+      ""
+    ],
+    "T0": [
+      "float32",
+      1,
+      ""
+    ],
+    "T1": [
+      "float32",
+      1,
+      ""
+    ],
+    "PreviousNumberOfFrames": [
+      "FFrameNumber",
+      1,
+      "Previous playable number of frames for the Model"
+    ],
+    "Frame0": [
+      "FFrameNumber",
+      1,
+      "Frame number at which the change in frames has been made"
+    ],
+    "Frame1": [
+      "FFrameNumber",
+      1,
+      "Amount of frames which is inserted or removed starting at Frame0"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSequenceLengthChangedPayload&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSequenceLengthChangedPayload"
+        }
+      ]
+    }
+  ]
+}

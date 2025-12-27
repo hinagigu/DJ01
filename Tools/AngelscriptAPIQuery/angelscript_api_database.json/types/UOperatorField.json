@@ -1,0 +1,50 @@
+{
+  "name": "UOperatorField",
+  "inherits": "UFieldNodeBase",
+  "doc": "Compute an operation between 2 incoming fields",
+  "properties": {
+    "Magnitude": [
+      "float32",
+      "Magnitude of the operator field"
+    ],
+    "RightField": [
+      "const UFieldNodeBase",
+      "Right field to be processed"
+    ],
+    "LeftField": [
+      "const UFieldNodeBase",
+      "Left field to be processed"
+    ],
+    "Operation": [
+      "EFieldOperationType",
+      "Type of operation you want to perform between the 2 fields"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetOperatorField",
+      "return": "UOperatorField",
+      "doc": "Compute an operation between 2 incoming fields\n@param    Magnitude Magnitude of the operator field\n@param    LeftField Input field A to be processed\n@param    RightField Input field B to be processed\n@param    Operation Type of math operation you want to perform between the 2 fields",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Magnitude",
+          "type": "float32"
+        },
+        {
+          "name": "LeftField",
+          "type": "const UFieldNodeBase"
+        },
+        {
+          "name": "RightField",
+          "type": "const UFieldNodeBase"
+        },
+        {
+          "name": "Operation",
+          "type": "EFieldOperationType"
+        }
+      ]
+    }
+  ]
+}

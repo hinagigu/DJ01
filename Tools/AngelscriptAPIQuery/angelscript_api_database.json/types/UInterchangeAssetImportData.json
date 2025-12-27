@@ -1,0 +1,138 @@
+{
+  "name": "UInterchangeAssetImportData",
+  "inherits": "UAssetImportData",
+  "properties": {
+    "SceneImportAsset": [
+      "FSoftObjectPath",
+      2,
+      "On a level import, set to the UInterchangeSceneImportAsset created during the import."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetNodeContainer",
+      "return": "UInterchangeBaseNodeContainer",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumberOfPipelines",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPipelines",
+      "return": "TArray<UObject>",
+      "const": true,
+      "doc": "Returns Array of non-null pipelines",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStoredFactoryNode",
+      "return": "UInterchangeFactoryBaseNode",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeUniqueId",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetStoredNode",
+      "return": "const UInterchangeBaseNode",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeUniqueId",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetTranslatorSettings",
+      "return": "const UInterchangeTranslatorSettings",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScriptExtractDisplayLabels",
+      "return": "TArray<FString>",
+      "const": true,
+      "doc": "Extract all the filename labels.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScriptExtractFilenames",
+      "return": "TArray<FString>",
+      "const": true,
+      "doc": "Extract all the (resolved) filenames.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScriptGetFirstFilename",
+      "return": "FString",
+      "const": true,
+      "doc": "Return the first filename stored in this data. The resulting filename will be absolute (that is, not relative to the asset).",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetNodeContainer",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeContainer",
+          "type": "UInterchangeBaseNodeContainer"
+        }
+      ]
+    },
+    {
+      "name": "SetPipelines",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPipelines",
+          "type": "TArray<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "SetTranslatorSettings",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TranslatorSettings",
+          "type": "UInterchangeTranslatorSettings"
+        }
+      ]
+    }
+  ]
+}

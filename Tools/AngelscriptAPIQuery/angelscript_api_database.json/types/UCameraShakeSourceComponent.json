@@ -1,0 +1,109 @@
+{
+  "name": "UCameraShakeSourceComponent",
+  "inherits": "USceneComponent",
+  "properties": {
+    "Attenuation": [
+      "ECameraShakeAttenuation",
+      "The attenuation profile for how camera shakes' intensity falls off with distance"
+    ],
+    "InnerAttenuationRadius": [
+      "float32",
+      "Under this distance from the source, the camera shakes are at full intensity"
+    ],
+    "OuterAttenuationRadius": [
+      "float32",
+      "Outside of this distance from the source, the camera shakes don't apply at all"
+    ],
+    "CameraShake": [
+      "TSubclassOf<UCameraShakeBase>",
+      "The camera shake class to use for this camera shake source actor"
+    ],
+    "bAutoStart": [
+      "bool",
+      "Whether to auto start when created"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAttenuationFactor",
+      "return": "float32",
+      "const": true,
+      "doc": "Computes an attenuation factor from this source",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "Start",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StartCameraShake",
+      "return": "void",
+      "doc": "Starts a new camera shake originating from this source, and apply it on all player controllers",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCameraShake",
+          "type": "TSubclassOf<UCameraShakeBase>"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PlaySpace",
+          "default": "ECameraShakePlaySpace :: CameraLocal",
+          "type": "ECameraShakePlaySpace"
+        },
+        {
+          "name": "UserPlaySpaceRot",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "StopAllCameraShakes",
+      "return": "void",
+      "doc": "Stops all currently active camera shakes that are originating from this source from all player controllers",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StopAllCameraShakesOfType",
+      "return": "void",
+      "doc": "Stops a camera shake originating from this source",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCameraShake",
+          "type": "TSubclassOf<UCameraShakeBase>"
+        },
+        {
+          "name": "bImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

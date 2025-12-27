@@ -1,0 +1,39 @@
+{
+  "name": "FInterpCurvePointVector",
+  "isStruct": true,
+  "doc": "Describes one specific point on an interpolation curve.\n@note This is a mirror of TInterpCurvePoint<FVector>, defined in InterpCurvePoint.h",
+  "properties": {
+    "InVal": [
+      "float32",
+      "Float input value that corresponds to this key (eg. time)."
+    ],
+    "OutVal": [
+      "FVector",
+      "3D vector output value of when input is equal to InVal."
+    ],
+    "ArriveTangent": [
+      "FVector",
+      "Tangent of curve arriving at this point."
+    ],
+    "LeaveTangent": [
+      "FVector",
+      "Tangent of curve leaving this point."
+    ],
+    "InterpMode": [
+      "EInterpCurveMode",
+      "Interpolation mode between this point and the next one."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInterpCurvePointVector&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInterpCurvePointVector"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "name": "UAutomationPerformaceHelper",
+  "inherits": "UObject",
+  "doc": "Class for use with functional tests which provides various performance measuring features.\nRecording of basic, unintrusive performance stats.\nAutomatic captures using external CPU and GPU profilers.\nTriggering and ending of writing full stats to a file.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "BeginRecording",
+      "return": "void",
+      "doc": "Begins recording a new named performance stats record. We start by recording the baseline.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RecordName",
+          "type": "FString"
+        },
+        {
+          "name": "InGPUBudget",
+          "type": "float32"
+        },
+        {
+          "name": "InRenderThreadBudget",
+          "type": "float32"
+        },
+        {
+          "name": "InGameThreadBudget",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "BeginRecordingBaseline",
+      "return": "void",
+      "doc": "Begins recording a new named performance stats record. We start by recording the baseline",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RecordName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "BeginStatsFile",
+      "return": "void",
+      "doc": "Begins recording stats to a file.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RecordName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "EndRecording",
+      "return": "void",
+      "doc": "Stops recording performance stats.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EndRecordingBaseline",
+      "return": "void",
+      "doc": "Stops recording the baseline and moves to the main record.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EndStatsFile",
+      "return": "void",
+      "doc": "Ends recording stats to a file.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsCurrentRecordWithinGameThreadBudget",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsCurrentRecordWithinGPUBudget",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsCurrentRecordWithinRenderThreadBudget",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsRecording",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this stats tracker is currently recording performance stats.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnAllTestsComplete",
+      "return": "void",
+      "doc": "Does any final work needed as all tests are complete.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnBeginTests",
+      "return": "void",
+      "doc": "Does any init work across all tests..",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Sample",
+      "return": "void",
+      "doc": "Adds a sample to the stats counters for the current performance stats record.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaSeconds",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "StartCPUProfiling",
+      "return": "void",
+      "doc": "Communicates with external profiler to being a CPU capture.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopCPUProfiling",
+      "return": "void",
+      "doc": "Communicates with external profiler to end a CPU capture.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Tick",
+      "return": "void",
+      "doc": "Begin basic stat recording",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaSeconds",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "TriggerGPUTraceIfRecordFallsBelowBudget",
+      "return": "void",
+      "doc": "Will trigger a GPU trace next time the current test falls below GPU budget.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "WriteLogFile",
+      "return": "void",
+      "doc": "Writes the current set of performance stats records to a csv file in the profiling directory. An additional directory and an extension override can also be used.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CaptureDir",
+          "type": "FString"
+        },
+        {
+          "name": "CaptureExtension",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

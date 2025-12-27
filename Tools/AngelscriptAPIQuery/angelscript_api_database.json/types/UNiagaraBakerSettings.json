@@ -1,0 +1,64 @@
+{
+  "name": "UNiagaraBakerSettings",
+  "inherits": "UObject",
+  "properties": {
+    "StartSeconds": [
+      "float32",
+      2,
+      "This is the start time of the simulation where we begin the capture.\nI.e. 2.0 would mean the simulation warms up by 2 seconds before we begin capturing."
+    ],
+    "DurationSeconds": [
+      "float32",
+      2,
+      "Duration in seconds to take the capture over."
+    ],
+    "FramesPerSecond": [
+      "int",
+      2,
+      "The frame rate to run the simulation at during capturing.\nThis is only used for the preview view and calculating the number of ticks to execute\nas we capture the generated texture."
+    ],
+    "FramesPerDimension": [
+      "FIntPoint",
+      2,
+      "Number of frames in each dimension."
+    ],
+    "Outputs": [
+      "TArray<TObjectPtr<UNiagaraBakerOutput>>",
+      2,
+      "Array of outputs for the baker to generate."
+    ],
+    "CurrentCameraIndex": [
+      "int",
+      2,
+      "Active camera that we were saved with"
+    ],
+    "BakeQualityLevel": [
+      "FName",
+      2,
+      "What quality level to use when baking the simulation, where None means use the current quality level."
+    ],
+    "CameraViewportLocation": [
+      "FVector",
+      2,
+      ""
+    ],
+    "CameraViewportRotation": [
+      "FRotator",
+      2,
+      ""
+    ],
+    "bLockToSimulationFrameRate": [
+      "bool",
+      "Locks the playback to the simulation frame rate, i.e. no multi-tick."
+    ],
+    "bPreviewLooping": [
+      "bool",
+      "Should the preview playback as looping or not."
+    ],
+    "bRenderComponentOnly": [
+      "bool",
+      "Should we render just the component or the whole scene."
+    ]
+  },
+  "methods": []
+}

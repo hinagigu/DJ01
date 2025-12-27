@@ -1,0 +1,46 @@
+{
+  "name": "FRigUnit_ModifyTransforms",
+  "isStruct": true,
+  "doc": "Modify Transforms is used to perform a change in the hierarchy by setting one or more bones' transforms",
+  "properties": {
+    "ItemToModify": [
+      "TArray<FRigUnit_ModifyTransforms_PerItem>",
+      "The items to modify."
+    ],
+    "Weight": [
+      "float32",
+      "At 1 this sets the transform, between 0 and 1 the transform is blended with previous results."
+    ],
+    "WeightMinimum": [
+      "float32",
+      1,
+      "The minimum of the weight - defaults to 0.0"
+    ],
+    "WeightMaximum": [
+      "float32",
+      1,
+      "The maximum of the weight - defaults to 1.0"
+    ],
+    "Mode": [
+      "EControlRigModifyBoneMode",
+      1,
+      "Defines if the bone's transform should be set\nin local or global space, additive or override."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_ModifyTransforms&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_ModifyTransforms"
+        }
+      ]
+    }
+  ]
+}

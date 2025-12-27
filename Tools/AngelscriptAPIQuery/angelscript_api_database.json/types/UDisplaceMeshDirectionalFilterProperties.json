@@ -1,0 +1,23 @@
+{
+  "name": "UDisplaceMeshDirectionalFilterProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Properties for a directional filter. Allows for displacement to be applied only to vertices whose normals point in a given direction",
+  "properties": {
+    "bEnableFilter": [
+      "bool",
+      2,
+      "Whether the directional filter is active."
+    ],
+    "FilterDirection": [
+      "FVector",
+      2,
+      "Unit vector representing the direction to filter along."
+    ],
+    "FilterWidth": [
+      "float32",
+      2,
+      "Scalar value determining how close to the filter direction the vertex normals must be in order to be displaced.\n              0: Only normals pointing exactly in the filter direction are displaced.\n              0.5: Normals forming angle up to 90 from the filter direction are displaced.\n              1.0: All vertices are displaced."
+    ]
+  },
+  "methods": []
+}

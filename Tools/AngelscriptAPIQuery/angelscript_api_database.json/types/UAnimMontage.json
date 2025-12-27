@@ -1,0 +1,190 @@
+{
+  "name": "UAnimMontage",
+  "inherits": "UAnimCompositeBase",
+  "doc": "Any property you're adding to AnimMontage and parent class has to be considered for Child Asset\n\nChild Asset is considered to be only asset mapping feature using everything else in the class\nFor example, you can just use all parent's setting  for the montage, but only remap assets\nThis isn't magic bullet unfortunately and it is consistent effort of keeping the data synced with parent\nIf you add new property, please make sure those property has to be copied for children.\nIf it does, please add the copy in the function RefreshParentAssetData",
+  "properties": {
+    "BlendModeIn": [
+      "EMontageBlendMode"
+    ],
+    "BlendModeOut": [
+      "EMontageBlendMode"
+    ],
+    "BlendIn": [
+      "FAlphaBlend",
+      2,
+      "Blend in option."
+    ],
+    "BlendOut": [
+      "FAlphaBlend",
+      2,
+      "Blend out option. This is only used when it blends out itself. If it's interrupted by other montages, it will use new montage's BlendIn option to blend out."
+    ],
+    "BlendOutTriggerTime": [
+      "float32",
+      2,
+      "Time from Sequence End to trigger blend out.\n<0 means using BlendOutTime, so BlendOut finishes as Montage ends.\n>=0 means using 'SequenceEnd - BlendOutTriggerTime' to trigger blend out."
+    ],
+    "SyncGroup": [
+      "FName",
+      2,
+      "If you're using marker based sync for this montage, make sure to add sync group name. For now we only support one group"
+    ],
+    "SyncSlotIndex": [
+      "int",
+      2,
+      "Index of the slot track used for collecting sync markers"
+    ],
+    "bEnableAutoBlendOut": [
+      "bool",
+      2,
+      "When it hits end, it automatically blends out. If this is false, it won't blend out but keep the last pose until stopped explicitly"
+    ],
+    "BlendProfileIn": [
+      "UBlendProfile",
+      "The blend profile to use."
+    ],
+    "BlendProfileOut": [
+      "UBlendProfile",
+      "The blend profile to use."
+    ],
+    "PreviewBasePose": [
+      "UAnimSequence",
+      2,
+      "Preview Base pose for additive BlendSpace *"
+    ],
+    "TimeStretchCurve": [
+      "FTimeStretchCurve",
+      2,
+      "Time stretch curve will only be used when the montage has a non-default play rate"
+    ],
+    "TimeStretchCurveName": [
+      "FName",
+      2,
+      "Name of optional TimeStretchCurveName to look for in Montage. Time stretch curve will only be used when the montage has a non-default play rate"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetBlendInArgs",
+      "return": "FAlphaBlendArgs",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBlendOutArgs",
+      "return": "FAlphaBlendArgs",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDefaultBlendInTime",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDefaultBlendOutTime",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFirstAnimReference",
+      "return": "UAnimSequenceBase",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGroupName",
+      "return": "FName",
+      "const": true,
+      "doc": "Get the Montage's Group Name. This is the group from the first slot.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumSections",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of sections this montage has",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSectionIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Get SectionIndex from SectionName. Returns INDEX_None if not found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSectionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetSectionName",
+      "return": "FName",
+      "const": true,
+      "doc": "Get SectionName from SectionIndex. Returns NAME_None if not found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "IsDynamicMontage",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsValidAdditiveSlot",
+      "return": "bool",
+      "const": true,
+      "doc": "Check if this slot has a valid additive animation for the specified slot.\nThe slot name should not include the group name.\ni.e. for \"DefaultGroup.DefaultSlot\", the slot name is \"DefaultSlot\".",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotNodeName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsValidSectionName",
+      "return": "bool",
+      "const": true,
+      "doc": "@return true if valid section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSectionName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

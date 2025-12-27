@@ -1,0 +1,119 @@
+{
+  "name": "UInputDeviceSubsystem",
+  "inherits": "UEngineSubsystem",
+  "doc": "The input device subsystem provides an interface to allow users to set Input Device Properties\non any Platform User.",
+  "properties": {
+    "OnInputHardwareDeviceChanged": [
+      "FHardwareInputDeviceChanged",
+      "A delegate that is fired when a platform user changes what Hardware Input device they are using"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ActivateDevicePropertyOfClass",
+      "return": "FInputDevicePropertyHandle",
+      "doc": "Spawn a new instance of the given device property class and activate it.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PropertyClass",
+          "type": "TSubclassOf<UInputDeviceProperty>"
+        },
+        {
+          "name": "Params",
+          "type": "FActivateDevicePropertyParams"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveDeviceProperty",
+      "return": "UInputDeviceProperty",
+      "const": true,
+      "doc": "Returns a pointer to the active input device property with the given handle. Returns null if the property doesn't exist",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FInputDevicePropertyHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetInputDeviceHardwareIdentifier",
+      "return": "FHardwareDeviceIdentifier",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputDevice",
+          "type": "FInputDeviceId"
+        }
+      ]
+    },
+    {
+      "name": "GetMostRecentlyUsedHardwareDevice",
+      "return": "FHardwareDeviceIdentifier",
+      "const": true,
+      "doc": "Gets the most recently used hardware input device for the given platform user",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InUserId",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "IsPropertyActive",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the property associated with the given handle is currently active, and it is not pending removal",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FInputDevicePropertyHandle"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllDeviceProperties",
+      "return": "void",
+      "doc": "Removes all the current Input Device Properties that are active, regardless of the Platform User",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveDevicePropertyByHandle",
+      "return": "void",
+      "doc": "Remove a single device property based on it's handle\n\n@param FInputDevicePropertyHandle             Device property handle to be removed\n\n@return                                                               The number of removed device properties.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HandleToRemove",
+          "type": "FInputDevicePropertyHandle"
+        }
+      ]
+    },
+    {
+      "name": "RemoveDevicePropertyHandles",
+      "return": "void",
+      "doc": "Remove a set of device properties based on their handles.\n\n@param HandlesToRemove        The set of device property handles to remove\n\n@return                                       The number of removed device properties",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HandlesToRemove",
+          "type": "TSet<FInputDevicePropertyHandle>"
+        }
+      ]
+    }
+  ]
+}

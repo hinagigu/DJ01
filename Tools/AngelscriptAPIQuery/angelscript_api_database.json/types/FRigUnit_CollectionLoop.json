@@ -1,0 +1,51 @@
+{
+  "name": "FRigUnit_CollectionLoop",
+  "isStruct": true,
+  "doc": "Given a collection of items, execute iteratively across all items in a given collection",
+  "properties": {
+    "Collection": [
+      "FRigElementKeyCollection"
+    ],
+    "Item": [
+      "FRigElementKey",
+      1,
+      ""
+    ],
+    "Index": [
+      "int",
+      1,
+      ""
+    ],
+    "Count": [
+      "int",
+      1,
+      ""
+    ],
+    "Ratio": [
+      "float32",
+      1,
+      "Ranging from 0.0 (first item) and 1.0 (last item)\nThis is useful to drive a consecutive node with a\ncurve or an ease to distribute a value."
+    ],
+    "Completed": [
+      "FControlRigExecuteContext",
+      1,
+      ""
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_CollectionLoop&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_CollectionLoop"
+        }
+      ]
+    }
+  ]
+}

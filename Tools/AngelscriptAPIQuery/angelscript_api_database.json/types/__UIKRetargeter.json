@@ -1,0 +1,252 @@
+{
+  "name": "__UIKRetargeter",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetChainSettingsFromRetargetAsset",
+      "return": "FTargetChainSettings",
+      "doc": "Returns the chain settings associated with a given target chain in an IK Retargeter Asset using the given profile name (optional)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetAsset",
+          "type": "const UIKRetargeter"
+        },
+        {
+          "name": "TargetChainName",
+          "type": "FName"
+        },
+        {
+          "name": "OptionalProfileName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetChainSettingsFromRetargetProfile",
+      "return": "FTargetChainSettings",
+      "doc": "Returns the chain settings associated with a given target chain in the supplied Retarget Profile.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetProfile",
+          "type": "FRetargetProfile&"
+        },
+        {
+          "name": "TargetChainName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetChainUsingGoalFromRetargetAsset",
+      "return": "FTargetChainSettings",
+      "doc": "Returns the chain settings associated with a given Goal in an IK Retargeter Asset using the given profile name (optional)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetAsset",
+          "type": "const UIKRetargeter"
+        },
+        {
+          "name": "IKGoalName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetGlobalSettingsFromRetargetAsset",
+      "return": "void",
+      "doc": "Returns the global settings in an IK Retargeter Asset using the given profile name (optional)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetAsset",
+          "type": "const UIKRetargeter"
+        },
+        {
+          "name": "OptionalProfileName",
+          "type": "FName"
+        },
+        {
+          "name": "OutSettings",
+          "type": "FRetargetGlobalSettings&"
+        }
+      ]
+    },
+    {
+      "name": "GetGlobalSettingsFromRetargetProfile",
+      "return": "FRetargetGlobalSettings",
+      "doc": "Returns the global settings in the supplied Retarget Profile.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetProfile",
+          "type": "FRetargetProfile&"
+        }
+      ]
+    },
+    {
+      "name": "GetRootSettingsFromRetargetAsset",
+      "return": "void",
+      "doc": "Returns the root settings in an IK Retargeter Asset using the given profile name (optional)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetAsset",
+          "type": "const UIKRetargeter"
+        },
+        {
+          "name": "OptionalProfileName",
+          "type": "FName"
+        },
+        {
+          "name": "OutSettings",
+          "type": "FTargetRootSettings&"
+        }
+      ]
+    },
+    {
+      "name": "GetRootSettingsFromRetargetProfile",
+      "return": "FTargetRootSettings",
+      "doc": "Returns the root settings in the supplied Retarget Profile.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetProfile",
+          "type": "FRetargetProfile&"
+        }
+      ]
+    },
+    {
+      "name": "SetChainFKSettingsInRetargetProfile",
+      "return": "void",
+      "doc": "Set the chain FK settings in a retarget profile (will set bApplyChainSettings to true).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetProfile",
+          "type": "FRetargetProfile&"
+        },
+        {
+          "name": "FKSettings",
+          "type": "FTargetChainFKSettings"
+        },
+        {
+          "name": "TargetChainName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetChainIKSettingsInRetargetProfile",
+      "return": "void",
+      "doc": "Set the chain IK settings in a retarget profile (will set bApplyChainSettings to true).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetProfile",
+          "type": "FRetargetProfile&"
+        },
+        {
+          "name": "IKSettings",
+          "type": "FTargetChainIKSettings"
+        },
+        {
+          "name": "TargetChainName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetChainSettingsInRetargetProfile",
+      "return": "void",
+      "doc": "Set the chain settings in a retarget profile (will set bApplyChainSettings to true).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetProfile",
+          "type": "FRetargetProfile&"
+        },
+        {
+          "name": "ChainSettings",
+          "type": "FTargetChainSettings"
+        },
+        {
+          "name": "TargetChainName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetChainSpeedPlantSettingsInRetargetProfile",
+      "return": "void",
+      "doc": "Set the chain Speed Plant settings in a retarget profile (will set bApplyChainSettings to true).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetProfile",
+          "type": "FRetargetProfile&"
+        },
+        {
+          "name": "SpeedPlantSettings",
+          "type": "FTargetChainSpeedPlantSettings"
+        },
+        {
+          "name": "TargetChainName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetGlobalSettingsInRetargetProfile",
+      "return": "void",
+      "doc": "Set the global settings in a retarget profile (will set bApplyGlobalSettings to true).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetProfile",
+          "type": "FRetargetProfile&"
+        },
+        {
+          "name": "GlobalSettings",
+          "type": "FRetargetGlobalSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetRootSettingsInRetargetProfile",
+      "return": "void",
+      "doc": "Set the root settings in a retarget profile (will set bApplyRootSettings to true).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetargetProfile",
+          "type": "FRetargetProfile&"
+        },
+        {
+          "name": "RootSettings",
+          "type": "FTargetRootSettings"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

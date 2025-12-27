@@ -1,0 +1,96 @@
+{
+  "name": "UImgMediaSource",
+  "inherits": "UBaseMediaSource",
+  "doc": "Media source for EXR image sequences.\n\nImage sequence media sources point to a directory that contains a series of\nimage files in which each image represents a single frame of the sequence.\nBMP, EXR, PNG and JPG images are currently supported. EXR image sequences\nare optimized for performance. The first frame of an image sequence is used\nto determine the image dimensions (all formats) and frame rate (EXR only).\n\nThe image sequence directory may contain sub-directories, which are called\n'proxies'. Proxies can be used to provide alternative media for playback\nduring development and testing of a game. One common scenario is the use\nof low resolution versions of image sequence media on computers that are\ntoo slow or don't have enough storage to play the original high-res media.",
+  "properties": {
+    "FrameRateOverride": [
+      "FFrameRate",
+      "Overrides the default frame rate stored in the image files (0/0 = do not override)."
+    ],
+    "ProxyOverride": [
+      "FString",
+      "Name of the proxy directory to use."
+    ],
+    "bFillGapsInSequence": [
+      "bool",
+      "If true, then any gaps in the sequence will be filled with blank frames."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddTargetObject",
+      "return": "void",
+      "doc": "This object is using our img sequence.\n\n@param InActor Object using our img sequence.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetProxies",
+      "return": "void",
+      "const": true,
+      "doc": "Get the names of available proxy directories.\n\n@param OutProxies Will contain the names of available proxy directories, if any.\n@see GetSequencePath",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutProxies",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetSequencePath",
+      "return": "FString",
+      "const": true,
+      "doc": "Get the path to the image sequence directory to be played. Supported tokens will be expanded.\n\n@return The file path.\n@see SetSequencePath",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveTargetObject",
+      "return": "void",
+      "doc": "This object is no longer using our img sequence.\n\n@param InActor Object no longer using our img sequence.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetSequencePath",
+      "return": "void",
+      "doc": "Set the path to the image sequence directory this source represents.\n\n@param Path The path to an image file in the desired directory.\n@see GetSequencePath",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Path",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetTokenizedSequencePath",
+      "return": "void",
+      "doc": "Set the path to the image sequence directory this source represents.\n\n@param Path The path to the desired image sequence directory. May contain supported tokens.\n@see GetSequencePath",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Path",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

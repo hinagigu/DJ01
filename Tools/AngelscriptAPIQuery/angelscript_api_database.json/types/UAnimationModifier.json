@@ -1,0 +1,40 @@
+{
+  "name": "UAnimationModifier",
+  "inherits": "UObject",
+  "properties": {
+    "bReapplyPostOwnerChange": [
+      "bool",
+      2,
+      "If this is set to true then the animation modifier will call it's reapply function after any change made to the owning asset."
+    ]
+  },
+  "methods": [
+    {
+      "name": "OnApply",
+      "return": "void",
+      "callable": false,
+      "doc": "Executed when the Animation is initialized (native event for debugging / testing purposes)",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        }
+      ]
+    },
+    {
+      "name": "OnRevert",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        }
+      ]
+    }
+  ]
+}

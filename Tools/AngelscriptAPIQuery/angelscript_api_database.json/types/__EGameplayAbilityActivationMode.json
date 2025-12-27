@@ -1,0 +1,31 @@
+{
+  "name": "__EGameplayAbilityActivationMode",
+  "isEnum": true,
+  "doc": "Describes the status of activating this ability, this is updated as prediction is handled",
+  "properties": {
+    "Authority": [
+      "EGameplayAbilityActivationMode",
+      "We are the authority activating this ability"
+    ],
+    "NonAuthority": [
+      "EGameplayAbilityActivationMode",
+      "We are not the authority but aren't predicting yet. This is a mostly invalid state to be in"
+    ],
+    "Predicting": [
+      "EGameplayAbilityActivationMode",
+      "We are predicting the activation of this ability"
+    ],
+    "Confirmed": [
+      "EGameplayAbilityActivationMode",
+      "We are not the authority, but the authority has confirmed this activation"
+    ],
+    "Rejected": [
+      "EGameplayAbilityActivationMode",
+      "We tried to activate it, and server told us we couldn't (even though we thought we could)"
+    ],
+    "EGameplayAbilityActivationMode_MAX": [
+      "EGameplayAbilityActivationMode"
+    ]
+  },
+  "methods": []
+}

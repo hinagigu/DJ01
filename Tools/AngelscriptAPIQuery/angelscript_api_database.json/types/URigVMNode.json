@@ -1,0 +1,554 @@
+{
+  "name": "URigVMNode",
+  "inherits": "UObject",
+  "doc": "The Node represents a single statement within a Graph.\nNodes can represent values such as Variables / Parameters,\nthey can represent Function Invocations or Control Flow\nlogic statements (such as If conditions of For loops).\nAdditionally Nodes are used to represent Comment statements.\nNodes contain Pins to represent parameters for Function\nInvocations or Value access on Variables / Parameters.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CanBeUpgraded",
+      "return": "bool",
+      "const": true,
+      "doc": "returns true if the node can be upgraded",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CanOnlyExistOnce",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this node can only exist once in a graph",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ExecutionIsHaltedAtThisNode",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FindFunctionForNode",
+      "return": "URigVMLibraryNode",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FindPin",
+      "return": "URigVMPin",
+      "const": true,
+      "doc": "Returns a Pin given it's partial pin path below\nthis node (for example: \"Color.R\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetAggregateInputs",
+      "return": "TArray<URigVMPin>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAggregateOutputs",
+      "return": "TArray<URigVMPin>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAllPinsRecursively",
+      "return": "TArray<URigVMPin>",
+      "const": true,
+      "doc": "Returns all of the Pins of this Node (including SubPins).",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDecoratorPins",
+      "return": "TArray<URigVMPin>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEventName",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns the name of the event",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFirstAggregatePin",
+      "return": "URigVMPin",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGraph",
+      "return": "URigVMGraph",
+      "const": true,
+      "doc": "Returns the Graph of this Node",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGraphDepth",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the graph nesting depth of this node",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInjectionInfo",
+      "return": "URigVMInjectionInfo",
+      "const": true,
+      "doc": "Returns the injection info of this Node (or nullptr)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLinkedSourceNodes",
+      "return": "TArray<URigVMNode>",
+      "const": true,
+      "doc": "Returns a list of Nodes connected as sources to\nthis Node as the target.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLinkedTargetNodes",
+      "return": "TArray<URigVMNode>",
+      "const": true,
+      "doc": "Returns a list of Nodes connected as targets to\nthis Node as the source.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLinks",
+      "return": "TArray<URigVMLink>",
+      "const": true,
+      "doc": "Returns all links to any pin on this node",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNextAggregateName",
+      "return": "FName",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLastAggregatePinName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeColor",
+      "return": "FLinearColor",
+      "const": true,
+      "doc": "Returns the color of this node - used for UI.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNodeIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the current index of the Node within the Graph.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNodePath",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the a . separated string containing all of the\nnames used to reach this Node within the Graph.\n(for now this is the same as the Node's name)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeTitle",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the title of this Node - used for UI.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOppositeAggregatePin",
+      "return": "URigVMPin",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOrphanedPins",
+      "return": "TArray<URigVMPin>",
+      "const": true,
+      "doc": "Returns all of the top-level orphaned Pins of this Node.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPins",
+      "return": "TArray<URigVMPin>",
+      "const": true,
+      "doc": "Returns all of the top-level Pins of this Node.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPosition",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Returns the 2d position of this node - used for UI.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPreviousFName",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns the name of the node prior to the renaming",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRootGraph",
+      "return": "URigVMGraph",
+      "const": true,
+      "doc": "Returns the top level / root Graph of this Node",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSecondAggregatePin",
+      "return": "URigVMPin",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSize",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Returns the 2d size of this node - used for UI.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSupportedWorkflows",
+      "return": "TArray<FRigVMUserWorkflow>",
+      "const": true,
+      "doc": "returns all supported workflows of the node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InType",
+          "type": "ERigVMUserWorkflowType"
+        },
+        {
+          "name": "InSubject",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "GetToolTipText",
+      "return": "FText",
+      "const": true,
+      "doc": "Returns the tooltip of this node",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasBreakpoint",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasInputPin",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the node has any input pins",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIncludeIO",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "HasIOPin",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the node has any io pins",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasLazyPin",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the node has any lazily evaluating pins",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bOnlyConsiderPinsWithLinks",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "HasOrphanedPins",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the node has orphaned pins - which leads to a compiler error",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasOutputPin",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the node has any output pins",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIncludeIO",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "HasPinOfDirection",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the node has any pins of the provided direction",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDirection",
+          "type": "ERigVMPinDirection"
+        }
+      ]
+    },
+    {
+      "name": "IsAggregate",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsControlFlowNode",
+      "return": "bool",
+      "const": true,
+      "doc": "return true if this node is a control flow node",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDecoratorPin",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsDefinedAsConstant",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the node is defined as non-varying",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDefinedAsVarying",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the node is defined as non-varying",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsEvent",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this Node is the beginning of a scope",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsInjected",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this is an injected node.\nInjected nodes are managed by pins are are not visible to the user.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsInputAggregate",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLinkedTo",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this Node is linked to another\ngiven node through any of the Nodes' Pins.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMNode"
+        }
+      ]
+    },
+    {
+      "name": "IsLoopNode",
+      "return": "bool",
+      "const": true,
+      "doc": "return true if this node is a loop node",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsMutable",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this Node has side effects or\ninternal state.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPure",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this Node has no side-effects\nand no internal state.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsSelected",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this Node is currently selected.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsVisibleInUI",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this should be visible in the UI",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetExecutionIsHaltedAtThisNode",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetHasBreakpoint",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

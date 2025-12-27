@@ -1,0 +1,59 @@
+{
+  "name": "FAnimNode_BlendListByBool",
+  "isStruct": true,
+  "doc": "This node is effectively a 'branch', picking one of two input poses based on an input Boolean value",
+  "properties": {
+    "bActiveValue": [
+      "bool",
+      2,
+      "Which input should be connected to the output?"
+    ],
+    "BlendPose": [
+      "TArray<FPoseLink>",
+      2,
+      ""
+    ],
+    "BlendTime": [
+      "TArray<float32>",
+      2,
+      ""
+    ],
+    "TransitionType": [
+      "EBlendListTransitionType",
+      2,
+      ""
+    ],
+    "BlendType": [
+      "EAlphaBlendOption",
+      2,
+      ""
+    ],
+    "bResetChildOnActivation": [
+      "bool",
+      2,
+      "This reinitializes the re-activated child if the child's weight was zero."
+    ],
+    "CustomBlendCurve": [
+      "UCurveFloat",
+      2,
+      ""
+    ],
+    "BlendProfile": [
+      "UBlendProfile",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_BlendListByBool&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_BlendListByBool"
+        }
+      ]
+    }
+  ]
+}

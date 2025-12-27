@@ -1,0 +1,70 @@
+{
+  "name": "__UFoliageStatistics",
+  "properties": {},
+  "methods": [
+    {
+      "name": "FoliageOverlappingBoxCount",
+      "return": "int",
+      "doc": "Gets the number of instances overlapping a provided box\n@param StaticMesh Mesh to count\n@param Box Box to overlap",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "const UStaticMesh"
+        },
+        {
+          "name": "Box",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "FoliageOverlappingBoxTransforms",
+      "return": "void",
+      "doc": "Get the transform of every instance overlapping the provided FBox\n    @param StaticMesh Mesh to get instances of\n    @param Box Box to use for overlap\n    @param OutTransforms Array to populate with transforms",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "const UStaticMesh"
+        },
+        {
+          "name": "Box",
+          "type": "FBox"
+        },
+        {
+          "name": "OutTransforms",
+          "type": "TArray<FTransform>&"
+        }
+      ]
+    },
+    {
+      "name": "FoliageOverlappingSphereCount",
+      "return": "int",
+      "doc": "Counts how many foliage instances overlap a given sphere\n\n@param        Mesh                    The static mesh we are interested in counting\n@param        CenterPosition  The center position of the sphere\n@param        Radius                  The radius of the sphere.\n\nreturn number of foliage instances with their mesh set to Mesh that overlap the sphere",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "const UStaticMesh"
+        },
+        {
+          "name": "CenterPosition",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

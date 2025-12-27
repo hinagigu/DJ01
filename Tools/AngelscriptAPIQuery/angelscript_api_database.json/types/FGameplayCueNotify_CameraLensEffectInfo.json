@@ -1,0 +1,51 @@
+{
+  "name": "FGameplayCueNotify_CameraLensEffectInfo",
+  "isStruct": true,
+  "doc": "FGameplayCueNotify_CameraLensEffectInfo\n\n    Properties that specify how to play a camera lens effect.",
+  "properties": {
+    "SpawnConditionOverride": [
+      "FGameplayCueNotify_SpawnCondition",
+      "Condition to check before playing the camera lens effect."
+    ],
+    "PlacementInfoOverride": [
+      "FGameplayCueNotify_PlacementInfo",
+      "Defines how the camera lens effect will be placed."
+    ],
+    "CameraLensEffect": [
+      "TSubclassOf<AActor>",
+      "Camera lens effect to play."
+    ],
+    "WorldInnerRadius": [
+      "float32",
+      "Players inside this radius get the full intensity camera lens effect."
+    ],
+    "WorldOuterRadius": [
+      "float32",
+      "Players outside this radius do not get the camera lens effect applied."
+    ],
+    "bOverrideSpawnCondition": [
+      "bool",
+      "If enabled, use the spawn condition override and not the default one."
+    ],
+    "bOverridePlacementInfo": [
+      "bool",
+      "If enabled, use the placement info override and not the default one."
+    ],
+    "bPlayInWorld": [
+      "bool",
+      "If enabled, the camera lens effect will be played in the world and affect all players."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayCueNotify_CameraLensEffectInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayCueNotify_CameraLensEffectInfo"
+        }
+      ]
+    }
+  ]
+}

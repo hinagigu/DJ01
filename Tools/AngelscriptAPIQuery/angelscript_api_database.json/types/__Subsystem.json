@@ -1,0 +1,92 @@
+{
+  "name": "__Subsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetEngineSubsystem",
+      "return": "UEngineSubsystem",
+      "doc": "Get a Game Instance Subsystem from the Game Instance associated with the provided context",
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "TSubclassOf<UEngineSubsystem>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetGameInstanceSubsystem",
+      "return": "UGameInstanceSubsystem",
+      "doc": "Get a Game Instance Subsystem from the Game Instance associated with the provided context",
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "TSubclassOf<UGameInstanceSubsystem>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetLocalPlayerSubsystem",
+      "return": "ULocalPlayerSubsystem",
+      "doc": "Get a Local Player Subsystem from the Local Player associated with the provided context",
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "TSubclassOf<ULocalPlayerSubsystem>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetLocalPlayerSubsystemFromLocalPlayer",
+      "return": "ULocalPlayerSubsystem",
+      "doc": "Get a Local Player Subsystem from the Local Player associated with the provided context",
+      "meta": null,
+      "args": [
+        {
+          "name": "LocalPlayer",
+          "type": "ULocalPlayer"
+        },
+        {
+          "name": "Class",
+          "type": "TSubclassOf<ULocalPlayerSubsystem>"
+        }
+      ],
+      "outputTypeIndex": 1
+    },
+    {
+      "name": "GetLocalPlayerSubsystemFromPlayerController",
+      "return": "ULocalPlayerSubsystem",
+      "doc": "Get a Local Player Subsystem from the LocalPlayer associated with the provided context\nIf the player controller isn't associated to a LocalPlayer nullptr is returned",
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerController",
+          "type": "APlayerController"
+        },
+        {
+          "name": "Class",
+          "type": "TSubclassOf<ULocalPlayerSubsystem>"
+        }
+      ],
+      "outputTypeIndex": 1
+    },
+    {
+      "name": "GetWorldSubsystem",
+      "return": "UWorldSubsystem",
+      "doc": "Get a World Subsystem from the World associated with the provided context",
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "TSubclassOf<UWorldSubsystem>"
+        }
+      ],
+      "outputTypeIndex": 0
+    }
+  ]
+}

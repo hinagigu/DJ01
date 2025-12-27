@@ -1,0 +1,234 @@
+{
+  "name": "ULevelEditorPlaySettings",
+  "inherits": "UObject",
+  "doc": "Implements the Editor's play settings.",
+  "properties": {
+    "GameGetsMouseControl": [
+      "bool",
+      2,
+      "Give the game mouse control when PIE starts or require a click in the viewport first"
+    ],
+    "UseMouseForTouch": [
+      "bool",
+      2,
+      "While using the game viewport, it sends mouse movement and clicks as touch events, instead of as mouse events."
+    ],
+    "ShowMouseControlLabel": [
+      "bool",
+      2,
+      "Whether to show a label for mouse control gestures in the PIE view."
+    ],
+    "MouseControlLabelPosition": [
+      "ELabelAnchorMode",
+      2,
+      "Location on screen to anchor the mouse control label when in PIE mode."
+    ],
+    "ViewportGetsHMDControl": [
+      "bool",
+      2,
+      "Whether or not HMD orientation should be used when playing in viewport"
+    ],
+    "ShouldMinimizeEditorOnVRPIE": [
+      "bool",
+      2,
+      "Whether or not the editor is minimized on VR PIE"
+    ],
+    "bShouldMinimizeEditorOnNonVRPIE": [
+      "bool",
+      2,
+      "Whether or not the editor is minimized on non-VR PIE"
+    ],
+    "bEmulateStereo": [
+      "bool",
+      2,
+      "Whether we should emulate stereo (helps checking VR rendering issues)."
+    ],
+    "AutoRecompileBlueprints": [
+      "bool",
+      2,
+      "Automatically recompile blueprints used by the current level when initiating a Play In Editor session"
+    ],
+    "EnableGameSound": [
+      "bool",
+      2,
+      "Whether to play sounds when in a Play In Editor session"
+    ],
+    "SoloAudioInFirstPIEClient": [
+      "bool",
+      2,
+      "Whether to automatically solo audio in first PIE client"
+    ],
+    "EnablePIEEnterAndExitSounds": [
+      "bool",
+      2,
+      "Whether to play a sound when entering and exiting PIE"
+    ],
+    "PlayInEditorSoundQualityLevel": [
+      "int",
+      2,
+      "Which quality level to use when playing in editor"
+    ],
+    "bPromoteOutputLogWarningsDuringPIE": [
+      "bool",
+      2,
+      "Should warnings and errors in the Output Log during \"Play in Editor\" be promoted to the message log?"
+    ],
+    "NewWindowWidth": [
+      "int",
+      2,
+      "The width of the new view port window in pixels (0 = use the desktop's screen resolution)."
+    ],
+    "NewWindowHeight": [
+      "int",
+      2,
+      "The height of the new view port window in pixels (0 = use the desktop's screen resolution)."
+    ],
+    "NewWindowPosition": [
+      "FIntPoint",
+      2,
+      "The position of the new view port window on the screen in pixels."
+    ],
+    "AdditionalLaunchParameters": [
+      "FString",
+      2,
+      "Extra parameters to be include as part of the command line for the standalone game."
+    ],
+    "BuildGameBeforeLaunch": [
+      "EPlayOnBuildMode",
+      2,
+      "Whether to build the game before launching on device."
+    ],
+    "LaunchConfiguration": [
+      "EPlayOnLaunchConfiguration",
+      2,
+      "Which build configuration to use when launching on device."
+    ],
+    "PackFilesForLaunch": [
+      "EPlayOnPakFileMode",
+      2,
+      "Whether to content should be stored in pak files when launching on device. */"
+    ],
+    "bAutoCompileBlueprintsOnLaunch": [
+      "bool",
+      2,
+      "Whether to automatically recompile dirty Blueprints before launching"
+    ],
+    "bLaunchSeparateServer": [
+      "bool",
+      2,
+      "This is a rarely used option that will launch a separate server (possibly hidden in-process depending on RunUnderOneProcess)\neven if the net mode does not require a server (such as Standalone). If the net mode requires a server (such as Client) a\nserver will be launched for you (regardless of this setting). This allows you to test offline -> server workflows by connecting\n(\"open 127.0.0.1:<ServerPort>\") from the offline game."
+    ],
+    "PlayNetMode": [
+      "EPlayNetMode",
+      2,
+      "NetMode to use for Play In Editor."
+    ],
+    "RunUnderOneProcess": [
+      "bool",
+      2,
+      "Spawn multiple player windows in a single instance of UE. This will load much faster, but has potential to have more issues."
+    ],
+    "PlayNumberOfClients": [
+      "int",
+      2,
+      "The number of client windows to open. The first one to open will respect the Play In Editor \"Modes\" option (PIE, PINW), additional clients respect the RunUnderOneProcess setting."
+    ],
+    "PrimaryPIEClientIndex": [
+      "int",
+      2,
+      "In multiplayer PIE which client will be the 'primary'. Considered most important and given a larger client window, access to unique hardware like a VirtualReality HMD, etc. Intended to help test issues that affect the second, etc client.  0 is the first client. If the setting is >= than the number of clients the last will be primary. -1 will result in no primary.  Note that this is an index only of PIE instance windows, in netmode 'Play as Client' pie instance zero is a windowless dedicated server, so setting 0 here would make the fist pie window the primary which would be PIEInstance 1, rather than 0 as in other netmodes."
+    ],
+    "ServerPort": [
+      "uint16",
+      2,
+      "What port used by the server for simple networking"
+    ],
+    "ClientWindowWidth": [
+      "int",
+      2,
+      "Width to use when spawning additional windows."
+    ],
+    "RouteGamepadToSecondWindow": [
+      "bool",
+      2,
+      "When running multiple player windows in a single process, this option determines how the game pad input gets routed.\n\nIf unchecked (default) then the 1st game pad is attached to the 1st window, 2nd to the 2nd window, and so on.\n\nIf it is checked, the 1st game pad goes the 2nd window. The 1st window can then be controlled by keyboard/mouse, which is convenient if two people are testing on the same computer."
+    ],
+    "CreateAudioDeviceForEveryPlayer": [
+      "bool",
+      2,
+      "If checked, a separate audio device is created for every player.\n\nIf unchecked, a separate audio device is created for only the first two players and uses the main audio device for more than 2 players.\n\nEnabling this will allow rendering accurate audio from every player's perspective but will use more CPU. Keep this disabled on lower-perf machines."
+    ],
+    "ClientWindowHeight": [
+      "int",
+      2,
+      "Height to use when spawning additional windows."
+    ],
+    "ServerMapNameOverride": [
+      "FString",
+      2,
+      "Override the map launched by the dedicated server (currently only used when in PIE_StandaloneWithServer net mode)"
+    ],
+    "AdditionalServerGameOptions": [
+      "FString",
+      2,
+      "Additional options that will be passed to the server as URL parameters, in the format ?bIsLanMatch=1?listen - any additional command line switches should be passed in the Additional Server Launch Parameters field below."
+    ],
+    "bShowServerDebugDrawingByDefault": [
+      "bool",
+      2,
+      "Controls the default value of the show flag ServerDrawDebug"
+    ],
+    "ServerDebugDrawingColorTintStrength": [
+      "float32",
+      2,
+      "How strongly debug drawing originating from the server will be biased towards the tint color"
+    ],
+    "ServerDebugDrawingColorTint": [
+      "FLinearColor",
+      2,
+      "Debug drawing originating from the server will be biased towards this color"
+    ],
+    "bOneHeadsetEachProcess": [
+      "bool",
+      2,
+      "When True each PIE process is launched with \"-HMDSimulator\" argument.\nThe usefullness of this will vary by XR platform.\nThe PIE instances may get special -HMDSimulator behavior from an XR plugin, they may successfully make connections to the HMD hardware, their attempt to connect to hardware may be rejected by the runtime."
+    ],
+    "AdditionalServerLaunchParameters": [
+      "FString",
+      2,
+      "Additional options that will be passed to the server as arguments, for example -debug. Only works with separate process servers."
+    ],
+    "ServerFixedFPS": [
+      "int",
+      2,
+      "If > 0, Tick dedicated server at a fixed frame rate. Does not impact Listen Server (use ClientFixedFPS setting). This is the target frame rate, e.g, \"20\" for 20fps, which will result in 1/20 second tick steps."
+    ],
+    "ClientFixedFPS": [
+      "TArray<int>",
+      2,
+      "If > 0, Tick clients at a fixed frame rate. Each client instance will map to an element in the list, wrapping around if num clients exceeds size of list. Includes Listen Server. This is the target frame rate, e.g, \"20\" for 20fps, which will result in 1/20 second tick steps."
+    ],
+    "NetworkEmulationSettings": [
+      "FLevelEditorPlayNetworkEmulationSettings",
+      2,
+      "Customizable settings allowing to emulate latency and packetloss for game network transmissions"
+    ],
+    "bPreferToStreamLevelsInPIE": [
+      "bool",
+      "Prefer to stream sub-levels from the disk instead of duplicating editor sub-levels"
+    ],
+    "CenterNewWindow": [
+      "bool",
+      "Whether the new window should be centered on the screen."
+    ],
+    "PIEAlwaysOnTop": [
+      "bool",
+      "Always have the PIE window on top of the parent windows."
+    ],
+    "DisableStandaloneSound": [
+      "bool",
+      "Whether sound should be disabled when playing standalone games."
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,82 @@
+{
+  "name": "FAnimNode_PoseDriver",
+  "isStruct": true,
+  "doc": "RBF based orientation driver",
+  "properties": {
+    "SourcePose": [
+      "FPoseLink",
+      "Bones to use for driving parameters based on their transform"
+    ],
+    "SourceBones": [
+      "TArray<FBoneReference>",
+      2,
+      "Bone to use for driving parameters based on its orientation"
+    ],
+    "EvalSpaceBone": [
+      "FBoneReference",
+      2,
+      "Optional other bone space to use when reading SourceBone transform.\nIf not specified, the local space of SourceBone will be used. (ie relative to parent bone)"
+    ],
+    "bEvalFromRefPose": [
+      "bool",
+      2,
+      "Evaluate SourceBone transform relative from its Reference Pose.\nThis is recommended when using Swing and Twist Angle as Distance Method, since the twist will be computed from RefPose.\n\nIf not specified, the local space of SourceBone will be used. (ie relative to parent bone)\nThis mode won't work in conjunction with EvalSpaceBone;"
+    ],
+    "OnlyDriveBones": [
+      "TArray<FBoneReference>",
+      2,
+      "List of bones that will modified by this node. If no list is provided, all bones bones with a track in the PoseAsset will be modified"
+    ],
+    "PoseTargets": [
+      "TArray<FPoseDriverTarget>",
+      2,
+      "Targets used to compare with current pose and drive morphs/poses"
+    ],
+    "RBFParams": [
+      "FRBFParams",
+      2,
+      "Parameters used by RBF solver"
+    ],
+    "DriveSource": [
+      "EPoseDriverSource",
+      2,
+      "Which part of the transform is read"
+    ],
+    "DriveOutput": [
+      "EPoseDriverOutput",
+      2,
+      "Whether we should drive poses or curves"
+    ],
+    "LODThreshold": [
+      "int",
+      2,
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "PoseAsset": [
+      "UPoseAsset",
+      "The animation sequence asset to evaluate"
+    ],
+    "BlendWeight": [
+      "float32",
+      1,
+      "Last encountered blendweight for this node"
+    ],
+    "InternalTimeAccumulator": [
+      "float32",
+      1,
+      "Accumulated time used to reference the asset in this node"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_PoseDriver&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_PoseDriver"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "name": "UGeometryCacheComponent",
+  "inherits": "UMeshComponent",
+  "doc": "GeometryCacheComponent, encapsulates a GeometryCache asset instance and implements functionality for rendering/and playback of GeometryCaches",
+  "properties": {
+    "bRunning": [
+      "bool"
+    ],
+    "bLooping": [
+      "bool"
+    ],
+    "bExtrapolateFrames": [
+      "bool",
+      2,
+      "Enable frame extrapolation for sub-frame sampling of non-constant topologies with imported motion vectors"
+    ],
+    "bManualTick": [
+      "bool",
+      2,
+      ""
+    ],
+    "bOverrideWireframeColor": [
+      "bool",
+      2,
+      "Do we override the wireframe rendering color?"
+    ],
+    "GeometryCache": [
+      "UGeometryCache",
+      "Geometry Cache instance referenced by the component"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAnimationTime",
+      "return": "float32",
+      "const": true,
+      "doc": "Set the current animation time for GeometryCache. Includes the influence of elapsed time and SetStartTimeOffset",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDuration",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the duration of the playback",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMotionVectorScale",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the motion vector scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumberOfFrames",
+      "return": "int",
+      "const": true,
+      "doc": "Get the number of frames",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOverrideWireframeColor",
+      "return": "bool",
+      "const": true,
+      "doc": "Check whether we are overriding the wireframe color or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlaybackDirection",
+      "return": "float32",
+      "const": true,
+      "doc": "Set the current animation time for GeometryCache. Includes the influence of elapsed time and SetStartTimeOffset",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlaybackSpeed",
+      "return": "float32",
+      "const": true,
+      "doc": "Get current playback speed for GeometryCache.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStartTimeOffset",
+      "return": "float32",
+      "const": true,
+      "doc": "Get current start time offset for GeometryCache.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWireframeOverrideColor",
+      "return": "FLinearColor",
+      "const": true,
+      "doc": "Get the wireframe override color, used when overriding the wireframe color is enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsExtrapolatingFrames",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether this GeometryCache is extrapolating frames.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLooping",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether this GeometryCache is looping or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPlaying",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether this GeometryCache is playing or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPlayingReversed",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether this GeometryCache is playing in reverse or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Pause",
+      "return": "void",
+      "doc": "Pause playback of GeometryCache",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Play",
+      "return": "void",
+      "doc": "Start playback of GeometryCache",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PlayFromStart",
+      "return": "void",
+      "doc": "Start playback of GeometryCache from the start",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PlayReversed",
+      "return": "void",
+      "doc": "Start playback of GeometryCache in reverse",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PlayReversedFromEnd",
+      "return": "void",
+      "doc": "Start playback of GeometryCache from the end and play in reverse",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetExtrapolateFrames",
+      "return": "void",
+      "doc": "Set whether this GeometryCache is extrapolating frames.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewExtrapolating",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetGeometryCache",
+      "return": "bool",
+      "doc": "Change the Geometry Cache used by this instance.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewGeomCache",
+          "type": "UGeometryCache"
+        }
+      ]
+    },
+    {
+      "name": "SetLooping",
+      "return": "void",
+      "doc": "Set whether this GeometryCache is looping or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewLooping",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMotionVectorScale",
+      "return": "void",
+      "doc": "Set new motion vector scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMotionVectorScale",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOverrideWireframeColor",
+      "return": "void",
+      "doc": "Override wireframe color?",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bOverride",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackSpeed",
+      "return": "void",
+      "doc": "Set new playback speed for GeometryCache.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlaybackSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetStartTimeOffset",
+      "return": "void",
+      "doc": "Set current start time offset for GeometryCache.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewStartTimeOffset",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetWireframeOverrideColor",
+      "return": "void",
+      "doc": "Set the color, used when overriding the wireframe color is enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Color",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "Stop",
+      "return": "void",
+      "doc": "Stop playback of GeometryCache",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "TickAtThisTime",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "bInIsRunning",
+          "type": "bool"
+        },
+        {
+          "name": "bInBackwards",
+          "type": "bool"
+        },
+        {
+          "name": "bInIsLooping",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

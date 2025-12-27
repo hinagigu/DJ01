@@ -1,0 +1,39 @@
+{
+  "name": "UParticleModuleTypeDataAnimTrail",
+  "inherits": "UParticleModuleTypeDataBase",
+  "properties": {
+    "TilingDistance": [
+      "float32",
+      2,
+      "The (estimated) covered distance to tile the 2nd UV set at.\nIf 0.0, a second UV set will not be passed in."
+    ],
+    "DistanceTessellationStepSize": [
+      "float32",
+      2,
+      "The distance step size for tessellation.\n# Tessellation Points = TruncToInt((Distance Between Spawned Particles) / DistanceTessellationStepSize)). If 0 then there is no distance tessellation."
+    ],
+    "TangentTessellationStepSize": [
+      "float32",
+      2,
+      "The tangent scalar for tessellation.\nThis is the degree change in the tangent direction [0...180] required to warrant an additional tessellation point. If 0 then there is no tangent tessellation."
+    ],
+    "WidthTessellationStepSize": [
+      "float32",
+      2,
+      "The width step size for tessellation.\nThis is the number of world units change in the width required to warrant an additional tessellation point. If 0 then there is no width tessellation."
+    ],
+    "bDeadTrailsOnDeactivate": [
+      "bool",
+      "If true, when the system is deactivated, mark trails as dead.\nThis means they will still render, but will not have more particles\nadded to them, even if the system re-activates..."
+    ],
+    "bEnablePreviousTangentRecalculation": [
+      "bool",
+      "If true, recalculate the previous tangent when a new particle is spawned"
+    ],
+    "bTangentRecalculationEveryFrame": [
+      "bool",
+      "If true, recalculate tangents every frame to allow velocity/acceleration to be applied"
+    ]
+  },
+  "methods": []
+}

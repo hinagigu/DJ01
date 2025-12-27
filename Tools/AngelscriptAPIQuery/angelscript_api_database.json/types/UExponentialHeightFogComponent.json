@@ -1,0 +1,431 @@
+{
+  "name": "UExponentialHeightFogComponent",
+  "inherits": "USceneComponent",
+  "doc": "Used to create fogging effects such as clouds but with a density that is related to the height of the fog.",
+  "properties": {
+    "FogInscatteringLuminance": [
+      "FLinearColor"
+    ],
+    "SkyAtmosphereAmbientContributionColorScale": [
+      "FLinearColor",
+      "Color used to modulate the SkyAtmosphere component contribution to the non directional component of the fog. Only effective when r.SupportSkyAtmosphereAffectsHeightFog>0"
+    ],
+    "DirectionalInscatteringLuminance": [
+      "FLinearColor",
+      "Controls the color of the directional inscattering, which is used to approximate inscattering from a directional light.\nNote: there must be a directional light with bUsedAsAtmosphereSunLight enabled for DirectionalInscattering to be used."
+    ],
+    "bEnableVolumetricFog": [
+      "bool",
+      "Whether to enable Volumetric fog.  Scalability settings control the resolution of the fog simulation.\nNote that Volumetric fog currently does not support StartDistance, FogMaxOpacity and FogCutoffDistance.\nVolumetric fog also can't match exponential height fog in general as exponential height fog has non-physical behavior."
+    ],
+    "VolumetricFogStartDistance": [
+      "float32",
+      "Distance from the camera that the volumetric fog will start, in world units."
+    ],
+    "VolumetricFogNearFadeInDistance": [
+      "float32",
+      "Distance over which volumetric fog will fade in from the start distance."
+    ],
+    "VolumetricFogStaticLightingScatteringIntensity": [
+      "float32"
+    ],
+    "bOverrideLightColorsWithFogInscatteringColors": [
+      "bool",
+      "Whether to use FogInscatteringColor for the Sky Light volumetric scattering color and DirectionalInscatteringColor for the Directional Light scattering color.\nMake sure your directional light has 'Atmosphere Sun Light' enabled!\nEnabling this allows Volumetric fog to better match Height fog in the distance, but produces non-physical volumetric lighting that may not match surface lighting."
+    ],
+    "FogDensity": [
+      "float32",
+      "Global density factor."
+    ],
+    "FogHeightFalloff": [
+      "float32",
+      "Height density factor, controls how the density increases as height decreases.\nSmaller values make the visible transition larger."
+    ],
+    "SecondFogData": [
+      "FExponentialHeightFogData",
+      "Settings for the second fog. Setting the density of this to 0 means it doesn't have any influence."
+    ],
+    "InscatteringColorCubemap": [
+      "UTextureCube",
+      "Cubemap that can be specified for fog color, which is useful to make distant, heavily fogged scene elements match the sky.\nWhen the cubemap is specified, FogInscatteringColor is ignored and Directional inscattering is disabled."
+    ],
+    "InscatteringColorCubemapAngle": [
+      "float32",
+      "Angle to rotate the InscatteringColorCubemap around the Z axis."
+    ],
+    "InscatteringTextureTint": [
+      "FLinearColor",
+      "Tint color used when InscatteringColorCubemap is specified, for quick edits without having to reimport InscatteringColorCubemap."
+    ],
+    "FullyDirectionalInscatteringColorDistance": [
+      "float32",
+      "Distance at which InscatteringColorCubemap should be used directly for the Inscattering Color."
+    ],
+    "NonDirectionalInscatteringColorDistance": [
+      "float32",
+      "Distance at which only the average color of InscatteringColorCubemap should be used as Inscattering Color."
+    ],
+    "DirectionalInscatteringExponent": [
+      "float32",
+      "Controls the size of the directional inscattering cone, which is used to approximate inscattering from a directional light.\nNote: there must be a directional light with bUsedAsAtmosphereSunLight enabled for DirectionalInscattering to be used."
+    ],
+    "DirectionalInscatteringStartDistance": [
+      "float32",
+      "Controls the start distance from the viewer of the directional inscattering, which is used to approximate inscattering from a directional light.\nNote: there must be a directional light with bUsedAsAtmosphereSunLight enabled for DirectionalInscattering to be used."
+    ],
+    "FogMaxOpacity": [
+      "float32",
+      "Maximum opacity of the fog.\nA value of 1 means the fog can become fully opaque at a distance and replace scene color completely,\nA value of 0 means the fog color will not be factored in at all."
+    ],
+    "StartDistance": [
+      "float32",
+      "Distance from the camera that the fog will start, in world units."
+    ],
+    "FogCutoffDistance": [
+      "float32",
+      "Scene elements past this distance will not have fog applied.  This is useful for excluding skyboxes which already have fog baked in."
+    ],
+    "VolumetricFogScatteringDistribution": [
+      "float32",
+      "Controls the scattering phase function - how much incoming light scatters in various directions.\nA distribution value of 0 scatters equally in all directions, while .9 scatters predominantly in the light direction.\nIn order to have visible volumetric fog light shafts from the side, the distribution will need to be closer to 0."
+    ],
+    "VolumetricFogAlbedo": [
+      "FColor",
+      "The height fog particle reflectiveness used by volumetric fog.\nWater particles in air have an albedo near white, while dust has slightly darker value."
+    ],
+    "VolumetricFogEmissive": [
+      "FLinearColor",
+      "Light emitted by height fog.  This is a density so more light is emitted the further you are looking through the fog.\nIn most cases skylight is a better choice, however right now volumetric fog does not support precomputed lighting,\nSo stationary skylights are unshadowed and static skylights don't affect volumetric fog at all."
+    ],
+    "VolumetricFogExtinctionScale": [
+      "float32",
+      "Scales the height fog particle extinction amount used by volumetric fog.  Values larger than 1 cause fog particles everywhere absorb more light."
+    ],
+    "VolumetricFogDistance": [
+      "float32",
+      "Distance over which volumetric fog should be computed, after the start distance.  Larger values extend the effect into the distance but expose under-sampling artifacts in details."
+    ],
+    "bHoldout": [
+      "bool",
+      "If this is True, this primitive will render black with an alpha of 0, but all secondary effects (shadows, reflections, indirect lighting) remain. This feature required the project setting \"Enable alpha channel support in post processing\"."
+    ],
+    "bRenderInMainPass": [
+      "bool",
+      "If true, this component will be rendered in the main pass (basepass, transparency)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetDirectionalInscatteringColor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetDirectionalInscatteringExponent",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDirectionalInscatteringStartDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFogCutoffDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFogDensity",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFogHeightFalloff",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFogInscatteringColor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetFogMaxOpacity",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFullyDirectionalInscatteringColorDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetHoldout",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewHoldout",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetInscatteringColorCubemap",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "UTextureCube"
+        }
+      ]
+    },
+    {
+      "name": "SetInscatteringColorCubemapAngle",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetInscatteringTextureTint",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetNonDirectionalInscatteringColorDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderInMainPass",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSecondFogData",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FExponentialHeightFogData"
+        }
+      ]
+    },
+    {
+      "name": "SetSecondFogDensity",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSecondFogHeightFalloff",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSecondFogHeightOffset",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetStartDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetVolumetricFog",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetVolumetricFogAlbedo",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "SetVolumetricFogDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetVolumetricFogEmissive",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetVolumetricFogExtinctionScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetVolumetricFogScatteringDistribution",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

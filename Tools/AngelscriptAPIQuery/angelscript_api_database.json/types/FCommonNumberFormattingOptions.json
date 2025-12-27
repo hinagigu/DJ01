@@ -1,0 +1,42 @@
+{
+  "name": "FCommonNumberFormattingOptions",
+  "isStruct": true,
+  "properties": {
+    "RoundingMode": [
+      "ERoundingMode",
+      "The rounding mode to be used when the actual value can not be precisely represented due to restrictions on the number of integral or fractional digits. See values for details."
+    ],
+    "UseGrouping": [
+      "bool",
+      "Should the numerals use group separators. IE: \"1,000,000\""
+    ],
+    "MinimumIntegralDigits": [
+      "int",
+      "How many integral digits should be shown at minimum? May cause digit \"padding\". IE: A minimum of 3 integral digits means 1.0 -> \"001\"."
+    ],
+    "MaximumIntegralDigits": [
+      "int",
+      "How many integral digits should be shown at maximum? May cause rounding. IE: A maximum of 2 integral digits means 100.0 -> \"99\"."
+    ],
+    "MinimumFractionalDigits": [
+      "int",
+      "How many fractional digits should be shown at minimum? May cause digit \"padding\". IE: A minimum of 2 fractional digits means 1.0 -> \"1.00\"."
+    ],
+    "MaximumFractionalDigits": [
+      "int",
+      "How many fractional digits should be shown at maximum? May cause rounding. IE: HalfFromZero rounding and a maximum of 2 fractional digits means 0.009 -> \"0.01\"."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCommonNumberFormattingOptions&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCommonNumberFormattingOptions"
+        }
+      ]
+    }
+  ]
+}

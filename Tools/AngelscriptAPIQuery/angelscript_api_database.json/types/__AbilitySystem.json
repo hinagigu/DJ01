@@ -1,0 +1,1573 @@
+{
+  "name": "__AbilitySystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AbilityTargetDataFromActor",
+      "return": "FGameplayAbilityTargetDataHandle",
+      "doc": "Creates single actor target data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "AbilityTargetDataFromActorArray",
+      "return": "FGameplayAbilityTargetDataHandle",
+      "doc": "Creates actor array target data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorArray",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "OneTargetPerHandle",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AbilityTargetDataFromHitResult",
+      "return": "FGameplayAbilityTargetDataHandle",
+      "doc": "Creates a target data with a single hit result",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HitResult",
+          "type": "FHitResult"
+        }
+      ]
+    },
+    {
+      "name": "AbilityTargetDataFromLocations",
+      "return": "FGameplayAbilityTargetDataHandle",
+      "doc": "Creates a target data with a source and destination location",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceLocation",
+          "type": "FGameplayAbilityTargetingLocationInfo"
+        },
+        {
+          "name": "TargetLocation",
+          "type": "FGameplayAbilityTargetingLocationInfo"
+        }
+      ]
+    },
+    {
+      "name": "AddAssetTag",
+      "return": "FGameplayEffectSpecHandle",
+      "doc": "Adds NewGameplayTag to this instance of the effect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        },
+        {
+          "name": "NewGameplayTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "AddAssetTags",
+      "return": "FGameplayEffectSpecHandle",
+      "doc": "Adds NewGameplayTags to this instance of the effect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        },
+        {
+          "name": "NewGameplayTags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "AddGrantedTag",
+      "return": "FGameplayEffectSpecHandle",
+      "doc": "This instance of the effect will now grant NewGameplayTag to the object that this effect is applied to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        },
+        {
+          "name": "NewGameplayTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "AddGrantedTags",
+      "return": "FGameplayEffectSpecHandle",
+      "doc": "This instance of the effect will now grant NewGameplayTags to the object that this effect is applied to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        },
+        {
+          "name": "NewGameplayTags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "AddLooseGameplayTags",
+      "return": "bool",
+      "doc": "Manually adds a set of tags to a given actor, and optionally replicates them.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "GameplayTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "bShouldReplicate",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AppendTargetDataHandle",
+      "return": "FGameplayAbilityTargetDataHandle",
+      "doc": "Copies targets from HandleToAdd to TargetHandle",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetHandle",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "HandleToAdd",
+          "type": "FGameplayAbilityTargetDataHandle"
+        }
+      ]
+    },
+    {
+      "name": "AssignSetByCallerMagnitude",
+      "return": "FGameplayEffectSpecHandle",
+      "doc": "Sets a raw name Set By Caller magnitude value, the tag version should normally be used",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        },
+        {
+          "name": "DataName",
+          "type": "FName"
+        },
+        {
+          "name": "Magnitude",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AssignTagSetByCallerMagnitude",
+      "return": "FGameplayEffectSpecHandle",
+      "doc": "Sets a gameplay tag Set By Caller magnitude value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        },
+        {
+          "name": "DataTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Magnitude",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "BreakGameplayCueParameters",
+      "return": "void",
+      "doc": "Native break, to avoid having to deal with quantized vector types",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "NormalizedMagnitude",
+          "type": "float32&"
+        },
+        {
+          "name": "RawMagnitude",
+          "type": "float32&"
+        },
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle&"
+        },
+        {
+          "name": "MatchedTagName",
+          "type": "FGameplayTag&"
+        },
+        {
+          "name": "OriginalTag",
+          "type": "FGameplayTag&"
+        },
+        {
+          "name": "AggregatedSourceTags",
+          "type": "FGameplayTagContainer&"
+        },
+        {
+          "name": "AggregatedTargetTags",
+          "type": "FGameplayTagContainer&"
+        },
+        {
+          "name": "Location",
+          "type": "FVector&"
+        },
+        {
+          "name": "Normal",
+          "type": "FVector&"
+        },
+        {
+          "name": "Instigator",
+          "type": "AActor&"
+        },
+        {
+          "name": "EffectCauser",
+          "type": "AActor&"
+        },
+        {
+          "name": "SourceObject",
+          "type": "UObject&"
+        },
+        {
+          "name": "PhysicalMaterial",
+          "type": "UPhysicalMaterial&"
+        },
+        {
+          "name": "GameplayEffectLevel",
+          "type": "int&"
+        },
+        {
+          "name": "AbilityLevel",
+          "type": "int&"
+        },
+        {
+          "name": "TargetAttachComponent",
+          "type": "USceneComponent&"
+        },
+        {
+          "name": "bReplicateLocationWhenUsingMinimalRepProxy",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "CloneSpecHandle",
+      "return": "FGameplayEffectSpecHandle",
+      "doc": "Create a spec handle, cloning another",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewInstigator",
+          "type": "AActor"
+        },
+        {
+          "name": "InEffectCauser",
+          "type": "AActor"
+        },
+        {
+          "name": "GameplayEffectSpecHandle_Clone",
+          "type": "FGameplayEffectSpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "DoesGameplayCueMeetTagRequirements",
+      "return": "bool",
+      "doc": "Returns true if the aggregated source and target tags from the effect spec meets the tag requirements",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "SourceTagReqs",
+          "type": "FGameplayTagRequirements"
+        },
+        {
+          "name": "TargetTagReqs",
+          "type": "FGameplayTagRequirements"
+        }
+      ]
+    },
+    {
+      "name": "DoesTargetDataContainActor",
+      "return": "bool",
+      "doc": "Returns true if the given TargetData has the actor passed in targeted",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "EffectContextAddHitResult",
+      "return": "void",
+      "doc": "Adds a hit result to the effect context",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        },
+        {
+          "name": "HitResult",
+          "type": "FHitResult"
+        },
+        {
+          "name": "bReset",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "EffectContextGetEffectCauser",
+      "return": "AActor",
+      "doc": "Gets the physical actor that caused the effect, possibly a projectile or weapon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "EffectContextGetHitResult",
+      "return": "FHitResult",
+      "doc": "Extracts a hit result from the effect context if it is set",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "EffectContextGetInstigatorActor",
+      "return": "AActor",
+      "doc": "Gets the instigating actor (that holds the ability system component) of the EffectContext",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "EffectContextGetOrigin",
+      "return": "FVector",
+      "doc": "Gets the location the effect originated from",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "EffectContextGetOriginalInstigatorActor",
+      "return": "AActor",
+      "doc": "Gets the original instigator actor that started the chain of events to cause this effect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "EffectContextGetSourceObject",
+      "return": "UObject",
+      "doc": "Gets the source object of the effect.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "EffectContextHasHitResult",
+      "return": "bool",
+      "doc": "Returns true if there is a valid hit result inside the effect context",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "EffectContextIsInstigatorLocallyControlled",
+      "return": "bool",
+      "doc": "Returns true if the ability system component that instigated this is locally controlled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "EffectContextIsValid",
+      "return": "bool",
+      "doc": "Returns true if this context has ever been initialized",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "EffectContextSetOrigin",
+      "return": "void",
+      "doc": "Sets the location the effect originated from",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        },
+        {
+          "name": "Origin",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "EqualEqual_ActiveGameplayEffectHandle",
+      "return": "bool",
+      "doc": "Equality operator for two Active Gameplay Effect Handles",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FActiveGameplayEffectHandle"
+        },
+        {
+          "name": "B",
+          "type": "FActiveGameplayEffectHandle"
+        }
+      ]
+    },
+    {
+      "name": "EqualEqual_GameplayAbilitySpecHandle",
+      "return": "bool",
+      "doc": "Equality operator for two Gameplay Ability Spec Handles",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "B",
+          "type": "FGameplayAbilitySpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "EqualEqual_GameplayAttributeGameplayAttribute",
+      "return": "bool",
+      "doc": "Simple equality operator for gameplay attributes",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeA",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "AttributeB",
+          "type": "FGameplayAttribute"
+        }
+      ]
+    },
+    {
+      "name": "EvaluateAttributeValueWithTags",
+      "return": "float32",
+      "doc": "Returns the value of Attribute from the ability system component AbilitySystem after evaluating it with source and target tags. bSuccess indicates the success or failure of this operation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilitySystem",
+          "type": "UAbilitySystemComponent"
+        },
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "SourceTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "TargetTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "bSuccess",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "EvaluateAttributeValueWithTagsAndBase",
+      "return": "float32",
+      "doc": "Returns the value of Attribute from the ability system component AbilitySystem after evaluating it with source and target tags using the passed in base value instead of the real base value. bSuccess indicates the success or failure of this operation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilitySystem",
+          "type": "UAbilitySystemComponent"
+        },
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "SourceTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "TargetTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "BaseValue",
+          "type": "float32"
+        },
+        {
+          "name": "bSuccess",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "FilterTargetData",
+      "return": "FGameplayAbilityTargetDataHandle",
+      "doc": "Create a new target data handle with filtration performed on the data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetDataHandle",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "ActorFilterClass",
+          "type": "FGameplayTargetDataFilterHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetAbilitySystemComponent",
+      "return": "UAbilitySystemComponent",
+      "doc": "Tries to find an ability system component on the actor, will use AbilitySystemInterface or fall back to a component search",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveGameplayEffectDebugString",
+      "return": "FString",
+      "doc": "Returns a debug string for display",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActiveHandle",
+          "type": "FActiveGameplayEffectHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveGameplayEffectExpectedEndTime",
+      "return": "float32",
+      "doc": "Returns the expected end time (when we think the GE will expire) for a given GameplayEffect (note someone could remove or change it before that happens!)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActiveHandle",
+          "type": "FActiveGameplayEffectHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveGameplayEffectRemainingDuration",
+      "return": "float32",
+      "doc": "Returns the total duration for a given GameplayEffect, basically ExpectedEndTime - Current Time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActiveHandle",
+          "type": "FActiveGameplayEffectHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveGameplayEffectStackCount",
+      "return": "int",
+      "doc": "Returns current stack count of an active Gameplay Effect. Will return 0 if the GameplayEffect is no longer valid.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActiveHandle",
+          "type": "FActiveGameplayEffectHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveGameplayEffectStackLimitCount",
+      "return": "int",
+      "doc": "Returns stack limit count of an active Gameplay Effect. Will return 0 if the GameplayEffect is no longer valid.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActiveHandle",
+          "type": "FActiveGameplayEffectHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveGameplayEffectStartTime",
+      "return": "float32",
+      "doc": "Returns the start time (time which the GE was added) for a given GameplayEffect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActiveHandle",
+          "type": "FActiveGameplayEffectHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveGameplayEffectTotalDuration",
+      "return": "float32",
+      "doc": "Returns the total duration for a given GameplayEffect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActiveHandle",
+          "type": "FActiveGameplayEffectHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetActorByIndex",
+      "return": "AActor",
+      "doc": "Returns actor stored in the Effect Context used by this cue",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetActorCount",
+      "return": "int",
+      "doc": "Returns number of actors stored in the Effect Context used by this cue",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "GetActorsFromTargetData",
+      "return": "TArray<AActor>",
+      "doc": "Returns all actors targeted, for a given index",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetAllActorsFromTargetData",
+      "return": "TArray<AActor>",
+      "doc": "Returns all actors targeted",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetDataCountFromTargetData",
+      "return": "int",
+      "doc": "Returns number of target data objects, not necessarily number of distinct targets",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetDebugStringFromGameplayAttribute",
+      "return": "FString",
+      "doc": "Returns FString representation of a gameplay attribute's set class and name, in the form of AttrSetName.AttrName (or just AttrName if not part of a set).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        }
+      ]
+    },
+    {
+      "name": "GetEffectContext",
+      "return": "FGameplayEffectContextHandle",
+      "doc": "Gets the GameplayEffectSpec's effect context handle",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetFloatAttribute",
+      "return": "float32",
+      "doc": "Returns the value of Attribute from the ability system component belonging to Actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "const AActor"
+        },
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "bSuccessfullyFoundAttribute",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetFloatAttributeBase",
+      "return": "float32",
+      "doc": "Returns the base value of Attribute from the ability system component belonging to Actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "const AActor"
+        },
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "bSuccessfullyFoundAttribute",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetFloatAttributeBaseFromAbilitySystemComponent",
+      "return": "float32",
+      "doc": "Returns the base value of Attribute from the ability system component AbilitySystemComponent.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilitySystemComponent",
+          "type": "const UAbilitySystemComponent"
+        },
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "bSuccessfullyFoundAttribute",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetFloatAttributeFromAbilitySystemComponent",
+      "return": "float32",
+      "doc": "Returns the value of Attribute from the ability system component AbilitySystem.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilitySystem",
+          "type": "const UAbilitySystemComponent"
+        },
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "bSuccessfullyFoundAttribute",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayAbilityFromSpecHandle",
+      "return": "const UGameplayAbility",
+      "doc": "Provides the Gameplay Ability object associated with an Ability Spec Handle\nThis can be either an instanced ability, or in the case of shared abilities, the Class Default Object\n\n@param AbilitySpec The Gameplay Ability Spec you want to get the object from\n@param bIsInstance Set to true if this is an instanced ability instead of a shared CDO\n\n@return Pointer to the Gameplay Ability object",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilitySystem",
+          "type": "UAbilitySystemComponent"
+        },
+        {
+          "name": "AbilitySpecHandle",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "bIsInstance",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayCueDirection",
+      "return": "bool",
+      "doc": "Gets the best normalized effect direction for this gameplay cue. This is useful for effects that require the direction of an enemy attack. Returns true if a valid direction could be calculated.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetActor",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "Direction",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayCueEndLocationAndNormal",
+      "return": "bool",
+      "doc": "Gets the best end location and normal for this gameplay cue. If there is hit result data, it will return this. Otherwise it will return the target actor's location/rotation. If none of this is available, it will return false.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetActor",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "Location",
+          "type": "FVector&"
+        },
+        {
+          "name": "Normal",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayEffectAssetTags",
+      "return": "FGameplayTagContainer",
+      "doc": "Returns all tags that the Gameplay Effect *has* (that denote the GE Asset itself) and *does not* grant to any Actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectClass",
+          "type": "TSubclassOf<UGameplayEffect>"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayEffectFromActiveEffectHandle",
+      "return": "const UGameplayEffect",
+      "doc": "Returns the Gameplay Effect CDO from an active handle.\nThis reference should be considered read only,\nbut you can use it to read additional Gameplay Effect info, such as icon, description, etc.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActiveHandle",
+          "type": "FActiveGameplayEffectHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayEffectGrantedTags",
+      "return": "FGameplayTagContainer",
+      "doc": "Returns all tags that the Gameplay Effect grants to the target Actor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectClass",
+          "type": "TSubclassOf<UGameplayEffect>"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayEffectUIData",
+      "return": "const UGameplayEffectUIData",
+      "doc": "Returns the UI data for a gameplay effect class (if any)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectClass",
+          "type": "TSubclassOf<UGameplayEffect>"
+        },
+        {
+          "name": "DataType",
+          "type": "TSubclassOf<UGameplayEffectUIData>"
+        }
+      ],
+      "outputTypeIndex": 1
+    },
+    {
+      "name": "GetHitResult",
+      "return": "FHitResult",
+      "doc": "Returns a hit result stored in the effect context if valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "GetHitResultFromTargetData",
+      "return": "FHitResult",
+      "doc": "Returns the hit result for a given index if it exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HitResult",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetInstigatorActor",
+      "return": "AActor",
+      "doc": "Gets the instigating actor (that holds the ability system component) of the GameplayCue",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "GetInstigatorTransform",
+      "return": "FTransform",
+      "doc": "Gets instigating world location",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "GetModifiedAttributeMagnitude",
+      "return": "float32",
+      "doc": "Gets the magnitude of change for an attribute on an APPLIED GameplayEffectSpec.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        },
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        }
+      ]
+    },
+    {
+      "name": "GetOrigin",
+      "return": "FVector",
+      "doc": "Gets instigating world location",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "GetTargetDataEndPoint",
+      "return": "FVector",
+      "doc": "Returns the end point for a given index if it exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetTargetDataEndPointTransform",
+      "return": "FTransform",
+      "doc": "Returns the end point transform for a given index if it exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetTargetDataOrigin",
+      "return": "FTransform",
+      "doc": "Returns the origin for a given index if it exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "HasHitResult",
+      "return": "bool",
+      "doc": "Checks if the effect context has a hit reslt stored inside",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "IsInstigatorLocallyControlled",
+      "return": "bool",
+      "doc": "Returns true if the ability system component that spawned this cue is locally controlled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "IsInstigatorLocallyControlledPlayer",
+      "return": "bool",
+      "doc": "Returns true if the ability system component that spawned this cue is locally controlled and a player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "doc": "Returns true if the attribute actually exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        }
+      ]
+    },
+    {
+      "name": "MakeFilterHandle",
+      "return": "FGameplayTargetDataFilterHandle",
+      "doc": "Create a handle for filtering target data, filling out all fields",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Filter",
+          "type": "FGameplayTargetDataFilter"
+        },
+        {
+          "name": "FilterActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "MakeGameplayCueParameters",
+      "return": "FGameplayCueParameters",
+      "doc": "Native make, to avoid having to deal with quantized vector types",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NormalizedMagnitude",
+          "type": "float32"
+        },
+        {
+          "name": "RawMagnitude",
+          "type": "float32"
+        },
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        },
+        {
+          "name": "MatchedTagName",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "OriginalTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "AggregatedSourceTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "AggregatedTargetTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Normal",
+          "type": "FVector"
+        },
+        {
+          "name": "Instigator",
+          "type": "AActor"
+        },
+        {
+          "name": "EffectCauser",
+          "type": "AActor"
+        },
+        {
+          "name": "SourceObject",
+          "type": "UObject"
+        },
+        {
+          "name": "PhysicalMaterial",
+          "type": "UPhysicalMaterial"
+        },
+        {
+          "name": "GameplayEffectLevel",
+          "type": "int"
+        },
+        {
+          "name": "AbilityLevel",
+          "type": "int"
+        },
+        {
+          "name": "TargetAttachComponent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "bReplicateLocationWhenUsingMinimalRepProxy",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MakeSpecHandle",
+      "return": "FGameplayEffectSpecHandle",
+      "doc": "Create a spec handle, filling out all fields",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGameplayEffect",
+          "type": "UGameplayEffect"
+        },
+        {
+          "name": "InInstigator",
+          "type": "AActor"
+        },
+        {
+          "name": "InEffectCauser",
+          "type": "AActor"
+        },
+        {
+          "name": "InLevel",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "NotEqual_ActiveGameplayEffectHandle",
+      "return": "bool",
+      "doc": "Inequality operator for two Active Gameplay Effect Handles",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FActiveGameplayEffectHandle"
+        },
+        {
+          "name": "B",
+          "type": "FActiveGameplayEffectHandle"
+        }
+      ]
+    },
+    {
+      "name": "NotEqual_GameplayAbilitySpecHandle",
+      "return": "bool",
+      "doc": "Inequality operator for two Gameplay Ability Spec Handles",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "B",
+          "type": "FGameplayAbilitySpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "NotEqual_GameplayAttributeGameplayAttribute",
+      "return": "bool",
+      "doc": "Simple inequality operator for gameplay attributes",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeA",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "AttributeB",
+          "type": "FGameplayAttribute"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLooseGameplayTags",
+      "return": "bool",
+      "doc": "Manually removes a set of tags from a given actor, with optional replication.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "GameplayTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "bShouldReplicate",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SendGameplayEventToActor",
+      "return": "void",
+      "doc": "This function can be used to trigger an ability on the actor in question with useful payload data.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "EventTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Payload",
+          "type": "FGameplayEventData"
+        }
+      ]
+    },
+    {
+      "name": "SetDuration",
+      "return": "FGameplayEffectSpecHandle",
+      "doc": "Manually sets the duration on a specific effect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        },
+        {
+          "name": "Duration",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetStackCount",
+      "return": "FGameplayEffectSpecHandle",
+      "doc": "Sets the GameplayEffectSpec's StackCount to the specified amount (prior to applying)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        },
+        {
+          "name": "StackCount",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetStackCountToMax",
+      "return": "FGameplayEffectSpecHandle",
+      "doc": "Sets the GameplayEffectSpec's StackCount to the max stack count defined in the GameplayEffect definition",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "TargetDataHasActor",
+      "return": "bool",
+      "doc": "Returns true if the given TargetData has at least 1 actor targeted",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "TargetDataHasEndPoint",
+      "return": "bool",
+      "doc": "Returns true if the target data has an end point",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "TargetDataHasHitResult",
+      "return": "bool",
+      "doc": "Returns true if the target data has a hit result",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HitResult",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "TargetDataHasOrigin",
+      "return": "bool",
+      "doc": "Returns true if the target data has an origin",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

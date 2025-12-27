@@ -1,0 +1,158 @@
+{
+  "name": "FAnimNode_Trail",
+  "isStruct": true,
+  "doc": "Trail Controller",
+  "properties": {
+    "TrailBone": [
+      "FBoneReference",
+      2,
+      "Reference to the active bone in the hierarchy to modify."
+    ],
+    "ChainLength": [
+      "int",
+      2,
+      "Number of bones above the active one in the hierarchy to modify. ChainLength should be at least 2."
+    ],
+    "ChainBoneAxis": [
+      "EAxis",
+      2,
+      "Axis of the bones to point along trail."
+    ],
+    "DebugLifeTime": [
+      "float32",
+      2,
+      "Debug Life Time"
+    ],
+    "MaxDeltaTime": [
+      "float32",
+      2,
+      "To avoid hitches causing stretch of trail, you can use MaxDeltaTime to clamp the long delta time. If you want 30 fps to set it to 0.03333f ( = 1/30 )."
+    ],
+    "RelaxationSpeedScale": [
+      "float32"
+    ],
+    "TrailRelaxationSpeed": [
+      "FRuntimeFloatCurve",
+      2,
+      "How quickly we 'relax' the bones to their animated positions. Time 0 will map to top root joint, time 1 will map to the bottom joint."
+    ],
+    "RelaxationSpeedScaleInputProcessor": [
+      "FInputScaleBiasClamp"
+    ],
+    "RotationLimits": [
+      "TArray<FRotationLimit>",
+      2,
+      ""
+    ],
+    "RotationOffsets": [
+      "TArray<FVector>"
+    ],
+    "PlanarLimits": [
+      "TArray<FAnimPhysPlanarLimit>",
+      2,
+      "List of available planar limits for this node"
+    ],
+    "StretchLimit": [
+      "float32",
+      2,
+      "If bLimitStretch is true, this indicates how long a bone can stretch beyond its length in the ref-pose."
+    ],
+    "FakeVelocity": [
+      "FVector",
+      2,
+      "'Fake' velocity applied to bones."
+    ],
+    "BaseJoint": [
+      "FBoneReference",
+      2,
+      "Base Joint to calculate velocity from. If none, it will use Component's World Transform. ."
+    ],
+    "LastBoneRotationAnimAlphaBlend": [
+      "float32",
+      2,
+      "How to set last bone rotation. It copies from previous joint if alpha is 0.f, or 1.f will use animated pose\n       * This alpha dictates the blend between parent joint and animated pose, and how much you'd like to use animated pose for"
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ],
+    "bInvertChainBoneAxis": [
+      "bool",
+      "Invert the direction specified in ChainBoneAxis."
+    ],
+    "bLimitStretch": [
+      "bool",
+      "Limit the amount that a bone can stretch from its ref-pose length."
+    ],
+    "bLimitRotation": [
+      "bool",
+      "Limit the amount that a bone can stretch from its ref-pose length."
+    ],
+    "bUsePlanarLimit": [
+      "bool",
+      "Whether to evaluate planar limits"
+    ],
+    "bActorSpaceFakeVel": [
+      "bool",
+      "Whether 'fake' velocity should be applied in actor or world space."
+    ],
+    "bReorientParentToChild": [
+      "bool",
+      "Fix up rotation to face child for the parent"
+    ],
+    "bEnableDebug": [
+      "bool",
+      "Enable Debug in the PIE. This doesn't work in game"
+    ],
+    "bShowBaseMotion": [
+      "bool",
+      "Show Base Motion"
+    ],
+    "bShowTrailLocation": [
+      "bool",
+      "Show Trail Location *"
+    ],
+    "bShowLimit": [
+      "bool",
+      "Show Planar Limits *"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_Trail&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_Trail"
+        }
+      ]
+    }
+  ]
+}

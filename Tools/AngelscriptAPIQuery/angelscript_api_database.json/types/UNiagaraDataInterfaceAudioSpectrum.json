@@ -1,0 +1,28 @@
+{
+  "name": "UNiagaraDataInterfaceAudioSpectrum",
+  "inherits": "UNiagaraDataInterfaceAudioSubmix",
+  "doc": "Data Interface allowing sampling of recent audio spectrum.",
+  "properties": {
+    "Resolution": [
+      "int",
+      2,
+      "The number of spectrum samples to pass to the GPU"
+    ],
+    "MinimumFrequency": [
+      "float32",
+      2,
+      "The minimum frequency represented in the spectrum."
+    ],
+    "MaximumFrequency": [
+      "float32",
+      2,
+      "The maximum frequency represented in the spectrum."
+    ],
+    "NoiseFloorDb": [
+      "float32",
+      2,
+      "The decibel level considered as silence. This is used to scale the output of the spectrum."
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,70 @@
+{
+  "name": "FSubmixEffectMultibandCompressorSettings",
+  "isStruct": true,
+  "doc": "A submix dynamics processor",
+  "properties": {
+    "DynamicsProcessorType": [
+      "ESubmixEffectDynamicsProcessorType",
+      "Controls how each band will react to audio above its threshold"
+    ],
+    "PeakMode": [
+      "ESubmixEffectDynamicsPeakMode",
+      "Controls how quickly the bands will react to a signal above its threshold"
+    ],
+    "LinkMode": [
+      "ESubmixEffectDynamicsChannelLinkMode",
+      "Whether to compress all channels equally, and how to evaluate the overall level"
+    ],
+    "LookAheadMsec": [
+      "float32",
+      "The amount of time to look ahead of the current audio. Allows for transients to be included in dynamics processing."
+    ],
+    "bAnalogMode": [
+      "bool",
+      "Toggles treating the attack and release envelopes as analog-style vs digital-style. Analog will respond a bit more naturally/slower."
+    ],
+    "bFourPole": [
+      "bool",
+      "Turning off FourPole mode will use cheaper, shallower 2-pole crossovers"
+    ],
+    "bBypass": [
+      "bool",
+      "Whether or not to bypass effect"
+    ],
+    "KeySource": [
+      "ESubmixEffectDynamicsKeySource"
+    ],
+    "ExternalAudioBus": [
+      "UAudioBus",
+      "If set, uses output of provided submix as modulator of input signal for dynamics processor (Uses input signal as default modulator)"
+    ],
+    "ExternalSubmix": [
+      "USoundSubmix",
+      "If set, uses output of provided submix as modulator of input signal for dynamics processor (Uses input signal as default modulator)"
+    ],
+    "KeyGainDb": [
+      "float32",
+      "Gain to apply to key signal if external input is supplied"
+    ],
+    "bKeyAudition": [
+      "bool",
+      "Audition the key modulation signal, bypassing enveloping and processing the input signal."
+    ],
+    "Bands": [
+      "TArray<FDynamicsBandSettings>",
+      "Each band is a full dynamics processor, affecting at a unique frequency range"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSubmixEffectMultibandCompressorSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSubmixEffectMultibandCompressorSettings"
+        }
+      ]
+    }
+  ]
+}

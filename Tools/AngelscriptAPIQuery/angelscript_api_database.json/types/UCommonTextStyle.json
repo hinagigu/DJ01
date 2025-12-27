@@ -1,0 +1,139 @@
+{
+  "name": "UCommonTextStyle",
+  "inherits": "UObject",
+  "doc": "* ---- All properties must be EditDefaultsOnly, BlueprintReadOnly !!! -----\n* We return the CDO to blueprints, so we cannot allow any changes (blueprint doesn't support const variables)",
+  "properties": {
+    "bUsesDropShadow": [
+      "bool",
+      "Whether or not the style uses a drop shadow"
+    ],
+    "Font": [
+      "FSlateFontInfo",
+      "The font to apply at each size"
+    ],
+    "Color": [
+      "FLinearColor",
+      "The color of the text"
+    ],
+    "ShadowOffset": [
+      "FVector2D",
+      "The offset of the drop shadow at each size"
+    ],
+    "ShadowColor": [
+      "FLinearColor",
+      "The drop shadow color"
+    ],
+    "Margin": [
+      "FMargin",
+      "The amount of blank space left around the edges of text area at each size"
+    ],
+    "StrikeBrush": [
+      "FSlateBrush",
+      "The brush used to draw an strike through the text (if any)"
+    ],
+    "LineHeightPercentage": [
+      "float32",
+      "The amount to scale each lines height by at each size"
+    ],
+    "ApplyLineHeightToBottomLine": [
+      "bool",
+      "Whether to leave extra space below the last line due to line height"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetApplyLineHeightToBottomLine",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetColor",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutColor",
+          "type": "FLinearColor&"
+        }
+      ]
+    },
+    {
+      "name": "GetFont",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutFont",
+          "type": "FSlateFontInfo&"
+        }
+      ]
+    },
+    {
+      "name": "GetLineHeightPercentage",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMargin",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutMargin",
+          "type": "FMargin&"
+        }
+      ]
+    },
+    {
+      "name": "GetShadowColor",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutColor",
+          "type": "FLinearColor&"
+        }
+      ]
+    },
+    {
+      "name": "GetShadowOffset",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutShadowOffset",
+          "type": "FVector2D&"
+        }
+      ]
+    },
+    {
+      "name": "GetStrikeBrush",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutStrikeBrush",
+          "type": "FSlateBrush&"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "FPoseSnapshot",
+  "isStruct": true,
+  "doc": "A pose for a skeletal mesh",
+  "properties": {
+    "LocalTransforms": [
+      "TArray<FTransform>",
+      "Array of transforms per-bone"
+    ],
+    "BoneNames": [
+      "TArray<FName>",
+      "Array of bone names (corresponding to LocalTransforms)"
+    ],
+    "SkeletalMeshName": [
+      "FName",
+      "The name of the skeletal mesh that was used to take this snapshot"
+    ],
+    "SnapshotName": [
+      "FName",
+      "The name for this snapshot"
+    ],
+    "bIsValid": [
+      "bool",
+      "Whether the pose is valid"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPoseSnapshot&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPoseSnapshot"
+        }
+      ]
+    }
+  ]
+}

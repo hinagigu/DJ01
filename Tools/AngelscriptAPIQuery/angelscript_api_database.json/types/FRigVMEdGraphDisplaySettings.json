@@ -1,0 +1,68 @@
+{
+  "name": "FRigVMEdGraphDisplaySettings",
+  "isStruct": true,
+  "properties": {
+    "bShowNodeInstructionIndex": [
+      "bool",
+      2,
+      "When enabled shows the first node instruction index\nmatching the execution stack window."
+    ],
+    "bShowNodeRunCounts": [
+      "bool",
+      2,
+      "When enabled shows the node counts both in the graph view as\nwe as in the execution stack window.\nThe number on each node represents how often the node has been run.\nKeep in mind when looking at nodes in a function the count\nrepresents the sum of all counts for each node based on all\nreferences of the function currently running."
+    ],
+    "NodeRunLowerBound": [
+      "int",
+      2,
+      "A lower limit for counts for nodes used for debugging.\nAny node lower than this count won't show the run count."
+    ],
+    "NodeRunLimit": [
+      "int",
+      2,
+      "A upper limit for counts for nodes used for debugging.\nIf a node reaches this count a warning will be issued for the\nnode and displayed both in the execution stack as well as in the\ngraph. Setting this to <= 1 disables the warning.\nNote: The count limit doesn't apply to functions / collapse nodes."
+    ],
+    "MinMicroSeconds": [
+      "float",
+      2,
+      "The duration in microseconds of the fastest instruction / node"
+    ],
+    "MaxMicroSeconds": [
+      "float",
+      2,
+      "The duration in microseconds of the slowest instruction / node"
+    ],
+    "AverageFrames": [
+      "int",
+      2,
+      "If you set this to more than 1 the results will be averaged across multiple frames"
+    ],
+    "bAutoDetermineRange": [
+      "bool",
+      2,
+      ""
+    ],
+    "MinDurationColor": [
+      "FLinearColor",
+      2,
+      "The color of the fastest instruction / node"
+    ],
+    "MaxDurationColor": [
+      "FLinearColor",
+      2,
+      "The color of the slowest instruction / node"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigVMEdGraphDisplaySettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigVMEdGraphDisplaySettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "UTcpMessagingSettings",
+  "inherits": "UObject",
+  "properties": {
+    "EnableTransport": [
+      "bool",
+      2,
+      "Whether the TCP transport channel is enabled"
+    ],
+    "ListenEndpoint": [
+      "FString",
+      2,
+      "The IP endpoint to listen for incoming connections.\n\nThe format is IP_ADDRESS:PORT_NUMBER or blank to disable listening."
+    ],
+    "ConnectToEndpoints": [
+      "TArray<FString>",
+      2,
+      "The IP endpoints to try to establish outgoing connection to.\n\nUse this setting to connect to a remote peer.\nThe format is IP_ADDRESS:PORT_NUMBER."
+    ],
+    "ConnectionRetryDelay": [
+      "int",
+      2,
+      "Delay time between attempts to re-establish outgoing connections that become disconnected or fail to connect\n0 disables reconnection"
+    ],
+    "ConnectionRetryPeriod": [
+      "int",
+      2,
+      "Period time during which attempts to re-establish outgoing connections that become disconnected or fail to connect\n0 means it will be retried only once"
+    ]
+  },
+  "methods": []
+}

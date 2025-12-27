@@ -1,0 +1,113 @@
+{
+  "name": "FAnimNode_TwoBoneIK",
+  "isStruct": true,
+  "doc": "Simple 2 Bone IK Controller.",
+  "properties": {
+    "IKBone": [
+      "FBoneReference",
+      2,
+      "Name of bone to control. This is the main bone chain to modify from. *"
+    ],
+    "StartStretchRatio": [
+      "float",
+      2,
+      "Limits to use if stretching is allowed. This value determines when to start stretch. For example, 0.9 means once it reaches 90% of the whole length of the limb, it will start apply."
+    ],
+    "MaxStretchScale": [
+      "float",
+      2,
+      "Limits to use if stretching is allowed. This value determins what is the max stretch scale. For example, 1.5 means it will stretch until 150 % of the whole length of the limb."
+    ],
+    "EffectorLocation": [
+      "FVector",
+      "Effector Location. Target Location to reach."
+    ],
+    "EffectorTarget": [
+      "FBoneSocketTarget",
+      2,
+      ""
+    ],
+    "JointTargetLocation": [
+      "FVector",
+      "Joint Target Location. Location used to orient Joint bone. *"
+    ],
+    "JointTarget": [
+      "FBoneSocketTarget",
+      2,
+      ""
+    ],
+    "TwistAxis": [
+      "FAxis",
+      2,
+      "Specify which axis it's aligned. Used when removing twist"
+    ],
+    "EffectorLocationSpace": [
+      "EBoneControlSpace",
+      2,
+      "Reference frame of Effector Location."
+    ],
+    "JointTargetLocationSpace": [
+      "EBoneControlSpace",
+      2,
+      "Reference frame of Joint Target Location."
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ],
+    "bAllowStretching": [
+      "bool",
+      "Should stretching be allowed, to be prevent over extension"
+    ],
+    "bTakeRotationFromEffectorSpace": [
+      "bool",
+      "Set end bone to use End Effector rotation"
+    ],
+    "bMaintainEffectorRelRot": [
+      "bool",
+      "Keep local rotation of end bone"
+    ],
+    "bAllowTwist": [
+      "bool",
+      "Whether or not to apply twist on the chain of joints. This clears the twist value along the TwistAxis"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_TwoBoneIK&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_TwoBoneIK"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+{
+  "name": "USequencerSettings",
+  "inherits": "UObject",
+  "doc": "Serializable options for sequencer.",
+  "properties": {
+    "AutoChangeMode": [
+      "EAutoChangeMode",
+      2,
+      "The auto change mode (auto-key, auto-track or none)."
+    ],
+    "AllowEditsMode": [
+      "EAllowEditsMode",
+      2,
+      "Allow edits mode."
+    ],
+    "KeyGroupMode": [
+      "EKeyGroupMode",
+      2,
+      "Key group mode."
+    ],
+    "KeyInterpolation": [
+      "EMovieSceneKeyInterpolation",
+      2,
+      "The interpolation type for newly created keyframes"
+    ],
+    "bAutoSetTrackDefaults": [
+      "bool",
+      2,
+      "When setting keys on properties and transforms automatically update the track default values used when there are no keys."
+    ],
+    "SpawnPosition": [
+      "ESequencerSpawnPosition",
+      2,
+      "The default location of a spawnable when it is first dragged into the viewport from the content browser."
+    ],
+    "bCreateSpawnableCameras": [
+      "bool",
+      2,
+      "Enable or disable creating of spawnable cameras whenever cameras are created."
+    ],
+    "bShowRangeSlider": [
+      "bool",
+      2,
+      "Show the in/out range in the timeline with respect to the start/end range."
+    ],
+    "bIsSnapEnabled": [
+      "bool",
+      2,
+      "Enable or disable snapping in the timeline."
+    ],
+    "bSnapKeyTimesToInterval": [
+      "bool",
+      2,
+      "Enable or disable snapping keys to the time snapping interval."
+    ],
+    "bSnapKeyTimesToKeys": [
+      "bool",
+      2,
+      "Enable or disable snapping keys to other keys."
+    ],
+    "bSnapSectionTimesToInterval": [
+      "bool",
+      2,
+      "Enable or disable snapping sections to the time snapping interval."
+    ],
+    "bSnapSectionTimesToSections": [
+      "bool",
+      2,
+      "Enable or disable snapping sections to other sections."
+    ],
+    "bSnapKeysAndSectionsToPlayRange": [
+      "bool",
+      2,
+      "Enable or disable keeping keys and sections in the playback range."
+    ],
+    "bSnapPlayTimeToKeys": [
+      "bool",
+      2,
+      "Enable or disable snapping the playhead to keys while scrubbing."
+    ],
+    "bSnapPlayTimeToSections": [
+      "bool",
+      2,
+      "Enable or disable snapping the playhead to section bounds while scrubbing."
+    ],
+    "bSnapPlayTimeToMarkers": [
+      "bool",
+      2,
+      "Enable or disable snapping the playhead to markers while scrubbing."
+    ],
+    "bSnapPlayTimeToInterval": [
+      "bool",
+      2,
+      "Enable or disable snapping the playhead to the time snapping interval while scrubbing."
+    ],
+    "bSnapPlayTimeToPressedKey": [
+      "bool",
+      2,
+      "Enable or disable snapping the playhead to the pressed key."
+    ],
+    "bSnapPlayTimeToDraggedKey": [
+      "bool",
+      2,
+      "Enable or disable snapping the playhead to the dragged key."
+    ],
+    "bSnapCurveValueToInterval": [
+      "bool",
+      2,
+      "Enable or disable snapping the curve value to the curve value interval."
+    ],
+    "bShowSelectedNodesOnly": [
+      "bool",
+      2,
+      "Only show selected nodes in the tree view."
+    ],
+    "bRewindOnRecord": [
+      "bool",
+      2,
+      "Defines whether to jump back to the start of the sequence when a recording is started"
+    ],
+    "bLeftMouseDragDoesMarquee": [
+      "bool",
+      2,
+      "Defines whether left mouse drag does marquee select instead of camera orbit"
+    ],
+    "ZoomPosition": [
+      "ESequencerZoomPosition",
+      2,
+      "Whether to zoom in on the current position or the current time in the timeline."
+    ],
+    "bAutoScrollEnabled": [
+      "bool",
+      2,
+      "Enable or disable auto scroll in the timeline when playing."
+    ],
+    "bLinkCurveEditorTimeRange": [
+      "bool",
+      2,
+      "Enable or disable linking the curve editor time range to the sequencer timeline's time range."
+    ],
+    "bSynchronizeCurveEditorSelection": [
+      "bool",
+      2,
+      "When enabled, changing the sequencer tree selection will also select the relevant nodes in the curve editor tree if possible."
+    ],
+    "bIsolateCurveEditorToSelection": [
+      "bool",
+      2,
+      "When enabled, changing the sequencer tree selection will isolate (auto-filter) the selected nodes in the curve editor."
+    ],
+    "bResetPlayheadWhenNavigating": [
+      "bool",
+      2,
+      "Enable or disable resetting the playhead when navigating in and out of subsequences."
+    ],
+    "bKeepCursorInPlayRangeWhileScrubbing": [
+      "bool",
+      2,
+      "Enable or disable keeping the playhead in the current playback range while scrubbing."
+    ],
+    "bKeepPlayRangeInSectionBounds": [
+      "bool",
+      2,
+      "Enable or disable keeping the playback range constrained to the section bounds."
+    ],
+    "ZeroPadFrames": [
+      "uint8",
+      2,
+      "The number of zeros to pad the frame numbers by."
+    ],
+    "JumpFrameIncrement": [
+      "FFrameNumber",
+      2,
+      "The number of frames to jump by when jumping forward or backwards."
+    ],
+    "bShowLayerBars": [
+      "bool",
+      2,
+      "Enable or disable the layer bars to edit keyframes in bulk."
+    ],
+    "bShowKeyBars": [
+      "bool",
+      2,
+      "Enable or disable key bar connections."
+    ],
+    "bInfiniteKeyAreas": [
+      "bool",
+      2,
+      "Enable or disable setting key area sections as infinite by default."
+    ],
+    "bShowChannelColors": [
+      "bool",
+      2,
+      "Enable or disable displaying channel bar colors for the key bars."
+    ],
+    "bShowInfoButton": [
+      "bool",
+      2,
+      "Enable or disable displaying the info button in the playback controls."
+    ],
+    "bShowTickLines": [
+      "bool",
+      2,
+      "Enable or disable displaying the tick lines."
+    ],
+    "bShowSequencerToolbar": [
+      "bool",
+      2,
+      "Enable or disable displaying the sequencer toolbar."
+    ],
+    "KeyAreaCurveExtents": [
+      "FString",
+      2,
+      "The key area curve extents, stored per channel name"
+    ],
+    "KeyAreaHeightWithCurves": [
+      "float32",
+      2,
+      "The key area height when showing curves"
+    ],
+    "ReduceKeysTolerance": [
+      "float32",
+      2,
+      "The tolerance to use when reducing keys"
+    ],
+    "bDeleteKeysWhenTrimming": [
+      "bool",
+      2,
+      "Enable or disable deleting keys that fall beyond the section range when trimming."
+    ],
+    "bDisableSectionsAfterBaking": [
+      "bool",
+      2,
+      "Whether to disable sections after baking as opposed to deleting."
+    ],
+    "SectionColorTints": [
+      "TArray<FColor>",
+      2,
+      "Section color tints"
+    ],
+    "bCleanPlaybackMode": [
+      "bool",
+      2,
+      "When enabled, sequencer will playback in clean mode (game view, hide viewport UI)"
+    ],
+    "bActivateRealtimeViewports": [
+      "bool",
+      2,
+      "When enabled, sequencer will activate 'Realtime' in viewports"
+    ],
+    "bEvaluateSubSequencesInIsolation": [
+      "bool",
+      2,
+      "When enabled, entering a sub sequence will evaluate that sub sequence in isolation, rather than from the root sequence"
+    ],
+    "bRerunConstructionScripts": [
+      "bool",
+      2,
+      "When enabled, construction scripts will be rerun on bound actors for every frame"
+    ],
+    "bShowDebugVisualization": [
+      "bool",
+      2,
+      "Enable or disable showing of debug visualization."
+    ],
+    "bVisualizePreAndPostRoll": [
+      "bool",
+      2,
+      "Enable or disable showing of pre and post roll visualization."
+    ],
+    "bCompileDirectorOnEvaluate": [
+      "bool",
+      2,
+      "Whether to recompile the director blueprint when the sequence is evaluated (if one exists)"
+    ],
+    "TrajectoryPathCap": [
+      "uint",
+      2,
+      "Specifies the maximum number of keys to draw when rendering trajectories in viewports"
+    ],
+    "FrameNumberDisplayFormat": [
+      "EFrameNumberDisplayFormats",
+      2,
+      "What format do we display time in to the user?"
+    ],
+    "MovieRendererName": [
+      "FString",
+      2,
+      "Which movie renderer to use"
+    ],
+    "bAutoExpandNodesOnSelection": [
+      "bool",
+      2,
+      "Whether to expand the sequencer tree view when a child element is selected (from outside of the tree view)."
+    ],
+    "bRestoreOriginalViewportOnCameraCutUnlock": [
+      "bool",
+      2,
+      "Whether unlocking a camera cut track should return the viewport to its original location, or keep it where the\ncamera cut was.\nWARNING: Disabling this will make previewing camera cut blends useless, since it will blend to the same position."
+    ],
+    "TreeViewWidth": [
+      "float32",
+      2,
+      "The tree view width percentage"
+    ],
+    "ViewDensity": [
+      "FName",
+      2,
+      ""
+    ],
+    "TrackFilters": [
+      "TArray<FString>",
+      2,
+      "The track filters that are enabled"
+    ],
+    "ColumnVisibilitySettings": [
+      "TArray<FColumnVisibilitySetting>",
+      2,
+      "List of all columns and their visibility, in the order to be displayed in the outliner view"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,40 @@
+{
+  "name": "FRigUnit_Control",
+  "isStruct": true,
+  "doc": "A control unit used to drive a transform from an external source",
+  "properties": {
+    "Transform": [
+      "FEulerTransform",
+      "The transform of this control"
+    ],
+    "Base": [
+      "FTransform",
+      "The base that transform is relative to"
+    ],
+    "InitTransform": [
+      "FTransform",
+      "The initial transform that The Transform is initialized to."
+    ],
+    "Result": [
+      "FTransform",
+      1,
+      "The resultant transform of this unit (Base * Filter(Transform))"
+    ],
+    "Filter": [
+      "FTransformFilter",
+      "The filter determines what axes can be manipulated by the in-viewport widgets"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_Control&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_Control"
+        }
+      ]
+    }
+  ]
+}

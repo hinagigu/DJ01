@@ -1,0 +1,4 @@
+# UAnimSequencerInstance
+
+**继承自**: `UAnimInstance`
+

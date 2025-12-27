@@ -1,0 +1,263 @@
+{
+  "name": "USkeletalMeshEditorSubsystem",
+  "inherits": "UEditorSubsystem",
+  "doc": "USkeletalMeshEditorSubsystem\nSubsystem for exposing skeletal mesh functionality to scripts",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetLODMaterialSlot",
+      "return": "int",
+      "doc": "Gets the material slot used for a specific LOD section.\n@param       SkeletalMesh            SkeletalMesh to get the material index from.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@param       SectionIndex            Index of the StaticMesh Section.\n@return  MaterialSlotIndex   Index of the material slot used by the section or INDEX_NONE in case of error.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetNumSections",
+      "return": "int",
+      "doc": "Get number of sections for a LOD of a Skeletal Mesh\n\n@param SkeletalMesh          Mesh to get number of vertices from.\n@param LODIndex                      Index of the mesh LOD.\n@return Number of sections. Returns INDEX_NONE if invalid mesh or LOD index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetNumVerts",
+      "return": "int",
+      "doc": "Get number of mesh vertices for an LOD of a Skeletal Mesh\n\n@param SkeletalMesh          Mesh to get number of vertices from.\n@param LODIndex                      Index of the mesh LOD.\n@return Number of vertices. Returns 0 if invalid mesh or LOD index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetSectionCastShadow",
+      "return": "bool",
+      "doc": "Get bCastShadow from a section of a LOD of a Skeletal Mesh\n\n@param SkeletalMesh                  Mesh to get number of vertices from.\n@param LodIndex                              Index of the mesh LOD.\n@param SectionIndex                  Index of the LOD section.\n@param bOutCastShadow        The function will set the bCastShadow used by the section\n@return false if invalid mesh or LOD index or section index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "const USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "bOutCastShadow",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetSectionRecomputeTangent",
+      "return": "bool",
+      "doc": "Get bRecomputeTangent from a section of a LOD of a Skeletal Mesh\n\n@param SkeletalMesh                  Mesh to get number of vertices from.\n@param LodIndex                              Index of the mesh LOD.\n@param SectionIndex                  Index of the LOD section.\n@param bOutRecomputeTangent  The function will set the bRecomputeTangent used by the section\n@return false if invalid mesh or LOD index or section index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "const USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "bOutRecomputeTangent",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetSectionRecomputeTangentsVertexMaskChannel",
+      "return": "bool",
+      "doc": "Get RecomputeTangentsVertexMaskChannel from a section of a LOD of a Skeletal Mesh\n\n@param SkeletalMesh                  Mesh to get number of vertices from.\n@param LodIndex                              Index of the mesh LOD.\n@param SectionIndex                  Index of the LOD section.\n@param OutRecomputeTangentsVertexMaskChannel The function will set the RecomputeTangentsVertexMaskChannel used by the section\n@return false if invalid mesh or LOD index or section index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "const USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutRecomputeTangentsVertexMaskChannel",
+          "type": "uint8&"
+        }
+      ]
+    },
+    {
+      "name": "GetSectionVisibleInRayTracing",
+      "return": "bool",
+      "doc": "Get bVisibleInRayTracing from a section of a LOD of a Skeletal Mesh\n\n@param SkeletalMesh                  Mesh to get number of vertices from.\n@param LodIndex                              Index of the mesh LOD.\n@param SectionIndex                  Index of the LOD section.\n@param bOutVisibleInRayTracing       The function will set the bVisibleInRayTracing used by the section\n@return false if invalid mesh or LOD index or section index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "const USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "bOutVisibleInRayTracing",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "SetSectionCastShadow",
+      "return": "bool",
+      "doc": "Set bCastShadow for a section of a LOD of a Skeletal Mesh.\n\n@param SkeletalMesh                  Mesh to get number of vertices from.\n@param LodIndex                              Index of the mesh LOD.\n@param SectionIndex                  Index of the LOD section.\n@param bCastShadow   The function will set the bCastShadow used by the section\n@return false if invalid mesh or LOD index or section index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "bCastShadow",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSectionRecomputeTangent",
+      "return": "bool",
+      "doc": "Set bRecomputeTangent for a section of a LOD of a Skeletal Mesh.\n\n@param SkeletalMesh                  Mesh to get number of vertices from.\n@param LodIndex                              Index of the mesh LOD.\n@param SectionIndex                  Index of the LOD section.\n@param bRecomputeTangent     The function will set the bRecomputeTangent used by the section\n@return false if invalid mesh or LOD index or section index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "bRecomputeTangent",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSectionRecomputeTangentsVertexMaskChannel",
+      "return": "bool",
+      "doc": "Set RecomputeTangentsVertexMaskChannel for a section of a LOD of a Skeletal Mesh.\n\n@param SkeletalMesh                  Mesh to get number of vertices from.\n@param LodIndex                              Index of the mesh LOD.\n@param SectionIndex                  Index of the LOD section.\n@param RecomputeTangentsVertexMaskChannel    The function will set the RecomputeTangentsVertexMaskChannel used by the section\n@return false if invalid mesh or LOD index or section index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "RecomputeTangentsVertexMaskChannel",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "SetSectionVisibleInRayTracing",
+      "return": "bool",
+      "doc": "Set bVisibleInRayTracing for a section of a LOD of a Skeletal Mesh.\n\n@param SkeletalMesh                  Mesh to get number of vertices from.\n@param LodIndex                              Index of the mesh LOD.\n@param SectionIndex                  Index of the LOD section.\n@param bVisibleInRayTracing  The function will set the bVisibleInRayTracing used by the section\n@return false if invalid mesh or LOD index or section index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "bVisibleInRayTracing",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

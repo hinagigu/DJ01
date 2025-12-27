@@ -1,0 +1,445 @@
+{
+  "name": "__FText",
+  "properties": {},
+  "methods": [
+    {
+      "name": "FromStringTable",
+      "return": "FText",
+      "args": [
+        {
+          "name": "InTableId",
+          "type": "FName"
+        },
+        {
+          "name": "InKey",
+          "type": "FString"
+        },
+        {
+          "name": "InLoadingPolicy",
+          "default": "EStringTableLoadingPolicy :: FindOrLoad",
+          "type": "EStringTableLoadingPolicy"
+        }
+      ]
+    },
+    {
+      "name": "FromName",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FromString",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AsCultureInvariant",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Join",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Delimiter",
+          "type": "FText"
+        },
+        {
+          "name": "Args",
+          "type": "TArray<FFormatArgumentValue>"
+        }
+      ]
+    },
+    {
+      "name": "Join",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Delimiter",
+          "type": "FText"
+        },
+        {
+          "name": "Args",
+          "type": "TArray<FText>"
+        }
+      ]
+    },
+    {
+      "name": "AsDate",
+      "return": "FText",
+      "args": [
+        {
+          "name": "DateTime",
+          "type": "FDateTime"
+        },
+        {
+          "name": "DateStyle",
+          "default": "EDateTimeStyle :: Default",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "AsDateTime",
+      "return": "FText",
+      "args": [
+        {
+          "name": "DateTime",
+          "type": "FDateTime"
+        },
+        {
+          "name": "DateStyle",
+          "default": "EDateTimeStyle :: Default",
+          "type": "int"
+        },
+        {
+          "name": "TimeStyle",
+          "default": "EDateTimeStyle :: Default",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "AsTime",
+      "return": "FText",
+      "args": [
+        {
+          "name": "DateTime",
+          "type": "FDateTime"
+        },
+        {
+          "name": "TimeStyle",
+          "default": "EDateTimeStyle :: Default",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "AsTimespan",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Timespan",
+          "type": "FTimespan"
+        }
+      ]
+    },
+    {
+      "name": "AsNumber",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "float32"
+        },
+        {
+          "name": "Options",
+          "type": "FNumberFormattingOptions"
+        }
+      ]
+    },
+    {
+      "name": "AsNumber",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "float"
+        },
+        {
+          "name": "Options",
+          "type": "FNumberFormattingOptions"
+        }
+      ]
+    },
+    {
+      "name": "AsNumber",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "int8"
+        },
+        {
+          "name": "Options",
+          "type": "FNumberFormattingOptions"
+        }
+      ]
+    },
+    {
+      "name": "AsNumber",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "int16"
+        },
+        {
+          "name": "Options",
+          "type": "FNumberFormattingOptions"
+        }
+      ]
+    },
+    {
+      "name": "AsNumber",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "int"
+        },
+        {
+          "name": "Options",
+          "type": "FNumberFormattingOptions"
+        }
+      ]
+    },
+    {
+      "name": "AsNumber",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "int64"
+        },
+        {
+          "name": "Options",
+          "type": "FNumberFormattingOptions"
+        }
+      ]
+    },
+    {
+      "name": "AsNumber",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "uint8"
+        },
+        {
+          "name": "Options",
+          "type": "FNumberFormattingOptions"
+        }
+      ]
+    },
+    {
+      "name": "AsNumber",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "uint16"
+        },
+        {
+          "name": "Options",
+          "type": "FNumberFormattingOptions"
+        }
+      ]
+    },
+    {
+      "name": "AsNumber",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "uint"
+        },
+        {
+          "name": "Options",
+          "type": "FNumberFormattingOptions"
+        }
+      ]
+    },
+    {
+      "name": "AsNumber",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Val",
+          "type": "uint64"
+        },
+        {
+          "name": "Options",
+          "type": "FNumberFormattingOptions"
+        }
+      ]
+    },
+    {
+      "name": "AsMemory",
+      "return": "FText",
+      "args": [
+        {
+          "name": "NumBytes",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "Format",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Format",
+          "type": "FText"
+        },
+        {
+          "name": "Arg0",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "Format",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Format",
+          "type": "FText"
+        },
+        {
+          "name": "Arg0",
+          "type": "?"
+        },
+        {
+          "name": "Arg1",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "Format",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Format",
+          "type": "FText"
+        },
+        {
+          "name": "Arg0",
+          "type": "?"
+        },
+        {
+          "name": "Arg1",
+          "type": "?"
+        },
+        {
+          "name": "Arg2",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "Format",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Format",
+          "type": "FText"
+        },
+        {
+          "name": "Arg0",
+          "type": "?"
+        },
+        {
+          "name": "Arg1",
+          "type": "?"
+        },
+        {
+          "name": "Arg2",
+          "type": "?"
+        },
+        {
+          "name": "Arg3",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "Format",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Format",
+          "type": "FText"
+        },
+        {
+          "name": "Arg0",
+          "type": "?"
+        },
+        {
+          "name": "Arg1",
+          "type": "?"
+        },
+        {
+          "name": "Arg2",
+          "type": "?"
+        },
+        {
+          "name": "Arg3",
+          "type": "?"
+        },
+        {
+          "name": "Arg4",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "Format",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Format",
+          "type": "FText"
+        },
+        {
+          "name": "Arguments",
+          "type": "TMap<FString,FFormatArgumentValue>"
+        }
+      ]
+    },
+    {
+      "name": "Format",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Format",
+          "type": "FText"
+        },
+        {
+          "name": "Arguments",
+          "type": "TArray<FFormatArgumentValue>"
+        }
+      ]
+    },
+    {
+      "name": "GetFormatPatternParameters",
+      "return": "void",
+      "args": [
+        {
+          "name": "Fmt",
+          "type": "FText"
+        },
+        {
+          "name": "ParameterNames",
+          "type": "TArray<FString>&out"
+        }
+      ]
+    }
+  ]
+}

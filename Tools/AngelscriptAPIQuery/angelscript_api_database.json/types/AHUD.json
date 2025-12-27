@@ -1,0 +1,723 @@
+{
+  "name": "AHUD",
+  "inherits": "AActor",
+  "doc": "Base class of the heads-up display. This has a canvas and a debug canvas on which primitives can be drawn.\nIt also contains a list of simple hit boxes that can be used for simple item click detection.\nA method of rendering debug text is also included.\nProvides some simple methods for rendering text, textures, rectangles and materials which can also be accessed from blueprints.\n@see UCanvas\n@see FHUDHitBox\n@see FDebugTextInfo",
+  "properties": {
+    "PlayerOwner": [
+      "APlayerController",
+      1,
+      "PlayerController which owns this HUD."
+    ],
+    "bLostFocusPaused": [
+      "bool",
+      "Tells whether the game was paused due to lost focus"
+    ],
+    "bShowHUD": [
+      "bool",
+      "Whether or not the HUD should be drawn."
+    ],
+    "bShowDebugInfo": [
+      "bool",
+      "If true, current ViewTarget shows debug information using its DisplayDebug()."
+    ],
+    "bShowHitBoxDebugInfo": [
+      "bool",
+      "If true, show hitbox debugging info."
+    ],
+    "bShowOverlays": [
+      "bool",
+      "If true, render actor overlays."
+    ],
+    "bEnableDebugTextShadow": [
+      "bool",
+      "Put shadow on debug strings"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddDebugText",
+      "return": "void",
+      "callable": false,
+      "doc": "Add debug text for a specific actor to be displayed via DrawDebugTextList().  If the debug text is invalid then it will\nattempt to remove any previous entries via RemoveDebugText().\n\n@param DebugText                             Text to draw\n@param SrcActor                              Actor to which this relates\n@param Duration                              Duration to display the string\n@param Offset                                Initial offset to render text\n@param DesiredOffset                 Desired offset to render text - the text will move to this location over the given duration\n@param TextColor                     Color of text to render\n@param bSkipOverwriteCheck   skips the check to see if there is already debug text for the given actor\n@param bAbsoluteLocation     use an absolute world location\n@param bKeepAttachedToActor  if this is true the text will follow the actor, otherwise it will be drawn at the location when the call was made\n@param InFont                                font to use\n@param FontScale                     scale\n@param bDrawShadow                   Draw shadow on this string",
+      "meta": null,
+      "args": [
+        {
+          "name": "DebugText",
+          "type": "FString"
+        },
+        {
+          "name": "SrcActor",
+          "type": "AActor"
+        },
+        {
+          "name": "Duration",
+          "type": "float32"
+        },
+        {
+          "name": "Offset",
+          "type": "FVector"
+        },
+        {
+          "name": "DesiredOffset",
+          "type": "FVector"
+        },
+        {
+          "name": "TextColor",
+          "type": "FColor"
+        },
+        {
+          "name": "bSkipOverwriteCheck",
+          "type": "bool"
+        },
+        {
+          "name": "bAbsoluteLocation",
+          "type": "bool"
+        },
+        {
+          "name": "bKeepAttachedToActor",
+          "type": "bool"
+        },
+        {
+          "name": "InFont",
+          "type": "UFont"
+        },
+        {
+          "name": "FontScale",
+          "type": "float32"
+        },
+        {
+          "name": "bDrawShadow",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddHitBox",
+      "return": "void",
+      "doc": "Add a hitbox to the hud\n@param Position                      Coordinates of the top left of the hit box.\n@param Size                          Size of the hit box.\n@param Name                          Name of the hit box.\n@param bConsumesInput        Whether click processing should continue if this hit box is clicked.\n@param Priority                      The priority of the box used for layering. Larger values are considered first.  Equal values are considered in the order they were added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Size",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "bConsumesInput",
+          "type": "bool"
+        },
+        {
+          "name": "Priority",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Deproject",
+      "return": "void",
+      "const": true,
+      "doc": "Transforms a 2D screen location into a 3D location and direction",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ScreenX",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenY",
+          "type": "float32"
+        },
+        {
+          "name": "WorldPosition",
+          "type": "FVector&"
+        },
+        {
+          "name": "WorldDirection",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "DrawLine",
+      "return": "void",
+      "doc": "Draws a 2D line on the HUD.\n@param StartScreenX          Screen-space X coordinate of start of the line.\n@param StartScreenY          Screen-space Y coordinate of start of the line.\n@param EndScreenX            Screen-space X coordinate of end of the line.\n@param EndScreenY            Screen-space Y coordinate of end of the line.\n@param LineColor                     Color to draw line\n@param LineThickness         Thickness of the line to draw",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartScreenX",
+          "type": "float32"
+        },
+        {
+          "name": "StartScreenY",
+          "type": "float32"
+        },
+        {
+          "name": "EndScreenX",
+          "type": "float32"
+        },
+        {
+          "name": "EndScreenY",
+          "type": "float32"
+        },
+        {
+          "name": "LineColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "LineThickness",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "DrawMaterial",
+      "return": "void",
+      "doc": "Draws a material-textured quad on the HUD.\n@param Material                      Material to use\n@param ScreenX                       Screen-space X coordinate of upper left corner of the quad.\n@param ScreenY                       Screen-space Y coordinate of upper left corner of the quad.\n@param ScreenW                       Screen-space width of the quad (in pixels).\n@param ScreenH                       Screen-space height of the quad (in pixels).\n@param MaterialU                     Texture-space U coordinate of upper left corner of the quad\n@param MaterialV                     Texture-space V coordinate of upper left corner of the quad.\n@param MaterialUWidth        Texture-space width of the quad (in normalized UV distance).\n@param MaterialVHeight       Texture-space height of the quad (in normalized UV distance).\n@param Scale                         Amount to scale the entire texture (horizontally and vertically)\n@param bScalePosition        Whether the \"Scale\" parameter should also scale the position of this draw call.\n@param Rotation                      Amount to rotate this quad\n@param RotPivot                      Location (as proportion of quad, 0-1) to rotate about",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ScreenX",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenY",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenW",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenH",
+          "type": "float32"
+        },
+        {
+          "name": "MaterialU",
+          "type": "float32"
+        },
+        {
+          "name": "MaterialV",
+          "type": "float32"
+        },
+        {
+          "name": "MaterialUWidth",
+          "type": "float32"
+        },
+        {
+          "name": "MaterialVHeight",
+          "type": "float32"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bScalePosition",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "Rotation",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "RotPivot",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "DrawMaterialSimple",
+      "return": "void",
+      "doc": "Draws a material-textured quad on the HUD.  Assumes UVs such that the entire material is shown.\n@param Material                      Material to use\n@param ScreenX                       Screen-space X coordinate of upper left corner of the quad.\n@param ScreenY                       Screen-space Y coordinate of upper left corner of the quad.\n@param ScreenW                       Screen-space width of the quad (in pixels).\n@param ScreenH                       Screen-space height of the quad (in pixels).\n@param Scale                         Amount to scale the entire texture (horizontally and vertically)\n@param bScalePosition        Whether the \"Scale\" parameter should also scale the position of this draw call.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ScreenX",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenY",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenW",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenH",
+          "type": "float32"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bScalePosition",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DrawMaterialTriangle",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "V0_Pos",
+          "type": "FVector2D"
+        },
+        {
+          "name": "V1_Pos",
+          "type": "FVector2D"
+        },
+        {
+          "name": "V2_Pos",
+          "type": "FVector2D"
+        },
+        {
+          "name": "V0_UV",
+          "type": "FVector2D"
+        },
+        {
+          "name": "V1_UV",
+          "type": "FVector2D"
+        },
+        {
+          "name": "V2_UV",
+          "type": "FVector2D"
+        },
+        {
+          "name": "V0_Color",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "V1_Color",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "V2_Color",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "DrawRect",
+      "return": "void",
+      "doc": "Draws a colored untextured quad on the HUD.\n@param RectColor                     Color of the rect. Can be translucent.\n@param ScreenX                       Screen-space X coordinate of upper left corner of the quad.\n@param ScreenY                       Screen-space Y coordinate of upper left corner of the quad.\n@param ScreenW                       Screen-space width of the quad (in pixels).\n@param ScreenH                       Screen-space height of the quad (in pixels).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RectColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "ScreenX",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenY",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenW",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenH",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "DrawText",
+      "return": "void",
+      "doc": "Draws a string on the HUD.\n@param Text                          String to draw\n@param TextColor                     Color to draw string\n@param ScreenX                       Screen-space X coordinate of upper left corner of the string.\n@param ScreenY                       Screen-space Y coordinate of upper left corner of the string.\n@param Font                          Font to draw text.  If NULL, default font is chosen.\n@param Scale                         Scale multiplier to control size of the text.\n@param bScalePosition        Whether the \"Scale\" parameter should also scale the position of this draw call.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "TextColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "ScreenX",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenY",
+          "type": "float32"
+        },
+        {
+          "name": "Font",
+          "default": "nullptr",
+          "type": "UFont"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bScalePosition",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DrawTexture",
+      "return": "void",
+      "doc": "Draws a textured quad on the HUD.\n@param Texture                       Texture to draw.\n@param ScreenX                       Screen-space X coordinate of upper left corner of the quad.\n@param ScreenY                       Screen-space Y coordinate of upper left corner of the quad.\n@param ScreenW                       Screen-space width of the quad (in pixels).\n@param ScreenH                       Screen-space height of the quad (in pixels).\n@param TextureU                      Texture-space U coordinate of upper left corner of the quad\n@param TextureV                      Texture-space V coordinate of upper left corner of the quad.\n@param TextureUWidth         Texture-space width of the quad (in normalized UV distance).\n@param TextureVHeight        Texture-space height of the quad (in normalized UV distance).\n@param TintColor                     Vertex color for the quad.\n@param BlendMode                     Controls how to blend this quad with the scene. Translucent by default.\n@param Scale                         Amount to scale the entire texture (horizontally and vertically)\n@param bScalePosition        Whether the \"Scale\" parameter should also scale the position of this draw call.\n@param Rotation                      Amount to rotate this quad\n@param RotPivot                      Location (as proportion of quad, 0-1) to rotate about",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Texture",
+          "type": "UTexture"
+        },
+        {
+          "name": "ScreenX",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenY",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenW",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenH",
+          "type": "float32"
+        },
+        {
+          "name": "TextureU",
+          "type": "float32"
+        },
+        {
+          "name": "TextureV",
+          "type": "float32"
+        },
+        {
+          "name": "TextureUWidth",
+          "type": "float32"
+        },
+        {
+          "name": "TextureVHeight",
+          "type": "float32"
+        },
+        {
+          "name": "TintColor",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "BlendMode",
+          "default": "EBlendMode :: BLEND_Translucent",
+          "type": "EBlendMode"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bScalePosition",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "Rotation",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "RotPivot",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "DrawTextureSimple",
+      "return": "void",
+      "doc": "Draws a textured quad on the HUD. Assumes 1:1 texel density.\n@param Texture                       Texture to draw.\n@param ScreenX                       Screen-space X coordinate of upper left corner of the quad.\n@param ScreenY                       Screen-space Y coordinate of upper left corner of the quad.\n@param Scale                         Scale multiplier to control size of the text.\n@param bScalePosition        Whether the \"Scale\" parameter should also scale the position of this draw call.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Texture",
+          "type": "UTexture"
+        },
+        {
+          "name": "ScreenX",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenY",
+          "type": "float32"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bScalePosition",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetActorsInSelectionRectangle",
+      "return": "void",
+      "doc": "Returns the array of actors inside a selection rectangle, with a class filter.\n\nSample usage:\n\n      TArray<AStaticMeshActor*> ActorsInSelectionRect;\n             Canvas->GetActorsInSelectionRectangle<AStaticMeshActor>(FirstPoint,SecondPoint,ActorsInSelectionRect);\n\n\n@param FirstPoint                                    The first point, or anchor of the marquee box. Where the dragging of the marquee started in screen space.\n@param SecondPoint                                   The second point, where the mouse cursor currently is / the other point of the box selection, in screen space.\n@return OutActors                                    The actors that are within the selection box according to selection rule\n@param bIncludeNonCollidingComponents        Whether to include even non-colliding components of the actor when determining its bounds\n@param bActorMustBeFullyEnclosed     The Selection rule: whether the selection box can partially intersect Actor, or must fully enclose the Actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClassFilter",
+          "type": "TSubclassOf<AActor>"
+        },
+        {
+          "name": "FirstPoint",
+          "type": "FVector2D"
+        },
+        {
+          "name": "SecondPoint",
+          "type": "FVector2D"
+        },
+        {
+          "name": "OutActors",
+          "type": "TArray<AActor>&"
+        },
+        {
+          "name": "bIncludeNonCollidingComponents",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bActorMustBeFullyEnclosed",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetOwningPawn",
+      "return": "APawn",
+      "const": true,
+      "doc": "Returns the Pawn for this HUD's player.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningPlayerController",
+      "return": "APlayerController",
+      "const": true,
+      "doc": "Returns the PlayerController for this HUD's player.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTextSize",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the width and height of a string.\n@param Text                          String to draw\n@param OutWidth                      Returns the width in pixels of the string.\n@param OutHeight                     Returns the height in pixels of the string.\n@param Font                          Font to draw text.  If NULL, default font is chosen.\n@param Scale                         Scale multiplier to control size of the text.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "OutWidth",
+          "type": "float32&"
+        },
+        {
+          "name": "OutHeight",
+          "type": "float32&"
+        },
+        {
+          "name": "Font",
+          "default": "nullptr",
+          "type": "UFont"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Project",
+      "return": "FVector",
+      "const": true,
+      "doc": "Transforms a 3D world-space vector into 2D screen coordinates\n@param Location                      The world-space position to transform\n@param bClampToZeroPlane     If true, 2D screen coordinates behind the viewing plane (-Z) will have Z set to 0 (leaving X and Y alone)\n@return The transformed vector",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "bClampToZeroPlane",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DrawHUD",
+      "return": "void",
+      "callable": false,
+      "doc": "Hook to allow blueprints to do custom HUD drawing. @see bSuppressNativeHUD to control HUD drawing in base class.\nNote:  the canvas resource used for drawing is only valid during this event, it will not be valid if drawing functions are called later (e.g. after a Delay node).",
+      "event": true,
+      "unrealname": "ReceiveDrawHUD",
+      "meta": null,
+      "args": [
+        {
+          "name": "SizeX",
+          "type": "int"
+        },
+        {
+          "name": "SizeY",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "HitBoxBeginCursorOver",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when a hit box is moused over.",
+      "event": true,
+      "unrealname": "ReceiveHitBoxBeginCursorOver",
+      "meta": null,
+      "args": [
+        {
+          "name": "BoxName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "HitBoxClick",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when a hit box is clicked on. Provides the name associated with that box.",
+      "event": true,
+      "unrealname": "ReceiveHitBoxClick",
+      "meta": null,
+      "args": [
+        {
+          "name": "BoxName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "HitBoxEndCursorOver",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when a hit box no longer has the mouse over it.",
+      "event": true,
+      "unrealname": "ReceiveHitBoxEndCursorOver",
+      "meta": null,
+      "args": [
+        {
+          "name": "BoxName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "HitBoxRelease",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when a hit box is unclicked. Provides the name associated with that box.",
+      "event": true,
+      "unrealname": "ReceiveHitBoxRelease",
+      "meta": null,
+      "args": [
+        {
+          "name": "BoxName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllDebugStrings",
+      "return": "void",
+      "callable": false,
+      "doc": "Remove all debug strings added via AddDebugText",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveDebugText",
+      "return": "void",
+      "callable": false,
+      "doc": "Remove debug strings for the given actor\n\n@param       SrcActor                        Actor whose string you wish to remove\n@param       bLeaveDurationText      when true text that has a finite duration will be removed, otherwise all will be removed for given actor",
+      "meta": null,
+      "args": [
+        {
+          "name": "SrcActor",
+          "type": "AActor"
+        },
+        {
+          "name": "bLeaveDurationText",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "__ENiagaraAgeUpdateMode",
+  "isEnum": true,
+  "doc": "Defines modes for updating the component's age.",
+  "properties": {
+    "TickDeltaTime": [
+      "ENiagaraAgeUpdateMode",
+      "Update the age using the delta time supplied to the component tick function."
+    ],
+    "DesiredAge": [
+      "ENiagaraAgeUpdateMode",
+      "Update the age by seeking to the DesiredAge. To prevent major perf loss, we clamp to MaxClampTime"
+    ],
+    "DesiredAgeNoSeek": [
+      "ENiagaraAgeUpdateMode",
+      "Update the age by tracking changes to the desired age, but when the desired age goes backwards in time,\n      or jumps forwards in time by more than a few steps, the system is reset and simulated forward by a single step.\n      This mode is useful for continuous effects controlled by sequencer."
+    ],
+    "ENiagaraAgeUpdateMode_MAX": [
+      "ENiagaraAgeUpdateMode"
+    ]
+  },
+  "methods": []
+}

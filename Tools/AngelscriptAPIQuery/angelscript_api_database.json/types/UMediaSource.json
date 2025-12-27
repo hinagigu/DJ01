@@ -1,0 +1,94 @@
+{
+  "name": "UMediaSource",
+  "inherits": "UObject",
+  "doc": "Abstract base class for media sources.\n\nMedia sources describe the location and/or settings of media objects that can\nbe played in a media player, such as a video file on disk, a video stream on\nthe internet, or a web cam attached to or built into the target device. The\nlocation is encoded as a media URL string, whose URI scheme and optional file\nextension will be used to locate a suitable media player.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetUrl",
+      "return": "FString",
+      "const": true,
+      "doc": "Get the media source's URL string (must be implemented in child classes).\n\n@return The media URL.\n@see GetProxies",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetMediaOptionBool",
+      "return": "void",
+      "doc": "Set a boolean parameter to pass to the player.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMediaOptionFloat",
+      "return": "void",
+      "doc": "Set a float parameter to pass to the player.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMediaOptionInt64",
+      "return": "void",
+      "doc": "Set an integer64 parameter to pass to the player.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "int64"
+        }
+      ]
+    },
+    {
+      "name": "SetMediaOptionString",
+      "return": "void",
+      "doc": "Set a string parameter to pass to the player.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Validate",
+      "return": "bool",
+      "const": true,
+      "doc": "Validate the media source settings (must be implemented in child classes).\n\n@return true if validation passed, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

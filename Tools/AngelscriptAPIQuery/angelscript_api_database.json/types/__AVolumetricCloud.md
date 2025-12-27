@@ -1,0 +1,14 @@
+# __AVolumetricCloud
+
+## 方法
+
+### StaticClass
+```angelscript
+UClass StaticClass()
+```
+
+### Spawn
+```angelscript
+AVolumetricCloud Spawn(FVector Location, FRotator Rotation, FName Name, ULevel Level)
+```
+

@@ -1,0 +1,354 @@
+{
+  "name": "URigVMBlueprint",
+  "inherits": "UBlueprint",
+  "properties": {
+    "RigGraphDisplaySettings": [
+      "FRigVMEdGraphDisplaySettings",
+      2,
+      ""
+    ],
+    "VMRuntimeSettings": [
+      "FRigVMRuntimeSettings",
+      2,
+      ""
+    ],
+    "VMCompileSettings": [
+      "FRigVMCompileSettings"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddMemberVariable",
+      "return": "FName",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "bIsPublic",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bIsReadOnly",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "InDefaultValue",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AddModel",
+      "return": "URigVMGraph",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "default": "\"Rig Graph\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ChangeMemberVariableType",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "bIsPublic",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bIsReadOnly",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "InDefaultValue",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "CreateRigVMHost",
+      "return": "URigVMHost",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GeneratePythonCommands",
+      "return": "TArray<FString>",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewBlueprintName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetAllModels",
+      "return": "TArray<URigVMGraph>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAutoVMRecompile",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAvailableRigVMStructs",
+      "return": "TArray<UStruct>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetController",
+      "return": "URigVMController",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGraph",
+          "default": "nullptr",
+          "type": "const URigVMGraph"
+        }
+      ]
+    },
+    {
+      "name": "GetControllerByName",
+      "return": "URigVMController",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGraphName",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetDebuggedRigVMHost",
+      "return": "URigVMHost",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDefaultModel",
+      "return": "URigVMGraph",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFocusedModel",
+      "return": "URigVMGraph",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLocalFunctionLibrary",
+      "return": "URigVMFunctionLibrary",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMemberVariables",
+      "return": "TArray<FRigVMGraphVariableDescription>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetModel",
+      "return": "URigVMGraph",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InEdGraph",
+          "default": "nullptr",
+          "type": "const UEdGraph"
+        }
+      ]
+    },
+    {
+      "name": "GetOrCreateController",
+      "return": "URigVMController",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGraph",
+          "default": "nullptr",
+          "type": "URigVMGraph"
+        }
+      ]
+    },
+    {
+      "name": "GetRigVMHostClass",
+      "return": "UClass",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RecompileVM",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RecompileVMIfRequired",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveMemberVariable",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveModel",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "default": "\"Rig Graph\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RenameMemberVariable",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOldName",
+          "type": "FName"
+        },
+        {
+          "name": "InNewName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RequestAutoVMRecompilation",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RequestRigVMInit",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAutoVMRecompile",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAutoRecompile",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SuspendNotifications",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSuspendNotifs",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

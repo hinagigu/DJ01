@@ -1,0 +1,39 @@
+{
+  "name": "FIniStringValue",
+  "isStruct": true,
+  "doc": "Helper struct for setting string console ini values.",
+  "properties": {
+    "Section": [
+      "FString",
+      2,
+      "From .ini. Ex: /Script/Engine.RendererSettings"
+    ],
+    "Key": [
+      "FString",
+      2,
+      "From .ini. Ex: r.GPUSkin.Support16BitBoneIndex"
+    ],
+    "Value": [
+      "FString",
+      2,
+      "From .ini. Ex: True"
+    ],
+    "Filename": [
+      "FString",
+      2,
+      "From .ini, relative to {PROJECT}. Ex: /Config/DefaultEngine.ini"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FIniStringValue&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FIniStringValue"
+        }
+      ]
+    }
+  ]
+}

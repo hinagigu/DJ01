@@ -1,0 +1,67 @@
+{
+  "name": "UDJ01InputBuffer",
+  "inherits": "UActorComponent",
+  "doc": "UDJ01InputBuffer\n\n输入缓冲组件 - 用于连招系统的预输入\n添加到角色身上，缓存玩家在攻击动画中的输入",
+  "properties": {
+    "DefaultBufferDuration": [
+      "float32",
+      2,
+      "默认缓冲有效期"
+    ]
+  },
+  "methods": [
+    {
+      "name": "BufferInput",
+      "return": "void",
+      "doc": "添加缓冲输入",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "BufferDuration",
+          "default": "0.200000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClearBuffer",
+      "return": "void",
+      "doc": "清空所有缓冲",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ConsumeBufferedInput",
+      "return": "bool",
+      "doc": "消费缓冲输入 (返回最高优先级的有效输入)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutAbilityTag",
+          "type": "FGameplayTag&"
+        }
+      ]
+    },
+    {
+      "name": "HasBufferedInput",
+      "return": "bool",
+      "const": true,
+      "doc": "检查是否有特定类型的缓冲输入",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    }
+  ]
+}

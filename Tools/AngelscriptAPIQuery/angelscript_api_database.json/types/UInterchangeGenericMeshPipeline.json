@@ -1,0 +1,136 @@
+{
+  "name": "UInterchangeGenericMeshPipeline",
+  "inherits": "UInterchangePipelineBase",
+  "doc": "Hide drop down will make sure the class is not showing in the class picker",
+  "properties": {
+    "bImportStaticMeshes": [
+      "bool",
+      "If enabled, imports all static mesh assets found in the sources."
+    ],
+    "bCombineStaticMeshes": [
+      "bool",
+      "If enabled, all translated static mesh nodes will be imported as a single static mesh."
+    ],
+    "LodGroup": [
+      "FName",
+      "The LOD group that will be assigned to this mesh."
+    ],
+    "bImportCollision": [
+      "bool",
+      "If enabled, custom collision will be imported. If enabled and there is no custom collision, a generic collision will be automatically generated.\nIf disabled, no collision will be created or imported."
+    ],
+    "bImportCollisionAccordingToMeshName": [
+      "bool",
+      "If enabled, meshes with certain prefixes will be imported as collision primitives for the mesh with the corresponding unprefixed name.\n\nSupported prefixes are:\nUBX_ Box collision\nUCP_ Capsule collision\nUSP_ Sphere collision\nUCX_ Convex collision"
+    ],
+    "bOneConvexHullPerUCX": [
+      "bool",
+      "If enabled, each UCX collision mesh will be imported as a single convex hull. If disabled, a UCX mesh will be decomposed into its separate pieces and a convex hull generated for each."
+    ],
+    "bBuildNanite": [
+      "bool",
+      "If enabled, imported meshes will be rendered by Nanite at runtime. Make sure your meshes and materials meet the requirements for Nanite."
+    ],
+    "bBuildReversedIndexBuffer": [
+      "bool",
+      "If enabled, builds a reversed index buffer for each static mesh."
+    ],
+    "bGenerateLightmapUVs": [
+      "bool",
+      "If enabled, generates lightmap UVs for each static mesh."
+    ],
+    "bGenerateDistanceFieldAsIfTwoSided": [
+      "bool",
+      "Determines whether to generate the distance field treating every triangle hit as a front face.\nWhen enabled, prevents the distance field from being discarded due to the mesh being open, but also lowers distance field ambient occlusion quality."
+    ],
+    "bSupportFaceRemap": [
+      "bool",
+      "If enabled, imported static meshes are set up for use with physical material masks."
+    ],
+    "MinLightmapResolution": [
+      "int",
+      "When generating lightmaps, determines the amount of padding used to pack UVs. Set this value to the lowest-resolution lightmap you expect to use with the imported meshes."
+    ],
+    "SrcLightmapIndex": [
+      "int",
+      "Specifies the index of the UV channel that will be used as the source when generating lightmaps."
+    ],
+    "DstLightmapIndex": [
+      "int",
+      "Specifies the index of the UV channel that will store generated lightmap UVs."
+    ],
+    "BuildScale3D": [
+      "FVector",
+      "The local scale applied when building the mesh."
+    ],
+    "DistanceFieldResolutionScale": [
+      "float32",
+      "Scale to apply to the mesh when allocating the distance field volume texture.\nThe default scale is 1, which assumes that the mesh will be placed unscaled in the world."
+    ],
+    "DistanceFieldReplacementMesh": [
+      "TWeakObjectPtr<UStaticMesh>",
+      "If set, replaces the distance field for all imported meshes with the distance field of the specified Static Mesh."
+    ],
+    "MaxLumenMeshCards": [
+      "int",
+      "The maximum number of Lumen mesh cards to generate for this mesh.\nMore cards means that the surface will have better coverage, but will result in increased runtime overhead.\nSet this to 0 to disable mesh card generation for this mesh.\nThe default is 12."
+    ],
+    "bImportSkeletalMeshes": [
+      "bool",
+      "If enabled, imports all skeletal mesh assets found in the sources."
+    ],
+    "SkeletalMeshImportContentType": [
+      "EInterchangeSkeletalMeshContentType",
+      "Determines what types of information are imported for skeletal meshes."
+    ],
+    "bCombineSkeletalMeshes": [
+      "bool",
+      "If enabled, all skinned mesh nodes that belong to the same skeleton root joint are combined into a single skeletal mesh."
+    ],
+    "bImportMorphTargets": [
+      "bool",
+      "If enabled, imports all morph target shapes found in the source."
+    ],
+    "bImportVertexAttributes": [
+      "bool",
+      "If enabled, creates named vertex attributes for secondary vertex color data."
+    ],
+    "bUpdateSkeletonReferencePose": [
+      "bool",
+      "Enable this option to update the reference pose of the Skeleton (of the mesh). The reference pose of the mesh is always updated."
+    ],
+    "bCreatePhysicsAsset": [
+      "bool",
+      "If enabled, create new PhysicsAsset if one doesn't exist."
+    ],
+    "PhysicsAsset": [
+      "TWeakObjectPtr<UPhysicsAsset>",
+      "If set, use the specified PhysicsAsset. If not set and the Create Physics Asset setting is not enabled, the importer will not generate or set any physics asset."
+    ],
+    "bUseHighPrecisionSkinWeights": [
+      "bool",
+      "If enabled, imported skin weights use 16 bits instead of 8 bits."
+    ],
+    "ThresholdPosition": [
+      "float32",
+      "Threshold value that is used to decide whether two vertex positions are equal."
+    ],
+    "ThresholdTangentNormal": [
+      "float32",
+      "Threshold value that is used to decide whether two normals, tangents, or bi-normals are equal."
+    ],
+    "ThresholdUV": [
+      "float32",
+      "Threshold value that is used to decide whether two UVs are equal."
+    ],
+    "MorphThresholdPosition": [
+      "float32",
+      "Threshold to compare vertex position equality when computing morph target deltas."
+    ],
+    "BoneInfluenceLimit": [
+      "int",
+      "The maximum number of bone influences to allow each vertex in this mesh to use.\nIf set higher than the limit determined by the project settings, it has no effect.\nIf set to 0, the value is taken from the DefaultBoneInfluenceLimit project setting."
+    ]
+  },
+  "methods": []
+}

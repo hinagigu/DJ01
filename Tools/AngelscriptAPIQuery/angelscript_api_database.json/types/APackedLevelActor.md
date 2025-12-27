@@ -1,0 +1,9 @@
+# APackedLevelActor
+
+**继承自**: `ALevelInstance`
+
+APackedLevelActor is the result of packing the source level (WorldAsset base class property) into a single actor. See FPackedLevelActorBuilder.
+
+
+Other components are unsupported and will result in an incomplete APackedLevelActor. In this case using a regular ALevelInstance is recommended.
+

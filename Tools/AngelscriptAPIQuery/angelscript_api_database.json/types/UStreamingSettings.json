@@ -1,0 +1,87 @@
+{
+  "name": "UStreamingSettings",
+  "inherits": "UDeveloperSettings",
+  "doc": "Streaming settings.",
+  "properties": {
+    "TimeLimitExceededMultiplier": [
+      "float32",
+      2,
+      "Multiplier for time limit exceeded warning time threshold."
+    ],
+    "TimeLimitExceededMinTime": [
+      "float32",
+      2,
+      "Minimum time the time limit exceeded warning will be triggered by."
+    ],
+    "MinBulkDataSizeForAsyncLoading": [
+      "int",
+      2,
+      "Minimum time the time limit exceeded warning will be triggered by."
+    ],
+    "AsyncLoadingTimeLimit": [
+      "float32",
+      2,
+      "Maximum amount of time to spend doing asynchronous loading (ms per frame)."
+    ],
+    "PriorityAsyncLoadingExtraTime": [
+      "float32",
+      2,
+      "Additional time to spend asynchronous loading during a high priority load."
+    ],
+    "LevelStreamingActorsUpdateTimeLimit": [
+      "float32",
+      2,
+      "Maximum allowed time to spend for actor registration steps during level streaming (ms per frame)."
+    ],
+    "PriorityLevelStreamingActorsUpdateExtraTime": [
+      "float32",
+      2,
+      "Additional time to spend on actor registration steps during a high priority load."
+    ],
+    "LevelStreamingComponentsRegistrationGranularity": [
+      "int",
+      2,
+      "Batching granularity used to register actor components during level streaming."
+    ],
+    "LevelStreamingAddPrimitiveGranularity": [
+      "int",
+      2,
+      "Batching granularity used to add primitives to scene in parallel when registering actor components during level streaming."
+    ],
+    "LevelStreamingUnregisterComponentsTimeLimit": [
+      "float32",
+      2,
+      "Maximum allowed time to spend while unregistering components during level streaming (ms per frame)."
+    ],
+    "LevelStreamingComponentsUnregistrationGranularity": [
+      "int",
+      2,
+      "Batching granularity used to unregister actor components during level streaming."
+    ],
+    "AsyncLoadingThreadEnabled": [
+      "bool",
+      "Enables separate thread for package streaming. Requires restart to take effect."
+    ],
+    "WarnIfTimeLimitExceeded": [
+      "bool",
+      "Enables log warning if time limit for time-sliced package streaming has been exceeded."
+    ],
+    "UseBackgroundLevelStreaming": [
+      "bool",
+      "Whether to allow background level streaming."
+    ],
+    "AsyncLoadingUseFullTimeLimit": [
+      "bool",
+      "Whether to use the entire time limit even if blocked on I/O."
+    ],
+    "FlushStreamingOnExit": [
+      "bool",
+      "If enabled, streaming will be flushed when exiting application, otherwise it will be cancelled."
+    ],
+    "EventDrivenLoaderEnabled": [
+      "bool",
+      "Enables the event driven loader in cooked builds (default). Disabling EDL will result in using deprecated loading path."
+    ]
+  },
+  "methods": []
+}

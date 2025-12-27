@@ -1,0 +1,365 @@
+{
+  "name": "UBlackboardComponent",
+  "inherits": "UActorComponent",
+  "properties": {
+    "DefaultBlackboardAsset": [
+      "UBlackboardData",
+      2,
+      "data asset defining entries. Will be used as part of InitializeComponent\n    call provided BlackboardAsset hasn't been already set (via a InitializeBlackboard\n    call)."
+    ]
+  },
+  "methods": [
+    {
+      "name": "ClearValue",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetLocationFromEntry",
+      "return": "bool",
+      "const": true,
+      "doc": "return false if call failed (most probably no such entry in BB)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "ResultLocation",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetRotationFromEntry",
+      "return": "bool",
+      "const": true,
+      "doc": "return false if call failed (most probably no such entry in BB)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "ResultRotation",
+          "type": "FRotator&"
+        }
+      ]
+    },
+    {
+      "name": "GetValueAsBool",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetValueAsClass",
+      "return": "UClass",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetValueAsEnum",
+      "return": "uint8",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetValueAsFloat",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetValueAsInt",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetValueAsName",
+      "return": "FName",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetValueAsObject",
+      "return": "UObject",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetValueAsRotator",
+      "return": "FRotator",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetValueAsString",
+      "return": "FString",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetValueAsVector",
+      "return": "FVector",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsVectorValueSet",
+      "return": "bool",
+      "const": true,
+      "doc": "If the vector value has been set (and not cleared), this function returns true (indicating that the value should be valid).  If it's not set, the vector value is invalid and this function will return false.  (Also returns false if the key specified does not hold a vector.)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetValueAsBool",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "BoolValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetValueAsClass",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "ClassValue",
+          "type": "UClass"
+        }
+      ]
+    },
+    {
+      "name": "SetValueAsEnum",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "EnumValue",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "SetValueAsFloat",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "FloatValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetValueAsInt",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "IntValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetValueAsName",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "NameValue",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetValueAsObject",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "ObjectValue",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SetValueAsRotator",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "VectorValue",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetValueAsString",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "StringValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetValueAsVector",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyName",
+          "type": "FName"
+        },
+        {
+          "name": "VectorValue",
+          "type": "FVector"
+        }
+      ]
+    }
+  ]
+}

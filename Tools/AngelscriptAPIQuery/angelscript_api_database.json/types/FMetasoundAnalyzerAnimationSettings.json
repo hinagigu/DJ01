@@ -1,0 +1,53 @@
+{
+  "name": "FMetasoundAnalyzerAnimationSettings",
+  "isStruct": true,
+  "properties": {
+    "bAnimateConnections": [
+      "bool",
+      2,
+      "Whether or not animated connections are enabled."
+    ],
+    "EnvelopeWireThickness": [
+      "float32",
+      2,
+      "Thickness of default envelope analyzer wire thickness when connection analyzer is active."
+    ],
+    "EnvelopeSpeed": [
+      "float32",
+      2,
+      "Speed of default envelope analyzer drawing over wire when connection analyzer is active, where 0 is full visual history (slowest progress) and 1 is no visual history (fastest progress)."
+    ],
+    "EnvelopeDirection": [
+      "EMetasoundActiveAnalyzerEnvelopeDirection",
+      2,
+      "Whether analyzer envelopes draw from a source output (default) or from the destination input. From the destination input may not\ngive the expected illusion of audio processing flowing left-to-right, but results in a waveform with earlier events on the left\nand later on the right (like a traditional timeline with a moving play head)."
+    ],
+    "NumericWireThickness": [
+      "float32",
+      2,
+      "Thickness of default numeric analyzer wire thickness when connection analyzer is active."
+    ],
+    "WireScalarMin": [
+      "float32",
+      2,
+      "Minimum height scalar of wire signal analyzers (ex. audio, triggers)."
+    ],
+    "WireScalarMax": [
+      "float32",
+      2,
+      "Maximum height scalar of wire signal analyzers (ex. audio, triggers)."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMetasoundAnalyzerAnimationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMetasoundAnalyzerAnimationSettings"
+        }
+      ]
+    }
+  ]
+}

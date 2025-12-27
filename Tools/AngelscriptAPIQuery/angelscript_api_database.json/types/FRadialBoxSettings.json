@@ -1,0 +1,38 @@
+{
+  "name": "FRadialBoxSettings",
+  "isStruct": true,
+  "properties": {
+    "StartingAngle": [
+      "float32",
+      2,
+      "At what angle will we place the first element of the wheel?"
+    ],
+    "bDistributeItemsEvenly": [
+      "bool",
+      2,
+      "Distribute Items evenly in the whole circle. Checking this option ignores AngleBetweenItems"
+    ],
+    "AngleBetweenItems": [
+      "float32",
+      2,
+      "Amount of Euler degrees that separate each item. Only used when bDistributeItemsEvenly is false"
+    ],
+    "SectorCentralAngle": [
+      "float32",
+      2,
+      "If we need a section of a radial (for example half-a-radial) we can define a central angle < 360 (180 in case of half-a-radial). Used when bDistributeItemsEvenly is enabled."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRadialBoxSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRadialBoxSettings"
+        }
+      ]
+    }
+  ]
+}

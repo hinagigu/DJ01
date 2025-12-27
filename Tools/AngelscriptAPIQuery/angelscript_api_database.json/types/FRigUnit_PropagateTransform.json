@@ -1,0 +1,39 @@
+{
+  "name": "FRigUnit_PropagateTransform",
+  "isStruct": true,
+  "doc": "Propagate Transform can be used to force a recalculation of a bone's global transform\nfrom its local - as well as propagating that change onto the children.",
+  "properties": {
+    "Item": [
+      "FRigElementKey",
+      "The item to offset the transform for"
+    ],
+    "bRecomputeGlobal": [
+      "bool",
+      "If set to true the item's global transform will be recomputed from\nits parent's transform and its local."
+    ],
+    "bApplyToChildren": [
+      "bool",
+      "If set to true the direct children of this item will be recomputed as well.\nCombined with bRecursive all children will be affected recursively."
+    ],
+    "bRecursive": [
+      "bool",
+      "If set to true and with bApplyToChildren enabled\nall children will be affected recursively."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_PropagateTransform&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_PropagateTransform"
+        }
+      ]
+    }
+  ]
+}

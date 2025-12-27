@@ -1,0 +1,375 @@
+{
+  "name": "USubobjectDataSubsystem",
+  "inherits": "UEngineSubsystem",
+  "doc": "The Subobject Data Subsystem will produce the reflected subobject data\nbased on a given root object. A root object can be anything, an actor\ninstance clicked on via the level editor, a UBlueprint* by opening an asset,\nor something piped in from python or other scripting languages.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddNewSubobject",
+      "return": "FSubobjectDataHandle",
+      "doc": "Add a new subobject as a child to the given parent object\n\n@param Params                 Options to consider when adding this subobject\n\n@return FSubobjectDataHandle          Handle to the newly created subobject, Invalid handle if creation failed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Params",
+          "type": "FAddNewSubobjectParams"
+        },
+        {
+          "name": "FailReason",
+          "type": "FText&"
+        }
+      ]
+    },
+    {
+      "name": "AttachSubobject",
+      "return": "bool",
+      "doc": "Add the given subobject to a new owner. This will remove the subobject from its previous\nowner if necessary.\n\n@param OwnerHandle           The new owner to attach to\n@param ChildToAddHandle      Handle to the subobject that will become a child of the owner\n\n@return true if the child was added successfully",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerHandle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "ChildToAddHandle",
+          "type": "FSubobjectDataHandle"
+        }
+      ]
+    },
+    {
+      "name": "CanCopySubobjects",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the given array of handles represents subobjects that\ncan be copied.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handles",
+          "type": "TArray<FSubobjectDataHandle>"
+        }
+      ]
+    },
+    {
+      "name": "CanPasteSubobjects",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RootHandle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "BPContext",
+          "default": "nullptr",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "ChangeSubobjectClass",
+      "return": "bool",
+      "doc": "Attempts to change the subclass of a native component\n\n@param Handle                 Handle to the subobject to change class of\n@param NewClass               The new class that is desired for the given subobject\n\n@return True if the class change was successful, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "NewClass",
+          "type": "const UClass"
+        }
+      ]
+    },
+    {
+      "name": "CopySubobjects",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handles",
+          "type": "TArray<FSubobjectDataHandle>"
+        },
+        {
+          "name": "BpContext",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "DeleteSubobject",
+      "return": "int",
+      "doc": "Attempts to delete the given subobject from its blueprint context\n\n@param ContextHandle                  The owning context of the subobjects that should be removed\n@param SubobjectToDelete              The subobject handles that should be deleted\n@param BPContext                              The blueprint context for the given\n\n@return       The number of subobjects successfully deleted",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContextHandle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "SubobjectToDelete",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "BPContext",
+          "default": "nullptr",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "DeleteSubobjects",
+      "return": "int",
+      "doc": "Attempts to delete the given array of subobjects from their context\n\n@param ContextHandle                  The owning context of the subobjects that should be removed\n@param SubobjectsToDelete             Array of subobject handles that should be deleted\n@param BPContext                              The blueprint context for the given\n\n@return       The number of subobjects successfully deleted",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContextHandle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "SubobjectsToDelete",
+          "type": "TArray<FSubobjectDataHandle>"
+        },
+        {
+          "name": "BPContext",
+          "default": "nullptr",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "DetachSubobject",
+      "return": "bool",
+      "doc": "Remove the child subobject from the owner\n\n@return True if the child was successfully removed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerHandle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "ChildToRemove",
+          "type": "FSubobjectDataHandle"
+        }
+      ]
+    },
+    {
+      "name": "FindHandleForObject",
+      "return": "FSubobjectDataHandle",
+      "const": true,
+      "doc": "Attempt to find an existing handle for the given object.\n\n@param Context                The context that the object to find is within\n@param ObjectToFind   The object that you want to find the handle for within the context\n\n@return FSubobjectDataHandle  The subobject handle for the object, Invalid handle if not found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "ObjectToFind",
+          "type": "const UObject"
+        },
+        {
+          "name": "BPContext",
+          "default": "nullptr",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "IsValidRename",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the given new text is a valid option to rename the\nsubobject with the given handle. Populates the OutErrorMessage if\nit is not valid.\n\n@param Handle                        Handle to the subobject that is being checked\n@param InNewText                     The new name that is desired\n@param OutErrorMessage       The reasoning for an invalid name\n\n@return True if the rename is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "InNewText",
+          "type": "FText"
+        },
+        {
+          "name": "OutErrorMessage",
+          "type": "FText&"
+        }
+      ]
+    },
+    {
+      "name": "DeleteSubobjectFromInstance",
+      "return": "int",
+      "doc": "Attempts to delete the given subobject from its context\n\n@param ContextHandle                  The owning context of the subobjects that should be removed\n@param SubobjectToDelete              The subobject handles that should be deleted\n\n@return       The number of subobjects successfully deleted",
+      "ufunction": true,
+      "unrealname": "K2_DeleteSubobjectFromInstance",
+      "meta": null,
+      "args": [
+        {
+          "name": "ContextHandle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "SubobjectToDelete",
+          "type": "FSubobjectDataHandle"
+        }
+      ]
+    },
+    {
+      "name": "DeleteSubobjectsFromInstance",
+      "return": "int",
+      "doc": "Attempts to delete the given array of subobjects from their context\n\n@param ContextHandle                  The owning context of the subobjects that should be removed\n@param SubobjectsToDelete             Array of subobject handles that should be deleted\n\n@return       The number of subobjects successfully deleted",
+      "ufunction": true,
+      "unrealname": "K2_DeleteSubobjectsFromInstance",
+      "meta": null,
+      "args": [
+        {
+          "name": "ContextHandle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "SubobjectsToDelete",
+          "type": "TArray<FSubobjectDataHandle>"
+        }
+      ]
+    },
+    {
+      "name": "FindSubobjectDataFromHandle",
+      "return": "bool",
+      "const": true,
+      "doc": "Attempt to find the subobject data for a given handle. OutData will only\nbe valid if the function returns true.\n\n@param Handle         Handle of the subobject data you want to acquire\n@param OutData        Reference to the subobject data to populate\n\n@return bool          true if the data was found",
+      "ufunction": true,
+      "unrealname": "K2_FindSubobjectDataFromHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "OutData",
+          "type": "FSubobjectData&"
+        }
+      ]
+    },
+    {
+      "name": "GatherSubobjectDataForBlueprint",
+      "return": "void",
+      "doc": "Gather all subobjects that the given Blueprint context has. Populates an array of\nhandles that will have the given context and all it's subobjects.\n\n@param Context                Object to gather subobjects for\n@param OutArray               Array to populate (will be emptied first)",
+      "ufunction": true,
+      "unrealname": "K2_GatherSubobjectDataForBlueprint",
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "UBlueprint"
+        },
+        {
+          "name": "OutArray",
+          "type": "TArray<FSubobjectDataHandle>&"
+        }
+      ]
+    },
+    {
+      "name": "GatherSubobjectDataForInstance",
+      "return": "void",
+      "doc": "Gather all subobjects that the given actor instance has. Populates an array of\nhandles that will have the given context and all it's subobjects.\n\n@param Context                Object to gather subobjects for\n@param OutArray               Array to populate (will be emptied first)",
+      "ufunction": true,
+      "unrealname": "K2_GatherSubobjectDataForInstance",
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "AActor"
+        },
+        {
+          "name": "OutArray",
+          "type": "TArray<FSubobjectDataHandle>&"
+        }
+      ]
+    },
+    {
+      "name": "MakeNewSceneRoot",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "NewSceneRoot",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "BPContext",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "RenameSubobject",
+      "return": "bool",
+      "doc": "Attempts to rename the given subobject to the new name.\n\n@param Handle                 Handle to the subobject to rename\n@param InNewName              The new name that is desired for the given subobject\n\n@return True if the rename was successful, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "InNewName",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "ReparentSubobject",
+      "return": "bool",
+      "doc": "Attempts to reparent the given subobject to the new parent\n\n@param NewParentHandle                Handle of the new parent\n@param ToReparentHandle               The handle of the subobject that will get moved\n\n@return True if the reparent was successful, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Params",
+          "type": "FReparentSubobjectParams"
+        },
+        {
+          "name": "ToReparentHandle",
+          "type": "FSubobjectDataHandle"
+        }
+      ]
+    },
+    {
+      "name": "ReparentSubobjects",
+      "return": "bool",
+      "doc": "Attempts to reparent all subobjects in the HandlesToMove array to the new parent handle.\n\n@param NewParentHandle                Handle of the new parent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Params",
+          "type": "FReparentSubobjectParams"
+        },
+        {
+          "name": "HandlesToMove",
+          "type": "TArray<FSubobjectDataHandle>"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "AGameplayCueNotify_BurstLatent",
+  "inherits": "AGameplayCueNotify_Actor",
+  "doc": "AGameplayCueNotify_BurstLatent\n\n    This is an instanced gameplay cue notify for effects that are one-offs.\n    Since it is instanced, it can do latent things like time lines or delays.",
+  "properties": {
+    "DefaultSpawnCondition": [
+      "FGameplayCueNotify_SpawnCondition",
+      "Default condition to check before spawning anything.  Applies for all spawns unless overridden."
+    ],
+    "DefaultPlacementInfo": [
+      "FGameplayCueNotify_PlacementInfo",
+      "Default placement rules.  Applies for all spawns unless overridden."
+    ],
+    "BurstEffects": [
+      "FGameplayCueNotify_BurstEffects",
+      "List of effects to spawn on burst."
+    ],
+    "BurstSpawnResults": [
+      "FGameplayCueNotify_SpawnResult",
+      1,
+      "Results of spawned burst effects."
+    ]
+  },
+  "methods": [
+    {
+      "name": "OnBurst",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "SpawnResults",
+          "type": "FGameplayCueNotify_SpawnResult"
+        }
+      ]
+    }
+  ]
+}

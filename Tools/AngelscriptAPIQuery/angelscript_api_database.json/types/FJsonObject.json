@@ -1,0 +1,231 @@
+{
+  "name": "FJsonObject",
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "HasField",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveField",
+      "return": "void",
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllFields",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "GetStringField",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetNumberField",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetBoolField",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetObjectField",
+      "return": "FJsonObject",
+      "const": true,
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetArrayField",
+      "return": "FJsonArray",
+      "const": true,
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetStringField",
+      "return": "void",
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        },
+        {
+          "name": "StringValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetNumberField",
+      "return": "void",
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        },
+        {
+          "name": "Number",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetBoolField",
+      "return": "void",
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetObjectField",
+      "return": "void",
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        },
+        {
+          "name": "InObject",
+          "type": "FJsonObject"
+        }
+      ]
+    },
+    {
+      "name": "SetArrayField",
+      "return": "void",
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        },
+        {
+          "name": "InArray",
+          "type": "FJsonArray"
+        }
+      ]
+    },
+    {
+      "name": "TryGetObjectField",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        },
+        {
+          "name": "OutObject",
+          "type": "FJsonObject&"
+        }
+      ]
+    },
+    {
+      "name": "CreateObjectField",
+      "return": "FJsonObject",
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "TryGetArrayField",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "FieldName",
+          "type": "FString"
+        },
+        {
+          "name": "OutArray",
+          "type": "FJsonArray&"
+        }
+      ]
+    },
+    {
+      "name": "LoadFromString",
+      "return": "bool",
+      "args": [
+        {
+          "name": "JsonStr",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SaveToString",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "bPrettyPrint",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Iterator",
+      "return": "FJsonObjectFieldIterator",
+      "args": []
+    }
+  ]
+}

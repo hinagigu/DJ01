@@ -1,0 +1,37 @@
+{
+  "name": "UAsyncPhysicsInputComponent",
+  "inherits": "UActorComponent",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetDataToConsume",
+      "return": "const UAsyncPhysicsData",
+      "const": true,
+      "doc": "Get the async physics data to execute logic off of. This data should not be modified and will NOT make its way back. Should be called from async tick",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDataToWrite",
+      "return": "UAsyncPhysicsData",
+      "const": true,
+      "doc": "Get the async physics data to write to. This data will make its way to the async physics tick on client and server. Should not be called from async tick",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerRPCBufferInput",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "AsyncPhysicsData",
+          "type": "UAsyncPhysicsData"
+        }
+      ]
+    }
+  ]
+}

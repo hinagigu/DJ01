@@ -1,0 +1,39 @@
+{
+  "name": "FGameplayCueNotify_SpawnCondition",
+  "isStruct": true,
+  "doc": "FGameplayCueNotify_SpawnCondition\n\n    Conditions used to determine if the gameplay cue notify should spawn.",
+  "properties": {
+    "LocallyControlledSource": [
+      "EGameplayCueNotify_LocallyControlledSource",
+      "Source actor to use when determining if it is locally controlled."
+    ],
+    "LocallyControlledPolicy": [
+      "EGameplayCueNotify_LocallyControlledPolicy",
+      "Locally controlled policy used to determine if the gameplay cue effects should spawn."
+    ],
+    "ChanceToPlay": [
+      "float32",
+      "Random chance to play the effects.  (1.0 = always play,  0.0 = never play)"
+    ],
+    "AllowedSurfaceTypes": [
+      "TArray<EPhysicalSurface>",
+      "The gameplay cue effects will only spawn if the surface type is in this list.\nAn empty list means everything is allowed."
+    ],
+    "RejectedSurfaceTypes": [
+      "TArray<EPhysicalSurface>",
+      "The gameplay cue effects will only spawn if the surface type is NOT in this list.\nAn empty list means nothing will be rejected."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayCueNotify_SpawnCondition&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayCueNotify_SpawnCondition"
+        }
+      ]
+    }
+  ]
+}

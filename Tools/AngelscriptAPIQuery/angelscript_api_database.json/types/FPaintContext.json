@@ -1,0 +1,236 @@
+{
+  "name": "FPaintContext",
+  "isStruct": true,
+  "doc": "The state passed into OnPaint that we can expose as a single painting structure to blueprints to\nallow script code to override OnPaint behavior.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetAllottedGeometry",
+      "return": "FGeometry",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetStyleColor",
+      "return": "FLinearColor",
+      "const": true,
+      "args": [
+        {
+          "name": "Color",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetStyleBrush",
+      "return": "FSlateBrush",
+      "const": true,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetStyleFont",
+      "return": "FSlateFontInfo",
+      "const": true,
+      "args": [
+        {
+          "name": "Size",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "DrawBox",
+      "return": "void",
+      "args": [
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Size",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Color",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "DrawBox",
+      "return": "void",
+      "args": [
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Size",
+          "type": "FVector2D"
+        },
+        {
+          "name": "BrushName",
+          "type": "FName"
+        },
+        {
+          "name": "TintColor",
+          "default": "FLinearColor :: White",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "DrawBox",
+      "return": "void",
+      "args": [
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Size",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Brush",
+          "type": "FSlateBrush"
+        },
+        {
+          "name": "TintColor",
+          "default": "FLinearColor :: White",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "DrawBox",
+      "return": "void",
+      "args": [
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Size",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Brush",
+          "type": "USlateBrushAsset"
+        },
+        {
+          "name": "TintColor",
+          "default": "FLinearColor :: White",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "DrawLine",
+      "return": "void",
+      "args": [
+        {
+          "name": "PositionA",
+          "type": "FVector2D"
+        },
+        {
+          "name": "PositionB",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Color",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Thickness",
+          "default": "1.f",
+          "type": "float32"
+        },
+        {
+          "name": "bAntiAlias",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DrawLines",
+      "return": "void",
+      "args": [
+        {
+          "name": "Points",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "Color",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Thickness",
+          "default": "1.f",
+          "type": "float32"
+        },
+        {
+          "name": "bAntiAlias",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DrawText",
+      "return": "void",
+      "args": [
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Color",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "DrawText",
+      "return": "void",
+      "args": [
+        {
+          "name": "Font",
+          "type": "FSlateFontInfo"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Color",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "FPaintContext&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPaintContext"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "name": "UGeometryCollection",
+  "inherits": "UObject",
+  "doc": "UGeometryCollectionObject (UObject)\n\nUObject wrapper for the FGeometryCollection",
+  "properties": {
+    "EnableClustering": [
+      "bool",
+      2,
+      ""
+    ],
+    "ClusterGroupIndex": [
+      "int",
+      2,
+      "Maximum level for cluster breaks."
+    ],
+    "MaxClusterLevel": [
+      "int",
+      2,
+      "Maximum level for cluster breaks."
+    ],
+    "DamageModel": [
+      "EDamageModelTypeEnum",
+      "Damage model to use for evaluating destruction."
+    ],
+    "DamageThreshold": [
+      "TArray<float32>",
+      2,
+      "Damage threshold for clusters at different levels."
+    ],
+    "bUseSizeSpecificDamageThreshold": [
+      "bool",
+      2,
+      "whether to use size specific damage threshold instead of level based ones ( see Size Specific Data array )."
+    ],
+    "bUseMaterialDamageModifiers": [
+      "bool",
+      "When on , use the modifiers on the material to adjust the user defined damage threshold values"
+    ],
+    "PerClusterOnlyDamageThreshold": [
+      "bool",
+      2,
+      "compatibility check, when true, only cluster compute damage from parameters and propagate to direct children\nwhen false, each child will compute it's damage threshold allowing for more precise and intuitive destruction behavior"
+    ],
+    "DamagePropagationData": [
+      "FGeometryCollectionDamagePropagationData",
+      2,
+      "Data about how damage propagation shoudl behave."
+    ],
+    "ClusterConnectionType": [
+      "EClusterConnectionTypeEnum",
+      2,
+      ""
+    ],
+    "ConnectionGraphBoundsFilteringMargin": [
+      "float32",
+      2,
+      ""
+    ],
+    "GeometrySource": [
+      "TArray<FGeometryCollectionSource>"
+    ],
+    "Materials": [
+      "TArray<TObjectPtr<UMaterialInterface>>",
+      2,
+      ""
+    ],
+    "EmbeddedGeometryExemplar": [
+      "TArray<FGeometryCollectionEmbeddedExemplar>",
+      2,
+      "References for embedded geometry generation"
+    ],
+    "bUseFullPrecisionUVs": [
+      "bool",
+      2,
+      "Whether to use full precision UVs when rendering this geometry. (Does not apply to Nanite rendering)"
+    ],
+    "bStripOnCook": [
+      "bool",
+      "Strip unnecessary data from the Geometry Collection to keep the memory footprint as small as possible."
+    ],
+    "bStripRenderDataOnCook": [
+      "bool",
+      "Strip unnecessary render data from the Geometry Collection to keep the memory footprint as small as possible.\nThis may be used if the cooked build uses a custom renderer such as the ISMPool renderer."
+    ],
+    "CustomRendererType": [
+      "UClass",
+      "Custom class type that will be used to render the geometry collection instead of using the native rendering."
+    ],
+    "RootProxyData": [
+      "FGeometryCollectionProxyMeshData",
+      "Static mesh to use as a proxy for rendering until the geometry collection is broken."
+    ],
+    "AutoInstanceMeshes": [
+      "TArray<FGeometryCollectionAutoInstanceMesh>",
+      2,
+      "List of unique static mesh / materials pairs for auto instancing."
+    ],
+    "PhysicsMaterial": [
+      "UPhysicalMaterial",
+      "Physics material to use for the geometry collection"
+    ],
+    "bDensityFromPhysicsMaterial": [
+      "bool",
+      "Whether to use density ( for mass computation ) from physics material ( if physics material is not set, use the component one or defaults )"
+    ],
+    "bMassAsDensity": [
+      "bool",
+      "Mass As Density, units are in kg/m^3 ( only enabled if physics material is not set )"
+    ],
+    "Mass": [
+      "float32",
+      "Total Mass of Collection. If density, units are in kg/m^3 ( only enabled if physics material is not set )"
+    ],
+    "MinimumMassClamp": [
+      "float32",
+      "Smallest allowable mass (def:0.1)"
+    ],
+    "bImportCollisionFromSource": [
+      "bool",
+      "whether to import collision from the source asset"
+    ],
+    "bOptimizeConvexes": [
+      "bool",
+      "whether to optimize convexes for collisions. If true the convex optimizer will generate at runtime one\nsingle convex shape for physics collisions ignoring all the user defined ones.\nEnable p.Chaos.Convex.SimplifyUnion cvar to be able to use it (experimental)"
+    ],
+    "bScaleOnRemoval": [
+      "bool",
+      "When enabled, particle will scale down (shrink) when using being removed ( using both remove on sleep or remove on break ) - Enabled by default"
+    ],
+    "bRemoveOnMaxSleep": [
+      "bool",
+      "Remove particle from simulation and dissolve rendered geometry once sleep threshold has been exceeded."
+    ],
+    "MaximumSleepTime": [
+      "FVector2D",
+      "How long may the particle sleep before initiating removal (in seconds)."
+    ],
+    "RemovalDuration": [
+      "FVector2D",
+      "How long does the removal process take (in seconds)."
+    ],
+    "bSlowMovingAsSleeping": [
+      "bool",
+      "when on non-sleeping, slow moving pieces will be considered as sleeping, this helps removal of jittery but not really moving objects."
+    ],
+    "SlowMovingVelocityThreshold": [
+      "float32",
+      "When slow moving detection is on, this defines the linear velocity thresholds in cm/s to consider the object as sleeping ."
+    ],
+    "SizeSpecificData": [
+      "TArray<FGeometryCollectionSizeSpecificData>",
+      2,
+      "* Size Specfic Data reflects the default geometry to bind to rigid bodies smaller\n* than the max size volume. This can also be empty to reflect no collision geometry\n* for the collection."
+    ],
+    "AssetImportData": [
+      "UAssetImportData",
+      "Importing data and options used for this geometry collection"
+    ],
+    "ThumbnailInfo": [
+      "UThumbnailInfo",
+      2,
+      "Information for thumbnail rendering"
+    ],
+    "DataflowAsset": [
+      "UDataflow",
+      "Dataflow"
+    ],
+    "DataflowTerminal": [
+      "FString",
+      2,
+      ""
+    ],
+    "Overrides": [
+      "TMap<FString,FString>"
+    ],
+    "AssetUserData": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the asset"
+    ],
+    "bConvertVertexColorsToSRGB": [
+      "bool",
+      "Convert vertex colors to sRGB for rendering. Exposed to avoid changing vertex color rendering for legacy assets; should typically be true for new geometry collections."
+    ],
+    "EnableNanite": [
+      "bool",
+      "Enable support for Nanite."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetConvertVertexColorsToSRGB",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableNanite",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

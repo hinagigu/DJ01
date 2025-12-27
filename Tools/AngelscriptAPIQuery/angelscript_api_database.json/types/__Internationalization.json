@@ -1,0 +1,237 @@
+{
+  "name": "__Internationalization",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ClearCurrentAssetGroupCulture",
+      "return": "void",
+      "doc": "Clear the given asset group category culture.\n@param AssetGroup The asset group to clear the culture for.\n@param SaveToConfig If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetGroup",
+          "type": "FName"
+        },
+        {
+          "name": "SaveToConfig",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetCultureDisplayName",
+      "return": "FString",
+      "doc": "Get the display name of the given culture.\n@param Culture The culture to get the display name of, as an IETF language tag (eg, \"zh-Hans-CN\")\n@param Localized True to get the localized display name (the name of the culture in its own language), or False to get the display name in the current language.\n@return The display name of the culture, or the given culture code on failure.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Culture",
+          "type": "FString"
+        },
+        {
+          "name": "Localized",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentAssetGroupCulture",
+      "return": "FString",
+      "doc": "Get the given asset group category culture.\n@note Returns the current language if the group category doesn't have a culture override.\n@param AssetGroup The asset group to get the culture for.\n@return The culture as an IETF language tag (eg, \"zh-Hans-CN\").",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetGroup",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentCulture",
+      "return": "FString",
+      "doc": "Get the current culture as an IETF language tag:\n - A two-letter ISO 639-1 language code (eg, \"zh\").\n - An optional four-letter ISO 15924 script code (eg, \"Hans\").\n - An optional two-letter ISO 3166-1 country code (eg, \"CN\").\n@note This function exists for legacy API parity with SetCurrentCulture and is equivalent to GetCurrentLanguage.\n@return The culture as an IETF language tag (eg, \"zh-Hans-CN\").",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentLanguage",
+      "return": "FString",
+      "doc": "Get the current language (for localization) as an IETF language tag:\n - A two-letter ISO 639-1 language code (eg, \"zh\").\n - An optional four-letter ISO 15924 script code (eg, \"Hans\").\n - An optional two-letter ISO 3166-1 country code (eg, \"CN\").\n@return The language as an IETF language tag (eg, \"zh-Hans-CN\").",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentLocale",
+      "return": "FString",
+      "doc": "Get the current locale (for internationalization) as an IETF language tag:\n - A two-letter ISO 639-1 language code (eg, \"zh\").\n - An optional four-letter ISO 15924 script code (eg, \"Hans\").\n - An optional two-letter ISO 3166-1 country code (eg, \"CN\").\n@return The locale as an IETF language tag (eg, \"zh-Hans-CN\").",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLocalizedCultures",
+      "return": "TArray<FString>",
+      "doc": "Get the list of cultures that have localization data available for them.\n@param IncludeGame Check for localized game resources.\n@param IncludeEngine Check for localized engine resources.\n@param IncludeEditor Check for localized editor resources.\n@param IncludeAdditional Check for localized additional (eg, plugin) resources.\n@return The list of cultures as IETF language tags (eg, \"zh-Hans-CN\").",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "IncludeGame",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "IncludeEngine",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "IncludeEditor",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "IncludeAdditional",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetNativeCulture",
+      "return": "FString",
+      "doc": "Get the native culture for the given localization category.\n@param Category The localization category to query.\n@return The culture as an IETF language tag (eg, \"zh-Hans-CN\").",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextCategory",
+          "type": "ELocalizedTextSourceCategory"
+        }
+      ]
+    },
+    {
+      "name": "GetSuitableCulture",
+      "return": "FString",
+      "doc": "Given a list of available cultures, try and find the most suitable culture from the list based on culture prioritization.\n  eg) If your list was [en, fr, de] and the given culture was \"en-US\", this function would return \"en\".\n  eg) If your list was [zh, ar, pl] and the given culture was \"en-US\", this function would return the fallback culture.\n@param AvailableCultures List of available cultures to filter against (see GetLocalizedCultures).\n@param CultureToMatch Culture to try and match (see GetCurrentLanguage).\n@param FallbackCulture The culture to return if there is no suitable match in the list (typically your native culture, see GetNativeCulture).\n@return The culture as an IETF language tag (eg, \"zh-Hans-CN\").",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AvailableCultures",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "CultureToMatch",
+          "type": "FString"
+        },
+        {
+          "name": "FallbackCulture",
+          "default": "\"en\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCurrentAssetGroupCulture",
+      "return": "bool",
+      "doc": "Set the given asset group category culture from an IETF language tag (eg, \"zh-Hans-CN\").\n@param AssetGroup The asset group to set the culture for.\n@param Culture The culture to set, as an IETF language tag (eg, \"zh-Hans-CN\").\n@param SaveToConfig If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.\n@return True if the culture was set, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetGroup",
+          "type": "FName"
+        },
+        {
+          "name": "Culture",
+          "type": "FString"
+        },
+        {
+          "name": "SaveToConfig",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCurrentCulture",
+      "return": "bool",
+      "doc": "Set the current culture.\n@note This function is a sledgehammer, and will set both the language and locale, as well as clear out any asset group cultures that may be set.\n@param Culture The culture to set, as an IETF language tag (eg, \"zh-Hans-CN\").\n@param SaveToConfig If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.\n@return True if the culture was set, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Culture",
+          "type": "FString"
+        },
+        {
+          "name": "SaveToConfig",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCurrentLanguage",
+      "return": "bool",
+      "doc": "Set *only* the current language (for localization).\n@note Unless you're doing something advanced, you likely want SetCurrentLanguageAndLocale or SetCurrentCulture instead.\n@param Culture The language to set, as an IETF language tag (eg, \"zh-Hans-CN\").\n@param SaveToConfig If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.\n@return True if the language was set, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Culture",
+          "type": "FString"
+        },
+        {
+          "name": "SaveToConfig",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCurrentLanguageAndLocale",
+      "return": "bool",
+      "doc": "Set the current language (for localization) and locale (for internationalization).\n@param Culture The language and locale to set, as an IETF language tag (eg, \"zh-Hans-CN\").\n@param SaveToConfig If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.\n@return True if the language and locale were set, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Culture",
+          "type": "FString"
+        },
+        {
+          "name": "SaveToConfig",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCurrentLocale",
+      "return": "bool",
+      "doc": "Set *only* the current locale (for internationalization).\n@note Unless you're doing something advanced, you likely want SetCurrentLanguageAndLocale or SetCurrentCulture instead.\n@param Culture The locale to set, as an IETF language tag (eg, \"zh-Hans-CN\").\n@param SaveToConfig If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.\n@return True if the locale was set, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Culture",
+          "type": "FString"
+        },
+        {
+          "name": "SaveToConfig",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

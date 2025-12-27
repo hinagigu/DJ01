@@ -1,0 +1,49 @@
+{
+  "name": "FAnimNode_StateMachine",
+  "isStruct": true,
+  "doc": "State machine node",
+  "properties": {
+    "MaxTransitionsPerFrame": [
+      "int",
+      2,
+      "The maximum number of transitions that can be taken by this machine 'simultaneously' in a single frame"
+    ],
+    "MaxTransitionsRequests": [
+      "int",
+      2,
+      "The maximum number of transition requests that can be buffered at any time.\nThe oldest transition requests are dropped to accommodate for newly created requests."
+    ],
+    "bSkipFirstUpdateTransition": [
+      "bool",
+      2,
+      "When the state machine becomes relevant, it is initialized into the Entry state.\nIt then tries to take any valid transitions to possibly end up in a different state on that same frame.\n- if true, that new state starts full weight.\n- if false, a blend is created between the entry state and that new state.\nIn either case all visited State notifications (Begin/End) will be triggered."
+    ],
+    "bReinitializeOnBecomingRelevant": [
+      "bool",
+      2,
+      "Reinitialize the state machine if we have become relevant to the graph\nafter not being ticked on the previous frame(s)"
+    ],
+    "bCreateNotifyMetaData": [
+      "bool",
+      2,
+      "Tag Notifies with meta data such as the active state and mirroring state.  Producing this\ndata has a  slight performance cost."
+    ],
+    "bAllowConduitEntryStates": [
+      "bool",
+      2,
+      "Allows a conduit to be used as this state machine's entry state\nIf a valid entry state cannot be found at runtime then this will generate a reference pose!"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_StateMachine&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_StateMachine"
+        }
+      ]
+    }
+  ]
+}

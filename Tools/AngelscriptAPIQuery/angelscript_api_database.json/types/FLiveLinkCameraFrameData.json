@@ -1,0 +1,55 @@
+{
+  "name": "FLiveLinkCameraFrameData",
+  "isStruct": true,
+  "doc": "Dynamic data for camera",
+  "properties": {
+    "FieldOfView": [
+      "float32",
+      "Field of View of the camera in degrees"
+    ],
+    "AspectRatio": [
+      "float32",
+      "Aspect Ratio of the camera (Width / Heigth)"
+    ],
+    "FocalLength": [
+      "float32",
+      "Focal length of the camera"
+    ],
+    "Aperture": [
+      "float32",
+      "Aperture of the camera in terms of f-stop"
+    ],
+    "FocusDistance": [
+      "float32",
+      "Focus distance of the camera in cm. Works only in manual focus method"
+    ],
+    "ProjectionMode": [
+      "ELiveLinkCameraProjectionMode",
+      "ProjectionMode of the camera (Perspective, Orthographic, etc...)"
+    ],
+    "Transform": [
+      "FTransform",
+      "Transform of the frame"
+    ],
+    "MetaData": [
+      "FLiveLinkMetaData",
+      "Frame's metadata."
+    ],
+    "PropertyValues": [
+      "TArray<float32>",
+      "Values of the properties defined in the static structure. Use FLiveLinkBaseStaticData.FindPropertyValue to evaluate."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLiveLinkCameraFrameData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLiveLinkCameraFrameData"
+        }
+      ]
+    }
+  ]
+}

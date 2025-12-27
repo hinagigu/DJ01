@@ -1,0 +1,26 @@
+{
+  "name": "UCommonBorderStyle",
+  "inherits": "UObject",
+  "doc": "* ---- All properties must be EditDefaultsOnly, BlueprintReadOnly !!! -----\n* We return the CDO to blueprints, so we cannot allow any changes (blueprint doesn't support const variables)",
+  "properties": {
+    "Background": [
+      "FSlateBrush",
+      "The brush for the background of the border"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetBackgroundBrush",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        }
+      ]
+    }
+  ]
+}

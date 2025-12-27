@@ -1,0 +1,47 @@
+{
+  "name": "FRigUnit_SetTransformItemArray",
+  "isStruct": true,
+  "doc": "SetTransformArray is used to set an array of transforms on the hierarchy.\n\nNote: For Controls when setting the initial transform this node\nactually sets the Control's offset transform and resets the local\nvalues to (0, 0, 0).",
+  "properties": {
+    "Items": [
+      "TArray<FRigElementKey>",
+      "The item to set the transform for"
+    ],
+    "Space": [
+      "ERigVMTransformSpace",
+      "Defines if the transform should be set in local or global space"
+    ],
+    "bInitial": [
+      "bool",
+      "Defines if the transform should be set as current (false) or initial (true).\nInitial transforms for bones and other elements in the hierarchy represent the reference pose's value."
+    ],
+    "Transforms": [
+      "TArray<FTransform>",
+      "The new transform of the given item"
+    ],
+    "Weight": [
+      "float32",
+      "Defines how much the change will be applied"
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      "If set to true children of affected items in the hierarchy\nwill follow the transform change - otherwise only the parent will move."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SetTransformItemArray&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SetTransformItemArray"
+        }
+      ]
+    }
+  ]
+}

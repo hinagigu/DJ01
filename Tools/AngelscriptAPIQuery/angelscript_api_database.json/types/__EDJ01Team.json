@@ -1,0 +1,47 @@
+{
+  "name": "__EDJ01Team",
+  "isEnum": true,
+  "doc": "EDJ01Team - 基于位标志的团队系统\n\n设计理念：\n1. 每个Team是一个独立的bit\n2. 通过位掩码定义\"攻击目标\"关系\n3. 一行代码判断敌对：(MyAttackMask & TargetTeam) != 0\n\n优势：\n- 极简：只需要位运算，不需要复杂的子系统\n- 高效：位运算性能极高\n- 灵活：支持\"一对多\"关系（一个单位可以同时属于多个阵营）\n- 可扩展：最多支持32个阵营（uint32）",
+  "properties": {
+    "None": [
+      "EDJ01Team",
+      "=== 基础阵营（每个是一个bit）==="
+    ],
+    "Player": [
+      "EDJ01Team",
+      "0b00000000 - 无阵营"
+    ],
+    "Monster": [
+      "EDJ01Team",
+      "0b00000001 - 玩家"
+    ],
+    "NPC": [
+      "EDJ01Team",
+      "0b00000010 - 怪物"
+    ],
+    "Boss": [
+      "EDJ01Team",
+      "0b00000100 - NPC"
+    ],
+    "Neutral": [
+      "EDJ01Team",
+      "0b00001000 - Boss"
+    ],
+    "TeamRed": [
+      "EDJ01Team",
+      "=== PvP阵营（可选）==="
+    ],
+    "TeamBlue": [
+      "EDJ01Team",
+      "0b00100000 - 红队"
+    ],
+    "TeamGreen": [
+      "EDJ01Team",
+      "0b01000000 - 蓝队"
+    ],
+    "EDJ01Team_MAX": [
+      "EDJ01Team"
+    ]
+  },
+  "methods": []
+}

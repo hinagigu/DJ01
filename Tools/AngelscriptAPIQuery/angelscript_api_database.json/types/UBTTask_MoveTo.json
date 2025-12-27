@@ -1,0 +1,54 @@
+{
+  "name": "UBTTask_MoveTo",
+  "inherits": "UBTTask_BlackboardBase",
+  "doc": "Move To task node.\nMoves the AI pawn toward the specified Actor or Location blackboard entry using the navigation system.",
+  "properties": {
+    "AcceptableRadius": [
+      "float32",
+      2,
+      "fixed distance added to threshold between AI and goal location in destination reach test"
+    ],
+    "FilterClass": [
+      "TSubclassOf<UNavigationQueryFilter>",
+      2,
+      "\"None\" will result in default filter being used"
+    ],
+    "ObservedBlackboardValueTolerance": [
+      "float32",
+      2,
+      "if task is expected to react to changes to location represented by BB key\n    this property can be used to tweak sensitivity of the mechanism. Value is\n    recommended to be less than AcceptableRadius"
+    ],
+    "bObserveBlackboardValue": [
+      "bool",
+      "if move goal in BB changes the move will be redirected to new location"
+    ],
+    "bAllowStrafe": [
+      "bool"
+    ],
+    "bAllowPartialPath": [
+      "bool",
+      "if set, use incomplete path when goal can't be reached"
+    ],
+    "bTrackMovingGoal": [
+      "bool",
+      "if set, path to goal actor will update itself when actor moves"
+    ],
+    "bRequireNavigableEndLocation": [
+      "bool",
+      "if set, the goal location will need to be navigable"
+    ],
+    "bProjectGoalLocation": [
+      "bool",
+      "if set, goal location will be projected on navigation data (navmesh) before using"
+    ],
+    "bReachTestIncludesAgentRadius": [
+      "bool",
+      "if set, radius of AI's capsule will be added to threshold between AI and goal location in destination reach test"
+    ],
+    "bReachTestIncludesGoalRadius": [
+      "bool",
+      "if set, radius of goal's capsule will be added to threshold between AI and goal location in destination reach test"
+    ]
+  },
+  "methods": []
+}

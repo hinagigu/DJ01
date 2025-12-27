@@ -1,0 +1,16 @@
+{
+  "name": "UColorInputDeviceProperty",
+  "inherits": "UInputDeviceProperty",
+  "doc": "Set the color of an Input Device to a static color. This will NOT reset the device color when the property\nis done evaluating. You can think of this as a \"One Shot\" effect, where you set the device property color.\n\nNOTE: This property has platform specific implementations and may behave differently per platform.\nSee the docs for more details on each platform.",
+  "properties": {
+    "ColorData": [
+      "FDeviceColorData",
+      "Default color data that will be used by default. Device Specific overrides will be used when the current input device matches"
+    ],
+    "DeviceOverrideData": [
+      "TMap<FName,FDeviceColorData>",
+      "A map of device specific color data. If no overrides are specified, the Default hardware data will be used"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,99 @@
+{
+  "name": "FPreviewSceneProfile",
+  "isStruct": true,
+  "doc": "Preview scene profile settings structure.",
+  "properties": {
+    "ProfileName": [
+      "FString",
+      2,
+      "Name to identify the profile"
+    ],
+    "bSharedProfile": [
+      "bool",
+      2,
+      "Whether or not this profile should be stored in the Project ini file"
+    ],
+    "bUseSkyLighting": [
+      "bool",
+      2,
+      "Whether or not image based lighting is enabled for the environment cube map"
+    ],
+    "DirectionalLightIntensity": [
+      "float32",
+      2,
+      "Manually set the directional light intensity (0.0 - 20.0)"
+    ],
+    "DirectionalLightColor": [
+      "FLinearColor",
+      2,
+      "Manually set the directional light colour"
+    ],
+    "SkyLightIntensity": [
+      "float32",
+      2,
+      "Manually set the sky light intensity (0.0 - 20.0)"
+    ],
+    "bRotateLightingRig": [
+      "bool",
+      2,
+      "Toggle rotating of the sky and directional lighting, press K and drag for manual rotating of Sky and L for Directional lighting"
+    ],
+    "bShowEnvironment": [
+      "bool",
+      2,
+      "Toggle visibility of the environment sphere"
+    ],
+    "bShowFloor": [
+      "bool",
+      2,
+      "Toggle visibility of the floor mesh"
+    ],
+    "EnvironmentColor": [
+      "FLinearColor",
+      2,
+      "The environment color, used if Show Environment is false."
+    ],
+    "EnvironmentIntensity": [
+      "float32",
+      2,
+      "The environment intensity (0.0 - 20.0), used if Show Environment is false."
+    ],
+    "EnvironmentCubeMap": [
+      "TSoftObjectPtr<UTextureCube>",
+      2,
+      "Sets environment cube map used for sky lighting and reflections"
+    ],
+    "bPostProcessingEnabled": [
+      "bool",
+      2,
+      "Whether or not the Post Processing should influence the scene"
+    ],
+    "PostProcessingSettings": [
+      "FPostProcessSettings",
+      2,
+      "Manual set post processing settings"
+    ],
+    "LightingRigRotation": [
+      "float32",
+      2,
+      "Current rotation value of the sky in degrees (0 - 360)"
+    ],
+    "RotationSpeed": [
+      "float32",
+      2,
+      "Speed at which the sky rotates when rotating is toggled"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPreviewSceneProfile&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPreviewSceneProfile"
+        }
+      ]
+    }
+  ]
+}

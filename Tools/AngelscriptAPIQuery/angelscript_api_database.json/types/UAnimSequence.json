@@ -1,0 +1,101 @@
+{
+  "name": "UAnimSequence",
+  "inherits": "UAnimSequenceBase",
+  "properties": {
+    "bAllowFrameStripping": [
+      "bool",
+      2,
+      "Allow frame stripping to be performed on this animation if the platform requests it\nCan be disabled if animation has high frequency movements that are being lost."
+    ],
+    "CompressionErrorThresholdScale": [
+      "float32",
+      2,
+      "Set a scale for error threshold on compression. This is useful if the animation will\nbe played back at a different scale (e.g. if you know the animation will be played\non an actor/component that is scaled up by a factor of 10, set this value to 10)"
+    ],
+    "BoneCompressionSettings": [
+      "UAnimBoneCompressionSettings",
+      2,
+      "The bone compression settings used to compress bones in this sequence."
+    ],
+    "CurveCompressionSettings": [
+      "UAnimCurveCompressionSettings",
+      2,
+      "The curve compression settings used to compress curves in this sequence."
+    ],
+    "VariableFrameStrippingSettings": [
+      "UVariableFrameStrippingSettings",
+      2,
+      ""
+    ],
+    "AdditiveAnimType": [
+      "EAdditiveAnimationType",
+      2,
+      "Additive animation type. *"
+    ],
+    "RefPoseType": [
+      "EAdditiveBasePoseType",
+      2,
+      "Additive refrerence pose type. Refer above enum type"
+    ],
+    "RefFrameIndex": [
+      "int",
+      2,
+      "Additve reference frame if RefPoseType == AnimFrame *"
+    ],
+    "RefPoseSeq": [
+      "UAnimSequence",
+      2,
+      "Additive reference animation if it's relevant - i.e. AnimScaled or AnimFrame *"
+    ],
+    "RetargetSource": [
+      "FName",
+      2,
+      "Base pose to use when retargeting"
+    ],
+    "RetargetSourceAsset": [
+      "TSoftObjectPtr<USkeletalMesh>",
+      2,
+      "If RetargetSource is set to Default (None), this is asset for the base pose to use when retargeting. Transform data will be saved in RetargetSourceAssetReferencePose."
+    ],
+    "Interpolation": [
+      "EAnimInterpolationType",
+      2,
+      "This defines how values between keys are calculated *"
+    ],
+    "bEnableRootMotion": [
+      "bool",
+      2,
+      "If this is on, it will allow extracting of root motion *"
+    ],
+    "RootMotionRootLock": [
+      "ERootMotionRootLock",
+      2,
+      "Root Bone will be locked to that position when extracting root motion.*"
+    ],
+    "bForceRootLock": [
+      "bool",
+      2,
+      "Force Root Bone Lock even if Root Motion is not enabled"
+    ],
+    "bUseNormalizedRootMotionScale": [
+      "bool",
+      2,
+      "If this is on, it will use a normalized scale value for the root motion extracted: FVector(1.0, 1.0, 1.0) *"
+    ],
+    "AssetImportData": [
+      "UAssetImportData",
+      2,
+      "Importing data and options used for this mesh"
+    ],
+    "StripAnimDataOnDedicatedServer": [
+      "EStripAnimDataOnDedicatedServerSettings",
+      2,
+      "Enum used to decide whether we should strip animation data on dedicated server"
+    ],
+    "bDoNotOverrideCompression": [
+      "bool",
+      "Do not attempt to override compression scheme when running CompressAnimations commandlet.\nSome high frequency animations are too sensitive and shouldn't be changed."
+    ]
+  },
+  "methods": []
+}

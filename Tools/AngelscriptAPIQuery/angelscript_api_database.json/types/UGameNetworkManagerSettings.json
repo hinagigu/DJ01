@@ -1,0 +1,62 @@
+{
+  "name": "UGameNetworkManagerSettings",
+  "inherits": "UObject",
+  "doc": "Holds the settings for the AGameNetworkManager class.",
+  "properties": {
+    "MinDynamicBandwidth": [
+      "int",
+      2,
+      "Minimum bandwidth dynamically set per connection."
+    ],
+    "MaxDynamicBandwidth": [
+      "int",
+      2,
+      "Maximum bandwidth dynamically set per connection."
+    ],
+    "TotalNetBandwidth": [
+      "int",
+      2,
+      "Total available bandwidth for listen server, split dynamically across net connections."
+    ],
+    "BadPingThreshold": [
+      "int",
+      2,
+      "The point we determine the server is either delaying packets or has bad upstream."
+    ],
+    "StandbyRxCheatTime": [
+      "float32",
+      2,
+      "The amount of time without packets before triggering the cheat code."
+    ],
+    "StandbyTxCheatTime": [
+      "float32",
+      2,
+      "The amount of time without packets before triggering the cheat code."
+    ],
+    "PercentMissingForRxStandby": [
+      "float32",
+      2,
+      "The percentage of clients missing RX data before triggering the standby code."
+    ],
+    "PercentMissingForTxStandby": [
+      "float32",
+      2,
+      "The percentage of clients missing TX data before triggering the standby code."
+    ],
+    "PercentForBadPing": [
+      "float32",
+      2,
+      "The percentage of clients with bad ping before triggering the standby code."
+    ],
+    "JoinInProgressStandbyWaitTime": [
+      "float32",
+      2,
+      "The amount of time to wait before checking a connection for standby issues."
+    ],
+    "bIsStandbyCheckingEnabled": [
+      "bool",
+      "Used to determine if checking for standby cheats should occur."
+    ]
+  },
+  "methods": []
+}

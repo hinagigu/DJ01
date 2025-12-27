@@ -1,0 +1,58 @@
+{
+  "name": "FLevelSimplificationDetails",
+  "isStruct": true,
+  "properties": {
+    "bCreatePackagePerAsset": [
+      "bool",
+      2,
+      "Whether to create separate packages for each generated asset. All in map package otherwise"
+    ],
+    "DetailsPercentage": [
+      "float32",
+      2,
+      "Percentage of details for static mesh proxy"
+    ],
+    "StaticMeshMaterialSettings": [
+      "FMaterialProxySettings",
+      2,
+      "Landscape material simplification"
+    ],
+    "bOverrideLandscapeExportLOD": [
+      "bool",
+      2,
+      ""
+    ],
+    "LandscapeExportLOD": [
+      "int",
+      2,
+      "Landscape LOD to use for static mesh generation, when not specified 'Max LODLevel' from landscape actor will be used"
+    ],
+    "LandscapeMaterialSettings": [
+      "FMaterialProxySettings",
+      2,
+      "Landscape material simplification"
+    ],
+    "bBakeFoliageToLandscape": [
+      "bool",
+      2,
+      "Whether to bake foliage into landscape static mesh texture"
+    ],
+    "bBakeGrassToLandscape": [
+      "bool",
+      2,
+      "Whether to bake grass into landscape static mesh texture"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLevelSimplificationDetails&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLevelSimplificationDetails"
+        }
+      ]
+    }
+  ]
+}

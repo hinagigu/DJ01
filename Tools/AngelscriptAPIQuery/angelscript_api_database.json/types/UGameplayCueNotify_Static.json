@@ -1,0 +1,119 @@
+{
+  "name": "UGameplayCueNotify_Static",
+  "inherits": "UObject",
+  "doc": "A non instantiated UObject that acts as a handler for a GameplayCue. These are useful for one-off \"burst\" effects.",
+  "properties": {
+    "GameplayCueTag": [
+      "FGameplayTag",
+      2,
+      "Tag this notify is activated by"
+    ],
+    "IsOverride": [
+      "bool",
+      2,
+      "Does this Cue override other cues, or is it called in addition to them? E.g., If this is Damage.Physical.Slash, we wont call Damage.Physical afer we run this cue."
+    ]
+  },
+  "methods": [
+    {
+      "name": "HandleGameplayCue",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "doc": "Generic Event Graph event that will get called for every event type",
+      "event": true,
+      "unrealname": "K2_HandleGameplayCue",
+      "meta": null,
+      "args": [
+        {
+          "name": "MyTarget",
+          "type": "AActor"
+        },
+        {
+          "name": "EventType",
+          "type": "EGameplayCueEvent"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "OnActive",
+      "return": "bool",
+      "const": true,
+      "doc": "Called when a GameplayCue with duration is first activated, this will only be called if the client witnessed the activation",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyTarget",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "OnExecute",
+      "return": "bool",
+      "const": true,
+      "doc": "Called when a GameplayCue is executed, this is used for instant effects or periodic ticks",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyTarget",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "OnRemove",
+      "return": "bool",
+      "const": true,
+      "doc": "Called when a GameplayCue with duration is removed",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyTarget",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "WhileActive",
+      "return": "bool",
+      "const": true,
+      "doc": "Called when a GameplayCue with duration is first seen as active, even if it wasn't actually just applied (Join in progress, etc)",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyTarget",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    }
+  ]
+}

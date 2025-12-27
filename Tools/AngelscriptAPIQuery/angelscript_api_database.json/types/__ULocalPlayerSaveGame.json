@@ -1,0 +1,58 @@
+{
+  "name": "__ULocalPlayerSaveGame",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AsyncLoadOrCreateSaveGameForLocalPlayer",
+      "return": "bool",
+      "doc": "Asynchronously loads a save game object in the specified slot for the local player, if this returns true the delegate will get called later.\nFalse means the load was never scheduled, otherwise it will create and initialize a new instance before calling the delegate if loading failed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SaveGameClass",
+          "type": "TSubclassOf<ULocalPlayerSaveGame>"
+        },
+        {
+          "name": "LocalPlayerController",
+          "type": "APlayerController"
+        },
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "Delegate",
+          "default": "FOnLocalPlayerSaveGameLoaded ( )",
+          "type": "FOnLocalPlayerSaveGameLoaded"
+        }
+      ]
+    },
+    {
+      "name": "LoadOrCreateSaveGameForLocalPlayer",
+      "return": "ULocalPlayerSaveGame",
+      "doc": "Synchronously loads a save game object in the specified slot for the local player, stalling the main thread until it completes.\nThis will return null for invalid parameters, but will create a new instance if the parameters are valid but loading fails.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SaveGameClass",
+          "type": "TSubclassOf<ULocalPlayerSaveGame>"
+        },
+        {
+          "name": "LocalPlayerController",
+          "type": "APlayerController"
+        },
+        {
+          "name": "SlotName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

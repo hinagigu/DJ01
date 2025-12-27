@@ -1,0 +1,188 @@
+{
+  "name": "UCineCameraSettings",
+  "inherits": "UDeveloperSettings",
+  "properties": {
+    "DefaultLensPresetName": [
+      "FString",
+      "Name of the default lens preset"
+    ],
+    "DefaultLensFocalLength": [
+      "float32",
+      "Default focal length (will be constrained by default lens)"
+    ],
+    "DefaultLensFStop": [
+      "float32",
+      "Default aperture (will be constrained by default lens)"
+    ],
+    "LensPresets": [
+      "TArray<FNamedLensPreset>",
+      "List of available lens presets"
+    ],
+    "DefaultFilmbackPreset": [
+      "FString",
+      "Name of the default filmback preset"
+    ],
+    "FilmbackPresets": [
+      "TArray<FNamedFilmbackPreset>",
+      "List of available filmback presets"
+    ],
+    "DefaultCropPresetName": [
+      "FString",
+      "Name of the default crop preset"
+    ],
+    "CropPresets": [
+      "TArray<FNamedPlateCropPreset>",
+      "List of available crop presets"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCropPresetByName",
+      "return": "bool",
+      "doc": "Gets the Crop settings associated with a given preset name\nReturns true if a preset with the given name was found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PresetName",
+          "type": "FString"
+        },
+        {
+          "name": "CropSettings",
+          "type": "FPlateCropSettings&"
+        }
+      ]
+    },
+    {
+      "name": "GetFilmbackPresetByName",
+      "return": "bool",
+      "doc": "Gets the Filmback settings associated with a given preset name\nReturns true if a preset with the given name was found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PresetName",
+          "type": "FString"
+        },
+        {
+          "name": "FilmbackSettings",
+          "type": "FCameraFilmbackSettings&"
+        }
+      ]
+    },
+    {
+      "name": "GetLensPresetByName",
+      "return": "bool",
+      "doc": "Gets the Lens settings associated with a given preset name\nReturns true if a preset with the given name was found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PresetName",
+          "type": "FString"
+        },
+        {
+          "name": "LensSettings",
+          "type": "FCameraLensSettings&"
+        }
+      ]
+    },
+    {
+      "name": "SetCropPresets",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCropPresets",
+          "type": "TArray<FNamedPlateCropPreset>"
+        }
+      ]
+    },
+    {
+      "name": "SetDefaultCropPresetName",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDefaultCropPresetName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetDefaultFilmbackPreset",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDefaultFilmbackPreset",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetDefaultLensFocalLength",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDefaultLensFocalLength",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDefaultLensFStop",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDefaultLensFStop",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDefaultLensPresetName",
+      "return": "void",
+      "doc": "Internal Blueprint Setter functions that call SaveConfig after setting the variable to ensure settings persist",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDefaultLensPresetName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetFilmbackPresets",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFilmbackPresets",
+          "type": "TArray<FNamedFilmbackPreset>"
+        }
+      ]
+    },
+    {
+      "name": "SetLensPresets",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLensPresets",
+          "type": "TArray<FNamedLensPreset>"
+        }
+      ]
+    }
+  ]
+}

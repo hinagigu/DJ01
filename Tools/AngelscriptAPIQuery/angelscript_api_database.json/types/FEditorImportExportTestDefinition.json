@@ -1,0 +1,39 @@
+{
+  "name": "FEditorImportExportTestDefinition",
+  "isStruct": true,
+  "doc": "Holds settings for the asset import / export automation test",
+  "properties": {
+    "ImportFilePath": [
+      "FFilePath",
+      2,
+      "The file to import"
+    ],
+    "ExportFileExtension": [
+      "FString",
+      2,
+      "The file extension to use when exporting this asset.  Used to find a supporting exporter"
+    ],
+    "bSkipExport": [
+      "bool",
+      2,
+      "If true, the export step will be skipped"
+    ],
+    "FactorySettings": [
+      "TArray<FImportFactorySettingValues>",
+      2,
+      "Settings for the import factory"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FEditorImportExportTestDefinition&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FEditorImportExportTestDefinition"
+        }
+      ]
+    }
+  ]
+}

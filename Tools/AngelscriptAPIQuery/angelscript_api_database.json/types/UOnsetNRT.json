@@ -1,0 +1,73 @@
+{
+  "name": "UOnsetNRT",
+  "inherits": "UAudioSynesthesiaNRT",
+  "doc": "UOnsetNRT\n\nUOnsetNRT calculates the temporal evolution of constant q transform for a given\nsound. Onset is available for individual channels or the overall sound asset.",
+  "properties": {
+    "Settings": [
+      "UOnsetNRTSettings",
+      "The settings for the audio analyzer."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetChannelOnsetsBetweenTimes",
+      "return": "void",
+      "const": true,
+      "doc": "Returns onsets which occured between start and end timestamps.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStartSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "InEndSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "InChannel",
+          "type": "int"
+        },
+        {
+          "name": "OutOnsetTimestamps",
+          "type": "TArray<float32>&"
+        },
+        {
+          "name": "OutOnsetStrengths",
+          "type": "TArray<float32>&"
+        }
+      ]
+    },
+    {
+      "name": "GetNormalizedChannelOnsetsBetweenTimes",
+      "return": "void",
+      "const": true,
+      "doc": "Get a specific channel cqt of the analyzed sound at a given time.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStartSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "InEndSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "InChannel",
+          "type": "int"
+        },
+        {
+          "name": "OutOnsetTimestamps",
+          "type": "TArray<float32>&"
+        },
+        {
+          "name": "OutOnsetStrengths",
+          "type": "TArray<float32>&"
+        }
+      ]
+    }
+  ]
+}

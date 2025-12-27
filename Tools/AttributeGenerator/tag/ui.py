@@ -4,6 +4,7 @@
 Tag 编辑器 UI
 """
 
+import csv
 import json
 import tkinter as tk
 from tkinter import ttk, messagebox
@@ -14,10 +15,15 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from config import TAGS_CONFIG, TAGS_HEADER, TAGS_SOURCE, TAG_CATEGORIES
+from config import (
+    TAGS_CONFIG, TAGS_CONFIG_CSV, TAGS_CONFIG_JSON, 
+    TAGS_HEADER, TAGS_SOURCE, TAG_CATEGORIES, TAGS_CSV_FIELDS,
+    ANIM_INSTANCE_HEADER
+)
 from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar, InlineEditorMixin
 from tag.data import TagData
 from tag.generator import TagCodeGenerator
+from tag.anim_generator import AnimInstanceVarGenerator
 
 
 class TagEditorUI(BaseEditorUI, InlineEditorMixin):
@@ -53,14 +59,16 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
         
         ttk.Label(middle_frame, text="Tag 列表", font=("", 12, "bold")).pack(pady=5)
         
-        columns = ('tag', 'variable', 'description')
+        columns = ('tag', 'variable', 'description', 'animvar')
         self.tag_tree = ttk.Treeview(middle_frame, columns=columns, show='headings', height=15)
         self.tag_tree.heading('tag', text='Tag')
         self.tag_tree.heading('variable', text='变量名')
         self.tag_tree.heading('description', text='描述')
-        self.tag_tree.column('tag', width=200)
-        self.tag_tree.column('variable', width=150)
-        self.tag_tree.column('description', width=200)
+        self.tag_tree.heading('animvar', text='AnimVar')
+        self.tag_tree.column('tag', width=180)
+        self.tag_tree.column('variable', width=140)
+        self.tag_tree.column('description', width=180)
+        self.tag_tree.column('animvar', width=100)
         self.tag_tree.pack(fill=tk.BOTH, expand=True)
         
         # 绑定 Delete/BackSpace 删除（自动选中上/下行）
@@ -81,26 +89,58 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
     # ========== 数据操作 ==========
     
     def load_data(self):
+        """加载数据（优先 CSV，后备 JSON）"""
         self.tags = []
+        
         try:
-            if TAGS_CONFIG.exists():
-                with open(TAGS_CONFIG, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                    # 支持两种格式："tags" 或 "Tags"
-                    items = data.get('tags', data.get('Tags', []))
-                    for item in items:
-                        self.tags.append(TagData.from_dict(item))
+            if TAGS_CONFIG_CSV.exists():
+                self._load_from_csv()
+            elif TAGS_CONFIG_JSON.exists():
+                self._load_from_json()
         except Exception as e:
             messagebox.showerror("错误", f"加载配置失败: {e}")
         
         self._refresh_cat_list()
     
+    def _load_from_csv(self):
+        """从 CSV 文件加载"""
+        with open(TAGS_CONFIG_CSV, 'r', encoding='utf-8', newline='') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                self.tags.append(TagData(
+                    category=row.get('Category', ''),
+                    tag=row.get('Tag', ''),
+                    variable_name=row.get('VariableName', ''),
+                    description=row.get('Description', ''),
+                    anim_var=row.get('AnimVar', '')
+                ))
+    
+    def _load_from_json(self):
+        """从 JSON 文件加载（后备）"""
+        with open(TAGS_CONFIG_JSON, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            items = data.get('tags', data.get('Tags', []))
+            for item in items:
+                self.tags.append(TagData.from_dict(item))
+    
     def save_config(self):
+        """保存配置到 CSV"""
         try:
-            TAGS_CONFIG.parent.mkdir(parents=True, exist_ok=True)
-            data = {'Tags': [t.to_dict() for t in self.tags]}
-            with open(TAGS_CONFIG, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=2, ensure_ascii=False)
+            TAGS_CONFIG_CSV.parent.mkdir(parents=True, exist_ok=True)
+            
+            with open(TAGS_CONFIG_CSV, 'w', encoding='utf-8', newline='') as f:
+                writer = csv.DictWriter(f, fieldnames=TAGS_CSV_FIELDS)
+                writer.writeheader()
+                
+                for tag in self.tags:
+                    writer.writerow({
+                        'Category': tag.category,
+                        'Tag': tag.tag,
+                        'VariableName': tag.variable_name,
+                        'Description': tag.description,
+                        'AnimVar': tag.anim_var
+                    })
+            
             return True
         except Exception as e:
             messagebox.showerror("错误", f"保存失败: {e}")
@@ -124,7 +164,7 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
         for i, tag in enumerate(self.tags):
             if tag.category == self.current_category:
                 self.tag_tree.insert('', 'end', iid=str(i), values=(
-                    tag.tag, tag.variable_name, tag.description))
+                    tag.tag, tag.variable_name, tag.description, tag.anim_var))
     
     def _on_cat_select(self, idx, value):
         self.current_category = value
@@ -226,13 +266,15 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
         tag = self.tags[tag_idx]
         current_values = list(self.tag_tree.item(item, 'values'))
         
-        # 列: tag(0), variable(1), description(2)
+        # 列: tag(0), variable(1), description(2), animvar(3)
         if col_idx == 0:  # tag 名
             self._create_tag_entry(item, col_idx, x, y, w, h, current_values, tag, 'tag')
         elif col_idx == 1:  # variable_name - 只读，显示自动生成提示
             pass  # 变量名自动生成，不可编辑
         elif col_idx == 2:  # description
             self._create_tag_entry(item, col_idx, x, y, w, h, current_values, tag, 'description')
+        elif col_idx == 3:  # animvar - 可编辑
+            self._create_tag_entry(item, col_idx, x, y, w, h, current_values, tag, 'anim_var')
     
     def _create_tag_entry(self, item, col_idx, x, y, w, h, current_values, tag, field_name):
         """创建文本框编辑器"""
@@ -259,6 +301,9 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
             elif field_name == 'description':
                 tag.description = new_value
                 current_values[2] = new_value
+            elif field_name == 'anim_var':
+                tag.anim_var = new_value
+                current_values[3] = new_value
             
             self.tag_tree.item(item, values=current_values)
             self._destroy_active_editor()
@@ -287,6 +332,12 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
         header = TagCodeGenerator.generate_header(tags_by_cat, timestamp)
         source = TagCodeGenerator.generate_source(tags_by_cat, timestamp)
         
+        # 收集带有 AnimVar 的 tags
+        anim_tags = [t for t in self.tags if t.anim_var]
+        anim_header = ""
+        if anim_tags:
+            anim_header = AnimInstanceVarGenerator.generate_header(anim_tags, timestamp)
+        
         try:
             TAGS_HEADER.parent.mkdir(parents=True, exist_ok=True)
             TAGS_SOURCE.parent.mkdir(parents=True, exist_ok=True)
@@ -296,9 +347,20 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
             with open(TAGS_SOURCE, 'w', encoding='utf-8') as f:
                 f.write(source)
             
+            # 生成 AnimInstance 变量头文件
+            anim_count = 0
+            if anim_tags:
+                ANIM_INSTANCE_HEADER.parent.mkdir(parents=True, exist_ok=True)
+                with open(ANIM_INSTANCE_HEADER, 'w', encoding='utf-8') as f:
+                    f.write(anim_header)
+                anim_count = len(anim_tags)
+            
             self.save_config()
             
             total = sum(len(tags) for tags in tags_by_cat.values())
-            messagebox.showinfo("成功", f"已生成 {total} 个 Tag")
+            msg = f"已生成 {total} 个 Tag"
+            if anim_count > 0:
+                msg += f"\n已生成 {anim_count} 个 AnimInstance 变量"
+            messagebox.showinfo("成功", msg)
         except Exception as e:
             messagebox.showerror("错误", f"生成失败: {e}")

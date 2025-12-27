@@ -1,0 +1,112 @@
+{
+  "$schema": "../ui_schema_v1.json",
+  "name": "DJ01HealthBar",
+  "description": "玩家血条 UI - 显示当前生命值和最大生命值",
+  "author": "AI Generator",
+  "version": "1.0.0",
+  
+  "parent_class": "CommonUserWidget",
+  "output_path": "Source/DJ01/UI/Generated",
+  "blueprint_path": "/Game/UI/HUD",
+  
+  "components": [
+    {
+      "name": "RootCanvas",
+      "type": "CanvasPanel",
+      "children": [
+        {
+          "name": "ContentBox",
+          "type": "HorizontalBox",
+          "children": [
+            {
+              "name": "HealthIcon",
+              "type": "Image",
+              "optional": true,
+              "comment": "血条图标"
+            },
+            {
+              "name": "BarContainer",
+              "type": "SizeBox",
+              "width_override": 200,
+              "height_override": 24,
+              "children": [
+                {
+                  "name": "HealthBar",
+                  "type": "ProgressBar",
+                  "bind_percent": "HealthPercent",
+                  "comment": "血量进度条"
+                }
+              ]
+            },
+            {
+              "name": "HealthText",
+              "type": "TextBlock",
+              "bind_text": "HealthDisplayText",
+              "comment": "血量文字 如 100/100"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  
+  "properties": [
+    {
+      "name": "HealthPercent",
+      "type": "float",
+      "category": "Health",
+      "default": 1.0,
+      "description": "当前血量百分比 0-1"
+    },
+    {
+      "name": "HealthDisplayText",
+      "type": "FText",
+      "category": "Health",
+      "description": "血量显示文本"
+    },
+    {
+      "name": "CurrentHealth",
+      "type": "float",
+      "category": "Health|Internal",
+      "blueprint_read_only": true,
+      "description": "当前血量值"
+    },
+    {
+      "name": "MaxHealth",
+      "type": "float", 
+      "category": "Health|Internal",
+      "blueprint_read_only": true,
+      "description": "最大血量值"
+    }
+  ],
+  
+  "functions": [
+    {
+      "name": "SetHealth",
+      "description": "设置血量值，自动更新显示",
+      "parameters": [
+        {"name": "InCurrentHealth", "type": "float"},
+        {"name": "InMaxHealth", "type": "float"}
+      ],
+      "body_hint": "更新 CurrentHealth, MaxHealth, HealthPercent, HealthDisplayText"
+    },
+    {
+      "name": "PlayDamageAnimation",
+      "description": "播放受伤动画",
+      "blueprint_implementable": true,
+      "comment": "蓝图中实现具体动画效果"
+    }
+  ],
+  
+  "events": [
+    {
+      "name": "OnHealthChanged",
+      "description": "血量变化时触发",
+      "parameters": [
+        {"name": "OldHealth", "type": "float"},
+        {"name": "NewHealth", "type": "float"}
+      ],
+      "blueprint_assignable": true
+    }
+  ]
+}

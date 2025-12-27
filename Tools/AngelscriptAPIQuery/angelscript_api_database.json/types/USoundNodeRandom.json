@@ -1,0 +1,26 @@
+{
+  "name": "USoundNodeRandom",
+  "inherits": "USoundNode",
+  "doc": "Selects sounds from a random set",
+  "properties": {
+    "Weights": [
+      "TArray<float32>",
+      2,
+      ""
+    ],
+    "PreselectAtLevelLoad": [
+      "int",
+      2,
+      "If greater than 0, then upon each level load such a number of inputs will be randomly selected\nand the rest will be removed. This can be used to cut down the memory usage of large randomizing\ncues."
+    ],
+    "bShouldExcludeFromBranchCulling": [
+      "bool",
+      "If set to true, this random node will not be culled on load for platforms with a maximum amount of preloaded random branches\n set in project settings"
+    ],
+    "bRandomizeWithoutReplacement": [
+      "bool",
+      "Determines whether or not this SoundNodeRandom should randomize with or without\nreplacement.\n\nWithoutReplacement means that only nodes left will be valid for\nselection.  So with that, you are guarenteed to have only one occurrence of the\nsound played until all of the other sounds in the set have all been played.\n\nWithReplacement means that a node will be chosen and then placed back into the set.\nSo one could play the same sound over and over if the probabilities don't go your way :-)"
+    ]
+  },
+  "methods": []
+}

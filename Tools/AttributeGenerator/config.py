@@ -23,11 +23,19 @@ MODULE_NAME = "DJ01"
 
 # ========== 属性配置 ==========
 ATTRIBUTES_CONFIG = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Attributes/Config/AttributeDefinitions.csv"
+ATTRIBUTES_BEHAVIORS = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Attributes/Config/AttributeBehaviors.json"
 ATTRIBUTES_HEADER = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Attributes/Public/DJ01GeneratedAttributes.h"
 ATTRIBUTES_SOURCE = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Attributes/Private/DJ01GeneratedAttributes.cpp"
 
-# 属性 CSV 字段头
+# 属性 CSV 字段头（不再包含 BehaviorConfig）
 ATTRIBUTES_CSV_FIELDS = [
+    'SetName', 'AttributeName', 'Type', 'Category',
+    'DefaultBase', 'DefaultFlat', 'DefaultPercent', 'DefaultCurrent',
+    'Description'
+]
+
+# 旧版 CSV 字段头（用于向后兼容读取）
+ATTRIBUTES_CSV_FIELDS_LEGACY = [
     'SetName', 'AttributeName', 'Type', 'Category',
     'DefaultBase', 'DefaultFlat', 'DefaultPercent', 'DefaultCurrent',
     'Description', 'BehaviorConfig'
@@ -38,9 +46,17 @@ EXECUTIONS_CONFIG = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Executions/Config/
 EXECUTIONS_OUTPUT = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Executions/Generated"
 
 # ========== GameplayTags 配置 ==========
-TAGS_CONFIG = PROJECT_ROOT / "Source/DJ01/System/Config/GameplayTagDefinitions.json"
+TAGS_CONFIG_CSV = PROJECT_ROOT / "Source/DJ01/System/Config/GameplayTagDefinitions.csv"
+TAGS_CONFIG_JSON = PROJECT_ROOT / "Source/DJ01/System/Config/GameplayTagDefinitions.json"  # 旧版后备
+TAGS_CONFIG = TAGS_CONFIG_CSV  # 默认使用 CSV
 TAGS_HEADER = PROJECT_ROOT / "Source/DJ01/System/Public/DJ01GameplayTags.h"
 TAGS_SOURCE = PROJECT_ROOT / "Source/DJ01/System/Private/DJ01GameplayTags.cpp"
+
+# Tag CSV 字段
+TAGS_CSV_FIELDS = ['Category', 'Tag', 'VariableName', 'Description', 'AnimVar']
+
+# AnimInstance 生成配置
+ANIM_INSTANCE_HEADER = PROJECT_ROOT / "Source/DJ01/Animation/Generated/DJ01AnimInstanceVars.h"
 
 # ========== MMC 配置 ==========
 MMC_CONFIG = PROJECT_ROOT / "Source/DJ01/AbilitySystem/MMC/Config/MMCDefinitions.json"

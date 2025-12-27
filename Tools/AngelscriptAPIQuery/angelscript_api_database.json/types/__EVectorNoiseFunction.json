@@ -1,0 +1,30 @@
+{
+  "name": "__EVectorNoiseFunction",
+  "isEnum": true,
+  "properties": {
+    "VNF_CellnoiseALU": [
+      "EVectorNoiseFunction",
+      "Random color for each unit cell in 3D space.\nRGB output range 0 to 1\nR only = 9 instructions, RGB = 11 instructions"
+    ],
+    "VNF_VectorALU": [
+      "EVectorNoiseFunction",
+      "Perlin-style noise with 3D vector/color output.\nRGB output range -1 to 1\nR only = ~83 instructions, RGB = ~125 instructions"
+    ],
+    "VNF_GradientALU": [
+      "EVectorNoiseFunction",
+      "Gradient of Perlin noise, useful for bumps.\nRGB = Gradient of scalar noise (signed 3D vector)\nA = Base scalar noise with range -1 to 1\nA only = ~83 instructions, RGBA = ~106 instructions"
+    ],
+    "VNF_CurlALU": [
+      "EVectorNoiseFunction",
+      "Curl of Perlin noise, useful for 3D flow directions.\nRGB = signed curl vector\n~162 instructions"
+    ],
+    "VNF_VoronoiALU": [
+      "EVectorNoiseFunction",
+      "Also known as Worley or Cellular noise.\nRGB = *position* of closest point at center of Voronoi cell\nA = distance to closest point with range 0 to about 4\nQuality levels 1-4 search 8, 16, 27 & 32 cells\nAll ~20 instructions per cell searched"
+    ],
+    "VNF_MAX": [
+      "EVectorNoiseFunction"
+    ]
+  },
+  "methods": []
+}

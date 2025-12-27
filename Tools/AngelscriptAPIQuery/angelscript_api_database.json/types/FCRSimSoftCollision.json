@@ -1,0 +1,53 @@
+{
+  "name": "FCRSimSoftCollision",
+  "isStruct": true,
+  "properties": {
+    "Transform": [
+      "FTransform",
+      2,
+      "The world / global transform of the collisoin"
+    ],
+    "ShapeType": [
+      "ECRSimSoftCollisionType",
+      2,
+      "The type of collision shape"
+    ],
+    "MinimumDistance": [
+      "float32",
+      2,
+      "The minimum distance for the collision.\nIf this is equal or higher than the maximum there's no falloff.\nFor a cone shape this represents the minimum angle in degrees."
+    ],
+    "MaximumDistance": [
+      "float32",
+      2,
+      "The maximum distance for the collision.\nIf this is equal or lower than the minimum there's no falloff.\nFor a cone shape this represents the maximum angle in degrees."
+    ],
+    "FalloffType": [
+      "ERigVMAnimEasingType",
+      2,
+      "The type of falloff to use"
+    ],
+    "Coefficient": [
+      "float32",
+      2,
+      "The strength of the collision force"
+    ],
+    "bInverted": [
+      "bool",
+      2,
+      "If set to true the collision volume will be inverted"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCRSimSoftCollision&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCRSimSoftCollision"
+        }
+      ]
+    }
+  ]
+}

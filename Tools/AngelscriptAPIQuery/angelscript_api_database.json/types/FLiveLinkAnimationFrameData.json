@@ -1,0 +1,31 @@
+{
+  "name": "FLiveLinkAnimationFrameData",
+  "isStruct": true,
+  "doc": "Dynamic data for Animation purposes.",
+  "properties": {
+    "Transforms": [
+      "TArray<FTransform>",
+      "Array of transforms for each bone of the skeleton"
+    ],
+    "MetaData": [
+      "FLiveLinkMetaData",
+      "Frame's metadata."
+    ],
+    "PropertyValues": [
+      "TArray<float32>",
+      "Values of the properties defined in the static structure. Use FLiveLinkBaseStaticData.FindPropertyValue to evaluate."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLiveLinkAnimationFrameData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLiveLinkAnimationFrameData"
+        }
+      ]
+    }
+  ]
+}

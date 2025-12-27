@@ -1,0 +1,912 @@
+{
+  "name": "URigHierarchyController",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddAnimationChannel",
+      "return": "FRigElementKey",
+      "doc": "Adds a control to the hierarchy\n@param InName The suggested name of the new animation channel - will eventually be corrected by the namespace\n@param InParentControl The parent of the new animation channel.\n@param InSettings All of the animation channel's settings\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@return The key for the newly created animation channel.",
+      "ufunction": true,
+      "unrealname": "AddAnimationChannel_ForBlueprint",
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "InParentControl",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigControlSettings"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddBone",
+      "return": "FRigElementKey",
+      "doc": "Adds a bone to the hierarchy\n@param InName The suggested name of the new bone - will eventually be corrected by the namespace\n@param InParent The (optional) parent of the new bone. If you don't need a parent, pass FRigElementKey()\n@param InTransform The transform for the new bone - either in local or global space, based on bTransformInGlobal\n@param bTransformInGlobal Set this to true if the Transform passed is expressed in global space, false for local space.\n@param InBoneType The type of bone to add. This can be used to differentiate between imported bones and user defined bones.\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return The key for the newly created bone.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bTransformInGlobal",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "InBoneType",
+          "default": "ERigBoneType :: User",
+          "type": "ERigBoneType"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddConnector",
+      "return": "FRigElementKey",
+      "doc": "Adds a connector to the hierarchy\n@param InName The suggested name of the new connector - will eventually be corrected by the namespace\n@param InSettings All of the connector's settings\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return The key for the newly created bone.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigConnectorSettings"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddControl",
+      "return": "FRigElementKey",
+      "doc": "Adds a control to the hierarchy\n@param InName The suggested name of the new control - will eventually be corrected by the namespace\n@param InParent The (optional) parent of the new control. If you don't need a parent, pass FRigElementKey()\n@param InSettings All of the control's settings\n@param InValue The value to use for the control\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@return The key for the newly created control.",
+      "ufunction": true,
+      "unrealname": "AddControl_ForBlueprint",
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigControlSettings"
+        },
+        {
+          "name": "InValue",
+          "type": "FRigControlValue"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddCurve",
+      "return": "FRigElementKey",
+      "doc": "Adds a curve to the hierarchy\n@param InName The suggested name of the new curve - will eventually be corrected by the namespace\n@param InValue The value to use for the curve\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return The key for the newly created curve.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddNull",
+      "return": "FRigElementKey",
+      "doc": "Adds a null to the hierarchy\n@param InName The suggested name of the new null - will eventually be corrected by the namespace\n@param InParent The (optional) parent of the new null. If you don't need a parent, pass FRigElementKey()\n@param InTransform The transform for the new null - either in local or global null, based on bTransformInGlobal\n@param bTransformInGlobal Set this to true if the Transform passed is expressed in global null, false for local null.\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return The key for the newly created null.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bTransformInGlobal",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddParent",
+      "return": "bool",
+      "doc": "Adds a new parent to an element. For elements that allow only one parent the parent will be replaced (Same as ::SetParent).\n@param InChild The key of the element to add the parent for\n@param InParent The key of the new parent to add\n@param InWeight The initial weight to give to the parent\n@param bMaintainGlobalTransform If set to true the child will stay in the same place spatially, otherwise it will maintain it's local transform (and potential move).\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@return Returns true if successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InWeight",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bMaintainGlobalTransform",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddRigidBody",
+      "return": "FRigElementKey",
+      "doc": "Adds a rigidbody to the hierarchy\n@param InName The suggested name of the new rigidbody - will eventually be corrected by the namespace\n@param InParent The (optional) parent of the new rigidbody. If you don't need a parent, pass FRigElementKey()\n@param InSettings All of the rigidbody's settings\n@param InLocalTransform The transform for the new rigidbody - in the space of the provided parent\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return The key for the newly created rigidbody.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigRigidBodySettings"
+        },
+        {
+          "name": "InLocalTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddSocket",
+      "return": "FRigElementKey",
+      "doc": "Adds a socket to the hierarchy\n@param InName The suggested name of the new socket - will eventually be corrected by the namespace\n@param InParent The (optional) parent of the new null. If you don't need a parent, pass FRigElementKey()\n@param InTransform The transform for the new socket - either in local or global space, based on bTransformInGlobal\n@param bTransformInGlobal Set this to true if the Transform passed is expressed in global space, false for local space.\n@param InColor The color of the socket\n@param InDescription The description of the socket\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return The key for the newly created bone.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bTransformInGlobal",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "InColor",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "InDescription",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClearSelection",
+      "return": "bool",
+      "doc": "Clears the selection\n@return Returns true if the selection was applied",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DeselectElement",
+      "return": "bool",
+      "doc": "Deselects or deselects an element in the hierarchy\n@param InKey The key of the element to deselect\n@return Returns true if the selection was applied",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "DuplicateElements",
+      "return": "TArray<FRigElementKey>",
+      "doc": "Duplicate the given elements\n@param InKeys The keys of the elements to duplicate\n@param bSelectNewElements If set to true the new elements will be selected\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return The keys of the 4d items",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKeys",
+          "type": "TArray<FRigElementKey>"
+        },
+        {
+          "name": "bSelectNewElements",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ExportSelectionToText",
+      "return": "FString",
+      "const": true,
+      "doc": "Exports the selected items to text\n@return The text representation of the selected items",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ExportToText",
+      "return": "FString",
+      "const": true,
+      "doc": "Exports a list of items to text\n@param InKeys The keys to export to text\n@return The text representation of the requested elements",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKeys",
+          "type": "TArray<FRigElementKey>"
+        }
+      ]
+    },
+    {
+      "name": "GeneratePythonCommands",
+      "return": "TArray<FString>",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetControlSettings",
+      "return": "FRigControlSettings",
+      "const": true,
+      "doc": "Returns the control settings of a given control\n@param InKey The key of the control to receive the settings for\n@return The settings of the given control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetHierarchy",
+      "return": "URigHierarchy",
+      "const": true,
+      "doc": "Returns the hierarchy currently linked to this controller",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ImportBones",
+      "return": "TArray<FRigElementKey>",
+      "doc": "Imports an existing skeleton to the hierarchy\n@param InSkeleton The skeleton to import\n@param InNameSpace The namespace to prefix the bone names with\n@param bReplaceExistingBones If true existing bones will be removed\n@param bRemoveObsoleteBones If true bones non-existent in the skeleton will be removed from the hierarchy\n@param bSelectBones If true the bones will be selected upon import\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return The keys of the imported elements",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSkeleton",
+          "type": "USkeleton"
+        },
+        {
+          "name": "InNameSpace",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bReplaceExistingBones",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bRemoveObsoleteBones",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSelectBones",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ImportBonesFromAsset",
+      "return": "TArray<FRigElementKey>",
+      "doc": "Imports an existing skeleton to the hierarchy\n@param InAssetPath The path to the uasset to import from\n@param InNameSpace The namespace to prefix the bone names with\n@param bReplaceExistingBones If true existing bones will be removed\n@param bRemoveObsoleteBones If true bones non-existent in the skeleton will be removed from the hierarchy\n@param bSelectBones If true the bones will be selected upon import\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@return The keys of the imported elements",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetPath",
+          "type": "FString"
+        },
+        {
+          "name": "InNameSpace",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bReplaceExistingBones",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bRemoveObsoleteBones",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSelectBones",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ImportCurves",
+      "return": "TArray<FRigElementKey>",
+      "doc": "Imports all curves from a skeleton to the hierarchy\n@param InSkeleton The skeleton to import the curves from\n@param InNameSpace The namespace to prefix the bone names with\n@param bSelectCurves If true the curves will be selected upon import\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@return The keys of the imported elements",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSkeleton",
+          "type": "USkeleton"
+        },
+        {
+          "name": "InNameSpace",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bSelectCurves",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ImportCurvesFromAsset",
+      "return": "TArray<FRigElementKey>",
+      "doc": "Imports all curves from a skeleton to the hierarchy\n@param InAssetPath The path to the uasset to import from\n@param InNameSpace The namespace to prefix the bone names with\n@param bSelectCurves If true the curves will be selected upon import\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@return The keys of the imported elements",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetPath",
+          "type": "FString"
+        },
+        {
+          "name": "InNameSpace",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bSelectCurves",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ImportFromText",
+      "return": "TArray<FRigElementKey>",
+      "doc": "Imports the content of a text buffer to the hierarchy\n@param InContent The string buffer representing the content to import\n@param bReplaceExistingElements If set to true existing items will be replaced / updated with the content in the buffer\n@param bSelectNewElements If set to true the new elements will be selected\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InContent",
+          "type": "FString"
+        },
+        {
+          "name": "bReplaceExistingElements",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSelectNewElements",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MirrorElements",
+      "return": "TArray<FRigElementKey>",
+      "doc": "Mirrors the given elements\n@param InKeys The keys of the elements to mirror\n@param InSettings The settings to use for the mirror operation\n@param bSelectNewElements If set to true the new elements will be selected\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return The keys of the mirrored items",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKeys",
+          "type": "TArray<FRigElementKey>"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigVMMirrorSettings"
+        },
+        {
+          "name": "bSelectNewElements",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllParents",
+      "return": "bool",
+      "doc": "Removes all parents from an element in the hierarchy.\n@param InChild The key of the element to remove all parents for\n@param bMaintainGlobalTransform If set to true the child will stay in the same place spatially, otherwise it will maintain it's local transform (and potential move).\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return Returns true if successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bMaintainGlobalTransform",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveElement",
+      "return": "bool",
+      "doc": "Removes an existing element from the hierarchy\n@param InElement The key of the element to remove\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return Returns true if successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElement",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveParent",
+      "return": "bool",
+      "doc": "Removes an existing parent from an element in the hierarchy. For elements that allow only one parent the element will be unparented (same as ::RemoveAllParents)\n@param InChild The key of the element to remove the parent for\n@param InParent The key of the parent to remove\n@param bMaintainGlobalTransform If set to true the child will stay in the same place spatially, otherwise it will maintain it's local transform (and potential move).\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return Returns true if successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bMaintainGlobalTransform",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RenameElement",
+      "return": "FRigElementKey",
+      "doc": "Renames an existing element in the hierarchy\n@param InElement The key of the element to rename\n@param InName The new name to set for the element\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@param bClearSelection True if the selection should be cleared after a rename\n@return Returns the new element key used for the element",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElement",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bClearSelection",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReorderElement",
+      "return": "bool",
+      "doc": "Changes the element's index within its default parent (or the top level)\n@param InElement The key of the element to rename\n@param InIndex The new index of the element to take within its default parent (or the top level)\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return Returns true if the element has been reordered accordingly",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElement",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InIndex",
+          "type": "int"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SelectElement",
+      "return": "bool",
+      "doc": "Selects or deselects an element in the hierarchy\n@param InKey The key of the element to select\n@param bSelect If set to false the element will be deselected\n@return Returns true if the selection was applied",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bSelect",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bClearSelection",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlSettings",
+      "return": "bool",
+      "const": true,
+      "doc": "Sets a control's settings given a control key\n@param InKey The key of the control to set the settings for\n@param The settings to set\n@return Returns true if the settings have been set correctly",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigControlSettings"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetDisplayName",
+      "return": "FName",
+      "doc": "Sets the display name on a control\n@param InControl The key of the control to change the display name for\n@param InDisplayName The new display name to set for the control\n@param bRenameElement True if the control should also be renamed\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return Returns the new display name used for the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControl",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InDisplayName",
+          "type": "FName"
+        },
+        {
+          "name": "bRenameElement",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetHierarchy",
+      "return": "void",
+      "doc": "Sets the hierarchy currently linked to this controller",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHierarchy",
+          "type": "URigHierarchy"
+        }
+      ]
+    },
+    {
+      "name": "SetParent",
+      "return": "bool",
+      "doc": "Sets a new parent to an element. For elements that allow more than one parent the parent list will be replaced.\n@param InChild The key of the element to set the parent for\n@param InParent The key of the new parent to set\n@param bMaintainGlobalTransform If set to true the child will stay in the same place spatially, otherwise it will maintain it's local transform (and potential move).\n@param bSetupUndo If set to true the stack will record the change for undo / redo\n@param bPrintPythonCommand If set to true a python command equivalent to this call will be printed out\n@return Returns true if successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bMaintainGlobalTransform",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSelection",
+      "return": "bool",
+      "doc": "Sets the selection based on a list of keys\n@param InKeys The array of keys of the elements to select\n@return Returns true if the selection was applied",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKeys",
+          "type": "TArray<FRigElementKey>"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

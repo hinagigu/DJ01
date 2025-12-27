@@ -1,0 +1,472 @@
+{
+  "name": "UStaticMesh",
+  "inherits": "UStreamableRenderAsset",
+  "doc": "A StaticMesh is a piece of geometry that consists of a static set of polygons.\nStatic Meshes can be translated, rotated, and scaled, but they cannot have their vertices animated in any way. As such, they are more efficient\nto render than other types of geometry such as USkeletalMesh, and they are often the basic building block of levels created in the engine.\n\n@see https://docs.unrealengine.com/latest/INT/Engine/Content/Types/StaticMeshes/\n@see AStaticMeshActor, UStaticMeshComponent",
+  "properties": {
+    "LODGroup": [
+      "FName",
+      2,
+      "The LOD group to which this mesh belongs."
+    ],
+    "NaniteSettings": [
+      "FMeshNaniteSettings",
+      2,
+      "Settings related to building Nanite data."
+    ],
+    "LightMapResolution": [
+      "int",
+      2,
+      "The light map resolution"
+    ],
+    "LightMapCoordinateIndex": [
+      "int",
+      2,
+      "The light map coordinate index"
+    ],
+    "DistanceFieldSelfShadowBias": [
+      "float32",
+      2,
+      "Useful for reducing self shadowing from distance field methods when using world position offset to animate the mesh's vertices."
+    ],
+    "BodySetup": [
+      "UBodySetup",
+      2,
+      ""
+    ],
+    "LODForCollision": [
+      "int",
+      "Specifies which mesh LOD to use for complex (per-poly) collision.\nSometimes it can be desirable to use a lower poly representation for collision to reduce memory usage, improve performance and behaviour.\nCollision representation does not change based on distance to camera."
+    ],
+    "AssetImportData": [
+      "UAssetImportData",
+      2,
+      "Importing data and options used for this mesh"
+    ],
+    "ThumbnailInfo": [
+      "UThumbnailInfo",
+      2,
+      "Information for thumbnail rendering"
+    ],
+    "bCustomizedCollision": [
+      "bool",
+      2,
+      "If the user has modified collision in any way or has custom collision imported. Used for determining if to auto generate collision on import"
+    ],
+    "PositiveBoundsExtension": [
+      "FVector",
+      2,
+      ""
+    ],
+    "NegativeBoundsExtension": [
+      "FVector",
+      2,
+      ""
+    ],
+    "AssetUserData": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the asset"
+    ],
+    "ComplexCollisionMesh": [
+      "UStaticMesh",
+      2,
+      ""
+    ],
+    "NavCollision": [
+      "UNavCollisionBase",
+      2,
+      ""
+    ],
+    "bGenerateMeshDistanceField": [
+      "bool",
+      "Whether to generate a distance field for this mesh, which can be used by DistanceField Indirect Shadows.\nThis is ignored if the project's 'Generate Mesh Distance Fields' setting is enabled."
+    ],
+    "bHasNavigationData": [
+      "bool",
+      "If true, mesh will have NavCollision property with additional data for navmesh generation and usage.\n          Set to false for distant meshes (always outside navigation bounds) to save memory on collision data."
+    ],
+    "bSupportUniformlyDistributedSampling": [
+      "bool",
+      "Mesh supports uniformly distributed sampling in constant time.\nMemory cost is 8 bytes per triangle.\nExample usage is uniform spawning of particles."
+    ],
+    "bSupportPhysicalMaterialMasks": [
+      "bool",
+      "If true, complex collision data will store UVs and face remap table for use when performing\nPhysicalMaterialMask lookups in cooked builds. Note the increased memory cost for this\nfunctionality."
+    ],
+    "bUseLegacyTangentScaling": [
+      "bool"
+    ],
+    "bSupportRayTracing": [
+      "bool",
+      "If true, a ray tracing acceleration structure will be built for this mesh and it may be used in ray tracing effects"
+    ],
+    "bAllowCPUAccess": [
+      "bool",
+      "If true, will keep geometry data CPU-accessible in cooked builds, rather than uploading to GPU memory and releasing it from CPU memory.\nThis is required if you wish to access StaticMesh geometry data on the CPU at runtime in cooked builds (e.g. to convert StaticMesh to ProceduralMeshComponent)"
+    ],
+    "bSupportGpuUniformlyDistributedSampling": [
+      "bool",
+      "If true, a GPU buffer containing required data for uniform mesh surface sampling will be created at load time.\nIt is created from the cpu data so bSupportUniformlyDistributedSampling is also required to be true."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddMaterial",
+      "return": "FName",
+      "doc": "Adds a new material and return its slot name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "AddSocket",
+      "return": "void",
+      "doc": "Add a socket object in this StaticMesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Socket",
+          "type": "UStaticMeshSocket"
+        }
+      ]
+    },
+    {
+      "name": "BuildFromStaticMeshDescriptions",
+      "return": "void",
+      "doc": "Builds static mesh LODs from the array of StaticMeshDescriptions passed in",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMeshDescriptions",
+          "type": "TArray<UStaticMeshDescription>"
+        },
+        {
+          "name": "bBuildSimpleCollision",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bFastBuild",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "FindSocket",
+      "return": "UStaticMeshSocket",
+      "const": true,
+      "doc": "Find a socket object in this StaticMesh by name.\nEntering NAME_None will return NULL. If there are multiple sockets with the same name, will return the first one.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSocketName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetBoundingBox",
+      "return": "FBox",
+      "const": true,
+      "doc": "Returns the bounding box, in local space including bounds extension(s), of the StaticMesh asset",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBounds",
+      "return": "FBoxSphereBounds",
+      "const": true,
+      "doc": "Returns the number of bounds of the mesh.\n\n@return      The bounding box represented as box origin with extents and also a sphere that encapsulates that box",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMaterial",
+      "return": "UMaterialInterface",
+      "const": true,
+      "doc": "Gets a Material given a Material Index and an LOD number\n\n@return Requested material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Gets a Material index given a slot name\n\n@return Requested material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialSlotName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMinimumLODForPlatform",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlatformName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMinimumLODForPlatforms",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlatformMinimumLODs",
+          "type": "TMap<FName,int>&"
+        }
+      ]
+    },
+    {
+      "name": "GetMinimumLODForQualityLevel",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QualityLevel",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMinimumLODForQualityLevels",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QualityLevelMinimumLODs",
+          "type": "TMap<FName,int>&"
+        }
+      ]
+    },
+    {
+      "name": "GetMinLODForQualityLevels",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QualityLevelMinimumLODs",
+          "type": "TMap<EPerQualityLevels,int>&"
+        },
+        {
+          "name": "Default",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetNumLods",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of LODs used by the mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumSections",
+      "return": "int",
+      "const": true,
+      "doc": "Returns number of Sections that this StaticMesh has, in the supplied LOD (LOD 0 is the highest)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLOD",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetNumTriangles",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of triangles in the render data for the specified LOD.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LODIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetSocketsByTag",
+      "return": "TArray<UStaticMeshSocket>",
+      "const": true,
+      "doc": "Returns a list of sockets with the provided tag.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSocketTag",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetStaticMaterials",
+      "return": "TArray<FStaticMaterial>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStaticMeshDescription",
+      "return": "UStaticMeshDescription",
+      "doc": "Return a new StaticMeshDescription referencing the MeshDescription of the given LOD",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LODIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "IsLODScreenSizeAutoComputed",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveSocket",
+      "return": "void",
+      "doc": "Remove a socket object in this StaticMesh by providing it's pointer. Use FindSocket() if needed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Socket",
+          "type": "UStaticMeshSocket"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterial",
+      "return": "void",
+      "doc": "Sets a Material given a Material Index",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetMinimumLODForPlatform",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlatformName",
+          "type": "FName"
+        },
+        {
+          "name": "InMinLOD",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetMinimumLODForPlatforms",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlatformMinimumLODs",
+          "type": "TMap<FName,int>"
+        }
+      ]
+    },
+    {
+      "name": "SetMinLODForQualityLevels",
+      "return": "void",
+      "doc": "Allow to override min lod quality levels on a staticMesh and it Default value (-1 value for Default dont override its value).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QualityLevelMinimumLODs",
+          "type": "TMap<EPerQualityLevels,int>"
+        },
+        {
+          "name": "Default",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetNumSourceModels",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Num",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetStaticMaterials",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStaticMaterials",
+          "type": "TArray<FStaticMaterial>"
+        }
+      ]
+    }
+  ]
+}

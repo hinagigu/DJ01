@@ -1,0 +1,81 @@
+{
+  "name": "ATemplateSequenceActor",
+  "inherits": "AActor",
+  "doc": "Actor responsible for controlling a specific template sequence in the world.",
+  "properties": {
+    "PlaybackSettings": [
+      "FMovieSceneSequencePlaybackSettings"
+    ],
+    "TemplateSequence": [
+      "FSoftObjectPath"
+    ],
+    "BindingOverride": [
+      "FTemplateSequenceBindingOverrideData",
+      1,
+      "The override for the template sequence's root object binding. See SetBinding."
+    ],
+    "SequencePlayer": [
+      "UTemplateSequencePlayer"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetSequence",
+      "return": "UTemplateSequence",
+      "const": true,
+      "doc": "Get the template sequence being played by this actor.\n\n@return the template sequence, or nullptr if it is not assigned or cannot be loaded",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSequencePlayer",
+      "return": "UTemplateSequencePlayer",
+      "const": true,
+      "doc": "Get the actor's sequence player, or nullptr if it not yet initialized.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LoadSequence",
+      "return": "UTemplateSequence",
+      "const": true,
+      "doc": "Get the template sequence being played by this actor.\n\n@return the template sequence, or nullptr if it is not assigned or cannot be loaded",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBinding",
+      "return": "void",
+      "doc": "Set the actor to play the template sequence onto, by setting up an override for the template\nsequence's root object binding.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "bOverridesDefault",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSequence",
+      "return": "void",
+      "doc": "Set the template sequence being played by this actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UTemplateSequence"
+        }
+      ]
+    }
+  ]
+}

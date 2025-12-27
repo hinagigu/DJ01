@@ -1,0 +1,54 @@
+{
+  "name": "__FFileHelper",
+  "properties": {},
+  "methods": [
+    {
+      "name": "LoadFileToString",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Result",
+          "type": "FString&"
+        },
+        {
+          "name": "Filename",
+          "type": "FString"
+        },
+        {
+          "name": "HashOptions",
+          "default": "FFileHelper :: EHashOptions :: None",
+          "type": "FFileHelper::EHashOptions"
+        },
+        {
+          "name": "ReadFlags",
+          "default": "uint32 ( EFileRead :: None )",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "SaveStringToFile",
+      "return": "bool",
+      "args": [
+        {
+          "name": "String",
+          "type": "FString"
+        },
+        {
+          "name": "Filename",
+          "type": "FString"
+        },
+        {
+          "name": "EncodingOptions",
+          "default": "FFileHelper :: EEncodingOptions :: AutoDetect",
+          "type": "FFileHelper::EEncodingOptions"
+        },
+        {
+          "name": "WriteFlags",
+          "default": "uint32 ( EFileWrite :: None )",
+          "type": "uint"
+        }
+      ]
+    }
+  ]
+}

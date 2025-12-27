@@ -1,0 +1,41 @@
+{
+  "name": "FNiagaraSystemVisibilityCullingSettings",
+  "isStruct": true,
+  "doc": "Scalability settings for Niagara Systems for a particular platform set (unless overridden).",
+  "properties": {
+    "MaxTimeOutsideViewFrustum": [
+      "float32",
+      2,
+      "Effects will be culled if they go longer than this time outside the view frustum."
+    ],
+    "MaxTimeWithoutRender": [
+      "float32",
+      2,
+      "Effects will be culled if they go longer than this time without being rendered."
+    ],
+    "bCullWhenNotRendered": [
+      "bool",
+      "Controls whether we cull when not rendered. This includes all reasons for being not rendered such as view frustum, occlusion and hidden flags etc. As this requires feedback form the rendering system, it cannot be used for pre-culling."
+    ],
+    "bCullByViewFrustum": [
+      "bool",
+      "Controls whether view frustum culling is enabled. Niagara can do it's own separate view frustum culling to give coarse visibility culling that does not depend directly on rendering like CullWhenNotRendered.\nThis requires fixed bounds to be used in pre-culling."
+    ],
+    "bAllowPreCullingByViewFrustum": [
+      "bool",
+      "If true and bCullByViewFrustum is enabled, we allow view frustum checks in pre-culling. Meaning we can cull off screen systems before they even spawn."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraSystemVisibilityCullingSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraSystemVisibilityCullingSettings"
+        }
+      ]
+    }
+  ]
+}

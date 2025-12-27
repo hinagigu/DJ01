@@ -1,0 +1,39 @@
+{
+  "name": "FRuntimePartitionHLODSetup",
+  "isStruct": true,
+  "doc": "Holds an HLOD setup for a particular partition class.",
+  "properties": {
+    "Name": [
+      "FName",
+      2,
+      "Name for this HLOD layer setup"
+    ],
+    "HLODLayers": [
+      "TArray<TObjectPtr<UHLODLayer>>",
+      2,
+      "Associated HLOD Layer objects"
+    ],
+    "bIsSpatiallyLoaded": [
+      "bool",
+      2,
+      "whether this HLOD setup is spatially loaded or not"
+    ],
+    "PartitionLayer": [
+      "URuntimePartition",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRuntimePartitionHLODSetup&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRuntimePartitionHLODSetup"
+        }
+      ]
+    }
+  ]
+}

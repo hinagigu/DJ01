@@ -1,0 +1,44 @@
+{
+  "name": "FRigUnit_AddBoneTransform",
+  "isStruct": true,
+  "doc": "Offset Transform is used to perform a change in the hierarchy by setting a single bone's transform.",
+  "properties": {
+    "Bone": [
+      "FName",
+      "The name of the Bone to set the transform for."
+    ],
+    "Transform": [
+      "FTransform",
+      "The transform value to set for the given Bone."
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the change - how much the change should be applied"
+    ],
+    "bPostMultiply": [
+      "bool",
+      "If set to true the transform will be post multiplied, otherwise pre multiplied.\nPost multiplying means that the transform is understood as a parent space change,\nwhile pre multiplying means that the transform is understood as a child space change."
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      1,
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_AddBoneTransform&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_AddBoneTransform"
+        }
+      ]
+    }
+  ]
+}

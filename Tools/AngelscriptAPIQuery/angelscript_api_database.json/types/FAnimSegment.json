@@ -1,0 +1,49 @@
+{
+  "name": "FAnimSegment",
+  "isStruct": true,
+  "doc": "this is anim segment that defines what animation and how *",
+  "properties": {
+    "AnimReference": [
+      "UAnimSequenceBase",
+      2,
+      "Anim Reference to play - only allow AnimSequence or AnimComposite *"
+    ],
+    "CachedPlayLength": [
+      "float32",
+      2,
+      ""
+    ],
+    "AnimStartTime": [
+      "float32",
+      2,
+      "Time to start playing AnimSequence at."
+    ],
+    "AnimEndTime": [
+      "float32",
+      2,
+      "Time to end playing the AnimSequence at."
+    ],
+    "AnimPlayRate": [
+      "float32",
+      2,
+      "Playback speed of this animation. If you'd like to reverse, set -1"
+    ],
+    "LoopingCount": [
+      "int",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimSegment&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimSegment"
+        }
+      ]
+    }
+  ]
+}

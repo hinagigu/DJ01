@@ -1,0 +1,207 @@
+{
+  "name": "FCollisionResponseContainer",
+  "isStruct": true,
+  "doc": "Container for indicating a set of collision channels that this object will collide with.",
+  "properties": {
+    "WorldStatic": [
+      "ECollisionResponse",
+      "Reserved Engine Trace Channels\n\nNote -        If you change this (add/remove/modify)\n                      you should make sure it matches with ECollisionChannel (including DisplayName)\n                      They has to be mirrored if serialized"
+    ],
+    "WorldDynamic": [
+      "ECollisionResponse",
+      "0"
+    ],
+    "Pawn": [
+      "ECollisionResponse",
+      "1."
+    ],
+    "Visibility": [
+      "ECollisionResponse",
+      "2"
+    ],
+    "Camera": [
+      "ECollisionResponse",
+      "3"
+    ],
+    "PhysicsBody": [
+      "ECollisionResponse",
+      "4"
+    ],
+    "Vehicle": [
+      "ECollisionResponse",
+      "5"
+    ],
+    "Destructible": [
+      "ECollisionResponse",
+      "6"
+    ],
+    "EngineTraceChannel1": [
+      "ECollisionResponse",
+      "Unspecified Engine Trace Channels"
+    ],
+    "EngineTraceChannel2": [
+      "ECollisionResponse",
+      "8"
+    ],
+    "EngineTraceChannel3": [
+      "ECollisionResponse",
+      "9"
+    ],
+    "EngineTraceChannel4": [
+      "ECollisionResponse",
+      "10"
+    ],
+    "EngineTraceChannel5": [
+      "ECollisionResponse",
+      "11"
+    ],
+    "EngineTraceChannel6": [
+      "ECollisionResponse",
+      "12"
+    ],
+    "GameTraceChannel1": [
+      "ECollisionResponse",
+      "in order to use this custom channels\nwe recommend to define in your local file\n- i.e. #define COLLISION_WEAPON               ECC_GameTraceChannel1\nand make sure you customize these it in INI file by\n\nin DefaultEngine.ini\n\n[/Script/Engine.CollisionProfile]\nGameTraceChannel1=\"Weapon\"\n\nalso in the INI file, you can override collision profiles that are defined by simply redefining\nnote that Weapon isn't defined in the BaseEngine.ini file, but \"Trigger\" is defined in Engine\n+Profiles=(Name=\"Trigger\",CollisionEnabled=QueryOnly,ObjectTypeName=WorldDynamic, DefaultResponse=ECR_Overlap, CustomResponses=((Channel=Visibility, Response=ECR_Ignore), (Channel=Weapon, Response=ECR_Ignore)))"
+    ],
+    "GameTraceChannel2": [
+      "ECollisionResponse",
+      "14"
+    ],
+    "GameTraceChannel3": [
+      "ECollisionResponse",
+      "15"
+    ],
+    "GameTraceChannel4": [
+      "ECollisionResponse",
+      "16"
+    ],
+    "GameTraceChannel5": [
+      "ECollisionResponse",
+      "17"
+    ],
+    "GameTraceChannel6": [
+      "ECollisionResponse",
+      "18"
+    ],
+    "GameTraceChannel7": [
+      "ECollisionResponse",
+      "19"
+    ],
+    "GameTraceChannel8": [
+      "ECollisionResponse",
+      "20"
+    ],
+    "GameTraceChannel9": [
+      "ECollisionResponse",
+      "21"
+    ],
+    "GameTraceChannel10": [
+      "ECollisionResponse",
+      "22"
+    ],
+    "GameTraceChannel11": [
+      "ECollisionResponse",
+      "23"
+    ],
+    "GameTraceChannel12": [
+      "ECollisionResponse",
+      "24"
+    ],
+    "GameTraceChannel13": [
+      "ECollisionResponse",
+      "25"
+    ],
+    "GameTraceChannel14": [
+      "ECollisionResponse",
+      "26"
+    ],
+    "GameTraceChannel15": [
+      "ECollisionResponse",
+      "27"
+    ],
+    "GameTraceChannel16": [
+      "ECollisionResponse",
+      "28"
+    ],
+    "GameTraceChannel17": [
+      "ECollisionResponse",
+      "28"
+    ],
+    "GameTraceChannel18": [
+      "ECollisionResponse",
+      "30"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetResponse",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Channel",
+          "type": "ECollisionChannel"
+        },
+        {
+          "name": "NewResponse",
+          "type": "ECollisionResponse"
+        }
+      ]
+    },
+    {
+      "name": "SetAllChannels",
+      "return": "bool",
+      "args": [
+        {
+          "name": "NewResponse",
+          "type": "ECollisionResponse"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceChannels",
+      "return": "bool",
+      "args": [
+        {
+          "name": "OldResponse",
+          "type": "ECollisionResponse"
+        },
+        {
+          "name": "NewResponse",
+          "type": "ECollisionResponse"
+        }
+      ]
+    },
+    {
+      "name": "GetResponse",
+      "return": "ECollisionResponse",
+      "const": true,
+      "args": [
+        {
+          "name": "Channel",
+          "type": "ECollisionChannel"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCollisionResponseContainer"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "FCollisionResponseContainer&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCollisionResponseContainer"
+        }
+      ]
+    }
+  ]
+}

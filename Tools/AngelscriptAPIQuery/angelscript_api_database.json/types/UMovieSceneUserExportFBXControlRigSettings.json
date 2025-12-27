@@ -1,0 +1,53 @@
+{
+  "name": "UMovieSceneUserExportFBXControlRigSettings",
+  "inherits": "UObject",
+  "properties": {
+    "ExportFileName": [
+      "FString",
+      2,
+      "Imported File Name"
+    ],
+    "FbxExportCompatibility": [
+      "EFbxExportCompatibility",
+      "This will set the fbx sdk compatibility when exporting to fbx file. The default value is 2013"
+    ],
+    "bForceFrontXAxis": [
+      "bool",
+      2,
+      "Convert the scene from FBX coordinate system to UE coordinate system with front X axis instead of -Y"
+    ],
+    "bExportOnlySelectedControls": [
+      "bool",
+      2,
+      "Whether or not import onto selected controls or all controls"
+    ],
+    "ControlChannelMappings": [
+      "TArray<FControlToTransformMappings>",
+      2,
+      "Mappings for how Control Rig Control Attributes Map to the incoming Transforms"
+    ],
+    "bASCII": [
+      "bool",
+      "If enabled, save as ascii instead of binary"
+    ],
+    "bExportLocalTime": [
+      "bool",
+      "If enabled, export sequencer animation in its local time, relative to its sequence."
+    ]
+  },
+  "methods": [
+    {
+      "name": "LoadControlMappingsFromPreset",
+      "return": "void",
+      "doc": "Load the default or metahuman preset into the current mappings",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bMetaHumanPreset",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

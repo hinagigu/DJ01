@@ -1,0 +1,35 @@
+{
+  "name": "UChildActorComponent",
+  "inherits": "USceneComponent",
+  "doc": "A component that spawns an Actor when registered, and destroys it when unregistered.",
+  "properties": {
+    "ChildActor": [
+      "AActor",
+      1,
+      "The actor that we spawned and own"
+    ],
+    "ChildActorClass": [
+      "TSubclassOf<AActor>",
+      "The class of Actor to spawn"
+    ],
+    "bChildActorIsTransient": [
+      "bool",
+      "Should the spawned actor be marked as transient?\n@note The spawned actor will also be marked transient if this component or its owner actor are transient, regardless of the state of this flag."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetChildActorClass",
+      "return": "void",
+      "doc": "Sets the class to use for the child actor.\nIf called on a template component (owned by a CDO), the properties of any existing child actor template will be copied as best possible to the template.\nIf called on a component instance in a world (and the class is changing), the created ChildActor will use the class defaults as template.\n@param InClass The Actor subclass to spawn as a child actor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InClass",
+          "type": "TSubclassOf<AActor>"
+        }
+      ]
+    }
+  ]
+}

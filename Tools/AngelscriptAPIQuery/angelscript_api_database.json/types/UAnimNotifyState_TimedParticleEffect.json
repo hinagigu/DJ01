@@ -1,0 +1,33 @@
+{
+  "name": "UAnimNotifyState_TimedParticleEffect",
+  "inherits": "UAnimNotifyState",
+  "doc": "Timed Particle Effect Notify\nAllows a looping particle effect to be played in an animation that will activate\nat the beginning of the notify and deactivate at the end.",
+  "properties": {
+    "PSTemplate": [
+      "UParticleSystem",
+      2,
+      "The particle system to spawn for the notify state"
+    ],
+    "SocketName": [
+      "FName",
+      2,
+      "The socket or bone to attach the system to"
+    ],
+    "LocationOffset": [
+      "FVector",
+      2,
+      "Offset from the socket or bone to place the particle system"
+    ],
+    "RotationOffset": [
+      "FRotator",
+      2,
+      "Rotation offset from the socket or bone for the particle system"
+    ],
+    "bDestroyAtEnd": [
+      "bool",
+      2,
+      "Whether the particle system should be immediately destroyed at the end of the notify state or be allowed to finish"
+    ]
+  },
+  "methods": []
+}

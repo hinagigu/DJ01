@@ -1,0 +1,47 @@
+{
+  "name": "UNiagaraComponentRendererProperties",
+  "inherits": "UNiagaraRendererProperties",
+  "properties": {
+    "ComponentType": [
+      "TSubclassOf<USceneComponent>",
+      2,
+      "The scene component class to instantiate"
+    ],
+    "ComponentCountLimit": [
+      "uint",
+      2,
+      "The max number of components that this emitter will spawn or update each frame."
+    ],
+    "bAssignComponentsOnParticleID": [
+      "bool",
+      2,
+      "If true then components will not be automatically assigned to the first particle available, but try to stick to the same particle based on its unique id.\nDisabling this option is faster, but a particle can get a different component each tick, which can lead to problems with for example motion blur."
+    ],
+    "bCreateComponentFirstParticleFrame": [
+      "bool",
+      2,
+      "If true then new components can only be created on newly spawned particles. If a particle is not able to create a component on it's first frame (e.g. because the component\nlimit was reached) then it will be blocked from spawning a component on subsequent frames."
+    ],
+    "bOnlyActivateNewlyAquiredComponents": [
+      "bool",
+      2,
+      "If true then components will only be activated when newly acquired. e.g. on particle spawn or when the particle enables/disables the component.\nIf false, components will be always kept active while they are used by an enabled particle.\nThis can be useful for component types that can internally activate and deactivate during their lifetimes while still being used by an enabled particle.\nFor example NiagaraComponents that deactivate/reactivate according to scalability settings.\nThis setting is only valid when bAssignComponentsOnParticleID is true."
+    ],
+    "bVisualizeComponents": [
+      "bool",
+      2,
+      "If true then the editor visualization is enabled for the component; has no effect in-game."
+    ],
+    "RendererVisibility": [
+      "int",
+      2,
+      "If a render visibility tag is present, particles whose tag matches this value will be visible in this renderer."
+    ],
+    "TemplateComponent": [
+      "USceneComponent",
+      2,
+      "The object template used to create new components at runtime."
+    ]
+  },
+  "methods": []
+}

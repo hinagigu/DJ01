@@ -1,0 +1,73 @@
+{
+  "name": "__UAnimNotifyStateMachineInspection",
+  "properties": {},
+  "methods": [
+    {
+      "name": "IsTriggeredByState",
+      "return": "bool",
+      "doc": "Get whether a state with the given name in any state machine triggered the notify\n\n@param EventReference         The event to inspect\n@param MeshComp                       The skeletal mesh that contains the animation instance that produced the event\n@param StateName                      The name of a state to test",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EventReference",
+          "type": "FAnimNotifyEventReference"
+        },
+        {
+          "name": "AnimInstance",
+          "type": "UAnimInstance"
+        },
+        {
+          "name": "StateName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsTriggeredByStateInStateMachine",
+      "return": "bool",
+      "doc": "Get whether a particular state in a specific state machine triggered the notify\n\n@param EventReference         The event to inspect\n@param MeshComp                       The skeletal mesh that contains the animation instance that produced the event\n@param StateMachineName       The name of a state machine to test\n@param StateName                      The name of a state to test",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EventReference",
+          "type": "FAnimNotifyEventReference"
+        },
+        {
+          "name": "AnimInstance",
+          "type": "UAnimInstance"
+        },
+        {
+          "name": "StateMachineName",
+          "type": "FName"
+        },
+        {
+          "name": "StateName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsTriggeredByStateMachine",
+      "return": "bool",
+      "doc": "Get whether the notify was triggered from the specified state machine\n\n@param EventReference            The event to inspect\n@param MeshComp                  The skeletal mesh that contains the animation instance that produced the event\n@param StateMachineName  The Name of a state machine to test",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EventReference",
+          "type": "FAnimNotifyEventReference"
+        },
+        {
+          "name": "AnimInstance",
+          "type": "UAnimInstance"
+        },
+        {
+          "name": "StateMachineName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

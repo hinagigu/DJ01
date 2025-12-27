@@ -1,0 +1,212 @@
+{
+  "name": "UToolMenus",
+  "inherits": "UObject",
+  "properties": {
+    "MenuSubstitutionsDuringGenerate": [
+      "TMap<FName,FName>",
+      2,
+      "Allow substituting one menu for another during generate but not during find or extend"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ExtendMenu",
+      "return": "UToolMenu",
+      "doc": "Extends a menu without registering the menu or claiming ownership of it. Ok to call even if menu does not exist yet.\n@param       Name    Name of the menu to extend\n@return      ToolMenu        Menu object",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FindMenu",
+      "return": "UToolMenu",
+      "doc": "Finds an existing menu that has been registered or extended.\n@param       Name    Name of the menu to find.\n@return      ToolMenu        Menu object. Returns null if not found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsMenuRegistered",
+      "return": "bool",
+      "const": true,
+      "doc": "Determines if a menu has already been registered.\n@param       Name    Name of the menu to find.\n@return      bool    True if menu has already been registered.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RefreshAllWidgets",
+      "return": "void",
+      "doc": "Rebuilds all currently generated widgets next tick.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RefreshMenuWidget",
+      "return": "bool",
+      "doc": "Rebuilds all widgets generated from a specific menu.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RegisterMenu",
+      "return": "UToolMenu",
+      "doc": "Registers a menu by name\n@param       Parent  Optional name of a menu to layer on top of.\n@param       Type    Type of menu that will be generated such as: ToolBar, VerticalToolBar, etc..\n@param       bWarnIfAlreadyRegistered        Display warning if already registered\n@return      ToolMenu        Menu object",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        },
+        {
+          "name": "Parent",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "Type",
+          "default": "EMultiBoxType :: Menu",
+          "type": "EMultiBoxType"
+        },
+        {
+          "name": "bWarnIfAlreadyRegistered",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveEntry",
+      "return": "void",
+      "doc": "Removes a menu entry from a given menu and section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MenuName",
+          "type": "FName"
+        },
+        {
+          "name": "Section",
+          "type": "FName"
+        },
+        {
+          "name": "Name",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveMenu",
+      "return": "void",
+      "doc": "Unregisters a menu by name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MenuName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSection",
+      "return": "void",
+      "doc": "Removes a section from a given menu",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MenuName",
+          "type": "FName"
+        },
+        {
+          "name": "Section",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetSectionLabel",
+      "return": "void",
+      "doc": "Sets a section's displayed label text.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MenuName",
+          "type": "FName"
+        },
+        {
+          "name": "SectionName",
+          "type": "FName"
+        },
+        {
+          "name": "Label",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetSectionPosition",
+      "return": "void",
+      "doc": "Sets where to insert a section into a menu when generating relative to other section names.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MenuName",
+          "type": "FName"
+        },
+        {
+          "name": "SectionName",
+          "type": "FName"
+        },
+        {
+          "name": "OtherSectionName",
+          "type": "FName"
+        },
+        {
+          "name": "PositionType",
+          "type": "EToolMenuInsertType"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterOwnerByName",
+      "return": "void",
+      "doc": "Removes all entries that were registered under a specific owner name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOwnerName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

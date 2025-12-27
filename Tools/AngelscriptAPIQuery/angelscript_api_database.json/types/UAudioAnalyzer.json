@@ -1,0 +1,29 @@
+{
+  "name": "UAudioAnalyzer",
+  "inherits": "UObject",
+  "doc": "UAudioAnalyzer\n\nUAudioAnalyzer performs analysis on an audio bus using specific settings and exposes the results via blueprints.\n\nSubclasses of UAudioAnalyzer must implement GetAnalyzerFactoryName() to associate\nthe UAudioAnalyzer asset with an IAudioAnalyzerFactory implementation.\n\nTo support blueprint access, subclasses can implement UFUNCTIONs to expose the data\nreturned by GetResult().",
+  "properties": {},
+  "methods": [
+    {
+      "name": "StartAnalyzing",
+      "return": "void",
+      "doc": "Starts analyzing audio from the given audio bus. Optionally override the audio bus desired to analyze.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AudioBusToAnalyze",
+          "type": "UAudioBus"
+        }
+      ]
+    },
+    {
+      "name": "StopAnalyzing",
+      "return": "void",
+      "doc": "Stops analyzing audio.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

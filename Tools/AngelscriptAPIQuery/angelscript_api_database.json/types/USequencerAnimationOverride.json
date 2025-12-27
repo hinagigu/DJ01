@@ -1,0 +1,27 @@
+{
+  "name": "USequencerAnimationOverride",
+  "inherits": "UInterface",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AllowsCinematicOverride",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "doc": "Whether this animation blueprint allows Sequencer to nuke this anim instance and replace it during Sequencer playback.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSequencerAnimSlotNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "callable": false,
+      "doc": "Should return a list of valid slot names for Sequencer to output to in the case that Sequencer is not permitted to nuke the anim instance.\nWill be chosen by the user in drop down on the skeletal animation section properties. Should be named descriptively, as in some contexts (UEFN), the user\nwill not be able to view the animation blueprint itself to determine the mixing behavior of the slot.",
+      "event": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

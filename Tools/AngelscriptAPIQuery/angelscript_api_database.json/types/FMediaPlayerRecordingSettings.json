@@ -1,0 +1,53 @@
+{
+  "name": "FMediaPlayerRecordingSettings",
+  "isStruct": true,
+  "properties": {
+    "bActive": [
+      "bool",
+      2,
+      "Whether this MediaPlayer is active and its event will be recorded when the 'Record' button is pressed."
+    ],
+    "bRecordMediaFrame": [
+      "bool",
+      2,
+      "Whether this MediaPlayer is active and the image frame will be recorded when the 'Record' button is pressed."
+    ],
+    "BaseFilename": [
+      "FString",
+      2,
+      "How to name each frame."
+    ],
+    "NumerationStyle": [
+      "EMediaPlayerRecordingNumerationStyle",
+      2,
+      "How to numerate the filename."
+    ],
+    "ImageFormat": [
+      "EMediaPlayerRecordingImageFormat",
+      2,
+      "The image format we wish to record to."
+    ],
+    "CompressionQuality": [
+      "int",
+      2,
+      "An image format specific compression setting.\nFor EXRs, either 0 (Default) or 1 (Uncompressed)\nFor PNGs & JPEGs, 0 (Default) or a value between 1 (worst quality, best compression) and 100 (best quality, worst compression)"
+    ],
+    "bResetAlpha": [
+      "bool",
+      2,
+      "If the format support it, set the alpha to 1 (or 255).\n@note Removing alpha increase the memory foot print."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMediaPlayerRecordingSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMediaPlayerRecordingSettings"
+        }
+      ]
+    }
+  ]
+}

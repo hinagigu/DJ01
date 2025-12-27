@@ -1,0 +1,32 @@
+{
+  "name": "UMeshToVolumeToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "properties": {
+    "ConversionMode": [
+      "EMeshToVolumeMode",
+      2,
+      "Method for converting the input mesh to a set of Planar Polygonal Faces in the output Volume."
+    ],
+    "bPreserveGroupBoundaries": [
+      "bool",
+      2,
+      "When true, adjacent coplanar groups will not be merged together into single faces. Not relevant if\nconversion mode is set to emit all triangles separately."
+    ],
+    "bAutoSimplify": [
+      "bool",
+      2,
+      "Determines whether mesh gets auto simplified when its triangle count is too high."
+    ],
+    "SimplifyMaxTriangles": [
+      "int",
+      2,
+      "Target triangle count for auto simplification when Auto Simplify is true."
+    ],
+    "NewVolumeType": [
+      "TSubclassOf<AVolume>",
+      2,
+      "Type of new Volume to create on Accept"
+    ]
+  },
+  "methods": []
+}

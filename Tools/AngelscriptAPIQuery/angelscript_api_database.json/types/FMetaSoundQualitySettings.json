@@ -1,0 +1,33 @@
+{
+  "name": "FMetaSoundQualitySettings",
+  "isStruct": true,
+  "properties": {
+    "Name": [
+      "FName",
+      2,
+      "Name of this quality setting. This will appear in the quality dropdown list.\n              The names should be unique and adequately describe the Entry. \"High\", \"Low\" etc. *"
+    ],
+    "SampleRate": [
+      "FPerPlatformInt",
+      2,
+      "Sample Rate (in Hz). NOTE: A Zero value will have no effect and use the Device Rate. *"
+    ],
+    "BlockRate": [
+      "FPerPlatformFloat",
+      2,
+      "Block Rate (in Hz). NOTE: A Zero value will have no effect and use the Default (100)  *"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMetaSoundQualitySettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMetaSoundQualitySettings"
+        }
+      ]
+    }
+  ]
+}

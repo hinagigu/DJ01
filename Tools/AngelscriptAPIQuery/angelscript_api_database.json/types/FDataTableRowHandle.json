@@ -1,0 +1,67 @@
+{
+  "name": "FDataTableRowHandle",
+  "isStruct": true,
+  "doc": "Handle to a particular row in a table",
+  "properties": {
+    "DataTable": [
+      "const UDataTable",
+      "Pointer to table we want a row from"
+    ],
+    "RowName": [
+      "FName",
+      "Name of row in the table that we want"
+    ]
+  },
+  "methods": [
+    {
+      "name": "IsNull",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDataTableRowHandle"
+        }
+      ]
+    },
+    {
+      "name": "ToDebugString",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "bUseFullPath",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetRow",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "OutRow",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "FDataTableRowHandle&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDataTableRowHandle"
+        }
+      ]
+    }
+  ]
+}

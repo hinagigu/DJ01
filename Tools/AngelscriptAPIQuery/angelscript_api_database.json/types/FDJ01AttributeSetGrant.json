@@ -1,0 +1,31 @@
+{
+  "name": "FDJ01AttributeSetGrant",
+  "isStruct": true,
+  "doc": "FDJ01AttributeSetGrant\n用于在 GameFeature 中授予单个 Attribute Set 的数据结构",
+  "properties": {
+    "AttributeSetType": [
+      "TSoftClassPtr<UAttributeSet>",
+      "要授予的 AttributeSet 类型"
+    ],
+    "AttributeSetTag": [
+      "FGameplayTag",
+      "属性集的标识 Tag（用于通过 Tag 查找属性集）\n例如：AttributeSet.Health, AttributeSet.Combat, AttributeSet.Stamina"
+    ],
+    "InitializationData": [
+      "TSoftObjectPtr<UDataTable>",
+      "用于初始化属性的数据表（可选）"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDJ01AttributeSetGrant&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDJ01AttributeSetGrant"
+        }
+      ]
+    }
+  ]
+}

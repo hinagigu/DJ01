@@ -1,0 +1,120 @@
+{
+  "name": "UNiagaraRibbonRendererProperties",
+  "inherits": "UNiagaraRendererProperties",
+  "properties": {
+    "Material": [
+      "UMaterialInterface",
+      2,
+      "UNiagaraRendererProperties Interface END"
+    ],
+    "MaterialUserParamBinding": [
+      "FNiagaraUserParameterBinding",
+      2,
+      "Use the UMaterialInterface bound to this user variable if it is set to a valid value. If this is bound to a valid value and Material is also set, UserParamBinding wins."
+    ],
+    "UV0Settings": [
+      "FNiagaraRibbonUVSettings",
+      2,
+      ""
+    ],
+    "UV1Settings": [
+      "FNiagaraRibbonUVSettings",
+      2,
+      ""
+    ],
+    "FacingMode": [
+      "ENiagaraRibbonFacingMode",
+      2,
+      ""
+    ],
+    "MaxNumRibbons": [
+      "int",
+      2,
+      ""
+    ],
+    "DrawDirection": [
+      "ENiagaraRibbonDrawDirection",
+      2,
+      "Controls the order the ribbon segments will be rendered."
+    ],
+    "Shape": [
+      "ENiagaraRibbonShapeMode",
+      2,
+      "Shape of the ribbon, from flat plane, multiplane, 3d tube, and custom shapes."
+    ],
+    "WidthSegmentationCount": [
+      "int",
+      2,
+      "Tessellation factor to apply to the width of the ribbon.\nRanges from 1 to 16. Greater values increase amount of tessellation."
+    ],
+    "MultiPlaneCount": [
+      "int",
+      2,
+      "Number of planes in multiplane shape. Evenly distributed from 0-90 or 0-180 degrees off camera facing depending on setting"
+    ],
+    "TubeSubdivisions": [
+      "int",
+      2,
+      "Number of vertices/faces in a tube."
+    ],
+    "CustomVertices": [
+      "TArray<FNiagaraRibbonShapeCustomVertex>",
+      2,
+      "Vertices for a cross section of the ribbon in custom shape mode."
+    ],
+    "TessellationMode": [
+      "ENiagaraRibbonTessellationMode",
+      2,
+      "Defines the tessellation mode allowing custom tessellation parameters or disabling tessellation entirely."
+    ],
+    "CurveTension": [
+      "float32",
+      2,
+      "Defines the curve tension, or how long the curve's tangents are.\nRanges from 0 to 1. The higher the value, the sharper the curve becomes."
+    ],
+    "TessellationFactor": [
+      "int",
+      2,
+      "Custom tessellation factor.\nRanges from 1 to 16. Greater values increase amount of tessellation."
+    ],
+    "TessellationAngle": [
+      "float32",
+      2,
+      "Defines the angle in degrees at which tessellation occurs.\nRanges from 1 to 180. Smaller values increase amount of tessellation.\nIf set to 0, use the maximum tessellation set above."
+    ],
+    "MaterialParameters": [
+      "FNiagaraRendererMaterialParameters",
+      2,
+      "If this array has entries, we will create a MaterialInstanceDynamic per Emitter instance from Material and set the Material parameters using the Niagara simulation variables listed."
+    ],
+    "bEnableAccurateGeometry": [
+      "bool",
+      "Disables two-sided forced rendering (Will still respect material settings)\nMultiPlane will double geometry count to have triangles facing both sides. With this off MultiPlane will switch normal direction to face view.\n3D Ribbons will render like normal meshes with backface culling enabled."
+    ],
+    "bUseMaterialBackfaceCulling": [
+      "bool",
+      "When enabled the ribbons renderer will not override how backface culling works depending on shape type, but instad use the material culling mode"
+    ],
+    "bUseGeometryNormals": [
+      "bool",
+      "When enabled the ribbons normals will follow the shape of the geometry rather than being aligned to screen / custom facing."
+    ],
+    "bUseGPUInit": [
+      "bool",
+      "Whether we use the CPU or GPU to generate ribbon geometry for CPU systems.\nGPU systems will always use a fully GPU initialization pipeline,\nWill fall back to CPU init when GPU init isn't available."
+    ],
+    "bUseConstantFactor": [
+      "bool",
+      "If checked, use the above constant factor. Otherwise, adaptively select the tessellation factor based on the below parameters."
+    ],
+    "bScreenSpaceTessellation": [
+      "bool",
+      "If checked, use the ribbon's screen space percentage to adaptively adjust the tessellation factor."
+    ],
+    "bCastShadows": [
+      "bool",
+      "When disabled the renderer will not cast shadows.\nThe component controls if shadows are enabled, this flag allows you to disable the renderer casting shadows."
+    ]
+  },
+  "methods": []
+}

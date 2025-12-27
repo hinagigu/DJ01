@@ -1,0 +1,7 @@
+{
+  "name": "UInteractiveTool",
+  "inherits": "UObject",
+  "doc": "UInteractiveTool is the base class for all Tools in the InteractiveToolsFramework.\nA Tool is is a \"lightweight mode\" that may \"own\" one or more Actors/Components/etc in\nthe current scene, may capture certain input devices or event streams, and so on.\nThe base implementation essentially does nothing but provide sane default behaviors.\n\nThe BaseTools/ subfolder contains implementations of various kinds of standard\n\"tool behavior\", like a tool that responds to a mouse click, etc, that can be\nextended to implement custom behaviors.\n\nIn the framework, you do not create instances of UInteractiveTool yourself.\nYou provide a UInteractiveToolBuilder implementation that can properly construct\nan instance of your Tool, this is where for example default parameters would be set.\nThe ToolBuilder is registered with the ToolManager, and then UInteractiveToolManager::ActivateTool()\nis used to kick things off.\n\n@todo callback/delegate for if/when .InputBehaviors changes\n@todo callback/delegate for when tool properties change",
+  "properties": {},
+  "methods": []
+}

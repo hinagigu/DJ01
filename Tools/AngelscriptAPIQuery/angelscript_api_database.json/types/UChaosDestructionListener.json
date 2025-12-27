@@ -1,0 +1,298 @@
+{
+  "name": "UChaosDestructionListener",
+  "inherits": "USceneComponent",
+  "doc": "Object allowing for retrieving Chaos Destruction data.",
+  "properties": {
+    "ChaosSolverActors": [
+      "TSet<TObjectPtr<AChaosSolverActor>>",
+      "Which chaos solver actors we're using. If empty, this listener will fallback to the \"world\" solver."
+    ],
+    "GeometryCollectionActors": [
+      "TSet<TObjectPtr<AGeometryCollectionActor>>",
+      "Which chaos solver actors we're using. If empty, this listener will fallback to the \"world\" solver."
+    ],
+    "OnCollisionEvents": [
+      "FOnChaosCollisionEvents",
+      "Called when new collision events are available."
+    ],
+    "OnBreakingEvents": [
+      "FOnChaosBreakingEvents",
+      "Called when new breaking events are available."
+    ],
+    "OnTrailingEvents": [
+      "FOnChaosTrailingEvents",
+      "Called when new trailing events are available."
+    ],
+    "OnRemovalEvents": [
+      "FOnChaosRemovalEvents",
+      "Called when new trailing events are available."
+    ],
+    "bIsCollisionEventListeningEnabled": [
+      "bool",
+      "Whether or not collision event listening is enabled"
+    ],
+    "bIsBreakingEventListeningEnabled": [
+      "bool",
+      "Whether or not collision event listening is enabled"
+    ],
+    "bIsTrailingEventListeningEnabled": [
+      "bool",
+      "Whether or not trailing event listening is enabled"
+    ],
+    "bIsRemovalEventListeningEnabled": [
+      "bool",
+      "Whether or not removal event listening is enabled"
+    ],
+    "CollisionEventRequestSettings": [
+      "FChaosCollisionEventRequestSettings",
+      "The settings to use for collision event listening"
+    ],
+    "BreakingEventRequestSettings": [
+      "FChaosBreakingEventRequestSettings",
+      "The settings to use for breaking event listening"
+    ],
+    "TrailingEventRequestSettings": [
+      "FChaosTrailingEventRequestSettings",
+      "The settings to use for trailing event listening"
+    ],
+    "RemovalEventRequestSettings": [
+      "FChaosRemovalEventRequestSettings",
+      "The settings to use for removal event listening"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddChaosSolverActor",
+      "return": "void",
+      "doc": "Dynamically adds a chaos solver to the listener",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ChaosSolverActor",
+          "type": "AChaosSolverActor"
+        }
+      ]
+    },
+    {
+      "name": "AddGeometryCollectionActor",
+      "return": "void",
+      "doc": "Dynamically adds a chaos solver to the listener",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GeometryCollectionActor",
+          "type": "AGeometryCollectionActor"
+        }
+      ]
+    },
+    {
+      "name": "IsEventListening",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns if the destruction listener is listening to any events",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveChaosSolverActor",
+      "return": "void",
+      "doc": "Dynamically removes a chaos solver from the listener",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ChaosSolverActor",
+          "type": "AChaosSolverActor"
+        }
+      ]
+    },
+    {
+      "name": "RemoveGeometryCollectionActor",
+      "return": "void",
+      "doc": "Dynamically removes a chaos solver from the listener",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GeometryCollectionActor",
+          "type": "AGeometryCollectionActor"
+        }
+      ]
+    },
+    {
+      "name": "SetBreakingEventEnabled",
+      "return": "void",
+      "doc": "Enables or disables breaking event listening",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetBreakingEventRequestSettings",
+      "return": "void",
+      "doc": "Sets breaking event request settings dynamically",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSettings",
+          "type": "FChaosBreakingEventRequestSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetCollisionEventEnabled",
+      "return": "void",
+      "doc": "Enables or disables collision event listening",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCollisionEventRequestSettings",
+      "return": "void",
+      "doc": "Sets collision event request settings dynamically",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSettings",
+          "type": "FChaosCollisionEventRequestSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetRemovalEventEnabled",
+      "return": "void",
+      "doc": "Enables or disables removal event listening",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetRemovalEventRequestSettings",
+      "return": "void",
+      "doc": "Sets removal event request settings dynamically",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSettings",
+          "type": "FChaosRemovalEventRequestSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetTrailingEventEnabled",
+      "return": "void",
+      "doc": "Enables or disables trailing event listening",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTrailingEventRequestSettings",
+      "return": "void",
+      "doc": "Sets trailing event request settings dynamically",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSettings",
+          "type": "FChaosTrailingEventRequestSettings"
+        }
+      ]
+    },
+    {
+      "name": "SortBreakingEvents",
+      "return": "void",
+      "doc": "Sorts breaking events according to the given sort method",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BreakingEvents",
+          "type": "TArray<FChaosBreakingEventData>&"
+        },
+        {
+          "name": "SortMethod",
+          "type": "EChaosBreakingSortMethod"
+        }
+      ]
+    },
+    {
+      "name": "SortCollisionEvents",
+      "return": "void",
+      "doc": "Sorts collision events according to the given sort method",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CollisionEvents",
+          "type": "TArray<FChaosCollisionEventData>&"
+        },
+        {
+          "name": "SortMethod",
+          "type": "EChaosCollisionSortMethod"
+        }
+      ]
+    },
+    {
+      "name": "SortRemovalEvents",
+      "return": "void",
+      "doc": "Sorts removal events according to the given sort method",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RemovalEvents",
+          "type": "TArray<FChaosRemovalEventData>&"
+        },
+        {
+          "name": "SortMethod",
+          "type": "EChaosRemovalSortMethod"
+        }
+      ]
+    },
+    {
+      "name": "SortTrailingEvents",
+      "return": "void",
+      "doc": "Sorts trailing events according to the given sort method",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TrailingEvents",
+          "type": "TArray<FChaosTrailingEventData>&"
+        },
+        {
+          "name": "SortMethod",
+          "type": "EChaosTrailingSortMethod"
+        }
+      ]
+    }
+  ]
+}

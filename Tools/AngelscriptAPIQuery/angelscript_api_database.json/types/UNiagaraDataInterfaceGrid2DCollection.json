@@ -1,0 +1,49 @@
+{
+  "name": "UNiagaraDataInterfaceGrid2DCollection",
+  "inherits": "UNiagaraDataInterfaceGrid2D",
+  "properties": {
+    "RenderTargetUserParameter": [
+      "FNiagaraUserParameterBinding",
+      2,
+      "Reference to a user parameter if we're reading one."
+    ],
+    "OverrideBufferFormat": [
+      "ENiagaraGpuBufferFormat",
+      2,
+      "When enabled overrides the format used to store data inside the grid, otherwise uses the project default setting.  Lower bit depth formats will save memory and performance at the cost of precision."
+    ],
+    "PreviewAttribute": [
+      "FName",
+      2,
+      "When enabled allows you to preview the grid in a debug display"
+    ],
+    "bOverrideFormat": [
+      "bool"
+    ],
+    "bPreviewGrid": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetTextureSize",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "const UNiagaraComponent"
+        },
+        {
+          "name": "SizeX",
+          "type": "int&"
+        },
+        {
+          "name": "SizeY",
+          "type": "int&"
+        }
+      ]
+    }
+  ]
+}

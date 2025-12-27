@@ -1,0 +1,63 @@
+{
+  "name": "FValidateAssetsResults",
+  "isStruct": true,
+  "properties": {
+    "NumRequested": [
+      "int",
+      1,
+      "Total amount of assets that were gathered to validate."
+    ],
+    "NumChecked": [
+      "int",
+      1,
+      "Amount of tested assets"
+    ],
+    "NumValid": [
+      "int",
+      1,
+      "Amount of assets without errors or warnings"
+    ],
+    "NumInvalid": [
+      "int",
+      1,
+      "Amount of assets with errors"
+    ],
+    "NumSkipped": [
+      "int",
+      1,
+      "Amount of assets skipped"
+    ],
+    "NumWarnings": [
+      "int",
+      1,
+      "Amount of assets with warnings"
+    ],
+    "NumUnableToValidate": [
+      "int",
+      1,
+      "Amount of assets that could not be validated"
+    ],
+    "bAssetLimitReached": [
+      "bool",
+      1,
+      "True if FValidateAssetSettings::MaxAssetsToValidation was reached"
+    ],
+    "AssetsDetails": [
+      "TMap<FString,FValidateAssetsDetails>",
+      1,
+      "Per asset details\nIndexed by object path\nOnly returned if FValidateAssetsSettings::bCollectPerAssetDetails is true."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FValidateAssetsResults&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FValidateAssetsResults"
+        }
+      ]
+    }
+  ]
+}

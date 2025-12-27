@@ -1,0 +1,29 @@
+{
+  "name": "FFileServerReady",
+  "isStruct": true,
+  "doc": "Implements a message that is published by file servers when they're ready to accept connections.",
+  "properties": {
+    "AddressList": [
+      "TArray<FString>",
+      2,
+      "Holds the list of IP addresses that the file server is listening on."
+    ],
+    "InstanceId": [
+      "FGuid",
+      2,
+      "Holds the file server's application identifier."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FFileServerReady&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FFileServerReady"
+        }
+      ]
+    }
+  ]
+}

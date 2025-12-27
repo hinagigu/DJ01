@@ -1,0 +1,317 @@
+{
+  "name": "UPyTestTypeHint",
+  "inherits": "UObject",
+  "doc": "Used to verify if the generated Python stub is correctly type-hinted (if type hint is enabled). The stub is generated\n* in the project intermediate folder when the Python developer mode is enabled (Editor preferences). The type hints can\n* be checked in the stub itself or PythonScriptPlugin/Content/Python/test_type_hints.py can be loaded in a Python IDE that\n* supports type checking and look at the code to verify that there is not problems with the types.",
+  "properties": {
+    "BoolProp": [
+      "bool",
+      "Check type hinted properties (setter/getter)"
+    ],
+    "IntProp": [
+      "int"
+    ],
+    "FloatProp": [
+      "float32"
+    ],
+    "EnumProp": [
+      "EPyTestEnum"
+    ],
+    "StringProp": [
+      "FString"
+    ],
+    "NameProp": [
+      "FName"
+    ],
+    "TextProp": [
+      "FText"
+    ],
+    "StructProp": [
+      "FPyTestStruct"
+    ],
+    "ObjectProp": [
+      "UPyTestObject"
+    ],
+    "StrArrayProp": [
+      "TArray<FString>"
+    ],
+    "NameArrayProp": [
+      "TArray<FName>"
+    ],
+    "TextArrayProp": [
+      "TArray<FText>"
+    ],
+    "ObjectArrayProp": [
+      "TArray<TObjectPtr<UObject>>"
+    ],
+    "SetProp": [
+      "TSet<FString>"
+    ],
+    "MapProp": [
+      "TMap<int,FString>"
+    ],
+    "DelegateProp": [
+      "FPyTestDelegate"
+    ],
+    "MulticastDelegateProp": [
+      "FPyTestMulticastDelegate"
+    ],
+    "SlateTickDelegate": [
+      "FPyTestSlateTickDelegate",
+      "Members to facilitate testing particular Python API."
+    ]
+  },
+  "methods": [
+    {
+      "name": "CheckArrayTypeHints",
+      "return": "TArray<FText>",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "Param2",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "Param3",
+          "type": "TArray<FText>"
+        },
+        {
+          "name": "Param4",
+          "type": "TArray<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "CheckBoolTypeHints",
+      "return": "bool",
+      "doc": "Check type hinted methods.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bParam1",
+          "type": "bool"
+        },
+        {
+          "name": "bParam2",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bParam3",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CheckDelegateTypeHints",
+      "return": "FPyTestDelegate&",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "default": "FPyTestDelegate ( )",
+          "type": "FPyTestDelegate"
+        }
+      ]
+    },
+    {
+      "name": "CheckEnumTypeHints",
+      "return": "EPyTestEnum",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "type": "EPyTestEnum"
+        },
+        {
+          "name": "Param2",
+          "default": "EPyTestEnum :: One",
+          "type": "EPyTestEnum"
+        }
+      ]
+    },
+    {
+      "name": "CheckFloatTypeHints",
+      "return": "float",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "type": "float32"
+        },
+        {
+          "name": "Param2",
+          "type": "float"
+        },
+        {
+          "name": "Param3",
+          "default": "- 3.300000",
+          "type": "float32"
+        },
+        {
+          "name": "Param4",
+          "default": "4.400000",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CheckIntegerTypeHints",
+      "return": "int",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "type": "uint8"
+        },
+        {
+          "name": "Param2",
+          "default": "4",
+          "type": "int"
+        },
+        {
+          "name": "Param3",
+          "default": "5",
+          "type": "int64"
+        }
+      ]
+    },
+    {
+      "name": "CheckMapTypeHints",
+      "return": "TMap<FString,UObject>",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "type": "TMap<int,FString>"
+        },
+        {
+          "name": "Param2",
+          "type": "TMap<int,FName>"
+        },
+        {
+          "name": "Param3",
+          "type": "TMap<int,FText>"
+        },
+        {
+          "name": "Param4",
+          "type": "TMap<int,UObject>"
+        }
+      ]
+    },
+    {
+      "name": "CheckNameTypeHints",
+      "return": "FName",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "type": "FName"
+        },
+        {
+          "name": "Param2",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CheckObjectTypeHints",
+      "return": "UPyTestObject",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "type": "const UPyTestObject"
+        },
+        {
+          "name": "Param4",
+          "default": "nullptr",
+          "type": "const UPyTestObject"
+        }
+      ]
+    },
+    {
+      "name": "CheckSetTypeHints",
+      "return": "TSet<FName>",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "type": "TSet<FString>"
+        },
+        {
+          "name": "Param2",
+          "type": "TSet<FName>"
+        },
+        {
+          "name": "Param3",
+          "type": "TSet<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "CheckStringTypeHints",
+      "return": "FString",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "type": "FString"
+        },
+        {
+          "name": "Param2",
+          "default": "\"Hi\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "CheckStructTypeHints",
+      "return": "FPyTestStruct",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "type": "FPyTestStruct"
+        },
+        {
+          "name": "Param2",
+          "type": "FPyTestStruct"
+        }
+      ]
+    },
+    {
+      "name": "CheckTextTypeHints",
+      "return": "FText",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param1",
+          "type": "FText"
+        },
+        {
+          "name": "Param2",
+          "type": "FText"
+        }
+      ]
+    }
+  ]
+}

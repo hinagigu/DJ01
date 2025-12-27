@@ -1,0 +1,28 @@
+{
+  "name": "FGameplayAbilityTargetData_ActorArray",
+  "isStruct": true,
+  "doc": "Target data with a source location and a list of targeted actors, makes sense for AOE attacks",
+  "properties": {
+    "SourceLocation": [
+      "FGameplayAbilityTargetingLocationInfo",
+      "We could be selecting this group of actors from any type of location, so use a generic location type"
+    ],
+    "TargetActorArray": [
+      "TArray<TWeakObjectPtr<AActor>>",
+      2,
+      "Rather than targeting a single point, this type of targeting selects multiple actors."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayAbilityTargetData_ActorArray&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayAbilityTargetData_ActorArray"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "name": "UAbilitySystemTestAttributeSet",
+  "inherits": "UAttributeSet",
+  "properties": {
+    "MaxHealth": [
+      "float32",
+      "NOTE ON MUTABLE:\nThis is only done so that UAbilitySystemTestAttributeSet can be initialized directly in GameplayEffectsTest.cpp without doing a const_cast in 100+ places.\nMutable is not required and should never be used on normal attribute sets.\n   // You can't make a GameplayEffect modify Health Directly (go through)"
+    ],
+    "Health": [
+      "float32",
+      "You can't make a GameplayEffect modify Health Directly (go through)"
+    ],
+    "Mana": [
+      "float32"
+    ],
+    "MaxMana": [
+      "float32"
+    ],
+    "Damage": [
+      "float32",
+      "This Damage is just used for applying negative health mods. Its not a 'persistent' attribute. // You can't make a GameplayEffect 'powered' by Damage (Its transient)"
+    ],
+    "SpellDamage": [
+      "float32",
+      "This Attribute is the actual spell damage for this actor. It will power spell based GameplayEffects"
+    ],
+    "PhysicalDamage": [
+      "float32",
+      "This Attribute is the actual physical damage for this actor. It will power physical based GameplayEffects"
+    ],
+    "CritChance": [
+      "float32"
+    ],
+    "CritMultiplier": [
+      "float32"
+    ],
+    "ArmorDamageReduction": [
+      "float32"
+    ],
+    "DodgeChance": [
+      "float32"
+    ],
+    "LifeSteal": [
+      "float32"
+    ],
+    "Strength": [
+      "float32"
+    ],
+    "StackingAttribute1": [
+      "float32"
+    ],
+    "StackingAttribute2": [
+      "float32"
+    ],
+    "NoStackAttribute": [
+      "float32"
+    ]
+  },
+  "methods": []
+}

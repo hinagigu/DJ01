@@ -1,0 +1,148 @@
+{
+  "name": "UCameraModifier",
+  "inherits": "UObject",
+  "doc": "A CameraModifier is a base class for objects that may adjust the final camera properties after\nbeing computed by the APlayerCameraManager (@see ModifyCamera). A CameraModifier\ncan be stateful, and is associated uniquely with a specific APlayerCameraManager.",
+  "properties": {
+    "Priority": [
+      "uint8",
+      "Priority value that determines the order in which modifiers are applied. 0 = highest priority, 255 = lowest."
+    ],
+    "CameraOwner": [
+      "APlayerCameraManager",
+      1,
+      "Camera this object is associated with."
+    ],
+    "AlphaInTime": [
+      "float32",
+      "When blending in, alpha proceeds from 0 to 1 over this time"
+    ],
+    "AlphaOutTime": [
+      "float32",
+      "When blending out, alpha proceeds from 1 to 0 over this time"
+    ],
+    "Alpha": [
+      "float32",
+      1,
+      "Current blend alpha."
+    ],
+    "bDebug": [
+      "bool",
+      "If true, enables certain debug visualization features."
+    ],
+    "bExclusive": [
+      "bool",
+      "If true, no other modifiers of same priority allowed."
+    ]
+  },
+  "methods": [
+    {
+      "name": "BlueprintModifyCamera",
+      "return": "void",
+      "callable": false,
+      "doc": "Called per tick that the modifier is active to allow Blueprinted modifiers to modify the camera's transform.\nScaling by Alpha happens after this in code, so no need to deal with that in the blueprint.\n@param       DeltaTime       Change in time since last update\n@param       ViewLocation            The current camera location.\n@param       ViewRotation            The current camera rotation.\n@param       FOV                                     The current camera fov.\n@param       NewViewLocation         (out) The modified camera location.\n@param       NewViewRotation         (out) The modified camera rotation.\n@param       NewFOV                          (out) The modified camera FOV.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTime",
+          "type": "float"
+        },
+        {
+          "name": "ViewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "ViewRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "FOV",
+          "type": "float"
+        },
+        {
+          "name": "NewViewLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "NewViewRotation",
+          "type": "FRotator&"
+        },
+        {
+          "name": "NewFOV",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "BlueprintModifyPostProcess",
+      "return": "void",
+      "callable": false,
+      "doc": "Called per tick that the modifier is active to allow Blueprinted modifiers to modify the camera's postprocess effects.\nScaling by Alpha happens after this in code, so no need to deal with that in the blueprint.\n@param       DeltaTime                               Change in time since last update\n@param       PostProcessBlendWeight  (out) Blend weight applied to the entire postprocess structure.\n@param       PostProcessSettings             (out) Post process structure defining what settings and values to override.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTime",
+          "type": "float"
+        },
+        {
+          "name": "PostProcessBlendWeight",
+          "type": "float32&"
+        },
+        {
+          "name": "PostProcessSettings",
+          "type": "FPostProcessSettings&"
+        }
+      ]
+    },
+    {
+      "name": "DisableModifier",
+      "return": "void",
+      "doc": "Disables this modifier.\n@param  bImmediate  - true to disable with no blend out, false (default) to allow blend out",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bImmediate",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "EnableModifier",
+      "return": "void",
+      "doc": "Enables this modifier.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetViewTarget",
+      "return": "AActor",
+      "const": true,
+      "doc": "@return Returns the actor the camera is currently viewing.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDisabled",
+      "return": "bool",
+      "const": true,
+      "doc": "@return Returns true if modifier is disabled, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPendingDisable",
+      "return": "bool",
+      "const": true,
+      "doc": "@return Returns true if modifier is pending disable, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

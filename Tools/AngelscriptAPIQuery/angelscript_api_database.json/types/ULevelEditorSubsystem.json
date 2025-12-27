@@ -1,0 +1,287 @@
+{
+  "name": "ULevelEditorSubsystem",
+  "inherits": "UEditorSubsystem",
+  "doc": "ULevelEditorSubsystem\nSubsystem for exposing Level Editor related functionality to scripts",
+  "properties": {
+    "OnPreSaveWorld": [
+      "FOnLevelEditorPreSaveWorld",
+      "Expose PreSaveWorld to blueprints"
+    ],
+    "OnPostSaveWorld": [
+      "FOnLevelEditorPostSaveWorld",
+      "Expose PostSaveWorld to blueprints"
+    ],
+    "OnEditorCameraMoved": [
+      "FOnLevelEditorEditorCameraMoved",
+      "Expose EditorCameraMoved to blueprints"
+    ],
+    "OnMapChanged": [
+      "FOnLevelEditorMapChanged",
+      "Expose MapChanged to blueprints. Note: This executes too early for some editor scripting, consider using OnMapOpened if this doesn't work for you."
+    ],
+    "OnMapOpened": [
+      "FOnLevelEditorMapOpened",
+      "Expose MapOpened to blueprints"
+    ]
+  },
+  "methods": [
+    {
+      "name": "BuildLightMaps",
+      "return": "bool",
+      "doc": "Build Light Maps and optionally the reflection captures.\n@param       Quality One of the enum LightingBuildQuality value. Default is Quality_Production.\n@param       bWithReflectionCaptures Build the related reflection captures after building the light maps.\n@return      True if build was successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Quality",
+          "default": "ELightingBuildQuality :: Quality_Production",
+          "type": "ELightingBuildQuality"
+        },
+        {
+          "name": "bWithReflectionCaptures",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "EditorGetGameView",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ViewportConfigKey",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "EditorInvalidateViewports",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EditorPlaySimulate",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EditorRequestEndPlay",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EditorSetGameView",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bGameView",
+          "type": "bool"
+        },
+        {
+          "name": "ViewportConfigKey",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "EjectPilotLevelActor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ViewportConfigKey",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveViewportConfigKey",
+      "return": "FName",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAllowsCinematicControl",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ViewportConfigKey",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentLevel",
+      "return": "ULevel",
+      "doc": "Get the current level used by the world editor.\n@return       The current level",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPilotLevelActor",
+      "return": "AActor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ViewportConfigKey",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectionSet",
+      "return": "UTypedElementSelectionSet",
+      "doc": "Get the selection set for the current world, you can use this to track\nand create changes to the level editor's selection",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetViewportConfigKeys",
+      "return": "TArray<FName>",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsInPlayInEditor",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LoadLevel",
+      "return": "bool",
+      "doc": "Close the current Persistent Level (without saving it). Loads the specified level.\n@param       AssetPath                               Asset Path of the level to be loaded.\n             ie. /Game/MyFolder/MyAsset\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "NewLevel",
+      "return": "bool",
+      "doc": "Close the current Persistent Level (without saving it). Create a new blank Level and save it. Load the new created level.\n@param       AssetPath               Asset Path of where the level will be saved.\n             ie. /Game/MyFolder/MyAsset\n@param   bIsPartitionedWorld If true, new map is partitioned.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        },
+        {
+          "name": "bIsPartitionedWorld",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "NewLevelFromTemplate",
+      "return": "bool",
+      "doc": "Close the current Persistent Level (without saving it). Create a new Level base on another level and save it. Load the new created level.\n@param       AssetPath                               Asset Path of where the level will be saved.\n             ie. /Game/MyFolder/MyAsset\n@param       TemplateAssetPath               Level to be used as Template.\n             ie. /Game/MyFolder/MyAsset\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        },
+        {
+          "name": "TemplateAssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "PilotLevelActor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorToPilot",
+          "type": "AActor"
+        },
+        {
+          "name": "ViewportConfigKey",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SaveAllDirtyLevels",
+      "return": "bool",
+      "doc": "Saves all Level currently loaded by the World Editor.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SaveCurrentLevel",
+      "return": "bool",
+      "doc": "Saves the specified Level. Must already be saved at lease once to have a valid path.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAllowsCinematicControl",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAllow",
+          "type": "bool"
+        },
+        {
+          "name": "ViewportConfigKey",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetCurrentLevelByName",
+      "return": "bool",
+      "doc": "Set the current level used by the world editor.\nIf more than one level shares the same name, the first one encounter of that level name will be used.\n@param       LevelName       The name of the Level the actor belongs to (same name as in the ContentBrowser).\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

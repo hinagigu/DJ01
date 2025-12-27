@@ -1,0 +1,160 @@
+{
+  "name": "UWorld",
+  "inherits": "UObject",
+  "doc": "The World is the top level object representing a map or a sandbox in which Actors and Components will exist and be rendered.\n\nA World can be a single Persistent Level with an optional list of streaming levels that are loaded and unloaded via volumes and blueprint functions\nor it can be a collection of levels organized with a World Composition.\n\nIn a standalone game, generally only a single World exists except during seamless area transitions when both a destination and current world exists.\nIn the editor many Worlds exist: The level being edited, each PIE instance, each editor tool which has an interactive rendered viewport, and many more.",
+  "properties": {
+    "WorldType": [
+      "EWorldType"
+    ],
+    "ThumbnailInfo": [
+      "UThumbnailInfo",
+      2,
+      "Information for thumbnail rendering"
+    ]
+  },
+  "methods": [
+    {
+      "name": "IsGameWorld",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsEditorWorld",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsPreviewWorld",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ServerTravel",
+      "return": "bool",
+      "args": [
+        {
+          "name": "FURL",
+          "type": "FString"
+        },
+        {
+          "name": "bAbsolute",
+          "type": "bool"
+        },
+        {
+          "name": "bShouldSkipGameNotify",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetNetMode",
+      "return": "ENetMode",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetGameState",
+      "return": "AGameStateBase",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetTimeSeconds",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetUnpausedTimeSeconds",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetRealTimeSeconds",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetAudioTimeSeconds",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetDeltaSeconds",
+      "return": "float32",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsStartingUp",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsTearingDown",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetGameInstance",
+      "return": "void",
+      "args": [
+        {
+          "name": "NewGI",
+          "type": "UGameInstance"
+        }
+      ]
+    },
+    {
+      "name": "GetGameInstance",
+      "return": "UGameInstance",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetLevelScriptActor",
+      "return": "ALevelScriptActor",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetPersistentLevel",
+      "return": "ULevel",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetDataLayerManager",
+      "return": "UDataLayerManager",
+      "const": true,
+      "doc": "Returns the UDataLayerManager associated with this world.\n\n@return UDataLayerManager object associated with this world",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWorldSettings",
+      "return": "AWorldSettings",
+      "doc": "Returns the AWorldSettings actor associated with this world.\n\n@return AWorldSettings actor associated with this world",
+      "ufunction": true,
+      "unrealname": "K2_GetWorldSettings",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStreamingLevels",
+      "return": "TArray<ULevelStreaming>",
+      "const": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "name": "UEngine",
+  "inherits": "UObject",
+  "doc": "Abstract base class of all Engine classes, responsible for management of systems critical to editor or game systems.\nAlso defines default classes for certain engine systems.",
+  "properties": {
+    "TinyFontName": [
+      "FSoftObjectPath",
+      2,
+      "Sets the font used for the smallest engine text"
+    ],
+    "SmallFontName": [
+      "FSoftObjectPath",
+      2,
+      "Sets the font used for small engine text, used for most debug displays"
+    ],
+    "MediumFontName": [
+      "FSoftObjectPath",
+      2,
+      "Sets the font used for medium engine text"
+    ],
+    "LargeFontName": [
+      "FSoftObjectPath",
+      2,
+      "Sets the font used for large engine text"
+    ],
+    "SubtitleFontName": [
+      "FSoftObjectPath",
+      2,
+      "Sets the font used by the default Subtitle Manager"
+    ],
+    "AdditionalFontNames": [
+      "TArray<FString>",
+      2,
+      "Sets additional fonts that will be loaded at startup and available using GetAdditionalFont."
+    ],
+    "ConsoleClassName": [
+      "FSoftClassPath",
+      2,
+      "Sets the class to use for the game console summoned with ~"
+    ],
+    "GameViewportClientClassName": [
+      "FSoftClassPath",
+      2,
+      "Sets the class to use for the game viewport client, which can be overridden to change game-specific input and display behavior."
+    ],
+    "LocalPlayerClassName": [
+      "FSoftClassPath",
+      2,
+      "Sets the class to use for local players, which can be overridden to store game-specific information for a local player."
+    ],
+    "WorldSettingsClassName": [
+      "FSoftClassPath",
+      2,
+      "Sets the class to use for WorldSettings, which can be overridden to store game-specific information on map/world."
+    ],
+    "PhysicsCollisionHandlerClassName": [
+      "FSoftClassPath",
+      2,
+      "Sets the PhysicsCollisionHandler class to use by default, which can be overridden to change game-specific behavior when objects collide using physics."
+    ],
+    "GameUserSettingsClassName": [
+      "FSoftClassPath",
+      2,
+      "Sets the GameUserSettings class, which can be overridden to support game-specific options for Graphics/Sound/Gameplay."
+    ],
+    "LevelScriptActorClassName": [
+      "FSoftClassPath",
+      2,
+      "Sets the Level Script Actor class, which can be overridden to allow game-specific behavior in per-map blueprint scripting"
+    ],
+    "DefaultBlueprintBaseClassName": [
+      "FSoftClassPath",
+      2,
+      "Sets the base class to use for new blueprints created in the editor, configurable on a per-game basis"
+    ],
+    "GameSingletonClassName": [
+      "FSoftClassPath",
+      2,
+      "Sets the class for a global object spawned at startup to handle game-specific data. If empty, it will not spawn one"
+    ],
+    "AssetManagerClassName": [
+      "FSoftClassPath",
+      2,
+      "Sets the class to spawn as the global AssetManager, configurable per game. If empty, it will not spawn one"
+    ],
+    "PreviewShadowsIndicatorMaterialName": [
+      "FSoftObjectPath",
+      2,
+      "Path of the material that renders a message about preview shadows being used."
+    ],
+    "DefaultDestructiblePhysMaterialName": [
+      "FSoftObjectPath",
+      2,
+      "Path of the PhysicalMaterial to use if none is defined for a particular object."
+    ],
+    "NearClipPlane": [
+      "float32",
+      2,
+      "The distance of the camera's near clipping plane."
+    ],
+    "MaximumLoopIterationCount": [
+      "int",
+      2,
+      "Script maximum loop iteration count used as a threshold to warn users about script execution runaway"
+    ],
+    "FixedFrameRate": [
+      "float32",
+      2,
+      "The fixed framerate to use."
+    ],
+    "SmoothedFrameRateRange": [
+      "FFloatRange",
+      2,
+      "Range of framerates in which smoothing will kick in"
+    ],
+    "CustomTimeStepClassName": [
+      "FSoftClassPath",
+      2,
+      "Override how the Engine process the Framerate/Timestep.\nThis class will be responsible of updating the application Time and DeltaTime.\nCan be used to synchronize the engine with another process (gen-lock)."
+    ],
+    "TimecodeProviderClassName": [
+      "FSoftClassPath",
+      2,
+      "Set TimecodeProvider when the engine is started."
+    ],
+    "bGenerateDefaultTimecode": [
+      "bool",
+      2,
+      "Generate a default timecode from the computer clock when there is no timecode provider.\nOn desktop, the system time will be used and will behave as if a USystemTimecodeProvider was set.\nOn console, the high performance clock will be used. That may introduce drift over time.\nIf you wish to use the system time on console, set the timecode provider to USystemeTimecodeProvider."
+    ],
+    "GenerateDefaultTimecodeFrameRate": [
+      "FFrameRate",
+      2,
+      "When generating a default timecode (bGenerateDefaultTimecode is true and no timecode provider is set) at which frame rate it should be generated (number of frames)."
+    ],
+    "GenerateDefaultTimecodeFrameDelay": [
+      "float32",
+      2,
+      "Number of frames to subtract from generated default timecode."
+    ],
+    "GameScreenshotSaveDirectory": [
+      "FDirectoryPath",
+      2,
+      "The save directory for newly created screenshots"
+    ],
+    "UseStaticMeshMinLODPerQualityLevels": [
+      "bool",
+      2,
+      ""
+    ],
+    "UseSkeletalMeshMinLODPerQualityLevels": [
+      "bool",
+      2,
+      ""
+    ],
+    "UseGrassVarityPerQualityLevels": [
+      "bool",
+      2,
+      ""
+    ],
+    "MinDesiredFrameRate": [
+      "float32",
+      2,
+      "Minimum desired framerate setting, below this frame rate visual detail may be lowered"
+    ],
+    "bSubtitlesEnabled": [
+      "bool",
+      "Flag for completely disabling subtitles for localized sounds."
+    ],
+    "bSubtitlesForcedOff": [
+      "bool",
+      "Flag for forcibly disabling subtitles even if you try to turn them back on they will be off"
+    ],
+    "bCanBlueprintsTickByDefault": [
+      "bool",
+      "Controls whether Blueprint subclasses of actors or components can tick by default.\n\nBlueprints that derive from native C++ classes that have bCanEverTick=true will always be able to tick\nBlueprints that derive from exactly AActor or UActorComponent will always be able to tick\nOtherwise, they can tick as long as the parent doesn't have meta=(ChildCannotTick) and either bCanBlueprintsTickByDefault is true or the parent has meta=(ChildCanTick)"
+    ],
+    "bOptimizeAnimBlueprintMemberVariableAccess": [
+      "bool",
+      "Controls whether anim blueprint nodes that access member variables of their class directly should use the optimized path that avoids a thunk to the Blueprint VM. This will force all anim blueprints to be recompiled."
+    ],
+    "bAllowMultiThreadedAnimationUpdate": [
+      "bool",
+      "Controls whether by default we allow anim blueprint graph updates to be performed on non-game threads. This enables some extra checks in the anim blueprint compiler that will warn when unsafe operations are being attempted. This will force all anim blueprints to be recompiled."
+    ],
+    "bSmoothFrameRate": [
+      "bool",
+      "Whether to enable framerate smoothing."
+    ],
+    "bUseFixedFrameRate": [
+      "bool",
+      "Whether to use a fixed framerate."
+    ]
+  },
+  "methods": []
+}

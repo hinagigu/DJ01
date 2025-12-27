@@ -1,0 +1,118 @@
+{
+  "name": "FMeshProxySettings",
+  "isStruct": true,
+  "properties": {
+    "ScreenSize": [
+      "int",
+      "Screen size of the resulting proxy mesh in pixels"
+    ],
+    "VoxelSize": [
+      "float32",
+      "Override when converting multiple meshes for proxy LOD merging. Warning, large geometry with small sampling has very high memory costs"
+    ],
+    "MaterialSettings": [
+      "FMaterialProxySettings",
+      "Material simplification"
+    ],
+    "MergeDistance": [
+      "float32",
+      "Distance at which meshes should be merged together, this can close gaps like doors and windows in distant geometry"
+    ],
+    "UnresolvedGeometryColor": [
+      "FColor",
+      "Base color assigned to LOD geometry that can't be associated with the source geometry: e.g. doors and windows that have been closed by the Merge Distance"
+    ],
+    "MaxRayCastDist": [
+      "float32",
+      "Override search distance used when discovering texture values for simplified geometry. Useful when non-zero Merge Distance setting generates new geometry in concave corners."
+    ],
+    "HardAngleThreshold": [
+      "float32",
+      "Angle at which a hard edge is introduced between faces"
+    ],
+    "LightMapResolution": [
+      "int",
+      "Lightmap resolution"
+    ],
+    "NormalCalculationMethod": [
+      "EProxyNormalComputationMethod",
+      "Controls the method used to calculate the normal for the simplified geometry"
+    ],
+    "LandscapeCullingPrecision": [
+      "ELandscapeCullingPrecision",
+      "Level of detail of the landscape that should be used for the culling"
+    ],
+    "NaniteSettings": [
+      "FMeshNaniteSettings",
+      "Settings related to building Nanite data."
+    ],
+    "bCalculateCorrectLODModel": [
+      "bool",
+      "Determines whether or not the correct LOD models should be calculated given the source meshes and transition size"
+    ],
+    "bOverrideVoxelSize": [
+      "bool",
+      "If true, Spatial Sampling Distance will not be automatically computed based on geometry and you must set it directly"
+    ],
+    "bOverrideTransferDistance": [
+      "bool",
+      "Enable an override for material transfer distance"
+    ],
+    "bUseHardAngleThreshold": [
+      "bool",
+      "Enable the use of hard angle based vertex splitting"
+    ],
+    "bComputeLightMapResolution": [
+      "bool",
+      "If ticked will compute the lightmap resolution by summing the dimensions for each mesh included for merging"
+    ],
+    "bRecalculateNormals": [
+      "bool",
+      "Whether Simplygon should recalculate normals, otherwise the normals channel will be sampled from the original mesh"
+    ],
+    "bUseLandscapeCulling": [
+      "bool",
+      "Whether or not to use available landscape geometry to cull away invisible triangles"
+    ],
+    "bSupportRayTracing": [
+      "bool",
+      "Whether ray tracing will be supported on this mesh. Disable this to save memory if the generated mesh will only be rendered in the distance."
+    ],
+    "bAllowDistanceField": [
+      "bool",
+      "Whether to allow distance field to be computed for this mesh. Disable this to save memory if the merged mesh will only be rendered in the distance."
+    ],
+    "bReuseMeshLightmapUVs": [
+      "bool",
+      "Whether to attempt to re-use the source mesh's lightmap UVs when baking the material or always generate a new set."
+    ],
+    "bGroupIdenticalMeshesForBaking": [
+      "bool",
+      "Bake identical meshes (or mesh instances) only once. Can lead to discrepancies with the source mesh visual, especially for materials that are using world position or per instance data. However, this will result in better quality baked textures & greatly reduce baking time."
+    ],
+    "bCreateCollision": [
+      "bool",
+      "Whether to generate collision for the merged mesh"
+    ],
+    "bAllowVertexColors": [
+      "bool",
+      "Whether to allow vertex colors saved in the merged mesh"
+    ],
+    "bGenerateLightmapUVs": [
+      "bool",
+      "Whether to generate lightmap uvs for the merged mesh"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMeshProxySettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMeshProxySettings"
+        }
+      ]
+    }
+  ]
+}

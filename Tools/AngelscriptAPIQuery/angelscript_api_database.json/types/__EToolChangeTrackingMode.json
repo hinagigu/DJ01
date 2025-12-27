@@ -1,0 +1,23 @@
+{
+  "name": "__EToolChangeTrackingMode",
+  "isEnum": true,
+  "doc": "UInteractiveToolManager can emit change events for the active tool in various ways.\nThis allows different modes to control how tools activate/deactivate on undo/redo, which is necessary\nbecause some modes (eg Modeling Mode) do not support redo \"into\" a Tool, while others require it (like Paint Mode)",
+  "properties": {
+    "NoChangeTracking": [
+      "EToolChangeTrackingMode",
+      "Do not emit any Active Tool change events"
+    ],
+    "UndoToExit": [
+      "EToolChangeTrackingMode",
+      "When Activating a new Tool, emit a change that will cancel/deactivate that Tool on Undo, but not reactivate it on Redo"
+    ],
+    "FullUndoRedo": [
+      "EToolChangeTrackingMode",
+      "Full change tracking of active Tool. Note that on Activation when an existing Tool is auto-shutdown, two separate FChanges are emitted, wrapped in a single Transaction"
+    ],
+    "EToolChangeTrackingMode_MAX": [
+      "EToolChangeTrackingMode"
+    ]
+  },
+  "methods": []
+}

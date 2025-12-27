@@ -1,0 +1,34 @@
+{
+  "name": "AQosBeaconClient",
+  "inherits": "AOnlineBeaconClient",
+  "doc": "A beacon client used for quality timings to a specified session",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ClientQosResponse",
+      "return": "void",
+      "callable": false,
+      "doc": "Response from the host session after making a Qos request",
+      "meta": null,
+      "args": [
+        {
+          "name": "Response",
+          "type": "EQosResponseType"
+        }
+      ]
+    },
+    {
+      "name": "ServerQosRequest",
+      "return": "void",
+      "callable": false,
+      "doc": "Contact the server with a Qos request and begin timing\n\n@param InSessionId reference session id to make sure the session is the correct one",
+      "meta": null,
+      "args": [
+        {
+          "name": "InSessionId",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

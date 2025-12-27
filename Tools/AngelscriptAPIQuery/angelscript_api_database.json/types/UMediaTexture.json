@@ -1,0 +1,113 @@
+{
+  "name": "UMediaTexture",
+  "inherits": "UTexture",
+  "doc": "Implements a texture asset for rendering video tracks from UMediaPlayer assets.\n\nnote: derives directly from UTexture, not from UTexture2D or UTexture2DDynamic\n   maybe should have been UTexture2DDynamic?",
+  "properties": {
+    "AddressX": [
+      "TextureAddress",
+      "The addressing mode to use for the X axis."
+    ],
+    "AddressY": [
+      "TextureAddress",
+      "The addressing mode to use for the Y axis."
+    ],
+    "AutoClear": [
+      "bool",
+      "Whether to clear the texture when no media is being played (default = enabled)."
+    ],
+    "ClearColor": [
+      "FLinearColor",
+      "The color used to clear the texture if AutoClear is enabled (default = black)."
+    ],
+    "EnableGenMips": [
+      "bool",
+      "Basic enablement for mip generation (default = false)."
+    ],
+    "NumMips": [
+      "uint8",
+      "The number of mips to use (default = 1)."
+    ],
+    "NewStyleOutput": [
+      "bool",
+      "Enable new style output."
+    ],
+    "CurrentAspectRatio": [
+      "float32",
+      1,
+      "Current aspect ratio"
+    ],
+    "CurrentOrientation": [
+      "MediaTextureOrientation",
+      1,
+      "Current media orientation"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAspectRatio",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current aspect ratio of the texture.\n\n@return Texture aspect ratio.\n@see GetHeight, GetWidth",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHeight",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the current height of the texture.\n\n@return Texture height (in pixels).\n@see GetAspectRatio, GetWidth",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMediaPlayer",
+      "return": "UMediaPlayer",
+      "const": true,
+      "doc": "Get the media player that provides the video samples.\n\n@return The texture's media player, or nullptr if not set.\n@see SetMediaPlayer",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTextureNumMips",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the current numbe of mips of the texture.\n\n@return Number of mips.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWidth",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the current width of the texture.\n\n@return Texture width (in pixels).\n@see GetAspectRatio, GetHeight",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetMediaPlayer",
+      "return": "void",
+      "doc": "Set the media player that provides the video samples.\n\n@param NewMediaPlayer The player to set.\n@see GetMediaPlayer",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMediaPlayer",
+          "type": "UMediaPlayer"
+        }
+      ]
+    },
+    {
+      "name": "UpdateResource",
+      "return": "void",
+      "doc": "Creates a new resource for the texture, and updates any cached references to the resource.\nThis obviously is just an override to expose to blueprints.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

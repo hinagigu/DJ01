@@ -1,0 +1,42 @@
+{
+  "name": "FGeometryCollectionSource",
+  "isStruct": true,
+  "properties": {
+    "SourceGeometryObject": [
+      "FSoftObjectPath"
+    ],
+    "LocalTransform": [
+      "FTransform"
+    ],
+    "SourceMaterial": [
+      "TArray<TObjectPtr<UMaterialInterface>>"
+    ],
+    "InstanceCustomData": [
+      "TArray<float32>"
+    ],
+    "bAddInternalMaterials": [
+      "bool",
+      "(Legacy) Whether source materials will be duplicated to create new slots for internal materials, or existing odd materials will be considered internal. (For non-Geometry Collection inputs only.)"
+    ],
+    "bSplitComponents": [
+      "bool",
+      "Whether individual source mesh components should be split into separate pieces of geometry based on mesh connectivity. If checked, triangles that are not topologically connected will be assigned separate bones. (For non-Geometry Collection inputs only.)"
+    ],
+    "bSetInternalFromMaterialIndex": [
+      "bool",
+      "Whether to set the 'internal' flag for faces with odd-numbered materials slots."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGeometryCollectionSource&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGeometryCollectionSource"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "name": "UGroupPaintBrushFilterProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "properties": {
+    "SubToolType": [
+      "EMeshGroupPaintInteractionType",
+      2,
+      ""
+    ],
+    "BrushSize": [
+      "float32",
+      2,
+      "Relative size of brush"
+    ],
+    "BrushAreaMode": [
+      "EMeshGroupPaintBrushAreaType",
+      2,
+      "When Volumetric, all faces inside the brush sphere are selected, otherwise only connected faces are selected"
+    ],
+    "bHitBackFaces": [
+      "bool",
+      2,
+      "Allow the Brush to hit the back-side of the mesh"
+    ],
+    "SetGroup": [
+      "int",
+      2,
+      "The group that will be assigned to triangles"
+    ],
+    "bOnlySetUngrouped": [
+      "bool",
+      2,
+      "If true, only triangles with no group assigned will be painted"
+    ],
+    "EraseGroup": [
+      "int",
+      2,
+      "Group to set as Erased value"
+    ],
+    "bOnlyEraseCurrent": [
+      "bool",
+      2,
+      "When enabled, only the current group configured in the Paint brush is erased"
+    ],
+    "AngleThreshold": [
+      "float32",
+      2,
+      "The Region affected by the current operation will be bounded by edge angles larger than this threshold"
+    ],
+    "bUVSeams": [
+      "bool",
+      2,
+      "The Region affected by the current operation will be bounded by UV borders/seams"
+    ],
+    "bNormalSeams": [
+      "bool",
+      2,
+      "The Region affected by the current operation will be bounded by Hard Normal edges/seams"
+    ],
+    "VisibilityFilter": [
+      "EMeshGroupPaintVisibilityType",
+      2,
+      "Control which triangles can be affected by the current operation based on visibility. Applied after all other filters."
+    ],
+    "MinTriVertCount": [
+      "int",
+      2,
+      "Number of vertices in a triangle the Lasso must hit to be counted as \"inside\""
+    ],
+    "bShowHitGroup": [
+      "bool",
+      2,
+      "Display the Group ID of the last triangle under the cursor"
+    ],
+    "bShowAllGroups": [
+      "bool",
+      2,
+      "Display the Group ID for all visible groups in the mesh"
+    ]
+  },
+  "methods": []
+}

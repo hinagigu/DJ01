@@ -1,0 +1,14 @@
+# UBoolChannelKeyProxy
+
+**继承自**: `UObject`
+
+## 属性
+
+### Time
+- **类型**: `FFrameNumber`
+- **描述**: User-facing time of the key, applied to the actual key on PostEditChange, and updated every tick
+
+### bValue
+- **类型**: `bool`
+- **描述**: User-facing value of the key, applied to the actual key on PostEditChange, and updated every tick
+

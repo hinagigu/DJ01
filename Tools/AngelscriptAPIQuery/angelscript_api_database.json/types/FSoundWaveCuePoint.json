@@ -1,0 +1,39 @@
+{
+  "name": "FSoundWaveCuePoint",
+  "isStruct": true,
+  "doc": "Struct defining a cue point in a sound wave asset",
+  "properties": {
+    "CuePointID": [
+      "int",
+      1,
+      "Unique identifier for the wave cue point"
+    ],
+    "Label": [
+      "FString",
+      1,
+      "The label for the cue point"
+    ],
+    "FramePosition": [
+      "int",
+      1,
+      "The frame position of the cue point"
+    ],
+    "FrameLength": [
+      "int",
+      1,
+      "The frame length of the cue point (non-zero if it's a region)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSoundWaveCuePoint&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSoundWaveCuePoint"
+        }
+      ]
+    }
+  ]
+}

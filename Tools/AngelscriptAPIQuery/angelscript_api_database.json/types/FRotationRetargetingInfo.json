@@ -1,0 +1,94 @@
+{
+  "name": "FRotationRetargetingInfo",
+  "isStruct": true,
+  "doc": "The FRotationRetargetingInfo is used to provide all of the\nsettings required to perform rotational retargeting on a single\ntransform.",
+  "properties": {
+    "bEnabled": [
+      "bool",
+      2,
+      "Set to true this enables retargeting"
+    ],
+    "Source": [
+      "FTransform",
+      2,
+      "The source transform of the frame of reference. The rotation is made relative to this space"
+    ],
+    "Target": [
+      "FTransform",
+      2,
+      "The target transform to project the rotation. In most cases this is the same as Source"
+    ],
+    "RotationComponent": [
+      "ERotationComponent",
+      2,
+      "The rotation component to perform retargeting with"
+    ],
+    "TwistAxis": [
+      "FVector",
+      2,
+      "In case the rotation component is SwingAngle or TwistAngle this vector is used as the twist axis"
+    ],
+    "bUseAbsoluteAngle": [
+      "bool",
+      2,
+      "If set to true the angle will be always positive, thus resulting in mirrored rotation both ways"
+    ],
+    "SourceMinimum": [
+      "float32",
+      2,
+      "The minimum value of the source angle in degrees"
+    ],
+    "SourceMaximum": [
+      "float32",
+      2,
+      "The maximum value of the source angle in degrees"
+    ],
+    "TargetMinimum": [
+      "float32",
+      2,
+      "The minimum value of the target angle in degrees (can be the same as SourceMinimum)"
+    ],
+    "TargetMaximum": [
+      "float32",
+      2,
+      "The target value of the target angle in degrees (can be the same as SourceMaximum)"
+    ],
+    "EasingType": [
+      "EEasingFuncType",
+      2,
+      "The easing to use - pick linear if you don't want to apply any easing"
+    ],
+    "CustomCurve": [
+      "FRuntimeFloatCurve",
+      2,
+      "Custom curve mapping to apply if bApplyCustomCurve is true"
+    ],
+    "bFlipEasing": [
+      "bool",
+      2,
+      "If set to true the interpolation value for the easing will be flipped (1.0 - Value)"
+    ],
+    "EasingWeight": [
+      "float32",
+      2,
+      "The amount of easing to apply (value should be 0.0 to 1.0)"
+    ],
+    "bClamp": [
+      "bool",
+      2,
+      "If set to true the value for the easing will be clamped between 0.0 and 1.0"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRotationRetargetingInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRotationRetargetingInfo"
+        }
+      ]
+    }
+  ]
+}

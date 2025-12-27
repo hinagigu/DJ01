@@ -1,0 +1,43 @@
+{
+  "name": "FGatherTextFromTextFilesConfiguration",
+  "isStruct": true,
+  "properties": {
+    "IsEnabled": [
+      "bool",
+      2,
+      "If enabled, text from text files will be gathered according to this configuration."
+    ],
+    "SearchDirectories": [
+      "TArray<FGatherTextSearchDirectory>",
+      2,
+      "The paths of directories to be searched recursively for text files, specified relative to the project's root, which may be parsed for text to gather."
+    ],
+    "ExcludePathWildcards": [
+      "TArray<FGatherTextExcludePath>",
+      2,
+      "Text files whose paths match these wildcard patterns will be excluded from gathering."
+    ],
+    "FileExtensions": [
+      "TArray<FGatherTextFileExtension>",
+      2,
+      "Text files whose names match these wildcard patterns may be parsed for text to gather."
+    ],
+    "ShouldGatherFromEditorOnlyData": [
+      "bool",
+      2,
+      "If enabled, data that is specified as editor-only may be processed for gathering."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGatherTextFromTextFilesConfiguration&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGatherTextFromTextFilesConfiguration"
+        }
+      ]
+    }
+  ]
+}

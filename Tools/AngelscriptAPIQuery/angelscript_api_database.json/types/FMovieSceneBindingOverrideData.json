@@ -1,0 +1,34 @@
+{
+  "name": "FMovieSceneBindingOverrideData",
+  "isStruct": true,
+  "doc": "Movie scene binding override data",
+  "properties": {
+    "ObjectBindingId": [
+      "FMovieSceneObjectBindingID",
+      2,
+      "Specifies the object binding to override."
+    ],
+    "Object": [
+      "TSoftObjectPtr<UObject>",
+      2,
+      "Specifies the object to override the binding with."
+    ],
+    "bOverridesDefault": [
+      "bool",
+      2,
+      "Specifies whether the default assignment should remain bound (false) or if this should completely override the default binding (true)."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMovieSceneBindingOverrideData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMovieSceneBindingOverrideData"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "name": "FNiagaraSimCacheCreateParameters",
+  "isStruct": true,
+  "properties": {
+    "AttributeCaptureMode": [
+      "ENiagaraSimCacheAttributeCaptureMode",
+      "How do we want to capture attributes for the simulation cache.\nThe mode selected depends on what situations the cache can be used in."
+    ],
+    "RebaseIncludeAttributes": [
+      "TArray<FName>",
+      "List of Attributes to force include in the SimCache rebase, they should be the full path to the attribute\nFor example, MyEmitter.Particles.MyQuat would force the particle attribute MyQuat to be included for MyEmitter"
+    ],
+    "RebaseExcludeAttributes": [
+      "TArray<FName>",
+      "List of Attributes to force exclude from the SimCache rebase, they should be the full path to the attribute\nFor example, MyEmitter.Particles.MyQuat would force the particle attribute MyQuat to be included for MyEmitter"
+    ],
+    "InterpolationIncludeAttributes": [
+      "TArray<FName>",
+      "List of specific Attributes to include when using interpolation.  They must be types that are supported for interpolation.\nFor example, MyEmitter.Particles.MyPosition would force MyPosition to be interpolated."
+    ],
+    "InterpolationExcludeAttributes": [
+      "TArray<FName>",
+      "List of specific Attributes to exclude interpolation for.  They must be types that are supported for interpolation.\nFor example, MyEmitter.Particles.MyPosition would force MyPosition to be interpolated."
+    ],
+    "ExplicitCaptureAttributes": [
+      "TArray<FName>",
+      "List of attributes to capture when the capture attribute capture mode is set to explicit.\nFor example, adding MyEmitter.Particles.Position will only gather that attribute inside the cache."
+    ],
+    "bAllowRebasing": [
+      "bool",
+      "When enabled allows the SimCache to be re-based.\ni.e. World space emitters can be moved to the new component's location"
+    ],
+    "bAllowDataInterfaceCaching": [
+      "bool",
+      "When enabled Data Interface data will be stored in the SimCache.\nThis can result in a large increase to the cache size, depending on what Data Interfaces are used"
+    ],
+    "bAllowInterpolation": [
+      "bool",
+      "When enabled we allow the cache to be generated for interpolation.\nThis will increase the memory usage for the cache slightly but can allow you to reduce the capture rate.\nBy default we will capture and interpolate all Position & Quat types, you can adjust this using the include / exclude list."
+    ],
+    "bAllowVelocityExtrapolation": [
+      "bool",
+      "When enabled we allow the cache to be generated for extrapolation.\nThis will force the velocity attribute to be maintained."
+    ],
+    "bAllowSerializeLargeCache": [
+      "bool",
+      "When enabled the cache will support serializing large amounts of cache data."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraSimCacheCreateParameters&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraSimCacheCreateParameters"
+        }
+      ]
+    }
+  ]
+}

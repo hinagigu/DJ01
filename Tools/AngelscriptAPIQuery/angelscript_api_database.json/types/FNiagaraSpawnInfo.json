@@ -1,0 +1,39 @@
+{
+  "name": "FNiagaraSpawnInfo",
+  "isStruct": true,
+  "doc": "Data controlling the spawning of particles",
+  "properties": {
+    "Count": [
+      "int",
+      1,
+      "How many particles to spawn."
+    ],
+    "InterpStartDt": [
+      "float32",
+      1,
+      "The sub frame delta time at which to spawn the first particle."
+    ],
+    "IntervalDt": [
+      "float32",
+      1,
+      "The sub frame delta time between each particle."
+    ],
+    "SpawnGroup": [
+      "int",
+      1,
+      "An integer used to identify this spawn info.\nTypically this is unused.\nAn example usage is when using multiple spawn modules to spawn from multiple discreet locations."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraSpawnInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraSpawnInfo"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "name": "FRigidBodyErrorCorrection",
+  "isStruct": true,
+  "doc": "Rigid body error correction data",
+  "properties": {
+    "PingExtrapolation": [
+      "float32",
+      2,
+      "Value between 0 and 1 which indicates how much velocity\n              and ping based correction to use"
+    ],
+    "PingLimit": [
+      "float32",
+      2,
+      "For the purpose of extrapolation, ping will be clamped to this value"
+    ],
+    "ErrorPerLinearDifference": [
+      "float32",
+      2,
+      "Error per centimeter"
+    ],
+    "ErrorPerAngularDifference": [
+      "float32",
+      2,
+      "Error per degree"
+    ],
+    "MaxRestoredStateError": [
+      "float32",
+      2,
+      "Maximum allowable error for a state to be considered \"resolved\""
+    ],
+    "MaxLinearHardSnapDistance": [
+      "float32",
+      2,
+      ""
+    ],
+    "PositionLerp": [
+      "float32",
+      2,
+      "How much to directly lerp to the correct position. Generally\n              this should be very low, if not zero. A higher value will\n              increase precision along with jerkiness."
+    ],
+    "AngleLerp": [
+      "float32",
+      2,
+      "How much to directly lerp to the correct angle."
+    ],
+    "LinearVelocityCoefficient": [
+      "float32",
+      2,
+      "This is the coefficient `k` in the differential equation:\n              dx/dt = k ( x_target(t) - x(t) ), which is used to update\n              the velocity in a replication step."
+    ],
+    "AngularVelocityCoefficient": [
+      "float32",
+      2,
+      "This is the angular analog to LinearVelocityCoefficient."
+    ],
+    "ErrorAccumulationSeconds": [
+      "float32",
+      2,
+      "Number of seconds to remain in a heuristically\n              unresolveable state before hard snapping."
+    ],
+    "ErrorAccumulationDistanceSq": [
+      "float32",
+      2,
+      "If the body has moved less than the square root of\n              this amount towards a resolved state in the previous\n              frame, then error may accumulate towards a hard snap."
+    ],
+    "ErrorAccumulationSimilarity": [
+      "float32",
+      2,
+      "If the previous error projected onto the current error\n              is greater than this value (indicating \"similarity\"\n              between states), then error may accumulate towards a\n              hard snap."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigidBodyErrorCorrection&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigidBodyErrorCorrection"
+        }
+      ]
+    }
+  ]
+}

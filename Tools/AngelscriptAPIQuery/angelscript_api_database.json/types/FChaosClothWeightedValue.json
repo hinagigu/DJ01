@@ -1,0 +1,28 @@
+{
+  "name": "FChaosClothWeightedValue",
+  "isStruct": true,
+  "properties": {
+    "Low": [
+      "float32",
+      2,
+      "Parameter value corresponding to the lower bound of the Weight Map.\nA Weight Map stores a series of Weight values assigned to each point, all between 0 and 1.\nThe weights are used to interpolate the individual values from Low to High assigned to each different point.\nA Weight of 0 always corresponds to the Low parameter value, and a Weight of 1 to the High parameter value.\nThe value for Low can be set to be bigger than for High in order to reverse the effect of the Weight Map."
+    ],
+    "High": [
+      "float32",
+      2,
+      "Parameter value corresponding to the upper bound of the Weight Map.\nA Weight Map stores a series of Weight values assigned to each point, all between 0 and 1.\nThe weights are used to interpolate the individual values from Low to High assigned to each different point.\nA Weight of 0 always corresponds to the Low parameter value, and a Weight of 1 to the High parameter value.\nThe value for Low can be set to be bigger than for High in order to reverse the effect of the Weight Map."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FChaosClothWeightedValue&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FChaosClothWeightedValue"
+        }
+      ]
+    }
+  ]
+}

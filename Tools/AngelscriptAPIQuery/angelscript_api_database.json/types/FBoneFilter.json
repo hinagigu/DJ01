@@ -1,0 +1,28 @@
+{
+  "name": "FBoneFilter",
+  "isStruct": true,
+  "properties": {
+    "bExcludeSelf": [
+      "bool",
+      2,
+      "* Do not include the joint specified\n*\n* This option will work differently based on EBoneFilterActionOption\n* If EBoneFilterActionOption is Remove, it will exclude itself and only remove children\n* For example, if you specify hand, it will only include children of hand(all fingers),\n* not the hand itself if this is true\n*\n* But if the EBoneFilterActionOption is Keep, it will exclude itself but include all parents of it\n* You can't remove joint without children removed, and you can't keep without your parents"
+    ],
+    "BoneName": [
+      "FName",
+      2,
+      "Name of Bone Name"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FBoneFilter&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBoneFilter"
+        }
+      ]
+    }
+  ]
+}

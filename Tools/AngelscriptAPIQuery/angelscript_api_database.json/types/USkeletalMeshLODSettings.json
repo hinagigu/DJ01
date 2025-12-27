@@ -1,0 +1,47 @@
+{
+  "name": "USkeletalMeshLODSettings",
+  "inherits": "UDataAsset",
+  "properties": {
+    "MinQualityLevelLod": [
+      "FPerQualityLevelInt",
+      2,
+      "Minimum Quality Level LOD to render. Can be overridden per mesh as well as set here for all mesh instances"
+    ],
+    "MinLod": [
+      "FPerPlatformInt",
+      2,
+      "Minimum LOD to render. Can be overridden per mesh as well as set here for all mesh instances"
+    ],
+    "DisableBelowMinLodStripping": [
+      "FPerPlatformBool",
+      2,
+      "When true LODs below MinLod will not be stripped during cook."
+    ],
+    "bOverrideLODStreamingSettings": [
+      "bool",
+      2,
+      "Whether meshes in this group override default LOD streaming settings."
+    ],
+    "bSupportLODStreaming": [
+      "FPerPlatformBool",
+      2,
+      "Whether meshes in this group stream LODs by default"
+    ],
+    "MaxNumStreamedLODs": [
+      "FPerPlatformInt",
+      2,
+      "Default maximum number of streamed LODs for meshes in this group"
+    ],
+    "MaxNumOptionalLODs": [
+      "FPerPlatformInt",
+      2,
+      "Default maximum number of optional LODs for meshes in this group (currently, need to be either 0 or > num of LODs below MinLod)"
+    ],
+    "LODGroups": [
+      "TArray<FSkeletalMeshLODGroupSettings>",
+      2,
+      ""
+    ]
+  },
+  "methods": []
+}

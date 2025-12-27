@@ -1,0 +1,48 @@
+{
+  "name": "UNiagaraDataInterfaceDynamicMesh",
+  "inherits": "UNiagaraDataInterface",
+  "doc": "Data Interface that can create mesh geometry at runtime from triangle data (e.g. to render a custom generated mesh per particle)",
+  "properties": {
+    "Sections": [
+      "TArray<FNiagaraDynamicMeshSection>",
+      2,
+      "Sections to render, each section will generally result in a draw call.\nTriangles are contiguous between sections, i.e. Section[1] triangles will begin after Section[0].NumTriangles"
+    ],
+    "Materials": [
+      "TArray<FNiagaraDynamicMeshMaterial>",
+      2,
+      "List of materials to use"
+    ],
+    "NumVertices": [
+      "int",
+      2,
+      "Allocates space for the number of vertices we will use, leave as zero if you intend to allocate dynamically via VM calls."
+    ],
+    "NumTexCoords": [
+      "int",
+      2,
+      "Allocates space for the number of texture coordinates requested."
+    ],
+    "bHasColors": [
+      "bool",
+      2,
+      "Allocates space for vertex colors when enabled."
+    ],
+    "bHasTangentBasis": [
+      "bool",
+      2,
+      "Allocates space for tangent basis when enabled."
+    ],
+    "bClearTrianglesPerFrame": [
+      "bool",
+      2,
+      "Should we auto clear section triangle allocations per frame or not."
+    ],
+    "DefaultBounds": [
+      "FBox",
+      2,
+      "Should we auto clear section triangle allocations per frame or not."
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,108 @@
+{
+  "name": "UObjectMixerBlueprintObjectFilter",
+  "inherits": "UObjectMixerObjectFilter",
+  "doc": "Script class for filtering object types to Object Mixer.\nBlueprint classes should inherit directly from this class.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetColumnsToExclude",
+      "return": "TSet<FName>",
+      "const": true,
+      "doc": "Specify a list of property names corresponding to columns you don't want to ever show.\nFor example, you can specify \"Intensity\" and \"LightColor\" to ensure that they can't be enabled or shown in the UI.\nColumns not specified can be enabled by the user in the UI.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetColumnsToShowByDefault",
+      "return": "TSet<FName>",
+      "const": true,
+      "doc": "Specify a list of property names corresponding to columns you want to show by default.\nFor example, you can specify \"Intensity\" and \"LightColor\" to show only those property columns by default in the UI.\nColumns not specified will not be shown by default but can be enabled by the user in the UI.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetForceAddedColumns",
+      "return": "TSet<FName>",
+      "const": true,
+      "doc": "Specify a list of property names found in parent classes you want to show that aren't in the specified classes.\nNote that properties specified here do not override the properties specified in GetColumnsToExclude().\nFor example, a ULightComponent displays \"LightColor\" in the editor's details panel,\nbut ULightComponent itself doesn't have a property named \"LightColor\". Instead it's in its parent class, ULightComponentBase.\nIn this scenario, ULightComponent is specified and PropertyInheritanceInclusionOptions is None, so \"LightColor\" won't appear by default.\nSpecify \"LightColor\" in this function to ensure that \"LightColor\" will appear as a column as long as\nthe property is accessible to one of the specified classes regardless of which parent class it comes from.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetObjectClassesToFilter",
+      "return": "TSet<UClass>",
+      "const": true,
+      "doc": "Return the basic object types you want to filter for in your level.\nFor example, if you want to work with Lights, return ULightComponentBase.\nIf you also want to see the properties for parent or child classes,\noverride the GetObjectMixerPropertyInheritanceInclusionOptions and GetForceAddedColumns functions.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetObjectClassesToPlace",
+      "return": "TSet<TSubclassOf<AActor>>",
+      "const": true,
+      "doc": "Return the basic actor types you want to be able to place using the Add button.\nNote that only subclasses of AActor are supported and only those which have a registered factory.\nThis includes most engine actor types.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetObjectMixerPlacementClassInclusionOptions",
+      "return": "EObjectMixerInheritanceInclusionOptions",
+      "const": true,
+      "doc": "Specify whether we should return only the specified classes or the parent and child classes in placement mode.\nDefaults to 'None' which only considers the specified classes.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetObjectMixerPropertyInheritanceInclusionOptions",
+      "return": "EObjectMixerInheritanceInclusionOptions",
+      "const": true,
+      "doc": "Specify whether we should return only the properties of the specified classes or the properties of parent and child classes.\nDefaults to 'None' which only considers the properties of the specified classes.\nIf you're not seeing all the properties you expected, try overloading this function.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPropertiesThatRequireListRefresh",
+      "return": "TSet<FName>",
+      "const": true,
+      "doc": "If a property is changed that has a name found in this set, the panel will be refreshed.\nAdd a property name to this list if you expect the list to change in some way after changing that property.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetShowTransientObjects",
+      "return": "bool",
+      "const": true,
+      "doc": "Determines if transient objects (such as Sequencer Spawnables) should be shown in the list. False by default.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ShouldIncludeUnsupportedProperties",
+      "return": "bool",
+      "const": true,
+      "doc": "If true, properties that are not visible in the details panel and properties not supported by SSingleProperty will be selectable.\nDefaults to false.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

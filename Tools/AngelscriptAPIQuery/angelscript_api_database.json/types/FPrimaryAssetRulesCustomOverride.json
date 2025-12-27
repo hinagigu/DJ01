@@ -1,0 +1,39 @@
+{
+  "name": "FPrimaryAssetRulesCustomOverride",
+  "isStruct": true,
+  "doc": "Apply primary asset rules to groups of primary assets, using type + filter directory or string",
+  "properties": {
+    "PrimaryAssetType": [
+      "FPrimaryAssetType",
+      2,
+      "Which type to apply rules for"
+    ],
+    "FilterDirectory": [
+      "FDirectoryPath",
+      2,
+      "Will only apply to files in this directory"
+    ],
+    "FilterString": [
+      "FString",
+      2,
+      "Game-specific string defining which assets to apply this to"
+    ],
+    "Rules": [
+      "FPrimaryAssetRules",
+      2,
+      "What to overrides the rules with"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPrimaryAssetRulesCustomOverride&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPrimaryAssetRulesCustomOverride"
+        }
+      ]
+    }
+  ]
+}

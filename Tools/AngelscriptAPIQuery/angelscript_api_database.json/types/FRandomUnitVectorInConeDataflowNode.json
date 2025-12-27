@@ -1,0 +1,44 @@
+{
+  "name": "FRandomUnitVectorInConeDataflowNode",
+  "isStruct": true,
+  "doc": "Returns a random vector with length of 1, within the specified cone, with uniform random distribution",
+  "properties": {
+    "bDeterministic": [
+      "bool",
+      2,
+      ""
+    ],
+    "RandomSeed": [
+      "float32",
+      2,
+      ""
+    ],
+    "ConeDirection": [
+      "FVector",
+      2,
+      "The base \"center\" direction of the cone"
+    ],
+    "ConeHalfAngle": [
+      "float32",
+      2,
+      "The half-angle of the cone (from ConeDir to edge), in degrees"
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRandomUnitVectorInConeDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRandomUnitVectorInConeDataflowNode"
+        }
+      ]
+    }
+  ]
+}

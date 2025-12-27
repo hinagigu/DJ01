@@ -1,0 +1,50 @@
+{
+  "name": "FDynamicsBandSettings",
+  "isStruct": true,
+  "properties": {
+    "CrossoverTopFrequency": [
+      "float32",
+      "Frequency of the crossover between this band and the next. The last band will have this property ignored"
+    ],
+    "AttackTimeMsec": [
+      "float32",
+      "The amount of time to ramp into any dynamics processing effect in milliseconds."
+    ],
+    "ReleaseTimeMsec": [
+      "float32",
+      "The amount of time to release the dynamics processing effect in milliseconds"
+    ],
+    "ThresholdDb": [
+      "float32",
+      "The threshold at which to perform a dynamics processing operation"
+    ],
+    "Ratio": [
+      "float32",
+      "The dynamics processor ratio -- has different meaning depending on the processor type."
+    ],
+    "KneeBandwidthDb": [
+      "float32",
+      "The knee bandwidth of the compressor to use in dB"
+    ],
+    "InputGainDb": [
+      "float32",
+      "The input gain of the dynamics processor in dB"
+    ],
+    "OutputGainDb": [
+      "float32",
+      "The output gain of the dynamics processor in dB"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDynamicsBandSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDynamicsBandSettings"
+        }
+      ]
+    }
+  ]
+}

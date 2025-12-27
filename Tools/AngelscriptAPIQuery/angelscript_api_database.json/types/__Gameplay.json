@@ -1,0 +1,3155 @@
+{
+  "name": "__Gameplay",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ActivateReverbEffect",
+      "return": "void",
+      "doc": "Activates a Reverb Effect without the need for an Audio Volume\n@param ReverbEffect Reverb Effect to use\n@param TagName Tag to associate with Reverb Effect\n@param Priority Priority of the Reverb Effect\n@param Volume Volume level of Reverb Effect\n@param FadeTime Time before Reverb Effect is fully active",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ReverbEffect",
+          "type": "UReverbEffect"
+        },
+        {
+          "name": "TagName",
+          "type": "FName"
+        },
+        {
+          "name": "Priority",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "Volume",
+          "default": "0.500000",
+          "type": "float32"
+        },
+        {
+          "name": "FadeTime",
+          "default": "2.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AnnounceAccessibleString",
+      "return": "void",
+      "doc": "If accessibility is enabled, have the platform announce a string to the player.\nThese announcements can be interrupted by system accessibiliity announcements or other accessibility announcement requests.\nThis should be used judiciously as flooding a player with announcements can be overrwhelming and confusing.\nTry to make announcements concise and clear.\nNOTE: Currently only supported on Win10, Mac, iOS",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnnouncementString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ApplyDamage",
+      "return": "float32",
+      "doc": "Hurts the specified actor with generic damage.\n@param DamagedActor - Actor that will be damaged.\n@param BaseDamage - The base damage to apply.\n@param EventInstigator - Controller that was responsible for causing this damage (e.g. player who shot the weapon)\n@param DamageCauser - Actor that actually caused the damage (e.g. the grenade that exploded)\n@param DamageTypeClass - Class that describes the damage that was done.\n@return Actual damage the ended up being applied to the actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DamagedActor",
+          "type": "AActor"
+        },
+        {
+          "name": "BaseDamage",
+          "type": "float32"
+        },
+        {
+          "name": "EventInstigator",
+          "type": "AController"
+        },
+        {
+          "name": "DamageCauser",
+          "type": "AActor"
+        },
+        {
+          "name": "DamageTypeClass",
+          "type": "TSubclassOf<UDamageType>"
+        }
+      ]
+    },
+    {
+      "name": "ApplyPointDamage",
+      "return": "float32",
+      "doc": "Hurts the specified actor with the specified impact.\n@param DamagedActor - Actor that will be damaged.\n@param BaseDamage - The base damage to apply.\n@param HitFromDirection - Direction the hit came FROM\n@param HitInfo - Collision or trace result that describes the hit\n@param EventInstigator - Controller that was responsible for causing this damage (e.g. player who shot the weapon)\n@param DamageCauser - Actor that actually caused the damage (e.g. the grenade that exploded)\n@param DamageTypeClass - Class that describes the damage that was done.\n@return Actual damage the ended up being applied to the actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DamagedActor",
+          "type": "AActor"
+        },
+        {
+          "name": "BaseDamage",
+          "type": "float32"
+        },
+        {
+          "name": "HitFromDirection",
+          "type": "FVector"
+        },
+        {
+          "name": "HitInfo",
+          "type": "FHitResult"
+        },
+        {
+          "name": "EventInstigator",
+          "type": "AController"
+        },
+        {
+          "name": "DamageCauser",
+          "type": "AActor"
+        },
+        {
+          "name": "DamageTypeClass",
+          "type": "TSubclassOf<UDamageType>"
+        }
+      ]
+    },
+    {
+      "name": "ApplyRadialDamage",
+      "return": "bool",
+      "doc": "Hurt locally authoritative actors within the radius. Will only hit components that block the Visibility channel.\n@param BaseDamage - The base damage to apply, i.e. the damage at the origin.\n@param Origin - Epicenter of the damage area.\n@param DamageRadius - Radius of the damage area, from Origin\n@param DamageTypeClass - Class that describes the damage that was done.\n@param IgnoreActors - List of Actors to ignore\n@param DamageCauser - Actor that actually caused the damage (e.g. the grenade that exploded).  This actor will not be damaged and it will not block damage.\n@param InstigatedByController - Controller that was responsible for causing this damage (e.g. player who threw the grenade)\n@param bFullDamage - if true, damage not scaled based on distance from Origin\n@param DamagePreventionChannel - Damage will not be applied to victim if there is something between the origin and the victim which blocks traces on this channel\n@return true if damage was applied to at least one actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseDamage",
+          "type": "float32"
+        },
+        {
+          "name": "Origin",
+          "type": "FVector"
+        },
+        {
+          "name": "DamageRadius",
+          "type": "float32"
+        },
+        {
+          "name": "DamageTypeClass",
+          "type": "TSubclassOf<UDamageType>"
+        },
+        {
+          "name": "IgnoreActors",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "DamageCauser",
+          "default": "nullptr",
+          "type": "AActor"
+        },
+        {
+          "name": "InstigatedByController",
+          "default": "nullptr",
+          "type": "AController"
+        },
+        {
+          "name": "bDoFullDamage",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "DamagePreventionChannel",
+          "default": "ECollisionChannel :: ECC_Visibility",
+          "type": "ECollisionChannel"
+        }
+      ]
+    },
+    {
+      "name": "ApplyRadialDamageWithFalloff",
+      "return": "bool",
+      "doc": "Hurt locally authoritative actors within the radius. Will only hit components that block the Visibility channel.\n@param BaseDamage - The base damage to apply, i.e. the damage at the origin.\n@param Origin - Epicenter of the damage area.\n@param DamageInnerRadius - Radius of the full damage area, from Origin\n@param DamageOuterRadius - Radius of the minimum damage area, from Origin\n@param DamageFalloff - Falloff exponent of damage from DamageInnerRadius to DamageOuterRadius\n@param DamageTypeClass - Class that describes the damage that was done.\n@param IgnoreActors - List of Actors to ignore\n@param DamageCauser - Actor that actually caused the damage (e.g. the grenade that exploded)\n@param InstigatedByController - Controller that was responsible for causing this damage (e.g. player who threw the grenade)\n@param bFullDamage - if true, damage not scaled based on distance from Origin\n@param DamagePreventionChannel - Damage will not be applied to victim if there is something between the origin and the victim which blocks traces on this channel\n@return true if damage was applied to at least one actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseDamage",
+          "type": "float32"
+        },
+        {
+          "name": "MinimumDamage",
+          "type": "float32"
+        },
+        {
+          "name": "Origin",
+          "type": "FVector"
+        },
+        {
+          "name": "DamageInnerRadius",
+          "type": "float32"
+        },
+        {
+          "name": "DamageOuterRadius",
+          "type": "float32"
+        },
+        {
+          "name": "DamageFalloff",
+          "type": "float32"
+        },
+        {
+          "name": "DamageTypeClass",
+          "type": "TSubclassOf<UDamageType>"
+        },
+        {
+          "name": "IgnoreActors",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "DamageCauser",
+          "default": "nullptr",
+          "type": "AActor"
+        },
+        {
+          "name": "InstigatedByController",
+          "default": "nullptr",
+          "type": "AController"
+        },
+        {
+          "name": "DamagePreventionChannel",
+          "default": "ECollisionChannel :: ECC_Visibility",
+          "type": "ECollisionChannel"
+        }
+      ]
+    },
+    {
+      "name": "AreAnyListenersWithinRange",
+      "return": "bool",
+      "doc": "Determines if any audio listeners are within range of the specified location\n@param Location              The location from which test if a listener is in range\n@param MaximumRange  The distance away from Location to test if any listener is within\n@note This will always return false if there is no audio device, or the audio device is disabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "MaximumRange",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AreSubtitlesEnabled",
+      "return": "bool",
+      "doc": "Returns whether or not subtitles are currently enabled.\n@return true if subtitles are enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Blueprint_PredictProjectilePath_Advanced",
+      "return": "bool",
+      "doc": "Predict the arc of a virtual projectile affected by gravity with collision checks along the arc.\nReturns true if it hit something.\n\n@param PredictParams                          Input params to the trace (start location, velocity, time to simulate, etc).\n@param PredictResult                          Output result of the trace (Hit result, array of location/velocity/times for each trace step, etc).\n@return                                                       True if hit something along the path (if tracing with collision).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PredictParams",
+          "type": "FPredictProjectilePathParams"
+        },
+        {
+          "name": "PredictResult",
+          "type": "FPredictProjectilePathResult&"
+        }
+      ]
+    },
+    {
+      "name": "Blueprint_PredictProjectilePath_ByObjectType",
+      "return": "bool",
+      "doc": "Predict the arc of a virtual projectile affected by gravity with collision checks along the arc. Returns a list of positions of the simulated arc and the destination reached by the simulation.\nReturns true if it hit something.\n\n@param OutPathPositions                       Predicted projectile path. Ordered series of positions from StartPos to the end. Includes location at point of impact if it hit something.\n@param OutHit                                         Predicted hit result, if the projectile will hit something\n@param OutLastTraceDestination        Goal position of the final trace it did. Will not be in the path if there is a hit.\n@param StartPos                                       First start trace location\n@param LaunchVelocity                         Velocity the \"virtual projectile\" is launched at\n@param bTracePath                                     Trace along the entire path to look for blocking hits\n@param ProjectileRadius                       Radius of the virtual projectile to sweep against the environment\n@param ObjectTypes                            ObjectTypes to trace against, if bTracePath is true.\n@param bTraceComplex                          Use TraceComplex (trace against triangles not primitives)\n@param ActorsToIgnore                         Actors to exclude from the traces\n@param DrawDebugType                          Debug type (one-frame, duration, persistent)\n@param DrawDebugTime                          Duration of debug lines (only relevant for DrawDebugType::Duration)\n@param SimFrequency                           Determines size of each sub-step in the simulation (chopping up MaxSimTime)\n@param MaxSimTime                                     Maximum simulation time for the virtual projectile.\n@param OverrideGravityZ                       Optional override of Gravity (if 0, uses WorldGravityZ)\n@return                                                       True if hit something along the path if tracing for collision.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutHit",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "OutPathPositions",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "OutLastTraceDestination",
+          "type": "FVector&"
+        },
+        {
+          "name": "StartPos",
+          "type": "FVector"
+        },
+        {
+          "name": "LaunchVelocity",
+          "type": "FVector"
+        },
+        {
+          "name": "bTracePath",
+          "type": "bool"
+        },
+        {
+          "name": "ProjectileRadius",
+          "type": "float32"
+        },
+        {
+          "name": "ObjectTypes",
+          "type": "TArray<EObjectTypeQuery>"
+        },
+        {
+          "name": "bTraceComplex",
+          "type": "bool"
+        },
+        {
+          "name": "ActorsToIgnore",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "DrawDebugType",
+          "type": "EDrawDebugTrace"
+        },
+        {
+          "name": "DrawDebugTime",
+          "type": "float32"
+        },
+        {
+          "name": "SimFrequency",
+          "default": "15.000000",
+          "type": "float32"
+        },
+        {
+          "name": "MaxSimTime",
+          "default": "2.000000",
+          "type": "float32"
+        },
+        {
+          "name": "OverrideGravityZ",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Blueprint_PredictProjectilePath_ByTraceChannel",
+      "return": "bool",
+      "doc": "Predict the arc of a virtual projectile affected by gravity with collision checks along the arc. Returns a list of positions of the simulated arc and the destination reached by the simulation.\nReturns true if it hit something (if tracing with collision).\n\n@param OutPathPositions                       Predicted projectile path. Ordered series of positions from StartPos to the end. Includes location at point of impact if it hit something.\n@param OutHit                                         Predicted hit result, if the projectile will hit something\n@param OutLastTraceDestination        Goal position of the final trace it did. Will not be in the path if there is a hit.\n@param StartPos                                       First start trace location\n@param LaunchVelocity                         Velocity the \"virtual projectile\" is launched at\n@param bTracePath                                     Trace along the entire path to look for blocking hits\n@param ProjectileRadius                       Radius of the virtual projectile to sweep against the environment\n@param TraceChannel                           TraceChannel to trace against, if bTracePath is true.\n@param bTraceComplex                          Use TraceComplex (trace against triangles not primitives)\n@param ActorsToIgnore                         Actors to exclude from the traces\n@param DrawDebugType                          Debug type (one-frame, duration, persistent)\n@param DrawDebugTime                          Duration of debug lines (only relevant for DrawDebugType::Duration)\n@param SimFrequency                           Determines size of each sub-step in the simulation (chopping up MaxSimTime)\n@param MaxSimTime                                     Maximum simulation time for the virtual projectile.\n@param OverrideGravityZ                       Optional override of Gravity (if 0, uses WorldGravityZ)\n@return                                                       True if hit something along the path (if tracing with collision).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutHit",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "OutPathPositions",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "OutLastTraceDestination",
+          "type": "FVector&"
+        },
+        {
+          "name": "StartPos",
+          "type": "FVector"
+        },
+        {
+          "name": "LaunchVelocity",
+          "type": "FVector"
+        },
+        {
+          "name": "bTracePath",
+          "type": "bool"
+        },
+        {
+          "name": "ProjectileRadius",
+          "type": "float32"
+        },
+        {
+          "name": "TraceChannel",
+          "type": "ECollisionChannel"
+        },
+        {
+          "name": "bTraceComplex",
+          "type": "bool"
+        },
+        {
+          "name": "ActorsToIgnore",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "DrawDebugType",
+          "type": "EDrawDebugTrace"
+        },
+        {
+          "name": "DrawDebugTime",
+          "type": "float32"
+        },
+        {
+          "name": "SimFrequency",
+          "default": "15.000000",
+          "type": "float32"
+        },
+        {
+          "name": "MaxSimTime",
+          "default": "2.000000",
+          "type": "float32"
+        },
+        {
+          "name": "OverrideGravityZ",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "BlueprintSuggestProjectileVelocity",
+      "return": "bool",
+      "doc": "Calculates an launch velocity for a projectile to hit a specified point.\n@param TossVelocity                                  (output) Result launch velocity.\n@param StartLocation                                 Intended launch location\n@param EndLocation                                   Desired landing location\n@param LaunchSpeed                                   Desired launch speed\n@param OverrideGravityZ                              Optional gravity override.  0 means \"do not override\".\n@param TraceOption                                   Controls whether or not to validate a clear path by tracing along the calculated arc\n@param CollisionRadius                               Radius of the projectile (assumed spherical), used when tracing\n@param bFavorHighArc                                 If true and there are 2 valid solutions, will return the higher arc.  If false, will favor the lower arc.\n@param bDrawDebug                                    When true, a debug arc is drawn (red for an invalid arc, green for a valid arc)\n@param bAcceptClosestOnNoSolutions   If target is unreachable and no solutions are possible, provide a velocity that gets as close to the target as possible given this launch speed\n@return                                                              Returns false if there is no valid solution or the valid solutions are blocked.  Returns true otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TossVelocity",
+          "type": "FVector&"
+        },
+        {
+          "name": "StartLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "EndLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "LaunchSpeed",
+          "type": "float32"
+        },
+        {
+          "name": "OverrideGravityZ",
+          "type": "float32"
+        },
+        {
+          "name": "TraceOption",
+          "type": "ESuggestProjVelocityTraceOption"
+        },
+        {
+          "name": "CollisionRadius",
+          "type": "float32"
+        },
+        {
+          "name": "bFavorHighArc",
+          "type": "bool"
+        },
+        {
+          "name": "bDrawDebug",
+          "type": "bool"
+        },
+        {
+          "name": "bAcceptClosestOnNoSolutions",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "BreakHitResult",
+      "return": "void",
+      "doc": "Extracts data from a HitResult.\n@param Hit                   The source HitResult.\n@param bBlockingHit  True if there was a blocking hit, false otherwise.\n@param bInitialOverlap True if the hit started in an initial overlap. In this case some other values should be interpreted differently. Time will be 0, ImpactPoint will equal Location, and normals will be equal and indicate a depenetration vector.\n@param Time                  'Time' of impact along trace direction ranging from [0.0 to 1.0) if there is a hit, indicating time between start and end. Equals 1.0 if there is no hit.\n@param Distance              The distance from the TraceStart to the Location in world space. This value is 0 if there was an initial overlap (trace started inside another colliding object).\n@param Location              Location of the hit in world space. If this was a swept shape test, this is the location where we can place the shape in the world where it will not penetrate.\n@param Normal                Normal of the hit in world space, for the object that was swept (e.g. for a sphere trace this points towards the sphere's center). Equal to ImpactNormal for line tests.\n@param ImpactPoint   Location of the actual contact point of the trace shape with the surface of the hit object. Equal to Location in the case of an initial overlap.\n@param ImpactNormal  Normal of the hit in world space, for the object that was hit by the sweep.\n@param PhysMat               Physical material that was hit. Must set bReturnPhysicalMaterial to true in the query params for this to be returned.\n@param HitActor              Actor hit by the trace.\n@param HitComponent  PrimitiveComponent hit by the trace.\n@param HitBoneName   Name of the bone hit (valid only if we hit a skeletal mesh).\n@param BoneName              Name of the trace bone hit (valid only if we hit a skeletal mesh).\n@param HitItem               Primitive-specific data recording which item in the primitive was hit\n@param ElementIndex  If colliding with a primitive with multiple parts, index of the part that was hit.\n@param FaceIndex             If colliding with trimesh or landscape, index of face that was hit.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Hit",
+          "type": "FHitResult"
+        },
+        {
+          "name": "bBlockingHit",
+          "type": "bool&"
+        },
+        {
+          "name": "bInitialOverlap",
+          "type": "bool&"
+        },
+        {
+          "name": "Time",
+          "type": "float32&"
+        },
+        {
+          "name": "Distance",
+          "type": "float32&"
+        },
+        {
+          "name": "Location",
+          "type": "FVector&"
+        },
+        {
+          "name": "ImpactPoint",
+          "type": "FVector&"
+        },
+        {
+          "name": "Normal",
+          "type": "FVector&"
+        },
+        {
+          "name": "ImpactNormal",
+          "type": "FVector&"
+        },
+        {
+          "name": "PhysMat",
+          "type": "UPhysicalMaterial&"
+        },
+        {
+          "name": "HitActor",
+          "type": "AActor&"
+        },
+        {
+          "name": "HitComponent",
+          "type": "UPrimitiveComponent&"
+        },
+        {
+          "name": "HitBoneName",
+          "type": "FName&"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName&"
+        },
+        {
+          "name": "HitItem",
+          "type": "int&"
+        },
+        {
+          "name": "ElementIndex",
+          "type": "int&"
+        },
+        {
+          "name": "FaceIndex",
+          "type": "int&"
+        },
+        {
+          "name": "TraceStart",
+          "type": "FVector&"
+        },
+        {
+          "name": "TraceEnd",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "CancelAsyncLoading",
+      "return": "void",
+      "doc": "Cancels all currently queued streaming packages",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearSoundMixClassOverride",
+      "return": "void",
+      "doc": "Clears any existing override of the Sound Class Adjuster in the given Sound Mix\n@param InSoundMixModifier The sound mix to modify.\n@param InSoundClass The sound class in the sound mix to clear overrides from.\n@param FadeOutTime The interpolation time to use to go from the current sound class adjuster override values to the non-override values.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSoundMixModifier",
+          "type": "USoundMix"
+        },
+        {
+          "name": "InSoundClass",
+          "type": "USoundClass"
+        },
+        {
+          "name": "FadeOutTime",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClearSoundMixModifiers",
+      "return": "void",
+      "doc": "Clear all sound mix modifiers from the audio system",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CreatePlayer",
+      "return": "APlayerController",
+      "doc": "Create a new local player for this game, for cases like local multiplayer.\n\n@param ControllerId             The ID of the physical controller that the should control the newly created player. A value of -1 specifies to use the next available ID\n@param bSpawnPlayerController   Whether a player controller should be spawned immediately for this player. If false a player controller will not be created automatically until transition to the next map.\n@return                         The created player controller if one is created.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControllerId",
+          "default": "- 1",
+          "type": "int"
+        },
+        {
+          "name": "bSpawnPlayerController",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreatePlayerFromPlatformUser",
+      "return": "APlayerController",
+      "doc": "Create a new local player for this game, for cases like local multiplayer.\n\n@param UserId                   The platform user id that should control the newly created player. A valude of PLATFRMUSERID_NONE specifies to use the next available ID\n@param bSpawnPlayerController   Whether a player controller should be spawned immediately for this player. If false a player controller will not be created automatically until transition to the next map.\n@return                         The created player controller if one is created.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UserId",
+          "type": "FPlatformUserId"
+        },
+        {
+          "name": "bSpawnPlayerController",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreateSaveGameObject",
+      "return": "USaveGame",
+      "doc": "Create a new, empty SaveGame object to set data on and then pass to SaveGameToSlot.\n@param       SaveGameClass   Class of SaveGame to create\n@return                                      New SaveGame object to write data to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SaveGameClass",
+          "type": "TSubclassOf<USaveGame>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "CreateSound2D",
+      "return": "UAudioComponent",
+      "doc": "This function allows users to create Audio Components in advance of playback with settings specifically for non-spatialized,\nnon-distance-attenuated sounds. Audio Components created using this function by default will not have Spatialization applied.\n@param Sound - Sound to create.\n@param VolumeMultiplier - A linear scalar multiplied with the volume, in order to make the sound louder or softer.\n@param PitchMultiplier - A linear scalar multiplied with the pitch.\n@param StartTime - How far into the sound to begin playback at\n@param ConcurrencySettings - Override concurrency settings package to play sound with\n@param PersistAcrossLevelTransition - Whether the sound should continue to play when the map it was played in is unloaded\n@param bAutoDestroy - Whether the returned audio component will be automatically cleaned up when the sound finishes\n                                              (by completing or stopping), or whether it can be reactivated\n@return An audio component to manipulate the created sound",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "ConcurrencySettings",
+          "default": "nullptr",
+          "type": "USoundConcurrency"
+        },
+        {
+          "name": "bPersistAcrossLevelTransition",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DeactivateReverbEffect",
+      "return": "void",
+      "doc": "Deactivates a Reverb Effect that was applied outside of an Audio Volume\n\n@param TagName Tag associated with Reverb Effect to remove",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TagName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "DeleteGameInSlot",
+      "return": "bool",
+      "doc": "Delete a save game in a particular slot.\n@param SlotName                      Name of save game slot to delete.\n@param UserIndex                     The platform user index that identifies the user doing the saving, ignored on some platforms.\n@return                                      True if a file was actually able to be deleted. use DoesSaveGameExist to distinguish between delete failures and failure due to file not existing.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "UserIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "DeprojectSceneCaptureToWorld",
+      "return": "bool",
+      "doc": "Transforms the given 2D UV coordinate into a 3D world-space point and direction.\n@param SceneCapture2D        Deproject using this scene capture's view.\n@param ScreenPosition        UV in scene capture render target to deproject.\n@param WorldPosition         (out) Corresponding 3D position on camera near plane, in world space.\n@param WorldDirection        (out) World space direction vector away from the camera at the given 2d point.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SceneCapture2D",
+          "type": "const ASceneCapture2D"
+        },
+        {
+          "name": "TargetUV",
+          "type": "FVector2D"
+        },
+        {
+          "name": "WorldPosition",
+          "type": "FVector&"
+        },
+        {
+          "name": "WorldDirection",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "DeprojectScreenToWorld",
+      "return": "bool",
+      "doc": "Transforms the given 2D screen space coordinate into a 3D world-space point and direction.\n@param Player                        Deproject using this player's view.\n@param ScreenPosition        2D screen space to deproject.\n@param WorldPosition         (out) Corresponding 3D position in world space.\n@param WorldDirection        (out) World space direction vector away from the camera at the given 2d point.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Player",
+          "type": "const APlayerController"
+        },
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "WorldPosition",
+          "type": "FVector&"
+        },
+        {
+          "name": "WorldDirection",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "DoesSaveGameExist",
+      "return": "bool",
+      "doc": "See if a save game exists with the specified name.\n@param SlotName                      Name of save game slot.\n@param UserIndex                     The platform user index that identifies the user doing the saving, ignored on some platforms.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "UserIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "EnableLiveStreaming",
+      "return": "void",
+      "doc": "Toggle live DVR streaming.\n@param Enable                        If true enable streaming, otherwise disable.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Enable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "FindCollisionUV",
+      "return": "bool",
+      "doc": "Try and find the UV for a collision impact. Note this ONLY works if 'Support UV From Hit Results' is enabled in Physics Settings.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Hit",
+          "type": "FHitResult"
+        },
+        {
+          "name": "UVChannel",
+          "type": "int"
+        },
+        {
+          "name": "UV",
+          "type": "FVector2D&"
+        }
+      ]
+    },
+    {
+      "name": "FindNearestActor",
+      "return": "AActor",
+      "doc": "Returns an Actor nearest to Origin from ActorsToCheck array.\n@param  Origin                  World Location from which the distance is measured.\n@param  ActorsToCheck   Array of Actors to examine and return Actor nearest to Origin.\n@param  Distance        Distance from Origin to the returned Actor.\n@return                         Nearest Actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Origin",
+          "type": "FVector"
+        },
+        {
+          "name": "ActorsToCheck",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "Distance",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "FlushLevelStreaming",
+      "return": "void",
+      "doc": "Flushes level streaming in blocking fashion and returns when all sub-levels are loaded / visible / hidden",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAccurateRealTime",
+      "return": "void",
+      "doc": "Returns time in seconds since the application was started. Unlike the other time functions this is accurate to the exact time this function is called instead of set once per frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Seconds",
+          "type": "int&"
+        },
+        {
+          "name": "PartialSeconds",
+          "type": "float&"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveSpatialPluginName",
+      "return": "FName",
+      "doc": "Get currently active Audio Spatialization Plugin name",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorArrayAverageLocation",
+      "return": "FVector",
+      "doc": "Find the average location (centroid) of an array of Actors",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actors",
+          "type": "TArray<AActor>"
+        }
+      ]
+    },
+    {
+      "name": "GetActorArrayBounds",
+      "return": "void",
+      "doc": "Bind the bounds of an array of Actors",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actors",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "bOnlyCollidingComponents",
+          "type": "bool"
+        },
+        {
+          "name": "Center",
+          "type": "FVector&"
+        },
+        {
+          "name": "BoxExtent",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetActorOfClass",
+      "return": "AActor",
+      "doc": "Find the first Actor in the world of the specified class.\nThis is a slow operation, use with caution e.g. do not use every frame.\n@param  ActorClass      Class of Actor to find. Must be specified or result will be empty.\n@return                         Actor of the specified class.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorClass",
+          "type": "TSubclassOf<AActor>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetAllActorsOfClass",
+      "return": "void",
+      "doc": "Find all Actors in the world of the specified class.\nThis is a slow operation, use with caution e.g. do not use every frame.\n@param  ActorClass      Class of Actor to find. Must be specified or result array will be empty.\n@param  OutActors       Output array of Actors of the specified class.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorClass",
+          "type": "TSubclassOf<AActor>"
+        },
+        {
+          "name": "OutActors",
+          "type": "TArray<AActor>&"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetAllActorsOfClassWithTag",
+      "return": "void",
+      "doc": "Find all Actors in the world of the specified class with the specified tag.\nThis is a slow operation, use with caution e.g. do not use every frame.\n@param  Tag                     Tag to find. Must be specified or result array will be empty.\n@param  ActorClass      Class of Actor to find. Must be specified or result array will be empty.\n@param  OutActors       Output array of Actors of the specified tag.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorClass",
+          "type": "TSubclassOf<AActor>"
+        },
+        {
+          "name": "Tag",
+          "type": "FName"
+        },
+        {
+          "name": "OutActors",
+          "type": "TArray<AActor>&"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetAllActorsWithInterface",
+      "return": "void",
+      "doc": "Find all Actors in the world with the specified interface.\nThis is a slow operation, use with caution e.g. do not use every frame.\n@param  Interface       Interface to find. Must be specified or result array will be empty.\n@param  OutActors       Output array of Actors of the specified interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Interface",
+          "type": "TSubclassOf<UInterface>"
+        },
+        {
+          "name": "OutActors",
+          "type": "TArray<AActor>&"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetAllActorsWithTag",
+      "return": "void",
+      "doc": "Find all Actors in the world with the specified tag.\nThis is a slow operation, use with caution e.g. do not use every frame.\n@param  Tag                     Tag to find. Must be specified or result array will be empty.\n@param  OutActors       Output array of Actors of the specified tag.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tag",
+          "type": "FName"
+        },
+        {
+          "name": "OutActors",
+          "type": "TArray<AActor>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAudioTimeSeconds",
+      "return": "float",
+      "doc": "Returns time in seconds since world was brought up for play, IS stopped when game pauses, NOT dilated/clamped.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAvailableSpatialPluginNames",
+      "return": "TArray<FName>",
+      "doc": "Get list of available Audio Spatialization Plugin names",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetClosestListenerLocation",
+      "return": "bool",
+      "doc": "Finds and returns the position of the closest listener to the specified location\n@param Location                                              The location from which we'd like to find the closest listener, in world space.\n@param MaximumRange                                  The maximum distance away from Location that a listener can be.\n@param bAllowAttenuationOverride             True for the adjusted listener position (if attenuation override is set), false for the raw listener position (for panning)\n@param ListenerPosition                              [Out] The position of the closest listener in world space, if found.\n@return true if we've successfully found a listener within MaximumRange of Location, otherwise false.\n@note This will always return false if there is no audio device, or the audio device is disabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "MaximumRange",
+          "type": "float32"
+        },
+        {
+          "name": "bAllowAttenuationOverride",
+          "type": "bool"
+        },
+        {
+          "name": "ListenerPosition",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentLevelName",
+      "return": "FString",
+      "doc": "Get the name of the currently-open level.\n\n@param bRemovePrefixString    remove any streaming- or editor- added prefixes from the level name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bRemovePrefixString",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentReverbEffect",
+      "return": "UReverbEffect",
+      "doc": "Returns the highest priority reverb settings currently active from any source (Audio Volumes or manual settings).",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEnableWorldRendering",
+      "return": "bool",
+      "doc": "Returns the world rendering state\n@return      Whether the world should be rendered or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGameInstance",
+      "return": "UGameInstance",
+      "doc": "Returns the game instance object",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGameMode",
+      "return": "AGameModeBase",
+      "doc": "Returns the current GameModeBase or Null if it can't be retrieved, such as on the client",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGameState",
+      "return": "AGameStateBase",
+      "doc": "Returns the current GameStateBase or Null if it can't be retrieved",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGlobalTimeDilation",
+      "return": "float32",
+      "doc": "Gets the current global time dilation.\n@return Current time dilation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetIntOption",
+      "return": "int",
+      "doc": "Find an option in the options string and return it as an integer.\n@param Options               The string containing the options.\n@param Key                   The key to find the value of in Options.\n@return                              The value associated with Key as an integer if Key found in Options string, otherwise DefaultValue.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Options",
+          "type": "FString"
+        },
+        {
+          "name": "Key",
+          "type": "FString"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetKeyValue",
+      "return": "void",
+      "doc": "Break up a key=value pair into its key and value.\n@param Pair                  The string containing a pair to split apart.\n@param Key                   (out) Key portion of Pair. If no = in string will be the same as Pair.\n@param Value                 (out) Value portion of Pair. If no = in string will be empty.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pair",
+          "type": "FString"
+        },
+        {
+          "name": "Key",
+          "type": "FString&"
+        },
+        {
+          "name": "Value",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetMaxAudioChannelCount",
+      "return": "int",
+      "doc": "Retrieves the max voice count currently used by the audio engine.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumLocalPlayerControllers",
+      "return": "int",
+      "doc": "Returns the number of fully initialized local players, this will be 0 on dedicated servers.\nIndexes up to this can be used as PlayerIndex parameters for the following functions, and you are guaranteed to get a local player controller.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumPlayerControllers",
+      "return": "int",
+      "doc": "Returns the total number of available player controllers, including remote players when called on a server.\nIndexes up to this can be used as PlayerIndex parameters for the following functions.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumPlayerStates",
+      "return": "int",
+      "doc": "Returns the number of active player states, there is one player state for every connected player even if they are a remote client.\nIndexes up to this can be use as PlayerStateIndex parameters for other functions.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetObjectClass",
+      "return": "UClass",
+      "doc": "Returns the class of a passed in Object, will always be valid if Object is not NULL",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "const UObject"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetPlatformName",
+      "return": "FString",
+      "doc": "Returns the string name of the current platform, to perform different behavior based on platform.\n(Platform names include Windows, Mac, Linux, IOS, Android, consoles, etc.).",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlayerCameraManager",
+      "return": "APlayerCameraManager",
+      "doc": "Returns the camera manager for the Player Controller at the specified player index.\nThis will not include remote clients with no player controller.\n\n@param PlayerIndex   Index in the player controller list, starting first with local players and then available remote ones",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerCharacter",
+      "return": "ACharacter",
+      "doc": "Returns the pawn for the player controller at the specified player index, will return null if the pawn is not a character.\nThis will not include characters of remote clients with no available player controller, you can iterate the PlayerStates list for that.\n\n@param PlayerIndex   Index in the player controller list, starting first with local players and then available remote ones",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerController",
+      "return": "APlayerController",
+      "doc": "Returns the player controller found while iterating through the local and available remote player controllers.\nOn a network client, this will only include local players as remote player controllers are not available.\nThe index will be consistent as long as no new players join or leave, but it will not be the same across different clients and servers.\n\n@param PlayerIndex   Index in the player controller list, starting first with local players and then available remote ones",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerControllerFromID",
+      "return": "APlayerController",
+      "doc": "Returns the player controller with the specified physical controller ID. This only works for local players.\n\n@param ControllerID  Physical controller ID, the same value returned from Get Player Controller ID",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControllerID",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerControllerFromPlatformUser",
+      "return": "APlayerController",
+      "doc": "Returns the player controller with the specified physical controller ID. This only works for local players.\n\n@param ControllerID  Physical controller ID, the same value returned from Get Player Controller ID",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UserId",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerControllerID",
+      "return": "int",
+      "doc": "Gets what physical controller ID a player is using. This only works for local player controllers.\n\n@param Player        The player controller of the player to get the ID of\n@return                      The ID of the passed in player. -1 if there is no physical controller assigned to the passed in player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Player",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerPawn",
+      "return": "APawn",
+      "doc": "Returns the pawn for the player controller at the specified player index.\nThis will not include pawns of remote clients with no available player controller, you can use the player states list for that.\n\n@param PlayerIndex   Index in the player controller list, starting first with local players and then available remote ones",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerState",
+      "return": "APlayerState",
+      "doc": "Returns the player state at the given index in the game state's PlayerArray.\nThis will work on both the client and server and the index will be consistent.\nAfter initial replication, all clients and the server will have access to PlayerStates for all connected players.\n\n@param PlayerStateIndex      Index into the game state's PlayerArray",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerStateIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerStateFromUniqueNetId",
+      "return": "APlayerState",
+      "doc": "Returns the player state that matches the passed in online id, or null for an invalid one.\nThis will work on both the client and server for local and remote players.\n\n@param UniqueId      The player's unique net/online id",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UniqueId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    },
+    {
+      "name": "GetRealTimeSeconds",
+      "return": "float",
+      "doc": "Returns time in seconds since world was brought up for play, does NOT stop when game pauses, NOT dilated/clamped",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStreamingLevel",
+      "return": "ULevelStreaming",
+      "doc": "Returns level streaming object with specified level package name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PackageName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetSurfaceType",
+      "return": "EPhysicalSurface",
+      "doc": "Returns the EPhysicalSurface type of the given Hit.\nTo edit surface type for your project, use ProjectSettings/Physics/PhysicalSurface section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Hit",
+          "type": "FHitResult"
+        }
+      ]
+    },
+    {
+      "name": "GetTimeSeconds",
+      "return": "float",
+      "doc": "Returns time in seconds since world was brought up for play, adjusted by time dilation and IS stopped when game pauses",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUnpausedTimeSeconds",
+      "return": "float",
+      "doc": "Returns time in seconds since world was brought up for play, adjusted by time dilation and IS NOT stopped when game pauses",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetViewportMouseCaptureMode",
+      "return": "EMouseCaptureMode",
+      "doc": "Returns the current viewport mouse capture mode",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetViewProjectionMatrix",
+      "return": "void",
+      "doc": "Returns the View Matrix, Projection Matrix and the View x Projection Matrix for a given view\n@param DesiredView                   FMinimalViewInfo struct for a camera.\n@param ViewMatrix                    (out) Corresponding View Matrix\n@param ProjectionMatrix              (out) Corresponding Projection Matrix\n@param ViewProjectionMatrix  (out) Corresponding View x Projection Matrix",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DesiredView",
+          "type": "FMinimalViewInfo"
+        },
+        {
+          "name": "ViewMatrix",
+          "type": "FMatrix&"
+        },
+        {
+          "name": "ProjectionMatrix",
+          "type": "FMatrix&"
+        },
+        {
+          "name": "ViewProjectionMatrix",
+          "type": "FMatrix&"
+        }
+      ]
+    },
+    {
+      "name": "GetWorldDeltaSeconds",
+      "return": "float",
+      "doc": "Returns the frame delta time in seconds, adjusted by time dilation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWorldOriginLocation",
+      "return": "FIntVector",
+      "doc": "Returns world origin current location.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GrassOverlappingSphereCount",
+      "return": "int",
+      "doc": "Counts how many grass foliage instances overlap a given sphere.\n\n@param        Mesh                    The static mesh we are interested in counting.\n@param        CenterPosition  The center position of the sphere.\n@param        Radius                  The radius of the sphere.\n\n@return Number of foliage instances with their mesh set to Mesh that overlap the sphere.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "const UStaticMesh"
+        },
+        {
+          "name": "CenterPosition",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "HasLaunchOption",
+      "return": "bool",
+      "doc": "Checks the commandline to see if the desired option was specified on the commandline (e.g. -demobuild)\n@return                               True if the launch option was specified on the commandline, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OptionToCheck",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "HasOption",
+      "return": "bool",
+      "doc": "Returns whether a key exists in an options string.\n@param Options               The string containing the options.\n@param Key                   The key to determine if it exists in Options.\n@return                              Whether Key was found in Options.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Options",
+          "type": "FString"
+        },
+        {
+          "name": "InKey",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsAnyLocalPlayerCameraWithinRange",
+      "return": "bool",
+      "doc": "Determines if any local player controller's camera is within range of the specified location.\n@param Location              The location from which test range\n@param MaximumRange  The distance away from Location to test range\n@note This will always return false on dedicated servers.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "MaximumRange",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsGamePaused",
+      "return": "bool",
+      "doc": "Returns the game's paused state\n@return      Whether the game is currently paused or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsSplitscreenForceDisabled",
+      "return": "bool",
+      "doc": "Returns the split screen state\n@return      Whether the game viewport is split screen or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LoadGameFromSlot",
+      "return": "USaveGame",
+      "doc": "Load the contents from a given slot.\n@param SlotName                      Name of the save game slot to load from.\n@param UserIndex                     The platform user index that identifies the user doing the saving, ignored on some platforms.\n@return                                      Object containing loaded game state (nullptr if load fails)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "UserIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "LoadStreamLevel",
+      "return": "void",
+      "doc": "Stream the level (by Name); Calling again before it finishes has no effect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelName",
+          "type": "FName"
+        },
+        {
+          "name": "bMakeVisibleAfterLoad",
+          "type": "bool"
+        },
+        {
+          "name": "bShouldBlockOnLoad",
+          "type": "bool"
+        },
+        {
+          "name": "LatentInfo",
+          "type": "FLatentActionInfo"
+        }
+      ]
+    },
+    {
+      "name": "LoadStreamLevelBySoftObjectPtr",
+      "return": "void",
+      "doc": "Stream the level (by Object Reference); Calling again before it finishes has no effect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Level",
+          "type": "TSoftObjectPtr<UWorld>"
+        },
+        {
+          "name": "bMakeVisibleAfterLoad",
+          "type": "bool"
+        },
+        {
+          "name": "bShouldBlockOnLoad",
+          "type": "bool"
+        },
+        {
+          "name": "LatentInfo",
+          "type": "FLatentActionInfo"
+        }
+      ]
+    },
+    {
+      "name": "MakeHitResult",
+      "return": "FHitResult",
+      "doc": "Create a HitResult struct\n@param Hit                   The source HitResult.\n@param bBlockingHit  True if there was a blocking hit, false otherwise.\n@param bInitialOverlap True if the hit started in an initial overlap. In this case some other values should be interpreted differently. Time will be 0, ImpactPoint will equal Location, and normals will be equal and indicate a depenetration vector.\n@param Time                  'Time' of impact along trace direction ranging from [0.0 to 1.0) if there is a hit, indicating time between start and end. Equals 1.0 if there is no hit.\n@param Distance              The distance from the TraceStart to the Location in world space. This value is 0 if there was an initial overlap (trace started inside another colliding object).\n@param Location              Location of the hit in world space. If this was a swept shape test, this is the location where we can place the shape in the world where it will not penetrate.\n@param Normal                Normal of the hit in world space, for the object that was swept (e.g. for a sphere trace this points towards the sphere's center). Equal to ImpactNormal for line tests.\n@param ImpactPoint   Location of the actual contact point of the trace shape with the surface of the hit object. Equal to Location in the case of an initial overlap.\n@param ImpactNormal  Normal of the hit in world space, for the object that was hit by the sweep.\n@param PhysMat               Physical material that was hit. Must set bReturnPhysicalMaterial to true in the query params for this to be returned.\n@param HitActor              Actor hit by the trace.\n@param HitComponent  PrimitiveComponent hit by the trace.\n@param HitBoneName   Name of the bone hit (valid only if we hit a skeletal mesh).\n@param BoneName              Name of the trace bone hit (valid only if we hit a skeletal mesh).\n@param HitItem               Primitive-specific data recording which item in the primitive was hit\n@param ElementIndex  If colliding with a primitive with multiple parts, index of the part that was hit.\n@param FaceIndex             If colliding with trimesh or landscape, index of face that was hit.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bBlockingHit",
+          "type": "bool"
+        },
+        {
+          "name": "bInitialOverlap",
+          "type": "bool"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "Distance",
+          "type": "float32"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "ImpactPoint",
+          "type": "FVector"
+        },
+        {
+          "name": "Normal",
+          "type": "FVector"
+        },
+        {
+          "name": "ImpactNormal",
+          "type": "FVector"
+        },
+        {
+          "name": "PhysMat",
+          "type": "UPhysicalMaterial"
+        },
+        {
+          "name": "HitActor",
+          "type": "AActor"
+        },
+        {
+          "name": "HitComponent",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "HitBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "HitItem",
+          "type": "int"
+        },
+        {
+          "name": "ElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "FaceIndex",
+          "type": "int"
+        },
+        {
+          "name": "TraceStart",
+          "type": "FVector"
+        },
+        {
+          "name": "TraceEnd",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ObjectIsA",
+      "return": "bool",
+      "doc": "Returns whether or not the object passed in is of (or inherits from) the class type.\n@return True if the object is of (or inherits from) the class type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "const UObject"
+        },
+        {
+          "name": "ObjectClass",
+          "type": "TSubclassOf<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "OpenLevel",
+      "return": "void",
+      "doc": "Travel to another level\n\n@param       LevelName                       the level to open\n@param       bAbsolute                       if true options are reset, if false options are carried over from current level\n@param       Options                         a string of options to use for the travel URL",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelName",
+          "type": "FName"
+        },
+        {
+          "name": "bAbsolute",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "Options",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "OpenLevelBySoftObjectPtr",
+      "return": "void",
+      "doc": "Travel to another level\n\n@param       Level                           the level to open\n@param       bAbsolute                       if true options are reset, if false options are carried over from current level\n@param       Options                         a string of options to use for the travel URL",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Level",
+          "type": "TSoftObjectPtr<UWorld>"
+        },
+        {
+          "name": "bAbsolute",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "Options",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ParseOption",
+      "return": "FString",
+      "doc": "Find an option in the options string and return it.\n@param Options               The string containing the options.\n@param Key                   The key to find the value of in Options.\n@return                              The value associated with Key if Key found in Options string.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Options",
+          "type": "FString"
+        },
+        {
+          "name": "Key",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "PlayDialogue2D",
+      "return": "void",
+      "doc": "Plays a dialogue directly with no attenuation, perfect for UI.\n\n* Fire and Forget.\n* Not Replicated.\n@param Dialogue - dialogue to play\n@param Context - context the dialogue is to play in\n@param VolumeMultiplier - A linear scalar multiplied with the volume, in order to make the sound louder or softer.\n@param PitchMultiplier - A linear scalar multiplied with the pitch.\n@param StartTime - How far in to the dialogue to begin playback at",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Dialogue",
+          "type": "UDialogueWave"
+        },
+        {
+          "name": "Context",
+          "type": "FDialogueContext"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "PlayDialogueAtLocation",
+      "return": "void",
+      "doc": "Plays a dialogue at the given location. This is a fire and forget sound and does not travel with any actor.\n    Replication is also not handled at this point.\n@param Dialogue - dialogue to play\n@param Context - context the dialogue is to play in\n@param Location - World position to play dialogue at\n@param Rotation - World rotation to play dialogue at\n@param VolumeMultiplier - A linear scalar multiplied with the volume, in order to make the sound louder or softer.\n@param PitchMultiplier - A linear scalar multiplied with the pitch.\n@param StartTime - How far in to the dialogue to begin playback at\n@param AttenuationSettings - Override attenuation settings package to play sound with",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Dialogue",
+          "type": "UDialogueWave"
+        },
+        {
+          "name": "Context",
+          "type": "FDialogueContext"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "AttenuationSettings",
+          "default": "nullptr",
+          "type": "USoundAttenuation"
+        }
+      ]
+    },
+    {
+      "name": "PlaySound2D",
+      "return": "void",
+      "doc": "Plays a sound directly with no attenuation, perfect for UI sounds.\n\n* Fire and Forget.\n* Not Replicated.\n@param Sound - Sound to play.\n@param VolumeMultiplier - A linear scalar multiplied with the volume, in order to make the sound louder or softer.\n@param PitchMultiplier - A linear scalar multiplied with the pitch.\n@param StartTime - How far in to the sound to begin playback at\n@param ConcurrencySettings - Override concurrency settings package to play sound with\n@param OwningActor - The actor to use as the \"owner\" for concurrency settings purposes.\n                                             Allows PlaySound calls to do a concurrency limit per owner.\n@param bIsUISound - True if sound is UI related, else false",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "ConcurrencySettings",
+          "default": "nullptr",
+          "type": "USoundConcurrency"
+        },
+        {
+          "name": "OwningActor",
+          "default": "nullptr",
+          "type": "const AActor"
+        },
+        {
+          "name": "bIsUISound",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PlaySoundAtLocation",
+      "return": "void",
+      "doc": "Plays a sound at the given location. This is a fire and forget sound and does not travel with any actor.\nReplication is also not handled at this point.\n@param Sound - sound to play\n@param Location - World position to play sound at\n@param Rotation - World rotation to play sound at\n@param VolumeMultiplier - A linear scalar multiplied with the volume, in order to make the sound louder or softer.\n@param PitchMultiplier - A linear scalar multiplied with the pitch.\n@param StartTime - How far in to the sound to begin playback at\n@param AttenuationSettings - Override attenuation settings package to play sound with\n@param ConcurrencySettings - Override concurrency settings package to play sound with\n@param OwningActor - The actor to use as the \"owner\" for concurrency settings purposes. Allows PlaySound calls\n                                             to do a concurrency limit per owner.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "AttenuationSettings",
+          "default": "nullptr",
+          "type": "USoundAttenuation"
+        },
+        {
+          "name": "ConcurrencySettings",
+          "default": "nullptr",
+          "type": "USoundConcurrency"
+        },
+        {
+          "name": "OwningActor",
+          "default": "nullptr",
+          "type": "const AActor"
+        },
+        {
+          "name": "InitialParams",
+          "default": "nullptr",
+          "type": "const UInitialActiveSoundParams"
+        }
+      ]
+    },
+    {
+      "name": "PlayWorldCameraShake",
+      "return": "void",
+      "doc": "Plays an in-world camera shake that affects all nearby local players, with distance-based attenuation. Does not replicate.\n@param WorldContextObject - Object that we can obtain a world context from\n@param Shake - Camera shake asset to use\n@param Epicenter - location to place the effect in world space\n@param InnerRadius - Cameras inside this radius are ignored\n@param OuterRadius - Cameras outside of InnerRadius and inside this are effected\n@param Falloff - Affects falloff of effect as it nears OuterRadius\n@param bOrientShakeTowardsEpicenter - Changes the rotation of shake to point towards epicenter instead of forward",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Shake",
+          "type": "TSubclassOf<UCameraShakeBase>"
+        },
+        {
+          "name": "Epicenter",
+          "type": "FVector"
+        },
+        {
+          "name": "InnerRadius",
+          "type": "float32"
+        },
+        {
+          "name": "OuterRadius",
+          "type": "float32"
+        },
+        {
+          "name": "Falloff",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bOrientShakeTowardsEpicenter",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PopSoundMixModifier",
+      "return": "void",
+      "doc": "Pop a sound mix modifier from the audio system\n    @param InSoundMixModifier The Sound Mix Modifier to remove from the system",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSoundMixModifier",
+          "type": "USoundMix"
+        }
+      ]
+    },
+    {
+      "name": "PrimeAllSoundsInSoundClass",
+      "return": "void",
+      "doc": "Primes the sound waves in the given USoundClass, caching the first chunk of streamed audio.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSoundClass",
+          "type": "USoundClass"
+        }
+      ]
+    },
+    {
+      "name": "PrimeSound",
+      "return": "void",
+      "doc": "Primes the sound, caching the first chunk of streamed audio.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSound",
+          "type": "USoundBase"
+        }
+      ]
+    },
+    {
+      "name": "ProjectWorldToScreen",
+      "return": "bool",
+      "doc": "Transforms the given 3D world-space point into a its 2D screen space coordinate.\n@param Player                        Project using this player's view.\n@param WorldPosition         World position to project.\n@param ScreenPosition        (out) Corresponding 2D position in screen space\n@param bPlayerViewportRelative       Should this be relative to the player viewport subregion (useful when using player attached widgets in split screen)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Player",
+          "type": "const APlayerController"
+        },
+        {
+          "name": "WorldPosition",
+          "type": "FVector"
+        },
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D&"
+        },
+        {
+          "name": "bPlayerViewportRelative",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PushSoundMixModifier",
+      "return": "void",
+      "doc": "Push a sound mix modifier onto the audio system\n@param InSoundMixModifier The Sound Mix Modifier to add to the system",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSoundMixModifier",
+          "type": "USoundMix"
+        }
+      ]
+    },
+    {
+      "name": "RebaseLocalOriginOntoZero",
+      "return": "FVector",
+      "doc": "Returns origin based position for local world location.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "RebaseZeroOriginOntoLocal",
+      "return": "FVector",
+      "doc": "Returns local location for origin based position.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "RemovePlayer",
+      "return": "void",
+      "doc": "Removes a local player from this game.\n\n@param Player                        The player controller of the player to be removed\n@param bDestroyPawn          Whether the controlled pawn should be deleted as well",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Player",
+          "type": "APlayerController"
+        },
+        {
+          "name": "bDestroyPawn",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SaveGameToSlot",
+      "return": "bool",
+      "doc": "Save the contents of the SaveGameObject to a platform-specific save slot/file.\n@note This will write out all non-transient properties, the SaveGame property flag is not checked\n\n@param SaveGameObject        Object that contains data about the save game that we want to write out\n@param SlotName                      Name of save game slot to save to.\n@param UserIndex                     The platform user index that identifies the user doing the saving, ignored on some platforms.\n@return                                      Whether we successfully saved this information",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SaveGameObject",
+          "type": "USaveGame"
+        },
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "UserIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetActiveSpatialPluginByName",
+      "return": "bool",
+      "doc": "Get list of available Audio Spatialization Plugins",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPluginName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetBaseSoundMix",
+      "return": "void",
+      "doc": "Set the sound mix of the audio system for special EQing",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSoundMix",
+          "type": "USoundMix"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableWorldRendering",
+      "return": "void",
+      "doc": "Enabled rendering of the world\n@param       bEnable         Whether the world should be rendered or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetForceDisableSplitscreen",
+      "return": "void",
+      "doc": "Enables split screen\n@param       bDisable                Whether the viewport should split screen between local players or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bDisable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetGamePaused",
+      "return": "bool",
+      "doc": "Sets the game's paused state\n@param       bPaused         Whether the game should be paused or not\n@return      Whether the game was successfully paused/unpaused",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bPaused",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetGlobalListenerFocusParameters",
+      "return": "void",
+      "doc": "Sets the global listener focus parameters, which will scale focus behavior of sounds based on their focus azimuth\nsettings in their attenuation settings.\n\n* Fire and Forget.\n* Not Replicated.\n@param FocusAzimuthScale - An angle scale value used to scale the azimuth angle that defines where sounds are in-focus.\n@param NonFocusAzimuthScale- An angle scale value used to scale the azimuth angle that defines where sounds are out-of-focus.\n@param FocusDistanceScale - A distance scale value to use for sounds which are in-focus. Values < 1.0 will reduce perceived\n                                                        distance to sounds, values > 1.0 will increase perceived distance to in-focus sounds.\n@param NonFocusDistanceScale - A distance scale value to use for sounds which are out-of-focus. Values < 1.0 will reduce\n                                                               perceived distance to sounds, values > 1.0 will increase perceived distance to in-focus sounds.\n@param FocusVolumeScale- A volume attenuation value to use for sounds which are in-focus.\n@param NonFocusVolumeScale- A volume attenuation value to use for sounds which are out-of-focus.\n@param FocusPriorityScale - A priority scale value (> 0.0) to use for sounds which are in-focus. Values < 1.0 will reduce\n                                                        the priority of in-focus sounds, values > 1.0 will increase the priority of in-focus sounds.\n@param NonFocusPriorityScale - A priority scale value (> 0.0) to use for sounds which are out-of-focus. Values < 1.0 will\n                                                               reduce the priority of sounds out-of-focus sounds, values > 1.0 will increase the priority of\n                                                               out-of-focus sounds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FocusAzimuthScale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "NonFocusAzimuthScale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "FocusDistanceScale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "NonFocusDistanceScale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "FocusVolumeScale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "NonFocusVolumeScale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "FocusPriorityScale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "NonFocusPriorityScale",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetGlobalPitchModulation",
+      "return": "void",
+      "doc": "Sets a global pitch modulation scalar that will apply to all non-UI sounds\n\n* Fire and Forget.\n* Not Replicated.\n@param PitchModulation - A pitch modulation value to globally set.\n@param TimeSec - A time value to linearly interpolate the global modulation pitch over from it's current value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PitchModulation",
+          "type": "float32"
+        },
+        {
+          "name": "TimeSec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetGlobalTimeDilation",
+      "return": "void",
+      "doc": "Sets the global time dilation.\n@param       TimeDilation    value to set the global time dilation to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeDilation",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMaxAudioChannelsScaled",
+      "return": "void",
+      "doc": "Sets the max number of voices (also known as \"channels\") dynamically by percentage. E.g. if you want to temporarily\nreduce voice count by 50%, use 0.50. Later, you can return to the original max voice count by using 1.0.\n@param MaxChannelCountScale The percentage of the original voice count to set the max number of voices to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaxChannelCountScale",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPlayerControllerID",
+      "return": "void",
+      "doc": "Sets what physical controller ID a player should be using. This only works for local player controllers.\n\n@param Player                        The player controller of the player to change the controller ID of\n@param ControllerId          The controller ID to assign to this player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Player",
+          "type": "APlayerController"
+        },
+        {
+          "name": "ControllerId",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetPlayerPlatformUserId",
+      "return": "void",
+      "doc": "Sets what platform user id a player should be using. This only works for local player controllers.\n\n@param Player                        The player controller of the player to change the platform user of\n@param PlatformUserId        The platform user id to assign this player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerController",
+          "type": "APlayerController"
+        },
+        {
+          "name": "UserId",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "SetSoundClassDistanceScale",
+      "return": "void",
+      "doc": "Linearly interpolates the attenuation distance scale value from it's current attenuation distance override value\n(1.0f it not overridden) to its new attenuation distance override, over the given amount of time\n\n* Fire and Forget.\n* Not Replicated.\n@param SoundClass - Sound class to to use to set the attenuation distance scale on.\n@param DistanceAttenuationScale - A scalar for the attenuation distance used for computing distance attenuation.\n@param TimeSec - A time value to linearly interpolate from the current distance attenuation scale value to the new value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoundClass",
+          "type": "USoundClass"
+        },
+        {
+          "name": "DistanceAttenuationScale",
+          "type": "float32"
+        },
+        {
+          "name": "TimeSec",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSoundMixClassOverride",
+      "return": "void",
+      "doc": "Overrides the sound class adjuster in the given sound mix. If the sound class does not exist in the input sound mix,\n    the sound class adjuster will be added to the list of active sound mix modifiers.\n@param InSoundMixModifier The sound mix to modify.\n@param InSoundClass The sound class to override (or add) in the sound mix.\n@param Volume The volume scale to set the sound class adjuster to.\n@param Pitch The pitch scale to set the sound class adjuster to.\n@param FadeInTime The interpolation time to use to go from the current sound class adjuster values to the new values.\n@param bApplyToChildren Whether or not to apply this override to the sound class' children or to just the specified sound class.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSoundMixModifier",
+          "type": "USoundMix"
+        },
+        {
+          "name": "InSoundClass",
+          "type": "USoundClass"
+        },
+        {
+          "name": "Volume",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "Pitch",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "FadeInTime",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bApplyToChildren",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSubtitlesEnabled",
+      "return": "void",
+      "doc": "Will set subtitles to be enabled or disabled.\n@param bEnabled will enable subtitle drawing if true, disable if false.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetViewportMouseCaptureMode",
+      "return": "void",
+      "doc": "Sets the current viewport mouse capture mode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MouseCaptureMode",
+          "type": "EMouseCaptureMode"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldOriginLocation",
+      "return": "void",
+      "doc": "Requests a new location for a world origin.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FIntVector"
+        }
+      ]
+    },
+    {
+      "name": "SpawnDecalAtLocation",
+      "return": "UDecalComponent",
+      "doc": "Spawns a decal at the given location and rotation, fire and forget. Does not replicate.\n@param DecalMaterial - decal's material\n@param DecalSize - size of decal\n@param Location - location to place the decal in world space\n@param Rotation - rotation to place the decal in world space\n@param LifeSpan - destroy decal component after time runs out (0 = infinite)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DecalMaterial",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "DecalSize",
+          "type": "FVector"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( - 90.000000 , 0.000000 , 0.000000 )",
+          "type": "FRotator"
+        },
+        {
+          "name": "LifeSpan",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SpawnDecalAttached",
+      "return": "UDecalComponent",
+      "doc": "Spawns a decal attached to and following the specified component. Does not replicate.\n@param DecalMaterial - decal's material\n@param DecalSize - size of decal\n@param AttachComponent - Component to attach to.\n@param AttachPointName - Optional named point within the AttachComponent to spawn the emitter at\n@param Location - Depending on the value of Location Type this is either a relative offset from the attach component/point or an absolute world position that will be translated to a relative offset\n@param Rotation - Depending on the value of LocationType this is either a relative offset from the attach component/point or an absolute world rotation that will be translated to a realative offset\n@param LocationType - Specifies whether Location is a relative offset or an absolute world position\n@param LifeSpan - destroy decal component after time runs out (0 = infinite)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DecalMaterial",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "DecalSize",
+          "type": "FVector"
+        },
+        {
+          "name": "AttachToComponent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "AttachPointName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "Location",
+          "default": "FVector ( )",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "LocationType",
+          "default": "EAttachLocation :: KeepRelativeOffset",
+          "type": "EAttachLocation"
+        },
+        {
+          "name": "LifeSpan",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SpawnDialogue2D",
+      "return": "UAudioComponent",
+      "doc": "Spawns a DialogueWave, a special type of Asset that requires Context data in order to resolve a specific SoundBase,\nwhich is then passed on to the new Audio Component. Audio Components created using this function by default will not\nhave Spatialization applied. Sound instances will begin playing upon spawning this Audio Component.\n\n* Not Replicated.\n@param Dialogue - dialogue to play\n@param Context - context the dialogue is to play in\n@param VolumeMultiplier - A linear scalar multiplied with the volume, in order to make the sound louder or softer.\n@param PitchMultiplier - A linear scalar multiplied with the pitch.\n@param StartTime - How far in to the dialogue to begin playback at\n@param bAutoDestroy - Whether the returned audio component will be automatically cleaned up when the sound\n                                              finishes (by completing or stopping) or whether it can be reactivated\n@return An audio component to manipulate the spawned sound",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Dialogue",
+          "type": "UDialogueWave"
+        },
+        {
+          "name": "Context",
+          "type": "FDialogueContext"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SpawnDialogueAtLocation",
+      "return": "UAudioComponent",
+      "doc": "Spawns a DialogueWave, a special type of Asset that requires Context data in order to resolve a specific SoundBase,\nwhich is then passed on to the new Audio Component. This function allows users to create and play Audio Components at a\nspecific World Location and Rotation. Useful for spatialized and/or distance-attenuated dialogue.\n@param Dialogue - Dialogue to play\n@param Context - Context the dialogue is to play in\n@param Location - World position to play dialogue at\n@param Rotation - World rotation to play dialogue at\n@param VolumeMultiplier - A linear scalar multiplied with the volume, in order to make the sound louder or softer.\n@param PitchMultiplier - A linear scalar multiplied with the pitch.\n@param StartTime - How far into the dialogue to begin playback at\n@param AttenuationSettings - Override attenuation settings package to play sound with\n@param bAutoDestroy - Whether the returned audio component will be automatically cleaned up when the sound finishes\n                                             (by completing or stopping) or whether it can be reactivated\n@return Audio Component to manipulate the playing dialogue with",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Dialogue",
+          "type": "UDialogueWave"
+        },
+        {
+          "name": "Context",
+          "type": "FDialogueContext"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "AttenuationSettings",
+          "default": "nullptr",
+          "type": "USoundAttenuation"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SpawnDialogueAttached",
+      "return": "UAudioComponent",
+      "doc": "Spawns a DialogueWave, a special type of Asset that requires Context data in order to resolve a specific SoundBase,\n    which is then passed on to the new Audio Component. This function allows users to create and play Audio Components\n    attached to a specific Scene Component. Useful for spatialized and/or distance-attenuated dialogue that needs to\n    follow another object in space.\n@param Dialogue - dialogue to play\n@param Context - context the dialogue is to play in\n@param AttachComponent - Component to attach to.\n@param AttachPointName - Optional named point within the AttachComponent to play the sound at\n@param Location - Depending on the value of Location Type this is either a relative offset from the\n                                     attach component/point or an absolute world position that will be translated to a relative offset\n@param Rotation - Depending on the value of Location Type this is either a relative offset from the\n                                     attach component/point or an absolute world rotation that will be translated to a relative offset\n@param LocationType - Specifies whether Location is a relative offset or an absolute world position\n@param bStopWhenAttachedToDestroyed - Specifies whether the sound should stop playing when the owner its attached\n                                                                             to is destroyed.\n@param VolumeMultiplier - A linear scalar multiplied with the volume, in order to make the sound louder or softer.\n@param PitchMultiplier - A linear scalar multiplied with the pitch.\n@param StartTime - How far in to the dialogue to begin playback at\n@param AttenuationSettings - Override attenuation settings package to play sound with\n@param bAutoDestroy - Whether the returned audio component will be automatically cleaned up when the sound finishes\n                                             (by completing or stopping) or whether it can be reactivated\n@return Audio Component to manipulate the playing dialogue with",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Dialogue",
+          "type": "UDialogueWave"
+        },
+        {
+          "name": "Context",
+          "type": "FDialogueContext"
+        },
+        {
+          "name": "AttachToComponent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "AttachPointName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "Location",
+          "default": "FVector ( )",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "LocationType",
+          "default": "EAttachLocation :: KeepRelativeOffset",
+          "type": "EAttachLocation"
+        },
+        {
+          "name": "bStopWhenAttachedToDestroyed",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "AttenuationSettings",
+          "default": "nullptr",
+          "type": "USoundAttenuation"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SpawnEmitterAtLocation",
+      "return": "UParticleSystemComponent",
+      "doc": "Plays the specified effect at the given location and rotation, fire and forget. The system will go away when the effect is complete. Does not replicate.\n@param WorldContextObject - Object that we can obtain a world context from\n@param EmitterTemplate - particle system to create\n@param Location - location to place the effect in world space\n@param Rotation - rotation to place the effect in world space\n@param Scale - scale to create the effect at\n@param bAutoDestroy - Whether the component will automatically be destroyed when the particle system completes playing or whether it can be reactivated\n@param PoolingMethod - Method used for pooling this component. Defaults to none.\n@param bAutoActivate - Whether the component will be automatically activated on creation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterTemplate",
+          "type": "UParticleSystem"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "Scale",
+          "default": "FVector ( 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FVector"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "PoolingMethod",
+          "default": "EPSCPoolMethod :: None",
+          "type": "EPSCPoolMethod"
+        },
+        {
+          "name": "bAutoActivateSystem",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SpawnEmitterAttached",
+      "return": "UParticleSystemComponent",
+      "doc": "Plays the specified effect attached to and following the specified component. The system will go away when the effect is complete. Does not replicate.\n@param EmitterTemplate - particle system to create\n@param AttachComponent - Component to attach to.\n@param AttachPointName - Optional named point within the AttachComponent to spawn the emitter at\n@param Location - Depending on the value of LocationType this is either a relative offset from the attach component/point or an absolute world location that will be translated to a relative offset (if LocationType is KeepWorldPosition).\n@param Rotation - Depending on the value of LocationType this is either a relative offset from the attach component/point or an absolute world rotation that will be translated to a relative offset (if LocationType is KeepWorldPosition).\n@param Scale - Depending on the value of LocationType this is either a relative scale from the attach component or an absolute world scale that will be translated to a relative scale (if LocationType is KeepWorldPosition).\n@param LocationType - Specifies whether Location is a relative offset or an absolute world position\n@param bAutoDestroy - Whether the component will automatically be destroyed when the particle system completes playing or whether it can be reactivated\n@param PoolingMethod - Method used for pooling this component. Defaults to none.\n@param bAutoActivate - Whether the component will be automatically activated on creation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterTemplate",
+          "type": "UParticleSystem"
+        },
+        {
+          "name": "AttachToComponent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "AttachPointName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "Location",
+          "default": "FVector ( )",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "Scale",
+          "default": "FVector ( 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FVector"
+        },
+        {
+          "name": "LocationType",
+          "default": "EAttachLocation :: KeepRelativeOffset",
+          "type": "EAttachLocation"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "PoolingMethod",
+          "default": "EPSCPoolMethod :: None",
+          "type": "EPSCPoolMethod"
+        },
+        {
+          "name": "bAutoActivate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SpawnForceFeedbackAtLocation",
+      "return": "UForceFeedbackComponent",
+      "doc": "Plays a force feedback effect at the given location. This is a fire and forget effect and does not travel with any actor. Replication is also not handled at this point.\n@param ForceFeedbackEffect - effect to play\n@param Location - World position to center the effect at\n@param Rotation - World rotation to center the effect at\n@param IntensityMultiplier - Intensity multiplier\n@param StartTime - How far in to the feedback effect to begin playback at\n@param AttenuationSettings - Override attenuation settings package to play effect with\n@param bAutoDestroy - Whether the returned force feedback component will be automatically cleaned up when the feedback pattern finishes (by completing or stopping) or whether it can be reactivated\n@return Force Feedback Component to manipulate the playing feedback effect with",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ForceFeedbackEffect",
+          "type": "UForceFeedbackEffect"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "bLooping",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "IntensityMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "AttenuationSettings",
+          "default": "nullptr",
+          "type": "UForceFeedbackAttenuation"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SpawnForceFeedbackAttached",
+      "return": "UForceFeedbackComponent",
+      "doc": "Plays a force feedback effect attached to and following the specified component. This is a fire and forget effect. Replication is also not handled at this point.\n@param ForceFeedbackEffect - effect to play\n@param AttachComponent - Component to attach to.\n@param AttachPointName - Optional named point within the AttachComponent to attach to\n@param Location - Depending on the value of Location Type this is either a relative offset from the attach component/point or an absolute world position that will be translated to a relative offset\n@param Rotation - Depending on the value of Location Type this is either a relative offset from the attach component/point or an absolute world rotation that will be translated to a relative offset\n@param LocationType - Specifies whether Location is a relative offset or an absolute world position\n@param bStopWhenAttachedToDestroyed - Specifies whether the feedback effect should stop playing when the owner of the attach to component is destroyed.\n@param IntensityMultiplier - Intensity multiplier\n@param StartTime - How far in to the feedback effect to begin playback at\n@param AttenuationSettings - Override attenuation settings package to play effect with\n@param bAutoDestroy - Whether the returned force feedback component will be automatically cleaned up when the feedback patern finishes (by completing or stopping) or whether it can be reactivated\n@return Force Feedback Component to manipulate the playing feedback effect with",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ForceFeedbackEffect",
+          "type": "UForceFeedbackEffect"
+        },
+        {
+          "name": "AttachToComponent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "AttachPointName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "Location",
+          "default": "FVector ( )",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "LocationType",
+          "default": "EAttachLocation :: KeepRelativeOffset",
+          "type": "EAttachLocation"
+        },
+        {
+          "name": "bStopWhenAttachedToDestroyed",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bLooping",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "IntensityMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "AttenuationSettings",
+          "default": "nullptr",
+          "type": "UForceFeedbackAttenuation"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SpawnSound2D",
+      "return": "UAudioComponent",
+      "doc": "This function allows users to create Audio Components with settings specifically for non-spatialized,\nnon-distance-attenuated sounds. Audio Components created using this function by default will not have\nSpatialization applied. Sound instances will begin playing upon spawning this Audio Component.\n\n* Not Replicated.\n@param Sound - Sound to play.\n@param VolumeMultiplier - A linear scalar multiplied with the volume, in order to make the sound louder or softer.\n@param PitchMultiplier - A linear scalar multiplied with the pitch.\n@param StartTime - How far in to the sound to begin playback at\n@param ConcurrencySettings - Override concurrency settings package to play sound with\n@param PersistAcrossLevelTransition - Whether the sound should continue to play when the map it was played in is unloaded\n@param bAutoDestroy - Whether the returned audio component will be automatically cleaned up when the sound finishes\n                                              (by completing or stopping) or whether it can be reactivated\n@return An audio component to manipulate the spawned sound",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "ConcurrencySettings",
+          "default": "nullptr",
+          "type": "USoundConcurrency"
+        },
+        {
+          "name": "bPersistAcrossLevelTransition",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SpawnSoundAtLocation",
+      "return": "UAudioComponent",
+      "doc": "Spawns a sound at the given location. This does not travel with any actor. Replication is also not handled at this point.\n@param Sound - sound to play\n@param Location - World position to play sound at\n@param Rotation - World rotation to play sound at\n@param VolumeMultiplier - A linear scalar multiplied with the volume, in order to make the sound louder or softer.\n@param PitchMultiplier - A linear scalar multiplied with the pitch.\n@param StartTime - How far in to the sound to begin playback at\n@param AttenuationSettings - Override attenuation settings package to play sound with\n@param ConcurrencySettings - Override concurrency settings package to play sound with\n@param bAutoDestroy - Whether the returned audio component will be automatically cleaned up when the sound finishes\n                                              (by completing or stopping) or whether it can be reactivated\n@return An audio component to manipulate the spawned sound",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "AttenuationSettings",
+          "default": "nullptr",
+          "type": "USoundAttenuation"
+        },
+        {
+          "name": "ConcurrencySettings",
+          "default": "nullptr",
+          "type": "USoundConcurrency"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SpawnSoundAttached",
+      "return": "UAudioComponent",
+      "doc": "This function allows users to create and play Audio Components attached to a specific Scene Component.\nUseful for spatialized and/or distance-attenuated sounds that need to follow another object in space.\n@param Sound - sound to play\n@param AttachComponent - Component to attach to.\n@param AttachPointName - Optional named point within the AttachComponent to play the sound at\n@param Location - Depending on the value of Location Type this is either a relative offset from\n                                     the attach component/point or an absolute world position that will be translated to a relative offset\n@param Rotation - Depending on the value of Location Type this is either a relative offset from\n                                     the attach component/point or an absolute world rotation that will be translated to a relative offset\n@param LocationType - Specifies whether Location is a relative offset or an absolute world position\n@param bStopWhenAttachedToDestroyed - Specifies whether the sound should stop playing when the\n                                                                             owner of the attach to component is destroyed.\n@param VolumeMultiplier - A linear scalar multiplied with the volume, in order to make the sound louder or softer.\n@param PitchMultiplier - A linear scalar multiplied with the pitch.\n@param StartTime - How far in to the sound to begin playback at\n@param AttenuationSettings - Override attenuation settings package to play sound with\n@param ConcurrencySettings - Override concurrency settings package to play sound with\n@param bAutoDestroy - Whether the returned audio component will be automatically cleaned up when the sound finishes\n                                             (by completing or stopping) or whether it can be reactivated\n@return An audio component to manipulate the spawned sound",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        },
+        {
+          "name": "AttachToComponent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "AttachPointName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "Location",
+          "default": "FVector ( )",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "LocationType",
+          "default": "EAttachLocation :: KeepRelativeOffset",
+          "type": "EAttachLocation"
+        },
+        {
+          "name": "bStopWhenAttachedToDestroyed",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "AttenuationSettings",
+          "default": "nullptr",
+          "type": "USoundAttenuation"
+        },
+        {
+          "name": "ConcurrencySettings",
+          "default": "nullptr",
+          "type": "USoundConcurrency"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SuggestProjectileVelocity_CustomArc",
+      "return": "bool",
+      "doc": "Returns the launch velocity needed for a projectile at rest at StartPos to land on EndPos.\nAssumes a medium arc (e.g. 45 deg on level ground). Projectile velocity is variable and unconstrained.\nDoes no tracing.\n\n@param OutLaunchVelocity                      Returns the launch velocity required to reach the EndPos\n@param StartPos                                       Start position of the simulation\n@param EndPos                                         Desired end location for the simulation\n@param OverrideGravityZ                       Optional override of WorldGravityZ\n@param ArcParam                                       Change height of arc between 0.0-1.0 where 0.5 is the default medium arc, 0 is up, and 1 is directly toward EndPos.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutLaunchVelocity",
+          "type": "FVector&"
+        },
+        {
+          "name": "StartPos",
+          "type": "FVector"
+        },
+        {
+          "name": "EndPos",
+          "type": "FVector"
+        },
+        {
+          "name": "OverrideGravityZ",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "ArcParam",
+          "default": "0.500000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SuggestProjectileVelocity_MovingTarget",
+      "return": "bool",
+      "doc": "Returns a launch velocity need for a projectile to hit the TargetActor in TimeToTarget seconds based on the TargetActor's current velocity.\nThis assumes the projectile is only accelerated by gravity (i.e. no outside forces), and that the TargetActor is moving at a constant velocity.\n\n@param OutLaunchVelocity                     The launch velocity returned from this calculation\n@param ProjectileStartLocation       Location the projectile is launched from\n@param TargetActor                           Actor that the projectile should hit in TimeToTarget seconds\n@param TargetLocationOffset          Offset to apply to the location the projectile is aiming for\n@param GravityZOverride                      Optional override of WorldGravityZ\n@param TimeToTarget                          Time (in seconds) between the projectile being launched and the projectile hitting the TargetActor - clamped to be at least 0.1",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutLaunchVelocity",
+          "type": "FVector&"
+        },
+        {
+          "name": "ProjectileStartLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "TargetActor",
+          "type": "AActor"
+        },
+        {
+          "name": "TargetLocationOffset",
+          "default": "FVector ( )",
+          "type": "FVector"
+        },
+        {
+          "name": "GravityZOverride",
+          "default": "0.000000",
+          "type": "float"
+        },
+        {
+          "name": "TimeToTarget",
+          "default": "1.000000",
+          "type": "float"
+        },
+        {
+          "name": "DrawDebugType",
+          "default": "Type :: None",
+          "type": "EDrawDebugTrace"
+        },
+        {
+          "name": "DrawDebugTime",
+          "default": "3.000000",
+          "type": "float32"
+        },
+        {
+          "name": "DrawDebugColor",
+          "default": "FLinearColor ( 1.000000 , 0.000000 , 0.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "UnloadStreamLevel",
+      "return": "void",
+      "doc": "Unload a streamed in level (by Name)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelName",
+          "type": "FName"
+        },
+        {
+          "name": "LatentInfo",
+          "type": "FLatentActionInfo"
+        },
+        {
+          "name": "bShouldBlockOnUnload",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UnloadStreamLevelBySoftObjectPtr",
+      "return": "void",
+      "doc": "Unload a streamed in level (by Object Reference)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Level",
+          "type": "TSoftObjectPtr<UWorld>"
+        },
+        {
+          "name": "LatentInfo",
+          "type": "FLatentActionInfo"
+        },
+        {
+          "name": "bShouldBlockOnUnload",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UnRetainAllSoundsInSoundClass",
+      "return": "void",
+      "doc": "Iterate through all sound waves and releases handles to retained chunks. (If the chunk is not being played it will be up for eviction)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSoundClass",
+          "type": "USoundClass"
+        }
+      ]
+    },
+    {
+      "name": "AsyncLoadGameFromSlot",
+      "return": "void",
+      "doc": "Schedule an async load of a specific slot. UAsyncActionHandleSaveGame::AsyncLoadGameFromSlot is the blueprint version of this.\nThis will do the platform-specific read on a worker thread, the serialize and creation on the game thread, and then will call the passed in delegate\nThe passed in delegate will be copied to a worker thread so make sure any payload is thread safe to copy by value\n\n@param SlotName                      Name of the save game slot to load from.\n@param UserIndex                     For some platforms, master user index to identify the user doing the loading.\n@param LoadedDelegate        Delegate that will be called on game thread when load succeeds or fails.",
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "UserIndex",
+          "type": "int"
+        },
+        {
+          "name": "Delegate",
+          "default": "FAsyncLoadGameFromSlotDynamicDelegate ( )",
+          "type": "FAsyncLoadGameFromSlotDynamicDelegate"
+        }
+      ]
+    },
+    {
+      "name": "AsyncSaveGameToSlot",
+      "return": "void",
+      "doc": "Schedule an async save to a specific slot. UAsyncActionHandleSaveGame::AsyncSaveGameToSlot is the blueprint version of this.\nThis will do the serialize on the game thread, the platform-specific write on a worker thread, then call the complete delegate on the game thread.\nThe passed in delegate will be copied to a worker thread so make sure any payload is thread safe to copy by value.\n\n@param SaveGameObject        Object that contains data about the save game that we want to write out.\n@param SlotName                      Name of the save game slot to load from.\n@param UserIndex                     For some platforms, master user index to identify the user doing the loading.\n@param SavedDelegate         Delegate that will be called on game thread when save succeeds or fails.",
+      "meta": null,
+      "args": [
+        {
+          "name": "SaveGameObject",
+          "type": "USaveGame"
+        },
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "UserIndex",
+          "type": "int"
+        },
+        {
+          "name": "Delegate",
+          "default": "FAsyncSaveGameToSlotDynamicDelegate ( )",
+          "type": "FAsyncSaveGameToSlotDynamicDelegate"
+        }
+      ]
+    }
+  ]
+}

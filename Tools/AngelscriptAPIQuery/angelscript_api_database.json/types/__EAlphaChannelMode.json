@@ -1,0 +1,23 @@
+{
+  "name": "__EAlphaChannelMode",
+  "isEnum": true,
+  "doc": "Enumerates available options for alpha channel through post processing. The renderer will always generate premultiplied RGBA\nwith alpha as translucency (0 = fully opaque; 1 = fully translucent).",
+  "properties": {
+    "Disabled": [
+      "EAlphaChannelMode",
+      "Disabled, reducing GPU cost to the minimum. (default)."
+    ],
+    "LinearColorSpaceOnly": [
+      "EAlphaChannelMode",
+      "Maintain alpha channel only within linear color space. Tonemapper won't output alpha channel."
+    ],
+    "AllowThroughTonemapper": [
+      "EAlphaChannelMode",
+      "Maintain alpha channel within linear color space, but also pass it through the tonemapper.\n\nCAUTION: Passing the alpha channel through the tonemapper can unevitably lead to pretty poor compositing quality as\nopposed to linear color space compositing, especially on purely additive pixels bloom can generate. This settings is\nexclusively targeting broadcast industry in case of hardware unable to do linear color space compositing and\ntonemapping."
+    ],
+    "EAlphaChannelMode_MAX": [
+      "EAlphaChannelMode"
+    ]
+  },
+  "methods": []
+}

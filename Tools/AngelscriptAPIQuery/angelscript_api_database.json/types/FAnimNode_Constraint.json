@@ -1,0 +1,64 @@
+{
+  "name": "FAnimNode_Constraint",
+  "isStruct": true,
+  "doc": "Constraint node to parent or world transform for rotation/translation",
+  "properties": {
+    "BoneToModify": [
+      "FBoneReference",
+      2,
+      "Name of bone to control. This is the main bone chain to modify from. *"
+    ],
+    "ConstraintSetup": [
+      "TArray<FConstraint>",
+      2,
+      "List of constraints"
+    ],
+    "ConstraintWeights": [
+      "TArray<float32>",
+      2,
+      "Weight data - post edit syncs up to ConstraintSetups"
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_Constraint&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_Constraint"
+        }
+      ]
+    }
+  ]
+}

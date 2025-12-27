@@ -1,0 +1,365 @@
+{
+  "name": "UMetaSoundBuilderSubsystem",
+  "inherits": "UEngineSubsystem",
+  "doc": "The subsystem in charge of tracking MetaSound builders",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateBoolArrayMetaSoundLiteral",
+      "return": "FMetasoundFrontendLiteral",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "TArray<bool>"
+        },
+        {
+          "name": "DataType",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "CreateBoolMetaSoundLiteral",
+      "return": "FMetasoundFrontendLiteral",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "bool"
+        },
+        {
+          "name": "DataType",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "CreateFloatArrayMetaSoundLiteral",
+      "return": "FMetasoundFrontendLiteral",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "TArray<float32>"
+        },
+        {
+          "name": "DataType",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "CreateFloatMetaSoundLiteral",
+      "return": "FMetasoundFrontendLiteral",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        },
+        {
+          "name": "DataType",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "CreateIntArrayMetaSoundLiteral",
+      "return": "FMetasoundFrontendLiteral",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "TArray<int>"
+        },
+        {
+          "name": "DataType",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "CreateIntMetaSoundLiteral",
+      "return": "FMetasoundFrontendLiteral",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        },
+        {
+          "name": "DataType",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "CreateMetaSoundLiteralFromParam",
+      "return": "FMetasoundFrontendLiteral",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Param",
+          "type": "FAudioParameter"
+        }
+      ]
+    },
+    {
+      "name": "CreateObjectArrayMetaSoundLiteral",
+      "return": "FMetasoundFrontendLiteral",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "TArray<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "CreateObjectMetaSoundLiteral",
+      "return": "FMetasoundFrontendLiteral",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "CreatePatchBuilder",
+      "return": "UMetaSoundPatchBuilder",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BuilderName",
+          "type": "FName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "CreateSourceBuilder",
+      "return": "UMetaSoundSourceBuilder",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BuilderName",
+          "type": "FName"
+        },
+        {
+          "name": "OnPlayNodeOutput",
+          "type": "FMetaSoundBuilderNodeOutputHandle&"
+        },
+        {
+          "name": "OnFinishedNodeInput",
+          "type": "FMetaSoundBuilderNodeInputHandle&"
+        },
+        {
+          "name": "AudioOutNodeInputs",
+          "type": "TArray<FMetaSoundBuilderNodeInputHandle>&"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        },
+        {
+          "name": "OutputFormat",
+          "default": "EMetaSoundOutputAudioFormat :: Mono",
+          "type": "EMetaSoundOutputAudioFormat"
+        },
+        {
+          "name": "bIsOneShot",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreateStringArrayMetaSoundLiteral",
+      "return": "FMetasoundFrontendLiteral",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "DataType",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "CreateStringMetaSoundLiteral",
+      "return": "FMetasoundFrontendLiteral",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FString"
+        },
+        {
+          "name": "DataType",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "FindBuilder",
+      "return": "UMetaSoundBuilderBase",
+      "doc": "Returns the builder manually registered with the MetaSound Builder Subsystem with the provided custom name (if previously registered)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BuilderName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FindPatchBuilder",
+      "return": "UMetaSoundPatchBuilder",
+      "doc": "Returns the patch builder manually registered with the MetaSound Builder Subsystem with the provided custom name (if previously registered)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BuilderName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FindSourceBuilder",
+      "return": "UMetaSoundSourceBuilder",
+      "doc": "Returns the source builder manually registered with the MetaSound Builder Subsystem with the provided custom name (if previously registered)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BuilderName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsInterfaceRegistered",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InInterfaceName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RegisterBuilder",
+      "return": "void",
+      "doc": "Adds builder to subsystem's registry to make it persistent and easily accessible by multiple systems or Blueprints",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BuilderName",
+          "type": "FName"
+        },
+        {
+          "name": "Builder",
+          "type": "UMetaSoundBuilderBase"
+        }
+      ]
+    },
+    {
+      "name": "RegisterPatchBuilder",
+      "return": "void",
+      "doc": "Adds builder to subsystem's registry to make it persistent and easily accessible by multiple systems or Blueprints",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BuilderName",
+          "type": "FName"
+        },
+        {
+          "name": "Builder",
+          "type": "UMetaSoundPatchBuilder"
+        }
+      ]
+    },
+    {
+      "name": "RegisterSourceBuilder",
+      "return": "void",
+      "doc": "Adds builder to subsystem's registry to make it persistent and easily accessible by multiple systems or Blueprints",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BuilderName",
+          "type": "FName"
+        },
+        {
+          "name": "Builder",
+          "type": "UMetaSoundSourceBuilder"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterBuilder",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BuilderName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterPatchBuilder",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BuilderName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterSourceBuilder",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BuilderName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

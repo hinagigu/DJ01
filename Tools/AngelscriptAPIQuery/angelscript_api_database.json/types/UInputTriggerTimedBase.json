@@ -1,0 +1,17 @@
+{
+  "name": "UInputTriggerTimedBase",
+  "inherits": "UInputTrigger",
+  "doc": "Base class for building triggers that have firing conditions governed by elapsed time.\nThis class transitions state to Ongoing once input is actuated, and will track Ongoing input time until input is released.\nInheriting classes should provide the logic for Triggered transitions.",
+  "properties": {
+    "HeldDuration": [
+      "float32",
+      1,
+      "How long have we been actuating this trigger?"
+    ],
+    "bAffectedByTimeDilation": [
+      "bool",
+      "Should global time dilation be applied to the held duration?\nDefault is set to false.\n\nIf this is set to true, then the owning Player Controller's actor time dilation\nwill be used when calculating the HeldDuration.\n\n@see UInputTriggerTimedBase::CalculateHeldDuration\n@see AWorldSettings::GetEffectiveTimeDilation"
+    ]
+  },
+  "methods": []
+}

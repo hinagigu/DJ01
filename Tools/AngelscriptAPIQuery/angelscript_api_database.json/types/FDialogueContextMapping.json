@@ -1,0 +1,33 @@
+{
+  "name": "FDialogueContextMapping",
+  "isStruct": true,
+  "properties": {
+    "Context": [
+      "FDialogueContext",
+      2,
+      "The context of the dialogue."
+    ],
+    "SoundWave": [
+      "USoundWave",
+      2,
+      "The soundwave to play for this dialogue."
+    ],
+    "LocalizationKeyFormat": [
+      "FString",
+      2,
+      "The format string to use when generating the localization key for this context. This must be unique within the owner dialogue wave.\nAvailable format markers:\n  * {ContextHash} - A hash generated from the speaker and target voices."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDialogueContextMapping&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDialogueContextMapping"
+        }
+      ]
+    }
+  ]
+}

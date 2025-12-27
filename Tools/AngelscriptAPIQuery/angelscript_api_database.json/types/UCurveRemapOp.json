@@ -1,0 +1,17 @@
+{
+  "name": "UCurveRemapOp",
+  "inherits": "URetargetOpBase",
+  "properties": {
+    "CurvesToRemap": [
+      "TArray<FCurveRemapPair>",
+      2,
+      "Add pairs of Source/Target curve names to remap. While retargeting, the animation from the source curves\nwill be redirected to the curves on the target skeletal meshes. Can be used to drive, blendshapes or other downstream systems.\nNOTE: By default the IK Retargeter will automatically copy all equivalently named curves from the source to the\ntarget. Remapping with this op is only necessary when the target curve name(s) are different."
+    ],
+    "bCopyAllSourceCurves": [
+      "bool",
+      2,
+      "This setting only applies to all curves when exporting retargeted animations.\nTrue: all source curves are copied to the target animation sequence asset.\nFalse: only remapped curves are left on the target animation sequence asset."
+    ]
+  },
+  "methods": []
+}

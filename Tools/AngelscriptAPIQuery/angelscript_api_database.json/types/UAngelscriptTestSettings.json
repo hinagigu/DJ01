@@ -1,0 +1,87 @@
+{
+  "name": "UAngelscriptTestSettings",
+  "inherits": "UDeveloperSettings",
+  "properties": {
+    "bEnableTestDiscovery": [
+      "bool",
+      2,
+      "Whether to enable test discovery from script files."
+    ],
+    "IntegrationTestMapRoot": [
+      "FString",
+      2,
+      "Where integration test maps are stored."
+    ],
+    "GarbageCollectEveryNTests": [
+      "int",
+      2,
+      "Force garbage collection every N tests.\nThis will also perform test execution in batches when hot reloading.\nAll the tests of an AS module are added or not, so the number of test in a batch can\nbe greater that this. Understand this setting as a minimum number of tests per batch but\ndon't continue adding modules once this number has been reached.\nThis allows the editor to refresh between batches and prevents a lock because of PhysX issues.\nSet to 0 to disable."
+    ],
+    "UnitTestGameInstanceClass": [
+      "TSoftClassPtr<UGameInstance>",
+      2,
+      "The game instance class to use for unit tests."
+    ],
+    "bEnableCodeCoverage": [
+      "bool",
+      2,
+      "Turn on code coverage measurements. Reports are written to Saved/CodeCoverage/."
+    ],
+    "CoverageExcludePatterns": [
+      "TArray<FString>",
+      2,
+      "Don't measure coverage in paths that match these wildcards.\nPaths start at the Angelscript root (by convention this dir is named Script/). If you want\nto exclude a directory from which modules are imported as Network.MyFile, you want to add\nNetwork/_* to this list (NOTE: remove the _, it's there to avoid -Wcomment in clang).\nIf you just want to exclude MyFile.as, add Network/MyFile.as. If you have the convention\nthat unit tests be in files named _Test.as, add the pattern *_Test.as, and so on."
+    ],
+    "bEnableDebugBreaksInTests": [
+      "bool",
+      2,
+      "Debug-break on ensures in tests. This is generally off in tests because ensures\nare intentionally triggered by tests all the time, which is really annoying."
+    ],
+    "IntegrationTestNamingConvention": [
+      "FString",
+      2,
+      "Module paths containing IntegrationTests must match the following wildcard pattern"
+    ],
+    "UnitTestNamingConvention": [
+      "FString",
+      2,
+      "Module paths containing UnitTests must match the following wildcard pattern"
+    ],
+    "bEnableNetworkEmulation": [
+      "bool",
+      2,
+      "Whether tests that use client/server should apply any network emulation."
+    ],
+    "InPacketsMinLatency": [
+      "int",
+      2,
+      "The minimum latency of incoming packets."
+    ],
+    "InPacketsMaxLatency": [
+      "int",
+      2,
+      "The maximum latency of incoming packets."
+    ],
+    "InPacketsPacketLossPercentage": [
+      "int",
+      2,
+      "The packet loss percentage of incoming packets."
+    ],
+    "OutPacketsMinLatency": [
+      "int",
+      2,
+      "The minimum latency of outgoing packets."
+    ],
+    "OutPacketsMaxLatency": [
+      "int",
+      2,
+      "The maximum latency of outgoing packets."
+    ],
+    "OutPacketsPacketLossPercentage": [
+      "int",
+      2,
+      "The packet loss percentage of outgoing packets."
+    ]
+  },
+  "methods": []
+}

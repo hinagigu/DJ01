@@ -1,0 +1,101 @@
+{
+  "name": "FBoxSphereBounds3f",
+  "isStruct": true,
+  "properties": {
+    "Origin": [
+      "FVector3f"
+    ],
+    "BoxExtent": [
+      "FVector3f"
+    ],
+    "SphereRadius": [
+      "float32"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAdd",
+      "return": "FBoxSphereBounds3f",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBoxSphereBounds3f"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBoxSphereBounds3f"
+        }
+      ]
+    },
+    {
+      "name": "ComputeSquaredDistanceFromBoxToPoint",
+      "return": "float32",
+      "const": true,
+      "args": [
+        {
+          "name": "Point",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "GetBox",
+      "return": "FBox3f",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetBoxExtrema",
+      "return": "FVector3f",
+      "const": true,
+      "args": [
+        {
+          "name": "Extrema",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "GetSphere",
+      "return": "FSphere3f",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ExpandBy",
+      "return": "FBoxSphereBounds3f",
+      "const": true,
+      "args": [
+        {
+          "name": "ExpandAmount",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "TransformBy",
+      "return": "FBoxSphereBounds3f",
+      "const": true,
+      "args": [
+        {
+          "name": "M",
+          "type": "FTransform3f"
+        }
+      ]
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    }
+  ]
+}

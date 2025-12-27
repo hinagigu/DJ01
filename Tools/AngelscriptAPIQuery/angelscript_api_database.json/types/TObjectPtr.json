@@ -1,0 +1,64 @@
+{
+  "name": "TObjectPtr",
+  "subtypes": [
+    "T"
+  ],
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "TObjectPtr<T>&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TObjectPtr<T>"
+        }
+      ]
+    },
+    {
+      "name": "opImplConv",
+      "return": "T",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "TObjectPtr<T>"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "const T"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "TObjectPtr<T>&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "Get",
+      "return": "T",
+      "const": true,
+      "args": []
+    }
+  ]
+}

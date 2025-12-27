@@ -1,0 +1,35 @@
+{
+  "name": "__EDataRegistryAvailability",
+  "isEnum": true,
+  "doc": "General rule about how hard it is to access an item, with later entries being the most available and faster to access",
+  "properties": {
+    "DoesNotExist": [
+      "EDataRegistryAvailability",
+      "Item definitely does not exist"
+    ],
+    "Unknown": [
+      "EDataRegistryAvailability",
+      "Not sure where item is located or if it exists at all"
+    ],
+    "Remote": [
+      "EDataRegistryAvailability",
+      "From a database or website with very high latency"
+    ],
+    "OnDisk": [
+      "EDataRegistryAvailability",
+      "From some other asset such as a json file available without internet access"
+    ],
+    "LocalAsset": [
+      "EDataRegistryAvailability",
+      "Comes from a local asset, can be sync loaded as needed"
+    ],
+    "PreCached": [
+      "EDataRegistryAvailability",
+      "This item has already been loaded into memory by a different system and is immediately available"
+    ],
+    "EDataRegistryAvailability_MAX": [
+      "EDataRegistryAvailability"
+    ]
+  },
+  "methods": []
+}

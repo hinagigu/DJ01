@@ -1,0 +1,52 @@
+{
+  "name": "FModulatorContinuousParams",
+  "isStruct": true,
+  "properties": {
+    "ParameterName": [
+      "FName",
+      "The name of the sound instance parameter that specifies the current value."
+    ],
+    "Default": [
+      "float32",
+      2,
+      "The default value to be used if the parameter is not found."
+    ],
+    "MinInput": [
+      "float32",
+      2,
+      "The minimum input value. Values will be clamped to the [MinInput, MaxInput] range."
+    ],
+    "MaxInput": [
+      "float32",
+      2,
+      "The maximum input value. Values will be clamped to the [MinInput, MaxInput] range."
+    ],
+    "MinOutput": [
+      "float32",
+      2,
+      "The minimum output value. The input value will be scaled from the range [MinInput, MaxInput] to [MinOut, MaxOutput]"
+    ],
+    "MaxOutput": [
+      "float32",
+      2,
+      "The maximum output value. The input value will be scaled from the range [MinInput, MaxInput] to [MinOut, MaxOutput]"
+    ],
+    "ParamMode": [
+      "ModulationParamMode",
+      2,
+      "The mode with which to treat the input value"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FModulatorContinuousParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FModulatorContinuousParams"
+        }
+      ]
+    }
+  ]
+}

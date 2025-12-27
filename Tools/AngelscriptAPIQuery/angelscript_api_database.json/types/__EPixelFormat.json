@@ -1,0 +1,308 @@
+{
+  "name": "__EPixelFormat",
+  "isEnum": true,
+  "doc": "Describes the format of a each pixel in a graphics buffer.\n@warning: When you update this, you must add an entry to GPixelFormats(see RenderUtils.cpp)\n@warning: When you update this, you must add an entries to PixelFormat.h, usually just copy the generated section on the header into EPixelFormat\n@warning: The *Tools DLLs will also need to be recompiled if the ordering is changed, but should not need code changes.",
+  "properties": {
+    "PF_Unknown": [
+      "EPixelFormat"
+    ],
+    "PF_A32B32G32R32F": [
+      "EPixelFormat"
+    ],
+    "PF_B8G8R8A8": [
+      "EPixelFormat",
+      "UNORM (0..1), corresponds to FColor.  Unpacks as rgba in the shader."
+    ],
+    "PF_G8": [
+      "EPixelFormat",
+      "UNORM red (0..1)"
+    ],
+    "PF_G16": [
+      "EPixelFormat"
+    ],
+    "PF_DXT1": [
+      "EPixelFormat"
+    ],
+    "PF_DXT3": [
+      "EPixelFormat"
+    ],
+    "PF_DXT5": [
+      "EPixelFormat"
+    ],
+    "PF_UYVY": [
+      "EPixelFormat"
+    ],
+    "PF_FloatRGB": [
+      "EPixelFormat",
+      "Same as PF_FloatR11G11B10"
+    ],
+    "PF_FloatRGBA": [
+      "EPixelFormat",
+      "RGBA 16 bit signed FP format.  Use FFloat16Color on the CPU."
+    ],
+    "PF_DepthStencil": [
+      "EPixelFormat",
+      "A depth+stencil format with platform-specific implementation, for use with render targets."
+    ],
+    "PF_ShadowDepth": [
+      "EPixelFormat",
+      "A depth format with platform-specific implementation, for use with render targets."
+    ],
+    "PF_R32_FLOAT": [
+      "EPixelFormat"
+    ],
+    "PF_G16R16": [
+      "EPixelFormat"
+    ],
+    "PF_G16R16F": [
+      "EPixelFormat"
+    ],
+    "PF_G16R16F_FILTER": [
+      "EPixelFormat"
+    ],
+    "PF_G32R32F": [
+      "EPixelFormat"
+    ],
+    "PF_A2B10G10R10": [
+      "EPixelFormat"
+    ],
+    "PF_A16B16G16R16": [
+      "EPixelFormat"
+    ],
+    "PF_D24": [
+      "EPixelFormat"
+    ],
+    "PF_R16F": [
+      "EPixelFormat"
+    ],
+    "PF_R16F_FILTER": [
+      "EPixelFormat"
+    ],
+    "PF_BC5": [
+      "EPixelFormat"
+    ],
+    "PF_V8U8": [
+      "EPixelFormat",
+      "SNORM red, green (-1..1). Not supported on all RHI e.g. Metal"
+    ],
+    "PF_A1": [
+      "EPixelFormat"
+    ],
+    "PF_FloatR11G11B10": [
+      "EPixelFormat",
+      "A low precision floating point format, unsigned.  Use FFloat3Packed on the CPU."
+    ],
+    "PF_A8": [
+      "EPixelFormat"
+    ],
+    "PF_R32_UINT": [
+      "EPixelFormat"
+    ],
+    "PF_R32_SINT": [
+      "EPixelFormat"
+    ],
+    "PF_PVRTC2": [
+      "EPixelFormat"
+    ],
+    "PF_PVRTC4": [
+      "EPixelFormat"
+    ],
+    "PF_R16_UINT": [
+      "EPixelFormat"
+    ],
+    "PF_R16_SINT": [
+      "EPixelFormat"
+    ],
+    "PF_R16G16B16A16_UINT": [
+      "EPixelFormat"
+    ],
+    "PF_R16G16B16A16_SINT": [
+      "EPixelFormat"
+    ],
+    "PF_R5G6B5_UNORM": [
+      "EPixelFormat"
+    ],
+    "PF_R8G8B8A8": [
+      "EPixelFormat"
+    ],
+    "PF_A8R8G8B8": [
+      "EPixelFormat",
+      "Only used for legacy loading; do NOT use!"
+    ],
+    "PF_BC4": [
+      "EPixelFormat",
+      "High precision single channel block compressed, equivalent to a single channel BC5, 8 bytes per 4x4 block."
+    ],
+    "PF_R8G8": [
+      "EPixelFormat",
+      "UNORM red, green (0..1)."
+    ],
+    "PF_ATC_RGB": [
+      "EPixelFormat",
+      "ATITC format."
+    ],
+    "PF_ATC_RGBA_E": [
+      "EPixelFormat",
+      "ATITC format."
+    ],
+    "PF_ATC_RGBA_I": [
+      "EPixelFormat",
+      "ATITC format."
+    ],
+    "PF_X24_G8": [
+      "EPixelFormat",
+      "Used for creating SRVs to alias a DepthStencil buffer to read Stencil.  Don't use for creating textures."
+    ],
+    "PF_ETC1": [
+      "EPixelFormat"
+    ],
+    "PF_ETC2_RGB": [
+      "EPixelFormat"
+    ],
+    "PF_ETC2_RGBA": [
+      "EPixelFormat"
+    ],
+    "PF_R32G32B32A32_UINT": [
+      "EPixelFormat"
+    ],
+    "PF_R16G16_UINT": [
+      "EPixelFormat"
+    ],
+    "PF_ASTC_4x4": [
+      "EPixelFormat",
+      "8.00 bpp"
+    ],
+    "PF_ASTC_6x6": [
+      "EPixelFormat",
+      "3.56 bpp"
+    ],
+    "PF_ASTC_8x8": [
+      "EPixelFormat",
+      "2.00 bpp"
+    ],
+    "PF_ASTC_10x10": [
+      "EPixelFormat",
+      "1.28 bpp"
+    ],
+    "PF_ASTC_12x12": [
+      "EPixelFormat",
+      "0.89 bpp"
+    ],
+    "PF_BC6H": [
+      "EPixelFormat"
+    ],
+    "PF_BC7": [
+      "EPixelFormat"
+    ],
+    "PF_R8_UINT": [
+      "EPixelFormat"
+    ],
+    "PF_L8": [
+      "EPixelFormat"
+    ],
+    "PF_XGXR8": [
+      "EPixelFormat"
+    ],
+    "PF_R8G8B8A8_UINT": [
+      "EPixelFormat"
+    ],
+    "PF_R8G8B8A8_SNORM": [
+      "EPixelFormat",
+      "SNORM (-1..1), corresponds to FFixedRGBASigned8."
+    ],
+    "PF_R16G16B16A16_UNORM": [
+      "EPixelFormat"
+    ],
+    "PF_R16G16B16A16_SNORM": [
+      "EPixelFormat"
+    ],
+    "PF_PLATFORM_HDR_0": [
+      "EPixelFormat"
+    ],
+    "PF_PLATFORM_HDR_1": [
+      "EPixelFormat"
+    ],
+    "PF_PLATFORM_HDR_2": [
+      "EPixelFormat"
+    ],
+    "PF_NV12": [
+      "EPixelFormat"
+    ],
+    "PF_R32G32_UINT": [
+      "EPixelFormat"
+    ],
+    "PF_ETC2_R11_EAC": [
+      "EPixelFormat"
+    ],
+    "PF_ETC2_RG11_EAC": [
+      "EPixelFormat"
+    ],
+    "PF_R8": [
+      "EPixelFormat"
+    ],
+    "PF_B5G5R5A1_UNORM": [
+      "EPixelFormat"
+    ],
+    "PF_ASTC_4x4_HDR": [
+      "EPixelFormat"
+    ],
+    "PF_ASTC_6x6_HDR": [
+      "EPixelFormat"
+    ],
+    "PF_ASTC_8x8_HDR": [
+      "EPixelFormat"
+    ],
+    "PF_ASTC_10x10_HDR": [
+      "EPixelFormat"
+    ],
+    "PF_ASTC_12x12_HDR": [
+      "EPixelFormat"
+    ],
+    "PF_G16R16_SNORM": [
+      "EPixelFormat"
+    ],
+    "PF_R8G8_UINT": [
+      "EPixelFormat"
+    ],
+    "PF_R32G32B32_UINT": [
+      "EPixelFormat"
+    ],
+    "PF_R32G32B32_SINT": [
+      "EPixelFormat"
+    ],
+    "PF_R32G32B32F": [
+      "EPixelFormat"
+    ],
+    "PF_R8_SINT": [
+      "EPixelFormat"
+    ],
+    "PF_R64_UINT": [
+      "EPixelFormat"
+    ],
+    "PF_R9G9B9EXP5": [
+      "EPixelFormat"
+    ],
+    "PF_P010": [
+      "EPixelFormat"
+    ],
+    "PF_ASTC_4x4_NORM_RG": [
+      "EPixelFormat"
+    ],
+    "PF_ASTC_6x6_NORM_RG": [
+      "EPixelFormat"
+    ],
+    "PF_ASTC_8x8_NORM_RG": [
+      "EPixelFormat"
+    ],
+    "PF_ASTC_10x10_NORM_RG": [
+      "EPixelFormat"
+    ],
+    "PF_ASTC_12x12_NORM_RG": [
+      "EPixelFormat"
+    ],
+    "PF_MAX": [
+      "EPixelFormat"
+    ]
+  },
+  "methods": []
+}

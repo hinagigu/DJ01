@@ -1,0 +1,58 @@
+{
+  "name": "UMaterialEditorInstanceConstant",
+  "inherits": "UObject",
+  "properties": {
+    "PhysMaterial": [
+      "UPhysicalMaterial",
+      2,
+      "Physical material to use for this graphics material. Used for sounds, effects etc."
+    ],
+    "Parent": [
+      "UMaterialInterface",
+      2,
+      "since the Parent may point across levels and the property editor needs to import this text, it must be marked lazy so it doesn't set itself to NULL in FindImportedObject"
+    ],
+    "ParameterGroups": [
+      "TArray<FEditorParameterGroup>",
+      2,
+      ""
+    ],
+    "RefractionDepthBias": [
+      "float32",
+      2,
+      "This is the refraction depth bias, larger values offset distortion to prevent closer objects from rendering into the distorted surface at acute viewing angles but increases the disconnect between surface and where the refraction starts."
+    ],
+    "SubsurfaceProfile": [
+      "USubsurfaceProfile",
+      "SubsurfaceProfile, for Screen Space Subsurface Scattering"
+    ],
+    "BasePropertyOverrides": [
+      "FMaterialInstanceBasePropertyOverrides",
+      2,
+      ""
+    ],
+    "LightmassSettings": [
+      "FLightmassParameterizedMaterialSettings",
+      2,
+      "The Lightmass override settings for this object."
+    ],
+    "NaniteOverrideMaterial": [
+      "UMaterialInterface",
+      2,
+      "An override material which will be used instead of this one when rendering with nanite."
+    ],
+    "bOverrideSubsurfaceProfile": [
+      "bool",
+      "Defines if SubsurfaceProfile from tis instance is used or it uses the parent one."
+    ],
+    "bUseOldStyleMICEditorGroups": [
+      "bool",
+      "Should we use old style typed arrays for unassigned parameters instead of a None group (new style)?"
+    ],
+    "bNaniteOverride": [
+      "bool",
+      "When set we will use the override from NaniteOverrideMaterial. Otherwise we inherit any override on the parent."
+    ]
+  },
+  "methods": []
+}

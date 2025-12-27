@@ -1,0 +1,44 @@
+{
+  "name": "FMeshDrawCommandStatsBudget",
+  "isStruct": true,
+  "doc": "Description of a stat category used in the MeshDrawCommandStats system.",
+  "properties": {
+    "CategoryName": [
+      "FName",
+      2,
+      "Category name."
+    ],
+    "LinkedStatNames": [
+      "TArray<FName>",
+      2,
+      "Stat names that will match this category name."
+    ],
+    "PrimitiveBudget": [
+      "int",
+      2,
+      "The category primitive budget. This is the maximum triangles expected, post-culling, summed across all passes."
+    ],
+    "Collection": [
+      "int",
+      2,
+      "The collection which contains this budget."
+    ],
+    "Passes": [
+      "TArray<FName>",
+      2,
+      "Which passes contribute to this budget."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMeshDrawCommandStatsBudget&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMeshDrawCommandStatsBudget"
+        }
+      ]
+    }
+  ]
+}

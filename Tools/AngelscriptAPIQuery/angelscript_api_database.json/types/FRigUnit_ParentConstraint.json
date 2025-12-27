@@ -1,0 +1,41 @@
+{
+  "name": "FRigUnit_ParentConstraint",
+  "isStruct": true,
+  "doc": "Constrains an item's transform to multiple items' transforms",
+  "properties": {
+    "Child": [
+      "FRigElementKey"
+    ],
+    "bMaintainOffset": [
+      "bool"
+    ],
+    "Filter": [
+      "FTransformFilter"
+    ],
+    "Parents": [
+      "TArray<FConstraintParent>"
+    ],
+    "AdvancedSettings": [
+      "FRigUnit_ParentConstraint_AdvancedSettings"
+    ],
+    "Weight": [
+      "float32"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_ParentConstraint&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_ParentConstraint"
+        }
+      ]
+    }
+  ]
+}

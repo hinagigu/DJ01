@@ -1,0 +1,48 @@
+{
+  "name": "FInterchangeContentImportSettings",
+  "isStruct": true,
+  "properties": {
+    "DefaultPipelineStackOverride": [
+      "TMap<EInterchangeTranslatorAssetType,FName>",
+      2,
+      "Specifies a different pipeline stack for Interchange to use by default when importing specific types of assets."
+    ],
+    "ShowImportDialogOverride": [
+      "TMap<EInterchangeTranslatorAssetType,FInterchangeDialogOverride>",
+      2,
+      "This tell interchange if the import dialog should show or not when importing a particular type of asset."
+    ],
+    "PipelineStacks": [
+      "TMap<FName,FInterchangePipelineStack>",
+      2,
+      "Configures the pipeline stacks that are available when importing assets with Interchange."
+    ],
+    "DefaultPipelineStack": [
+      "FName",
+      2,
+      "Specifies which pipeline stack Interchange should use by default."
+    ],
+    "ImportDialogClass": [
+      "TSoftClassPtr<UInterchangePipelineConfigurationBase>",
+      2,
+      "Specifies the class that should be used to define the configuration dialog that Interchange shows on import."
+    ],
+    "bShowImportDialog": [
+      "bool",
+      2,
+      "If enabled, the import option dialog will show when interchange import or re-import."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInterchangeContentImportSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInterchangeContentImportSettings"
+        }
+      ]
+    }
+  ]
+}

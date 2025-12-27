@@ -1,0 +1,34 @@
+{
+  "name": "FSwapAudioOutputResult",
+  "isStruct": true,
+  "doc": "Out structure for use with AudioMixerBlueprintLibrary::SwapAudioOutputDevice",
+  "properties": {
+    "CurrentDeviceId": [
+      "FString",
+      1,
+      "ID of the currently set device.  This is the device at the time of the call, NOT the resulting deviceId"
+    ],
+    "RequestedDeviceId": [
+      "FString",
+      1,
+      "ID of the requested device."
+    ],
+    "Result": [
+      "ESwapAudioOutputDeviceResultState",
+      1,
+      "Result of the call"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSwapAudioOutputResult&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSwapAudioOutputResult"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "FMediaPlayerOptions",
+  "isStruct": true,
+  "properties": {
+    "Tracks": [
+      "FMediaPlayerTrackOptions",
+      "Indices of the media tracks to select for playback"
+    ],
+    "TrackSelection": [
+      "EMediaPlayerOptionTrackSelectMode",
+      "How the initial media tracks for playback are selected"
+    ],
+    "SeekTime": [
+      "FTimespan",
+      "Initial media time to start playback at."
+    ],
+    "SeekTimeType": [
+      "EMediaPlayerOptionSeekTimeType",
+      "How to interpret the initial seek time."
+    ],
+    "PlayOnOpen": [
+      "EMediaPlayerOptionBooleanOverride",
+      "How to handle automatic playback when media opens."
+    ],
+    "Loop": [
+      "EMediaPlayerOptionBooleanOverride",
+      "How to initially select looping of the media."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMediaPlayerOptions&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMediaPlayerOptions"
+        }
+      ]
+    }
+  ]
+}

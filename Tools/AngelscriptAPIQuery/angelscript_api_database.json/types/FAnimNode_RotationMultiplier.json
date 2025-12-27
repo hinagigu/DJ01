@@ -1,0 +1,73 @@
+{
+  "name": "FAnimNode_RotationMultiplier",
+  "isStruct": true,
+  "doc": "Simple controller that multiplies scalar value to the translation/rotation/scale of a single bone.",
+  "properties": {
+    "TargetBone": [
+      "FBoneReference",
+      2,
+      "Name of bone to control. This is the main bone chain to modify from."
+    ],
+    "SourceBone": [
+      "FBoneReference",
+      2,
+      "Source to get transform from"
+    ],
+    "Multiplier": [
+      "float32",
+      "To make these to be easily pin-hookable, I'm not making it struct, but each variable\n0.f is invalid, and default"
+    ],
+    "RotationAxisToRefer": [
+      "EBoneAxis",
+      2,
+      ""
+    ],
+    "bIsAdditive": [
+      "bool",
+      2,
+      ""
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_RotationMultiplier&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_RotationMultiplier"
+        }
+      ]
+    }
+  ]
+}

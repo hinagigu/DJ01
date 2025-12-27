@@ -1,0 +1,45 @@
+{
+  "name": "UDEPRECATED_PawnAction",
+  "inherits": "UObject",
+  "doc": "Things to remember:\n* Actions are created paused",
+  "properties": {
+    "bAllowNewSameClassInstance": [
+      "bool",
+      "if this is FALSE and we're trying to push a new instance of a given class,\n    but the top of the stack is already an instance of that class ignore the attempted push"
+    ],
+    "bReplaceActiveSameClassInstance": [
+      "bool",
+      "if this is TRUE, when we try to push a new instance of an action who has the\n    same class as the action on the top of the stack, pop the one on the stack, and push the new one\n    NOTE: This trumps bAllowNewClassInstance (e.g. if this is true and bAllowNewClassInstance\n    is false the active instance will still be replaced)"
+    ],
+    "bShouldPauseMovement": [
+      "bool",
+      "this is a temporary solution to allow having movement action running in background while there's\n    another action on top doing its thing\n    @note should go away once AI resource locking comes on-line"
+    ],
+    "bAlwaysNotifyOnFinished": [
+      "bool",
+      "if set, action will call OnFinished notify even when ending as FailedToStart"
+    ]
+  },
+  "methods": [
+    {
+      "name": "Finish",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WithResult",
+          "type": "EPawnActionResult"
+        }
+      ]
+    },
+    {
+      "name": "GetActionPriority",
+      "return": "EAIRequestPriority",
+      "doc": "Blueprint interface",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

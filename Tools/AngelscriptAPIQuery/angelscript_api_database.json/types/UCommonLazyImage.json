@@ -1,0 +1,92 @@
+{
+  "name": "UCommonLazyImage",
+  "inherits": "UImage",
+  "doc": "A special Image widget that can show unloaded images and takes care of the loading for you!\n\nUCommonLazyImage is another wrapper for SLoadGuard, but it only handles image loading and\na throbber during loading.\n\nIf this class changes to show any text, by default it will have CoreStyle styling",
+  "properties": {
+    "bShowLoading": [
+      "bool",
+      2,
+      ""
+    ],
+    "LoadingBackgroundBrush": [
+      "FSlateBrush",
+      2,
+      ""
+    ],
+    "OnLoadingStateChanged": [
+      "FOnLoadGuardStateChangedDynamic"
+    ]
+  },
+  "methods": [
+    {
+      "name": "IsLoading",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBrushFromLazyDisplayAsset",
+      "return": "void",
+      "doc": "Set the brush from a string asset ref only - expects the referenced asset to be a texture or material.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LazyObject",
+          "type": "TSoftObjectPtr<UObject>"
+        },
+        {
+          "name": "bMatchTextureSize",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushFromLazyMaterial",
+      "return": "void",
+      "doc": "Set the brush from a lazy material asset pointer - will load the material as needed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LazyMaterial",
+          "type": "TSoftObjectPtr<UMaterialInterface>"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushFromLazyTexture",
+      "return": "void",
+      "doc": "Set the brush from a lazy texture asset pointer - will load the texture as needed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LazyTexture",
+          "type": "TSoftObjectPtr<UTexture2D>"
+        },
+        {
+          "name": "bMatchSize",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialTextureParamName",
+      "return": "void",
+      "doc": "Establishes the name of the texture parameter on the currently applied brush material to which textures should be applied.\nDoes nothing if the current brush resource object is not a material.\n\nNote: that this is cleared out automatically if/when a new material is established on the brush.\nYou must call this function again after doing so if the new material has a texture param.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureParamName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

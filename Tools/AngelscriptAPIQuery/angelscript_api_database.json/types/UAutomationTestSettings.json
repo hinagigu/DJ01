@@ -1,0 +1,108 @@
+{
+  "name": "UAutomationTestSettings",
+  "inherits": "UObject",
+  "doc": "Implements the Editor's user settings.",
+  "properties": {
+    "EngineTestModules": [
+      "TArray<FString>",
+      2,
+      "Modules to load that have engine tests"
+    ],
+    "EditorTestModules": [
+      "TArray<FString>",
+      2,
+      "Modules to load that have editor tests"
+    ],
+    "AutomationTestmap": [
+      "FSoftObjectPath",
+      2,
+      "The automation test map to be used for several of the automation tests."
+    ],
+    "EditorPerformanceTestMaps": [
+      "TArray<FEditorMapPerformanceTestDefinition>",
+      2,
+      "The map to be used for the editor performance capture tool."
+    ],
+    "AssetsToOpen": [
+      "TArray<FString>",
+      2,
+      "Asset to test for open in automation process"
+    ],
+    "MapsToPIETest": [
+      "TArray<FString>",
+      2,
+      "Maps to PIE during the PIE test"
+    ],
+    "bUseAllProjectMapsToPlayInPIE": [
+      "bool",
+      2,
+      "Use all Maps from project for PlayMapInPIE test"
+    ],
+    "BuildPromotionTest": [
+      "FBuildPromotionTestSettings",
+      2,
+      "Editor build promotion test settings"
+    ],
+    "MaterialEditorPromotionTest": [
+      "FMaterialEditorPromotionSettings",
+      2,
+      "Material editor promotion test settings"
+    ],
+    "ParticleEditorPromotionTest": [
+      "FParticleEditorPromotionSettings",
+      2,
+      "Particle editor promotion test settings"
+    ],
+    "BlueprintEditorPromotionTest": [
+      "FBlueprintEditorPromotionSettings",
+      2,
+      "Blueprint editor promotion test settings"
+    ],
+    "TestLevelFolders": [
+      "TArray<FString>",
+      2,
+      "Folders containing levels to exclude from automated tests"
+    ],
+    "ExternalTools": [
+      "TArray<FExternalToolDefinition>",
+      2,
+      "External executables and scripts to run as part of automation."
+    ],
+    "ImportExportTestDefinitions": [
+      "TArray<FEditorImportExportTestDefinition>",
+      2,
+      "Asset import / Export test settings"
+    ],
+    "LaunchOnSettings": [
+      "TArray<FLaunchOnTestSettings>",
+      2,
+      "The map and device type to be used for the editor Launch On With Map Iterations test."
+    ],
+    "DefaultScreenshotResolution": [
+      "FIntPoint",
+      2,
+      "The default resolution to take all automation screenshots at."
+    ],
+    "PIETestDuration": [
+      "float32",
+      2,
+      "PIE test duration in seconds. Only applied if you do PIETest"
+    ],
+    "DefaultInteractiveFramerate": [
+      "float32",
+      2,
+      "Default value used for FWaitForInteractiveFrameRate. This is a framerate determine to be suitably \"interactive\", but may be\nless than the target framerate of the game as this is used for evaluating time to PIE, load the editor etc"
+    ],
+    "DefaultInteractiveFramerateWaitTime": [
+      "float32",
+      2,
+      "Default wait time in seconds for FWaitForInteractiveFrameRate. After this time a test will fail."
+    ],
+    "DefaultInteractiveFramerateDuration": [
+      "float32",
+      2,
+      "Default time in seconds that DefaultInteractiveFramerate must remain true in FWaitForInteractiveFrameRate"
+    ]
+  },
+  "methods": []
+}

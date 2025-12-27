@@ -1,0 +1,469 @@
+{
+  "name": "UMovieSceneSequencePlayer",
+  "inherits": "UObject",
+  "doc": "Abstract class that provides consistent player behaviour for various animation players",
+  "properties": {
+    "OnPlay": [
+      "FOnMovieSceneSequencePlayerEvent",
+      "Event triggered when the level sequence player is played"
+    ],
+    "OnPlayReverse": [
+      "FOnMovieSceneSequencePlayerEvent",
+      "Event triggered when the level sequence player is played in reverse"
+    ],
+    "OnStop": [
+      "FOnMovieSceneSequencePlayerEvent",
+      "Event triggered when the level sequence player is stopped"
+    ],
+    "OnPause": [
+      "FOnMovieSceneSequencePlayerEvent",
+      "Event triggered when the level sequence player is paused"
+    ],
+    "OnFinished": [
+      "FOnMovieSceneSequencePlayerEvent",
+      "Event triggered when the level sequence player finishes naturally (without explicitly calling stop)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ChangePlaybackDirection",
+      "return": "void",
+      "doc": "Changes the direction of playback (go in reverse if it was going forward, or vice versa)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBoundObjects",
+      "return": "TArray<UObject>",
+      "doc": "Retrieve all objects currently bound to the specified binding identifier",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectBinding",
+          "type": "FMovieSceneObjectBindingID"
+        }
+      ]
+    },
+    {
+      "name": "GetCompletionModeOverride",
+      "return": "EMovieSceneCompletionModeOverride",
+      "const": true,
+      "doc": "Get the state of the completion mode override",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentTime",
+      "return": "FQualifiedFrameTime",
+      "const": true,
+      "doc": "Get the current playback position\n@return The current playback position",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDisableCameraCuts",
+      "return": "bool",
+      "doc": "Set whether to disable camera cuts",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDuration",
+      "return": "FQualifiedFrameTime",
+      "const": true,
+      "doc": "Get the total duration of the sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEndTime",
+      "return": "FQualifiedFrameTime",
+      "const": true,
+      "doc": "Get the offset within the level sequence to finish playing",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFrameDuration",
+      "return": "int",
+      "const": true,
+      "doc": "Get this sequence's duration in frames",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFrameRate",
+      "return": "FFrameRate",
+      "const": true,
+      "doc": "Get this sequence's display rate.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetObjectBindings",
+      "return": "TArray<FMovieSceneObjectBindingID>",
+      "doc": "Get the object bindings for the requested object",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InObject",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayRate",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the playback rate of this player.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSequence",
+      "return": "UMovieSceneSequence",
+      "const": true,
+      "doc": "Access the sequence this player is playing\n@return the sequence currently assigned to this player",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSequenceName",
+      "return": "FString",
+      "const": true,
+      "doc": "Get the name of the sequence this player is playing\n@param bAddClientInfo  If true, add client index if running as a client\n@return the name of the sequence, or None if no sequence is set",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAddClientInfo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetStartTime",
+      "return": "FQualifiedFrameTime",
+      "const": true,
+      "doc": "Get the offset within the level sequence to start playing",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GoToEndAndStop",
+      "return": "void",
+      "doc": "Go to end of the sequence and stop. Adheres to 'When Finished' section rules.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPaused",
+      "return": "bool",
+      "const": true,
+      "doc": "Check whether the sequence is paused.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPlaying",
+      "return": "bool",
+      "const": true,
+      "doc": "Check whether the sequence is actively playing.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsReversed",
+      "return": "bool",
+      "const": true,
+      "doc": "Check whether playback is reversed.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Pause",
+      "return": "void",
+      "doc": "Pause playback.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Play",
+      "return": "void",
+      "doc": "Start playback forwards from the current time cursor position, using the current play rate.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PlayLooping",
+      "return": "void",
+      "doc": "Start playback from the current time cursor position, looping the specified number of times.\n@param NumLoops - The number of loops to play. -1 indicates infinite looping.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumLoops",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "PlayReverse",
+      "return": "void",
+      "doc": "Reverse playback.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PlayTo",
+      "return": "void",
+      "doc": "Play from the current position to the requested position and pause. If requested position is before the current position,\nplayback will be reversed. Playback to the requested position will be cancelled if Stop() or Pause() is invoked during this\nplayback.\n\n@param PlaybackParams The position settings (ie. the position to play to)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlaybackParams",
+          "type": "FMovieSceneSequencePlaybackParams"
+        },
+        {
+          "name": "PlayToParams",
+          "type": "FMovieSceneSequencePlayToParams"
+        }
+      ]
+    },
+    {
+      "name": "RemoveWeight",
+      "return": "void",
+      "doc": "Removes a previously assigned weight",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RestoreState",
+      "return": "void",
+      "doc": "Restore any changes made by this player to their original state",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RPC_ExplicitServerUpdateEvent",
+      "return": "void",
+      "callable": false,
+      "doc": "Called on the server whenever an explicit change in time has occurred through one of the (Play|Jump|Scrub)To methods",
+      "meta": null,
+      "args": [
+        {
+          "name": "Method",
+          "type": "EUpdatePositionMethod"
+        },
+        {
+          "name": "RelevantTime",
+          "type": "FFrameTime"
+        },
+        {
+          "name": "NewSerialNumber",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RPC_OnFinishPlaybackEvent",
+      "return": "void",
+      "callable": false,
+      "doc": "Called on the server when playback has reached the end. Could lead to stopping or pausing.",
+      "meta": null,
+      "args": [
+        {
+          "name": "StoppedTime",
+          "type": "FFrameTime"
+        },
+        {
+          "name": "NewSerialNumber",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RPC_OnStopEvent",
+      "return": "void",
+      "callable": false,
+      "doc": "Called on the server when Stop() is called in order to differentiate Stops from Pauses.",
+      "meta": null,
+      "args": [
+        {
+          "name": "StoppedTime",
+          "type": "FFrameTime"
+        },
+        {
+          "name": "NewSerialNumber",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Scrub",
+      "return": "void",
+      "doc": "Scrub playback.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCompletionModeOverride",
+      "return": "void",
+      "doc": "Set the state of the completion mode override. Note, setting the state to force restore state will only take effect if the sequence hasn't started playing",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CompletionModeOverride",
+          "type": "EMovieSceneCompletionModeOverride"
+        }
+      ]
+    },
+    {
+      "name": "SetDisableCameraCuts",
+      "return": "void",
+      "doc": "Set whether to disable camera cuts",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInDisableCameraCuts",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetFrameRange",
+      "return": "void",
+      "doc": "Set the valid play range for this sequence, determined by a starting frame number (in this sequence player's plaback frame), and a number of frames duration\n\n@param StartFrame      The frame number to start playing back the sequence\n@param Duration        The number of frames to play",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartFrame",
+          "type": "int"
+        },
+        {
+          "name": "Duration",
+          "type": "int"
+        },
+        {
+          "name": "SubFrames",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFrameRate",
+      "return": "void",
+      "doc": "Set the frame-rate that this player should play with, making all frame numbers in the specified time-space",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FrameRate",
+          "type": "FFrameRate"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackPosition",
+      "return": "void",
+      "doc": "Set the current time of the player by evaluating from the current time to the specified time, as if the sequence is playing.\nTriggers events that lie within the evaluated range. Does not alter the persistent playback status of the player (IsPlaying).\n\n@param PlaybackParams The position settings (ie. the position to set playback to)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlaybackParams",
+          "type": "FMovieSceneSequencePlaybackParams"
+        }
+      ]
+    },
+    {
+      "name": "SetPlayRate",
+      "return": "void",
+      "doc": "Set the playback rate of this player. Negative values will play the animation in reverse.\n@param PlayRate - The new rate of playback for the animation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayRate",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTimeRange",
+      "return": "void",
+      "doc": "Set the valid play range for this sequence, determined by a starting time  and a duration (in seconds)\n\n@param StartTime       The time to start playing back the sequence in seconds\n@param Duration        The length to play for",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartTime",
+          "type": "float32"
+        },
+        {
+          "name": "Duration",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetWeight",
+      "return": "void",
+      "doc": "Set a manual weight to be multiplied with all blendable elements within this sequence\n@note: It is recommended that a weight between 0 and 1 is supplied, though this is not enforced\n@note: It is recommended that either FMovieSceneSequencePlaybackSettings::DynamicWeighting should be true for this player or the asset it's playing back should be set to enable dynamic weight to avoid undesirable behavior\n\n@param InWeight    The weight to suuply to all elements in this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWeight",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Stop",
+      "return": "void",
+      "doc": "Stop playback and move the cursor to the end (or start, for reversed playback) of the sequence.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopAtCurrentTime",
+      "return": "void",
+      "doc": "Stop playback without moving the cursor.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

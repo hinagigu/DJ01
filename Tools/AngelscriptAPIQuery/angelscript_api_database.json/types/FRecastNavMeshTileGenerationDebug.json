@@ -1,0 +1,83 @@
+{
+  "name": "FRecastNavMeshTileGenerationDebug",
+  "isStruct": true,
+  "properties": {
+    "TileCoordinate": [
+      "FIntVector",
+      2,
+      "Selected tile coordinate, only this tile will have it's internal data kept.\nTip: displaying the navmesh using 'Draw Tile Labels' show tile coordinates."
+    ],
+    "HeightFieldRenderMode": [
+      "EHeightFieldRenderMode",
+      2,
+      ""
+    ],
+    "bEnabled": [
+      "bool",
+      "If set, the selected internal debug data will be kept during tile generation to be displayed with the navmesh."
+    ],
+    "bGenerateDebugTileOnly": [
+      "bool",
+      "If set, the generator will only generate the tile selected to debug (set in TileCoordinate)."
+    ],
+    "bCollisionGeometry": [
+      "bool",
+      "Display the collision used for the navmesh rasterization.\nNote: The visualization is affected by the DrawOffset of the RecastNavmesh owner"
+    ],
+    "bHeightfieldFromRasterization": [
+      "bool"
+    ],
+    "bHeightfieldPostInclusionBoundsFiltering": [
+      "bool"
+    ],
+    "bHeightfieldPostHeightFiltering": [
+      "bool"
+    ],
+    "bHeightfieldBounds": [
+      "bool"
+    ],
+    "bCompactHeightfield": [
+      "bool"
+    ],
+    "bCompactHeightfieldEroded": [
+      "bool"
+    ],
+    "bCompactHeightfieldRegions": [
+      "bool"
+    ],
+    "bCompactHeightfieldDistances": [
+      "bool"
+    ],
+    "bTileCacheLayerAreas": [
+      "bool"
+    ],
+    "bTileCacheLayerRegions": [
+      "bool"
+    ],
+    "bSkipContourSimplification": [
+      "bool",
+      "If set, the contour simplification step will be skipped. Beware that enabling this changes the way navmesh will generate when Tile Generation Debug is enabled."
+    ],
+    "bTileCacheContours": [
+      "bool"
+    ],
+    "bTileCachePolyMesh": [
+      "bool"
+    ],
+    "bTileCacheDetailMesh": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRecastNavMeshTileGenerationDebug&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRecastNavMeshTileGenerationDebug"
+        }
+      ]
+    }
+  ]
+}

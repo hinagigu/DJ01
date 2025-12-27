@@ -1,0 +1,65 @@
+{
+  "name": "__TakesCore",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ComputeNextTakeNumber",
+      "return": "int",
+      "doc": "Compute the next unused sequential take number for the specified slate",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Slate",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "FindTakes",
+      "return": "TArray<FAssetData>",
+      "doc": "Find all the existing takes that were recorded with the specified slate\n\n@param Slate        The slate to filter by\n@param TakeNumber   The take number to filter by. <=0 denotes all takes",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Slate",
+          "type": "FString"
+        },
+        {
+          "name": "TakeNumber",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetOnTakeRecorderSlateChanged",
+      "return": "void",
+      "doc": "Called when the slate is changed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OnTakeRecorderSlateChanged",
+          "default": "FOnTakeRecorderSlateChanged__TakesCoreBlueprintLibrary ( )",
+          "type": "FOnTakeRecorderSlateChanged__TakesCoreBlueprintLibrary"
+        }
+      ]
+    },
+    {
+      "name": "SetOnTakeRecorderTakeNumberChanged",
+      "return": "void",
+      "doc": "Called when the take number is changed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OnTakeRecorderTakeNumberChanged",
+          "default": "FOnTakeRecorderTakeNumberChanged__TakesCoreBlueprintLibrary ( )",
+          "type": "FOnTakeRecorderTakeNumberChanged__TakesCoreBlueprintLibrary"
+        }
+      ]
+    }
+  ]
+}

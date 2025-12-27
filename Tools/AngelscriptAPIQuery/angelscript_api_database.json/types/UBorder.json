@@ -1,0 +1,206 @@
+{
+  "name": "UBorder",
+  "inherits": "UContentWidget",
+  "doc": "A border is a container widget that can contain one child widget, providing an opportunity\nto surround it with a background image and adjustable padding.\n\n* Single Child\n* Image",
+  "properties": {
+    "Background": [
+      "FSlateBrush",
+      "Brush to drag as the background"
+    ],
+    "bFlipForRightToLeftFlowDirection": [
+      "bool",
+      2,
+      "Flips the background image if the localization's flow direction is RightToLeft"
+    ],
+    "OnMouseButtonDownEvent": [
+      "FOnPointerEvent__Widget",
+      2,
+      ""
+    ],
+    "OnMouseButtonUpEvent": [
+      "FOnPointerEvent__Widget",
+      2,
+      ""
+    ],
+    "OnMouseMoveEvent": [
+      "FOnPointerEvent__Widget",
+      2,
+      ""
+    ],
+    "OnMouseDoubleClickEvent": [
+      "FOnPointerEvent__Widget",
+      2,
+      ""
+    ],
+    "bShowEffectWhenDisabled": [
+      "bool",
+      "Whether or not to show the disabled effect when this border is disabled"
+    ],
+    "HorizontalAlignment": [
+      "EHorizontalAlignment",
+      "The alignment of the content horizontally."
+    ],
+    "VerticalAlignment": [
+      "EVerticalAlignment",
+      "The alignment of the content vertically."
+    ],
+    "ContentColorAndOpacity": [
+      "FLinearColor",
+      "Color and opacity multiplier of content in the border"
+    ],
+    "Padding": [
+      "FMargin",
+      "The padding area between the slot and the content it contains."
+    ],
+    "BrushColor": [
+      "FLinearColor",
+      "Color and opacity of the actual border image"
+    ],
+    "DesiredSizeScale": [
+      "FVector2D",
+      "Scales the computed desired size of this border and its contents. Useful\nfor making things that slide open without having to hard-code their size.\nNote: if the parent widget is set up to ignore this widget's desired size,\nthen changing this value will have no effect."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDynamicMaterial",
+      "return": "UMaterialInstanceDynamic",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBrush",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBrush",
+          "type": "FSlateBrush"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushColor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBrushColor",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushFromAsset",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Asset",
+          "type": "USlateBrushAsset"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushFromMaterial",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushFromTexture",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Texture",
+          "type": "UTexture2D"
+        }
+      ]
+    },
+    {
+      "name": "SetContentColorAndOpacity",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InContentColorAndOpacity",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetDesiredSizeScale",
+      "return": "void",
+      "doc": "Sets the DesiredSizeScale of this border.\n\n@param InScale    The X and Y multipliers for the desired size",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InScale",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetHorizontalAlignment",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHorizontalAlignment",
+          "type": "EHorizontalAlignment"
+        }
+      ]
+    },
+    {
+      "name": "SetPadding",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPadding",
+          "type": "FMargin"
+        }
+      ]
+    },
+    {
+      "name": "SetShowEffectWhenDisabled",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInShowEffectWhenDisabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetVerticalAlignment",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVerticalAlignment",
+          "type": "EVerticalAlignment"
+        }
+      ]
+    }
+  ]
+}

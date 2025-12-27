@@ -1,0 +1,75 @@
+{
+  "name": "FSubsurfaceProfileStruct",
+  "isStruct": true,
+  "doc": "struct with all the settings we want in USubsurfaceProfile, separate to make it easer to pass this data around in the engine.",
+  "properties": {
+    "SurfaceAlbedo": [
+      "FLinearColor",
+      "It should match The base color of the corresponding material as much as possible."
+    ],
+    "MeanFreePathColor": [
+      "FLinearColor",
+      "Controls how far light goes into the subsurface in the Red, Green and Blue channel. It is scaled by Mean Free path distance."
+    ],
+    "MeanFreePathDistance": [
+      "float32",
+      "Subsurface mean free path distance in world/unreal units (cm)"
+    ],
+    "WorldUnitScale": [
+      "float32",
+      "Control the scale of world/unreal units (cm)"
+    ],
+    "bEnableBurley": [
+      "bool",
+      "Effective only when Burley subsurface scattering is enabled in cmd."
+    ],
+    "bEnableMeanFreePath": [
+      "bool",
+      "Switch to use Mean Free Path, otherwise use diffuse mean free path."
+    ],
+    "Tint": [
+      "FLinearColor",
+      "Specifies the how much of the diffuse light gets into the material,\ncan be seen as a per-channel mix factor between the original image,\nand the SSS-filtered image. It introduces Non-PBR looks."
+    ],
+    "BoundaryColorBleed": [
+      "FLinearColor"
+    ],
+    "ExtinctionScale": [
+      "float32"
+    ],
+    "NormalScale": [
+      "float32"
+    ],
+    "ScatteringDistribution": [
+      "float32"
+    ],
+    "IOR": [
+      "float32"
+    ],
+    "Roughness0": [
+      "float32"
+    ],
+    "Roughness1": [
+      "float32"
+    ],
+    "LobeMix": [
+      "float32"
+    ],
+    "TransmissionTintColor": [
+      "FLinearColor",
+      "Transmission tint control. It is multiplied on the transmission results. Works only when Burley is enabled."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSubsurfaceProfileStruct&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSubsurfaceProfileStruct"
+        }
+      ]
+    }
+  ]
+}

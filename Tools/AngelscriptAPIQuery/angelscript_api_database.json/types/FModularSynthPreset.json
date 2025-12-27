@@ -1,0 +1,254 @@
+{
+  "name": "FModularSynthPreset",
+  "isStruct": true,
+  "properties": {
+    "Osc1Type": [
+      "ESynth1OscType",
+      "What type of oscillator to use for oscillator 1"
+    ],
+    "Osc1Gain": [
+      "float32",
+      "The linear gain of oscillator 1 [0.0, 1.0]"
+    ],
+    "Osc1Octave": [
+      "float32",
+      "The octave of oscillator 1. [-8.0, 8.0]"
+    ],
+    "Osc1Semitones": [
+      "float32",
+      "The semi-tones of oscillator 1. [-12.0, 12.0]"
+    ],
+    "Osc1Cents": [
+      "float32",
+      "The cents (hundreds of a semitone) of oscillator 1. [-100.0, 100.0]"
+    ],
+    "Osc1PulseWidth": [
+      "float32",
+      "The pulsewidth of oscillator 1 (when using a square wave type oscillator). [0.0, 1.0]"
+    ],
+    "Osc2Type": [
+      "ESynth1OscType",
+      "What type of oscillator to use for oscillator 2"
+    ],
+    "Osc2Gain": [
+      "float32",
+      "The linear gain of oscillator 2 [0.0, 1.0]"
+    ],
+    "Osc2Octave": [
+      "float32",
+      "The octave of oscillator 2. [-8.0, 8.0]"
+    ],
+    "Osc2Semitones": [
+      "float32",
+      "The semi-tones of oscillator 2. [-12.0, 12.0]"
+    ],
+    "Osc2Cents": [
+      "float32",
+      "The cents (hundreds of a semitone) of oscillator 2. [-100.0, 100.0]"
+    ],
+    "Osc2PulseWidth": [
+      "float32",
+      "The pulsewidth of oscillator 2 (when using a square wave type oscillator). [0.0, 1.0]"
+    ],
+    "Portamento": [
+      "float32",
+      "The amount of portamento to use, which is the amount of pitch sliding from current note to next [0.0, 1.0]"
+    ],
+    "Spread": [
+      "float32",
+      "The amount of stereo spread to use between oscillator 1 and oscillator 2 [0.0, 1.0]"
+    ],
+    "Pan": [
+      "float32",
+      "The stereo pan to use. 0.0 is center. -1.0 is left, 1.0 is right."
+    ],
+    "LFO1Frequency": [
+      "float32",
+      "The frequency to use for LFO 1 (in hz) [0.0, 50.0]"
+    ],
+    "LFO1Gain": [
+      "float32",
+      "The linear gain to use for LFO 1 [0.0, 1.0]"
+    ],
+    "LFO1Type": [
+      "ESynthLFOType",
+      "The type of LFO to use for LFO 1"
+    ],
+    "LFO1Mode": [
+      "ESynthLFOMode",
+      "The mode to use for LFO 1"
+    ],
+    "LFO1PatchType": [
+      "ESynthLFOPatchType",
+      "The built-in patch type to use for LFO 1 (you can route this to any patchable parameter using the Patches parameter)"
+    ],
+    "LFO2Frequency": [
+      "float32",
+      "The frequency to use for LFO 2 (in hz) [0.0, 50.0]"
+    ],
+    "LFO2Gain": [
+      "float32",
+      "The linear gain to use for LFO 2 [0.0, 1.0]"
+    ],
+    "LFO2Type": [
+      "ESynthLFOType",
+      "The type of LFO to use for LFO 2"
+    ],
+    "LFO2Mode": [
+      "ESynthLFOMode",
+      "The mode to use for LFO 2"
+    ],
+    "LFO2PatchType": [
+      "ESynthLFOPatchType",
+      "The built-in patch type to use for LFO 2 (you can route this to any patchable parameter using the Patches parameter)"
+    ],
+    "GainDb": [
+      "float32",
+      "The overall gain to use for the synthesizer in dB [-90.0, 20.0]"
+    ],
+    "AttackTime": [
+      "float32",
+      "The amplitude envelope attack time (in ms) [0.0, 10000]"
+    ],
+    "DecayTime": [
+      "float32",
+      "The amplitude envelope decay time (in ms)[0.0, 10000]"
+    ],
+    "SustainGain": [
+      "float32",
+      "The amplitude envelope sustain amount (linear gain) [0.0, 1.0]"
+    ],
+    "ReleaseTime": [
+      "float32",
+      "The amplitude envelope release time (in ms) [0.0, 10000]"
+    ],
+    "ModEnvPatchType": [
+      "ESynthModEnvPatch",
+      "The built-in patch type for the envelope modulator"
+    ],
+    "ModEnvBiasPatchType": [
+      "ESynthModEnvBiasPatch",
+      "The built-in patch type for the envelope modulator bias output. Bias is when the envelope output is offset by the sustain gain."
+    ],
+    "ModulationEnvelopeDepth": [
+      "float32",
+      "The \"depth\" (i.e. how much) modulation envelope to use. This scales the modulation envelope output. [0.0, 1.0]"
+    ],
+    "ModulationEnvelopeAttackTime": [
+      "float32",
+      "The modulation envelope attack time (in ms) [0.0, 10000]"
+    ],
+    "ModulationEnvelopeDecayTime": [
+      "float32",
+      "The modulation envelope decay time (in ms) [0.0, 10000]"
+    ],
+    "ModulationEnvelopeSustainGain": [
+      "float32",
+      "The modulation envelope sustain gain (linear gain) [0.0, 1.0]"
+    ],
+    "ModulationEnvelopeReleaseTime": [
+      "float32",
+      "The modulation envelope release time (in ms) [0.0, 10000]"
+    ],
+    "FilterFrequency": [
+      "float32",
+      "The output filter cutoff frequency (hz) [0.0, 20000.0]"
+    ],
+    "FilterQ": [
+      "float32",
+      "The output filter resonance (Q) [0.5, 10]"
+    ],
+    "FilterType": [
+      "ESynthFilterType",
+      "The output filter type (lowpass, highpass, bandpass, bandstop)"
+    ],
+    "FilterAlgorithm": [
+      "ESynthFilterAlgorithm",
+      "The output filter circuit/algorithm type (one-pole ladder, ladder, state-variable)"
+    ],
+    "StereoDelayMode": [
+      "ESynthStereoDelayMode",
+      "The stereo delay mode of the synth"
+    ],
+    "StereoDelayTime": [
+      "float32",
+      "The stereo delay time (in ms) [0.0, 2000.0]"
+    ],
+    "StereoDelayFeedback": [
+      "float32",
+      "The amount of feedback in the stereo delay line [0.0, 1.0]"
+    ],
+    "StereoDelayWetlevel": [
+      "float32",
+      "The output wet level to use for the stereo delay time [0.0, 1.0]"
+    ],
+    "StereoDelayRatio": [
+      "float32",
+      "The ratio between left and right stereo delay lines (wider value is more separation) [0.0, 1.0]"
+    ],
+    "ChorusDepth": [
+      "float32",
+      "The depth of the chorus effect [0.0, 1.0]"
+    ],
+    "ChorusFeedback": [
+      "float32",
+      "The amount of feedback in the chorus effect [0.0, 1.0]"
+    ],
+    "ChorusFrequency": [
+      "float32",
+      "The chorus LFO frequency [0.0, 20.0]"
+    ],
+    "Patches": [
+      "TArray<FEpicSynth1Patch>",
+      "The modular synth patch cords to use for the synth. Allows routing the LFO1/LFO2 and Modulation Envelope to any patchable destination."
+    ],
+    "bEnablePolyphony": [
+      "bool",
+      "Whether or not to allow multiple synth voices."
+    ],
+    "bEnableUnison": [
+      "bool",
+      "Enables forcing the oscillators to have no stereo spread."
+    ],
+    "bEnableOscillatorSync": [
+      "bool",
+      "Whether or not oscillator sync is enabled. Oscillator sync forces oscillator 2's phase to align with oscillator 1's phase."
+    ],
+    "bInvertModulationEnvelope": [
+      "bool",
+      "Whether or not to invert the modulation envelope"
+    ],
+    "bInvertModulationEnvelopeBias": [
+      "bool",
+      "Whether or not to invert the modulation envelope bias output"
+    ],
+    "bLegato": [
+      "bool",
+      "Whether or not to use legato mode."
+    ],
+    "bRetrigger": [
+      "bool",
+      "Whether or not to use retrigger mode."
+    ],
+    "bStereoDelayEnabled": [
+      "bool",
+      "Whether or not stereo delay is enabled on the synth"
+    ],
+    "bChorusEnabled": [
+      "bool",
+      "Whether or not the chorus effect is enabled"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FModularSynthPreset&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FModularSynthPreset"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "FDirectoryWidgetCompilerOptions",
+  "isStruct": true,
+  "properties": {
+    "Directory": [
+      "FDirectoryPath",
+      2,
+      "The directory to limit the rules effects to."
+    ],
+    "IgnoredWidgets": [
+      "TArray<TSoftObjectPtr<UWidgetBlueprint>>",
+      2,
+      "These widgets are ignored, and they will use the next most applicable directory to determine their rules."
+    ],
+    "Options": [
+      "FWidgetCompilerOptions",
+      2,
+      "The directory specific compiler options for these widgets."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDirectoryWidgetCompilerOptions&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDirectoryWidgetCompilerOptions"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "name": "FBodyInstance",
+  "isStruct": true,
+  "doc": "Container for a physics representation of an object",
+  "properties": {
+    "ObjectType": [
+      "ECollisionChannel",
+      2,
+      "Enum indicating what type of object this should be considered as when it moves"
+    ],
+    "CollisionEnabled": [
+      "ECollisionEnabled",
+      2,
+      "Type of collision enabled.\n\n      No Collision      : Will not create any representation in the physics engine. Cannot be used for spatial queries (raycasts, sweeps, overlaps) or simulation (rigid body, constraints). Best performance possible (especially for moving objects)\n      Query Only        : Only used for spatial queries (raycasts, sweeps, and overlaps). Cannot be used for simulation (rigid body, constraints). Useful for character movement and things that do not need physical simulation. Performance gains by keeping data out of simulation tree.\n      Physics Only      : Only used only for physics simulation (rigid body, constraints). Cannot be used for spatial queries (raycasts, sweeps, overlaps). Useful for jiggly bits on characters that do not need per bone detection. Performance gains by keeping data out of query tree\n      Collision Enabled : Can be used for both spatial queries (raycasts, sweeps, overlaps) and simulation (rigid body, constraints)."
+    ],
+    "SleepFamily": [
+      "ESleepFamily",
+      "The set of values used in considering when put this body to sleep."
+    ],
+    "DOFMode": [
+      "EDOFMode",
+      2,
+      "[Physx Only] Locks physical movement along specified axis."
+    ],
+    "SolverAsyncDeltaTime": [
+      "float32",
+      "Override value for physics solver async delta time.  With multiple actors specifying this, the solver will use the smallest delta time *"
+    ],
+    "CollisionProfileName": [
+      "FName",
+      2,
+      "Collision Profile Name *"
+    ],
+    "PositionSolverIterationCount": [
+      "uint8",
+      "[PhysX Only] This physics body's solver iteration count for position. Increasing this will be more CPU intensive, but better stabilized."
+    ],
+    "VelocitySolverIterationCount": [
+      "uint8",
+      "[PhysX Only] This physics body's solver iteration count for velocity. Increasing this will be more CPU intensive, but better stabilized."
+    ],
+    "CollisionResponses": [
+      "FCollisionResponse",
+      2,
+      "Custom Channels for Responses"
+    ],
+    "MaxDepenetrationVelocity": [
+      "float32",
+      "The maximum velocity used to depenetrate this object from others when spawned or teleported with initial overlaps (does not affect overlaps as a result of normal movement).\nA value of zero will allow objects that are spawned overlapping to go to sleep without moving rather than pop out of each other. E.g., use zero if you spawn dynamic rocks\npartially embedded in the ground and want them to be interactive but not pop out of the ground when touched.\nA negative value is equivalent to bOverrideMaxDepenetrationVelocity = false, meaning use the project setting.\nThis overrides the CollisionInitialOverlapDepenetrationVelocity project setting on a per-body basis (and not the MaxDepenetrationVelocity solver setting that will be deprecated)."
+    ],
+    "MassInKgOverride": [
+      "float32",
+      "Mass of the body in KG. By default we compute this based on physical material and mass scale.\n@see bOverrideMass to set this directly"
+    ],
+    "LinearDamping": [
+      "float32",
+      "'Drag' force added to reduce linear movement"
+    ],
+    "AngularDamping": [
+      "float32",
+      "'Drag' force added to reduce angular movement"
+    ],
+    "CustomDOFPlaneNormal": [
+      "FVector",
+      2,
+      "Locks physical movement along a custom plane for a given normal."
+    ],
+    "COMNudge": [
+      "FVector",
+      "User specified offset for the center of mass of this object, from the calculated location"
+    ],
+    "MassScale": [
+      "float32",
+      "Per-instance scaling of mass"
+    ],
+    "InertiaTensorScale": [
+      "FVector",
+      "Per-instance scaling of inertia (bigger number means  it'll be harder to rotate)"
+    ],
+    "WalkableSlopeOverride": [
+      "FWalkableSlopeOverride",
+      "Custom walkable slope override setting for this instance.\n@see GetWalkableSlopeOverride(), SetWalkableSlopeOverride()"
+    ],
+    "PhysMaterialOverride": [
+      "UPhysicalMaterial",
+      "Allows you to override the PhysicalMaterial to use for simple collision on this body."
+    ],
+    "MaxAngularVelocity": [
+      "float32",
+      "The maximum angular velocity for this instance [degrees/s]"
+    ],
+    "CustomSleepThresholdMultiplier": [
+      "float32",
+      "If the SleepFamily is set to custom, multiply the natural sleep threshold by this amount. A higher number will cause the body to sleep sooner."
+    ],
+    "StabilizationThresholdMultiplier": [
+      "float32",
+      "Stabilization factor for this body if Physics stabilization is enabled. A higher number will cause more aggressive stabilization at the risk of loss of momentum at low speeds. A value of 0 will disable stabilization for this body."
+    ],
+    "bUseCCD": [
+      "bool",
+      "If true Continuous Collision Detection (CCD) will be used for this component"
+    ],
+    "bUseMACD": [
+      "bool",
+      "[EXPERIMENTAL] If true Motion-Aware Collision Detection (MACD) will be used for this component"
+    ],
+    "bIgnoreAnalyticCollisions": [
+      "bool",
+      "If true ignore analytic collisions and treat objects as a general implicit surface"
+    ],
+    "bNotifyRigidBodyCollision": [
+      "bool",
+      "Should 'Hit' events fire when this object collides during physics simulation."
+    ],
+    "bSmoothEdgeCollisions": [
+      "bool",
+      "Remove unnecessary edge collisions to allow smooth sliding over surfaces composed of multiple actors/components.\nThis is fairly expensive and should only be enabled on hero objects."
+    ],
+    "bLockTranslation": [
+      "bool",
+      "[Physx Only] When a Locked Axis Mode is selected, will lock translation on the specified axis"
+    ],
+    "bLockRotation": [
+      "bool",
+      "[Physx Only] When a Locked Axis Mode is selected, will lock rotation to the specified axis"
+    ],
+    "bLockXTranslation": [
+      "bool",
+      "[Physx Only] Lock translation along the X-axis"
+    ],
+    "bLockYTranslation": [
+      "bool",
+      "[Physx Only] Lock translation along the Y-axis"
+    ],
+    "bLockZTranslation": [
+      "bool",
+      "[Physx Only] Lock translation along the Z-axis"
+    ],
+    "bLockXRotation": [
+      "bool",
+      "[Physx Only] Lock rotation about the X-axis"
+    ],
+    "bLockYRotation": [
+      "bool",
+      "[Physx Only] Lock rotation about the Y-axis"
+    ],
+    "bLockZRotation": [
+      "bool",
+      "[Physx Only] Lock rotation about the Z-axis"
+    ],
+    "bOverrideMaxAngularVelocity": [
+      "bool",
+      "Override the default max angular velocity"
+    ],
+    "bOverrideMaxDepenetrationVelocity": [
+      "bool",
+      "Whether this body instance has its own custom MaxDepenetrationVelocity"
+    ],
+    "bOverrideWalkableSlopeOnInstance": [
+      "bool",
+      "Whether this instance of the object has its own custom walkable slope override setting."
+    ],
+    "bInertiaConditioning": [
+      "bool",
+      "@brief Enable automatic inertia conditioning to stabilize constraints.\n\nInertia conitioning increases inertia when an object is long and thin and also when it has joints that are outside the\ncollision shapes of the body. Increasing the inertia reduces the amount of rotation applied at joints which helps stabilize\njoint chains, especially when bodies are small. In principle you can get the same behaviour by setting the InertiaTensorScale\nappropriately, but this takes some of the guesswork out of it.\n\n@note This only changes the inertia used in the low-level solver. That inertia is not visible to the BodyInstance\nwhich will still report the inertia calculated from the mass, shapes, and InertiaTensorScale.\n\n@note When enabled, the effective inertia depends on the joints attached to the body so the inertia will change when\njoints are added or removed (automatically - no user action required)."
+    ],
+    "bOneWayInteraction": [
+      "bool",
+      "If set to true, this body will treat bodies that do not have the flag set as having infinite mass"
+    ],
+    "bOverrideSolverAsyncDeltaTime": [
+      "bool",
+      "Set the desired delta time for the body. *"
+    ],
+    "bSimulatePhysics": [
+      "bool",
+      "If true, this body will use simulation. If false, will be 'fixed' (ie kinematic) and move where it is told.\nFor a Skeletal Mesh Component, simulating requires a physics asset setup and assigned on the SkeletalMesh asset.\nFor a Static Mesh Component, simulating requires simple collision to be setup on the StaticMesh asset."
+    ],
+    "bOverrideMass": [
+      "bool",
+      "If true, mass will not be automatically computed and you must set it directly"
+    ],
+    "bEnableGravity": [
+      "bool",
+      "If object should have the force of gravity applied"
+    ],
+    "bUpdateKinematicFromSimulation": [
+      "bool",
+      "When kinematic, whether the actor transform should be updated as a result of movement in the simulation, rather than immediately whenever a target transform is set."
+    ],
+    "bAutoWeld": [
+      "bool",
+      "If true and is attached to a parent, the two bodies will be joined into a single rigid body. Physical settings like collision profile and body settings are determined by the root"
+    ],
+    "bStartAwake": [
+      "bool",
+      "If object should start awake, or if it should initially be sleeping"
+    ],
+    "bGenerateWakeEvents": [
+      "bool",
+      "Should 'wake/sleep' events fire when this object is woken up or put to sleep by the physics simulation."
+    ],
+    "bUpdateMassWhenScaleChanges": [
+      "bool",
+      "If true, it will update mass when scale change *"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetBodySetup",
+      "return": "UBodySetup",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Weld",
+      "return": "bool",
+      "args": [
+        {
+          "name": "TheirBody",
+          "type": "FBodyInstance&"
+        },
+        {
+          "name": "TheirTM",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "UnWeld",
+      "return": "void",
+      "args": [
+        {
+          "name": "TheirBI",
+          "type": "FBodyInstance&"
+        }
+      ]
+    },
+    {
+      "name": "SetUseCCD",
+      "return": "void",
+      "args": [
+        {
+          "name": "bInUseCCD",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

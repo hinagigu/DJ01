@@ -1,0 +1,43 @@
+{
+  "name": "__EQuartzCommandType",
+  "isEnum": true,
+  "doc": "An enumeration for specifying Quartz command types",
+  "properties": {
+    "PlaySound": [
+      "EQuartzCommandType",
+      "Play a sound on a spample-accurate boundary (taking a voice slot immediately)"
+    ],
+    "QueueSoundToPlay": [
+      "EQuartzCommandType",
+      "Queue a sound to play when it gets closer to its quantization boundary (avoids stealing a voice slot right away)"
+    ],
+    "RetriggerSound": [
+      "EQuartzCommandType",
+      "Quantized looping of the target sound (event tells the AudioComponent to play the sound again)"
+    ],
+    "TickRateChange": [
+      "EQuartzCommandType",
+      "Quantized change of the tick-rate (i.e. BPM change)"
+    ],
+    "TransportReset": [
+      "EQuartzCommandType",
+      "Quantized reset of the clocks transport (back to time = 0 on the boundary)"
+    ],
+    "StartOtherClock": [
+      "EQuartzCommandType",
+      "Quantized start of another clock. Useful for sample accurate synchronization of clocks (i.e. to handle time signature changes)"
+    ],
+    "Notify": [
+      "EQuartzCommandType",
+      "Command used only to get delegates for timing information (basically an empty command)"
+    ],
+    "Custom": [
+      "EQuartzCommandType",
+      "Quantized custom command"
+    ],
+    "EQuartzCommandType_MAX": [
+      "EQuartzCommandType"
+    ]
+  },
+  "methods": []
+}

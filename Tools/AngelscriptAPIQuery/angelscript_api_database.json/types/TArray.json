@@ -1,0 +1,381 @@
+{
+  "name": "TArray",
+  "subtypes": [
+    "T"
+  ],
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "opIndex",
+      "return": "T&",
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "opIndex",
+      "return": "T",
+      "const": true,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "TArray<T>&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TArray<T>"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "TArray<T>"
+        }
+      ]
+    },
+    {
+      "name": "Add",
+      "return": "void",
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "void",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TArray<T>"
+        }
+      ]
+    },
+    {
+      "name": "Shuffle",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "Swap",
+      "return": "void",
+      "doc": "Swap the element at index FirstIndexToSwap with the element at index SecondIndexToSwap.\n",
+      "args": [
+        {
+          "name": "FirstIndexToSwap",
+          "type": "int"
+        },
+        {
+          "name": "SecondIndexToSwap",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "MoveAssignFrom",
+      "return": "void",
+      "doc": "Perform a move-assign from the passed in array into this array.\nThe passed in array will be emptied in the process as its memory is moved over.",
+      "args": [
+        {
+          "name": "OtherArray",
+          "type": "TArray<T>&"
+        }
+      ]
+    },
+    {
+      "name": "IsValidIndex",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Last",
+      "return": "T",
+      "const": true,
+      "args": [
+        {
+          "name": "IndexFromEnd",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Last",
+      "return": "T&",
+      "args": [
+        {
+          "name": "IndexFromEnd",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Insert",
+      "return": "void",
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        },
+        {
+          "name": "Index",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "AddUnique",
+      "return": "bool",
+      "doc": "Will first do a check if the object already is in the array.\nReturns 'True' if the object is added.\n",
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "Empty",
+      "return": "void",
+      "args": [
+        {
+          "name": "ReservedSize",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "args": [
+        {
+          "name": "ReservedSize",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Reserve",
+      "return": "void",
+      "args": [
+        {
+          "name": "ReservedSize",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetNum",
+      "return": "void",
+      "args": [
+        {
+          "name": "NewNum",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Copy",
+      "return": "void",
+      "args": [
+        {
+          "name": "SourceArray",
+          "type": "TArray<T>"
+        },
+        {
+          "name": "SourceIndex",
+          "type": "int"
+        },
+        {
+          "name": "Count",
+          "type": "int"
+        },
+        {
+          "name": "TargetIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetNumZeroed",
+      "return": "void",
+      "args": [
+        {
+          "name": "NewNum",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "FindIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Find the first index that contains an element with the given value.\nIf no element matches the value, it will return -1.",
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "Contains",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSingle",
+      "return": "int",
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "Remove",
+      "return": "int",
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSingleSwap",
+      "return": "int",
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSwap",
+      "return": "int",
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAt",
+      "return": "void",
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAtSwap",
+      "return": "void",
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Sort",
+      "return": "void",
+      "args": [
+        {
+          "name": "bDescendingOrder",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Num",
+      "return": "int",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Max",
+      "return": "int",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetAllocatedSize",
+      "return": "int64",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsEmpty",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetSlack",
+      "return": "int",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Shrink",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "Iterator",
+      "return": "TArrayIterator<T>",
+      "args": []
+    },
+    {
+      "name": "Iterator",
+      "return": "TArrayConstIterator<T>",
+      "const": true,
+      "args": []
+    }
+  ]
+}

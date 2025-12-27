@@ -1,0 +1,13 @@
+{
+  "name": "UCommonActivatableWidgetStack",
+  "inherits": "UCommonActivatableWidgetContainerBase",
+  "doc": "A display stack of ActivatableWidget elements.\n\n- Only the widget at the top of the stack is displayed and activated. All others are deactivated.\n- When that top-most displayed widget deactivates, it's automatically removed and the preceding entry is displayed/activated.\n- If RootContent is provided, it can never be removed regardless of activation state",
+  "properties": {
+    "RootContentWidgetClass": [
+      "TSubclassOf<UCommonActivatableWidget>",
+      2,
+      "Optional widget to auto-generate as the permanent root element of the stack"
+    ]
+  },
+  "methods": []
+}

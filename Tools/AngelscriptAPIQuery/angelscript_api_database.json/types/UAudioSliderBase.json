@@ -1,0 +1,188 @@
+{
+  "name": "UAudioSliderBase",
+  "inherits": "UWidget",
+  "doc": "An audio slider widget.",
+  "properties": {
+    "Value": [
+      "float32",
+      2,
+      "The normalized linear (0 - 1) slider value."
+    ],
+    "IsUnitsTextReadOnly": [
+      "bool",
+      2,
+      "Whether to set the units part of the text label read only."
+    ],
+    "IsValueTextReadOnly": [
+      "bool",
+      2,
+      "Whether to set the value part of the text label read only."
+    ],
+    "Orientation": [
+      "EOrientation",
+      "The slider's orientation."
+    ],
+    "OnValueChanged": [
+      "FOnFloatValueChangedEvent",
+      "Called when the value is changed by slider or typing."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetOutputValue",
+      "return": "float32",
+      "doc": "Get output value from normalized linear (0 - 1) based on internal lin to output mapping.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSliderValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetSliderValue",
+      "return": "float32",
+      "doc": "Get normalized linear (0 - 1) slider value from output based on internal lin to output mapping.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutputValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetShowLabelOnlyOnHover",
+      "return": "void",
+      "doc": "If true, show text label only on hover; if false always show label.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bShowLabelOnlyOnHover",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetShowUnitsText",
+      "return": "void",
+      "doc": "Sets whether to show the units text",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bShowUnitsText",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderBackgroundColor",
+      "return": "void",
+      "doc": "Sets the slider background color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderBarColor",
+      "return": "void",
+      "doc": "Sets the slider bar color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderThumbColor",
+      "return": "void",
+      "doc": "Sets the slider thumb color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetTextLabelBackgroundColor",
+      "return": "void",
+      "doc": "Sets the label background color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InColor",
+          "type": "FSlateColor"
+        }
+      ]
+    },
+    {
+      "name": "SetUnitsText",
+      "return": "void",
+      "doc": "Sets the units text",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Units",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetUnitsTextReadOnly",
+      "return": "void",
+      "doc": "Sets whether the units text is read only",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsReadOnly",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetValueTextReadOnly",
+      "return": "void",
+      "doc": "Sets whether the value text is read only",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsReadOnly",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWidgetBackgroundColor",
+      "return": "void",
+      "doc": "Sets the widget background color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    }
+  ]
+}

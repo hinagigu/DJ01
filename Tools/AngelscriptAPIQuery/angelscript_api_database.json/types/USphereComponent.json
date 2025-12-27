@@ -1,0 +1,58 @@
+{
+  "name": "USphereComponent",
+  "inherits": "UShapeComponent",
+  "doc": "A sphere generally used for simple collision. Bounds are rendered as lines in the editor.",
+  "properties": {
+    "SphereRadius": [
+      "float32",
+      "The radius of the sphere *"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetScaledSphereRadius",
+      "return": "float32",
+      "const": true,
+      "doc": "@return the radius of the sphere, with component scale applied.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetShapeScale",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the scale used by this shape. This is a uniform scale that is the minimum of any non-uniform scaling.\n@return the scale used by this shape.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUnscaledSphereRadius",
+      "return": "float32",
+      "const": true,
+      "doc": "@return the radius of the sphere, ignoring component scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetSphereRadius",
+      "return": "void",
+      "doc": "Change the sphere radius. This is the unscaled radius, before component scale is applied.\n@param       InSphereRadius: the new sphere radius\n@param       bUpdateOverlaps: if true and this shape is registered and collides, updates touching array for owner actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSphereRadius",
+          "type": "float32"
+        },
+        {
+          "name": "bUpdateOverlaps",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

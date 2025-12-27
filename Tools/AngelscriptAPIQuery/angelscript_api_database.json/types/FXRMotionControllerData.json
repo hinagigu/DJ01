@@ -1,0 +1,98 @@
+{
+  "name": "FXRMotionControllerData",
+  "isStruct": true,
+  "properties": {
+    "bValid": [
+      "bool",
+      1,
+      ""
+    ],
+    "DeviceName": [
+      "FName",
+      1,
+      ""
+    ],
+    "ApplicationInstanceID": [
+      "FGuid",
+      1,
+      ""
+    ],
+    "DeviceVisualType": [
+      "EXRVisualType",
+      1,
+      ""
+    ],
+    "HandIndex": [
+      "EControllerHand",
+      1,
+      ""
+    ],
+    "TrackingStatus": [
+      "ETrackingStatus",
+      1,
+      ""
+    ],
+    "GripPosition": [
+      "FVector",
+      1,
+      "Vector representing an object being held in the player's hand"
+    ],
+    "GripRotation": [
+      "FQuat",
+      1,
+      "Quaternion representing an object being held in the player's hand"
+    ],
+    "AimPosition": [
+      "FVector",
+      1,
+      "For handheld controllers, gives a vector for pointing at objects"
+    ],
+    "AimRotation": [
+      "FQuat",
+      1,
+      "For handheld controllers, gives a quaternion for pointing at objects"
+    ],
+    "PalmPosition": [
+      "FVector",
+      1,
+      "For handheld controllers, gives a vector for representing the hand"
+    ],
+    "PalmRotation": [
+      "FQuat",
+      1,
+      "For handheld controllers, gives a quaternion for representing the hand"
+    ],
+    "HandKeyPositions": [
+      "TArray<FVector>",
+      1,
+      "The indices of this array are the values of EHandKeypoint (Palm, Wrist, ThumbMetacarpal, etc)."
+    ],
+    "HandKeyRotations": [
+      "TArray<FQuat>",
+      1,
+      "The indices of this array are the values of EHandKeypoint (Palm, Wrist, ThumbMetacarpal, etc)."
+    ],
+    "HandKeyRadii": [
+      "TArray<float32>",
+      1,
+      "The indices of this array are the values of EHandKeypoint (Palm, Wrist, ThumbMetacarpal, etc)."
+    ],
+    "bIsGrasped": [
+      "bool",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FXRMotionControllerData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FXRMotionControllerData"
+        }
+      ]
+    }
+  ]
+}

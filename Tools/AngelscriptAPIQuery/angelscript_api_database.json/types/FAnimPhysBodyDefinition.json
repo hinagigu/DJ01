@@ -1,0 +1,43 @@
+{
+  "name": "FAnimPhysBodyDefinition",
+  "isStruct": true,
+  "properties": {
+    "BoxExtents": [
+      "FVector",
+      2,
+      "Extents of the box to use for simulation"
+    ],
+    "LocalJointOffset": [
+      "FVector",
+      2,
+      "Vector relative to the body being simulated to attach the constraint to"
+    ],
+    "ConstraintSetup": [
+      "FAnimPhysConstraintSetup",
+      2,
+      "Data describing the constraints we will apply to the body"
+    ],
+    "CollisionType": [
+      "AnimPhysCollisionType",
+      2,
+      "Resolution method for planar limits"
+    ],
+    "SphereCollisionRadius": [
+      "float32",
+      2,
+      "Radius to use if CollisionType is set to CustomSphere"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimPhysBodyDefinition&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimPhysBodyDefinition"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "FCollectionTransformSelectionInSphereDataflowNode",
+  "isStruct": true,
+  "doc": "Selects bones if their Vertices/BoundingBox/Centroid in a sphere",
+  "properties": {
+    "Transform": [
+      "FTransform",
+      2,
+      "Transform for the sphere"
+    ],
+    "Type": [
+      "ESelectSubjectTypeEnum",
+      2,
+      "Subject (Vertices/BoundingBox/Centroid) to check against box"
+    ],
+    "bAllVerticesMustContainedInSphere": [
+      "bool",
+      2,
+      "If true all the vertices of the piece must be inside of box"
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCollectionTransformSelectionInSphereDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCollectionTransformSelectionInSphereDataflowNode"
+        }
+      ]
+    }
+  ]
+}

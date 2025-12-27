@@ -1,0 +1,38 @@
+{
+  "name": "FPlatformRuntimeAudioCompressionOverrides",
+  "isStruct": true,
+  "properties": {
+    "bOverrideCompressionTimes": [
+      "bool",
+      2,
+      "When true, overrides the Sound Group on each Sound Wave, and instead uses the Duration Threshold value to determine whether a sound should be fully decompressed during initial loading."
+    ],
+    "DurationThreshold": [
+      "float32",
+      2,
+      "When Override Compression Times is set to true, any sound under this threshold (in seconds) will be fully decompressed on load.\nOtherwise the first chunk of this sound is cached at load and the rest is decompressed in real time.\nIf set to zero, will default to the Sound Group on the relevant Sound Wave"
+    ],
+    "MaxNumRandomBranches": [
+      "int",
+      2,
+      "On this platform, any random nodes on Sound Cues will automatically only preload this number of branches and dispose of any others\non load. This can drastically cut down on memory usage. If set to 0, no branches are culled."
+    ],
+    "SoundCueQualityIndex": [
+      "int",
+      2,
+      "On this platform, use the specified quality at this index to override the quality used for SoundCues on this platform"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPlatformRuntimeAudioCompressionOverrides&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPlatformRuntimeAudioCompressionOverrides"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "FPlayerMappableKeyProfileCreationArgs",
+  "isStruct": true,
+  "doc": "Arguments that can be used when creating a new mapping profile",
+  "properties": {
+    "ProfileType": [
+      "TSubclassOf<UEnhancedPlayerMappableKeyProfile>"
+    ],
+    "ProfileIdentifier": [
+      "FGameplayTag",
+      "The uniqiue identifier that this profile should have"
+    ],
+    "UserId": [
+      "FPlatformUserId",
+      "The user ID of the ULocalPlayer that this profile is associated with"
+    ],
+    "DisplayName": [
+      "FText",
+      "The display name of this profile"
+    ],
+    "bSetAsCurrentProfile": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPlayerMappableKeyProfileCreationArgs&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPlayerMappableKeyProfileCreationArgs"
+        }
+      ]
+    }
+  ]
+}

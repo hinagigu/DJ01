@@ -1,0 +1,84 @@
+{
+  "name": "FAnimNode_BlendSpacePlayer_Standalone",
+  "isStruct": true,
+  "doc": "@TODO: Comment",
+  "properties": {
+    "GroupName": [
+      "FName",
+      2,
+      "The group name that we synchronize with (NAME_None if it is not part of any group). Note that\nthis is the name of the group used to sync the output of this node - it will not force\nsyncing of animations contained by it. Animations inside this Blend Space have their own\noptions for syncing."
+    ],
+    "GroupRole": [
+      "EAnimGroupRole",
+      2,
+      "The role this Blend Space can assume within the group (ignored if GroupName is not set). Note\nthat this is the role of the output of this node, not of animations contained by it."
+    ],
+    "Method": [
+      "EAnimSyncMethod",
+      2,
+      "How this asset will synchronize with other assets. Note that this determines how the output\nof this node is used for synchronization, not of animations contained by it."
+    ],
+    "bIgnoreForRelevancyTest": [
+      "bool",
+      2,
+      "If true, \"Relevant anim\" nodes that look for the highest weighted animation in a state will ignore this node"
+    ],
+    "X": [
+      "float32",
+      2,
+      "The X coordinate to sample in the blendspace"
+    ],
+    "Y": [
+      "float32",
+      2,
+      "The Y coordinate to sample in the blendspace"
+    ],
+    "PlayRate": [
+      "float32",
+      2,
+      "The play rate multiplier. Can be negative, which will cause the animation to play in reverse."
+    ],
+    "bLoop": [
+      "bool",
+      2,
+      "Should the animation loop back to the start when it reaches the end?"
+    ],
+    "bResetPlayTimeWhenBlendSpaceChanges": [
+      "bool",
+      2,
+      "Whether we should reset the current play time when the blend space changes"
+    ],
+    "StartPosition": [
+      "float32",
+      2,
+      "The start position in [0, 1] to use when initializing. When looping, play will still jump back to the beginning when reaching the end."
+    ],
+    "BlendSpace": [
+      "UBlendSpace",
+      2,
+      "The blendspace asset to play"
+    ],
+    "BlendWeight": [
+      "float32",
+      1,
+      "Last encountered blendweight for this node"
+    ],
+    "InternalTimeAccumulator": [
+      "float32",
+      1,
+      "Accumulated time used to reference the asset in this node"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_BlendSpacePlayer_Standalone&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_BlendSpacePlayer_Standalone"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "__UAnimationAttributeIdentifierExtensions",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateAttributeIdentifier",
+      "return": "FAnimationAttributeIdentifier",
+      "doc": "Constructs a valid FAnimationAttributeIdentifier instance. Ensuring that the underlying BoneName exists on the Skeleton for the provided AnimationAsset.\n\n@param        AnimationAsset                  Animation asset to retrieve Skeleton from\n@param        AttributeName                   Name of the attribute\n@param        BoneName                                Name of the bone this attribute should be attributed to\n@param        AttributeType                   Type of the underlying data (to-be) stored by this attribute\n@param        bValidateExistsOnAsset  Whether or not the attribute should exist on the AnimationAsset. False by default.\n\n@return       Valid FAnimationCurveIdentifier if the operation was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationAsset",
+          "type": "UAnimationAsset"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "AttributeType",
+          "type": "UScriptStruct"
+        },
+        {
+          "name": "bValidateExistsOnAsset",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "doc": "@return       Whether or not the Attribute Identifier is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Identifier",
+          "type": "FAnimationAttributeIdentifier&"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "FDefaultContextSetting",
+  "isStruct": true,
+  "doc": "Represents a single input mapping context and the priority that it should be applied with",
+  "properties": {
+    "InputMappingContext": [
+      "TSoftObjectPtr<UInputMappingContext>",
+      2,
+      "Input Mapping Context that should be Added to the EnhancedInputEditorSubsystem when it starts listening for input"
+    ],
+    "Priority": [
+      "int",
+      2,
+      "The prioirty that should be given to this mapping context when it is added"
+    ],
+    "bAddImmediately": [
+      "bool",
+      2,
+      "If true, then this IMC will be applied immediately when the EI subsystem is ready"
+    ],
+    "bRegisterWithUserSettings": [
+      "bool",
+      2,
+      "If true, then this IMC will be registered with the User Input Settings (if one is available) immediately when the Enhanced Input subsystem starts."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDefaultContextSetting&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDefaultContextSetting"
+        }
+      ]
+    }
+  ]
+}

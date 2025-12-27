@@ -1,0 +1,19 @@
+{
+  "name": "__EMicroTransactionDelegate",
+  "isEnum": true,
+  "doc": "All the types of delegate callbacks that a MicroTransaction subclass may receive from C++.",
+  "properties": {
+    "MTD_PurchaseQueryComplete": [
+      "EMicroTransactionDelegate",
+      "Data:None\nDesc:QueryForAvailablePurchases() is complete and AvailableProducts is ready for use."
+    ],
+    "MTD_PurchaseComplete": [
+      "EMicroTransactionDelegate",
+      "Data:Result code, and identifier of the product that completed.\nType:Custom\nDesc:IntValue will have one of the enums in EMicroTransactionResult, and StringValue\n     will have the Identifier from the PurchaseInfo that was bought with BeginPurchase\n     If MTR_Failed was returned, then LastError and LastErrorSolution should be filled\n             out with the most recent localized and possible resolutions."
+    ],
+    "MTD_MAX": [
+      "EMicroTransactionDelegate"
+    ]
+  },
+  "methods": []
+}

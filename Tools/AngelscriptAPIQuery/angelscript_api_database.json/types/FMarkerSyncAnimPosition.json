@@ -1,0 +1,31 @@
+{
+  "name": "FMarkerSyncAnimPosition",
+  "isStruct": true,
+  "doc": "Represent a current play position in an animation\nbased on sync markers",
+  "properties": {
+    "PreviousMarkerName": [
+      "FName",
+      "The marker we have passed"
+    ],
+    "NextMarkerName": [
+      "FName",
+      "The marker we are heading towards"
+    ],
+    "PositionBetweenMarkers": [
+      "float32",
+      "Value between 0 and 1 representing where we are:\n      0   we are at PreviousMarker\n      1   we are at NextMarker\n      0.5 we are half way between the two"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMarkerSyncAnimPosition&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMarkerSyncAnimPosition"
+        }
+      ]
+    }
+  ]
+}

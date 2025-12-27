@@ -1,0 +1,151 @@
+{
+  "name": "UEditorValidatorSubsystem",
+  "inherits": "UEditorSubsystem",
+  "doc": "UEditorValidatorSubsystem manages all the asset validation in the engine.\n\nThe first validation handled is UObject::IsDataValid and its overridden functions.\nThose validations require custom classes and are most suited to project-specific\nclasses.\n\nThe next validation set is of all registered UEditorValidationBases. These validators\nhave a function to determine if they can validate a given asset, and if they are\ncurrently enabled. They are good candidates for validating engine classes or\nvery specific project logic.\n\nFinally, this subsystem may be subclassed to change the overally behavior of\nvalidation in your project. If a subclass exist in your project module, it will\nsupercede the engine validation subsystem.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddValidator",
+      "return": "void",
+      "doc": "* Adds a validator to the list, making sure it is a unique instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValidator",
+          "type": "UEditorValidatorBase"
+        }
+      ]
+    },
+    {
+      "name": "IsAssetValid",
+      "return": "EDataValidationResult",
+      "const": true,
+      "doc": "Loads the object referred to by the provided AssetData and runs registered validators on it.\nDoes not add anything to any FMessageLog tabs.\n@return Returns Valid if the object pointed to by AssetData contains valid data; returns Invalid if the object contains invalid data or does not exist; returns NotValidated if no validations was performed on the object",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetData",
+          "type": "FAssetData"
+        },
+        {
+          "name": "ValidationErrors",
+          "type": "TArray<FText>&"
+        },
+        {
+          "name": "ValidationWarnings",
+          "type": "TArray<FText>&"
+        },
+        {
+          "name": "InValidationUsecase",
+          "type": "EDataValidationUsecase"
+        }
+      ]
+    },
+    {
+      "name": "IsObjectValid",
+      "return": "EDataValidationResult",
+      "const": true,
+      "doc": "Runs registered validators on the provided object.\nDoes not add anything to any FMessageLog tabs.\n@return Returns Valid if the object contains valid data; returns Invalid if the object contains invalid data; returns NotValidated if no validations was performed on the object",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InObject",
+          "type": "UObject"
+        },
+        {
+          "name": "ValidationErrors",
+          "type": "TArray<FText>&"
+        },
+        {
+          "name": "ValidationWarnings",
+          "type": "TArray<FText>&"
+        },
+        {
+          "name": "InValidationUsecase",
+          "type": "EDataValidationUsecase"
+        }
+      ]
+    },
+    {
+      "name": "RemoveValidator",
+      "return": "void",
+      "doc": "* Removes a validator\n* Should be called during module shutdown if a validator was added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValidator",
+          "type": "UEditorValidatorBase"
+        }
+      ]
+    },
+    {
+      "name": "ValidateAssetsWithSettings",
+      "return": "int",
+      "const": true,
+      "doc": "Called to validate assets from either the UI or a commandlet.\nLoads the specified assets and runs all registered validators on them.\nPopulates the message log with errors and warnings with clickable links.\n@param InSettings Structure passing context and settings for ValidateAssetsWithSettings\n@param OutResults More detailed information about the results of the validate assets command\n@returns Number of assets with validation failures or warnings",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetDataList",
+          "type": "TArray<FAssetData>"
+        },
+        {
+          "name": "InSettings",
+          "type": "FValidateAssetsSettings&"
+        },
+        {
+          "name": "OutResults",
+          "type": "FValidateAssetsResults&"
+        }
+      ]
+    },
+    {
+      "name": "ValidateChangelist",
+      "return": "EDataValidationResult",
+      "const": true,
+      "doc": "Called to validate assets from either the UI or a commandlet.\nLoads the specified assets and runs all registered validators on them.\nPopulates the message log with errors and warnings with clickable links.\n@param InSettings Structure passing context and settings for ValidateAssetsWithSettings\n@param OutResults More detailed information about the results of the validate assets command\n@returns Validation results for the changelist object itself",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChangelist",
+          "type": "UDataValidationChangelist"
+        },
+        {
+          "name": "InSettings",
+          "type": "FValidateAssetsSettings"
+        },
+        {
+          "name": "OutResults",
+          "type": "FValidateAssetsResults&"
+        }
+      ]
+    },
+    {
+      "name": "ValidateChangelists",
+      "return": "EDataValidationResult",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChangelists",
+          "type": "TArray<UDataValidationChangelist>"
+        },
+        {
+          "name": "InSettings",
+          "type": "FValidateAssetsSettings"
+        },
+        {
+          "name": "OutResults",
+          "type": "FValidateAssetsResults&"
+        }
+      ]
+    }
+  ]
+}

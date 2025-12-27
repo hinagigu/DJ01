@@ -1,0 +1,68 @@
+{
+  "name": "FAnimNotifyEvent",
+  "isStruct": true,
+  "doc": "Triggers an animation notify.  Each AnimNotifyEvent contains an AnimNotify object\nwhich has its Notify method called and passed to the animation.",
+  "properties": {
+    "TriggerWeightThreshold": [
+      "float32"
+    ],
+    "NotifyName": [
+      "FName"
+    ],
+    "Notify": [
+      "UAnimNotify"
+    ],
+    "NotifyStateClass": [
+      "UAnimNotifyState"
+    ],
+    "MontageTickType": [
+      "EMontageNotifyTickType"
+    ],
+    "NotifyTriggerChance": [
+      "float32",
+      "Defines the chance of of this notify triggering, 0 = No Chance, 1 = Always triggers"
+    ],
+    "NotifyFilterType": [
+      "ENotifyFilterType",
+      "Defines a method for filtering notifies (stopping them triggering) e.g. by looking at the meshes current LOD"
+    ],
+    "NotifyFilterLOD": [
+      "int",
+      "LOD to start filtering this notify from."
+    ],
+    "bCanBeFilteredViaRequest": [
+      "bool",
+      "Allow notify event to be filtered if requested at runtime (e. g. via an Anim Graph Message)"
+    ],
+    "bTriggerOnDedicatedServer": [
+      "bool",
+      "If disabled this notify will be skipped on dedicated servers"
+    ],
+    "bTriggerOnFollower": [
+      "bool",
+      "If enabled this notify will trigger when the animation is a follower in a sync group (by default only the sync group leaders notifies trigger"
+    ],
+    "SlotIndex": [
+      "int",
+      2,
+      "The slot index we are currently using within LinkedMontage"
+    ],
+    "LinkMethod": [
+      "EAnimLinkMethod",
+      2,
+      "The method we are using to calculate our times"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNotifyEvent&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNotifyEvent"
+        }
+      ]
+    }
+  ]
+}

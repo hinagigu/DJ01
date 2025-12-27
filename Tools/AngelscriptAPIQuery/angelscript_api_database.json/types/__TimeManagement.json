@@ -1,0 +1,271 @@
+{
+  "name": "__TimeManagement",
+  "properties": {},
+  "methods": [
+    {
+      "name": "Add_FrameNumberFrameNumber",
+      "return": "FFrameNumber",
+      "doc": "Addition (FrameNumber A + FrameNumber B)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "B",
+          "type": "FFrameNumber"
+        }
+      ]
+    },
+    {
+      "name": "Add_FrameNumberInteger",
+      "return": "FFrameNumber",
+      "doc": "Addition (FrameNumber A + int B)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "B",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "FrameNumberToInteger",
+      "return": "int",
+      "doc": "Converts a FrameNumber to an int32 for use in functions that take int32 frame counts for convenience.",
+      "ufunction": true,
+      "unrealname": "Conv_FrameNumberToInteger",
+      "meta": null,
+      "args": [
+        {
+          "name": "InFrameNumber",
+          "type": "FFrameNumber"
+        }
+      ]
+    },
+    {
+      "name": "Conv_FrameRateToInterval",
+      "return": "float32",
+      "doc": "Converts a FrameRate to an interval float representing the frame time in seconds ie: 1/30 returns 0.0333333",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFrameRate",
+          "type": "FFrameRate"
+        }
+      ]
+    },
+    {
+      "name": "Conv_QualifiedFrameTimeToSeconds",
+      "return": "float32",
+      "doc": "Converts an QualifiedFrameTime to seconds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFrameTime",
+          "type": "FQualifiedFrameTime"
+        }
+      ]
+    },
+    {
+      "name": "Conv_TimecodeToString",
+      "return": "FString",
+      "doc": "Converts an Timecode to a string (hh:mm:ss:ff). If bForceSignDisplay then the number sign will always be prepended instead of just when expressing a negative time.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTimecode",
+          "type": "FTimecode"
+        },
+        {
+          "name": "bForceSignDisplay",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Divide_FrameNumberInteger",
+      "return": "FFrameNumber",
+      "doc": "Divide (FrameNumber A / B)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "B",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetTimecode",
+      "return": "FTimecode",
+      "doc": "Get the current timecode of the engine.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTimecodeFrameRate",
+      "return": "FFrameRate",
+      "doc": "Gets the current timecode frame rate.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsValid_Framerate",
+      "return": "bool",
+      "doc": "Verifies that this is a valid framerate with a non-zero denominator.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFrameRate",
+          "type": "FFrameRate"
+        }
+      ]
+    },
+    {
+      "name": "IsValid_MultipleOf",
+      "return": "bool",
+      "doc": "Checks if this framerate is an even multiple of another framerate, ie: 60 is a multiple of 30, but 59.94 is not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFrameRate",
+          "type": "FFrameRate"
+        },
+        {
+          "name": "OtherFramerate",
+          "type": "FFrameRate"
+        }
+      ]
+    },
+    {
+      "name": "Multiply_FrameNumberInteger",
+      "return": "FFrameNumber",
+      "doc": "Multiply (FrameNumber A * B)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "B",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Multiply_SecondsFrameRate",
+      "return": "FFrameTime",
+      "doc": "Multiplies a value in seconds against a FrameRate to get a new FrameTime.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeInSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "FrameRate",
+          "type": "FFrameRate"
+        }
+      ]
+    },
+    {
+      "name": "SnapFrameTimeToRate",
+      "return": "FFrameTime",
+      "doc": "Snaps the given SourceTime to the nearest frame in the specified Destination Framerate. Useful for determining the nearest frame for another resolution. Returns the frame time in the destination frame rate.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceTime",
+          "type": "FFrameTime"
+        },
+        {
+          "name": "SourceRate",
+          "type": "FFrameRate"
+        },
+        {
+          "name": "SnapToRate",
+          "type": "FFrameRate"
+        }
+      ]
+    },
+    {
+      "name": "Subtract_FrameNumberFrameNumber",
+      "return": "FFrameNumber",
+      "doc": "Subtraction (FrameNumber A - FrameNumber B)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "B",
+          "type": "FFrameNumber"
+        }
+      ]
+    },
+    {
+      "name": "Subtract_FrameNumberInteger",
+      "return": "FFrameNumber",
+      "doc": "Subtraction (FrameNumber A - int B)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "B",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "TransformTime",
+      "return": "FFrameTime",
+      "doc": "Converts the specified time from one framerate to another framerate. This is useful for converting between tick resolution and display rate.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceTime",
+          "type": "FFrameTime"
+        },
+        {
+          "name": "SourceRate",
+          "type": "FFrameRate"
+        },
+        {
+          "name": "DestinationRate",
+          "type": "FFrameRate"
+        }
+      ]
+    }
+  ]
+}

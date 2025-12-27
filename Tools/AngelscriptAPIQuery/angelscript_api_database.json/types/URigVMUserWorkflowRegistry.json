@@ -1,0 +1,57 @@
+{
+  "name": "URigVMUserWorkflowRegistry",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetWorkflows",
+      "return": "TArray<FRigVMUserWorkflow>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InType",
+          "type": "ERigVMUserWorkflowType"
+        },
+        {
+          "name": "InStruct",
+          "type": "const UScriptStruct"
+        },
+        {
+          "name": "InSubject",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "RegisterProvider",
+      "return": "int",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStruct",
+          "type": "const UScriptStruct"
+        },
+        {
+          "name": "InProvider",
+          "default": "FRigVMUserWorkflowProvider ( )",
+          "type": "FRigVMUserWorkflowProvider"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterProvider",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHandle",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

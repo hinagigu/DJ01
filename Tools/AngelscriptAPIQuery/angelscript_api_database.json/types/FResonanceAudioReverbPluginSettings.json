@@ -1,0 +1,79 @@
+{
+  "name": "FResonanceAudioReverbPluginSettings",
+  "isStruct": true,
+  "properties": {
+    "bEnableRoomEffects": [
+      "bool",
+      "Whether Resonance Audio room effects are enabled"
+    ],
+    "bGetTransformFromAudioVolume": [
+      "bool",
+      2,
+      "Whether the room transform should be taken from the Audio Volume this preset is attached to.\nIf not used with the Audio Volume, last saved values will be used."
+    ],
+    "RoomPosition": [
+      "FVector",
+      "Room position in 3D space"
+    ],
+    "RoomRotation": [
+      "FQuat",
+      "Room rotation in 3D space"
+    ],
+    "RoomDimensions": [
+      "FVector",
+      "Room dimensions in 3D space"
+    ],
+    "LeftWallMaterial": [
+      "ERaMaterialName",
+      "Left wall acoustic material"
+    ],
+    "RightWallMaterial": [
+      "ERaMaterialName",
+      "Right wall acoustic material"
+    ],
+    "FloorMaterial": [
+      "ERaMaterialName",
+      "Floor acoustic material"
+    ],
+    "CeilingMaterial": [
+      "ERaMaterialName",
+      "Ceiling acoustic material"
+    ],
+    "FrontWallMaterial": [
+      "ERaMaterialName",
+      "Front wall acoustic material"
+    ],
+    "BackWallMaterial": [
+      "ERaMaterialName",
+      "Back wall acoustic material"
+    ],
+    "ReflectionScalar": [
+      "float32",
+      "Early reflections gain multiplier. Default: 1.0"
+    ],
+    "ReverbGain": [
+      "float32",
+      "Reverb gain multiplier. Default: 1.0"
+    ],
+    "ReverbTimeModifier": [
+      "float32",
+      "Reverb time modifier. Default: 1.0"
+    ],
+    "ReverbBrightness": [
+      "float32",
+      "Reverb brightness modifier. Default: 0.0"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FResonanceAudioReverbPluginSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FResonanceAudioReverbPluginSettings"
+        }
+      ]
+    }
+  ]
+}

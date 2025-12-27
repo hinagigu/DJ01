@@ -1,0 +1,96 @@
+{
+  "name": "FAnimNode_ModifyBone",
+  "isStruct": true,
+  "doc": "Simple controller that replaces or adds to the translation/rotation of a single bone.",
+  "properties": {
+    "BoneToModify": [
+      "FBoneReference",
+      2,
+      "Name of bone to control. This is the main bone chain to modify from. *"
+    ],
+    "Translation": [
+      "FVector",
+      "New translation of bone to apply."
+    ],
+    "Rotation": [
+      "FRotator",
+      "New rotation of bone to apply."
+    ],
+    "Scale": [
+      "FVector",
+      "New Scale of bone to apply. This is only worldspace."
+    ],
+    "TranslationMode": [
+      "EBoneModificationMode",
+      2,
+      "Whether and how to modify the translation of this bone."
+    ],
+    "RotationMode": [
+      "EBoneModificationMode",
+      2,
+      "Whether and how to modify the translation of this bone."
+    ],
+    "ScaleMode": [
+      "EBoneModificationMode",
+      2,
+      "Whether and how to modify the translation of this bone."
+    ],
+    "TranslationSpace": [
+      "EBoneControlSpace",
+      2,
+      "Reference frame to apply Translation in."
+    ],
+    "RotationSpace": [
+      "EBoneControlSpace",
+      2,
+      "Reference frame to apply Rotation in."
+    ],
+    "ScaleSpace": [
+      "EBoneControlSpace",
+      2,
+      "Reference frame to apply Scale in."
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_ModifyBone&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_ModifyBone"
+        }
+      ]
+    }
+  ]
+}

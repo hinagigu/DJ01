@@ -1,0 +1,23 @@
+{
+  "name": "__EClothLODBiasMode",
+  "isEnum": true,
+  "doc": "Strategy used for storing additional cloth deformer mappings depending on the\ndesired use of the RaytracingMinLOD value and of the LODBias console variable.",
+  "properties": {
+    "MappingsToSameLOD": [
+      "EClothLODBiasMode",
+      "Only store the strict minimum amount of cloth deformer mappings to save on memory usage.\nRaytracing of cloth elements must never be of a different LOD to the one being rendered when using this mode."
+    ],
+    "MappingsToMinLOD": [
+      "EClothLODBiasMode",
+      "Store additional cloth deformer mappings to allow raytracing of the cloth elements at RayTracingMinLOD.\nRaytracing of cloth elements must never be of a different LOD to the one being rendered, or to the one set in RayTracingMinLOD when using this mode."
+    ],
+    "MappingsToAnyLOD": [
+      "EClothLODBiasMode",
+      "Store all cloth deformer mappings at the expense of memory usage, to allow raytracing of the cloth elements at any higher LOD.\nUse this mode when the RayTracing LODBias console variable is in use."
+    ],
+    "EClothLODBiasMode_MAX": [
+      "EClothLODBiasMode"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,391 @@
+{
+  "name": "UInterchangeSkeletalMeshFactoryNode",
+  "inherits": "UInterchangeMeshFactoryNode",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetCustomBoneInfluenceLimit",
+      "return": "bool",
+      "const": true,
+      "doc": "Query the maximum number of bone influences to allow each vertex in this mesh to use.\nIf set higher than the limit determined by the project settings, it has no effect.\nIf set to 0, the value is taken from the DefaultBoneInfluenceLimit project setting.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomCreatePhysicsAsset",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether the skeletal mesh factory should create a physics asset. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomImportContentType",
+      "return": "bool",
+      "const": true,
+      "doc": "Query the skeletal mesh import content type. This content type determines whether the factory imports partial or full translated content. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "EInterchangeSkeletalMeshContentType&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomImportMorphTarget",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether the skeletal mesh factory should create morph targets. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomImportVertexAttributes",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether the skeletal mesh factory should import vertex attributes. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomMorphThresholdPosition",
+      "return": "bool",
+      "const": true,
+      "doc": "Query the skeletal mesh threshold value that is used to compare vertex position equality when computing morph target deltas.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomPhysicAssetSoftObjectPath",
+      "return": "bool",
+      "const": true,
+      "doc": "Query a physics asset the skeletal mesh factory should use. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FSoftObjectPath&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomSkeletonSoftObjectPath",
+      "return": "bool",
+      "const": true,
+      "doc": "Query the skeletal mesh factory skeleton UObject. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FSoftObjectPath&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomThresholdPosition",
+      "return": "bool",
+      "const": true,
+      "doc": "Query the skeletal mesh threshold value that is used to decide whether two vertex positions are equal.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomThresholdTangentNormal",
+      "return": "bool",
+      "const": true,
+      "doc": "Query the skeletal mesh threshold value that is used to decide whether two normals, tangents, or bi-normals are equal.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomThresholdUV",
+      "return": "bool",
+      "const": true,
+      "doc": "Query the skeletal mesh threshold value that is used to decide whether two UVs are equal.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomUseHighPrecisionSkinWeights",
+      "return": "bool",
+      "const": true,
+      "doc": "Query the skeletal mesh UseHighPrecisionSkinWeights setting.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetObjectClass",
+      "return": "UClass",
+      "const": true,
+      "doc": "Get the class this node creates.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InitializeSkeletalMeshNode",
+      "return": "void",
+      "doc": "Initialize node data.\n@param: UniqueID - The unique ID for this node.\n@param DisplayLabel - The name of the node.\n@param InAssetClass - The class the SkeletalMesh factory will create for this node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UniqueID",
+          "type": "FString"
+        },
+        {
+          "name": "DisplayLabel",
+          "type": "FString"
+        },
+        {
+          "name": "InAssetClass",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomBoneInfluenceLimit",
+      "return": "bool",
+      "doc": "Set the maximum number of bone influences to allow each vertex in this mesh to use.\nIf set higher than the limit determined by the project settings, it has no effect.\nIf set to 0, the value is taken from the DefaultBoneInfluenceLimit project setting.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomCreatePhysicsAsset",
+      "return": "bool",
+      "doc": "Set whether the skeletal mesh factory should create a physics asset. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomImportContentType",
+      "return": "bool",
+      "doc": "Set the skeletal mesh import content type. This content type determines whether the factory imports partial or full translated content. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "EInterchangeSkeletalMeshContentType"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomImportMorphTarget",
+      "return": "bool",
+      "doc": "Set whether the skeletal mesh factory should create morph targets. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomImportVertexAttributes",
+      "return": "bool",
+      "doc": "Set whether the skeletal mesh factory should import vertex attributes. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomMorphThresholdPosition",
+      "return": "bool",
+      "doc": "Set the skeletal mesh threshold value that is used to compare vertex position equality when computing morph target deltas.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomPhysicAssetSoftObjectPath",
+      "return": "bool",
+      "doc": "Set a physics asset the skeletal mesh factory should use. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FSoftObjectPath"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomSkeletonSoftObjectPath",
+      "return": "bool",
+      "doc": "Set the skeletal mesh factory skeleton UObject. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FSoftObjectPath"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomThresholdPosition",
+      "return": "bool",
+      "doc": "Set the skeletal mesh threshold value that is used to decide whether two vertex positions are equal.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomThresholdTangentNormal",
+      "return": "bool",
+      "doc": "Set the skeletal mesh threshold value that is used to decide whether two normals, tangents, or bi-normals are equal.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomThresholdUV",
+      "return": "bool",
+      "doc": "Set the skeletal mesh threshold value that is used to decide whether two UVs are equal.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomUseHighPrecisionSkinWeights",
+      "return": "bool",
+      "doc": "Set the skeletal mesh UseHighPrecisionSkinWeights setting.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

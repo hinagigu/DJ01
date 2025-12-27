@@ -1,0 +1,34 @@
+{
+  "name": "FFieldMakeDenseFloatArrayDataflowNode",
+  "isStruct": true,
+  "doc": "Converts a sparse FloatArray (a selected subset of the whole incoming array) into a dense FloatArray\n(same number of elements as the incoming array using NumSamplePositions) using the Remap input\nNumSamplePositions controls the size of the output array, only indices smaller than l to than NumSamplePositions\nwill be processed",
+  "properties": {
+    "NumSamplePositions": [
+      "int",
+      2,
+      ""
+    ],
+    "Default": [
+      "float32",
+      2,
+      ""
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FFieldMakeDenseFloatArrayDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FFieldMakeDenseFloatArrayDataflowNode"
+        }
+      ]
+    }
+  ]
+}

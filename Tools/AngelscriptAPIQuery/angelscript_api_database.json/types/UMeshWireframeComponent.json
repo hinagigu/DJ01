@@ -1,0 +1,113 @@
+{
+  "name": "UMeshWireframeComponent",
+  "inherits": "UMeshComponent",
+  "doc": "UMeshWireframeComponent draws a mesh wireframe as lines, with line color/thickness\nvarying depending on line type and the configuration settings.\nCurrently can draw:\n   - all mesh edges\n   - boundary edges\n   - UV seam edges\n   - Normal seam edges\n   - Color seam edges\n\nClient must provide a IMeshWireframeSourceProvider implementation that provides the\nedge set, vertices, and edge type",
+  "properties": {
+    "LineDepthBias": [
+      "float32",
+      2,
+      "Depth bias of the lines, used to offset in depth to avoid z-fighting"
+    ],
+    "LineDepthBiasSizeScale": [
+      "float32",
+      2,
+      "Target-size depth bias scale. This is multiplied by LineDepthBias.\nClient of UMeshWireframeComponent can set this if desired, eg to fraction of target object bounding box size, etc."
+    ],
+    "ThicknessScale": [
+      "float32",
+      2,
+      "Scaling factor applied to the per-edge-type thicknesses defined below"
+    ],
+    "bEnableWireframe": [
+      "bool",
+      2,
+      "Wireframe properties"
+    ],
+    "WireframeColor": [
+      "FColor",
+      2,
+      ""
+    ],
+    "WireframeThickness": [
+      "float32",
+      2,
+      ""
+    ],
+    "bEnableBoundaryEdges": [
+      "bool",
+      2,
+      "Boundary Edge properties"
+    ],
+    "BoundaryEdgeColor": [
+      "FColor",
+      2,
+      ""
+    ],
+    "BoundaryEdgeThickness": [
+      "float32",
+      2,
+      ""
+    ],
+    "bEnableUVSeams": [
+      "bool",
+      2,
+      "UV seam properties"
+    ],
+    "UVSeamColor": [
+      "FColor",
+      2,
+      ""
+    ],
+    "UVSeamThickness": [
+      "float32",
+      2,
+      ""
+    ],
+    "bEnableNormalSeams": [
+      "bool",
+      2,
+      "normal seam properties"
+    ],
+    "NormalSeamColor": [
+      "FColor",
+      2,
+      ""
+    ],
+    "NormalSeamThickness": [
+      "float32",
+      2,
+      ""
+    ],
+    "bEnableTangentSeams": [
+      "bool",
+      2,
+      "tangent seam properties"
+    ],
+    "TangentSeamColor": [
+      "FColor",
+      2,
+      ""
+    ],
+    "TangentSeamThickness": [
+      "float32",
+      2,
+      ""
+    ],
+    "bEnableColorSeams": [
+      "bool",
+      2,
+      "color seam properties"
+    ],
+    "ColorSeamColor": [
+      "FColor",
+      2,
+      ""
+    ],
+    "ColorSeamThickness": [
+      "float32",
+      2,
+      ""
+    ]
+  },
+  "methods": []
+}

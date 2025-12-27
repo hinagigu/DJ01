@@ -1,0 +1,123 @@
+{
+  "name": "USynthSamplePlayer",
+  "inherits": "USynthComponent",
+  "properties": {
+    "OnSampleLoaded": [
+      "FOnSampleLoaded"
+    ],
+    "OnSamplePlaybackProgress": [
+      "FOnSamplePlaybackProgress"
+    ],
+    "SoundWave": [
+      "USoundWave"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCurrentPlaybackProgressPercent",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentPlaybackProgressTime",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSampleDuration",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLoaded",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SeekToTime",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeSec",
+          "type": "float32"
+        },
+        {
+          "name": "SeekType",
+          "type": "ESamplePlayerSeekType"
+        },
+        {
+          "name": "bWrap",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPitch",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPitch",
+          "type": "float32"
+        },
+        {
+          "name": "TimeSec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetScrubMode",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bScrubMode",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetScrubTimeWidth",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InScrubTimeWidthSec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSoundWave",
+      "return": "void",
+      "doc": "This will override the current sound wave if one is set, stop audio, and reload the new sound wave",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSoundWave",
+          "type": "USoundWave"
+        }
+      ]
+    }
+  ]
+}

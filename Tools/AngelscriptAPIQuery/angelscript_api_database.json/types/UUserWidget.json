@@ -1,0 +1,1702 @@
+{
+  "name": "UUserWidget",
+  "inherits": "UWidget",
+  "doc": "A widget that enables UI extensibility through WidgetBlueprint.",
+  "properties": {
+    "OnVisibilityChanged": [
+      "FOnVisibilityChangedEvent",
+      "Called when the visibility has changed"
+    ],
+    "PreviewBackground": [
+      "UTexture2D",
+      2,
+      "A preview background that you can use when designing the UI to get a sense of scale on the screen.  Use\na texture with a screenshot of your game in it, for example if you were designing a HUD."
+    ],
+    "TickFrequency": [
+      "EWidgetTickFrequency",
+      "This widget is allowed to tick. If this is unchecked tick will never be called, animations will not play correctly, and latent actions will not execute.\nUncheck this for performance reasons only"
+    ],
+    "DesiredFocusWidget": [
+      "FWidgetChild",
+      2,
+      ""
+    ],
+    "Priority": [
+      "int"
+    ],
+    "bStopAction": [
+      "bool"
+    ],
+    "ColorAndOpacity": [
+      "FLinearColor",
+      "The color and opacity of this widget.  Tints all child widgets."
+    ],
+    "ForegroundColor": [
+      "FSlateColor",
+      "The foreground color of the widget, this is inherited by sub widgets.  Any color property\nthat is marked as inherit will use this color."
+    ],
+    "Padding": [
+      "FMargin",
+      "The padding area around the content."
+    ],
+    "bIsFocusable": [
+      "bool",
+      "Setting this flag to true, allows this widget to accept focus when clicked, or when navigated to."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetPaletteCategory",
+      "return": "FText",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetPaletteCategory",
+      "return": "void",
+      "args": [
+        {
+          "name": "InPaletteCategory",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "GetRootWidget",
+      "return": "UWidget",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetRootWidget",
+      "return": "void",
+      "args": [
+        {
+          "name": "NewRootWidget",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "ConstructWidget",
+      "return": "UWidget",
+      "args": [
+        {
+          "name": "WidgetClass",
+          "type": "UClass"
+        },
+        {
+          "name": "WidgetName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveWidget",
+      "return": "bool",
+      "args": [
+        {
+          "name": "WidgetToRemove",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "GetAllWidgets",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "Widgets",
+          "type": "TArray<UWidget>&"
+        }
+      ]
+    },
+    {
+      "name": "AddExtension",
+      "return": "UUserWidgetExtension",
+      "doc": "Add the extension of the requested type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InExtensionType",
+          "type": "TSubclassOf<UUserWidgetExtension>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "AddToPlayerScreen",
+      "return": "bool",
+      "doc": "Adds the widget to the game's viewport in a section dedicated to the player.  This is valuable in a split screen\ngame where you need to only show a widget over a player's portion of the viewport.\n\n@param ZOrder The higher the number, the more on top this widget will be.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ZOrder",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "AddToViewport",
+      "return": "void",
+      "doc": "Adds it to the game's viewport and fills the entire screen, unless SetDesiredSizeInViewport is called\nto explicitly set the size.\n\n@param ZOrder The higher the number, the more on top this widget will be.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ZOrder",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "BindToAnimationEvent",
+      "return": "void",
+      "doc": "Allows binding to a specific animation's event.\n@param Animation the animation to listen for starting or finishing.\n@param Delegate the delegate to call when the animation's state changes\n@param AnimationEvent the event to watch for.\n@param UserTag Scopes the delegate to only be called when the animation completes with a specific tag set on it when it was played.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Animation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "Delegate",
+          "type": "FWidgetAnimationDynamicEvent"
+        },
+        {
+          "name": "AnimationEvent",
+          "type": "EWidgetAnimationEvent"
+        },
+        {
+          "name": "UserTag",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "BindToAnimationFinished",
+      "return": "void",
+      "doc": "Bind an animation finished delegate.\n@param Animation the animation to listen for starting or finishing.\n@param Delegate the delegate to call when the animation's state changes",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Animation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "Delegate",
+          "default": "FWidgetAnimationDynamicEvent ( )",
+          "type": "FWidgetAnimationDynamicEvent"
+        }
+      ]
+    },
+    {
+      "name": "BindToAnimationStarted",
+      "return": "void",
+      "doc": "Bind an animation started delegate.\n@param Animation the animation to listen for starting or finishing.\n@param Delegate the delegate to call when the animation's state changes",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Animation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "Delegate",
+          "default": "FWidgetAnimationDynamicEvent ( )",
+          "type": "FWidgetAnimationDynamicEvent"
+        }
+      ]
+    },
+    {
+      "name": "CancelLatentActions",
+      "return": "void",
+      "doc": "Cancels any pending Delays or timer callbacks for this widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Construct",
+      "return": "void",
+      "callable": false,
+      "doc": "Called after the underlying slate widget is constructed.  Depending on how the slate object is used\nthis event may be called multiple times due to adding and removing from the hierarchy.\nIf you need a true called-once-when-created event, use OnInitialized.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Destruct",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when a widget is no longer referenced causing the slate resource to destroyed.  Just like\nConstruct this event can be called multiple times.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FlushAnimations",
+      "return": "void",
+      "doc": "Flushes all animations on all widgets to guarantee that any queued updates are processed before this call returns",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAlignmentInViewport",
+      "return": "FVector2D",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAnchorsInViewport",
+      "return": "FAnchors",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAnimationCurrentTime",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current time of the animation in this widget\n\n@param The name of the animation to get the current time for\n@return the current time of the animation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "const UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "GetExtension",
+      "return": "UUserWidgetExtension",
+      "const": true,
+      "doc": "Find the first extension of the requested type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExtensionType",
+          "type": "TSubclassOf<UUserWidgetExtension>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetExtensions",
+      "return": "TArray<UUserWidgetExtension>",
+      "const": true,
+      "doc": "Find the extensions of the requested type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExtensionType",
+          "type": "TSubclassOf<UUserWidgetExtension>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetOwningPlayerCameraManager",
+      "return": "APlayerCameraManager",
+      "const": true,
+      "doc": "Gets the player camera manager associated with this UI.\n@return Gets the owning player camera manager that's owned by the player controller assigned to this widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningPlayerPawn",
+      "return": "APawn",
+      "const": true,
+      "doc": "Gets the player pawn associated with this UI.\n@return Gets the owning player pawn that's owned by the player controller assigned to this widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsAnimationPlaying",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets whether an animation is currently playing on this widget.\n\n@param InAnimation The animation to check the playback status of\n@return True if the animation is currently playing",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "const UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "IsAnimationPlayingForward",
+      "return": "bool",
+      "doc": "returns true if the animation is currently playing forward, false otherwise.\n\n@param InAnimation The playing animation that we want to know about",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "const UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "IsAnyAnimationPlaying",
+      "return": "bool",
+      "const": true,
+      "doc": "@return True if any animation is currently playing",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsInteractable",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "doc": "Gets a value indicating if the widget is interactive.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsListeningForInputAction",
+      "return": "bool",
+      "const": true,
+      "protected": true,
+      "doc": "Checks if the action has a registered callback with the input component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsPlayingAnimation",
+      "return": "bool",
+      "const": true,
+      "doc": "Are we currently playing any animations?",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ListenForInputAction",
+      "return": "void",
+      "protected": true,
+      "doc": "Listens for a particular Player Input Action by name.  This requires that those actions are being executed, and\nthat we're not currently in UI-Only Input Mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActionName",
+          "type": "FName"
+        },
+        {
+          "name": "EventType",
+          "type": "EInputEvent"
+        },
+        {
+          "name": "bConsume",
+          "type": "bool"
+        },
+        {
+          "name": "Callback",
+          "default": "FOnInputAction ( )",
+          "type": "FOnInputAction"
+        }
+      ]
+    },
+    {
+      "name": "OnAddedToFocusPath",
+      "return": "void",
+      "callable": false,
+      "doc": "If focus is gained on on this widget or on a child widget and this widget is added\nto the focus path, and wasn't previously part of it, this event is called.\n\n@param  InFocusEvent  FocusEvent",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFocusEvent",
+          "type": "FFocusEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnAnalogValueChanged",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called when an analog value changes on a button that supports analog\n\n@param MyGeometry The Geometry of the widget receiving the event\n@param  InAnalogInputEvent  Analog Event\n@return  Returns whether the event was handled, along with other possible actions",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InAnalogInputEvent",
+          "type": "FAnalogInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnAnimationFinished",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when an animation has either played all the way through or is stopped\n\n@param Animation The animation that has finished playing",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Animation",
+          "type": "const UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "OnAnimationStarted",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when an animation is started.\n\n@param Animation the animation that started",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Animation",
+          "type": "const UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "OnDragCancelled",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when the user cancels the drag operation, typically when they simply release the mouse button after\nbeginning a drag operation, but failing to complete the drag.\n\n@param  PointerEvent  Last mouse event from when the drag was canceled.\n@param  Operation     The drag operation that was canceled.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PointerEvent",
+          "type": "FPointerEvent"
+        },
+        {
+          "name": "Operation",
+          "type": "UDragDropOperation"
+        }
+      ]
+    },
+    {
+      "name": "OnDragDetected",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when Slate detects that a widget started to be dragged.\n\n@param  InMyGeometry  Widget geometry\n@param  PointerEvent  MouseMove that triggered the drag\n@param  Operation     The drag operation that was detected.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "PointerEvent",
+          "type": "FPointerEvent"
+        },
+        {
+          "name": "Operation",
+          "type": "UDragDropOperation&"
+        }
+      ]
+    },
+    {
+      "name": "OnDragEnter",
+      "return": "void",
+      "callable": false,
+      "doc": "Called during drag and drop when the drag enters the widget.\n\n@param MyGeometry     The geometry of the widget receiving the event.\n@param PointerEvent   The mouse event from when the drag entered the widget.\n@param Operation      The drag operation that entered the widget.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "PointerEvent",
+          "type": "FPointerEvent"
+        },
+        {
+          "name": "Operation",
+          "type": "UDragDropOperation"
+        }
+      ]
+    },
+    {
+      "name": "OnDragLeave",
+      "return": "void",
+      "callable": false,
+      "doc": "Called during drag and drop when the drag leaves the widget.\n\n@param PointerEvent   The mouse event from when the drag left the widget.\n@param Operation      The drag operation that entered the widget.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PointerEvent",
+          "type": "FPointerEvent"
+        },
+        {
+          "name": "Operation",
+          "type": "UDragDropOperation"
+        }
+      ]
+    },
+    {
+      "name": "OnDragOver",
+      "return": "bool",
+      "callable": false,
+      "doc": "Called during drag and drop when the the mouse is being dragged over a widget.\n\n@param MyGeometry     The geometry of the widget receiving the event.\n@param PointerEvent   The mouse event from when the drag occurred over the widget.\n@param Operation      The drag operation over the widget.\n\n@return 'true' to indicate that you handled the drag over operation.  Returning 'false' will cause the operation to continue to bubble up.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "PointerEvent",
+          "type": "FPointerEvent"
+        },
+        {
+          "name": "Operation",
+          "type": "UDragDropOperation"
+        }
+      ]
+    },
+    {
+      "name": "OnDrop",
+      "return": "bool",
+      "callable": false,
+      "doc": "Called when the user is dropping something onto a widget.  Ends the drag and drop operation, even if no widget handles this.\n\n@param MyGeometry     The geometry of the widget receiving the event.\n@param PointerEvent   The mouse event from when the drag occurred over the widget.\n@param Operation      The drag operation over the widget.\n\n@return 'true' to indicate you handled the drop operation.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "PointerEvent",
+          "type": "FPointerEvent"
+        },
+        {
+          "name": "Operation",
+          "type": "UDragDropOperation"
+        }
+      ]
+    },
+    {
+      "name": "OnFocusLost",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when this widget loses focus.  This event does not bubble.\n\n@param  InFocusEvent  FocusEvent",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFocusEvent",
+          "type": "FFocusEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnFocusReceived",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called when keyboard focus is given to this widget.  This event does not bubble.\n\n@param MyGeometry The Geometry of the widget receiving the event\n@param InFocusEvent  FocusEvent\n@return  Returns whether the event was handled, along with other possible actions",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InFocusEvent",
+          "type": "FFocusEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnInitialized",
+      "return": "void",
+      "callable": false,
+      "doc": "Called once only at game time on non-template instances.\nWhile Construct/Destruct pertain to the underlying Slate, this is called only once for the UUserWidget.\nIf you have one-time things to establish up-front (like binding callbacks to events on BindWidget properties), do so here.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnKeyChar",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called after a character is entered while this widget has focus\n\n@param MyGeometry The Geometry of the widget receiving the event\n@param  InCharacterEvent  Character event\n@return  Returns whether the event was handled, along with other possible actions",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InCharacterEvent",
+          "type": "FCharacterEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnKeyDown",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called after a key (keyboard, controller, ...) is pressed when this widget has focus (this event bubbles if not handled)\n\n@param MyGeometry The Geometry of the widget receiving the event\n@param  InKeyEvent  Key event\n@return  Returns whether the event was handled, along with other possible actions",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InKeyEvent",
+          "type": "FKeyEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnKeyUp",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called after a key (keyboard, controller, ...) is released when this widget has focus\n\n@param MyGeometry The Geometry of the widget receiving the event\n@param  InKeyEvent  Key event\n@return  Returns whether the event was handled, along with other possible actions",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InKeyEvent",
+          "type": "FKeyEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnMotionDetected",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called when motion is detected (controller or device)\ne.g. Someone tilts or shakes their controller.\n\n@param MyGeometry    The geometry of the widget receiving the event.\n@param MotionEvent   The motion event generated",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InMotionEvent",
+          "type": "FMotionEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnMouseButtonDoubleClick",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called when a mouse button is double clicked.  Override this in derived classes.\n\n@param  InMyGeometry  Widget geometry\n@param  InMouseEvent  Mouse button event\n@return  Returns whether the event was handled, along with other possible actions",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InMouseEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnMouseButtonDown",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "The system calls this method to notify the widget that a mouse button was pressed within it. This event is bubbled.\n\n@param MyGeometry The Geometry of the widget receiving the event\n@param MouseEvent Information about the input event\n@return Whether the event was handled along with possible requests for the system to take action.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "MouseEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnMouseButtonUp",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "The system calls this method to notify the widget that a mouse button was release within it. This event is bubbled.\n\n@param MyGeometry The Geometry of the widget receiving the event\n@param MouseEvent Information about the input event\n@return Whether the event was handled along with possible requests for the system to take action.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "MouseEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnMouseCaptureLost",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when mouse capture is lost if it was owned by this widget.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnMouseEnter",
+      "return": "void",
+      "callable": false,
+      "doc": "The system will use this event to notify a widget that the cursor has entered it. This event is NOT bubbled.\n\n@param MyGeometry The Geometry of the widget receiving the event\n@param MouseEvent Information about the input event",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "MouseEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnMouseLeave",
+      "return": "void",
+      "callable": false,
+      "doc": "The system will use this event to notify a widget that the cursor has left it. This event is NOT bubbled.\n\n@param MouseEvent Information about the input event",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MouseEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnMouseMove",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "The system calls this method to notify the widget that a mouse moved within it. This event is bubbled.\n\n@param MyGeometry The Geometry of the widget receiving the event\n@param MouseEvent Information about the input event\n@return Whether the event was handled along with possible requests for the system to take action.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "MouseEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnMouseWheel",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called when the mouse wheel is spun. This event is bubbled.\n\n@param  MouseEvent  Mouse event\n@return  Returns whether the event was handled, along with other possible actions",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "MouseEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnPaint",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FPaintContext&"
+        }
+      ]
+    },
+    {
+      "name": "OnPreviewKeyDown",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called after a key (keyboard, controller, ...) is pressed when this widget or a child of this widget has focus\nIf a widget handles this event, OnKeyDown will *not* be passed to the focused widget.\n\nThis event is primarily to allow parent widgets to consume an event before a child widget processes\nit and it should be used only when there is no better design alternative.\n\n@param MyGeometry The Geometry of the widget receiving the event\n@param  InKeyEvent  Key event\n@return  Returns whether the event was handled, along with other possible actions",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InKeyEvent",
+          "type": "FKeyEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnPreviewMouseButtonDown",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Just like OnMouseButtonDown, but tunnels instead of bubbling.\nIf this event is handled, OnMouseButtonDown will not be sent.\n\nUse this event sparingly as preview events generally make UIs more\ndifficult to reason about.\n\n@param MyGeometry The Geometry of the widget receiving the event\n@param MouseEvent Information about the input event\n@return Whether the event was handled along with possible requests for the system to take action.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "MouseEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnRemovedFromFocusPath",
+      "return": "void",
+      "callable": false,
+      "doc": "If focus is lost on on this widget or on a child widget and this widget is\nno longer part of the focus path.\n\n@param  InFocusEvent  FocusEvent",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFocusEvent",
+          "type": "FFocusEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnTouchEnded",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called when a touchpad touch is ended (finger lifted)\n\n@param MyGeometry    The geometry of the widget receiving the event.\n@param InTouchEvent  The touch event generated",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InTouchEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnTouchForceChanged",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called when a touchpad force has changed (user pressed down harder or let up)\n\n@param MyGeometry    The geometry of the widget receiving the event.\n@param InTouchEvent   The touch event generated",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InTouchEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnTouchGesture",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called when the user performs a gesture on trackpad. This event is bubbled.\n\n@param MyGeometry     The geometry of the widget receiving the event.\n@param  GestureEvent  gesture event\n@return  Returns whether the event was handled, along with other possible actions",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "GestureEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnTouchMoved",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called when a touchpad touch is moved  (finger moved)\n\n@param MyGeometry    The geometry of the widget receiving the event.\n@param InTouchEvent  The touch event generated",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InTouchEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "OnTouchStarted",
+      "return": "FEventReply",
+      "callable": false,
+      "doc": "Called when a touchpad touch is started (finger down)\n\n@param MyGeometry    The geometry of the widget receiving the event.\n@param InTouchEvent  The touch event generated",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InTouchEvent",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "PauseAnimation",
+      "return": "float32",
+      "doc": "Pauses an already running animation in this widget\n\n@param The name of the animation to pause\n@return the time point the animation was at when it was paused, relative to its start position.  Use this as the StartAtTime when you trigger PlayAnimation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "const UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "PlayAnimation",
+      "return": "UUMGSequencePlayer",
+      "doc": "Plays an animation in this widget a specified number of times\n\n@param InAnimation The animation to play\n@param StartAtTime The time in the animation from which to start playing, relative to the start position. For looped animations, this will only affect the first playback of the animation.\n@param NumLoopsToPlay The number of times to loop this animation (0 to loop indefinitely)\n@param PlaybackSpeed The speed at which the animation should play\n@param PlayMode Specifies the playback mode\n@param bRestoreState Restores widgets to their pre-animated state when the animation stops",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "StartAtTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "NumLoopsToPlay",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "PlayMode",
+          "default": "EUMGSequencePlayMode :: Forward",
+          "type": "EUMGSequencePlayMode"
+        },
+        {
+          "name": "PlaybackSpeed",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRestoreState",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PlayAnimationForward",
+      "return": "UUMGSequencePlayer",
+      "doc": "Plays an animation on this widget relative to it's current state forward.  You should use this version in situations where\nsay a user can click a button and that causes a panel to slide out, and you want to reverse that same animation to begin sliding\nin the opposite direction.\n\n@param InAnimation The animation to play\n@param PlayMode Specifies the playback mode\n@param PlaybackSpeed The speed at which the animation should play\n@param bRestoreState Restores widgets to their pre-animated state when the animation stops",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "PlaybackSpeed",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRestoreState",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PlayAnimationReverse",
+      "return": "UUMGSequencePlayer",
+      "doc": "Plays an animation on this widget relative to it's current state in reverse.  You should use this version in situations where\nsay a user can click a button and that causes a panel to slide out, and you want to reverse that same animation to begin sliding\nin the opposite direction.\n\n@param InAnimation The animation to play\n@param PlayMode Specifies the playback mode\n@param PlaybackSpeed The speed at which the animation should play\n@param bRestoreState Restores widgets to their pre-animated state when the animation stops",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "PlaybackSpeed",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRestoreState",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PlayAnimationTimeRange",
+      "return": "UUMGSequencePlayer",
+      "doc": "Plays an animation in this widget a specified number of times stopping at a specified time\n\n@param InAnimation The animation to play\n@param StartAtTime The time in the animation from which to start playing, relative to the start position. For looped animations, this will only affect the first playback of the animation.\n@param EndAtTime The absolute time in the animation where to stop, this is only considered in the last loop.\n@param NumLoopsToPlay The number of times to loop this animation (0 to loop indefinitely)\n@param PlayMode Specifies the playback mode\n@param PlaybackSpeed The speed at which the animation should play\n@param bRestoreState Restores widgets to their pre-animated state when the animation stops",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "StartAtTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "EndAtTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "NumLoopsToPlay",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "PlayMode",
+          "default": "EUMGSequencePlayMode :: Forward",
+          "type": "EUMGSequencePlayMode"
+        },
+        {
+          "name": "PlaybackSpeed",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRestoreState",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PreConstruct",
+      "return": "void",
+      "callable": false,
+      "doc": "Called by both the game and the editor.  Allows users to run initial setup for their widgets to better preview\nthe setup in the designer and since generally that same setup code is required at runtime, it's called there\nas well.\n\n**WARNING**\nThis is intended purely for cosmetic updates using locally owned data, you can not safely access any game related\nstate, if you call something that doesn't expect to be run at editor time, you may crash the editor.\n\nIn the event you save the asset with blueprint code that causes a crash on evaluation.  You can turn off\nPreConstruct evaluation in the Widget Designer settings in the Editor Preferences.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "IsDesignTime",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "QueuePauseAnimation",
+      "return": "float32",
+      "doc": "Pauses an already running animation in this widget\n\n@param The name of the animation to pause\n@return the time point the animation was at when it was paused, relative to its start position.  Use this as the StartAtTime when you trigger PlayAnimation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "const UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "QueuePlayAnimation",
+      "return": "void",
+      "doc": "Plays an animation in this widget a specified number of times\n\n@param InAnimation The animation to play\n@param StartAtTime The time in the animation from which to start playing, relative to the start position. For looped animations, this will only affect the first playback of the animation.\n@param NumLoopsToPlay The number of times to loop this animation (0 to loop indefinitely)\n@param PlaybackSpeed The speed at which the animation should play\n@param PlayMode Specifies the playback mode\n@param bRestoreState Restores widgets to their pre-animated state when the animation stops",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "StartAtTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "NumLoopsToPlay",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "PlayMode",
+          "default": "EUMGSequencePlayMode :: Forward",
+          "type": "EUMGSequencePlayMode"
+        },
+        {
+          "name": "PlaybackSpeed",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRestoreState",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "QueuePlayAnimationForward",
+      "return": "void",
+      "doc": "Plays an animation on this widget relative to it's current state forward.  You should use this version in situations where\nsay a user can click a button and that causes a panel to slide out, and you want to reverse that same animation to begin sliding\nin the opposite direction.\n\n@param InAnimation The animation to play\n@param PlayMode Specifies the playback mode\n@param PlaybackSpeed The speed at which the animation should play\n@param bRestoreState Restores widgets to their pre-animated state when the animation stops",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "PlaybackSpeed",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRestoreState",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "QueuePlayAnimationReverse",
+      "return": "void",
+      "doc": "Plays an animation on this widget relative to it's current state in reverse.  You should use this version in situations where\nsay a user can click a button and that causes a panel to slide out, and you want to reverse that same animation to begin sliding\nin the opposite direction.\n\n@param InAnimation The animation to play\n@param PlayMode Specifies the playback mode\n@param PlaybackSpeed The speed at which the animation should play\n@param bRestoreState Restores widgets to their pre-animated state when the animation stops",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "PlaybackSpeed",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRestoreState",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "QueuePlayAnimationTimeRange",
+      "return": "void",
+      "doc": "Plays an animation in this widget a specified number of times stopping at a specified time\n\n@param InAnimation The animation to play\n@param StartAtTime The time in the animation from which to start playing, relative to the start position. For looped animations, this will only affect the first playback of the animation.\n@param EndAtTime The absolute time in the animation where to stop, this is only considered in the last loop.\n@param NumLoopsToPlay The number of times to loop this animation (0 to loop indefinitely)\n@param PlayMode Specifies the playback mode\n@param PlaybackSpeed The speed at which the animation should play\n@param bRestoreState Restores widgets to their pre-animated state when the animation stops",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "StartAtTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "EndAtTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "NumLoopsToPlay",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "PlayMode",
+          "default": "EUMGSequencePlayMode :: Forward",
+          "type": "EUMGSequencePlayMode"
+        },
+        {
+          "name": "PlaybackSpeed",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bRestoreState",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "QueueStopAllAnimations",
+      "return": "void",
+      "doc": "Stop All actively running animations.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "QueueStopAnimation",
+      "return": "void",
+      "doc": "Stops an already running animation in this widget\n\n@param The name of the animation to stop",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "const UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "RegisterInputComponent",
+      "return": "void",
+      "protected": true,
+      "doc": "ListenForInputAction will automatically Register an Input Component with the player input system.\nIf you however, want to Pause and Resume, listening for a set of actions, the best way is to use\nUnregisterInputComponent to pause, and RegisterInputComponent to resume listening.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveExtension",
+      "return": "void",
+      "doc": "Remove the extension.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InExtension",
+          "type": "UUserWidgetExtension"
+        }
+      ]
+    },
+    {
+      "name": "RemoveExtensions",
+      "return": "void",
+      "doc": "Remove all extensions of the requested type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InExtensionType",
+          "type": "TSubclassOf<UUserWidgetExtension>"
+        }
+      ]
+    },
+    {
+      "name": "ReverseAnimation",
+      "return": "void",
+      "doc": "If an animation is playing, this function will reverse the playback.\n\n@param InAnimation The playing animation that we want to reverse",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "const UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "SetAlignmentInViewport",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Alignment",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetAnchorsInViewport",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Anchors",
+          "type": "FAnchors"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimationCurrentTime",
+      "return": "void",
+      "doc": "Sets the current time of the animation in this widget. Does not change state.\n\n@param The name of the animation to get the current time for\n@param The current time of the animation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "const UWidgetAnimation"
+        },
+        {
+          "name": "InTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetColorAndOpacity",
+      "return": "void",
+      "doc": "Sets the tint of the widget, this affects all child widgets.\n\n@param InColorAndOpacity     The tint to apply to all child widgets.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InColorAndOpacity",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetDesiredSizeInViewport",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Size",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetForegroundColor",
+      "return": "void",
+      "doc": "Sets the foreground color of the widget, this is inherited by sub widgets.  Any color property\nthat is marked as inherit will use this color.\n\n@param InForegroundColor     The foreground color.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InForegroundColor",
+          "type": "FSlateColor"
+        }
+      ]
+    },
+    {
+      "name": "SetInputActionBlocking",
+      "return": "void",
+      "protected": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bShouldBlock",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetInputActionPriority",
+      "return": "void",
+      "protected": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPriority",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetNumLoopsToPlay",
+      "return": "void",
+      "doc": "Changes the number of loops to play given a playing animation\n\n@param InAnimation The animation that is already playing\n@param NumLoopsToPlay The number of loops to play. (0 to loop indefinitely)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "const UWidgetAnimation"
+        },
+        {
+          "name": "NumLoopsToPlay",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetOwningPlayer",
+      "return": "void",
+      "doc": "Sets the local player associated with this UI via PlayerController reference.\n@param LocalPlayerController The PlayerController of the local player you want to be the conceptual owner of this UI.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LocalPlayerController",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "SetPadding",
+      "return": "void",
+      "doc": "Sets the padding for the user widget, putting a larger gap between the widget border and it's root widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPadding",
+          "type": "FMargin"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackSpeed",
+      "return": "void",
+      "doc": "Changes the playback rate of a playing animation\n\n@param InAnimation The animation that is already playing\n@param PlaybackRate Playback rate multiplier (1 is default)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "const UWidgetAnimation"
+        },
+        {
+          "name": "PlaybackSpeed",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPositionInViewport",
+      "return": "void",
+      "doc": "Sets the widgets position in the viewport.\n@param Position The 2D position to set the widget to in the viewport.\n@param bRemoveDPIScale If you've already calculated inverse DPI, set this to false.\nOtherwise inverse DPI is applied to the position so that when the location is scaled\nby DPI, it ends up in the expected position.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bRemoveDPIScale",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StopAllAnimations",
+      "return": "void",
+      "doc": "Stop All actively running animations.\n\n@param The name of the animation to stop",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopAnimation",
+      "return": "void",
+      "doc": "Stops an already running animation in this widget\n\n@param The name of the animation to stop",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimation",
+          "type": "const UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "StopAnimationsAndLatentActions",
+      "return": "void",
+      "doc": "Cancels any pending Delays or timer callbacks for this widget, and stops all active animations on the widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopListeningForAllInputActions",
+      "return": "void",
+      "protected": true,
+      "doc": "Stops listening to all input actions, and unregisters the input component with the player controller.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopListeningForInputAction",
+      "return": "void",
+      "protected": true,
+      "doc": "Removes the binding for a particular action's callback.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActionName",
+          "type": "FName"
+        },
+        {
+          "name": "EventType",
+          "type": "EInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "Tick",
+      "return": "void",
+      "callable": false,
+      "doc": "Ticks this widget.  Override in derived classes, but always call the parent implementation.\n\n@param  MyGeometry The space allotted for this widget\n@param  InDeltaTime  Real time passed since last tick",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MyGeometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "InDeltaTime",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "UnbindAllFromAnimationFinished",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Animation",
+          "type": "UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "UnbindAllFromAnimationStarted",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Animation",
+          "type": "UWidgetAnimation"
+        }
+      ]
+    },
+    {
+      "name": "UnbindFromAnimationFinished",
+      "return": "void",
+      "doc": "Unbind an animation finished delegate.\n@param Animation the animation to listen for starting or finishing.\n@param Delegate the delegate to call when the animation's state changes",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Animation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "Delegate",
+          "default": "FWidgetAnimationDynamicEvent ( )",
+          "type": "FWidgetAnimationDynamicEvent"
+        }
+      ]
+    },
+    {
+      "name": "UnbindFromAnimationStarted",
+      "return": "void",
+      "doc": "Unbind an animation started delegate.\n@param Animation the animation to listen for starting or finishing.\n@param Delegate the delegate to call when the animation's state changes",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Animation",
+          "type": "UWidgetAnimation"
+        },
+        {
+          "name": "Delegate",
+          "default": "FWidgetAnimationDynamicEvent ( )",
+          "type": "FWidgetAnimationDynamicEvent"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterInputComponent",
+      "return": "void",
+      "protected": true,
+      "doc": "StopListeningForAllInputActions will automatically Register an Input Component with the player input system.\nIf you however, want to Pause and Resume, listening for a set of actions, the best way is to use\nUnregisterInputComponent to pause, and RegisterInputComponent to resume listening.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

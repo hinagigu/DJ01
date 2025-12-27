@@ -1,0 +1,112 @@
+{
+  "name": "ADebugCameraController",
+  "inherits": "APlayerController",
+  "doc": "Camera controller that allows you to fly around a level mostly unrestricted by normal movement rules.\n\nTo turn it on, please press Alt+C or both (left and right) analogs on XBox pad,\nor use the \"ToggleDebugCamera\" console command. Check the debug camera bindings\nin DefaultPawn.cpp for the camera controls.",
+  "properties": {
+    "SpeedScale": [
+      "float32",
+      "Allows control over the speed of the spectator pawn. This scales the speed based on the InitialMaxSpeed. Use Set Pawn Movement Speed Scale during runtime"
+    ],
+    "InitialMaxSpeed": [
+      "float32",
+      "Initial max speed of the spectator pawn when we start possession."
+    ],
+    "InitialAccel": [
+      "float32",
+      "Initial acceleration of the spectator pawn when we start possession."
+    ],
+    "InitialDecel": [
+      "float32",
+      "Initial deceleration of the spectator pawn when we start possession."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetSelectedActor",
+      "return": "AActor",
+      "const": true,
+      "doc": "Returns the currently selected actor, or null if it is invalid or not set",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnActivate",
+      "return": "void",
+      "callable": false,
+      "doc": "Function called on activation of debug camera controller.\n@param OriginalPC The active player controller before this debug camera controller was possessed by the player.",
+      "event": true,
+      "unrealname": "ReceiveOnActivate",
+      "meta": null,
+      "args": [
+        {
+          "name": "OriginalPC",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "OnActorSelected",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when an actor has been selected with the primary key (e.g. left mouse button).\n\nThe selection trace starts from the center of the debug camera's view.\n\n@param SelectHitLocation The exact world-space location where the selection trace hit the New Selected Actor.\n@param SelectHitNormal The world-space surface normal of the New Selected Actor at the hit location.",
+      "event": true,
+      "unrealname": "ReceiveOnActorSelected",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewSelectedActor",
+          "type": "AActor"
+        },
+        {
+          "name": "SelectHitLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "SelectHitNormal",
+          "type": "FVector"
+        },
+        {
+          "name": "Hit",
+          "type": "FHitResult"
+        }
+      ]
+    },
+    {
+      "name": "OnDeactivate",
+      "return": "void",
+      "callable": false,
+      "doc": "Function called on deactivation of debug camera controller.\n@param RestoredPC The Player Controller that the player input is being returned to.",
+      "event": true,
+      "unrealname": "ReceiveOnDeactivate",
+      "meta": null,
+      "args": [
+        {
+          "name": "RestoredPC",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "SetPawnMovementSpeedScale",
+      "return": "void",
+      "doc": "Sets the pawn movement speed scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewSpeedScale",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ToggleDisplay",
+      "return": "void",
+      "doc": "Toggles the display of debug info and input commands for the Debug Camera.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "name": "__USharedImageConstRefBlueprintFns",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetHeight",
+      "return": "int",
+      "doc": "Returns -1 if Image is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Image",
+          "type": "FSharedImageConstRefBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "GetPixelLinearColor",
+      "return": "FLinearColor",
+      "doc": "Returns the color value for the given pixel. If the input position is invalid, the format is invalid,\nor the reference isn't set, bValid will be false and the function will return FailureColor. The color\nis converted using the image's gamma space in to linear space.\n\nDo not use this for full image processing as it will be extremely slow, contact support if you need such\nfunctionality.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Image",
+          "type": "FSharedImageConstRefBlueprint"
+        },
+        {
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Y",
+          "type": "int"
+        },
+        {
+          "name": "bValid",
+          "type": "bool&"
+        },
+        {
+          "name": "FailureColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 0.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "GetPixelValue",
+      "return": "FVector4f",
+      "doc": "Returns the value in the texture for the given pixel as a float vector. If the input position is invalid, the format is invalid,\nor the reference isn't set, bValid will be false and the function will return FVector4(0,0,0,0).\n\nPixel values are directly returned with no gamma transformation to allow for lookup tables. Also note that\n8 bit formats that you might normally expect to be normalized to 0..1 will return their values directly as 0..256.\n\nThis supports all image formats.\n\nG8 is replicated to X/Y/Z/1.\nR16/R32 is returned as R/0/0/1.\n\nDo not use this for full image processing as it will be extremely slow, contact support if you need such\nfunctionality.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Image",
+          "type": "FSharedImageConstRefBlueprint"
+        },
+        {
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Y",
+          "type": "int"
+        },
+        {
+          "name": "bValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetSize",
+      "return": "FVector2f",
+      "doc": "Returns (-1, -1) if Image is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Image",
+          "type": "FSharedImageConstRefBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "GetWidth",
+      "return": "int",
+      "doc": "Returns -1 if Image is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Image",
+          "type": "FSharedImageConstRefBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Image",
+          "type": "FSharedImageConstRefBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

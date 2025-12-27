@@ -1,0 +1,47 @@
+{
+  "name": "UCurveSourceInterface",
+  "inherits": "UInterface",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetBindingName",
+      "return": "FName",
+      "const": true,
+      "callable": false,
+      "doc": "Get the name that this curve source can be bound to by.\nClients of this curve source will use this name to identify this source.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurves",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "doc": "Evaluate all curves that this source provides",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<FNamedCurveValue>&"
+        }
+      ]
+    },
+    {
+      "name": "GetCurveValue",
+      "return": "float32",
+      "const": true,
+      "callable": false,
+      "doc": "Get the value for a specified curve",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CurveName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

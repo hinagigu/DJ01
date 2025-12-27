@@ -1,0 +1,3063 @@
+{
+  "name": "URigHierarchy",
+  "inherits": "UObject",
+  "properties": {
+    "ModifiedEvent": [
+      "FRigHierarchyModifiedDynamicEvent",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "Contains",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the provided element key is valid\n@param InKey The key to validate\n@return Returns true if the provided element key is valid",
+      "ufunction": true,
+      "unrealname": "Contains_ForBlueprint",
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "CopyHierarchy",
+      "return": "void",
+      "doc": "Copies the contents of a hierarchy onto this one",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHierarchy",
+          "type": "URigHierarchy"
+        }
+      ]
+    },
+    {
+      "name": "CopyPose",
+      "return": "void",
+      "doc": "Copies the contents of a hierarchy onto this one",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHierarchy",
+          "type": "URigHierarchy"
+        },
+        {
+          "name": "bCurrent",
+          "type": "bool"
+        },
+        {
+          "name": "bInitial",
+          "type": "bool"
+        },
+        {
+          "name": "bWeights",
+          "type": "bool"
+        },
+        {
+          "name": "bMatchPoseInGlobalIfNeeded",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "FindBone",
+      "return": "FRigBoneElement",
+      "const": true,
+      "doc": "Returns bone element for a given key, for scripting purpose only, for cpp usage, use Find<FRigBoneElement>()\n@param InKey The key of the bone element to retrieve.",
+      "ufunction": true,
+      "unrealname": "FindBone_ForBlueprintOnly",
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "FindControl",
+      "return": "FRigControlElement",
+      "const": true,
+      "doc": "Returns control element for a given key, for scripting purpose only, for cpp usage, use Find<FRigControlElement>()\n@param InKey The key of the control element to retrieve.",
+      "ufunction": true,
+      "unrealname": "FindControl_ForBlueprintOnly",
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "FindNull",
+      "return": "FRigNullElement",
+      "const": true,
+      "doc": "Returns null element for a given key, for scripting purpose only, for cpp usage, use Find<FRigControlElement>()\n@param InKey The key of the null element to retrieve.",
+      "ufunction": true,
+      "unrealname": "FindNull_ForBlueprintOnly",
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetAllKeys",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns all element keys of this hierarchy\n@param bTraverse If set to true the keys will be returned by depth first traversal\n@return The keys of all elements",
+      "ufunction": true,
+      "unrealname": "GetAllKeys_ForBlueprint",
+      "meta": null,
+      "args": [
+        {
+          "name": "bTraverse",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetBones",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns all Bone elements\n@param bTraverse Returns the elements in order of a depth first traversal",
+      "ufunction": true,
+      "unrealname": "GetBoneKeys",
+      "meta": null,
+      "args": [
+        {
+          "name": "bTraverse",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetBoolArrayMetadata",
+      "return": "TArray<bool>",
+      "const": true,
+      "doc": "Queries and returns the value of bool array metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetBoolMetadata",
+      "return": "bool",
+      "const": true,
+      "doc": "Queries and returns the value of bool metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query\n@param DefaultValue The default value to fall back on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetChildren",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns the child elements of a given element key\n@param InKey The key of the element to retrieve the children for\n@param bRecursive If set to true grand-children will also be returned etc\n@return Returns the child elements",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetConnectors",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns all Connector elements\n@param bTraverse Returns the elements in order of a depth first traversal",
+      "ufunction": true,
+      "unrealname": "GetConnectorKeys",
+      "meta": null,
+      "args": [
+        {
+          "name": "bTraverse",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetConnectorStates",
+      "return": "TArray<FRigConnectorState>",
+      "const": true,
+      "doc": "Returns all of the connectors' state",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetControls",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns all Control elements\n@param bTraverse Returns the elements in order of a depth first traversal",
+      "ufunction": true,
+      "unrealname": "GetControlKeys",
+      "meta": null,
+      "args": [
+        {
+          "name": "bTraverse",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetController",
+      "return": "URigHierarchyController",
+      "doc": "Returns a controller for this hierarchy.\nNote: If the controller is not available this will return nullptr\neven if the bCreateIfNeeded flag is set to true. You can check the\ncontroller's availability with IsControllerAvailable().\n@param bCreateIfNeeded Creates a controller if needed\n@return The Controller for this hierarchy",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bCreateIfNeeded",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetControlPreferredEulerAngles",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns a control's preferred euler angles (local transform rotation)\n@param InKey The key of the element to retrieve the current value for\n@param InRotationOrder The rotation order to use when retrieving the euler angles\n@param bInitial If true we'll return the preferred euler angles for the initial - otherwise current transform\n@return Returns the current preferred euler angles",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InRotationOrder",
+          "type": "EEulerRotationOrder"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetControlPreferredEulerAnglesByIndex",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns a control's preferred euler angles (local transform rotation)\n@param InElementIndex The element index to look up\n@param InRotationOrder The rotation order to use when retrieving the euler angles\n@param bInitial If true we'll return the preferred euler angles for the initial - otherwise current transform\n@return Returns the current preferred euler angles",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InRotationOrder",
+          "type": "EEulerRotationOrder"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetControlPreferredEulerRotationOrder",
+      "return": "EEulerRotationOrder",
+      "const": true,
+      "doc": "Returns a control's preferred euler rotation order\n@param InKey The key of the element to retrieve the current value for\n@param bFromSettings If true the rotation order will be looked up from the control's settings, otherwise from the currently set animation value\n@return Returns the current preferred euler rotation order",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bFromSettings",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetControlPreferredEulerRotationOrderByIndex",
+      "return": "EEulerRotationOrder",
+      "const": true,
+      "doc": "Returns a control's preferred euler rotation order\n@param InElementIndex The element index to look up\n@param bFromSettings If true the rotation order will be looked up from the control's settings, otherwise from the currently set animation value\n@return Returns the current preferred euler rotation order",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "bFromSettings",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetControlPreferredRotator",
+      "return": "FRotator",
+      "const": true,
+      "doc": "Returns a control's preferred rotator (local transform rotation)\n@param InKey The key of the element to retrieve the current value for\n@param bInitial If true we'll return the preferred rotator for the initial - otherwise current transform\n@return Returns the current preferred rotator",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetControlPreferredRotatorByIndex",
+      "return": "FRotator",
+      "const": true,
+      "doc": "Returns a control's preferred rotator (local transform rotation)\n@param InElementIndex The element index to look up\n@param bInitial If true we'll return the preferred rotator for the initial - otherwise current transform\n@return Returns the current preferred rotator",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetControlValue",
+      "return": "FRigControlValue",
+      "const": true,
+      "doc": "Returns a control's current value given its key\n@param InKey The key of the element to retrieve the current value for\n@param InValueType The type of value to return\n@return Returns the current value of the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InValueType",
+          "default": "ERigControlValueType :: Current",
+          "type": "ERigControlValueType"
+        }
+      ]
+    },
+    {
+      "name": "GetControlValueByIndex",
+      "return": "FRigControlValue",
+      "const": true,
+      "doc": "Returns a control's current value given its index\n@param InElementIndex The index of the element to retrieve the current value for\n@param InValueType The type of value to return\n@return Returns the current value of the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InValueType",
+          "default": "ERigControlValueType :: Current",
+          "type": "ERigControlValueType"
+        }
+      ]
+    },
+    {
+      "name": "GetCurves",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns all Curve elements",
+      "ufunction": true,
+      "unrealname": "GetCurveKeys",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurveValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns a curve's value given its key\n@param InKey The key of the element to retrieve the value for\n@return Returns the value of the curve",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetCurveValueByIndex",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns a curve's value given its index\n@param InElementIndex The index of the element to retrieve the value for\n@return Returns the value of the curve",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetDefaultParent",
+      "return": "FRigElementKey",
+      "const": true,
+      "doc": "Returns the default parent element's key of a given child key\n@param InKey The key of the element to retrieve the parent for\n@return Returns the default parent element key",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetFirstParent",
+      "return": "FRigElementKey",
+      "const": true,
+      "doc": "Returns the first parent element of a given element key\n@param InKey The key of the element to retrieve the parents for\n@return Returns the first parent element",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetFloatArrayMetadata",
+      "return": "TArray<float32>",
+      "const": true,
+      "doc": "Queries and returns the value of float array metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetFloatMetadata",
+      "return": "float32",
+      "const": true,
+      "doc": "Queries and returns the value of float metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query\n@param DefaultValue The default value to fall back on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetGlobalControlOffsetTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the global offset transform for a given control element.\n@param InKey The key of the control to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The global offset transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetGlobalControlOffsetTransformByIndex",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the global offset transform for a given control element.\n@param InElementIndex The index of the control to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The global offset transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetGlobalControlShapeTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the global shape transform for a given control element.\n@param InKey The key of the control to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The global shape transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetGlobalControlShapeTransformByIndex",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the global shape transform for a given control element.\n@param InElementIndex The index of the control to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The global shape transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetGlobalTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the global current or initial value for a given key.\nIf the key is invalid FTransform::Identity will be returned.\n@param InKey The key to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The global current or initial transform's value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetGlobalTransformByIndex",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the global current or initial value for a element index.\nIf the index is invalid FTransform::Identity will be returned.\n@param InElementIndex The index to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The global current or initial transform's value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the index of an element given its key\n@param InKey The key of the element to retrieve the index for\n@return The index of the element or INDEX_NONE",
+      "ufunction": true,
+      "unrealname": "GetIndex_ForBlueprint",
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetInt32ArrayMetadata",
+      "return": "TArray<int>",
+      "const": true,
+      "doc": "Queries and returns the value of int32 array metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetInt32Metadata",
+      "return": "int",
+      "const": true,
+      "doc": "Queries and returns the value of int32 metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query\n@param DefaultValue The default value to fall back on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetKey",
+      "return": "FRigElementKey",
+      "const": true,
+      "doc": "Returns the key of an element given its index\n@param InElementIndex The index of the element to retrieve the key for\n@return The key of an element given its index",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetKeys",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns the keys of an array of indices\n@param InElementIndices The indices to retrieve the keys for\n@return The keys of the elements given the indices",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndices",
+          "type": "TArray<int>"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearColorArrayMetadata",
+      "return": "TArray<FLinearColor>",
+      "const": true,
+      "doc": "Queries and returns the value of FLinearColor array metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearColorMetadata",
+      "return": "FLinearColor",
+      "const": true,
+      "doc": "Queries and returns the value of FLinearColor metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query\n@param DefaultValue The default value to fall back on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlShapeTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the local shape transform for a given control element.\n@param InKey The key of the control to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The local shape transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlShapeTransformByIndex",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the local shape transform for a given control element.\n@param InElementIndex The index of the control to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The local shape transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the index of an element given its key within its default parent (or root)\n@param InKey The key of the element to retrieve the index for\n@return The index of the element or INDEX_NONE",
+      "ufunction": true,
+      "unrealname": "GetLocalIndex_ForBlueprint",
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the local current or initial value for a given key.\nIf the key is invalid FTransform::Identity will be returned.\n@param InKey The key to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The local current or initial transform's value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalTransformByIndex",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the local current or initial value for a element index.\nIf the index is invalid FTransform::Identity will be returned.\n@param InElementIndex The index to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The local current or initial transform's value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetMetadataNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Returns the name of metadata for a given element\n@param InItem The element key to return the metadata keys for",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetMetadataType",
+      "return": "ERigMetadataType",
+      "const": true,
+      "doc": "Returns the type of metadata given its name the item it is stored under\n@param InItem The element key to return the metadata type for\n@param InMetadataName The name of the metadata to return the type for",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetModulePath",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the path of the module an element belong to (or an empty string in case the element doesn't belong to a module)\n@return The path the element belongs to (or empty string)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetModulePathFName",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns the path of the module an element belong to (or NAME_None in case the element doesn't belong to a module)\n@return The path the element belongs to (or NAME_None)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetNameArrayMetadata",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Queries and returns the value of FName array metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetNameMetadata",
+      "return": "FName",
+      "const": true,
+      "doc": "Queries and returns the value of FName metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query\n@param DefaultValue The default value to fall back on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetNameSpace",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the namespace of an element belong to (or an empty string in case the element doesn't belong to a module / namespace)\n@return The namespace the element belongs to (or empty string)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetNameSpaceFName",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns the namespace of an element belong to (or NAME_None in case the element doesn't belong to a module / namespace)\n@return The namespace the element belongs to (or NAME_None)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetNulls",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns all Null elements\n@param bTraverse Returns the elements in order of a depth first traversal",
+      "ufunction": true,
+      "unrealname": "GetNullKeys",
+      "meta": null,
+      "args": [
+        {
+          "name": "bTraverse",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetNumberOfParents",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of parents of an element\n@param InKey The key of the element to retrieve the number of parents for\n@return Returns the number of parents of an element",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetParents",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns the parent elements of a given element key\n@param InKey The key of the element to retrieve the parents for\n@param bRecursive If set to true parents of parents will also be returned\n@return Returns the parent elements",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetParentTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the global current or initial value for a given key.\nIf the element does not have a parent FTransform::Identity will be returned.\n@param InKey The key of the element to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The element's parent's global current or initial transform's value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetParentTransformByIndex",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the global current or initial value for a given element index.\nIf the element does not have a parent FTransform::Identity will be returned.\n@param InElementIndex The index of the element to retrieve the transform for\n@param bInitial If true the initial transform will be used\n@return The element's parent's global current or initial transform's value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetParentWeight",
+      "return": "FRigElementWeight",
+      "const": true,
+      "doc": "Returns the weight of a parent below a multi parent element\n@param InChild The key of the multi parented element\n@param InParent The key of the parent to look up the weight for\n@param bInitial If true the initial weights will be used\n@return Returns the weight of a parent below a multi parent element, or FLT_MAX if the parent is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetParentWeightArray",
+      "return": "TArray<FRigElementWeight>",
+      "const": true,
+      "doc": "Returns the weights of all parents below a multi parent element\n@param InChild The key of the multi parented element\n@param bInitial If true the initial weights will be used\n@return Returns the weight of a parent below a multi parent element, or FLT_MAX if the parent is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetPose",
+      "return": "FRigPose",
+      "const": true,
+      "doc": "Returns the current / initial pose of the hierarchy\n@param bInitial If set to true the initial pose will be returned\n@return The pose of the hierarchy\n@param bIncludeTransientControls If true the transient controls will be included in the pose",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bIncludeTransientControls",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetPreviousName",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns the previous name of an element prior to a rename operation\n@param InKey The key of the element to request the old name for",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetPreviousParent",
+      "return": "FRigElementKey",
+      "const": true,
+      "doc": "Returns the previous parent of an element prior to a reparent operation\n@param InKey The key of the element to request the old parent  for",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetQuatArrayMetadata",
+      "return": "TArray<FQuat>",
+      "const": true,
+      "doc": "Queries and returns the value of FQuat array metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetQuatMetadata",
+      "return": "FQuat",
+      "const": true,
+      "doc": "Queries and returns the value of FQuat metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query\n@param DefaultValue The default value to fall back on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "GetReferences",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns all references\n@param bTraverse Returns the elements in order of a depth first traversal",
+      "ufunction": true,
+      "unrealname": "GetReferenceKeys",
+      "meta": null,
+      "args": [
+        {
+          "name": "bTraverse",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetRigElementKeyArrayMetadata",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Queries and returns the value of FRigElementKey array metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetRigElementKeyMetadata",
+      "return": "FRigElementKey",
+      "const": true,
+      "doc": "Queries and returns the value of FRigElementKey metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query\n@param DefaultValue The default value to fall back on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetRigidBodies",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns all RigidBody elements\n@param bTraverse Returns the elements in order of a depth first traversal",
+      "ufunction": true,
+      "unrealname": "GetRigidBodyKeys",
+      "meta": null,
+      "args": [
+        {
+          "name": "bTraverse",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetRootElements",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns all root element keys",
+      "ufunction": true,
+      "unrealname": "GetRootElementKeys",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRotatorArrayMetadata",
+      "return": "TArray<FRotator>",
+      "const": true,
+      "doc": "Queries and returns the value of FRotator array metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetRotatorMetadata",
+      "return": "FRotator",
+      "const": true,
+      "doc": "Queries and returns the value of FRotator metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query\n@param DefaultValue The default value to fall back on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "GetRuleManager",
+      "return": "UModularRigRuleManager",
+      "doc": "Returns a rule manager for this hierarchy\nNote: If the manager is not available this will return nullptr\neven if the bCreateIfNeeded flag is set to true.\n@param bCreateIfNeeded Creates a controller if needed\n@return The Controller for this hierarchy",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bCreateIfNeeded",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectedKeys",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns the keys of selected elements\n@InTypeFilter The types to retrieve the selection for\n@return An array of the currently selected elements",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTypeFilter",
+          "default": "ERigElementType :: All",
+          "type": "ERigElementType"
+        }
+      ]
+    },
+    {
+      "name": "GetSockets",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Returns all Socket elements\n@param bTraverse Returns the elements in order of a depth first traversal",
+      "ufunction": true,
+      "unrealname": "GetSocketKeys",
+      "meta": null,
+      "args": [
+        {
+          "name": "bTraverse",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetSocketStates",
+      "return": "TArray<FRigSocketState>",
+      "const": true,
+      "doc": "Returns all of the sockets' state",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTags",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "* Returns the tags for a given item\n* @param InItem The item to return the tags for",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "GetTransformArrayMetadata",
+      "return": "TArray<FTransform>",
+      "const": true,
+      "doc": "Queries and returns the value of FTransform array metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetTransformMetadata",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Queries and returns the value of FTransform metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query\n@param DefaultValue The default value to fall back on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "GetVectorArrayMetadata",
+      "return": "TArray<FVector>",
+      "const": true,
+      "doc": "Queries and returns the value of FVector array metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetVectorMetadata",
+      "return": "FVector",
+      "const": true,
+      "doc": "Queries and returns the value of FVector metadata\n@param InItem The element key to return the metadata for\n@param InMetadataName The name of the metadata to query\n@param DefaultValue The default value to fall back on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "HasTag",
+      "return": "bool",
+      "const": true,
+      "doc": "* Returns true if a given item has a certain tag\n* @param InItem The item to return the tags for\n* @param InTag The tag to check",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTag",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsControllerAvailable",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the hierarchy controller is currently available\nThe controller may not be available during certain events.\nIf the controller is not available then GetController() will return nullptr.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsCurveValueSet",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether a curve's value is set, given its key\n@param InKey The key of the element to retrieve the value for\n@return Returns true if the value is set, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "IsCurveValueSetByIndex",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns a curve's value given its index\n@param InElementIndex The index of the element to retrieve the value for\n@return Returns true if the value is set, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "IsParentedTo",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if an element is parented to another element\n@param InChild The key of the child element to check for a parent\n@param InParent The key of the parent element to check for\n@return True if the given parent and given child have a parent-child relationship",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "IsProcedural",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the provided element is procedural.\n@param InKey The key to validate\n@return Returns true if the element is procedural",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "IsSelected",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if a given element is selected\n@param InKey The key to check\n@return true if a given element is selected",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "IsSelectedByIndex",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if a given element is selected\n@param InIndex The index to check\n@return true if a given element is selected",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "IsValidIndex",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the provided element index is valid\n@param InElementIndex The index to validate\n@return Returns true if the provided element index is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Num",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of elements in the Hierarchy.\n@return The number of elements in the Hierarchy",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveAllMetadata",
+      "return": "bool",
+      "doc": "Removes all of the metadata under a given item\n@param InItem The element key to search under",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "RemoveMetadata",
+      "return": "bool",
+      "doc": "Removes the metadata under a given element\n@param InItem The element key to search under\n@param InMetadataName The name of the metadata to remove",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "doc": "Clears the whole hierarchy and removes all elements.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResetCurveValues",
+      "return": "void",
+      "doc": "Resets all curves to 0.0",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResetPoseToInitial",
+      "return": "void",
+      "doc": "Resets the current pose of a filtered list of elements to the initial / ref pose.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTypeFilter",
+          "type": "ERigElementType"
+        }
+      ]
+    },
+    {
+      "name": "ResetToDefault",
+      "return": "void",
+      "doc": "Resets the hierarchy to the state of its default. This refers to the\nhierarchy on the default object.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RestoreConnectorsFromStates",
+      "return": "TArray<FRigElementKey>",
+      "doc": "Try to restore the connectors from the state structs",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStates",
+          "type": "TArray<FRigConnectorState>"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RestoreSocketsFromStates",
+      "return": "TArray<FRigElementKey>",
+      "doc": "Try to restore the sockets from the state structs",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStates",
+          "type": "TArray<FRigSocketState>"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SendAutoKeyEvent",
+      "return": "void",
+      "doc": "Sends an autokey event from the hierarchy to the world\n@param InElement The element to send the autokey for\n@param InOffsetInSeconds The time offset in seconds\n@param bAsynchronous If set to true the event will go on a thread safe queue",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElement",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InOffsetInSeconds",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bAsynchronous",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetBoolArrayMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a bool array value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "TArray<bool>"
+        }
+      ]
+    },
+    {
+      "name": "SetBoolMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a bool value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetConnectorSettings",
+      "return": "void",
+      "doc": "Sets the connector settings for a given connector element by key\n@param InKey The key of the connector element to set the settings for\n@param InSettings The new connector settings value to set\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigConnectorSettings"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bForce",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetConnectorSettingsByIndex",
+      "return": "void",
+      "doc": "Sets the connector settings for a given connector element by index\n@param InElementIndex The index of the connector element to set the settings for\n@param InSettings The new connector settings value to set\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigConnectorSettings"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bForce",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlOffsetTransform",
+      "return": "void",
+      "doc": "Sets the offset transform for a given control element by key\n@param InKey The key of the control element to set the offset transform for\n@param InTransform The new offset transform value to set\n@param bInitial If true the initial value will be used\n@param bAffectChildren If set to false children will not move (maintain global).\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectChildren",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlOffsetTransformByIndex",
+      "return": "void",
+      "doc": "Sets the local offset transform for a given control element by index\n@param InElementIndex The index of the control element to set the offset transform for\n@param InTransform The new local offset transform value to set\n@param bInitial If true the initial value will be used\n@param bAffectChildren If set to false children will not move (maintain global).\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectChildren",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlPreferredEulerAngles",
+      "return": "void",
+      "doc": "Sets a control's preferred euler angles (local transform rotation)\n@param InKey The key of the element to retrieve the current value for\n@param InEulerAngles The new preferred euler angles to set\n@param InRotationOrder The rotation order to use when setting the euler angles\n@param bInitial If true we'll return the preferred euler angles for the initial - otherwise current transform\n@param bFixEulerFlips If true the new euler angles value will use the shortest path",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InEulerAngles",
+          "type": "FVector"
+        },
+        {
+          "name": "InRotationOrder",
+          "type": "EEulerRotationOrder"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bFixEulerFlips",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlPreferredEulerAnglesByIndex",
+      "return": "void",
+      "doc": "Sets a control's preferred euler angles (local transform rotation)\n@param InElementIndex The element index to look up\n@param InEulerAngles The new preferred euler angles to set\n@param InRotationOrder The rotation order to use when setting the euler angles\n@param bInitial If true we'll return the preferred euler angles for the initial - otherwise current transform\n@param bFixEulerFlips If true the new euler angles value will use the shortest path",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InEulerAngles",
+          "type": "FVector"
+        },
+        {
+          "name": "InRotationOrder",
+          "type": "EEulerRotationOrder"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bFixEulerFlips",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlPreferredRotationOrder",
+      "return": "void",
+      "doc": "Sets a control's preferred euler rotation order\n@param InKey The key of the element to retrieve the current value for\n@param InRotationOrder The rotation order to use when setting the euler angles",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InRotationOrder",
+          "type": "EEulerRotationOrder"
+        }
+      ]
+    },
+    {
+      "name": "SetControlPreferredRotationOrderByIndex",
+      "return": "void",
+      "doc": "Sets a control's preferred euler rotation order\n@param InElementIndex The element index to look up\n@param InRotationOrder The rotation order to use when setting the euler angles",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InRotationOrder",
+          "type": "EEulerRotationOrder"
+        }
+      ]
+    },
+    {
+      "name": "SetControlPreferredRotator",
+      "return": "void",
+      "doc": "Sets a control's preferred rotator (local transform rotation)\n@param InKey The key of the element to retrieve the current value for\n@param InRotator The new preferred rotator to set\n@param bInitial If true we'll return the preferred rotator for the initial - otherwise current transform\n@param bFixEulerFlips If true the new rotator value will use the shortest path",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InRotator",
+          "type": "FRotator"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bFixEulerFlips",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlPreferredRotatorByIndex",
+      "return": "void",
+      "doc": "Sets a control's preferred rotator (local transform rotation)\n@param InElementIndex The element index to look up\n@param InRotator The new preferred rotator to set\n@param bInitial If true we'll return the preferred rotator for the initial - otherwise current transform\n@param bFixEulerFlips If true the new rotator value will use the shortest path",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InRotator",
+          "type": "FRotator"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bFixEulerFlips",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlSettings",
+      "return": "void",
+      "doc": "Sets the control settings for a given control element by key\n@param InKey The key of the control element to set the settings for\n@param InSettings The new control settings value to set\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigControlSettings"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bForce",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlSettingsByIndex",
+      "return": "void",
+      "doc": "Sets the control settings for a given control element by index\n@param InElementIndex The index of the control element to set the settings for\n@param InSettings The new control settings value to set\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigControlSettings"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bForce",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlShapeTransform",
+      "return": "void",
+      "doc": "Sets the shape transform for a given control element by key\n@param InKey The key of the control element to set the shape transform for\n@param InTransform The new shape transform value to set\n@param bInitial If true the initial value will be used\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlShapeTransformByIndex",
+      "return": "void",
+      "doc": "Sets the local shape transform for a given control element by index\n@param InElementIndex The index of the control element to set the shape transform for\n@param InTransform The new local shape transform value to set\n@param bInitial If true the initial value will be used\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlValue",
+      "return": "void",
+      "doc": "Sets a control's current value given its key\n@param InKey The key of the element to set the current value for\n@param InValue The value to set on the control\n@param InValueType The type of value to set\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InValue",
+          "type": "FRigControlValue"
+        },
+        {
+          "name": "InValueType",
+          "default": "ERigControlValueType :: Current",
+          "type": "ERigControlValueType"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlValueByIndex",
+      "return": "void",
+      "doc": "Sets a control's current value given its index\n@param InElementIndex The index of the element to set the current value for\n@param InValue The value to set on the control\n@param InValueType The type of value to set\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InValue",
+          "type": "FRigControlValue"
+        },
+        {
+          "name": "InValueType",
+          "default": "ERigControlValueType :: Current",
+          "type": "ERigControlValueType"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlVisibility",
+      "return": "void",
+      "doc": "Sets a control's current visibility based on a key\n@param InKey The key of the element to set the visibility for\n@param bVisibility The visibility to set on the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bVisibility",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlVisibilityByIndex",
+      "return": "void",
+      "doc": "Sets a control's current visibility based on a key\n@param InElementIndex The index of the element to set the visibility for\n@param bVisibility The visibility to set on the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "bVisibility",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCurveValue",
+      "return": "void",
+      "doc": "Sets a curve's value given its key\n@param InKey The key of the element to set the value for\n@param InValue The value to set on the curve\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCurveValueByIndex",
+      "return": "void",
+      "doc": "Sets a curve's value given its index\n@param InElementIndex The index of the element to set the value for\n@param InValue The value to set on the curve\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetFloatArrayMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a float array value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "TArray<float32>"
+        }
+      ]
+    },
+    {
+      "name": "SetFloatMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a float value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetGlobalTransform",
+      "return": "void",
+      "doc": "Sets the global current or initial transform for a given key.\n@param InKey The key to set the transform for\n@param InTransform The new transform value to set\n@param bInitial If true the initial transform will be used\n@param bAffectChildren If set to false children will not move (maintain global).\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectChildren",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetGlobalTransformByIndex",
+      "return": "void",
+      "doc": "Sets the global current or initial transform for a given element index.\n@param InElementIndex The index of the element to set the transform for\n@param InTransform The new transform value to set\n@param bInitial If true the initial transform will be used\n@param bAffectChildren If set to false children will not move (maintain global).\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectChildren",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetInt32ArrayMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a int32 array value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "TArray<int>"
+        }
+      ]
+    },
+    {
+      "name": "SetInt32Metadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a int32 value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearColorArrayMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FLinearColor array value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "TArray<FLinearColor>"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearColorMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FLinearColor value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalTransform",
+      "return": "void",
+      "doc": "Sets the local current or initial transform for a given key.\n@param InKey The key to set the transform for\n@param InTransform The new transform value to set\n@param bInitial If true the initial transform will be used\n@param bSetupUndo If true the transform stack will be setup for undo / redo\n@param bAffectChildren If set to false children will not move (maintain global).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectChildren",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalTransformByIndex",
+      "return": "void",
+      "doc": "Sets the local current or initial transform for a given element index.\n@param InElementIndex The index of the element to set the transform for\n@param InTransform The new transform value to set\n@param bInitial If true the initial transform will be used\n@param bSetupUndo If true the transform stack will be setup for undo / redo\n@param bAffectChildren If set to false children will not move (maintain global).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectChildren",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNameArrayMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FName array value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "TArray<FName>"
+        }
+      ]
+    },
+    {
+      "name": "SetNameMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FName value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetParentWeight",
+      "return": "bool",
+      "doc": "Sets the weight of a parent below a multi parent element\n@param InChild The key of the multi parented element\n@param InParent The key of the parent to look up the weight for\n@param InWeight The new weight to set for the parent\n@param bInitial If true the initial weights will be used\n@param bAffectChildren If set to false children will not move (maintain global).\n@return Returns true if changing the weight was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InWeight",
+          "type": "FRigElementWeight"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectChildren",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetParentWeightArray",
+      "return": "bool",
+      "doc": "Sets the all of the weights of the parents of a multi parent element\n@param InChild The key of the multi parented element\n@param InWeights The new weights to set for the parents\n@param bInitial If true the initial weights will be used\n@param bAffectChildren If set to false children will not move (maintain global).\n@return Returns true if changing the weight was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InWeights",
+          "type": "TArray<FRigElementWeight>"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectChildren",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPose",
+      "return": "void",
+      "doc": "Sets the current / initial pose of the hierarchy\n@param InPose The pose to set on the hierarchy",
+      "ufunction": true,
+      "unrealname": "SetPose_ForBlueprint",
+      "meta": null,
+      "args": [
+        {
+          "name": "InPose",
+          "type": "FRigPose"
+        }
+      ]
+    },
+    {
+      "name": "SetQuatArrayMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FQuat array value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "TArray<FQuat>"
+        }
+      ]
+    },
+    {
+      "name": "SetQuatMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FQuat value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SetRigElementKeyArrayMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FRigElementKey array value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "TArray<FRigElementKey>"
+        }
+      ]
+    },
+    {
+      "name": "SetRigElementKeyMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FRigElementKey value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FRigElementKey"
+        }
+      ]
+    },
+    {
+      "name": "SetRotatorArrayMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FRotator array value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "TArray<FRotator>"
+        }
+      ]
+    },
+    {
+      "name": "SetRotatorMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FRotator value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetTag",
+      "return": "bool",
+      "doc": "* Sets a tag on an element in the hierarchy\n* @param InItem The item to set the tag for\n* @param InTag The tag to set",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTag",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetTransformArrayMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FTransform array value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "TArray<FTransform>"
+        }
+      ]
+    },
+    {
+      "name": "SetTransformMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FTransform value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "SetVectorArrayMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FVector array value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "TArray<FVector>"
+        }
+      ]
+    },
+    {
+      "name": "SetVectorMetadata",
+      "return": "bool",
+      "doc": "Sets the metadata to a FVector value\n@param InItem The element key to set the metadata for\n@param InMetadataName The name of the metadata to set\n@param InValue The value to set\n@return Returns true if setting the metadata was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InItem",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InMetadataName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SortKeys",
+      "return": "TArray<FRigElementKey>",
+      "const": true,
+      "doc": "Sorts the input key list by traversing the hierarchy\n@param InKeys The keys to sort\n@return The sorted keys",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKeys",
+          "type": "TArray<FRigElementKey>"
+        }
+      ]
+    },
+    {
+      "name": "SwitchToDefaultParent",
+      "return": "bool",
+      "doc": "Switches a multi parent element to its first parent\n@param InChild The key of the multi parented element\n@param bInitial If true the initial weights will be used\n@param bAffectChildren If set to false children will not move (maintain global).\n@return Returns true if changing the weight was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectChildren",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SwitchToParent",
+      "return": "bool",
+      "doc": "Switches a multi parent element to a single parent.\nThis sets the new parent's weight to 1.0 and disables\nweights for all other potential parents.\n@param InChild The key of the multi parented element\n@param InParent The key of the parent to look up the weight for\n@param bInitial If true the initial weights will be used\n@param bAffectChildren If set to false children will not move (maintain global).\n@return Returns true if changing the weight was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InParent",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectChildren",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SwitchToWorldSpace",
+      "return": "bool",
+      "doc": "Switches a multi parent element to world space.\nThis injects a world space reference.\n@param InChild The key of the multi parented element\n@param bInitial If true the initial weights will be used\n@param bAffectChildren If set to false children will not move (maintain global).\n@return Returns true if changing the weight was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InChild",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bInitial",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectChildren",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UnsetCurveValue",
+      "return": "void",
+      "doc": "Sets a curve's value given its key\n@param InKey The key of the element to set the value for\n@param InValue The value to set on the curve\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UnsetCurveValueByIndex",
+      "return": "void",
+      "doc": "Sets a curve's value given its index\n@param InElementIndex The index of the element to set the value for\n@param InValue The value to set on the curve\n@param bSetupUndo If true the transform stack will be setup for undo / redo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

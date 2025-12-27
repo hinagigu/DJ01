@@ -1,0 +1,270 @@
+{
+  "name": "UEditorUtilitySubsystem",
+  "inherits": "UEditorSubsystem",
+  "properties": {
+    "OnBeginPIE": [
+      "FOnEditorUtilityPIEEvent",
+      "Expose Begin PIE to blueprints."
+    ],
+    "OnEndPIE": [
+      "FOnEditorUtilityPIEEvent",
+      "Expose End PIE to blueprints."
+    ]
+  },
+  "methods": [
+    {
+      "name": "CanRun",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Asset",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "CloseTabByID",
+      "return": "bool",
+      "doc": "Given an ID for a tab, try to find and close an existing tab. Returns true if it found a tab to close.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTabID",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "DoesTabExist",
+      "return": "bool",
+      "doc": "Given an ID for a tab, try to find an existing tab. Returns true if it found a tab.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTabID",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FindUtilityWidgetFromBlueprint",
+      "return": "UEditorUtilityWidget",
+      "doc": "Given an editor utility widget blueprint, get the widget it creates. This will return a null pointer if the widget is not currently in a tab.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBlueprint",
+          "type": "UEditorUtilityWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "RegisterAndExecuteTask",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTask",
+          "type": "UEditorUtilityTask"
+        },
+        {
+          "name": "OptionalParentTask",
+          "default": "nullptr",
+          "type": "UEditorUtilityTask"
+        }
+      ]
+    },
+    {
+      "name": "RegisterTabAndGetID",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBlueprint",
+          "type": "UEditorUtilityWidgetBlueprint"
+        },
+        {
+          "name": "NewTabID",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "RegisterTabAndGetIDGeneratedClass",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGeneratedWidgetBlueprint",
+          "type": "UWidgetBlueprintGeneratedClass"
+        },
+        {
+          "name": "NewTabID",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "ReleaseInstanceOfAsset",
+      "return": "void",
+      "doc": "Allow startup object to be garbage collected",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Asset",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SpawnAndRegisterTab",
+      "return": "UEditorUtilityWidget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBlueprint",
+          "type": "UEditorUtilityWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "SpawnAndRegisterTabAndGetID",
+      "return": "UEditorUtilityWidget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBlueprint",
+          "type": "UEditorUtilityWidgetBlueprint"
+        },
+        {
+          "name": "NewTabID",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "SpawnAndRegisterTabAndGetIDGeneratedClass",
+      "return": "UEditorUtilityWidget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGeneratedWidgetBlueprint",
+          "type": "UWidgetBlueprintGeneratedClass"
+        },
+        {
+          "name": "NewTabID",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "SpawnAndRegisterTabGeneratedClass",
+      "return": "UEditorUtilityWidget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGeneratedWidgetBlueprint",
+          "type": "UWidgetBlueprintGeneratedClass"
+        }
+      ]
+    },
+    {
+      "name": "SpawnAndRegisterTabWithId",
+      "return": "UEditorUtilityWidget",
+      "doc": "Unlike SpawnAndRegisterTabAndGetID allows spawn tab while providing TabID from Python scripts or BP",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBlueprint",
+          "type": "UEditorUtilityWidgetBlueprint"
+        },
+        {
+          "name": "InTabID",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SpawnAndRegisterTabWithIdGeneratedClass",
+      "return": "UEditorUtilityWidget",
+      "doc": "Unlike SpawnAndRegisterTabAndGetID allows spawn tab while providing TabID from Python scripts or BP",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGeneratedWidgetBlueprint",
+          "type": "UWidgetBlueprintGeneratedClass"
+        },
+        {
+          "name": "InTabID",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SpawnRegisteredTabByID",
+      "return": "bool",
+      "doc": "Given an ID for a tab, try to find a tab spawner that matches, and then spawn a tab. Returns true if it was able to find a matching tab spawner",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTabID",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "TryRun",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Asset",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "TryRunClass",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectClass",
+          "type": "UClass"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterTabByID",
+      "return": "bool",
+      "doc": "Given an ID for a tab, try to close and unregister a tab that was registered through this subsystem",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TabID",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

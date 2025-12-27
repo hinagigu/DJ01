@@ -1,0 +1,496 @@
+{
+  "name": "USkeletalMesh",
+  "inherits": "USkinnedAsset",
+  "doc": "SkeletalMesh is geometry bound to a hierarchical skeleton of bones which can be animated for the purpose of deforming the mesh.\nSkeletal Meshes are built up of two parts; a set of polygons composed to make up the surface of the mesh, and a hierarchical skeleton which can be used to animate the polygons.\nThe 3D models, rigging, and animations are created in an external modeling and animation application (3DSMax, Maya, Softimage, etc).\n\n@see https://docs.unrealengine.com/latest/INT/Engine/Content/Types/SkeletalMeshes/",
+  "properties": {
+    "PositiveBoundsExtension": [
+      "FVector"
+    ],
+    "NegativeBoundsExtension": [
+      "FVector"
+    ],
+    "SkelMirrorTable": [
+      "TArray<FBoneMirrorInfo>",
+      2,
+      ""
+    ],
+    "LODInfo": [
+      "TArray<FSkeletalMeshLODInfo>",
+      2,
+      ""
+    ],
+    "MinQualityLevelLOD": [
+      "FPerQualityLevelInt",
+      2,
+      ""
+    ],
+    "MinLod": [
+      "FPerPlatformInt",
+      2,
+      ""
+    ],
+    "DisableBelowMinLodStripping": [
+      "FPerPlatformBool",
+      2,
+      ""
+    ],
+    "bOverrideLODStreamingSettings": [
+      "bool",
+      2,
+      ""
+    ],
+    "bSupportLODStreaming": [
+      "FPerPlatformBool",
+      2,
+      ""
+    ],
+    "MaxNumStreamedLODs": [
+      "FPerPlatformInt",
+      2,
+      ""
+    ],
+    "MaxNumOptionalLODs": [
+      "FPerPlatformInt",
+      2,
+      ""
+    ],
+    "SkelMirrorAxis": [
+      "EAxis",
+      2,
+      ""
+    ],
+    "SkelMirrorFlipAxis": [
+      "EAxis",
+      2,
+      ""
+    ],
+    "AssetImportData": [
+      "UAssetImportData",
+      2,
+      ""
+    ],
+    "ThumbnailInfo": [
+      "UThumbnailInfo",
+      2,
+      ""
+    ],
+    "RayTracingMinLOD": [
+      "int",
+      2,
+      ""
+    ],
+    "ClothLODBiasMode": [
+      "EClothLODBiasMode",
+      2,
+      ""
+    ],
+    "PostProcessAnimBlueprint": [
+      "TSubclassOf<UAnimInstance>"
+    ],
+    "PostProcessAnimBPLODThreshold": [
+      "int",
+      2,
+      "* Max LOD level that post-process AnimBPs are evaluated.\n* For example if you have the threshold set to 2, it will evaluate until including LOD 2 (based on 0 index). In case the LOD level gets set to 3, it will stop evaluating the post-process AnimBP.\n* Setting it to -1 will always evaluate it and disable LODing."
+    ],
+    "SamplingInfo": [
+      "FSkeletalMeshSamplingInfo",
+      2,
+      ""
+    ],
+    "AssetUserData": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the asset"
+    ],
+    "AssetUserDataEditorOnly": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the asset"
+    ],
+    "SkinWeightProfiles": [
+      "TArray<FSkinWeightProfileInfo>",
+      2,
+      ""
+    ],
+    "MorphTargets": [
+      "TArray<UMorphTarget>",
+      "NOTE: BP compiler doesn't support TObjectPtr as an argument type for UFUNCTION so this converting call is\nrequired. For many morphs, this can be expensive, since it needs to resolve _all_ TObjectPtrs and construct a new\narray for it."
+    ],
+    "bEnablePerPolyCollision": [
+      "bool"
+    ],
+    "PhysicsAsset": [
+      "UPhysicsAsset"
+    ],
+    "ShadowPhysicsAsset": [
+      "UPhysicsAsset"
+    ],
+    "NodeMappingData": [
+      "TArray<TObjectPtr<UNodeMappingContainer>>"
+    ],
+    "bSupportRayTracing": [
+      "bool"
+    ],
+    "DefaultMeshDeformer": [
+      "UMeshDeformer"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddSocket",
+      "return": "void",
+      "doc": "Add a skeletal socket object to this SkeletalMesh, and optionally promotes it to USkeleton socket.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSocket",
+          "type": "USkeletalMeshSocket"
+        },
+        {
+          "name": "bAddToSkeleton",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "FindSocketAndIndex",
+      "return": "USkeletalMeshSocket",
+      "const": true,
+      "doc": "Find a socket object in this SkeletalMesh by name.\nEntering NAME_None will return NULL. If there are multiple sockets with the same name, will return the first one.\nAlso returns the index for the socket allowing for future fast access via GetSocketByIndex()",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSocketName",
+          "type": "FName"
+        },
+        {
+          "name": "OutIndex",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetBounds",
+      "return": "FBoxSphereBounds",
+      "const": true,
+      "doc": "Get the extended bounds of this mesh (imported bounds plus bounds extension). USkinnedAsset interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDefaultAnimatingRig",
+      "return": "TSoftObjectPtr<UObject>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDefaultMeshDeformer",
+      "return": "UMeshDeformer",
+      "const": true,
+      "doc": "Get the default mesh deformer used by this mesh. A mesh deformer is used to deform the skeletal mesh at runtime",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetImportedBounds",
+      "return": "FBoxSphereBounds",
+      "const": true,
+      "doc": "Get the original imported bounds of the skel mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLODSettings",
+      "return": "const USkeletalMeshLODSettings",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMaterials",
+      "return": "TArray<FSkeletalMaterial>",
+      "const": true,
+      "doc": "USkinnedAsset interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMeshClothingAssets",
+      "return": "TArray<UClothingAssetBase>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMinLODForQualityLevels",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QualityLevelMinimumLODs",
+          "type": "TMap<EPerQualityLevels,int>&"
+        },
+        {
+          "name": "Default",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetMorphTargetsPtrConv",
+      "return": "TArray<UMorphTarget>",
+      "const": true,
+      "doc": "NOTE: BP compiler doesn't support TObjectPtr as an argument type for UFUNCTION so this converting call is\nrequired. For many morphs, this can be expensive, since it needs to resolve _all_ TObjectPtrs and construct a new\narray for it.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNodeMappingContainer",
+      "return": "UNodeMappingContainer",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceAsset",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeMappingData",
+      "return": "TArray<UNodeMappingContainer>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOverlayMaterial",
+      "return": "UMaterialInterface",
+      "const": true,
+      "doc": "Get the default overlay material used by this mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOverlayMaterialMaxDrawDistance",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the default overlay material max draw distance used by this mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPhysicsAsset",
+      "return": "UPhysicsAsset",
+      "const": true,
+      "doc": "USkinnedAsset interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetShadowPhysicsAsset",
+      "return": "UPhysicsAsset",
+      "const": true,
+      "doc": "USkinnedAsset interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSkeleton",
+      "return": "const USkeleton",
+      "const": true,
+      "doc": "USkinnedAsset interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSocketByIndex",
+      "return": "USkeletalMeshSocket",
+      "const": true,
+      "doc": "Returns a socket by index. Max index is NumSockets(). The meshes sockets are accessed first, then the skeletons.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "IsSectionUsingCloth",
+      "return": "bool",
+      "const": true,
+      "doc": "Checks whether the provided section is using APEX cloth. if bCheckCorrespondingSections is true\ndisabled sections will defer to correspond sections to see if they use cloth (non-cloth sections\nare disabled and another section added when cloth is enabled, using this flag allows for a check\non the original section to succeed)\n@param InSectionIndex Index to check\n@param bCheckCorrespondingSections Whether to check corresponding sections for disabled sections",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "bCheckCorrespondingSections",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetAllMorphTargetNames",
+      "return": "TArray<FString>",
+      "const": true,
+      "doc": "Returns the list of all morph targets of this skeletal mesh\n@return     The list of morph targets",
+      "ufunction": true,
+      "unrealname": "K2_GetAllMorphTargetNames",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "NumSockets",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of sockets available. Both on this mesh and it's skeleton.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetDefaultAnimatingRig",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimatingRig",
+          "type": "TSoftObjectPtr<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "SetLODSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLODSettings",
+          "type": "USkeletalMeshLODSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterials",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMaterials",
+          "type": "TArray<FSkeletalMaterial>"
+        }
+      ]
+    },
+    {
+      "name": "SetMeshClothingAssets",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMeshClothingAssets",
+          "type": "TArray<UClothingAssetBase>"
+        }
+      ]
+    },
+    {
+      "name": "SetMinLODForQualityLevels",
+      "return": "void",
+      "doc": "Allow to override min lod quality levels on a skeletalMesh and it Default value (-1 value for Default dont override its value).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QualityLevelMinimumLODs",
+          "type": "TMap<EPerQualityLevels,int>"
+        },
+        {
+          "name": "Default",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetMorphTargets",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMorphTargets",
+          "type": "TArray<UMorphTarget>"
+        }
+      ]
+    },
+    {
+      "name": "SetOverlayMaterial",
+      "return": "void",
+      "doc": "Change the default overlay material used by this mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewOverlayMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetOverlayMaterialMaxDrawDistance",
+      "return": "void",
+      "doc": "Change the default overlay material max draw distance used by this mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMaxDrawDistance",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSkeleton",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSkeleton",
+          "type": "USkeleton"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "name": "FTargetDeviceServicePong",
+  "isStruct": true,
+  "doc": "Implements a message that is sent in response to target device service discovery messages.",
+  "properties": {
+    "Connected": [
+      "bool",
+      2,
+      "Holds a flag indicating whether the device is currently connected."
+    ],
+    "Authorized": [
+      "bool",
+      2,
+      "Holds a flag indicating whether the device is authorized."
+    ],
+    "HostName": [
+      "FString",
+      2,
+      "Holds the name of the host computer that the device is attached to."
+    ],
+    "HostUser": [
+      "FString",
+      2,
+      "Holds the name of the user under which the host computer is running."
+    ],
+    "Make": [
+      "FString",
+      2,
+      "Holds the make of the device, i.e. Microsoft or Sony."
+    ],
+    "Model": [
+      "FString",
+      2,
+      "Holds the model of the device."
+    ],
+    "Name": [
+      "FString",
+      2,
+      "Holds the human readable name of the device, i.e \"Bob's XBox'."
+    ],
+    "DeviceUser": [
+      "FString",
+      2,
+      "Holds the name of the user that we log in to remote device as, i.e \"root\"."
+    ],
+    "DeviceUserPassword": [
+      "FString",
+      2,
+      "Holds the password of the user that we log in to remote device as, i.e \"12345\"."
+    ],
+    "Shared": [
+      "bool",
+      2,
+      "Holds a flag indicating whether this device is shared with other users on the network."
+    ],
+    "SupportsMultiLaunch": [
+      "bool",
+      2,
+      "Holds a flag indicating whether the device supports running multiple application instances in parallel."
+    ],
+    "SupportsPowerOff": [
+      "bool",
+      2,
+      "Holds a flag indicating whether the device can be powered off."
+    ],
+    "SupportsPowerOn": [
+      "bool",
+      2,
+      "Holds a flag indicating whether the device can be powered on."
+    ],
+    "SupportsReboot": [
+      "bool",
+      2,
+      "Holds a flag indicating whether the device can be rebooted."
+    ],
+    "SupportsVariants": [
+      "bool",
+      2,
+      "Holds a flag indicating whether the device's target platform supports variants."
+    ],
+    "Type": [
+      "FString",
+      2,
+      "Holds the device type."
+    ],
+    "OSVersion": [
+      "FString",
+      2,
+      "Holds the device OS Version."
+    ],
+    "ConnectionType": [
+      "FString",
+      2,
+      "Holds the connection type."
+    ],
+    "DefaultVariant": [
+      "FName",
+      2,
+      "Holds the variant name of the default device."
+    ],
+    "Variants": [
+      "TArray<FTargetDeviceVariant>",
+      2,
+      "List of the Flavors this service supports"
+    ],
+    "Aggregated": [
+      "bool",
+      2,
+      "Flag for the \"All devices\" proxy."
+    ],
+    "AllDevicesName": [
+      "FString",
+      2,
+      "Holds the name of \"All devices\" proxy."
+    ],
+    "AllDevicesDefaultVariant": [
+      "FName",
+      2,
+      "Holds the default variant name of \"All devices\" proxy."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTargetDeviceServicePong&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTargetDeviceServicePong"
+        }
+      ]
+    }
+  ]
+}

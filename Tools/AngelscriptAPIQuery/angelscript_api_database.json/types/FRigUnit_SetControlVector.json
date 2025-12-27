@@ -1,0 +1,39 @@
+{
+  "name": "FRigUnit_SetControlVector",
+  "isStruct": true,
+  "doc": "SetControlVector is used to perform a change in the hierarchy by setting a single control's Vector value.",
+  "properties": {
+    "Control": [
+      "FName",
+      "The name of the Control to set the transform for."
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the change - how much the change should be applied"
+    ],
+    "Vector": [
+      "FVector",
+      "The transform value to set for the given Control."
+    ],
+    "Space": [
+      "ERigVMTransformSpace",
+      "Defines if the bone's transform should be set\nin local or global space."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SetControlVector&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SetControlVector"
+        }
+      ]
+    }
+  ]
+}

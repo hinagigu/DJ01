@@ -1,0 +1,142 @@
+{
+  "name": "UViewportWorldInteraction",
+  "inherits": "UEditorWorldExtension",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddActorToExcludeFromHitTests",
+      "return": "void",
+      "doc": "Adds an actor to the list of actors to never allow an interactor to hit in the scene.  No selection.  No hover.\nThere's no need to remove actors from this list.  They'll expire from it automatically when destroyed.\n\n@param       ActorToExcludeFromHitTests      The actor that should be forever excluded from hit tests",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorToExcludeFromHitTests",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "AddInteractor",
+      "return": "void",
+      "doc": "Adds interactor to the worldinteraction",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Interactor",
+          "type": "UViewportInteractor"
+        }
+      ]
+    },
+    {
+      "name": "GetHeadTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Gets the transform of the viewport / user's HMD in world space",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInteractors",
+      "return": "TArray<UViewportInteractor>",
+      "const": true,
+      "doc": "Gets all the interactors",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRoomSpaceHeadTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Gets the transform of the viewport / user's HMD in room space",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRoomTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Gets the world space transform of the calibrated VR room origin.  When using a seated VR device, this will feel like the\n      camera's world transform (before any HMD positional or rotation adjustments are applied.)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTransformGizmoActor",
+      "return": "ABaseTransformGizmo",
+      "doc": "Gets the transform gizmo actor, or returns null if we currently don't have one",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWorldScaleFactor",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the world scale factor, which can be multiplied by a scale vector to convert to room space",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveInteractor",
+      "return": "void",
+      "doc": "Removes interactor from the worldinteraction and removes the interactor from its paired interactor if any",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Interactor",
+          "type": "UViewportInteractor"
+        }
+      ]
+    },
+    {
+      "name": "SetHeadTransform",
+      "return": "void",
+      "doc": "Sets a new transform for the room so that the HMD is aligned to the new transform.\n              The Head is kept level to the ground and only rotated on the yaw",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewHeadTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "SetRoomTransformForNextFrame",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRoomTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldToMetersScale",
+      "return": "void",
+      "doc": "Sets GNewWorldToMetersScale",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewWorldToMetersScale",
+          "type": "float32"
+        },
+        {
+          "name": "bCompensateRoomWorldScale",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

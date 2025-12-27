@@ -1,0 +1,158 @@
+{
+  "name": "UAudioMeter",
+  "inherits": "UWidget",
+  "doc": "An audio meter widget.\n\nSupports displaying a slower moving peak-hold value as well as the current meter value.\n\nA clipping value is also displayed which shows a customizable color to indicate clipping.\n\nInternal values are stored and interacted with as linear volume values.",
+  "properties": {
+    "WidgetStyle": [
+      "FAudioMeterStyle",
+      "The audio meter style"
+    ],
+    "Orientation": [
+      "EOrientation",
+      "The slider's orientation."
+    ],
+    "BackgroundColor": [
+      "FLinearColor",
+      "The color to draw the background."
+    ],
+    "MeterBackgroundColor": [
+      "FLinearColor",
+      "The color to draw the meter background."
+    ],
+    "MeterValueColor": [
+      "FLinearColor",
+      "The color to draw the meter value."
+    ],
+    "MeterPeakColor": [
+      "FLinearColor",
+      "The color to draw the meter peak value."
+    ],
+    "MeterClippingColor": [
+      "FLinearColor",
+      "The color to draw the meter clipping value."
+    ],
+    "MeterScaleColor": [
+      "FLinearColor",
+      "The color to draw the meter scale hashes."
+    ],
+    "MeterScaleLabelColor": [
+      "FLinearColor",
+      "The color to draw the meter scale label."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetMeterChannelInfo",
+      "return": "TArray<FMeterChannelInfo>",
+      "const": true,
+      "doc": "Gets the current linear value of the meter.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBackgroundColor",
+      "return": "void",
+      "doc": "Sets the background color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetMeterBackgroundColor",
+      "return": "void",
+      "doc": "Sets the meter background color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetMeterChannelInfo",
+      "return": "void",
+      "doc": "Sets the current meter values.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMeterChannelInfo",
+          "type": "TArray<FMeterChannelInfo>"
+        }
+      ]
+    },
+    {
+      "name": "SetMeterClippingColor",
+      "return": "void",
+      "doc": "Sets the meter clipping color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetMeterPeakColor",
+      "return": "void",
+      "doc": "Sets the meter peak color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetMeterScaleColor",
+      "return": "void",
+      "doc": "Sets the meter scale color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetMeterScaleLabelColor",
+      "return": "void",
+      "doc": "Sets the meter scale color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetMeterValueColor",
+      "return": "void",
+      "doc": "Sets the meter value color",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    }
+  ]
+}

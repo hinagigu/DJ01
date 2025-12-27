@@ -1,0 +1,38 @@
+{
+  "name": "FTapDelayInfo",
+  "isStruct": true,
+  "properties": {
+    "TapLineMode": [
+      "ETapLineMode",
+      "Whether the tap line should send directly to a channel, pan, or not produce sound at all."
+    ],
+    "DelayLength": [
+      "float32",
+      "Amount of time before this echo is heard in milliseconds."
+    ],
+    "Gain": [
+      "float32",
+      "How loud this echo should be, in decibels."
+    ],
+    "OutputChannel": [
+      "int",
+      "When the Tap Line Mode is set to Send To Channel, designates index of channel from which the echo should play."
+    ],
+    "PanInDegrees": [
+      "float32",
+      "When the Tap Line Mode is set to Panning, designates the angle at which the echo should be panned.\nOn Surround systems, 0 is directly in front of the listener, -90 is left, 90 is right, and 180/-180 is directly behind the listener.\nOn Stereo systems, <-90 is fully in the left ear, and >90 is fully in the right ear"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTapDelayInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTapDelayInfo"
+        }
+      ]
+    }
+  ]
+}

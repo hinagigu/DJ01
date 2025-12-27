@@ -1,0 +1,50 @@
+{
+  "PawnData": {
+    "class_name": "UDJ01PawnData",
+    "parent_class": "UPrimaryDataAsset",
+    "asset_type": "DataAsset",
+    "display_name": "Pawn 数据",
+    "description": "定义 Pawn 的各种属性配置",
+    "content_path": "/Game/Characters/PawnData",
+    "icon": "👤",
+    
+    "properties": {
+      "PawnClass": {
+        "type": "TSubclassOf<APawn>",
+        "display_name": "Pawn 类",
+        "description": "要生成的 Pawn 类",
+        "widget": "combobox",
+        "options_source": "pawn_classes",
+        "category": "Pawn",
+        "required": true
+      },
+      "AbilitySets": {
+        "type": "array",
+        "item_type": "TObjectPtr<UDJ01AbilitySet>",
+        "display_name": "技能集列表",
+        "description": "授予此 Pawn 的 AbilitySet 列表",
+        "widget": "checkbox_list",
+        "options_source": "ability_sets",
+        "category": "Abilities"
+      },
+      "InputConfig": {
+        "type": "TObjectPtr<UDJ01InputConfig>",
+        "display_name": "输入配置",
+        "description": "玩家控制的 Pawn 使用的输入配置",
+        "widget": "combobox",
+        "options_source": "input_configs",
+        "allow_empty": true,
+        "category": "Input"
+      },
+      "DefaultCameraMode": {
+        "type": "TSubclassOf<UDJ01CameraMode>",
+        "display_name": "默认相机模式",
+        "description": "玩家控制的 Pawn 使用的默认相机模式",
+        "widget": "combobox",
+        "options_source": "camera_modes",
+        "allow_empty": true,
+        "category": "Camera"
+      }
+    }
+  }
+}

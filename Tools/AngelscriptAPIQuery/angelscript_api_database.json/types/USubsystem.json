@@ -1,0 +1,7 @@
+{
+  "name": "USubsystem",
+  "inherits": "UObject",
+  "doc": "Subsystems are auto instanced classes that share the lifetime of certain engine constructs\n\n   Currently supported Subsystem lifetimes are:\n           Engine           -> inherit UEngineSubsystem\n           Editor           -> inherit UEditorSubsystem\n           GameInstance -> inherit UGameInstanceSubsystem\n           World            -> inherit UWorldSubsystem\n           LocalPlayer      -> inherit ULocalPlayerSubsystem\n\n\n   Normal Example:\n           class UMySystem : public UGameInstanceSubsystem\n   Which can be accessed by:\n           UGameInstance* GameInstance = ...;\n           UMySystem* MySystem = GameInstance->GetSubsystem<UMySystem>();\n\n   or the following if you need protection from a null GameInstance\n           UGameInstance* GameInstance = ...;\n           UMyGameSubsystem* MySubsystem = UGameInstance::GetSubsystem<MyGameSubsystem>(GameInstance);\n\n\n   You can get also define interfaces that can have multiple implementations.\n   Interface Example :\n    MySystemInterface\n  With 2 concrete derivative classes:\n    MyA : public MySystemInterface\n    MyB : public MySystemInterface\n\n   Which can be accessed by:\n           UGameInstance* GameInstance = ...;\n           const TArray<UMyGameSubsystem*>& MySubsystems = GameInstance->GetSubsystemArray<MyGameSubsystem>();",
+  "properties": {},
+  "methods": []
+}

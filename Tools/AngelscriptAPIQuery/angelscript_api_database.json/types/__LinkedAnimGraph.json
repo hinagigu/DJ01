@@ -1,0 +1,70 @@
+{
+  "name": "__LinkedAnimGraph",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ConvertToLinkedAnimGraph",
+      "return": "FLinkedAnimGraphReference",
+      "doc": "Get a linked anim graph reference from an anim node reference",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "Result",
+          "type": "EAnimNodeReferenceConversionResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConvertToLinkedAnimGraphPure",
+      "return": "void",
+      "doc": "Get a linked anim graph reference from an anim node reference (pure)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "LinkedAnimGraph",
+          "type": "FLinkedAnimGraphReference&"
+        },
+        {
+          "name": "Result",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetLinkedAnimInstance",
+      "return": "UAnimInstance",
+      "doc": "Get the linked instance is hosted by this node. If the node does not host an instance then HasLinkedAnimInstance will return false",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FLinkedAnimGraphReference"
+        }
+      ]
+    },
+    {
+      "name": "HasLinkedAnimInstance",
+      "return": "bool",
+      "doc": "Returns whether the node hosts an instance (e.g. linked anim graph or layer)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FLinkedAnimGraphReference"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "name": "URadialFalloff",
+  "inherits": "UFieldNodeFloat",
+  "doc": "Sphere scalar field that will be defined only within a sphere",
+  "properties": {
+    "Magnitude": [
+      "float32",
+      "Magnitude of the sphere falloff field"
+    ],
+    "MinRange": [
+      "float32",
+      "The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude"
+    ],
+    "MaxRange": [
+      "float32",
+      "The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude"
+    ],
+    "Default": [
+      "float32",
+      "The field value will be set to Default if the sample distance from the center is higher than the radius"
+    ],
+    "Radius": [
+      "float32",
+      "Radius of the sphere falloff field"
+    ],
+    "Position": [
+      "FVector",
+      "Center position of the sphere falloff field"
+    ],
+    "Falloff": [
+      "EFieldFalloffType",
+      "Type of falloff function used to model the evolution of the field from the sphere center to the sample position"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetRadialFalloff",
+      "return": "URadialFalloff",
+      "doc": "Sphere scalar field that will be defined only within a sphere\n@param    Magnitude Magnitude of the sphere falloff field\n@param    MinRange The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude\n@param    MaxRange The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude\n@param    Default The field value will be set to Default if the sample distance from the center is higher than the radius\n@param    Radius Radius of the sphere falloff field\n@param    Position Center position of the sphere falloff field\n@param    Falloff Type of falloff function used if the falloff function is picked",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Magnitude",
+          "type": "float32"
+        },
+        {
+          "name": "MinRange",
+          "type": "float32"
+        },
+        {
+          "name": "MaxRange",
+          "type": "float32"
+        },
+        {
+          "name": "Default",
+          "type": "float32"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "Position",
+          "type": "FVector"
+        },
+        {
+          "name": "Falloff",
+          "type": "EFieldFalloffType"
+        }
+      ]
+    }
+  ]
+}

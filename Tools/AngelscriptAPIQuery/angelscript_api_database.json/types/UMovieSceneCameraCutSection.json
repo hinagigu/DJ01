@@ -1,0 +1,36 @@
+{
+  "name": "UMovieSceneCameraCutSection",
+  "inherits": "UMovieSceneSection",
+  "doc": "Movie CameraCuts are sections on the CameraCuts track, that show what the viewer \"sees\"",
+  "properties": {
+    "bLockPreviousCamera": [
+      "bool",
+      2,
+      "When blending, lock the previous camera (camera cut or gameplay camera)."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCameraBindingID",
+      "return": "FMovieSceneObjectBindingID",
+      "const": true,
+      "doc": "Gets the camera binding for this CameraCut section",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCameraBindingID",
+      "return": "void",
+      "doc": "Sets the camera binding for this CameraCut section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCameraBindingID",
+          "type": "FMovieSceneObjectBindingID"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "UMovieSceneMediaSection",
+  "inherits": "UMovieSceneSection",
+  "doc": "Implements a movie scene section for media playback.",
+  "properties": {
+    "MediaSource": [
+      "UMediaSource",
+      "The source to play with this video track if MediaSourceProxy is not available."
+    ],
+    "MediaSourceProxyIndex": [
+      "int",
+      "The index to pass to MediaSourceProxy to get the media source."
+    ],
+    "bLooping": [
+      "bool",
+      "Should the media player be set to loop? This can be helpful for media formats that can use this information (such as exr sequences) to pre-cache the starting data when nearing the end of playback. Does not cause the media to continue playing after the end of the section is reached."
+    ],
+    "StartFrameOffset": [
+      "FFrameNumber",
+      "Offset into the source media."
+    ],
+    "MediaTexture": [
+      "UMediaTexture",
+      "The media texture that receives the track's video output."
+    ],
+    "MediaSoundComponent": [
+      "UMediaSoundComponent",
+      "The media sound component that receives the track's audio output."
+    ],
+    "bUseExternalMediaPlayer": [
+      "bool",
+      "If true, this track will control a previously created media player instead of automatically creating one."
+    ],
+    "ExternalMediaPlayer": [
+      "UMediaPlayer",
+      "The external media player this track should control."
+    ],
+    "CacheSettings": [
+      "FMediaSourceCacheSettings",
+      "Override the default cache settings. Not used if we have a player proxy as the settings come from the proxy instead."
+    ],
+    "TextureIndex": [
+      "int",
+      "If using an object like a MediaPlate, then this determines which texture to use for crossfading purposes."
+    ],
+    "MediaSourceProxyBindingID": [
+      "FMovieSceneObjectBindingID",
+      2,
+      "The object to get the source to play from if you don't want to directly specify a media source."
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,49 @@
+{
+  "name": "FAutomationWorkerTestDataRequest",
+  "isStruct": true,
+  "doc": "Implements a message that handles both storing and requesting ground truth data.\nfor the first time this test is run, it might need to store things, or get things.",
+  "properties": {
+    "DataType": [
+      "FString",
+      2,
+      "The category of the data, this is purely to bucket and separate the ground truth data we store into different directories."
+    ],
+    "DataPlatform": [
+      "FString",
+      2,
+      ""
+    ],
+    "DataTestName": [
+      "FString",
+      2,
+      ""
+    ],
+    "DataName": [
+      "FString",
+      2,
+      ""
+    ],
+    "JsonData": [
+      "FString",
+      2,
+      ""
+    ],
+    "InstanceId": [
+      "FGuid",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAutomationWorkerTestDataRequest&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAutomationWorkerTestDataRequest"
+        }
+      ]
+    }
+  ]
+}

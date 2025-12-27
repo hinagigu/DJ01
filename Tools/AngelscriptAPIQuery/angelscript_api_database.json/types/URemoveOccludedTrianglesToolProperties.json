@@ -1,0 +1,58 @@
+{
+  "name": "URemoveOccludedTrianglesToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Standard properties",
+  "properties": {
+    "OcclusionTestMethod": [
+      "EOcclusionCalculationUIMode",
+      2,
+      "The method for deciding whether a triangle is occluded"
+    ],
+    "TriangleSampling": [
+      "EOcclusionTriangleSamplingUIMode",
+      2,
+      "Where to sample triangles to test occlusion"
+    ],
+    "WindingIsoValue": [
+      "float",
+      2,
+      "The winding isovalue for GeneralizedWindingNumber mode"
+    ],
+    "AddRandomRays": [
+      "int",
+      2,
+      "For raycast-based occlusion tests, optionally add random ray direction to increase the accuracy of the visibility sampling"
+    ],
+    "AddTriangleSamples": [
+      "int",
+      2,
+      "Optionally add random samples to each triangle (in addition to those from TriangleSampling) to increase the accuracy of the visibility sampling"
+    ],
+    "bOnlySelfOcclude": [
+      "bool",
+      2,
+      "If false, when multiple meshes are selected the meshes can occlude each other.  When true, we process each selected mesh independently and only consider self-occlusions."
+    ],
+    "ShrinkRemoval": [
+      "int",
+      2,
+      "Shrink (erode) the boundary of the set of triangles to remove."
+    ],
+    "MinAreaIsland": [
+      "float",
+      2,
+      ""
+    ],
+    "MinTriCountIsland": [
+      "int",
+      2,
+      ""
+    ],
+    "Action": [
+      "EOccludedAction",
+      2,
+      "What action to perform on occluded triangles"
+    ]
+  },
+  "methods": []
+}

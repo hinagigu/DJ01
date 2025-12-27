@@ -1,0 +1,79 @@
+{
+  "name": "FActorDesc",
+  "isStruct": true,
+  "doc": "Snapshot of an actor descriptor, which represents the state of an actor on disk.\nThe actor may or may not be loaded.",
+  "properties": {
+    "Guid": [
+      "FGuid",
+      1,
+      "The actor GUID of this descriptor."
+    ],
+    "NativeClass": [
+      "UClass",
+      1,
+      "Actor first native class."
+    ],
+    "Class": [
+      "FSoftObjectPath",
+      1,
+      "Actor class, can point to a native or Blueprint class and may be redirected."
+    ],
+    "Name": [
+      "FName",
+      1,
+      "Internal name of the acgor."
+    ],
+    "Label": [
+      "FName",
+      1,
+      "Actor's label."
+    ],
+    "Bounds": [
+      "FBox",
+      1,
+      "Streaming bounds of this actor."
+    ],
+    "RuntimeGrid": [
+      "FName",
+      1,
+      "Actor's target runtime grid."
+    ],
+    "bIsSpatiallyLoaded": [
+      "bool",
+      1,
+      "Actor's streaming state."
+    ],
+    "bActorIsEditorOnly": [
+      "bool",
+      1,
+      "Actor's editor-only property."
+    ],
+    "ActorPackage": [
+      "FName",
+      1,
+      "Actor's package name."
+    ],
+    "ActorPath": [
+      "FName",
+      1,
+      "Actor's path name."
+    ],
+    "DataLayerAssets": [
+      "TArray<FSoftObjectPath>",
+      1,
+      "Actor's data layer assets."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FActorDesc&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FActorDesc"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "_comment": "DJ01 可选项配置 - 定义所有下拉选择和多选列表的选项",
+  "_version": "1.0",
+  "_last_updated": "2024-12-22",
+  "_note": "此文件可通过扫描功能自动更新，也可手动编辑添加",
+  "game_features": {
+    "_description": "可用的 GameFeature 插件列表",
+    "_scan_path": "Plugins/GameFeatures",
+    "items": [
+      {
+        "name": "RPGCore",
+        "display_name": "RPG 核心",
+        "description": "RPG 核心功能",
+        "plugin_path": "Plugins/GameFeatures/RPGCore"
+      },
+      {
+        "name": "RPGCombat",
+        "display_name": "RPG 战斗",
+        "description": "RPG 战斗系统",
+        "plugin_path": "Plugins/GameFeatures/RPGCombat"
+      },
+      {
+        "name": "test",
+        "display_name": "测试功能",
+        "description": "测试用 GameFeature",
+        "plugin_path": "Plugins/GameFeatures/test"
+      }
+    ]
+  },
+  "pawn_data": {
+    "_description": "可用的 PawnData 资产列表",
+    "_scan_path": "Content/Characters/PawnData",
+    "_config_file": "pawn_data",
+    "items": [
+      {
+        "name": "BasePawn",
+        "display_name": "基础 Pawn",
+        "description": "默认的玩家 Pawn 配置",
+        "asset_path": "/Game/Characters/PawnData/BasePawn"
+      }
+    ]
+  },
+  "ability_sets": {
+    "_description": "可用的 AbilitySet 资产列表",
+    "_scan_path": "Content/Gameplay/Abilities/AbilitySets",
+    "_config_file": "ability_sets",
+    "items": [
+      {
+        "name": "EnemySets",
+        "display_name": "EnemySets",
+        "description": "AbilitySet 资产",
+        "asset_path": "/Game/Gameplay/Abilities/AbilitySets/EnemySets"
+      },
+      {
+        "name": "TestSets",
+        "display_name": "TestSets",
+        "description": "AbilitySet 资产",
+        "asset_path": "/Game/Gameplay/Abilities/AbilitySets/TestSets"
+      }
+    ]
+  },
+  "action_sets": {
+    "_description": "可用的 ActionSet 资产列表",
+    "_scan_path": "Content/System/ActionSets",
+    "_config_file": "action_sets",
+    "items": []
+  },
+  "input_configs": {
+    "_description": "可用的 InputConfig 资产列表",
+    "_scan_path": "Content/Input/InputConfig",
+    "_config_file": "input_configs",
+    "items": [
+      {
+        "name": "InputConfig_Base",
+        "display_name": "InputConfig_Base",
+        "description": "InputConfig 资产",
+        "asset_path": "/Game/Input/InputConfig/InputConfig_Base"
+      }
+    ]
+  },
+  "input_actions": {
+    "_description": "可用的 InputAction 资产列表",
+    "_scan_path": "Content/Input/Actions",
+    "items": [
+      {
+        "name": "IA_LOOK_MOUSE",
+        "display_name": "IA_LOOK_MOUSE",
+        "description": "InputAction 资产",
+        "asset_path": "/Game/Input/Actions/IA_LOOK_MOUSE"
+      },
+      {
+        "name": "IA_Move",
+        "display_name": "IA_Move",
+        "description": "InputAction 资产",
+        "asset_path": "/Game/Input/Actions/IA_Move"
+      },
+      {
+        "name": "IA_TEST_Ab",
+        "display_name": "IA_TEST_Ab",
+        "description": "InputAction 资产",
+        "asset_path": "/Game/Input/Actions/IA_TEST_Ab"
+      }
+    ]
+  },
+  "pawn_classes": {
+    "_description": "可用的 Pawn 类",
+    "items": [
+      {
+        "name": "DJ01Character",
+        "display_name": "DJ01 角色 (基础)",
+        "class_path": "/Script/DJ01.DJ01Character"
+      },
+      {
+        "name": "DJ01CharacterWithAbilities",
+        "display_name": "DJ01 角色 (技能)",
+        "class_path": "/Script/DJ01.DJ01CharacterWithAbilities"
+      },
+      {
+        "name": "BP_Test",
+        "display_name": "测试角色蓝图",
+        "class_path": "/Game/Characters/Heroes/BP_Test.BP_Test_C"
+      }
+    ]
+  },
+  "camera_modes": {
+    "_description": "可用的相机模式",
+    "items": [
+      {
+        "name": "DJ01CameraMode_ThirdPerson",
+        "display_name": "第三人称相机",
+        "class_path": "/Script/DJ01.DJ01CameraMode_ThirdPerson"
+      }
+    ]
+  },
+  "gameplay_tags": {
+    "_description": "Gameplay 标签 - 自动从 Source/DJ01/System/Config/GameplayTagDefinitions.json 加载",
+    "_source_file": "Source/DJ01/System/Config/GameplayTagDefinitions.json",
+    "_note": "此处的配置仅作为后备，优先使用源文件中的标签定义"
+  },
+  "input_tags": {
+    "items": [
+      {
+        "name": "InputTag.Move",
+        "display_name": "InputTag.Move",
+        "description": "Move input"
+      },
+      {
+        "name": "InputTag.Look.Mouse",
+        "display_name": "InputTag.Look.Mouse",
+        "description": "Look input with mouse"
+      },
+      {
+        "name": "InputTag.Jump",
+        "display_name": "InputTag.Jump",
+        "description": "Jump input"
+      },
+      {
+        "name": "InputTag.Test.CastStone",
+        "display_name": "InputTag.Test.CastStone",
+        "description": "ability cast stone"
+      }
+    ]
+  }
+}

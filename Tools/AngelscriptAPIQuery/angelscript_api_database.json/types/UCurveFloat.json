@@ -1,0 +1,379 @@
+{
+  "name": "UCurveFloat",
+  "inherits": "UCurveBase",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetFloatValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Evaluate this float curve at the specified time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddAutoCurveKey",
+      "return": "FCurveKeyHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddConstantCurveKey",
+      "return": "FCurveKeyHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddCurveKey",
+      "return": "FCurveKeyHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddCurveKeyBrokenTangent",
+      "return": "FCurveKeyHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        },
+        {
+          "name": "ArriveTangent",
+          "type": "float32"
+        },
+        {
+          "name": "LeaveTangent",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddCurveKeyTangent",
+      "return": "FCurveKeyHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        },
+        {
+          "name": "Tangent",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddCurveKeyWeightedArriveTangent",
+      "return": "FCurveKeyHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        },
+        {
+          "name": "bBrokenTangent",
+          "type": "bool"
+        },
+        {
+          "name": "ArriveTangent",
+          "type": "float32"
+        },
+        {
+          "name": "LeaveTangent",
+          "type": "float32"
+        },
+        {
+          "name": "ArriveTangentWeight",
+          "type": "float32"
+        },
+        {
+          "name": "LeaveTangentWeight",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddCurveKeyWeightedBothTangent",
+      "return": "FCurveKeyHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        },
+        {
+          "name": "bBrokenTangent",
+          "type": "bool"
+        },
+        {
+          "name": "ArriveTangent",
+          "type": "float32"
+        },
+        {
+          "name": "LeaveTangent",
+          "type": "float32"
+        },
+        {
+          "name": "ArriveTangentWeight",
+          "type": "float32"
+        },
+        {
+          "name": "LeaveTangentWeight",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddCurveKeyWeightedLeaveTangent",
+      "return": "FCurveKeyHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        },
+        {
+          "name": "bBrokenTangent",
+          "type": "bool"
+        },
+        {
+          "name": "ArriveTangent",
+          "type": "float32"
+        },
+        {
+          "name": "LeaveTangent",
+          "type": "float32"
+        },
+        {
+          "name": "ArriveTangentWeight",
+          "type": "float32"
+        },
+        {
+          "name": "LeaveTangentWeight",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddLinearCurveKey",
+      "return": "FCurveKeyHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddSmartAutoCurveKey",
+      "return": "FCurveKeyHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AutoSetTangents",
+      "return": "void",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetDefaultValue",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DefaultValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetKeyInterpMode",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyHandle",
+          "type": "FCurveKeyHandle"
+        },
+        {
+          "name": "NewInterpMode",
+          "type": "ERichCurveInterpMode"
+        },
+        {
+          "name": "bAutoSetTangents",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetKeyTangentMode",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyHandle",
+          "type": "FCurveKeyHandle"
+        },
+        {
+          "name": "NewTangentMode",
+          "type": "ERichCurveTangentMode"
+        },
+        {
+          "name": "bAutoSetTangents",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetKeyTangentWeightMode",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyHandle",
+          "type": "FCurveKeyHandle"
+        },
+        {
+          "name": "NewTangentWeightMode",
+          "type": "ERichCurveTangentWeightMode"
+        },
+        {
+          "name": "bAutoSetTangents",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetKeyUserTangents",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyHandle",
+          "type": "FCurveKeyHandle"
+        },
+        {
+          "name": "ArriveTangent",
+          "type": "float32"
+        },
+        {
+          "name": "LeaveTangent",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetKeyUserTangentWeights",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyHandle",
+          "type": "FCurveKeyHandle"
+        },
+        {
+          "name": "ArriveTangentWeight",
+          "type": "float32"
+        },
+        {
+          "name": "LeaveTangentWeight",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPostInfinityExtrap",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Extrapolation",
+          "type": "ERichCurveExtrapolation"
+        }
+      ]
+    },
+    {
+      "name": "SetPreInfinityExtrap",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Extrapolation",
+          "type": "ERichCurveExtrapolation"
+        }
+      ]
+    }
+  ]
+}

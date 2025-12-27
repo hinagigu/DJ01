@@ -1,0 +1,43 @@
+{
+  "name": "FSwarmAlertMessage",
+  "isStruct": true,
+  "properties": {
+    "JobGuid": [
+      "FGuid",
+      2,
+      "The Job Guid"
+    ],
+    "AlertLevel": [
+      "uint8",
+      2,
+      "The type of alert"
+    ],
+    "ObjectGuid": [
+      "FGuid",
+      2,
+      "The identifier for the object that is associated with the issue"
+    ],
+    "TypeId": [
+      "int",
+      2,
+      "App-specific identifier for the type of the object"
+    ],
+    "TextMessage": [
+      "FString",
+      2,
+      "Generic text message for informational purposes"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSwarmAlertMessage&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSwarmAlertMessage"
+        }
+      ]
+    }
+  ]
+}

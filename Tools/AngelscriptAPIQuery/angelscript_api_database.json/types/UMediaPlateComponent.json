@@ -1,0 +1,286 @@
+{
+  "name": "UMediaPlateComponent",
+  "inherits": "UActorComponent",
+  "doc": "This is a component for AMediaPlate that can play and show media in the world.",
+  "properties": {
+    "bPlayOnOpen": [
+      "bool",
+      "If set then play when opening the media."
+    ],
+    "bAutoPlay": [
+      "bool",
+      2,
+      "If set then start playing when this object is active."
+    ],
+    "bEnableAudio": [
+      "bool",
+      2,
+      "If set then enable audio."
+    ],
+    "StartTime": [
+      "float32",
+      "What time to start playing from (in seconds)."
+    ],
+    "SoundComponent": [
+      "UMediaSoundComponent",
+      2,
+      "Holds the component to play sound."
+    ],
+    "StaticMeshComponent": [
+      "UStaticMeshComponent",
+      2,
+      "Holds the component for the mesh."
+    ],
+    "Letterboxes": [
+      "TArray<TObjectPtr<UStaticMeshComponent>>",
+      2,
+      "Holds the component for the mesh."
+    ],
+    "MediaPlaylist": [
+      "UMediaPlaylist",
+      1,
+      "What media playlist to play."
+    ],
+    "PlaylistIndex": [
+      "int",
+      1,
+      "The current index of the source in the play list being played."
+    ],
+    "CacheSettings": [
+      "FMediaSourceCacheSettings",
+      2,
+      "Override the default cache settings."
+    ],
+    "bPlayOnlyWhenVisible": [
+      "bool",
+      "If true then only allow playback when the media plate is visible."
+    ],
+    "VisibleMipsTilesCalculations": [
+      "EMediaTextureVisibleMipsTiles",
+      2,
+      "Visible mips and tiles calculation mode for the supported mesh types in MediaPlate. (Player restart on change.)"
+    ],
+    "MipMapBias": [
+      "float32",
+      2,
+      "Media texture mip map bias shared between the (image sequence) loader and the media texture sampler."
+    ],
+    "bEnableMipMapUpscaling": [
+      "bool",
+      2,
+      "If true then enable the use of MipLevelToUpscale as defined below."
+    ],
+    "MipLevelToUpscale": [
+      "int",
+      2,
+      "With exr playback, upscale into lower quality mips from this specified level. All levels including and above the specified value will be fully read."
+    ],
+    "bAdaptivePoleMipUpscaling": [
+      "bool",
+      2,
+      "If true then Media Plate will attempt to load and upscale lower quality mips and display those at the poles (Sphere object only)."
+    ],
+    "MediaTextureSettings": [
+      "FMediaTextureResourceSettings",
+      2,
+      "Exposes Media Texture settings via Media Plate component."
+    ],
+    "bIsMediaPlatePlaying": [
+      "bool",
+      "If true, then we want the media plate to play.\nNote that this could be true, but the player is not actually playing because\nbPlayOnlyWhenVisible = true and the plate is not visible."
+    ],
+    "bLoop": [
+      "bool",
+      "If set then loop when we reach the end."
+    ],
+    "bIsAspectRatioAuto": [
+      "bool",
+      "If true then set the aspect ratio automatically based on the media."
+    ]
+  },
+  "methods": [
+    {
+      "name": "Close",
+      "return": "void",
+      "doc": "Call this to close the media.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetIsAspectRatioAuto",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets whether automatic aspect ratio is enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLetterboxAspectRatio",
+      "return": "float32",
+      "doc": "Call this to get the aspect ratio of the screen.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLoop",
+      "return": "bool",
+      "doc": "Call this to see if we want to loop.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMediaPlayer",
+      "return": "UMediaPlayer",
+      "doc": "Call this get our media player.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMediaTexture",
+      "return": "UMediaTexture",
+      "doc": "Call this get our media texture.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetMeshRange",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Return the arc size in degrees used for visible mips and tiles calculations, specific to the sphere.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsMediaPlatePlaying",
+      "return": "bool",
+      "const": true,
+      "doc": "Call this to see if the media plate is playing.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Open",
+      "return": "void",
+      "doc": "Call this to open the media.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Pause",
+      "return": "void",
+      "doc": "Call this to pause playback.\nPlay can be called to resume playback.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Play",
+      "return": "void",
+      "doc": "Call this to start playing.\nOpen must be called before this.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Rewind",
+      "return": "bool",
+      "doc": "Rewinds the media to the beginning.\n\nThis is the same as seeking to zero time.\n\n@return                              True if rewinding, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Seek",
+      "return": "bool",
+      "doc": "Call this to seek to the specified playback time.\n\n@param Time                  Time to seek to.\n@return                              True on success, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Time",
+          "type": "FTimespan"
+        }
+      ]
+    },
+    {
+      "name": "SetIsAspectRatioAuto",
+      "return": "void",
+      "doc": "Sets whether automatic aspect ratio is enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsAspectRatioAuto",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLetterboxAspectRatio",
+      "return": "void",
+      "doc": "Call this to set the aspect ratio of the screen.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AspectRatio",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLoop",
+      "return": "void",
+      "doc": "Call this enable/disable looping.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInLoop",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMeshRange",
+      "return": "void",
+      "doc": "Set the arc size in degrees used for visible mips and tiles calculations, specific to the sphere.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMeshRange",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetPlayOnlyWhenVisible",
+      "return": "void",
+      "doc": "Call this to set bPlayOnlyWhenVisible.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInPlayOnlyWhenVisible",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

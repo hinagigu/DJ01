@@ -1,0 +1,59 @@
+{
+  "name": "FForceFeedbackAttenuationSettings",
+  "isStruct": true,
+  "doc": "The struct for defining the properties used when determining attenuation for a force feedback effect",
+  "properties": {
+    "DistanceAlgorithm": [
+      "EAttenuationDistanceModel",
+      "The type of attenuation as a function of distance to use."
+    ],
+    "AttenuationShape": [
+      "EAttenuationShape",
+      "The shape of the non-custom attenuation method."
+    ],
+    "FalloffMode": [
+      "ENaturalSoundFalloffMode",
+      "Whether to continue attenuating, go silent, or hold last volume value when beyond falloff bounds and\n'Attenuation At Max (dB)' is set to a value greater than -60dB.\n(Only for 'Natural Sound' Distance Algorithm). */"
+    ],
+    "dBAttenuationAtMax": [
+      "float32",
+      "The attenuation volume at the falloff distance in decibels (Only for 'Natural Sound' Distance Algorithm)."
+    ],
+    "AttenuationShapeExtents": [
+      "FVector",
+      "The dimensions to use for the attenuation shape. Interpretation of the values differ per shape.\n         Sphere  - X is Sphere Radius. Y and Z are unused\n         Capsule - X is Capsule Half Height, Y is Capsule Radius, Z is unused\n         Box     - X, Y, and Z are the Box's dimensions\n         Cone    - X is Cone Radius, Y is Cone Angle, Z is Cone Falloff Angle"
+    ],
+    "ConeOffset": [
+      "float32",
+      "The distance back from the sound's origin to begin the cone when using the cone attenuation shape."
+    ],
+    "FalloffDistance": [
+      "float32",
+      "The distance over which volume attenuation occurs."
+    ],
+    "ConeSphereRadius": [
+      "float32",
+      "An optional attenuation radius (sphere) that extends from the cone origin."
+    ],
+    "ConeSphereFalloffDistance": [
+      "float32",
+      "The distance over which volume attenuation occurs for the optional sphere shape."
+    ],
+    "CustomAttenuationCurve": [
+      "FRuntimeFloatCurve",
+      "The custom volume attenuation curve to use."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FForceFeedbackAttenuationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FForceFeedbackAttenuationSettings"
+        }
+      ]
+    }
+  ]
+}

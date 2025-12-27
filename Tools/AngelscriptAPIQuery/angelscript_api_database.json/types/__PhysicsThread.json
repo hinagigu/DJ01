@@ -1,0 +1,28 @@
+{
+  "name": "__PhysicsThread",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddForce",
+      "return": "void",
+      "doc": "Add a force to a single rigid body.\nThis is like a 'thruster'. Good for adding a burst over some (non zero) time. Should be called every frame for the duration of the force.\n\n@param  Force            Force vector to apply. Magnitude indicates strength of force.\n@param  bAccelChange If true, Force is taken as a change in acceleration instead of a physical force (i.e. mass will have no effect).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FBodyInstanceAsyncPhysicsTickHandle"
+        },
+        {
+          "name": "Force",
+          "type": "FVector"
+        },
+        {
+          "name": "bAccelChange",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

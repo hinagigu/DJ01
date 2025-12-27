@@ -1,0 +1,23 @@
+{
+  "name": "__EGameplayAbilityInstancingPolicy",
+  "isEnum": true,
+  "doc": "How the ability is instanced when executed. This limits what an ability can do in its implementation. For example, a NonInstanced\nAbility cannot have state. It is probably unsafe for an InstancedPerActor ability to have latent actions, etc.",
+  "properties": {
+    "NonInstanced": [
+      "EGameplayAbilityInstancingPolicy",
+      "This ability is never instanced. Anything that executes the ability is operating on the CDO."
+    ],
+    "InstancedPerActor": [
+      "EGameplayAbilityInstancingPolicy",
+      "Each actor gets their own instance of this ability. State can be saved, replication is possible."
+    ],
+    "InstancedPerExecution": [
+      "EGameplayAbilityInstancingPolicy",
+      "We instance this ability each time it is executed. Replication currently unsupported."
+    ],
+    "EGameplayAbilityInstancingPolicy_MAX": [
+      "EGameplayAbilityInstancingPolicy"
+    ]
+  },
+  "methods": []
+}

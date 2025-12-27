@@ -1,0 +1,33 @@
+{
+  "name": "FLocalizationCompilationSettings",
+  "isStruct": true,
+  "properties": {
+    "SkipSourceCheck": [
+      "bool",
+      2,
+      "Should we skip the source check when compiling translations? This will allow translations whose source no longer matches the active source to still be used by the game at runtime."
+    ],
+    "ValidateFormatPatterns": [
+      "bool",
+      2,
+      "Should we validate that format patterns are valid for the culture being compiled (eg, detect invalid plural rules or broken syntax)."
+    ],
+    "ValidateSafeWhitespace": [
+      "bool",
+      2,
+      "Should we validate that text doesn't contain any unsafe whitespace (leading or trailing whitespace) that could get lost during the translation process."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLocalizationCompilationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLocalizationCompilationSettings"
+        }
+      ]
+    }
+  ]
+}

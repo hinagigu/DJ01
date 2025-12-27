@@ -1,0 +1,32 @@
+{
+  "name": "UInterchangeImportTestPlan",
+  "inherits": "UObject",
+  "doc": "Define a test plan",
+  "properties": {
+    "Steps": [
+      "TArray<TObjectPtr<UInterchangeImportTestStepBase>>",
+      2,
+      "Set of steps to perform to carry out this test plan"
+    ],
+    "bIsEnabledInAutomationTests": [
+      "bool",
+      2,
+      "Whether or not this test plan is currently enabled"
+    ],
+    "DisabledTestReason": [
+      "FString",
+      2,
+      "Why is the test plan disabled."
+    ]
+  },
+  "methods": [
+    {
+      "name": "RunThisTest",
+      "return": "void",
+      "doc": "Click here to immediately run this single test through the automation framework",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,1060 @@
+{
+  "name": "UStaticMeshEditorSubsystem",
+  "inherits": "UEditorSubsystem",
+  "doc": "UStaticMeshEditorSubsystem\nSubsystem for exposing static mesh functionality to scripts",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddSimpleCollisions",
+      "return": "int",
+      "doc": "Same as AddSimpleCollisionsWithNotification but changes are automatically applied.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "ShapeType",
+          "type": "EScriptCollisionShapeType"
+        }
+      ]
+    },
+    {
+      "name": "AddSimpleCollisionsWithNotification",
+      "return": "int",
+      "doc": "Add simple collisions to a static mesh.\nThis method replicates what is done when invoking menu entries \"Collision > Add [...] Simplified Collision\" in the Mesh Editor.\n@param       StaticMesh                      Mesh to generate simple collision for.\n@param       ShapeType                       Options on which simple collision to add to the mesh.\n@param       bApplyChanges           Indicates if changes must be apply or not.\n@return An integer indicating the index of the collision newly created.\nA negative value indicates the addition failed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "ShapeType",
+          "type": "EScriptCollisionShapeType"
+        },
+        {
+          "name": "bApplyChanges",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddUVChannel",
+      "return": "bool",
+      "doc": "Adds an empty UV channel at the end of the existing channels on the given LOD of a StaticMesh.\n@param       StaticMesh                      Static mesh on which to add a UV channel.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@return true if a UV channel was added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "BulkSetConvexDecompositionCollisions",
+      "return": "bool",
+      "doc": "Same as SetConvexDecompositionCollisionsWithNotification but changes are automatically applied.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMeshes",
+          "type": "TArray<UStaticMesh>"
+        },
+        {
+          "name": "HullCount",
+          "type": "int"
+        },
+        {
+          "name": "MaxHullVerts",
+          "type": "int"
+        },
+        {
+          "name": "HullPrecision",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "BulkSetConvexDecompositionCollisionsWithNotification",
+      "return": "bool",
+      "doc": "Compute convex collisions for a set of static meshes.\nAny existing collisions will be removed from the static meshes.\nThis method replicates what is done when invoking menu entry \"Collision > Auto Convex Collision\" in the Mesh Editor.\n@param       StaticMeshes                    Set of Static mesh to add convex collision on.\n@param       HullCount                               Maximum number of convex pieces that will be created. Must be positive.\n@param       MaxHullVerts                    Maximum number of vertices allowed for any generated convex hull.\n@param       HullPrecision                   Number of voxels to use when generating collision. Must be positive.\n@param       bApplyChanges                   Indicates if changes must be apply or not.\n@return A boolean indicating if the addition was successful or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMeshes",
+          "type": "TArray<UStaticMesh>"
+        },
+        {
+          "name": "HullCount",
+          "type": "int"
+        },
+        {
+          "name": "MaxHullVerts",
+          "type": "int"
+        },
+        {
+          "name": "HullPrecision",
+          "type": "int"
+        },
+        {
+          "name": "bApplyChanges",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreateProxyMeshActor",
+      "return": "bool",
+      "doc": "Build a proxy mesh actor that can replace a set of mesh actors.\n@param   ActorsToMerge  List of actors to build a proxy for.\n@param   MergeOptions\n@param   OutMergedActor generated actor if requested\n@return  Success of the proxy creation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorsToMerge",
+          "type": "TArray<AStaticMeshActor>"
+        },
+        {
+          "name": "MergeOptions",
+          "type": "FCreateProxyMeshActorOptions"
+        },
+        {
+          "name": "OutMergedActor",
+          "type": "AStaticMeshActor&"
+        }
+      ]
+    },
+    {
+      "name": "EnableSectionCastShadow",
+      "return": "void",
+      "doc": "Enables/disables mesh section shadow casting for a specific LOD.\n@param       StaticMesh                      Static mesh to Enables/disables shadow casting from.\n@param       bCastShadow                     If the section should cast shadow.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@param       SectionIndex            Index of the StaticMesh Section.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "bCastShadow",
+          "type": "bool"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "EnableSectionCollision",
+      "return": "void",
+      "doc": "Enables/disables mesh section collision for a specific LOD.\n@param       StaticMesh                      Static mesh to Enables/disables collisions from.\n@param       bCollisionEnabled       If the collision is enabled or not.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@param       SectionIndex            Index of the StaticMesh Section.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "bCollisionEnabled",
+          "type": "bool"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GenerateBoxUVChannel",
+      "return": "bool",
+      "doc": "Generates box UV mapping in the specified UV channel on the given LOD of a StaticMesh.\n@param       StaticMesh                      Static mesh on which to generate the UV mapping.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@param       UVChannelIndex          Channel where to save the UV mapping.\n@param       Position                        Position of the center of the projection gizmo.\n@param       Orientation                     Rotation to apply to the projection gizmo.\n@param       Size                            The size of the box projection gizmo.\n@return true if the UV mapping was generated.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "UVChannelIndex",
+          "type": "int"
+        },
+        {
+          "name": "Position",
+          "type": "FVector"
+        },
+        {
+          "name": "Orientation",
+          "type": "FRotator"
+        },
+        {
+          "name": "Size",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "GenerateCylindricalUVChannel",
+      "return": "bool",
+      "doc": "Generates cylindrical UV mapping in the specified UV channel on the given LOD of a StaticMesh.\n@param       StaticMesh                      Static mesh on which to generate the UV mapping.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@param       UVChannelIndex          Channel where to save the UV mapping.\n@param       Position                        Position of the center of the projection gizmo.\n@param       Orientation                     Rotation to apply to the projection gizmo.\n@param       Tiling                          The UV tiling to use to generate the UV mapping.\n@return true if the UV mapping was generated.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "UVChannelIndex",
+          "type": "int"
+        },
+        {
+          "name": "Position",
+          "type": "FVector"
+        },
+        {
+          "name": "Orientation",
+          "type": "FRotator"
+        },
+        {
+          "name": "Tiling",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "GeneratePlanarUVChannel",
+      "return": "bool",
+      "doc": "Generates planar UV mapping in the specified UV channel on the given LOD of a StaticMesh.\n@param       StaticMesh                      Static mesh on which to generate the UV mapping.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@param       UVChannelIndex          Channel where to save the UV mapping.\n@param       Position                        Position of the center of the projection gizmo.\n@param       Orientation                     Rotation to apply to the projection gizmo.\n@param       Tiling                          The UV tiling to use to generate the UV mapping.\n@return true if the UV mapping was generated.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "UVChannelIndex",
+          "type": "int"
+        },
+        {
+          "name": "Position",
+          "type": "FVector"
+        },
+        {
+          "name": "Orientation",
+          "type": "FRotator"
+        },
+        {
+          "name": "Tiling",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "GetCollisionComplexity",
+      "return": "ECollisionTraceFlag",
+      "doc": "Get the Collision Trace behavior of a static mesh\n@param       StaticMesh                              Mesh to query on.\n@return the Collision Trace behavior.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "GetConvexCollisionCount",
+      "return": "int",
+      "doc": "Get number of convex collisions present on a static mesh.\n@param       StaticMesh                              Mesh to query on.\n@return An integer representing the number of convex collisions on the input static mesh.\nAn negative value indicates that the command could not be executed. See log for explanation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "GetLodBuildSettings",
+      "return": "void",
+      "doc": "Copy the build options with the specified LOD build settings.\n@param StaticMesh - Mesh to process.\n@param LodIndex - The LOD we get the reduction settings.\n@param OutBuildOptions - The build settings where we copy the build options.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "const UStaticMesh"
+        },
+        {
+          "name": "LodIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutBuildOptions",
+          "type": "FMeshBuildSettings&"
+        }
+      ]
+    },
+    {
+      "name": "GetLodCount",
+      "return": "int",
+      "doc": "Get number of LODs present on a static mesh.\n@param       StaticMesh                              Mesh to process.\n@return the number of LODs present on the input mesh.\nAn negative value indicates that the command could not be executed. See log for explanation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "GetLODGroup",
+      "return": "FName",
+      "doc": "Get the LODGroup for the specified static mesh\n@param StaticMesh\n@return LODGroup",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "GetLODMaterialSlot",
+      "return": "int",
+      "doc": "Gets the material slot used for a specific LOD section.\n@param       StaticMesh                      Static mesh to get the material index from.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@param       SectionIndex            Index of the StaticMesh Section.\n@return  MaterialSlotIndex   Index of the material slot used by the section or INDEX_NONE in case of error.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetLodReductionSettings",
+      "return": "void",
+      "doc": "Copy the reduction options with the specified LOD reduction settings.\n@param StaticMesh - Mesh to process.\n@param LodIndex - The LOD we get the reduction settings.\n@param OutReductionOptions - The reduction settings where we copy the reduction options.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "const UStaticMesh"
+        },
+        {
+          "name": "LodIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutReductionOptions",
+          "type": "FMeshReductionSettings&"
+        }
+      ]
+    },
+    {
+      "name": "GetLodScreenSizes",
+      "return": "TArray<float32>",
+      "doc": "Get an array of LOD screen sizes for evaluation.\n@param       StaticMesh                      Mesh to process.\n@return array of LOD screen sizes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "GetNaniteSettings",
+      "return": "FMeshNaniteSettings",
+      "doc": "Get the Nanite Settings for the mesh\n@param StaticMesh        Mesh to access\n@return FMeshNaniteSettings struct for the given static mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "GetNumberMaterials",
+      "return": "int",
+      "doc": "Get number of Materials for a StaticMesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "GetNumberVerts",
+      "return": "int",
+      "doc": "Get number of StaticMesh verts for an LOD",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetNumUVChannels",
+      "return": "int",
+      "doc": "Returns the number of UV channels for the given LOD of a StaticMesh.\n@param       StaticMesh                      Static mesh to query.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@return the number of UV channels.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetSimpleCollisionCount",
+      "return": "int",
+      "doc": "Get number of simple collisions present on a static mesh.\n@param       StaticMesh                              Mesh to query on.\n@return An integer representing the number of simple collisions on the input static mesh.\nAn negative value indicates that the command could not be executed. See log for explanation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "HasInstanceVertexColors",
+      "return": "bool",
+      "doc": "Check whether a static mesh component has vertex colors",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMeshComponent",
+          "type": "UStaticMeshComponent"
+        }
+      ]
+    },
+    {
+      "name": "HasVertexColors",
+      "return": "bool",
+      "doc": "Check whether a static mesh has vertex colors",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "ImportLOD",
+      "return": "int",
+      "doc": "Import or re-import a LOD into the specified base mesh. If the LOD do not exist it will import it and add it to the base static mesh. If the LOD already exist it will re-import the specified LOD.\n\n@param BaseStaticMesh: The static mesh we import or re-import a LOD.\n@param LODIndex: The index of the LOD to import or re-import. Valid value should be between 0 and the base static mesh LOD number. Invalid value will return INDEX_NONE\n@param SourceFilename: The fbx source filename. If we are re-importing an existing LOD, it can be empty in this case it will use the last import file. Otherwise it must be an existing fbx file.\n\n@return the index of the LOD that was imported or re-imported. Will return INDEX_NONE if anything goes bad.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseStaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SourceFilename",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "InsertUVChannel",
+      "return": "bool",
+      "doc": "Inserts an empty UV channel at the specified channel index on the given LOD of a StaticMesh.\n@param       StaticMesh                      Static mesh on which to insert a UV channel.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@param       UVChannelIndex          Index where to insert the UV channel.\n@return true if a UV channel was added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "UVChannelIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "IsSectionCollisionEnabled",
+      "return": "bool",
+      "doc": "Checks if a specific LOD mesh section has collision.\n@param       StaticMesh                      Static mesh to remove collisions from.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@param       SectionIndex            Index of the StaticMesh Section.\n@return True if the collision is enabled for the specified LOD of the StaticMesh section.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "JoinStaticMeshActors",
+      "return": "AActor",
+      "doc": "Create a new Actor in the level that contains a duplicate of all the Actors Static Meshes Component.\nThe ActorsToJoin need to be in the same Level.\nThis will have a low impact on performance but may help the edition by grouping the meshes under a single Actor.\n@param       ActorsToJoin                    List of Actors to join.\n@param       JoinOptions                             Options on how to join the actors.\n@return The new created actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorsToJoin",
+          "type": "TArray<AStaticMeshActor>"
+        },
+        {
+          "name": "JoinOptions",
+          "type": "FJoinStaticMeshActorsOptions"
+        }
+      ]
+    },
+    {
+      "name": "MergeStaticMeshActors",
+      "return": "bool",
+      "doc": "Merge the meshes into a unique mesh with the provided StaticMeshActors. There are multiple options on how to merge the meshes and their materials.\nThe ActorsToMerge need to be in the same Level.\nThis may have a high impact on performance depending of the MeshMergingSettings options.\n@param       ActorsToMerge                   List of Actors to merge.\n@param       MergeOptions                    Options on how to merge the actors.\n@param       OutMergedActor                  The new created actor, if requested.\n@return      if the operation is successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorsToMerge",
+          "type": "TArray<AStaticMeshActor>"
+        },
+        {
+          "name": "MergeOptions",
+          "type": "FMergeStaticMeshActorsOptions"
+        },
+        {
+          "name": "OutMergedActor",
+          "type": "AStaticMeshActor&"
+        }
+      ]
+    },
+    {
+      "name": "ReimportAllCustomLODs",
+      "return": "bool",
+      "doc": "Re-import all the custom LODs present in the specified static mesh.\n\n@param StaticMesh: is the static mesh we import or re-import all LODs.\n\n@return true if re-import all LODs works, false otherwise see log for explanation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "RemoveCollisions",
+      "return": "bool",
+      "doc": "Same as RemoveCollisionsWithNotification but changes are applied.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "RemoveCollisionsWithNotification",
+      "return": "bool",
+      "doc": "Remove collisions from a static mesh.\nThis method replicates what is done when invoking menu entries \"Collision > Remove Collision\" in the Mesh Editor.\n@param       StaticMesh                      Static mesh to remove collisions from.\n@param       bApplyChanges           Indicates if changes must be apply or not.\n@return A boolean indicating if the removal was successful or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "bApplyChanges",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLods",
+      "return": "bool",
+      "doc": "Remove LODs on a static mesh except LOD 0.\n@param       StaticMesh                      Mesh to remove LOD from.\n@return A boolean indicating if the removal was successful, true, or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "RemoveUVChannel",
+      "return": "bool",
+      "doc": "Removes the UV channel at the specified channel index on the given LOD of a StaticMesh.\n@param       StaticMesh                      Static mesh on which to remove the UV channel.\n@param       LODIndex                        Index of the StaticMesh LOD.\n@param       UVChannelIndex          Index where to remove the UV channel.\n@return true if the UV channel was removed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "UVChannelIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceMeshComponentsMaterials",
+      "return": "void",
+      "doc": "Find the references of the material MaterialToReplaced on all the MeshComponents provided and replace it by NewMaterial.\n@param       MeshComponents                  List of MeshComponent to search from.\n@param       MaterialToBeReplaced    Material we want to replace.\n@param       NewMaterial                             Material to replace MaterialToBeReplaced by.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshComponents",
+          "type": "TArray<UMeshComponent>"
+        },
+        {
+          "name": "MaterialToBeReplaced",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "NewMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceMeshComponentsMaterialsOnActors",
+      "return": "void",
+      "doc": "Find the references of the material MaterialToReplaced on all the MeshComponents of all the Actors provided and replace it by NewMaterial.\n@param       Actors                                  List of Actors to search from.\n@param       MaterialToBeReplaced    Material we want to replace.\n@param       NewMaterial                             Material to replace MaterialToBeReplaced by.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actors",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "MaterialToBeReplaced",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "NewMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceMeshComponentsMeshes",
+      "return": "void",
+      "doc": "Find the references of the mesh MeshToBeReplaced on all the MeshComponents provided and replace it by NewMesh.\nThe editor should not be in play in editor mode.\n@param       MeshComponents                  List of MeshComponent to search from.\n@param       MeshToBeReplaced                Mesh we want to replace.\n@param       NewMesh                                 Mesh to replace MeshToBeReplaced by.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshComponents",
+          "type": "TArray<UStaticMeshComponent>"
+        },
+        {
+          "name": "MeshToBeReplaced",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "NewMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceMeshComponentsMeshesOnActors",
+      "return": "void",
+      "doc": "Find the references of the mesh MeshToBeReplaced on all the MeshComponents of all the Actors provided and replace it by NewMesh.\n@param       Actors                                  List of Actors to search from.\n@param       MeshToBeReplaced                Mesh we want to replace.\n@param       NewMesh                                 Mesh to replace MeshToBeReplaced by.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actors",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "MeshToBeReplaced",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "NewMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "SetAllowCPUAccess",
+      "return": "void",
+      "doc": "Sets StaticMeshFlag bAllowCPUAccess",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "bAllowCPUAccess",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetConvexDecompositionCollisions",
+      "return": "bool",
+      "doc": "Same as SetConvexDecompositionCollisionsWithNotification but changes are automatically applied.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "HullCount",
+          "type": "int"
+        },
+        {
+          "name": "MaxHullVerts",
+          "type": "int"
+        },
+        {
+          "name": "HullPrecision",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetConvexDecompositionCollisionsWithNotification",
+      "return": "bool",
+      "doc": "Add a convex collision to a static mesh.\nAny existing collisions will be removed from the static mesh.\nThis method replicates what is done when invoking menu entry \"Collision > Auto Convex Collision\" in the Mesh Editor.\n@param       StaticMesh                              Static mesh to add convex collision on.\n@param       HullCount                               Maximum number of convex pieces that will be created. Must be positive.\n@param       MaxHullVerts                    Maximum number of vertices allowed for any generated convex hull.\n@param       HullPrecision                   Number of voxels to use when generating collision. Must be positive.\n@param       bApplyChanges                   Indicates if changes must be apply or not.\n@return A boolean indicating if the addition was successful or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "HullCount",
+          "type": "int"
+        },
+        {
+          "name": "MaxHullVerts",
+          "type": "int"
+        },
+        {
+          "name": "HullPrecision",
+          "type": "int"
+        },
+        {
+          "name": "bApplyChanges",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetGenerateLightmapUv",
+      "return": "bool",
+      "doc": "Set Generate Lightmap UVs for StaticMesh",
+      "ufunction": true,
+      "unrealname": "SetGenerateLightmapUVs",
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "bGenerateLightmapUVs",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLodBuildSettings",
+      "return": "void",
+      "doc": "Set the LOD build options for the specified LOD index.\n@param StaticMesh - Mesh to process.\n@param LodIndex - The LOD we will apply the build settings.\n@param BuildOptions - The build settings we want to apply to the LOD.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LodIndex",
+          "type": "int"
+        },
+        {
+          "name": "BuildOptions",
+          "type": "FMeshBuildSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetLodFromStaticMesh",
+      "return": "int",
+      "doc": "Adds or create a LOD at DestinationLodIndex using the geometry from SourceStaticMesh SourceLodIndex\n@param       DestinationStaticMesh           The static mesh to set the LOD in.\n@param       DestinationLodIndex                     The index of the LOD to set.\n@param       SourceStaticMesh                        The static mesh to get the LOD from.\n@param       SourceLodIndex                          The index of the LOD to get.\n@param       bReuseExistingMaterialSlots     If true, sections from SourceStaticMesh will be remapped to match the material slots of DestinationStaticMesh\n                                                                                       when they have the same material assigned. If false, all material slots of SourceStaticMesh will be appended in DestinationStaticMesh.\n@return      The index of the LOD that was set. It can be different than DestinationLodIndex if it wasn't a valid index.\n                     A negative value indicates that the LOD was not set. See log for explanation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DestinationStaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "DestinationLodIndex",
+          "type": "int"
+        },
+        {
+          "name": "SourceStaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "SourceLodIndex",
+          "type": "int"
+        },
+        {
+          "name": "bReuseExistingMaterialSlots",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLODGroup",
+      "return": "bool",
+      "doc": "Set the LODGroup for the specified static mesh\n@param StaticMesh - Mesh to process.\n@param LODGroup - Name of the LODGroup to apply\n@param bRebuildImmediately - If true, rebuild the static mesh immediately\n@return Success",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODGroup",
+          "type": "FName"
+        },
+        {
+          "name": "bRebuildImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLODMaterialSlot",
+      "return": "void",
+      "doc": "Sets the material slot for a specific LOD.\n@param        StaticMesh                      Static mesh to Enables/disables shadow casting from.\n@param        MaterialSlotIndex       Index of the material slot to use.\n@param        LODIndex                        Index of the StaticMesh LOD.\n@param        SectionIndex            Index of the StaticMesh Section.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "MaterialSlotIndex",
+          "type": "int"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetLodReductionSettings",
+      "return": "void",
+      "doc": "Set the LOD reduction for the specified LOD index.\n@param StaticMesh - Mesh to process.\n@param LodIndex - The LOD we will apply the reduction settings.\n@param ReductionOptions - The reduction settings we want to apply to the LOD.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LodIndex",
+          "type": "int"
+        },
+        {
+          "name": "ReductionOptions",
+          "type": "FMeshReductionSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetLods",
+      "return": "int",
+      "doc": "Same as SetLodsWithNotification but changes are applied.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "ReductionOptions",
+          "type": "FStaticMeshReductionOptions"
+        }
+      ]
+    },
+    {
+      "name": "SetLodScreenSizes",
+      "return": "bool",
+      "doc": "Set LOD screen sizes.\n@param       StaticMesh                      Mesh to process.\n@param       ScreenSizes                     Array of LOD screen sizes to set.\n@return A boolean indicating if setting the screen sizes was successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "ScreenSizes",
+          "type": "TArray<float32>"
+        }
+      ]
+    },
+    {
+      "name": "SetLodsWithNotification",
+      "return": "int",
+      "doc": "Remove then add LODs on a static mesh.\nThe static mesh must have at least LOD 0.\nThe LOD 0 of the static mesh is kept after removal.\nThe build settings of LOD 0 will be applied to all subsequent LODs.\n@param       StaticMesh                              Mesh to process.\n@param       ReductionOptions                Options on how to generate LODs on the mesh.\n@param       bApplyChanges                           Indicates if change must be notified.\n@return the number of LODs generated on the input mesh.\nAn negative value indicates that the reduction could not be performed. See log for explanation.\nNo action will be performed if ReductionOptions.ReductionSettings is empty",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "ReductionOptions",
+          "type": "FStaticMeshReductionOptions"
+        },
+        {
+          "name": "bApplyChanges",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNaniteSettings",
+      "return": "void",
+      "doc": "Get the Nanite Settings for the mesh\n@param StaticMesh        Mesh to update nanite settings for\n@param NaniteSettings    Settings with which to update the mesh\n@param bApplyChanges     Indicates if changes must be applied or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "NaniteSettings",
+          "type": "FMeshNaniteSettings"
+        },
+        {
+          "name": "bApplyChanges",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

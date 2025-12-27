@@ -1,0 +1,38 @@
+{
+  "name": "FProjectBuildSettings",
+  "isStruct": true,
+  "properties": {
+    "Name": [
+      "FString",
+      2,
+      "The name for this custom build. It will be shown in menus for selection."
+    ],
+    "HelpText": [
+      "FString",
+      2,
+      "Any help that you would like to include in the ToolTip of the menu option (or shown in interactive mode Turnkey)"
+    ],
+    "SpecificPlatforms": [
+      "TArray<FString>",
+      2,
+      "If this build step is specific to one or more platforms, add them here by name (note: use Windows, not Win64)"
+    ],
+    "BuildCookRunParams": [
+      "FString",
+      2,
+      "The commandline for BuildCookRun UAT command. Some substitutions are allowed:\n  {Project} - Replaced with the path to the project's .uproject file\n  {Platform} - Replaced with the platform name this is run for\n  {inivalue:Config:Section:Key} - Replaced with the value for Key in Config's Section. Ex: -archivedirectory={inivalue:Engine:CustomSettings:OverrideArchiveDir}\n  {iniif:Token:Config:Section:Key} - Replaced with Token if the vlaue for Key in Config's Section evaluates to True. Ex: {iniif:-iostore:/Script/UnrealEd.ProjectPackagingSettings:bUseIoStore}\nBecause ProjectPackagingSettings is a common section to read, if Config:Section: are not specified for 'iniif' or 'inivalue', it will use the ProjectPackagingSettings settings:\n  {iniif:-iostore:bUseIoStore}\nAdditionally, the ini settings can have an optional search and replace modifier, to easily modify the string. The Replace can be blank:\n  {inivalue:BuildConfiguration|PPBC_=} - This will get the BuildConfiguration from the settings, and then remove the PPBC_ enum prefix from the string, to just get say Development"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FProjectBuildSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FProjectBuildSettings"
+        }
+      ]
+    }
+  ]
+}

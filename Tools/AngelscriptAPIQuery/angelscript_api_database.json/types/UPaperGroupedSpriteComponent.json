@@ -1,0 +1,161 @@
+{
+  "name": "UPaperGroupedSpriteComponent",
+  "inherits": "UMeshComponent",
+  "doc": "A component that handles rendering and collision for many instances of one or more UPaperSprite assets.\n\n@see UPrimitiveComponent, UPaperSprite",
+  "properties": {
+    "PerInstanceSpriteData": [
+      "TArray<FSpriteInstanceData>",
+      2,
+      "Array of instances"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddInstance",
+      "return": "int",
+      "doc": "Add an instance to this component. Transform can be given either in the local space of this component or world space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Transform",
+          "type": "FTransform"
+        },
+        {
+          "name": "Sprite",
+          "type": "UPaperSprite"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "Color",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "ClearInstances",
+      "return": "void",
+      "doc": "Clear all instances being rendered by this component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInstanceCount",
+      "return": "int",
+      "const": true,
+      "doc": "Get the number of instances in this component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInstanceTransform",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the transform for the instance specified. Instance is returned in local space of this component unless bWorldSpace is set.  Returns True on success.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutInstanceTransform",
+          "type": "FTransform&"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveInstance",
+      "return": "bool",
+      "doc": "Remove the instance specified. Returns True on success.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SortInstancesAlongAxis",
+      "return": "void",
+      "doc": "Sort all instances by their world space position along the specified axis",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldSpaceSortAxis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "UpdateInstanceColor",
+      "return": "bool",
+      "doc": "Update the color for the instance specified. Returns True on success.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewInstanceColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bMarkRenderStateDirty",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UpdateInstanceTransform",
+      "return": "bool",
+      "doc": "Update the transform for the instance specified. Instance is given in local space of this component unless bWorldSpace is set.  Returns True on success.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewInstanceTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bMarkRenderStateDirty",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bTeleport",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "name": "UInterchangeManager",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ExportAsset",
+      "return": "bool",
+      "doc": "Call this to start an asset export process. The caller must specify a source data.\n\n@Param Asset - The asset to export.\n@Param bIsAutomated - If true, the exporter will not show any UI or dialogs.\n@return true if the export succeeds, or false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Asset",
+          "type": "const UObject"
+        },
+        {
+          "name": "bIsAutomated",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ExportScene",
+      "return": "bool",
+      "doc": "Call this to start a scene export process. The caller must specify a source data.\n@Param World - The scene to export.\n@Param bIsAutomated - If true, the import process will not show any UI or dialogs.\n@return true if the export succeeds, or false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "const UObject"
+        },
+        {
+          "name": "bIsAutomated",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetRegisteredFactoryClass",
+      "return": "const UClass",
+      "const": true,
+      "doc": "Script helper to get a registered factory for a specified class.\n@Param FactoryClass: The class whose registered factory you want to find.\n@return: The registered factory class if found, or NULL if no registered factory was found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClassToMake",
+          "type": "const UClass"
+        }
+      ]
+    },
+    {
+      "name": "ImportAsset",
+      "return": "bool",
+      "doc": "Call this to start an asset import process. The caller must specify the source data.\nThis process can import many different assets into the game content.\n\n@Param ContentPath - The path where the imported assets will be created.\n@Param SourceData - The source data input to translate.\n@param ImportAssetParameters - All parameters that need to be passed to the import asset function.\n@return true if the import succeeds, or false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContentPath",
+          "type": "FString"
+        },
+        {
+          "name": "SourceData",
+          "type": "const UInterchangeSourceData"
+        },
+        {
+          "name": "ImportAssetParameters",
+          "type": "FImportAssetParameters"
+        }
+      ]
+    },
+    {
+      "name": "ImportScene",
+      "return": "bool",
+      "doc": "Call this to start a scene import process. The caller must specify the source data.\nThis process can import many different assets and their transforms (USceneComponent), store the result in a Blueprint, and add the Blueprint to the level.\n\n@Param ContentPath - The path where the imported assets will be created.\n@Param SourceData - The source data input to translate. This object will be duplicated to allow thread-safe operations.\n@param ImportAssetParameters - All parameters that need to be passed to the import asset function.\n@return true if the import succeeds, or false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContentPath",
+          "type": "FString"
+        },
+        {
+          "name": "SourceData",
+          "type": "const UInterchangeSourceData"
+        },
+        {
+          "name": "ImportAssetParameters",
+          "type": "FImportAssetParameters"
+        }
+      ]
+    }
+  ]
+}

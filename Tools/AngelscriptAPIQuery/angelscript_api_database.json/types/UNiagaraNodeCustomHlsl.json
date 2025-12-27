@@ -1,0 +1,22 @@
+{
+  "name": "UNiagaraNodeCustomHlsl",
+  "inherits": "UNiagaraNodeFunctionCall",
+  "properties": {
+    "CustomHlsl": [
+      "FString",
+      2,
+      ""
+    ],
+    "AbsoluteIncludeFilePaths": [
+      "TArray<FFilePath>",
+      2,
+      "Links to hlsl files that will be included by the translator. These external files are not watched by the engine, so changes to them do not automatically trigger a recompile of Niagara scripts."
+    ],
+    "VirtualIncludeFilePaths": [
+      "TArray<FString>",
+      2,
+      "Links to hlsl files that will be included by the translator. These paths are resolved with the virtual shader paths registered in the engine.\nFor example, /Plugin/FX/Niagara maps to /Engine/Plugins/FX/Niagara/Shaders. Custom mappings can be added via AddShaderSourceDirectoryMapping()."
+    ]
+  },
+  "methods": []
+}

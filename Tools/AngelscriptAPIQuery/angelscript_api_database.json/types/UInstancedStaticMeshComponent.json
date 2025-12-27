@@ -1,0 +1,402 @@
+{
+  "name": "UInstancedStaticMeshComponent",
+  "inherits": "UStaticMeshComponent",
+  "doc": "A component that efficiently renders multiple instances of the same StaticMesh.",
+  "properties": {
+    "PerInstanceSMData": [
+      "TArray<FInstancedStaticMeshInstanceData>",
+      2,
+      "Array of instances, bulk serialized."
+    ],
+    "PerInstanceSMCustomData": [
+      "TArray<float32>",
+      2,
+      "Array of custom data for instances. This will contains NumCustomDataFloats*InstanceCount entries. The entries are represented sequantially, in instance order. Can be read in a material and manipulated through Blueprints.\n    Example: If NumCustomDataFloats is 1, then each entry will belong to an instance. Custom data 0 will belong to Instance 0. Custom data 1 will belong to Instance 1 etc.\n    Example: If NumCustomDataFloats is 2, then each pair of sequential entries belong to an instance. Custom data 0 and 1 will belong to Instance 0. Custom data 2 and 3 will belong to Instance 2 etc."
+    ],
+    "InstancingRandomSeed": [
+      "int",
+      "Value used to seed the random number stream that generates random numbers for each of this mesh's instances.\n      The random number is stored in a buffer accessible to materials through the PerInstanceRandom expression. If\n      this is set to zero (default), it will be populated automatically by the editor."
+    ],
+    "InstanceLODDistanceScale": [
+      "float32",
+      "Scale applied to change the computation of LOD distances when using the StaticMesh screen sizes.\nSmaller values make LODs transition earlier."
+    ],
+    "InstanceStartCullDistance": [
+      "int",
+      "Distance from camera at which each instance begins to fade out."
+    ],
+    "InstanceEndCullDistance": [
+      "int",
+      "Distance from camera at which each instance completely fades out."
+    ],
+    "bUseGpuLodSelection": [
+      "bool",
+      "If true, this component will use GPU LOD selection."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddInstance",
+      "return": "int",
+      "doc": "Add an instance to this component. Transform is given in local space of this component unless bWorldSpace is set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddInstances",
+      "return": "TArray<int>",
+      "doc": "Add multiple instances to this component. Transform is given in local space of this component unless bWorldSpace is set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceTransforms",
+          "type": "TArray<FTransform>"
+        },
+        {
+          "name": "bShouldReturnIndices",
+          "type": "bool"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bUpdateNavigation",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "BatchUpdateInstancesTransform",
+      "return": "bool",
+      "doc": "Update the transform for a number of instances.\n\n@param StartInstanceIndex             The starting index of the instances to update\n@param NumInstances                   The number of instances to update\n@param NewInstancesTransform  The new transform\n@param bWorldSpace                    If true, the new transform is interpreted as a World Space transform, otherwise it is interpreted as Local Space\n@param bMarkRenderStateDirty  If true, the change should be visible immediately. If you are updating many instances you should only set this to true for the last instance.\n@param bTeleport                              Whether or not the instances physics should be moved normally, or teleported (moved instantly, ignoring velocity).\n@return                                               True on success.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartInstanceIndex",
+          "type": "int"
+        },
+        {
+          "name": "NumInstances",
+          "type": "int"
+        },
+        {
+          "name": "NewInstancesTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bMarkRenderStateDirty",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bTeleport",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "BatchUpdateInstancesTransforms",
+      "return": "bool",
+      "doc": "Update the transform for an array of instances.\n\n@param StartInstanceIndex             The starting index of the instances to update\n@param NewInstancesTransforms The new transforms\n@param bWorldSpace                    If true, the new transforms are interpreted as a World Space transform, otherwise it is interpreted as Local Space\n@param bMarkRenderStateDirty  If true, the change should be visible immediately. If you are updating many instances you should only set this to true for the last instance.\n@param bTeleport                              Whether or not the instances physics should be moved normally, or teleported (moved instantly, ignoring velocity).\n@return                                               True on success.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartInstanceIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewInstancesTransforms",
+          "type": "TArray<FTransform>"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bMarkRenderStateDirty",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bTeleport",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClearInstances",
+      "return": "void",
+      "doc": "Clear all instances being rendered by this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCullDistances",
+      "return": "void",
+      "const": true,
+      "doc": "Gets the fading start and culling end distances for this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutStartCullDistance",
+          "type": "int&"
+        },
+        {
+          "name": "OutEndCullDistance",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetInstanceCount",
+      "return": "int",
+      "const": true,
+      "doc": "Get the number of instances in this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInstancesOverlappingBox",
+      "return": "TArray<int>",
+      "const": true,
+      "doc": "Returns the instances with instance bounds overlapping the specified box. The return value is an array of instance indices.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Box",
+          "type": "FBox"
+        },
+        {
+          "name": "bBoxInWorldSpace",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetInstancesOverlappingSphere",
+      "return": "TArray<int>",
+      "const": true,
+      "doc": "Returns the instances with instance bounds overlapping the specified sphere. The return value is an array of instance indices.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Center",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "bSphereInWorldSpace",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetInstanceTransform",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the transform for the instance specified. Instance is returned in local space of this component unless bWorldSpace is set.  Returns True on success.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutInstanceTransform",
+          "type": "FTransform&"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetLODDistanceScale",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current LOD scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsValidInstance",
+      "return": "bool",
+      "const": true,
+      "doc": "Does the given index map to a valid instance in this component?",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveInstance",
+      "return": "bool",
+      "doc": "Remove the instance specified. Returns True on success.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveInstances",
+      "return": "bool",
+      "doc": "Remove the instances specified. Returns True on success.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstancesToRemove",
+          "type": "TArray<int>"
+        }
+      ]
+    },
+    {
+      "name": "SetCullDistances",
+      "return": "void",
+      "doc": "Sets the fading start and culling end distances for this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartCullDistance",
+          "type": "int"
+        },
+        {
+          "name": "EndCullDistance",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomDataValue",
+      "return": "bool",
+      "doc": "Update custom data for specific instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceIndex",
+          "type": "int"
+        },
+        {
+          "name": "CustomDataIndex",
+          "type": "int"
+        },
+        {
+          "name": "CustomDataValue",
+          "type": "float32"
+        },
+        {
+          "name": "bMarkRenderStateDirty",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLODDistanceScale",
+      "return": "void",
+      "doc": "Sets the LOD scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLODDistanceScale",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetNumCustomDataFloats",
+      "return": "void",
+      "doc": "Update number of custom data entries per instance. This applies to all instances and will reallocate the full custom data buffer and reset all values to 0",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNumCustomDataFloats",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "UpdateInstanceTransform",
+      "return": "bool",
+      "doc": "Update the transform for the instance specified.\n\n@param InstanceIndex                  The index of the instance to update\n@param NewInstanceTransform   The new transform\n@param bWorldSpace                    If true, the new transform is interpreted as a World Space transform, otherwise it is interpreted as Local Space\n@param bMarkRenderStateDirty  If true, the change should be visible immediately. If you are updating many instances you should only set this to true for the last instance.\n@param bTeleport                              Whether or not the instance's physics should be moved normally, or teleported (moved instantly, ignoring velocity).\n@return                                               True on success.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewInstanceTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bWorldSpace",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bMarkRenderStateDirty",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bTeleport",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

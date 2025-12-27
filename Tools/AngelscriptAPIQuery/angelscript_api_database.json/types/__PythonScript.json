@@ -1,0 +1,58 @@
+{
+  "name": "__PythonScript",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ExecutePythonCommand",
+      "return": "bool",
+      "doc": "Execute the given Python command.\n@param PythonCommand The command to run. This may be literal Python code, or a file (with optional arguments) that you want to run.\n@return true if the command ran successfully, false if there were errors (the output log will show the errors).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PythonCommand",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ExecutePythonCommandEx",
+      "return": "bool",
+      "doc": "Execute the given Python command.\n@param PythonCommand The command to run. This may be literal Python code, or a file (with optional arguments) that you want to run.\n@param ExecutionMode Controls the mode used to execute the command.\n@param FileExecutionScope Controls the scope used when executing Python files.\n@param CommandResult The result of running the command. On success, for EvaluateStatement mode this will be the actual result of running the command, and will be None in all other cases. On failure, this will be the error information (typically a Python exception trace).\n@param LogOutput The log output captured while running the command.\n@return true if the command ran successfully, false if there were errors.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PythonCommand",
+          "type": "FString"
+        },
+        {
+          "name": "CommandResult",
+          "type": "FString&"
+        },
+        {
+          "name": "LogOutput",
+          "type": "TArray<FPythonLogOutputEntry>&"
+        },
+        {
+          "name": "ExecutionMode",
+          "default": "EPythonCommandExecutionMode :: ExecuteFile",
+          "type": "EPythonCommandExecutionMode"
+        },
+        {
+          "name": "FileExecutionScope",
+          "default": "EPythonFileExecutionScope :: Private",
+          "type": "EPythonFileExecutionScope"
+        }
+      ]
+    },
+    {
+      "name": "IsPythonAvailable",
+      "return": "bool",
+      "doc": "Check to see whether Python support is available in the current build.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

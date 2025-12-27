@@ -1,0 +1,33 @@
+{
+  "name": "UPatternTool_TranslationSettings",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Settings for Per Element Translation in the Pattern Tool",
+  "properties": {
+    "bInterpolate": [
+      "bool",
+      2,
+      "If true, Translation is linearly interpolated between StartTranslation and Translation values"
+    ],
+    "bJitter": [
+      "bool",
+      2,
+      "If true, Translation at each Pattern Element is offset by a uniformly chosen random value in the range of [-TranslationJitterRange, TranslationJitterRange]"
+    ],
+    "StartTranslation": [
+      "FVector",
+      2,
+      "Translation applied to all Pattern Elements, or to first Pattern Element for Interpolated translation"
+    ],
+    "EndTranslation": [
+      "FVector",
+      2,
+      "Translation applied to last Pattern Element for Interpolated translation"
+    ],
+    "Jitter": [
+      "FVector",
+      2,
+      "Upper bound of the range which is sampled to randomly translate each Pattern Element if Jitter is true"
+    ]
+  },
+  "methods": []
+}

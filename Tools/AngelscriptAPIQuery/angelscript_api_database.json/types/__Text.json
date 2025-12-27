@@ -1,0 +1,874 @@
+{
+  "name": "__Text",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AsCurrency_Float",
+      "return": "FText",
+      "doc": "Converts a passed in float to a text formatted as a currency",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        },
+        {
+          "name": "RoundingMode",
+          "type": "ERoundingMode"
+        },
+        {
+          "name": "bAlwaysSign",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bUseGrouping",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "MinimumIntegralDigits",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "MaximumIntegralDigits",
+          "default": "324",
+          "type": "int"
+        },
+        {
+          "name": "MinimumFractionalDigits",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "MaximumFractionalDigits",
+          "default": "3",
+          "type": "int"
+        },
+        {
+          "name": "CurrencyCode",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AsCurrency_Integer",
+      "return": "FText",
+      "doc": "Converts a passed in integer to a text formatted as a currency",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        },
+        {
+          "name": "RoundingMode",
+          "type": "ERoundingMode"
+        },
+        {
+          "name": "bAlwaysSign",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bUseGrouping",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "MinimumIntegralDigits",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "MaximumIntegralDigits",
+          "default": "324",
+          "type": "int"
+        },
+        {
+          "name": "MinimumFractionalDigits",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "MaximumFractionalDigits",
+          "default": "3",
+          "type": "int"
+        },
+        {
+          "name": "CurrencyCode",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AsCurrencyBase",
+      "return": "FText",
+      "doc": "Generate an FText that represents the passed number as currency in the current culture.\nBaseVal is specified in the smallest fractional value of the currency and will be converted for formatting according to the selected culture.\nKeep in mind the CurrencyCode is completely independent of the culture it's displayed in (and they do not imply one another).\nFor example: FText::AsCurrencyBase(650, TEXT(\"EUR\")); would return an FText of \"<EUR>6.50\" in most English cultures (en_US/en_UK) and \"6,50<EUR>\" in Spanish (es_ES) (where <EUR> is U+20AC)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseValue",
+          "type": "int"
+        },
+        {
+          "name": "CurrencyCode",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AsDate_DateTime",
+      "return": "FText",
+      "doc": "Converts a passed in date & time to a text, formatted as a date using an invariant timezone. This will use the given date & time as-is, so it's assumed to already be in the correct timezone.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDateTime",
+          "type": "FDateTime"
+        }
+      ]
+    },
+    {
+      "name": "AsDateTime_DateTime",
+      "return": "FText",
+      "doc": "Converts a passed in date & time to a text, formatted as a date & time using an invariant timezone. This will use the given date & time as-is, so it's assumed to already be in the correct timezone.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "In",
+          "type": "FDateTime"
+        }
+      ]
+    },
+    {
+      "name": "AsPercent_Float",
+      "return": "FText",
+      "doc": "Converts a passed in float to a text, formatted as a percent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        },
+        {
+          "name": "RoundingMode",
+          "type": "ERoundingMode"
+        },
+        {
+          "name": "bAlwaysSign",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bUseGrouping",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "MinimumIntegralDigits",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "MaximumIntegralDigits",
+          "default": "324",
+          "type": "int"
+        },
+        {
+          "name": "MinimumFractionalDigits",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "MaximumFractionalDigits",
+          "default": "3",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "AsTime_DateTime",
+      "return": "FText",
+      "doc": "Converts a passed in date & time to a text, formatted as a time using an invariant timezone. This will use the given date & time as-is, so it's assumed to already be in the correct timezone.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "In",
+          "type": "FDateTime"
+        }
+      ]
+    },
+    {
+      "name": "AsTimespan_Timespan",
+      "return": "FText",
+      "doc": "Converts a passed in time span to a text, formatted as a time span",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTimespan",
+          "type": "FTimespan"
+        }
+      ]
+    },
+    {
+      "name": "AsTimeZoneDate_DateTime",
+      "return": "FText",
+      "doc": "Converts a passed in date & time to a text, formatted as a date using the given timezone (default is the local timezone). This will convert the given date & time from UTC to the given timezone (taking into account DST).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDateTime",
+          "type": "FDateTime"
+        },
+        {
+          "name": "InTimeZone",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AsTimeZoneDateTime_DateTime",
+      "return": "FText",
+      "doc": "Converts a passed in date & time to a text, formatted as a date & time using the given timezone (default is the local timezone). This will convert the given date & time from UTC to the given timezone (taking into account DST).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDateTime",
+          "type": "FDateTime"
+        },
+        {
+          "name": "InTimeZone",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AsTimeZoneTime_DateTime",
+      "return": "FText",
+      "doc": "Converts a passed in date & time to a text, formatted as a time using the given timezone (default is the local timezone). This will convert the given date & time from UTC to the given timezone (taking into account DST).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDateTime",
+          "type": "FDateTime"
+        },
+        {
+          "name": "InTimeZone",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Conv_BoolToText",
+      "return": "FText",
+      "doc": "Converts a boolean value to formatted text, either 'true' or 'false'",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBool",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Conv_ByteToText",
+      "return": "FText",
+      "doc": "Converts a byte value to formatted text",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "Conv_ColorToText",
+      "return": "FText",
+      "doc": "Converts a linear color value to localized formatted text, in the form '(R=,G=,B=,A=)'",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InColor",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "Conv_DoubleToText",
+      "return": "FText",
+      "doc": "Converts a passed in double to text based on formatting options",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        },
+        {
+          "name": "RoundingMode",
+          "type": "ERoundingMode"
+        },
+        {
+          "name": "bAlwaysSign",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bUseGrouping",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "MinimumIntegralDigits",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "MaximumIntegralDigits",
+          "default": "324",
+          "type": "int"
+        },
+        {
+          "name": "MinimumFractionalDigits",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "MaximumFractionalDigits",
+          "default": "3",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Conv_Int64ToText",
+      "return": "FText",
+      "doc": "Converts a passed in integer to text based on formatting options",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int64"
+        },
+        {
+          "name": "bAlwaysSign",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bUseGrouping",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "MinimumIntegralDigits",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "MaximumIntegralDigits",
+          "default": "324",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Conv_IntToText",
+      "return": "FText",
+      "doc": "Converts a passed in integer to text based on formatting options",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        },
+        {
+          "name": "bAlwaysSign",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bUseGrouping",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "MinimumIntegralDigits",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "MaximumIntegralDigits",
+          "default": "324",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Conv_NameToText",
+      "return": "FText",
+      "doc": "Converts Name to culture invariant text",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "Conv_ObjectToText",
+      "return": "FText",
+      "doc": "Converts a UObject value to culture invariant text by calling the object's GetName method",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InObj",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "Conv_RotatorToText",
+      "return": "FText",
+      "doc": "Converts a rotator value to localized formatted text, in the form 'P= Y= R='",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InRot",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "Conv_StringToText",
+      "return": "FText",
+      "doc": "Converts string to culture invariant text. Use 'Make Literal Text' to create localizable text, or 'Format' if concatenating localized text",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Conv_TextToString",
+      "return": "FString",
+      "doc": "Converts localizable text to the string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "Conv_TransformToText",
+      "return": "FText",
+      "doc": "Converts a transform value to localized formatted text, in the form 'Translation: X= Y= Z= Rotation: P= Y= R= Scale: X= Y= Z='",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTrans",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "Conv_Vector2dToText",
+      "return": "FText",
+      "doc": "Converts a vector2d value to localized formatted text, in the form 'X= Y='",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVec",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "Conv_VectorToText",
+      "return": "FText",
+      "doc": "Converts a vector value to localized formatted text, in the form 'X= Y= Z='",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVec",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "EqualEqual_IgnoreCase_TextText",
+      "return": "bool",
+      "doc": "Returns true if A and B are linguistically equal (A == B), ignoring case.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FText"
+        },
+        {
+          "name": "B",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "EqualEqual_TextText",
+      "return": "bool",
+      "doc": "Returns true if A and B are linguistically equal (A == B).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FText"
+        },
+        {
+          "name": "B",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "FindTextInLocalizationTable",
+      "return": "bool",
+      "doc": "Attempts to find existing Text using the representation found in the loc tables for the specified namespace and key.\n@param Namespace The namespace of the text to find (if any).\n@param Key The key of the text to find.\n@param SourceString If set (not empty) then the found text must also have been created from this source string.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Namespace",
+          "type": "FString"
+        },
+        {
+          "name": "Key",
+          "type": "FString"
+        },
+        {
+          "name": "OutText",
+          "type": "FText&"
+        },
+        {
+          "name": "SourceString",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetEmptyText",
+      "return": "FText",
+      "doc": "Returns an empty piece of text.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTextId",
+      "return": "bool",
+      "doc": "Attempts to get the ID (namespace and key) used by the given text.\n@return True if the namespace (which may be empty) and key were found, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Text",
+          "type": "FText"
+        },
+        {
+          "name": "OutNamespace",
+          "type": "FString&"
+        },
+        {
+          "name": "OutKey",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetTextSourceString",
+      "return": "FString",
+      "doc": "Get the (non-localized) source string of the given text.\n@note For a generated text (eg, the result of a Format), this will deep build the source string as if the generation had run for the native language.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Text",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "IsPolyglotDataValid",
+      "return": "void",
+      "doc": "Check whether the given polyglot data is valid.\n@return True if the polyglot data is valid, false otherwise. ErrorMessage will be filled in if the the data is invalid.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolyglotData",
+          "type": "FPolyglotTextData"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        },
+        {
+          "name": "ErrorMessage",
+          "type": "FText&"
+        }
+      ]
+    },
+    {
+      "name": "MakeInvariantText",
+      "return": "FText",
+      "doc": "Converts string to culture invariant text. Use 'Make Literal Text' to create localizable text, or 'Format' if concatenating localized text",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "NotEqual_IgnoreCase_TextText",
+      "return": "bool",
+      "doc": "Returns true if A and B are linguistically not equal (A != B), ignoring case.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FText"
+        },
+        {
+          "name": "B",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "NotEqual_TextText",
+      "return": "bool",
+      "doc": "Returns true if A and B are linguistically not equal (A != B).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FText"
+        },
+        {
+          "name": "B",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "PolyglotDataToText",
+      "return": "FText",
+      "doc": "Get the text instance created from this polyglot data.\n@return The text instance, or an empty text if the data is invalid.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolyglotData",
+          "type": "FPolyglotTextData"
+        }
+      ]
+    },
+    {
+      "name": "StringTableIdAndKeyFromText",
+      "return": "bool",
+      "doc": "Attempts to get the String Table ID and key used by the given text.\n@return True if the String Table ID and key were found, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Text",
+          "type": "FText"
+        },
+        {
+          "name": "OutTableId",
+          "type": "FName&"
+        },
+        {
+          "name": "OutKey",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "TextFromStringTable",
+      "return": "FText",
+      "doc": "Attempts to create a text instance from a string table ID and key.\n@note This exists to allow programmatic look-up of a string table entry from dynamic content - you should favor setting your string table reference on a text property or pin wherever possible as it is significantly more robust (see \"Make Literal Text\").\n@return The found text, or a dummy text if the entry could not be found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableId",
+          "type": "FName"
+        },
+        {
+          "name": "Key",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "TextIsCultureInvariant",
+      "return": "bool",
+      "doc": "Returns true if text is culture invariant.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "TextIsEmpty",
+      "return": "bool",
+      "doc": "Returns true if text is empty.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "TextIsFromStringTable",
+      "return": "bool",
+      "doc": "Returns true if the given text is referencing a string table.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Text",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "TextIsTransient",
+      "return": "bool",
+      "doc": "Returns true if text is transient.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "TextToLower",
+      "return": "FText",
+      "doc": "Transforms the text to lowercase in a culture correct way.\n@note The returned instance is linked to the original and will be rebuilt if the active culture is changed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "TextToUpper",
+      "return": "FText",
+      "doc": "Transforms the text to uppercase in a culture correct way.\n@note The returned instance is linked to the original and will be rebuilt if the active culture is changed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "TextTrimPreceding",
+      "return": "FText",
+      "doc": "Removes whitespace characters from the front of the text.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "TextTrimPrecedingAndTrailing",
+      "return": "FText",
+      "doc": "Removes whitespace characters from the front and end of the text.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "TextTrimTrailing",
+      "return": "FText",
+      "doc": "Removes trailing whitespace characters.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    }
+  ]
+}

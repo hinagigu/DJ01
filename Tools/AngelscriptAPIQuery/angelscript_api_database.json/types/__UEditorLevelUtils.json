@@ -1,0 +1,229 @@
+{
+  "name": "__UEditorLevelUtils",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateNewStreamingLevel",
+      "return": "ULevelStreaming",
+      "doc": "Creates a new streaming level in the current world\n\n@param       LevelStreamingClass                                     The streaming class type instead to use for the level.\n@param       NewLevelPath                                            Optional path to the level package path format (\"e.g /Game/MyLevel\").  If empty, the user will be prompted during the save process.\n@param       bMoveSelectedActorsIntoNewLevel         If true, move any selected actors into the new level.\n\n@return      Returns the newly created level, or NULL on failure",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelStreamingClass",
+          "type": "TSubclassOf<ULevelStreaming>"
+        },
+        {
+          "name": "NewLevelPath",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bMoveSelectedActorsIntoNewLevel",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetLevels",
+      "return": "TArray<ULevel>",
+      "doc": "Returns all levels for a world.\n\n@param       World                           World containing levels\n@return                                              Set of all levels",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        }
+      ]
+    },
+    {
+      "name": "AddLevelToWorld",
+      "return": "ULevelStreaming",
+      "doc": "Adds the named level package to the world.  Does nothing if the level already exists in the world.\n\n@param       InWorld                         World in which to add the level.\n@param       LevelPackageName        The package name (\"e.g /Game/MyLevel\") of the level package to add.\n@param       LevelStreamingClass     The streaming class type to use for the level.\n\n@return                                                              The new level, or NULL if the level couldn't added.",
+      "ufunction": true,
+      "unrealname": "K2_AddLevelToWorld",
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "LevelPackageName",
+          "type": "FString"
+        },
+        {
+          "name": "LevelStreamingClass",
+          "type": "TSubclassOf<ULevelStreaming>"
+        }
+      ]
+    },
+    {
+      "name": "AddLevelToWorldWithTransform",
+      "return": "ULevelStreaming",
+      "doc": "Adds the named level package to the world at the given position.  Does nothing if the level already exists in the world.\n\n@param       InWorld                         World in which to add the level.\n@param       LevelPackageName        The package name (\"e.g /Game/MyLevel\") of the level package to add.\n@param       LevelStreamingClass     The streaming class type to use for the level.\n@param       LevelTransform          The origin of the new level in the world.\n\n@return                                                              The new level, or NULL if the level couldn't added.",
+      "ufunction": true,
+      "unrealname": "K2_AddLevelToWorldWithTransform",
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "LevelPackageName",
+          "type": "FString"
+        },
+        {
+          "name": "LevelStreamingClass",
+          "type": "TSubclassOf<ULevelStreaming>"
+        },
+        {
+          "name": "LevelTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLevelFromWorld",
+      "return": "bool",
+      "doc": "Removes given level from the world. Note, this will only work for sub-levels in the main level.\n\n@param       InLevel                             Level asset to remove from the world.\n@param       bClearSelection                 If true, it will clear the editor selection.\n@param       bResetTransactionBuffer If true, it will reset the transaction buffer (i.e. clear undo history)\n\n@return                                                      True if the level was successfully removed.",
+      "ufunction": true,
+      "unrealname": "K2_RemoveLevelFromWorld",
+      "meta": null,
+      "args": [
+        {
+          "name": "InLevel",
+          "type": "ULevel"
+        },
+        {
+          "name": "bClearSelection",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bResetTransactionBuffer",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MakeLevelCurrent",
+      "return": "void",
+      "doc": "Makes the specified streaming level the current level for editing.\nThe current level is where actors are spawned to when calling SpawnActor\n\n@return      true    If a level was removed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStreamingLevel",
+          "type": "ULevelStreaming"
+        }
+      ]
+    },
+    {
+      "name": "MoveActorsToLevel",
+      "return": "int",
+      "doc": "Moves the specified list of actors to the specified streaming level. The new actors will be selected\n\n@param       ActorsToMove                    List of actors to move\n@param       DestStreamingLevel              The destination streaming level of the current world to move the actors to\n@param       bWarnAboutReferences    Whether or not to show a modal warning about referenced actors that may no longer function after being moved\n@return                                                      The number of actors that were successfully moved to the new level",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorsToMove",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "DestStreamingLevel",
+          "type": "ULevelStreaming"
+        },
+        {
+          "name": "bWarnAboutReferences",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bWarnAboutRenaming",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MoveSelectedActorsToLevel",
+      "return": "int",
+      "doc": "Moves the currently selected actors to the specified streaming level. The new actors will be selected\n\n@param       DestStreamingLevel              The destination streaming level of the current world to move the actors to\n@param       bWarnAboutReferences    Whether or not to show a modal warning about referenced actors that may no longer function after being moved\n@return                                                      The number of actors that were successfully moved to the new level",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DestLevel",
+          "type": "ULevelStreaming"
+        },
+        {
+          "name": "bWarnAboutReferences",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLevelsVisibility",
+      "return": "void",
+      "doc": "Sets a level's visibility in the editor. More efficient than SetLevelsVisibility when changing the visibility of multiple levels simultaneously.\n\n@param       Levels                                  The levels to modify.\n@param       bShouldBeVisible                The level's new visibility state for each level.\n@param       bForceLayersVisible             If true and the level is visible, force the level's layers to be visible.\n@param       ModifyMode                              ELevelVisibilityDirtyMode mode value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Levels",
+          "type": "TArray<ULevel>"
+        },
+        {
+          "name": "bShouldBeVisible",
+          "type": "TArray<bool>"
+        },
+        {
+          "name": "bForceLayersVisible",
+          "type": "bool"
+        },
+        {
+          "name": "ModifyMode",
+          "default": "ELevelVisibilityDirtyMode :: ModifyOnChange",
+          "type": "ELevelVisibilityDirtyMode"
+        }
+      ]
+    },
+    {
+      "name": "SetLevelVisibility",
+      "return": "void",
+      "doc": "Sets a level's visibility in the editor. Less efficient than SetLevelsVisibility when changing the visibility of multiple levels simultaneously.\n\n@param       Level                                   The level to modify.\n@param       bShouldBeVisible                The level's new visibility state.\n@param       bForceLayersVisible             If true and the level is visible, force the level's layers to be visible.\n@param       ModifyMode                              ELevelVisibilityDirtyMode mode value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Level",
+          "type": "ULevel"
+        },
+        {
+          "name": "bShouldBeVisible",
+          "type": "bool"
+        },
+        {
+          "name": "bForceLayersVisible",
+          "type": "bool"
+        },
+        {
+          "name": "ModifyMode",
+          "default": "ELevelVisibilityDirtyMode :: ModifyOnChange",
+          "type": "ELevelVisibilityDirtyMode"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

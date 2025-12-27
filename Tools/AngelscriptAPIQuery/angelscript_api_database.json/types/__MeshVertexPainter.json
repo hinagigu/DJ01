@@ -1,0 +1,71 @@
+{
+  "name": "__MeshVertexPainter",
+  "properties": {},
+  "methods": [
+    {
+      "name": "PaintVerticesLerpAlongAxis",
+      "return": "void",
+      "doc": "Paints vertex colors on a mesh component lerping from the start to the end color along the specified axis.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMeshComponent",
+          "type": "UStaticMeshComponent"
+        },
+        {
+          "name": "StartColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "EndColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Axis",
+          "type": "EVertexPaintAxis"
+        },
+        {
+          "name": "bConvertToSRGB",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PaintVerticesSingleColor",
+      "return": "void",
+      "doc": "Paints vertex colors on a mesh component in a specified color.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMeshComponent",
+          "type": "UStaticMeshComponent"
+        },
+        {
+          "name": "FillColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bConvertToSRGB",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemovePaintedVertices",
+      "return": "void",
+      "doc": "Removes vertex colors on a mesh component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMeshComponent",
+          "type": "UStaticMeshComponent"
+        }
+      ]
+    }
+  ]
+}

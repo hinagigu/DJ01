@@ -1,0 +1,39 @@
+{
+  "name": "FBranchIntDataflowNode",
+  "isStruct": true,
+  "doc": "Branch between two int inputs based on boolean condition",
+  "properties": {
+    "A": [
+      "int",
+      2,
+      "Int input"
+    ],
+    "B": [
+      "int",
+      2,
+      "Int input"
+    ],
+    "bCondition": [
+      "bool",
+      2,
+      "If true, Output = A, otherwise Output = B"
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FBranchIntDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBranchIntDataflowNode"
+        }
+      ]
+    }
+  ]
+}

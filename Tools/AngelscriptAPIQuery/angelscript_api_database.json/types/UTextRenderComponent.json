@@ -1,0 +1,219 @@
+{
+  "name": "UTextRenderComponent",
+  "inherits": "UPrimitiveComponent",
+  "doc": "Renders text in the world with given font. Contains usual font related attributes such as Scale, Alignment, Color etc.",
+  "properties": {
+    "Text": [
+      "FText",
+      "Text content, can be multi line using <br> as line separator"
+    ],
+    "TextMaterial": [
+      "UMaterialInterface",
+      "Text material"
+    ],
+    "Font": [
+      "UFont",
+      "Text font"
+    ],
+    "HorizontalAlignment": [
+      "EHorizTextAligment",
+      "Horizontal text alignment"
+    ],
+    "VerticalAlignment": [
+      "EVerticalTextAligment",
+      "Vertical text alignment"
+    ],
+    "TextRenderColor": [
+      "FColor",
+      "Color of the text, can be accessed as vertex color"
+    ],
+    "XScale": [
+      "float32",
+      "Horizontal scale, default is 1.0"
+    ],
+    "YScale": [
+      "float32",
+      "Vertical scale, default is 1.0"
+    ],
+    "WorldSize": [
+      "float32",
+      "Vertical size of the fonts largest character in world units. Transform, XScale and YScale will affect final size."
+    ],
+    "HorizSpacingAdjust": [
+      "float32",
+      "Horizontal adjustment per character, default is 0.0"
+    ],
+    "VertSpacingAdjust": [
+      "float32",
+      "Vertical adjustment per character, default is 0.0"
+    ],
+    "bAlwaysRenderAsText": [
+      "bool",
+      "Allows text to draw unmodified when using debug visualization modes. *"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetTextLocalSize",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get local size of text",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTextWorldSize",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get world space size of text",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetText",
+      "return": "void",
+      "doc": "Change the text value and signal the primitives to be rebuilt",
+      "ufunction": true,
+      "unrealname": "K2_SetText",
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetFont",
+      "return": "void",
+      "doc": "Change the font and signal the primitives to be rebuilt",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "UFont"
+        }
+      ]
+    },
+    {
+      "name": "SetHorizontalAlignment",
+      "return": "void",
+      "doc": "Change the horizontal alignment and signal the primitives to be rebuilt",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "EHorizTextAligment"
+        }
+      ]
+    },
+    {
+      "name": "SetHorizSpacingAdjust",
+      "return": "void",
+      "doc": "Change the text horizontal spacing adjustment and signal the primitives to be rebuilt",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTextMaterial",
+      "return": "void",
+      "doc": "Change the text material and signal the primitives to be rebuilt",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetTextRenderColor",
+      "return": "void",
+      "doc": "Change the text render color and signal the primitives to be rebuilt",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "SetVerticalAlignment",
+      "return": "void",
+      "doc": "Change the vertical alignment and signal the primitives to be rebuilt",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "EVerticalTextAligment"
+        }
+      ]
+    },
+    {
+      "name": "SetVertSpacingAdjust",
+      "return": "void",
+      "doc": "Change the text vertical spacing adjustment and signal the primitives to be rebuilt",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldSize",
+      "return": "void",
+      "doc": "Change the world size of the text and signal the primitives to be rebuilt",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetXScale",
+      "return": "void",
+      "doc": "Change the text X scale and signal the primitives to be rebuilt",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetYScale",
+      "return": "void",
+      "doc": "Change the text Y scale and signal the primitives to be rebuilt",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

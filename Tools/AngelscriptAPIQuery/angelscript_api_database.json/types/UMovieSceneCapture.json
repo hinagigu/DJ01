@@ -1,0 +1,75 @@
+{
+  "name": "UMovieSceneCapture",
+  "inherits": "UObject",
+  "doc": "Class responsible for capturing scene data",
+  "properties": {
+    "Settings": [
+      "FMovieSceneCaptureSettings",
+      "Settings that define how to capture"
+    ],
+    "bUseSeparateProcess": [
+      "bool",
+      "Whether to capture the movie in a separate process or not"
+    ],
+    "bCloseEditorWhenCaptureStarts": [
+      "bool",
+      "When enabled, the editor will shutdown when the capture starts"
+    ],
+    "AdditionalCommandLineArguments": [
+      "FString",
+      "Additional command line arguments to pass to the external process when capturing"
+    ],
+    "InheritedCommandLineArguments": [
+      "FString",
+      "Command line arguments inherited from this process"
+    ],
+    "ImageCaptureProtocol": [
+      "UMovieSceneImageCaptureProtocolBase",
+      "Capture protocol responsible for actually capturing frame data"
+    ],
+    "AudioCaptureProtocol": [
+      "UMovieSceneAudioCaptureProtocolBase"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAudioCaptureProtocol",
+      "return": "UMovieSceneCaptureProtocolBase",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetImageCaptureProtocol",
+      "return": "UMovieSceneCaptureProtocolBase",
+      "doc": "Access the capture protocol we are using",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAudioCaptureProtocolType",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ProtocolType",
+          "type": "TSubclassOf<UMovieSceneCaptureProtocolBase>"
+        }
+      ]
+    },
+    {
+      "name": "SetImageCaptureProtocolType",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ProtocolType",
+          "type": "TSubclassOf<UMovieSceneCaptureProtocolBase>"
+        }
+      ]
+    }
+  ]
+}

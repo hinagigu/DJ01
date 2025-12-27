@@ -1,0 +1,50 @@
+{
+  "name": "FConvolutionBloomSettings",
+  "isStruct": true,
+  "properties": {
+    "Texture": [
+      "UTexture2D",
+      "Texture to replace default convolution bloom kernel"
+    ],
+    "ScatterDispersion": [
+      "float32",
+      "Intensity multiplier on the scatter dispersion energy of the kernel. 1.0 means exactly use the same energy as the kernel scatter dispersion."
+    ],
+    "Size": [
+      "float32",
+      "Relative size of the convolution kernel image compared to the minor axis of the viewport"
+    ],
+    "CenterUV": [
+      "FVector2D",
+      "The UV location of the center of the kernel.  Should be very close to (.5,.5)"
+    ],
+    "PreFilterMin": [
+      "float32",
+      "Boost intensity of select pixels  prior to computing bloom convolution (Min, Max, Multiplier).  Max < Min disables convolution boost"
+    ],
+    "PreFilterMax": [
+      "float32",
+      "Boost intensity of select pixels  prior to computing bloom convolution (Min, Max, Multiplier).  Max < Min disables convolution boost"
+    ],
+    "PreFilterMult": [
+      "float32",
+      "Boost intensity of select pixels  prior to computing bloom convolution (Min, Max, Multiplier).  Max < Min disables convolution boost"
+    ],
+    "BufferScale": [
+      "float32",
+      "Implicit buffer region as a fraction of the screen size to insure the bloom does not wrap across the screen.  Larger sizes have perf impact."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FConvolutionBloomSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FConvolutionBloomSettings"
+        }
+      ]
+    }
+  ]
+}

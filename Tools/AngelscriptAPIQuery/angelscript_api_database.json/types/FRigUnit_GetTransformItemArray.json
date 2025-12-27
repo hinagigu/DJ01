@@ -1,0 +1,36 @@
+{
+  "name": "FRigUnit_GetTransformItemArray",
+  "isStruct": true,
+  "doc": "GetTransformArray is used to retrieve an array of transforms from the hierarchy.",
+  "properties": {
+    "Items": [
+      "TArray<FRigElementKey>",
+      "The items to retrieve the transforms for"
+    ],
+    "Space": [
+      "ERigVMTransformSpace",
+      "Defines if the transforms should be retrieved in local or global space"
+    ],
+    "bInitial": [
+      "bool",
+      "Defines if the transforms should be retrieved as current (false) or initial (true).\nInitial transforms for bones and other elements in the hierarchy represent the reference pose's value."
+    ],
+    "Transforms": [
+      "TArray<FTransform>",
+      1,
+      "The current transform of the given item - or identity in case it wasn't found."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_GetTransformItemArray&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_GetTransformItemArray"
+        }
+      ]
+    }
+  ]
+}

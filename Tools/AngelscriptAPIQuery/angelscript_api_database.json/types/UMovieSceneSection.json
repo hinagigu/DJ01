@@ -1,0 +1,221 @@
+{
+  "name": "UMovieSceneSection",
+  "inherits": "UMovieSceneSignedObject",
+  "doc": "Base class for movie scene sections",
+  "properties": {
+    "EvalOptions": [
+      "FMovieSceneSectionEvalOptions",
+      2,
+      ""
+    ],
+    "TimecodeSource": [
+      "FMovieSceneTimecodeSource",
+      2,
+      "The timecode at which this movie scene section is based (ie. when it was recorded)"
+    ],
+    "bIsActive": [
+      "bool",
+      "Toggle whether this section is active/inactive"
+    ],
+    "bIsLocked": [
+      "bool",
+      "Toggle whether this section is locked/unlocked"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetBlendType",
+      "return": "FOptionalMovieSceneBlendType",
+      "const": true,
+      "doc": "Gets this section's blend type",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetColorTint",
+      "return": "FColor",
+      "const": true,
+      "doc": "Get this section's color tint.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCompletionMode",
+      "return": "EMovieSceneCompletionMode",
+      "const": true,
+      "doc": "Gets this section's completion mode",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOverlapPriority",
+      "return": "int",
+      "const": true,
+      "doc": "Gets this section's priority over overlapping sections (higher wins)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPostRollFrames",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPreRollFrames",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRowIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the row index for this section",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsActive",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLocked",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBlendType",
+      "return": "void",
+      "doc": "Sets this section's blend type",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBlendType",
+          "type": "EMovieSceneBlendType"
+        }
+      ]
+    },
+    {
+      "name": "SetColorTint",
+      "return": "void",
+      "doc": "Set this section's color tint.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InColorTint",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "SetCompletionMode",
+      "return": "void",
+      "doc": "* Sets this section's completion mode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCompletionMode",
+          "type": "EMovieSceneCompletionMode"
+        }
+      ]
+    },
+    {
+      "name": "SetIsActive",
+      "return": "void",
+      "doc": "Whether or not this section is active.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsActive",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIsLocked",
+      "return": "void",
+      "doc": "Whether or not this section is locked.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsLocked",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetOverlapPriority",
+      "return": "void",
+      "doc": "Sets this section's priority over overlapping sections (higher wins)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPriority",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetPostRollFrames",
+      "return": "void",
+      "doc": "Gets/sets the number of frames to continue 'postrolling' this section for after evaluation has ended.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPostRollFrames",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetPreRollFrames",
+      "return": "void",
+      "doc": "Gets the number of frames to prepare this section for evaluation before it actually starts.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPreRollFrames",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetRowIndex",
+      "return": "void",
+      "doc": "Sets this section's new row index",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRowIndex",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "name": "UCommonButtonStyle",
+  "inherits": "UObject",
+  "doc": "---- All properties must be EditDefaultsOnly, BlueprintReadOnly !!! -----\n*       we return the CDO to blueprints, so we cannot allow any changes (blueprint doesn't support const variables)",
+  "properties": {
+    "bSingleMaterial": [
+      "bool",
+      "Whether or not the style uses a drop shadow"
+    ],
+    "SingleMaterialBrush": [
+      "FSlateBrush",
+      "The normal (un-selected) brush to apply to each size of this button"
+    ],
+    "NormalBase": [
+      "FSlateBrush",
+      "The normal (un-selected) brush to apply to each size of this button"
+    ],
+    "NormalHovered": [
+      "FSlateBrush",
+      "The normal (un-selected) brush to apply to each size of this button when hovered"
+    ],
+    "NormalPressed": [
+      "FSlateBrush",
+      "The normal (un-selected) brush to apply to each size of this button when pressed"
+    ],
+    "SelectedBase": [
+      "FSlateBrush",
+      "The selected brush to apply to each size of this button"
+    ],
+    "SelectedHovered": [
+      "FSlateBrush",
+      "The selected brush to apply to each size of this button when hovered"
+    ],
+    "SelectedPressed": [
+      "FSlateBrush",
+      "The selected brush to apply to each size of this button when pressed"
+    ],
+    "Disabled": [
+      "FSlateBrush",
+      "The disabled brush to apply to each size of this button"
+    ],
+    "MinWidth": [
+      "int",
+      "The minimum width of buttons using this style"
+    ],
+    "MinHeight": [
+      "int",
+      "The minimum height of buttons using this style"
+    ],
+    "PressedSlateSound": [
+      "FSlateSound",
+      "The sound to play when the button is pressed"
+    ],
+    "SelectedPressedSlateSound": [
+      "FCommonButtonStyleOptionalSlateSound",
+      "The sound to play when the button is pressed while selected"
+    ],
+    "LockedPressedSlateSound": [
+      "FCommonButtonStyleOptionalSlateSound",
+      "The sound to play when the button is pressed while locked"
+    ],
+    "HoveredSlateSound": [
+      "FSlateSound",
+      "The sound to play when the button is hovered"
+    ],
+    "SelectedHoveredSlateSound": [
+      "FCommonButtonStyleOptionalSlateSound",
+      "The sound to play when the button is hovered while selected"
+    ],
+    "LockedHoveredSlateSound": [
+      "FCommonButtonStyleOptionalSlateSound",
+      "The sound to play when the button is hovered while locked"
+    ],
+    "ButtonPadding": [
+      "FMargin",
+      "The button content padding to apply for each size"
+    ],
+    "CustomPadding": [
+      "FMargin",
+      "The custom padding of the button to use for each size"
+    ],
+    "NormalTextStyle": [
+      "TSubclassOf<UCommonTextStyle>",
+      "The text style to use when un-selected"
+    ],
+    "NormalHoveredTextStyle": [
+      "TSubclassOf<UCommonTextStyle>",
+      "The text style to use when un-selected"
+    ],
+    "SelectedTextStyle": [
+      "TSubclassOf<UCommonTextStyle>",
+      "The text style to use when selected"
+    ],
+    "SelectedHoveredTextStyle": [
+      "TSubclassOf<UCommonTextStyle>",
+      "The text style to use when un-selected"
+    ],
+    "DisabledTextStyle": [
+      "TSubclassOf<UCommonTextStyle>",
+      "The text style to use when disabled"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetButtonPadding",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutButtonPadding",
+          "type": "FMargin&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomPadding",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutCustomPadding",
+          "type": "FMargin&"
+        }
+      ]
+    },
+    {
+      "name": "GetDisabledBrush",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        }
+      ]
+    },
+    {
+      "name": "GetDisabledTextStyle",
+      "return": "UCommonTextStyle",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMaterialBrush",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        }
+      ]
+    },
+    {
+      "name": "GetNormalBaseBrush",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        }
+      ]
+    },
+    {
+      "name": "GetNormalHoveredBrush",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        }
+      ]
+    },
+    {
+      "name": "GetNormalHoveredTextStyle",
+      "return": "UCommonTextStyle",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNormalPressedBrush",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        }
+      ]
+    },
+    {
+      "name": "GetNormalTextStyle",
+      "return": "UCommonTextStyle",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedBaseBrush",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectedHoveredBrush",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectedHoveredTextStyle",
+      "return": "UCommonTextStyle",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedPressedBrush",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectedTextStyle",
+      "return": "UCommonTextStyle",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

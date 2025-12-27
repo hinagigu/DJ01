@@ -1,0 +1,56 @@
+{
+  "name": "FRigUnit_TwoBoneIKSimpleVectors",
+  "isStruct": true,
+  "doc": "Solves the two bone IK given positions\nNote: This node operates in world space!",
+  "properties": {
+    "Root": [
+      "FVector",
+      "The position of the root of the triangle"
+    ],
+    "PoleVector": [
+      "FVector",
+      "The position of the pole of the triangle"
+    ],
+    "Effector": [
+      "FVector",
+      "The position of the effector"
+    ],
+    "bEnableStretch": [
+      "bool",
+      "If set to true the stretch feature of the solver will be enabled"
+    ],
+    "StretchStartRatio": [
+      "float32",
+      "The ratio where the stretch starts"
+    ],
+    "StretchMaximumRatio": [
+      "float32",
+      "The maximum allowed stretch ratio"
+    ],
+    "BoneALength": [
+      "float32",
+      "The length of the first bone.\nIf set to 0.0 it will be determined by the hierarchy"
+    ],
+    "BoneBLength": [
+      "float32",
+      "The length of the second  bone.\nIf set to 0.0 it will be determined by the hierarchy"
+    ],
+    "Elbow": [
+      "FVector",
+      1,
+      "The resulting elbow position"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_TwoBoneIKSimpleVectors&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_TwoBoneIKSimpleVectors"
+        }
+      ]
+    }
+  ]
+}

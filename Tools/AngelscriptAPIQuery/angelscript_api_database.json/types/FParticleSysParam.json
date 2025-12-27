@@ -1,0 +1,48 @@
+{
+  "name": "FParticleSysParam",
+  "isStruct": true,
+  "doc": "Struct used for a particular named instance parameter for this ParticleSystemComponent.",
+  "properties": {
+    "Name": [
+      "FName",
+      "The name of the parameter"
+    ],
+    "ParamType": [
+      "EParticleSysParamType",
+      "The type of parameters\nPSPT_None       - There is no data type\nPSPT_Scalar     - Use the scalar value\nPSPT_ScalarRand - Select a scalar value in the range [Scalar_Low..Scalar)\nPSPT_Vector     - Use the vector value\nPSPT_VectorRand - Select a vector value in the range [Vector_Low..Vector)\nPSPT_Color      - Use the color value\nPSPT_Actor      - Use the actor value\nPSPT_Material   - Use the material value\nPSPT_VectorUnitRand - Select a random unit vector and scale along the range [Vector_Low..Vector)"
+    ],
+    "Scalar": [
+      "float32"
+    ],
+    "Scalar_Low": [
+      "float32"
+    ],
+    "Vector": [
+      "FVector"
+    ],
+    "Vector_Low": [
+      "FVector"
+    ],
+    "Color": [
+      "FColor"
+    ],
+    "Actor": [
+      "AActor"
+    ],
+    "Material": [
+      "UMaterialInterface"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FParticleSysParam&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FParticleSysParam"
+        }
+      ]
+    }
+  ]
+}

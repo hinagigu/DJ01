@@ -1,0 +1,35 @@
+{
+  "name": "__ENiagaraSpriteFacingMode",
+  "isEnum": true,
+  "doc": "This enum decides how a sprite particle will orient its \"facing\" axis. Must keep these in sync with NiagaraSpriteVertexFactory.ush",
+  "properties": {
+    "FaceCamera": [
+      "ENiagaraSpriteFacingMode",
+      "The sprite billboard origin is always \"looking at\" the camera origin, trying to keep its up axis aligned to the camera's up axis."
+    ],
+    "FaceCameraPlane": [
+      "ENiagaraSpriteFacingMode",
+      "The sprite billboard plane is completely parallel to the camera plane. Particle always looks \"flat\""
+    ],
+    "CustomFacingVector": [
+      "ENiagaraSpriteFacingMode",
+      "The sprite billboard faces toward the \"Particles.SpriteFacing\" vector attribute. If the \"Particles.SpriteFacing\" attribute is missing, this falls back to FaceCamera mode."
+    ],
+    "FaceCameraPosition": [
+      "ENiagaraSpriteFacingMode",
+      "Faces the camera position, but is not dependent on the camera rotation.  This method produces more stable particles under camera rotation. Uses the up axis of (0,0,1)."
+    ],
+    "FaceCameraDistanceBlend": [
+      "ENiagaraSpriteFacingMode",
+      "Blends between FaceCamera and FaceCameraPosition."
+    ],
+    "Automatic": [
+      "ENiagaraSpriteFacingMode",
+      "Automatically select between FaceCamera & CustomFacingVector depending on if SpriteFacing binding is valid."
+    ],
+    "ENiagaraSpriteFacingMode_MAX": [
+      "ENiagaraSpriteFacingMode"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,218 @@
+{
+  "name": "UEditableTextBox",
+  "inherits": "UWidget",
+  "doc": "Allows the user to type in custom text.  Only permits a single line of text to be entered.\n\n* No Children\n* Text Entry",
+  "properties": {
+    "WidgetStyle": [
+      "FEditableTextBoxStyle",
+      "The style"
+    ],
+    "MinimumDesiredWidth": [
+      "float32",
+      "The minimum desired size for the text"
+    ],
+    "IsCaretMovedWhenGainFocus": [
+      "bool",
+      "Workaround as we lose focus when the auto completion closes."
+    ],
+    "SelectAllTextWhenFocused": [
+      "bool",
+      "Whether to select all text when the user clicks to give focus on the widget"
+    ],
+    "RevertTextOnEscape": [
+      "bool",
+      "Whether to allow the user to back out of changes when they press the escape key"
+    ],
+    "ClearKeyboardFocusOnCommit": [
+      "bool",
+      "Whether to clear keyboard focus when pressing enter to commit changes"
+    ],
+    "SelectAllTextOnCommit": [
+      "bool",
+      "Whether to select all text when pressing enter to commit changes"
+    ],
+    "AllowContextMenu": [
+      "bool",
+      2,
+      "Whether the context menu can be opened"
+    ],
+    "KeyboardType": [
+      "EVirtualKeyboardType",
+      2,
+      "If we're on a platform that requires a virtual keyboard, what kind of keyboard should this widget use?"
+    ],
+    "VirtualKeyboardOptions": [
+      "FVirtualKeyboardOptions",
+      2,
+      "Additional options to use for the virtual keyboard summoned by this widget"
+    ],
+    "VirtualKeyboardTrigger": [
+      "EVirtualKeyboardTrigger",
+      2,
+      "The type of event that will trigger the display of the virtual keyboard"
+    ],
+    "VirtualKeyboardDismissAction": [
+      "EVirtualKeyboardDismissAction",
+      2,
+      "What action should be taken when the virtual keyboard is dismissed?"
+    ],
+    "ShapedTextOptions": [
+      "FShapedTextOptions",
+      "Controls how the text within this widget should be shaped."
+    ],
+    "OnTextChanged": [
+      "FOnEditableTextBoxChangedEvent__EditableTextBox",
+      "Called whenever the text is changed programmatically or interactively by the user"
+    ],
+    "OnTextCommitted": [
+      "FOnEditableTextBoxCommittedEvent__EditableTextBox",
+      "Called whenever the text is committed.  This happens when the user presses enter or the text box loses focus."
+    ],
+    "OverflowPolicy": [
+      "ETextOverflowPolicy",
+      "Sets what happens to text that is clipped and doesn't fit within the clip rect for this widget"
+    ],
+    "HintText": [
+      "FText",
+      "Hint text that appears when there is no text in the text box"
+    ],
+    "IsReadOnly": [
+      "bool",
+      "Sets the Text Box as Readonly to prevent it from being modified interactively by the user"
+    ],
+    "IsPassword": [
+      "bool",
+      "Sets whether this text box is for storing a password"
+    ],
+    "Justification": [
+      "ETextJustify",
+      "How the text should be aligned with the margin."
+    ]
+  },
+  "methods": [
+    {
+      "name": "ClearError",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetText",
+      "return": "FText",
+      "const": true,
+      "doc": "Gets the widget text\n@return The widget text",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasError",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetError",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InError",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetForegroundColor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "color",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetHintText",
+      "return": "void",
+      "doc": "Sets the Hint text that appears when there is no text in the text box\n@param InHintText The text that appears when there is no text in the text box",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetIsPassword",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsPassword",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIsReadOnly",
+      "return": "void",
+      "doc": "Sets the Text as Readonly to prevent it from being modified interactively by the user",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bReadOnly",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetJustification",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InJustification",
+          "type": "ETextJustify"
+        }
+      ]
+    },
+    {
+      "name": "SetText",
+      "return": "void",
+      "doc": "Directly sets the widget text.\nWarning: This will wipe any binding created for the Text property!\n@param InText The text to assign to the widget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetTextOverflowPolicy",
+      "return": "void",
+      "doc": "Set the text overflow policy for this text box.\n\n@param InOverflowPolicy the new text overflow policy.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOverflowPolicy",
+          "type": "ETextOverflowPolicy"
+        }
+      ]
+    }
+  ]
+}

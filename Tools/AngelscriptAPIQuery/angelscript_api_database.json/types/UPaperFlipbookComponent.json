@@ -1,0 +1,254 @@
+{
+  "name": "UPaperFlipbookComponent",
+  "inherits": "UMeshComponent",
+  "properties": {
+    "SourceFlipbook": [
+      "UPaperFlipbook",
+      2,
+      "Flipbook currently being played"
+    ],
+    "OnFinishedPlaying": [
+      "FFlipbookFinishedPlaySignature",
+      "Event called whenever a non-looping flipbook finishes playing (either reaching the beginning or the end, depending on the play direction)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetFlipbook",
+      "return": "UPaperFlipbook",
+      "doc": "Gets the flipbook used by this instance.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFlipbookFramerate",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the nominal framerate that the flipbook will be played back at (ignoring PlayRate), in frames per second",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFlipbookLength",
+      "return": "float32",
+      "const": true,
+      "doc": "Get length of the flipbook (in seconds)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFlipbookLengthInFrames",
+      "return": "int",
+      "const": true,
+      "doc": "Get length of the flipbook (in frames)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlaybackPosition",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the current playback position (in seconds) of the flipbook",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlaybackPositionInFrames",
+      "return": "int",
+      "const": true,
+      "doc": "Get the current playback position (in frames) of the flipbook",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlayRate",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the current play rate for this flipbook",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSpriteColor",
+      "return": "FLinearColor",
+      "const": true,
+      "doc": "Returns the current color of the sprite",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLooping",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether we are looping or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPlaying",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether this flipbook is playing or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsReversing",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether we are reversing or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Play",
+      "return": "void",
+      "doc": "Start playback of flipbook",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PlayFromStart",
+      "return": "void",
+      "doc": "Start playback of flipbook from the start",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Reverse",
+      "return": "void",
+      "doc": "Start playback of flipbook in reverse",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReverseFromEnd",
+      "return": "void",
+      "doc": "Start playback of flipbook in reverse from the end",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetFlipbook",
+      "return": "bool",
+      "doc": "Change the flipbook used by this instance (will reset the play time to 0 if it is a new flipbook).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewFlipbook",
+          "type": "UPaperFlipbook"
+        }
+      ]
+    },
+    {
+      "name": "SetLooping",
+      "return": "void",
+      "doc": "true means we should loop, false means we should not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewLooping",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNewTime",
+      "return": "void",
+      "doc": "Set the new playback position time to use",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackPosition",
+      "return": "void",
+      "doc": "Jump to a position in the flipbook (expressed in seconds). If bFireEvents is true, event functions will fire, otherwise they will not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPosition",
+          "type": "float32"
+        },
+        {
+          "name": "bFireEvents",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackPositionInFrames",
+      "return": "void",
+      "doc": "Jump to a position in the flipbook (expressed in frames). If bFireEvents is true, event functions will fire, otherwise they will not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewFramePosition",
+          "type": "int"
+        },
+        {
+          "name": "bFireEvents",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPlayRate",
+      "return": "void",
+      "doc": "Sets the new play rate for this flipbook",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRate",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSpriteColor",
+      "return": "void",
+      "doc": "Set color of the sprite",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewColor",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "Stop",
+      "return": "void",
+      "doc": "Stop playback of flipbook",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

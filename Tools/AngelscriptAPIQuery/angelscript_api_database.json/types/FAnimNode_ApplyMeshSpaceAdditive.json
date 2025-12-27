@@ -1,0 +1,52 @@
+{
+  "name": "FAnimNode_ApplyMeshSpaceAdditive",
+  "isStruct": true,
+  "properties": {
+    "Base": [
+      "FPoseLink"
+    ],
+    "Additive": [
+      "FPoseLink"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType",
+      "The data type used to control the alpha blending of the additive pose.\n              Note: Changing this value will disconnect alpha input pins."
+    ],
+    "Alpha": [
+      "float32",
+      "The float value that controls the alpha blending when the alpha input type is set to 'Float'"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool",
+      "The boolean value that controls the alpha blending when the alpha input type is set to 'Bool'"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_ApplyMeshSpaceAdditive&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_ApplyMeshSpaceAdditive"
+        }
+      ]
+    }
+  ]
+}

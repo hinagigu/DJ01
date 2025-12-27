@@ -1,0 +1,357 @@
+{
+  "name": "__Editor",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddFunctionGraph",
+      "return": "UEdGraph",
+      "doc": "Adds a function to the given blueprint\n\n@param Blueprint      The blueprint to add the function to\n@param FuncName       Name of the function to add\n\n@return UEdGraph*",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        },
+        {
+          "name": "FuncName",
+          "default": "\"NewFunction\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "CompileBlueprint",
+      "return": "void",
+      "doc": "Compiles the given blueprint.\n\n@param Blueprint      Blueprint to compile",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "FindEventGraph",
+      "return": "UEdGraph",
+      "doc": "Finds the event graph of the given blueprint. Null if it doesn't have one. This will only return\nthe primary event graph of the blueprint (the graph named \"EventGraph\").\n\n@param Blueprint              Blueprint to search for the event graph on\n\n@return UEdGraph*             Event graph of the blueprint if it has one, null if it doesn't have one",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "FindGraph",
+      "return": "UEdGraph",
+      "doc": "Finds the graph with the given name on the blueprint. Null if it doesn't have one.\n\n@param Blueprint              Blueprint to search\n@param GraphName              The name of the graph to search for\n\n@return UEdGraph*             Pointer to the graph with the given name, null if not found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        },
+        {
+          "name": "GraphName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GeneratedClass",
+      "return": "UClass",
+      "doc": "Gets the class generated when this blueprint is compiled\n\n@param BlueprintObj          The blueprint object\n@return UClass*                      The generated class",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BlueprintObj",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "GetBlueprintAsset",
+      "return": "UBlueprint",
+      "doc": "Casts the provided Object to a Blueprint - the root asset type of a blueprint asset. Note\nthat the blueprint asset itself is editor only and not present in cooked assets.\n\n@param Object                 The object we need to get the UBlueprint from\n\n@return UBlueprint*   The blueprint type of the given object, nullptr if the object is not a blueprint.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "RefreshAllOpenBlueprintEditors",
+      "return": "void",
+      "doc": "Refresh any open blueprint editors",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RefreshOpenEditorsForBlueprint",
+      "return": "void",
+      "doc": "Attempt to refresh any open blueprint editors for the given asset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BP",
+          "type": "const UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "RemoveFunctionGraph",
+      "return": "void",
+      "doc": "Deletes the function of the given name on this blueprint. Does NOT replace function call sites.\n\n@param Blueprint              The blueprint to remove the function from\n@param FuncName               The name of the function to remove",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        },
+        {
+          "name": "FuncName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveGraph",
+      "return": "void",
+      "doc": "Removes the given graph from the blueprint if possible\n\n@param Blueprint      The blueprint the graph will be removed from\n@param Graph          The graph to remove",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        },
+        {
+          "name": "Graph",
+          "type": "UEdGraph"
+        }
+      ]
+    },
+    {
+      "name": "RemoveUnusedNodes",
+      "return": "void",
+      "doc": "Remove any nodes in this blueprint that have no connections made to them.\n\n@param Blueprint              The blueprint to remove the nodes from",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "RemoveUnusedVariables",
+      "return": "int",
+      "doc": "Deletes any unused blueprint created variables the given blueprint.\nAn Unused variable is any BP variable that is not referenced in any\nblueprint graphs\n\n@param Blueprint                      Blueprint that you would like to remove variables from\n\n@return                                       Number of variables removed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "RenameGraph",
+      "return": "void",
+      "doc": "Attempts to rename the given graph with a new name\n\n@param Graph                  The graph to rename\n@param NewNameStr             The new name of the graph",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Graph",
+          "type": "UEdGraph"
+        },
+        {
+          "name": "NewNameStr",
+          "default": "\"NewGraph\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ReparentBlueprint",
+      "return": "void",
+      "doc": "Attempts to reparent the given blueprint to the new chosen parent class.\n\n@param Blueprint                      Blueprint that you would like to reparent\n@param NewParentClass         The new parent class to use",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        },
+        {
+          "name": "NewParentClass",
+          "type": "UClass"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceVariableReferences",
+      "return": "void",
+      "doc": "Replace any references of variables with the OldVarName to references of those with the NewVarName if possible\n\n@param Blueprint              Blueprint to replace the variable references on\n@param OldVarName             The variable you want replaced\n@param NewVarName             The new variable that will be used in the old one's place",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        },
+        {
+          "name": "OldVarName",
+          "type": "FName"
+        },
+        {
+          "name": "NewVarName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetBlueprintVariableExposeOnSpawn",
+      "return": "void",
+      "doc": "Sets \"Expose On Spawn\" to true/false on a Blueprint variable\n\n@param Blueprint                     The blueprint object\n@param VariableName          The variable name\n@param bExposeOnSpawn        Set to true to expose on spawn",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        },
+        {
+          "name": "VariableName",
+          "type": "FName"
+        },
+        {
+          "name": "bExposeOnSpawn",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetBlueprintVariableExposeToCinematics",
+      "return": "void",
+      "doc": "Sets \"Expose To Cinematics\" to true/false on a Blueprint variable\n\n@param Blueprint                             The blueprint object\n@param VariableName                  The variable name\n@param bExposeToCinematics   Set to true to expose to cinematics",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        },
+        {
+          "name": "VariableName",
+          "type": "FName"
+        },
+        {
+          "name": "bExposeToCinematics",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetBlueprintVariableInstanceEditable",
+      "return": "void",
+      "doc": "Sets \"Instance Editable\" to true/false on a Blueprint variable\n\n@param Blueprint                             The blueprint object\n@param VariableName                  The variable name\n@param bInstanceEditable             Toggle InstanceEditable",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        },
+        {
+          "name": "VariableName",
+          "type": "FName"
+        },
+        {
+          "name": "bInstanceEditable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UpgradeOperatorNodes",
+      "return": "void",
+      "doc": "Replace any old operator nodes (float + float, vector + float, int + vector, etc)\nwith the newer Promotable Operator version of the node. Preserve any connections the\noriginal node had to the newer version of the node.\n\n@param Blueprint      Blueprint to upgrade",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Blueprint",
+          "type": "UBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "DuplicateSelected",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bOffsetLocations",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetGridSize",
+      "return": "float32",
+      "doc": "Returns the size (cm) of the current location grid selected in the editor",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsGridEnabled",
+      "return": "bool",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPlaying",
+      "return": "bool",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OpenSettings",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "ContainerName",
+          "type": "FName"
+        },
+        {
+          "name": "CategoryName",
+          "type": "FName"
+        },
+        {
+          "name": "SectionName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

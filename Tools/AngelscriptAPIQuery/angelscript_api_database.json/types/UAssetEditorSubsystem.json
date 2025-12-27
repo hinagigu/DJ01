@@ -1,0 +1,39 @@
+{
+  "name": "UAssetEditorSubsystem",
+  "inherits": "UEditorSubsystem",
+  "doc": "UAssetEditorSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CloseAllEditorsForAsset",
+      "return": "int",
+      "doc": "Close all active editors for the supplied asset and return the number of asset editors that were closed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Asset",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "OpenEditorForAssets",
+      "return": "bool",
+      "doc": "Tries to open an editor for all of the specified assets.\nIf any of the assets are already open, it will not create a new editor for them.\nIf all assets are of the same type, the supporting AssetTypeAction (if it exists) is responsible for the details of how to handle opening multiple assets at once.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Assets",
+          "type": "TArray<UObject>"
+        },
+        {
+          "name": "OpenedMethod",
+          "default": "EAssetTypeActivationOpenedMethod :: Edit",
+          "type": "EAssetTypeActivationOpenedMethod"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "FConstraintDrive",
+  "isStruct": true,
+  "properties": {
+    "Stiffness": [
+      "float32",
+      2,
+      "The spring strength of the drive. Force proportional to the position error."
+    ],
+    "Damping": [
+      "float32",
+      2,
+      "The damping strength of the drive. Force proportional to the velocity error."
+    ],
+    "MaxForce": [
+      "float32",
+      2,
+      "The force limit of the drive."
+    ],
+    "bEnablePositionDrive": [
+      "bool",
+      "Enables/Disables position drive (orientation if using angular drive)"
+    ],
+    "bEnableVelocityDrive": [
+      "bool",
+      "Enables/Disables velocity drive (angular velocity if using angular drive)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FConstraintDrive&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FConstraintDrive"
+        }
+      ]
+    }
+  ]
+}

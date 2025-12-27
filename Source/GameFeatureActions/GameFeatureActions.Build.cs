@@ -6,6 +6,11 @@ public class GameFeatureActions : ModuleRules
     {
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
+        // 添加模块根目录为公共包含路径
+        PublicIncludePaths.AddRange(new string[] {
+            ModuleDirectory,
+        });
+
         // 头文件中直接使用到的类型所需的依赖
         PublicDependencyModuleNames.AddRange(new string[] {
             "Core", "CoreUObject", "Engine",

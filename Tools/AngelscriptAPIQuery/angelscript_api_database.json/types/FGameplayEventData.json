@@ -1,0 +1,59 @@
+{
+  "name": "FGameplayEventData",
+  "isStruct": true,
+  "doc": "Metadata for a tag-based Gameplay Event, that can activate other abilities or run ability-specific logic",
+  "properties": {
+    "EventTag": [
+      "FGameplayTag",
+      "Tag of the event that triggered this"
+    ],
+    "Instigator": [
+      "const AActor",
+      "The instigator of the event"
+    ],
+    "Target": [
+      "const AActor",
+      "The target of the event"
+    ],
+    "OptionalObject": [
+      "const UObject",
+      "An optional ability-specific object to be passed though the event"
+    ],
+    "OptionalObject2": [
+      "const UObject",
+      "A second optional ability-specific object to be passed though the event"
+    ],
+    "ContextHandle": [
+      "FGameplayEffectContextHandle",
+      "Polymorphic context information"
+    ],
+    "InstigatorTags": [
+      "FGameplayTagContainer",
+      "Tags that the instigator has"
+    ],
+    "TargetTags": [
+      "FGameplayTagContainer",
+      "Tags that the target has"
+    ],
+    "EventMagnitude": [
+      "float32",
+      "The magnitude of the triggering event"
+    ],
+    "TargetData": [
+      "FGameplayAbilityTargetDataHandle",
+      "The polymorphic target information for the event"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayEventData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayEventData"
+        }
+      ]
+    }
+  ]
+}

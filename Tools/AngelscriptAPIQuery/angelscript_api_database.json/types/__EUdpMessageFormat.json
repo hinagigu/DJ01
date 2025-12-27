@@ -1,0 +1,31 @@
+{
+  "name": "__EUdpMessageFormat",
+  "isEnum": true,
+  "doc": "Defines the UDP message format available (how the message data is encoded).",
+  "properties": {
+    "None": [
+      "EUdpMessageFormat",
+      "No format specified. Legacy - Not exposed to user."
+    ],
+    "Json": [
+      "EUdpMessageFormat",
+      "JSON format specified. Legacy - Not exposed to user."
+    ],
+    "TaggedProperty": [
+      "EUdpMessageFormat",
+      "Tagged property format specified. Legacy - Not exposed to user."
+    ],
+    "CborPlatformEndianness": [
+      "EUdpMessageFormat",
+      "UDP messages are encoded in CBOR, using the platform endianness. This is the fastest and preferred option, but the CBOR data will not be readable by an external standard-compliant CBOR parser\nif generated from a little endian platform. If the data needs to be consumed outside the Unreal Engine, consider using CborStandardEndianness format instead."
+    ],
+    "CborStandardEndianness": [
+      "EUdpMessageFormat",
+      "UDP messages are encoded in CBOR, using the CBOR standard-complinant endianness (big endian). It will perform slower on a little-endian platform, but the data will be readable by standard CBOR parsers.\nUseful if the UDP messages needs to be analyzed/consumed outside the Unreal Engine."
+    ],
+    "EUdpMessageFormat_MAX": [
+      "EUdpMessageFormat"
+    ]
+  },
+  "methods": []
+}

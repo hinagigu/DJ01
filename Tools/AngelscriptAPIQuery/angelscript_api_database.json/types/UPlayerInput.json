@@ -1,0 +1,151 @@
+{
+  "name": "UPlayerInput",
+  "inherits": "UObject",
+  "doc": "Object within PlayerController that processes player input.\nOnly exists on the client in network games.\n\n@see https://docs.unrealengine.com/latest/INT/Gameplay/Input/index.html",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetOuterAPlayerController",
+      "return": "APlayerController",
+      "const": true,
+      "doc": "Return's this object casted to a player controller. This can be null if there is no player controller.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "AddActionMapping",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyMapping",
+          "type": "FInputActionKeyMapping"
+        }
+      ]
+    },
+    {
+      "name": "AddAxisMapping",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyMapping",
+          "type": "FInputAxisKeyMapping"
+        }
+      ]
+    },
+    {
+      "name": "ForceRebuildingKeyMaps",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "bRestoreDefaults",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetEngineDefinedActionMappings",
+      "return": "TArray<FInputActionKeyMapping>",
+      "meta": null,
+      "args": [
+        {
+          "name": "ActionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetEngineDefinedAxisMappings",
+      "return": "TArray<FInputAxisKeyMapping>",
+      "meta": null,
+      "args": [
+        {
+          "name": "AxisName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetKeysForAction",
+      "return": "TArray<FInputActionKeyMapping>",
+      "meta": null,
+      "args": [
+        {
+          "name": "ActionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetKeysForAxis",
+      "return": "TArray<FInputAxisKeyMapping>",
+      "meta": null,
+      "args": [
+        {
+          "name": "AxisName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMouseSensitivityX",
+      "return": "float32",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMouseSensitivityY",
+      "return": "float32",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InvertAxis",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "AxisName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActionMapping",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyMapping",
+          "type": "FInputActionKeyMapping"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAxisMapping",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "KeyMapping",
+          "type": "FInputAxisKeyMapping"
+        }
+      ]
+    },
+    {
+      "name": "SetMouseSensitivity",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Sensitivity",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

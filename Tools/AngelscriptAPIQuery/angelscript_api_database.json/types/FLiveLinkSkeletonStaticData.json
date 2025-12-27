@@ -1,0 +1,31 @@
+{
+  "name": "FLiveLinkSkeletonStaticData",
+  "isStruct": true,
+  "doc": "Static data for Animation purposes. Contains data about bones that shouldn't change every frame.",
+  "properties": {
+    "BoneNames": [
+      "TArray<FName>",
+      "Names of each bone in the skeleton"
+    ],
+    "BoneParents": [
+      "TArray<int>",
+      "Parent Indices: For each bone it specifies the index of its parent"
+    ],
+    "PropertyNames": [
+      "TArray<FName>",
+      "Names for each curve values that will be sent for each frame"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLiveLinkSkeletonStaticData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLiveLinkSkeletonStaticData"
+        }
+      ]
+    }
+  ]
+}

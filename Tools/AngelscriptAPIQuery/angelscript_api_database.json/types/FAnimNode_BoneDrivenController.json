@@ -1,0 +1,149 @@
+{
+  "name": "FAnimNode_BoneDrivenController",
+  "isStruct": true,
+  "doc": "This is the runtime version of a bone driven controller, which maps part of the state from one bone to another (e.g., 2 * source.x -> target.z)",
+  "properties": {
+    "SourceBone": [
+      "FBoneReference",
+      2,
+      "Bone to use as controller input"
+    ],
+    "DrivingCurve": [
+      "UCurveFloat",
+      2,
+      "Curve used to map from the source attribute to the driven attributes if present (otherwise the Multiplier will be used)"
+    ],
+    "Multiplier": [
+      "float32",
+      2,
+      "Multiplier to apply to the input value (Note: Ignored when a curve is used)"
+    ],
+    "RangeMin": [
+      "float",
+      2,
+      "Minimum limit of the input value (mapped to RemappedMin, only used when limiting the source range)\nIf this is rotation, the unit is radian"
+    ],
+    "RangeMax": [
+      "float",
+      2,
+      "Maximum limit of the input value (mapped to RemappedMax, only used when limiting the source range)\nIf this is rotation, the unit is radian"
+    ],
+    "RemappedMin": [
+      "float",
+      2,
+      "Minimum value to apply to the destination (remapped from the input range)\nIf this is rotation, the unit is radian"
+    ],
+    "RemappedMax": [
+      "float",
+      2,
+      "Maximum value to apply to the destination (remapped from the input range)\nIf this is rotation, the unit is radian"
+    ],
+    "ParameterName": [
+      "FName",
+      2,
+      "Name of Morph Target to drive using the source attribute"
+    ],
+    "TargetBone": [
+      "FBoneReference",
+      2,
+      "Bone to drive using controller input"
+    ],
+    "DestinationMode": [
+      "EDrivenDestinationMode",
+      2,
+      "Type of destination to drive, currently either bone or morph target"
+    ],
+    "ModificationMode": [
+      "EDrivenBoneModificationMode",
+      2,
+      "The type of modification to make to the destination component(s)"
+    ],
+    "SourceComponent": [
+      "EComponentType",
+      2,
+      "Transform component to use as input"
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ],
+    "bUseRange": [
+      "bool",
+      "Whether or not to clamp the driver value and remap it before scaling it"
+    ],
+    "bAffectTargetTranslationX": [
+      "bool",
+      "Affect the X component of translation on the target bone"
+    ],
+    "bAffectTargetTranslationY": [
+      "bool",
+      "Affect the Y component of translation on the target bone"
+    ],
+    "bAffectTargetTranslationZ": [
+      "bool",
+      "Affect the Z component of translation on the target bone"
+    ],
+    "bAffectTargetRotationX": [
+      "bool",
+      "Affect the X component of rotation on the target bone"
+    ],
+    "bAffectTargetRotationY": [
+      "bool",
+      "Affect the Y component of rotation on the target bone"
+    ],
+    "bAffectTargetRotationZ": [
+      "bool",
+      "Affect the Z component of rotation on the target bone"
+    ],
+    "bAffectTargetScaleX": [
+      "bool",
+      "Affect the X component of scale on the target bone"
+    ],
+    "bAffectTargetScaleY": [
+      "bool",
+      "Affect the Y component of scale on the target bone"
+    ],
+    "bAffectTargetScaleZ": [
+      "bool",
+      "Affect the Z component of scale on the target bone"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_BoneDrivenController&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_BoneDrivenController"
+        }
+      ]
+    }
+  ]
+}

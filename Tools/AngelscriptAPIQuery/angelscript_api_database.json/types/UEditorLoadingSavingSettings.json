@@ -1,0 +1,120 @@
+{
+  "name": "UEditorLoadingSavingSettings",
+  "inherits": "UObject",
+  "doc": "Implements the Level Editor's loading and saving settings.",
+  "properties": {
+    "LoadLevelAtStartup": [
+      "ELoadLevelAtStartup",
+      2,
+      "Whether to load a default example map at startup"
+    ],
+    "RestoreOpenAssetTabsOnRestart": [
+      "ERestoreOpenAssetTabsMethod",
+      2,
+      "Whether to restore previously open assets at startup after a clean shutdown"
+    ],
+    "bMonitorContentDirectories": [
+      "bool",
+      2,
+      "When enabled, changes to made to source content files inside the content directories will automatically be reflected in the content browser.\nNote that source content files must reside in one of the monitored directories to be eligible for auto-reimport.\nAdvanced setup options are available below."
+    ],
+    "AutoReimportDirectorySettings": [
+      "TArray<FAutoReimportDirectoryConfig>",
+      2,
+      "Lists every directory to monitor for content changes. Can be virtual package paths (eg /Game/ or /MyPlugin/), or absolute paths on disk.\nPaths should point to the locations of the source content files (e.g. *.fbx, *.png) you want to be eligible for auto-reimport."
+    ],
+    "AutoReimportThreshold": [
+      "float32",
+      2,
+      "Specifies an amount of time to wait before a specific file change is considered for auto reimport"
+    ],
+    "bAutoCreateAssets": [
+      "bool",
+      2,
+      "When enabled, newly added source content files will be automatically imported into new assets."
+    ],
+    "bAutoDeleteAssets": [
+      "bool",
+      2,
+      "When enabled, deleting a source content file will automatically prompt the deletion of any related assets."
+    ],
+    "bDetectChangesOnStartup": [
+      "bool",
+      2,
+      "When enabled, changes to monitored directories since UE was closed will be detected on restart.\n(Not recommended when working in collaboration with others using revision control)."
+    ],
+    "bPromptBeforeAutoImporting": [
+      "bool",
+      2,
+      "Whether to prompt the user to import detected changes."
+    ],
+    "bDirtyMigratedBlueprints": [
+      "bool",
+      2,
+      "Whether to mark blueprints dirty if they are automatically migrated during loads"
+    ],
+    "AutoSaveMethod": [
+      "EAutoSaveMethod",
+      2,
+      "What method should be used when performing an autosave?"
+    ],
+    "AutoSaveTimeMinutes": [
+      "int",
+      2,
+      "The time interval after which to auto save"
+    ],
+    "AutoSaveInteractionDelayInSeconds": [
+      "int",
+      2,
+      "The minimum number of seconds to wait after the last user interactions (with the editor) before auto-save can trigger"
+    ],
+    "AutoSaveWarningInSeconds": [
+      "int",
+      2,
+      "The number of seconds warning before an autosave"
+    ],
+    "AutoSaveMaxBackups": [
+      "int",
+      2,
+      "How many auto save files to keep around"
+    ],
+    "TextDiffToolPath": [
+      "FFilePath",
+      2,
+      "Specifies the file path to the tool to be used for diffing text files"
+    ],
+    "bForceCompilationAtStartup": [
+      "bool",
+      "Force project compilation at startup"
+    ],
+    "bAutoSaveEnable": [
+      "bool",
+      "Whether to automatically save after a time interval"
+    ],
+    "bAutoSaveMaps": [
+      "bool",
+      "Whether to automatically save maps during an autosave"
+    ],
+    "bAutoSaveContent": [
+      "bool",
+      "Whether to automatically save content packages during an autosave"
+    ],
+    "bAutomaticallyCheckoutOnAssetModification": [
+      "bool",
+      "Whether to automatically checkout on asset modification"
+    ],
+    "bPromptForCheckoutOnAssetModification": [
+      "bool",
+      "Whether to automatically prompt for SCC checkout on asset modification"
+    ],
+    "bSCCAutoAddNewFiles": [
+      "bool",
+      "Auto add files to source control"
+    ],
+    "bSCCUseGlobalSettings": [
+      "bool",
+      "Use global source control login settings, rather than per-project. Changing this will require you to login again"
+    ]
+  },
+  "methods": []
+}

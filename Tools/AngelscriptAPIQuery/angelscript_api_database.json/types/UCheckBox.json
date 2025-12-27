@@ -1,0 +1,129 @@
+{
+  "name": "UCheckBox",
+  "inherits": "UContentWidget",
+  "doc": "The checkbox widget allows you to display a toggled state of 'unchecked', 'checked' and\n'indeterminable.  You can use the checkbox for a classic checkbox, or as a toggle button,\nor as radio buttons.\n\n* Single Child\n* Toggle",
+  "properties": {
+    "WidgetStyle": [
+      "FCheckBoxStyle",
+      "The checkbox bar style"
+    ],
+    "HorizontalAlignment": [
+      "EHorizontalAlignment",
+      "How the content of the toggle button should align within the given space"
+    ],
+    "IsFocusable": [
+      "bool",
+      "Sometimes a button should only be mouse-clickable and never keyboard focusable."
+    ],
+    "OnCheckStateChanged": [
+      "FOnCheckBoxComponentStateChanged",
+      "Called when the checked state has changed"
+    ],
+    "ClickMethod": [
+      "EButtonClickMethod",
+      "The type of mouse action required by the user to trigger the buttons 'Click'"
+    ],
+    "TouchMethod": [
+      "EButtonTouchMethod",
+      "The type of touch action required by the user to trigger the buttons 'Click'"
+    ],
+    "PressMethod": [
+      "EButtonPressMethod",
+      "The type of keyboard/gamepad button press action required by the user to trigger the buttons 'Click'"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCheckedState",
+      "return": "ECheckBoxState",
+      "const": true,
+      "doc": "Returns the full current checked state.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsChecked",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the checkbox is currently checked",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPressed",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this button is currently pressed",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCheckedState",
+      "return": "void",
+      "doc": "Sets the checked state.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCheckedState",
+          "type": "ECheckBoxState"
+        }
+      ]
+    },
+    {
+      "name": "SetClickMethod",
+      "return": "void",
+      "doc": "Sets the click method.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InClickMethod",
+          "type": "EButtonClickMethod"
+        }
+      ]
+    },
+    {
+      "name": "SetIsChecked",
+      "return": "void",
+      "doc": "Sets the checked state.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InIsChecked",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPressMethod",
+      "return": "void",
+      "doc": "Sets the press method.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPressMethod",
+          "type": "EButtonPressMethod"
+        }
+      ]
+    },
+    {
+      "name": "SetTouchMethod",
+      "return": "void",
+      "doc": "Sets the touch method.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTouchMethod",
+          "type": "EButtonTouchMethod"
+        }
+      ]
+    }
+  ]
+}

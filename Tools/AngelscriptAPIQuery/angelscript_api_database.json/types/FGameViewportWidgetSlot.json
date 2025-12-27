@@ -1,0 +1,36 @@
+{
+  "name": "FGameViewportWidgetSlot",
+  "isStruct": true,
+  "doc": "The default value fills the entire screen / player region.",
+  "properties": {
+    "Anchors": [
+      "FAnchors"
+    ],
+    "Offsets": [
+      "FMargin"
+    ],
+    "Alignment": [
+      "FVector2D"
+    ],
+    "ZOrder": [
+      "int",
+      "The higher the number, the more on top this widget will be."
+    ],
+    "bAutoRemoveOnWorldRemoved": [
+      "bool",
+      "Remove the widget when the Widget's World is removed.\n@note The Widget is added to the GameViewportClient of the Widget's World. The GameViewportClient can migrate from World to World. The widget can stay visible if the owner of the widget also migrate."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameViewportWidgetSlot&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameViewportWidgetSlot"
+        }
+      ]
+    }
+  ]
+}

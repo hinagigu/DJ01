@@ -1,0 +1,53 @@
+{
+  "name": "UTextLayoutWidget",
+  "inherits": "UWidget",
+  "doc": "Base class for all widgets that use a text layout.\nContains the common options that should be exposed for the underlying Slate widget.",
+  "properties": {
+    "ShapedTextOptions": [
+      "FShapedTextOptions",
+      "Controls how the text within this widget should be shaped."
+    ],
+    "WrappingPolicy": [
+      "ETextWrappingPolicy",
+      "The wrapping policy to use."
+    ],
+    "WrapTextAt": [
+      "float32",
+      "Whether text wraps onto a new line when it's length exceeds this width; if this value is zero or negative, no wrapping occurs."
+    ],
+    "Margin": [
+      "FMargin",
+      "The amount of blank space left around the edges of text area."
+    ],
+    "LineHeightPercentage": [
+      "float32",
+      "The amount to scale each lines height by."
+    ],
+    "ApplyLineHeightToBottomLine": [
+      "bool",
+      "Whether to leave extra space below the last line due to line height."
+    ],
+    "Justification": [
+      "ETextJustify",
+      "How the text should be aligned with the margin."
+    ],
+    "AutoWrapText": [
+      "bool",
+      "True if we're wrapping text automatically based on the computed horizontal space for this widget."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetJustification",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InJustification",
+          "type": "ETextJustify"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "name": "UMediaSoundComponent",
+  "inherits": "USynthComponent",
+  "doc": "Implements a sound component for playing a media player's audio output.",
+  "properties": {
+    "Channels": [
+      "EMediaSoundChannels",
+      2,
+      "Media sound channel type."
+    ],
+    "DynamicRateAdjustment": [
+      "bool",
+      2,
+      "Dynamically adjust the sample rate if audio and media clock desynchronize."
+    ],
+    "RateAdjustmentFactor": [
+      "float32",
+      2,
+      "Factor for calculating the sample rate adjustment.\n\nIf dynamic rate adjustment is enabled, this number is multiplied with the drift\nbetween the audio and media clock (in 100ns ticks) to determine the adjustment.\nthat is to be multiplied into the current playrate."
+    ],
+    "RateAdjustmentRange": [
+      "FFloatRange",
+      2,
+      "The allowed range of dynamic rate adjustment.\n\nIf dynamic rate adjustment is enabled, and the necessary adjustment\nfalls outside of this range, audio samples will be dropped."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAttenuationSettingsToApply",
+      "return": "bool",
+      "doc": "Get the attenuation settings based on the current component settings.\n\n@param OutAttenuationSettings Will contain the attenuation settings, if available.\n@return true if attenuation settings were returned, false if attenuation is disabled.",
+      "ufunction": true,
+      "unrealname": "BP_GetAttenuationSettingsToApply",
+      "meta": null,
+      "args": [
+        {
+          "name": "OutAttenuationSettings",
+          "type": "FSoundAttenuationSettings&"
+        }
+      ]
+    },
+    {
+      "name": "GetEnvelopeValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Retrieves the current amplitude envelope.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMediaPlayer",
+      "return": "UMediaPlayer",
+      "const": true,
+      "doc": "Get the media player that provides the audio samples.\n\n@return The component's media player, or nullptr if not set.\n@see SetMediaPlayer",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNormalizedSpectralData",
+      "return": "TArray<FMediaSoundComponentSpectralData>",
+      "doc": "Retrieves and normalizes the spectral data if spectral analysis is enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSpectralData",
+      "return": "TArray<FMediaSoundComponentSpectralData>",
+      "doc": "Retrieves the spectral data if spectral analysis is enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetEnableEnvelopeFollowing",
+      "return": "void",
+      "doc": "Turns on amplitude envelope following the audio in the media sound component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInEnvelopeFollowing",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableSpectralAnalysis",
+      "return": "void",
+      "doc": "Turns on spectral analysis of the audio generated in the media sound component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInSpectralAnalysisEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEnvelopeFollowingsettings",
+      "return": "void",
+      "doc": "Sets the envelope attack and release times (in ms).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttackTimeMsec",
+          "type": "int"
+        },
+        {
+          "name": "ReleaseTimeMsec",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetMediaPlayer",
+      "return": "void",
+      "doc": "Set the media player that provides the audio samples.\n\n@param NewMediaPlayer The player to set.\n@see GetMediaPlayer",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMediaPlayer",
+          "type": "UMediaPlayer"
+        }
+      ]
+    },
+    {
+      "name": "SetSpectralAnalysisSettings",
+      "return": "void",
+      "doc": "Sets the settings to use for spectral analysis.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFrequenciesToAnalyze",
+          "type": "TArray<float32>"
+        },
+        {
+          "name": "InFFTSize",
+          "default": "EMediaSoundComponentFFTSize :: Medium_512",
+          "type": "EMediaSoundComponentFFTSize"
+        }
+      ]
+    }
+  ]
+}

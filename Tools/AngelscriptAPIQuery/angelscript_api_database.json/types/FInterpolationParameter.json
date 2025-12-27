@@ -1,0 +1,38 @@
+{
+  "name": "FInterpolationParameter",
+  "isStruct": true,
+  "properties": {
+    "InterpolationTime": [
+      "float32",
+      2,
+      "Smoothing Time used to move smoothly across the blendpsace from the current parameters to the target\nparameters. The different Smoothing Types will treat this in different ways, but in general a value of\nzero will disable all smoothing, and larger values will smooth more."
+    ],
+    "DampingRatio": [
+      "float32",
+      2,
+      "Damping ratio - only used when the type is set to SpringDamper. A value of 1 will move quickly and\nsmoothly to the target, without overshooting. Values as low as 0 can be used to encourage some overshoot,\nand values around 0.7 can make pose transitions look more natural."
+    ],
+    "MaxSpeed": [
+      "float32",
+      2,
+      "Maximum speed, in real units. For example, if this axis is degrees then you could use a value of 90 to\nlimit the turn rate to 90 degrees per second. Only used when greater than zero and the type is\nset to SpringDamper or Exponential."
+    ],
+    "InterpolationType": [
+      "EFilterInterpolationType",
+      2,
+      "Type of smoothing used for filtering the input value to decide how to get to target."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInterpolationParameter&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInterpolationParameter"
+        }
+      ]
+    }
+  ]
+}

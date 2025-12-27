@@ -1,0 +1,28 @@
+{
+  "name": "FInterchangePipelineStack",
+  "isStruct": true,
+  "properties": {
+    "Pipelines": [
+      "TArray<FSoftObjectPath>",
+      2,
+      "The list of pipelines in this stack. The pipelines are executed in fixed order, from top to bottom."
+    ],
+    "PerTranslatorPipelines": [
+      "TArray<FInterchangeTranslatorPipelines>",
+      2,
+      "Specifies a different list of pipelines for this stack to use when importing data from specific translators."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInterchangePipelineStack&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInterchangePipelineStack"
+        }
+      ]
+    }
+  ]
+}

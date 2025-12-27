@@ -1,0 +1,41 @@
+{
+  "name": "UGameplayEffectExecutionCalculation",
+  "inherits": "UGameplayEffectCalculation",
+  "properties": {
+    "bRequiresPassedInTags": [
+      "bool",
+      "Used to indicate if this execution uses Passed In Tags"
+    ],
+    "InvalidScopedModifierAttributes": [
+      "TArray<FGameplayEffectAttributeCaptureDefinition>",
+      2,
+      "Any attribute in this list will not show up as a valid option for scoped modifiers; Used to allow attribute capture for internal calculation while preventing modification"
+    ],
+    "ValidTransientAggregatorIdentifiers": [
+      "FGameplayTagContainer",
+      2,
+      "Any tag in this container will show up as a valid \"temporary variable\" for scoped modifiers; Used to allow for data-driven variable support that doesn't rely on scoped modifiers"
+    ]
+  },
+  "methods": [
+    {
+      "name": "Execute",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "doc": "Called whenever the owning gameplay effect is executed. Allowed to do essentially whatever is desired, including generating new\nmodifiers to instantly execute as well.\n\n@note: Native subclasses should override the auto-generated Execute_Implementation function and NOT this one.\n\n@param ExecutionParams               Parameters for the custom execution calculation\n@param OutExecutionOutput    [OUT] Output data populated by the execution detailing further behavior or results of the execution",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExecutionParams",
+          "type": "FGameplayEffectCustomExecutionParameters"
+        },
+        {
+          "name": "OutExecutionOutput",
+          "type": "FGameplayEffectCustomExecutionOutput&"
+        }
+      ]
+    }
+  ]
+}

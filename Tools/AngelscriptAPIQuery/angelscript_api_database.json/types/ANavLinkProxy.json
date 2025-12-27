@@ -1,0 +1,89 @@
+{
+  "name": "ANavLinkProxy",
+  "inherits": "AActor",
+  "doc": "ANavLinkProxy connects areas of Navmesh that don't have a direct navigation path.\nIt directly supports Simple Links (see PointLinks array). There can be multiple Simple links per ANavLinkProxy instance.\nSimple links are designed to statically link areas of Navmesh and are associated with a particular area class that the link provides.\nSmart Link functionality is provided via UNavLinkCustomComponent, see SmartLinkComp. They are designed to be able to be dynamically toggled\nbetween enabled and disabled and provide different area classes for both cases. The area classes can be dynamically modified\nwithout navmesh rebuilds.\nThere can only be at most one smart link per ANavLinkProxy instance.\nBoth simple and smart links on a single ANavLinkProxy instance, can be set / enabled at once, as well as either or neither of them.",
+  "properties": {
+    "PointLinks": [
+      "TArray<FNavigationLink>",
+      "Navigation links (point to point) added to navigation data"
+    ],
+    "SmartLinkComp": [
+      "UNavLinkCustomComponent",
+      2,
+      "Smart link: can affect path following"
+    ],
+    "bSmartLinkIsRelevant": [
+      "bool",
+      2,
+      "Smart link: toggle relevancy"
+    ],
+    "OnSmartLinkReached": [
+      "FSmartLinkReachedSignature"
+    ]
+  },
+  "methods": [
+    {
+      "name": "HasMovingAgents",
+      "return": "bool",
+      "const": true,
+      "doc": "check if any agent is moving through smart link right now",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsSmartLinkEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "check if smart link is enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SmartLinkReached",
+      "return": "void",
+      "callable": false,
+      "doc": "called when agent reaches smart link during path following, use ResumePathFollowing() to give control back",
+      "event": true,
+      "unrealname": "ReceiveSmartLinkReached",
+      "meta": null,
+      "args": [
+        {
+          "name": "Agent",
+          "type": "AActor"
+        },
+        {
+          "name": "Destination",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ResumePathFollowing",
+      "return": "void",
+      "doc": "resume normal path following",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Agent",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetSmartLinkEnabled",
+      "return": "void",
+      "doc": "change state of smart link",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

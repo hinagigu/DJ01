@@ -1,0 +1,252 @@
+{
+  "name": "__UEditorLoadingAndSavingUtils",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ExportScene",
+      "return": "void",
+      "doc": "Exports the current scene",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bExportSelectedActorsOnly",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetDirtyContentPackages",
+      "return": "void",
+      "doc": "Appends array with all currently dirty content packages.\n\n@param OutDirtyPackages Array to append dirty packages to.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutDirtyPackages",
+          "type": "TArray<UPackage>&"
+        }
+      ]
+    },
+    {
+      "name": "GetDirtyMapPackages",
+      "return": "void",
+      "doc": "Appends array with all currently dirty map packages.\n\n@param OutDirtyPackages Array to append dirty packages to.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutDirtyPackages",
+          "type": "TArray<UPackage>&"
+        }
+      ]
+    },
+    {
+      "name": "ImportScene",
+      "return": "void",
+      "doc": "Imports a file such as (FBX or obj) and spawns actors f into the current level",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Filename",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "LoadMap",
+      "return": "UWorld",
+      "doc": "Loads the specified map.  Does not prompt the user to save the current map.\n\n@param       Filename                Level package filename, including path.\n@return                                      true if the map was loaded successfully.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Filename",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "LoadMapWithDialog",
+      "return": "UWorld",
+      "doc": "Prompts the user to save the current map if necessary, the presents a load dialog and\nloads a new map if selected by the user.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "NewBlankMap",
+      "return": "UWorld",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSaveExistingMap",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "NewMapFromTemplate",
+      "return": "UWorld",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PathToTemplateLevel",
+          "type": "FString"
+        },
+        {
+          "name": "bSaveExistingMap",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReloadPackages",
+      "return": "void",
+      "doc": "Helper function that attempts to reload the specified top-level packages.\n\n@param       PackagesToReload                The list of packages that should be reloaded\n@param       bOutAnyPackagesReloaded True if the set of loaded packages was changed\n@param       OutErrorMessage                 An error message specifying any problems with reloading packages\n@param       InteractionMode                 Whether the function is allowed to ask the user questions (such as whether to reload dirty packages)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PackagesToReload",
+          "type": "TArray<UPackage>"
+        },
+        {
+          "name": "bOutAnyPackagesReloaded",
+          "type": "bool&"
+        },
+        {
+          "name": "OutErrorMessage",
+          "type": "FText&"
+        },
+        {
+          "name": "InteractionMode",
+          "default": "EReloadPackagesInteractionMode :: Interactive",
+          "type": "EReloadPackagesInteractionMode"
+        }
+      ]
+    },
+    {
+      "name": "SaveCurrentLevel",
+      "return": "bool",
+      "doc": "Saves the active level, prompting the use for checkout if necessary.\n\n@return      true on success, False on fail",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SaveDirtyPackages",
+      "return": "bool",
+      "doc": "Looks at all currently loaded packages and saves them if their \"bDirty\" flag is set.\nAssume all dirty packages should be saved and check out from source control (if enabled).\n\n@param       bSaveMapPackages                        true if map packages should be saved\n@param       bSaveContentPackages            true if we should save content packages.\n@return                                                              true on success, false on fail.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSaveMapPackages",
+          "type": "bool"
+        },
+        {
+          "name": "bSaveContentPackages",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SaveDirtyPackagesWithDialog",
+      "return": "bool",
+      "doc": "Looks at all currently loaded packages and saves them if their \"bDirty\" flag is set.\nPrompt the user to select which dirty packages to save and check them out from source control (if enabled).\n\n\n@param       bSaveMapPackages                        true if map packages should be saved\n@param       bSaveContentPackages            true if we should save content packages.\n@return                                                              true on success, false on fail.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSaveMapPackages",
+          "type": "bool"
+        },
+        {
+          "name": "bSaveContentPackages",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SaveMap",
+      "return": "bool",
+      "doc": "Saves the specified map, returning true on success.\n\n@param       World                   The world to save.\n@param       AssetPath               The valid content directory path and name for the asset.  E.g \"/Game/MyMap\"\n\n@return                                      true if the map was saved successfully.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SavePackages",
+      "return": "bool",
+      "doc": "Save all packages.\nAssume all dirty packages should be saved and check out from source control (if enabled).\n\n@param               PackagesToSave                          The list of packages to save.  Both map and content packages are supported\n@param               bCheckDirty                                     If true, only packages that are dirty in PackagesToSave will be saved\n@return                                                                      true on success, false on fail.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PackagesToSave",
+          "type": "TArray<UPackage>"
+        },
+        {
+          "name": "bOnlyDirty",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SavePackagesWithDialog",
+      "return": "bool",
+      "doc": "Save all packages. Optionally prompting the user to select which packages to save.\nPrompt the user to select which dirty packages to save and check them out from source control (if enabled).\n\n@param                PackagesToSave                          The list of packages to save.  Both map and content packages are supported\n@param                bCheckDirty                                     If true, only packages that are dirty in PackagesToSave will be saved\n@return                                                                       true on success, false on fail.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PackagesToSave",
+          "type": "TArray<UPackage>"
+        },
+        {
+          "name": "bOnlyDirty",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UnloadPackages",
+      "return": "void",
+      "doc": "Unloads a list of packages\n\n@param PackagesToUnload Array of packages to unload.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PackagesToUnload",
+          "type": "TArray<UPackage>"
+        },
+        {
+          "name": "bOutAnyPackagesUnloaded",
+          "type": "bool&"
+        },
+        {
+          "name": "OutErrorMessage",
+          "type": "FText&"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

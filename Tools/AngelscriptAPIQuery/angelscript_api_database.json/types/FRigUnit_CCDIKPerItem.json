@@ -1,0 +1,64 @@
+{
+  "name": "FRigUnit_CCDIKPerItem",
+  "isStruct": true,
+  "doc": "The CCID solver can solve N-Bone chains using\nthe Cyclic Coordinate Descent Inverse Kinematics algorithm.\nFor now this node supports single effector chains only.",
+  "properties": {
+    "Items": [
+      "FRigElementKeyCollection",
+      "The chain to use"
+    ],
+    "EffectorTransform": [
+      "FTransform",
+      "The transform of the effector in global space"
+    ],
+    "Precision": [
+      "float32",
+      1,
+      "The precision to use for the fabrik solver"
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the solver - how much the IK should be applied."
+    ],
+    "MaxIterations": [
+      "int",
+      "The maximum number of iterations. Values between 4 and 16 are common."
+    ],
+    "bStartFromTail": [
+      "bool",
+      1,
+      "If set to true the direction of the solvers is flipped."
+    ],
+    "BaseRotationLimit": [
+      "float32",
+      1,
+      "The general rotation limit to be applied to bones"
+    ],
+    "RotationLimits": [
+      "TArray<FRigUnit_CCDIK_RotationLimitPerItem>",
+      1,
+      "Defines the limits of rotation per bone."
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      1,
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_CCDIKPerItem&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_CCDIKPerItem"
+        }
+      ]
+    }
+  ]
+}

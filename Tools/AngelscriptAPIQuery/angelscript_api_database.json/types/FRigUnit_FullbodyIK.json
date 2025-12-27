@@ -1,0 +1,51 @@
+{
+  "name": "FRigUnit_FullbodyIK",
+  "isStruct": true,
+  "doc": "Based on Jacobian solver at core, this can solve multi chains within a root using multi effectors",
+  "properties": {
+    "Root": [
+      "FRigElementKey",
+      1,
+      "The first bone in the chain to solve"
+    ],
+    "Effectors": [
+      "TArray<FFBIKEndEffector>"
+    ],
+    "Constraints": [
+      "TArray<FFBIKConstraintOption>"
+    ],
+    "SolverProperty": [
+      "FSolverInput",
+      1,
+      ""
+    ],
+    "MotionProperty": [
+      "FMotionProcessInput",
+      1,
+      ""
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "DebugOption": [
+      "FFBIKDebugOption"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_FullbodyIK&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_FullbodyIK"
+        }
+      ]
+    }
+  ]
+}

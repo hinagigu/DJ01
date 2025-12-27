@@ -1,0 +1,33 @@
+{
+  "name": "FLightmassMaterialInterfaceSettings",
+  "isStruct": true,
+  "doc": "UMaterial interface settings for Lightmass",
+  "properties": {
+    "DiffuseBoost": [
+      "float32",
+      2,
+      "Scales the diffuse contribution of this material to static lighting."
+    ],
+    "ExportResolutionScale": [
+      "float32",
+      2,
+      "Scales the resolution that this material's attributes were exported at.\nThis is useful for increasing material resolution when details are needed."
+    ],
+    "bCastShadowAsMasked": [
+      "bool",
+      "If true, forces translucency to cast static shadows as if the material were masked."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLightmassMaterialInterfaceSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLightmassMaterialInterfaceSettings"
+        }
+      ]
+    }
+  ]
+}

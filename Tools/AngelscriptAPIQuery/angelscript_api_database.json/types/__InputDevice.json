@@ -1,0 +1,300 @@
+{
+  "name": "__InputDevice",
+  "properties": {},
+  "methods": [
+    {
+      "name": "EqualEqual_InputDeviceId",
+      "return": "bool",
+      "doc": "Returns true if InputDeviceId A is equal to InputDeviceId B (A == B)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FInputDeviceId"
+        },
+        {
+          "name": "B",
+          "type": "FInputDeviceId"
+        }
+      ]
+    },
+    {
+      "name": "EqualEqual_PlatformUserId",
+      "return": "bool",
+      "doc": "Returns true if PlatformUserId A is equal to PlatformUserId B (A == B)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FPlatformUserId"
+        },
+        {
+          "name": "B",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "GetAllActiveUsers",
+      "return": "int",
+      "doc": "Get all currently active platform ids, anyone who has a mapped input device\n\n@param OutUsers              Array that will be populated with the platform users.\n@return                              The number of active platform users",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutUsers",
+          "type": "TArray<FPlatformUserId>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllConnectedInputDevices",
+      "return": "int",
+      "doc": "Gather all currently connected input devices\n\n@param OutInputDevices       Array of input devices to populate\n@return                                      The number of connected input devices",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutInputDevices",
+          "type": "TArray<FInputDeviceId>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllInputDevices",
+      "return": "int",
+      "doc": "Get all mapped input devices on this platform regardless of their connection state.\n\n@param OutInputDevices       Array of input devices to populate\n@return                                      The number of connected input devices",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutInputDevices",
+          "type": "TArray<FInputDeviceId>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllInputDevicesForUser",
+      "return": "int",
+      "doc": "Populates the OutInputDevices array with any InputDeviceID's that are mapped to the given platform user\n\n@param UserId                                The Platform User to gather the input devices of.\n@param OutInputDevices               Array of input device ID's that will be populated with the mapped devices.\n@return                                              The number of mapped devices, INDEX_NONE if the user was not found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UserId",
+          "type": "FPlatformUserId"
+        },
+        {
+          "name": "OutInputDevices",
+          "type": "TArray<FInputDeviceId>&"
+        }
+      ]
+    },
+    {
+      "name": "GetDefaultInputDevice",
+      "return": "FInputDeviceId",
+      "doc": "Returns the default device id used for things like keyboard/mouse input",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInputDeviceConnectionState",
+      "return": "EInputDeviceConnectionState",
+      "doc": "Gets the connection state of the given input device.\n\n@param DeviceId              The device to get the connection state of\n@return                              The connection state of the given device. EInputDeviceConnectionState::Unknown if the device is not mapped",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeviceId",
+          "type": "FInputDeviceId"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerControllerFromInputDevice",
+      "return": "APlayerController",
+      "doc": "Get the player controller who owns the given input device id",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeviceId",
+          "type": "FInputDeviceId"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerControllerFromPlatformUser",
+      "return": "APlayerController",
+      "doc": "Get the player controller who has the given Platform User ID.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UserId",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryInputDeviceForUser",
+      "return": "FInputDeviceId",
+      "doc": "Returns the primary input device used by a specific player, or INPUTDEVICEID_NONE if invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UserId",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryPlatformUser",
+      "return": "FPlatformUserId",
+      "doc": "Returns the 'Primary' Platform user for this platform.\nThis typically has an internal ID of '0' and is used as the default platform user to\nmap devices such as the keyboard and mouse that don't get assigned unique ID's from their\nowning platform code.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUserForInputDevice",
+      "return": "FPlatformUserId",
+      "doc": "Returns the platform user attached to this input device, or PLATFORMUSERID_NONE if invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeviceId",
+          "type": "FInputDeviceId"
+        }
+      ]
+    },
+    {
+      "name": "GetUserForUnpairedInputDevices",
+      "return": "FPlatformUserId",
+      "doc": "Returns the platform user id that is being used for unmapped input devices.\nWill be PLATFORMUSERID_NONE if platform does not support this (this is the default behavior)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InputDeviceId_None",
+      "return": "FInputDeviceId",
+      "doc": "Static invalid input device",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDevicePropertyHandleValid",
+      "return": "bool",
+      "doc": "Returns true if the given handle is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHandle",
+          "type": "FInputDevicePropertyHandle"
+        }
+      ]
+    },
+    {
+      "name": "IsInputDeviceMappedToUnpairedUser",
+      "return": "bool",
+      "doc": "Returns true if the given input device is mapped to the unpaired platform user id.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputDevice",
+          "type": "FInputDeviceId"
+        }
+      ]
+    },
+    {
+      "name": "IsUnpairedUserId",
+      "return": "bool",
+      "doc": "Returns true if the given Platform User Id is the user for unpaired input devices on this platform.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlatformId",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "IsValidInputDevice",
+      "return": "bool",
+      "doc": "Check if the given input device is valid\n\n@return      True if the given input device is valid (it has been assigned an ID by the PlatformInputDeviceMapper)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeviceId",
+          "type": "FInputDeviceId"
+        }
+      ]
+    },
+    {
+      "name": "IsValidPlatformId",
+      "return": "bool",
+      "doc": "Check if the given platform ID is valid\n\n@return      True if the platform ID is valid (it has been assigned by the PlatformInputDeviceMapper)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UserId",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "NotEqual_InputDeviceId",
+      "return": "bool",
+      "doc": "Returns true if InputDeviceId A is not equal to InputDeviceId B (A != B)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FInputDeviceId"
+        },
+        {
+          "name": "B",
+          "type": "FInputDeviceId"
+        }
+      ]
+    },
+    {
+      "name": "NotEqual_PlatformUserId",
+      "return": "bool",
+      "doc": "Returns true if PlatformUserId A is not equal to PlatformUserId B (A != B)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FPlatformUserId"
+        },
+        {
+          "name": "B",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "PlatformUserId_None",
+      "return": "FPlatformUserId",
+      "doc": "Static invalid platform user",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "name": "__Platform",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CancelLocalNotification",
+      "return": "void",
+      "doc": "Cancel a local notification given the ActivationEvent\n@param ActivationEvent The string passed into the Schedule call for the notification to be cancelled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActivationEvent",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "CancelLocalNotificationById",
+      "return": "void",
+      "doc": "Cancel a local notification given the ActivationEvent\n@param NotificationId The Id returned from one of the ScheduleLocalNotification* functions",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NotificationId",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ClearAllLocalNotifications",
+      "return": "void",
+      "doc": "Clear all pending local notifications. Typically this will be done before scheduling new notifications when going into the background",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAllowedDeviceOrientation",
+      "return": "EScreenOrientation",
+      "doc": "Returns the allowed orientation of the device. This is NOT the same as GetDeviceOrientation, which only returns Portrait, LandscapeLeft,\nPortraitUpsideDown or LandscapeRight. The allowed orientation limits what orientation your device can have. So if you set the allowed orientation\nto LandscapeLeft, GetDeviceOrientation will only ever return LandscapeLeft. But if you set the allowed orientation to LandscapeSensor, you are actually\nrestricting the allowed orientations to LandscapeLeft OR LandscapeRight (depending on the sensor), so GetDeviceOrientation might return LandscapeLeft OR LandscapeRight.\n\n@return An EDeviceScreenOrientation value.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDeviceOrientation",
+      "return": "EScreenOrientation",
+      "doc": "Returns the current orientation of the device: will be either Portrait, LandscapeLeft, PortraitUpsideDown or LandscapeRight.\n\n@return An EDeviceScreenOrientation value.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLaunchNotification",
+      "return": "void",
+      "doc": "Get the local notification that was used to launch the app\n@param NotificationLaunchedApp Return true if a notification was used to launch the app\n@param ActivationEvent Returns the name of the ActivationEvent if a notification was used to launch the app\n@param FireDate Returns the time the notification was activated",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NotificationLaunchedApp",
+          "type": "bool&"
+        },
+        {
+          "name": "ActivationEvent",
+          "type": "FString&"
+        },
+        {
+          "name": "FireDate",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "ScheduleLocalNotificationAtTime",
+      "return": "int",
+      "doc": "Schedule a local notification at a specific time, inLocalTime specifies the current local time or if UTC time should be used\n@param FireDateTime The time at which to fire the local notification\n@param LocalTime If true the provided time is in the local timezone, if false it is in UTC\n@param Title The title of the notification\n@param Body The more detailed description of the notification\n@param Action The text to be displayed on the slider controller\n@param ActivationEvent A string that is passed in the delegate callback when the app is brought into the foreground from the user activating the notification",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FireDateTime",
+          "type": "FDateTime"
+        },
+        {
+          "name": "LocalTime",
+          "type": "bool"
+        },
+        {
+          "name": "Title",
+          "type": "FText"
+        },
+        {
+          "name": "Body",
+          "type": "FText"
+        },
+        {
+          "name": "Action",
+          "type": "FText"
+        },
+        {
+          "name": "ActivationEvent",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ScheduleLocalNotificationBadgeAtTime",
+      "return": "int",
+      "doc": "Schedule a local notification badge at a specific time, inLocalTime specifies the current local time or if UTC time should be used\n@param FireDateTime The time at which to fire the local notification\n@param LocalTime If true the provided time is in the local timezone, if false it is in UTC\n@param ActivationEvent A string that is passed in the delegate callback when the app is brought into the foreground from the user activating the notification",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FireDateTime",
+          "type": "FDateTime"
+        },
+        {
+          "name": "LocalTime",
+          "type": "bool"
+        },
+        {
+          "name": "ActivationEvent",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ScheduleLocalNotificationBadgeFromNow",
+      "return": "void",
+      "doc": "Schedule a local notification badge to fire inSecondsFromNow from now\n@param inSecondsFromNow The seconds until the notification should fire\n@param ActivationEvent A string that is passed in the delegate callback when the app is brought into the foreground from the user activating the notification",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "inSecondsFromNow",
+          "type": "int"
+        },
+        {
+          "name": "ActivationEvent",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ScheduleLocalNotificationFromNow",
+      "return": "int",
+      "doc": "Schedule a local notification to fire inSecondsFromNow from now\n@param inSecondsFromNow The seconds until the notification should fire\n@param LocalTime If true the provided time is in the local timezone, if false it is in UTC\n@param Title The title of the notification\n@param Body The more detailed description of the notification\n@param Action The text to be displayed on the slider controller\n@param ActivationEvent A string that is passed in the delegate callback when the app is brought into the foreground from the user activating the notification",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "inSecondsFromNow",
+          "type": "int"
+        },
+        {
+          "name": "Title",
+          "type": "FText"
+        },
+        {
+          "name": "Body",
+          "type": "FText"
+        },
+        {
+          "name": "Action",
+          "type": "FText"
+        },
+        {
+          "name": "ActivationEvent",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetAllowedDeviceOrientation",
+      "return": "void",
+      "doc": "Set the allowed orientation of the device.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAllowedDeviceOrientation",
+          "type": "EScreenOrientation"
+        }
+      ]
+    }
+  ]
+}

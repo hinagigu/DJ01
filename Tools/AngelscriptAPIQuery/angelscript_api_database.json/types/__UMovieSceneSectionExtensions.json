@@ -1,0 +1,379 @@
+{
+  "name": "__UMovieSceneSectionExtensions",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetAllChannels",
+      "return": "TArray<UMovieSceneScriptingChannel>",
+      "doc": "Find all channels that belong to the specified UMovieSceneSection. Some sections have many channels (such as\nTransforms containing 9 double channels to represent Translation/Rotation/Scale), and a section may have mixed\nchannel types.\n\n@param Section       The section to use.\n@return An array containing any key channels that match the type specified",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "GetAutoSizeEndFrame",
+      "return": "int",
+      "doc": "Get end frame of the AutoSize. Will throw an exception if section has no end frame, use GetAutoSizeHasEndFrame to check first.\n\n@param Section        The section being queried\n@return The end frame of the AutoSize data.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "GetAutoSizeEndFrameSeconds",
+      "return": "float32",
+      "doc": "Get end time of the AutoSize seconds. Will throw an exception if section has no end frame, use GetAutoSizeHasEndFrame to check first.\n\n@param Section        The section being queried\n@return The end frame of the AutoSize data in seconds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "GetAutoSizeHasEndFrame",
+      "return": "bool",
+      "doc": "Checks to see if this section has an AutoSize implementation, and if so, if that implementation has a end frame.\n\n@param Section        The section being queried\n@return Whether this section has a valid autosize range, and a valid end frame",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "GetAutoSizeHasStartFrame",
+      "return": "bool",
+      "doc": "Checks to see if this section has an AutoSize implementation, and if so, if that implementation has a start frame.\n\n@param Section        The section being queried\n@return Whether this section has a valid autosize range, and a valid start frame",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "GetAutoSizeStartFrame",
+      "return": "int",
+      "doc": "Get start frame of the AutoSize. Will throw an exception if section has no start frame, use GetAutoSizeHasStartFrame to check first.\n\n@param Section        The section being queried\n@return The start frame of the AutoSize data.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "GetAutoSizeStartFrameSeconds",
+      "return": "float32",
+      "doc": "Get start time of the AutoSize in seconds. Will throw an exception if section has no start frame, use GetAutoSizeHasStartFrame to check first.\n\n@param Section        The section being queried\n@return The start frame of the AutoSize data in seconds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "GetChannel",
+      "return": "UMovieSceneScriptingChannel",
+      "doc": "Get channel from specified section and channel name\n\n@param Section        The section to use.\n@param ChannelName    The name of the channel.\n@return The channel if it exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "ChannelName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetChannelsByType",
+      "return": "TArray<UMovieSceneScriptingChannel>",
+      "doc": "Find all channels that belong to the specified UMovieSceneSection that match the specific type. This will filter out any children who do not inherit\nfrom the specified type for you.\n\n@param Section        The section to use.\n@param ChannelType    The class type to look for.\n@return An array containing any key channels that match the type specified",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "ChannelType",
+          "type": "TSubclassOf<UMovieSceneScriptingChannel>"
+        }
+      ]
+    },
+    {
+      "name": "GetEndFrame",
+      "return": "int",
+      "doc": "Get end frame. Will throw an exception if section has no end frame, use HasEndFrame to check first.\n\n@param Section        The section within which to get the end frame\n@return End frame of this section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "GetEndFrameSeconds",
+      "return": "float32",
+      "doc": "Get end time in seconds. Will throw an exception if section has no end frame, use HasEndFrame to check first.\n\n@param Section        The section within which to get the end time\n@return End time of this section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "GetParentSequenceFrame",
+      "return": "int",
+      "doc": "Get the frame in the space of its parent sequence\n\n@param Section        The section that the InFrame is local to\n@param InFrame The desired local frame\n@param ParentSequence The parent sequence to traverse from\n@return The frame at the parent sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSubSection"
+        },
+        {
+          "name": "InFrame",
+          "type": "int"
+        },
+        {
+          "name": "ParentSequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetStartFrame",
+      "return": "int",
+      "doc": "Get start frame. Will throw an exception if section has no start frame, use HasStartFrame to check first.\n\n@param Section        The section within which to get the start frame\n@return Start frame of this section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "GetStartFrameSeconds",
+      "return": "float32",
+      "doc": "Get start time in seconds. Will throw an exception if section has no start frame, use HasStartFrame to check first.\n\n@param Section        The section within which to get the start time\n@return Start time of this section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "HasEndFrame",
+      "return": "bool",
+      "doc": "Has end frame\n\n@param Section        The section being queried\n@return Whether this section has a valid end frame (else infinite)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "HasStartFrame",
+      "return": "bool",
+      "doc": "Has start frame\n\n@param Section        The section being queried\n@return Whether this section has a valid start frame (else infinite)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "SetEndFrame",
+      "return": "void",
+      "doc": "Set end frame\n\n@param Section        The section within which to set the end frame\n@param EndFrame The desired start frame for this section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "EndFrame",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetEndFrameBounded",
+      "return": "void",
+      "doc": "Set end frame bounded\n\n@param Section        The section to set whether the end frame is bounded or not\n@param IsBounded The desired bounded state of the end frame",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "bIsBounded",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEndFrameSeconds",
+      "return": "void",
+      "doc": "Set end time in seconds\n\n@param Section        The section within which to set the end time\n@param EndTime The desired end time for this section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "EndTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRange",
+      "return": "void",
+      "doc": "Set range\n\n@param Section        The section within which to set the range\n@param StartFrame The desired start frame for this section\n@param EndFrame The desired end frame for this section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "StartFrame",
+          "type": "int"
+        },
+        {
+          "name": "EndFrame",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetRangeSeconds",
+      "return": "void",
+      "doc": "Set range in seconds\n\n@param Section        The section within which to set the range\n@param StartTime The desired start frame for this section\n@param EndTime The desired end frame for this section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "StartTime",
+          "type": "float32"
+        },
+        {
+          "name": "EndTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetStartFrame",
+      "return": "void",
+      "doc": "Set start frame\n\n@param Section        The section within which to set the start frame\n@param StartFrame The desired start frame for this section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "StartFrame",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetStartFrameBounded",
+      "return": "void",
+      "doc": "Set start frame bounded\n\n@param Section        The section to set whether the start frame is bounded or not\n@param IsBounded The desired bounded state of the start frame",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "bIsBounded",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStartFrameSeconds",
+      "return": "void",
+      "doc": "Set start time in seconds\n\n@param Section        The section within which to set the start time\n@param StartTime The desired start time for this section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Section",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "StartTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

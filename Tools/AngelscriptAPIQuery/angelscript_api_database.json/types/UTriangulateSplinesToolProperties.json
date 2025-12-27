@@ -1,0 +1,63 @@
+{
+  "name": "UTriangulateSplinesToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Parameters for controlling the spline triangulation",
+  "properties": {
+    "ErrorTolerance": [
+      "float",
+      2,
+      "How far to allow the triangulation boundary can deviate from the spline curve before we add more vertices"
+    ],
+    "FlattenMethod": [
+      "EFlattenCurveMethod",
+      2,
+      "Whether and how to flatten the curves. If curves are flattened, they can also be offset and combined"
+    ],
+    "CombineMethod": [
+      "ECombineCurvesMethod",
+      2,
+      "Whether or how to combine the curves"
+    ],
+    "Thickness": [
+      "float",
+      2,
+      "If > 0, Extrude the triangulation by this amount"
+    ],
+    "bFlipResult": [
+      "bool",
+      2,
+      "Whether to flip the facing direction of the generated mesh"
+    ],
+    "OpenCurves": [
+      "EOffsetOpenCurvesMethod",
+      2,
+      "How to handle open curves: Either offset them, or treat them as closed curves"
+    ],
+    "CurveOffset": [
+      "float",
+      2,
+      "How much offset to apply to curves"
+    ],
+    "OffsetClosedCurves": [
+      "EOffsetClosedCurvesMethod",
+      2,
+      "Whether and how to apply offset to closed curves"
+    ],
+    "EndShapes": [
+      "EOpenCurveEndShapes",
+      2,
+      "The shape of the ends of offset curves"
+    ],
+    "JoinMethod": [
+      "EOffsetJoinMethod",
+      2,
+      "The shape of joins between segments of an offset curve"
+    ],
+    "MiterLimit": [
+      "float",
+      2,
+      "How far a miter join can extend before it is replaced by a square join"
+    ]
+  },
+  "methods": []
+}

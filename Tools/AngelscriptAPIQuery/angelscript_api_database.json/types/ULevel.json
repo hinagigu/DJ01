@@ -1,0 +1,48 @@
+{
+  "name": "ULevel",
+  "inherits": "UObject",
+  "doc": "A Level is a collection of Actors (lights, volumes, mesh instances etc.).\nMultiple Levels can be loaded and unloaded into the World to create a streaming experience.\n\n@see https://docs.unrealengine.com/latest/INT/Engine/Levels\n@see UActor",
+  "properties": {
+    "bUseExternalActors": [
+      "bool",
+      2,
+      "Use external actors, new actor spawned in this level will be external and existing external actors will be loaded on load."
+    ],
+    "LevelSimplification": [
+      "FLevelSimplificationDetails",
+      2,
+      "Level simplification settings for each LOD"
+    ],
+    "bUseActorFolders": [
+      "bool",
+      2,
+      "Use actor folder objects, actor folders of this level will be persistent in their own object."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetLevelScriptActor",
+      "return": "ALevelScriptActor",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsVisible",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsBeingRemoved",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetActors",
+      "return": "TArray<AActor>",
+      "const": true,
+      "args": []
+    }
+  ]
+}

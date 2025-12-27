@@ -1,0 +1,35 @@
+{
+  "name": "FContentBrowserDataFilter",
+  "isStruct": true,
+  "doc": "A filter used to control what is returned from Content Browser data queries.\n@note The compiled version of this, FContentBrowserDataCompiledFilter, is produced via UContentBrowserDataSubsystem::CompileFilter.",
+  "properties": {
+    "bRecursivePaths": [
+      "bool",
+      "Whether we should include sub-paths in this query"
+    ],
+    "ItemTypeFilter": [
+      "EContentBrowserItemTypeFilter",
+      "Flags controlling which item types should be included in this query"
+    ],
+    "ItemCategoryFilter": [
+      "EContentBrowserItemCategoryFilter",
+      "Flags controlling which item categories should be included in this query"
+    ],
+    "ItemAttributeFilter": [
+      "EContentBrowserItemAttributeFilter",
+      "Flags controlling which item attributes should be included in this query"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FContentBrowserDataFilter&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FContentBrowserDataFilter"
+        }
+      ]
+    }
+  ]
+}

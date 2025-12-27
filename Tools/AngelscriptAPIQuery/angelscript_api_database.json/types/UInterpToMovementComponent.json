@@ -1,0 +1,134 @@
+{
+  "name": "UInterpToMovementComponent",
+  "inherits": "UMovementComponent",
+  "doc": "Move the root component between a series of points over a given time *\n\n@see UMovementComponent",
+  "properties": {
+    "Duration": [
+      "float32",
+      "How long to take to move from the first point to the last (or vice versa)"
+    ],
+    "bSweep": [
+      "bool",
+      "If true, will sweep for blocking collision during movement. If false, it will simply teleport to the next position and ignore collision."
+    ],
+    "TeleportType": [
+      "ETeleportType",
+      "Physics teleport type."
+    ],
+    "BehaviourType": [
+      "EInterpToBehaviourType",
+      "Movement behaviour of the component"
+    ],
+    "bCheckIfStillInWorld": [
+      "bool",
+      "Do we want this comp to perform CheckStillInWorld checks?"
+    ],
+    "OnInterpToReverse": [
+      "FOnInterpToReverseDelegate__InterpToMovementComponent",
+      "Called when InterpTo impacts something and reverse is enabled."
+    ],
+    "OnInterpToStop": [
+      "FOnInterpToStopDelegate__InterpToMovementComponent",
+      "Called when InterpTo has come to a stop."
+    ],
+    "OnWaitBeginDelegate": [
+      "FOnInterpToWaitBeginDelegate__InterpToMovementComponent",
+      "Called when InterpTo has come to a stop but will resume when possible."
+    ],
+    "OnWaitEndDelegate": [
+      "FOnInterpToWaitEndDelegate__InterpToMovementComponent",
+      "Called when InterpTo has resumed following a stop."
+    ],
+    "OnResetDelegate": [
+      "FOnInterpToResetDelegate__InterpToMovementComponent",
+      "Called when InterpTo reached the end and reset back to start ."
+    ],
+    "MaxSimulationTimeStep": [
+      "float32",
+      "Max time delta for each discrete simulation step.\nLowering this value can address issues with fast-moving objects or complex collision scenarios, at the cost of performance.\n\nWARNING: if (MaxSimulationTimeStep * MaxSimulationIterations) is too low for the min framerate, the last simulation step may exceed MaxSimulationTimeStep to complete the simulation.\n@see MaxSimulationIterations, bForceSubStepping"
+    ],
+    "SpeedMultiplier": [
+      "float32",
+      "Change the speed of movement."
+    ],
+    "MaxSimulationIterations": [
+      "int",
+      "Max number of iterations used for each discrete simulation step.\nIncreasing this value can address issues with fast-moving objects or complex collision scenarios, at the cost of performance.\n\nWARNING: if (MaxSimulationTimeStep * MaxSimulationIterations) is too low for the min framerate, the last simulation step may exceed MaxSimulationTimeStep to complete the simulation.\n@see MaxSimulationTimeStep, bForceSubStepping"
+    ],
+    "ControlPoints": [
+      "TArray<FInterpControlPoint>",
+      "List of control points to visit."
+    ],
+    "bPauseOnImpact": [
+      "bool",
+      "If true, will pause movement on impact. If false it will behave as if the end of the movement range was reached based on the BehaviourType."
+    ],
+    "bForceSubStepping": [
+      "bool",
+      "If true, forces sub-stepping to break up movement into discrete smaller steps to improve accuracy of the trajectory.\nObjects that move in a straight line typically do *not* need to set this, as movement always uses continuous collision detection (sweeps) so collision is not missed.\nSub-stepping is automatically enabled when under the effects of gravity or when homing towards a target.\n@see MaxSimulationTimeStep, MaxSimulationIterations"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddControlPointPosition",
+      "return": "void",
+      "doc": "Add a control point that represents a position.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pos",
+          "type": "FVector"
+        },
+        {
+          "name": "bPositionIsRelative",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "FinaliseControlPoints",
+      "return": "void",
+      "doc": "Initialise the control points array. Call after adding control points if they are add after begin play .",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResetControlPoints",
+      "return": "void",
+      "doc": "Clear the control points array and set to stopped.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RestartMovement",
+      "return": "void",
+      "doc": "Reset to start. Sets time to zero and direction to 1.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InitialDirection",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "StopSimulating",
+      "return": "void",
+      "doc": "Clears the reference to UpdatedComponent, fires stop event, and stops ticking.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HitResult",
+          "type": "FHitResult"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "UDataLayerSubsystem",
+  "inherits": "UWorldSubsystem",
+  "doc": "This class is deprecated, it has been replaced by DataLayerManager.",
+  "properties": {
+    "OnDataLayerRuntimeStateChanged": [
+      "FOnDataLayerRuntimeStateChanged"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetDataLayerRuntimeState",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDataLayer",
+          "type": "FActorDataLayer"
+        },
+        {
+          "name": "InState",
+          "type": "EDataLayerRuntimeState"
+        },
+        {
+          "name": "bInIsRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetDataLayerRuntimeStateByLabel",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDataLayerLabel",
+          "type": "FName"
+        },
+        {
+          "name": "InState",
+          "type": "EDataLayerRuntimeState"
+        },
+        {
+          "name": "bInIsRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

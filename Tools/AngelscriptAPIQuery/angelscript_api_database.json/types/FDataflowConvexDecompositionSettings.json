@@ -1,0 +1,48 @@
+{
+  "name": "FDataflowConvexDecompositionSettings",
+  "isStruct": true,
+  "properties": {
+    "MinSizeToDecompose": [
+      "float32",
+      2,
+      "If greater than zero, the minimum geometry size (cube root of volume) to consider for convex decomposition"
+    ],
+    "MaxGeoToHullVolumeRatioToDecompose": [
+      "float32",
+      2,
+      "If the geo volume / hull volume ratio is greater than this, do not consider convex decomposition"
+    ],
+    "ErrorTolerance": [
+      "float32",
+      2,
+      "Stop splitting when hulls have error less than this (expressed in cm; will be cubed for volumetric error).\nNote: ErrorTolerance must be > 0 or MaxHullsPerGeometry > 1, or decomposition will not be performed."
+    ],
+    "MaxHullsPerGeometry": [
+      "int",
+      2,
+      "If greater than zero, maximum number of convex hulls to use in each convex decomposition.\nNote: ErrorTolerance must be > 0 or MaxHullsPerGeometry > 1, or decomposition will not be performed."
+    ],
+    "MinThicknessTolerance": [
+      "float32",
+      2,
+      "Optionally specify a minimum thickness (in cm) for convex parts; parts below this thickness will always be merged away. Overrides NumOutputHulls and ErrorTolerance when needed."
+    ],
+    "NumAdditionalSplits": [
+      "int",
+      2,
+      "Control the search effort spent per convex decomposition: larger values will require more computation but may find better convex decompositions"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDataflowConvexDecompositionSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDataflowConvexDecompositionSettings"
+        }
+      ]
+    }
+  ]
+}

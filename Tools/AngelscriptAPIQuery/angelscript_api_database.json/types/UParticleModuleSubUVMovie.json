@@ -1,0 +1,21 @@
+{
+  "name": "UParticleModuleSubUVMovie",
+  "inherits": "UParticleModuleSubUV",
+  "properties": {
+    "FrameRate": [
+      "FRawDistributionFloat",
+      2,
+      "The frame rate the SubUV images should be 'flipped' thru at."
+    ],
+    "StartingFrame": [
+      "int",
+      2,
+      "The starting image index for the SubUV (1 = the first frame).\nAssumes order of Left->Right, Top->Bottom\nIf greater than the last frame, it will clamp to the last one.\nIf 0, then randomly selects a starting frame."
+    ],
+    "bUseEmitterTime": [
+      "bool",
+      "If true, use the emitter time to look up the frame rate.\nIf false (default), use the particle relative time."
+    ]
+  },
+  "methods": []
+}

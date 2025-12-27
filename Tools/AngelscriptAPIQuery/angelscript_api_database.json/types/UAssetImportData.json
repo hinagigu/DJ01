@@ -1,0 +1,48 @@
+{
+  "name": "UAssetImportData",
+  "inherits": "UObject",
+  "doc": "todo: Make this class better suited to multiple import paths - maybe have FAssetImportInfo use a map rather than array?",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ExtractFilenames",
+      "return": "TArray<FString>",
+      "const": true,
+      "ufunction": true,
+      "unrealname": "K2_ExtractFilenames",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFirstFilename",
+      "return": "FString",
+      "const": true,
+      "doc": "Helper function to return the first filename stored in this data. The resulting filename will be absolute (ie, not relative to the asset).",
+      "ufunction": true,
+      "unrealname": "K2_GetFirstFilename",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScriptedAddFilename",
+      "return": "void",
+      "doc": "Add or update a filename at the specified index. If the index is greater then the number of source file,\nit will add empty filenames to fill up to the specified index. The timespan and MD5 will be computed.\n\n@Param InPath: The filename we want to set at the specified index.\n@Param Index: This specify the source file index in case you have many source file for an imported asset\n@Param SourceFileLabel: Optional, can be empty string, the label we want to see in the UI when displaying the source file. (useful for multi source)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "SourceFileLabel",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

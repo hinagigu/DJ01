@@ -1,0 +1,73 @@
+{
+  "name": "FAnimNode_LegIK",
+  "isStruct": true,
+  "properties": {
+    "ReachPrecision": [
+      "float32",
+      2,
+      "Tolerance for reaching IK Target, in unreal units."
+    ],
+    "MaxIterations": [
+      "int",
+      2,
+      "Max Number of Iterations."
+    ],
+    "SoftPercentLength": [
+      "float32",
+      2,
+      "Default is 1.0 (off). Range is 0.1 to 1.0. When set to a value less than 1, will \"softly\" approach full extension starting when the effector\ndistance from the root of the chain is greater than this percent length of the bone chain. Typical values are around 0.97.\nThis is useful for preventing the knee from \"popping\" when approaching full extension."
+    ],
+    "SoftAlpha": [
+      "float32",
+      2,
+      "Default is 1.0 (full). Range is 0 to 1. Blends the effect of the \"softness\" on/off."
+    ],
+    "LegsDefinition": [
+      "TArray<FAnimLegIKDefinition>",
+      2,
+      ""
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_LegIK&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_LegIK"
+        }
+      ]
+    }
+  ]
+}

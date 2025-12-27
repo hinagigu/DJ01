@@ -1,0 +1,31 @@
+{
+  "name": "__EMovieSceneSequenceFlags",
+  "isEnum": true,
+  "doc": "Bitfield flags that define special behavior for any UMovieSceneSequence.",
+  "properties": {
+    "None": [
+      "EMovieSceneSequenceFlags",
+      "Symbolic entry for no flags"
+    ],
+    "Volatile": [
+      "EMovieSceneSequenceFlags",
+      "Flag signifying that this sequence can change dynamically at runtime or during the game so the template must be checked for validity and recompiled as necessary before each evaluation.\nThe absence of this flag will result in the same compiled data being used for the duration of the program, as well as being pre-built during cook. As such, any dynamic changes to the\nsequence will not be reflected in the evaluation itself. This flag *must* be set if *any* procedural changes will be made to the source sequence data in-game."
+    ],
+    "BlockingEvaluation": [
+      "EMovieSceneSequenceFlags",
+      "Indicates that a sequence must fully evaluate and apply its state every time it is updated, blocking until complete. Should be used sparingly as it will severely affect performance."
+    ],
+    "DynamicWeighting": [
+      "EMovieSceneSequenceFlags",
+      "Indicates that a sequence will utilize dynamic weighting when it is played back. Setting this flag ensures that initial values are cached correctly so the sequence can be blended into and out of"
+    ],
+    "InheritedFlags": [
+      "EMovieSceneSequenceFlags",
+      "Flag signifying that this sequence can change dynamically at runtime or during the game so the template must be checked for validity and recompiled as necessary before each evaluation.\nThe absence of this flag will result in the same compiled data being used for the duration of the program, as well as being pre-built during cook. As such, any dynamic changes to the\nsequence will not be reflected in the evaluation itself. This flag *must* be set if *any* procedural changes will be made to the source sequence data in-game."
+    ],
+    "EMovieSceneSequenceFlags_MAX": [
+      "EMovieSceneSequenceFlags"
+    ]
+  },
+  "methods": []
+}

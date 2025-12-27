@@ -1,0 +1,40 @@
+{
+  "name": "AStaticMeshActor",
+  "inherits": "AActor",
+  "doc": "StaticMeshActor is an instance of a UStaticMesh in the world.\nStatic meshes are geometry that do not animate or otherwise deform, and are more efficient to render than other types of geometry.\nStatic meshes dragged into the level from the Content Browser are automatically converted to StaticMeshActors.\n\n@see https://docs.unrealengine.com/latest/INT/Engine/Actors/StaticMeshActor/\n@see UStaticMesh",
+  "properties": {
+    "StaticMeshComponent": [
+      "UStaticMeshComponent"
+    ],
+    "bStaticMeshReplicateMovement": [
+      "bool",
+      2,
+      "This static mesh should replicate movement. Automatically sets the RemoteRole and bReplicateMovement flags. Meant to be edited on placed actors (those other two properties are not)"
+    ],
+    "StaticMeshPhysicsReplicationMode": [
+      "EPhysicsReplicationMode",
+      2,
+      "Set which replication mode to use for this static mesh instance if it both replicates and simulates physics."
+    ],
+    "NavigationGeometryGatheringMode": [
+      "ENavDataGatheringMode",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetMobility",
+      "return": "void",
+      "doc": "Function to change mobility type",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMobility",
+          "type": "EComponentMobility"
+        }
+      ]
+    }
+  ]
+}

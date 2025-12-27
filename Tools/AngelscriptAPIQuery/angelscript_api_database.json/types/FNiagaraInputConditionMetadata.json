@@ -1,0 +1,29 @@
+{
+  "name": "FNiagaraInputConditionMetadata",
+  "isStruct": true,
+  "doc": "Defines options for conditionally editing and showing script inputs in the UI.",
+  "properties": {
+    "InputName": [
+      "FName",
+      2,
+      "The name of the input to use for matching the target values."
+    ],
+    "TargetValues": [
+      "TArray<FString>",
+      2,
+      "The list of target values which will satisfy the input condition.  If this is empty it's assumed to be a single value of \"true\" for matching bool inputs."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraInputConditionMetadata&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraInputConditionMetadata"
+        }
+      ]
+    }
+  ]
+}

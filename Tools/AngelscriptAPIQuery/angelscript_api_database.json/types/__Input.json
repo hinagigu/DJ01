@@ -1,0 +1,687 @@
+{
+  "name": "__Input",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CalibrateTilt",
+      "return": "void",
+      "doc": "Calibrate the tilt for the input device",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EqualEqual_InputChordInputChord",
+      "return": "bool",
+      "doc": "Test if the input chords are equal (A == B)\n@param A - The chord to compare against\n@param B - The chord to compare\nReturns true if the chords are equal, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FInputChord"
+        },
+        {
+          "name": "B",
+          "type": "FInputChord"
+        }
+      ]
+    },
+    {
+      "name": "EqualEqual_KeyKey",
+      "return": "bool",
+      "doc": "Test if the input key are equal (A == B)\n@param A - The key to compare against\n@param B - The key to compare\nReturns true if the key are equal, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FKey"
+        },
+        {
+          "name": "B",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "GetAnalogValue",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FAnalogInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "GetKey",
+      "return": "FKey",
+      "doc": "Returns the key for this event.\n\n@return  Key name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FKeyEvent"
+        }
+      ]
+    },
+    {
+      "name": "GetModifierKeysState",
+      "return": "FSlateModifierKeysState",
+      "doc": "Returns a snapshot of the cached modifier-keys state for the application.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUserIndex",
+      "return": "int",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FKeyEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputChord_GetDisplayName",
+      "return": "FText",
+      "doc": "@return The display name of the input chord",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FInputChord"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsAltDown",
+      "return": "bool",
+      "doc": "Returns true if either alt key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsCommandDown",
+      "return": "bool",
+      "doc": "Returns true if either command key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsControlDown",
+      "return": "bool",
+      "doc": "Returns true if either control key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsLeftAltDown",
+      "return": "bool",
+      "doc": "Returns true if left alt key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsLeftCommandDown",
+      "return": "bool",
+      "doc": "Returns true if left command key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsLeftControlDown",
+      "return": "bool",
+      "doc": "Returns true if left control key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsLeftShiftDown",
+      "return": "bool",
+      "doc": "Returns true if left shift key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsRepeat",
+      "return": "bool",
+      "doc": "Returns whether or not this character is an auto-repeated keystroke",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsRightAltDown",
+      "return": "bool",
+      "doc": "Returns true if right alt key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsRightCommandDown",
+      "return": "bool",
+      "doc": "Returns true if right command key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsRightControlDown",
+      "return": "bool",
+      "doc": "Returns true if left control key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsRightShiftDown",
+      "return": "bool",
+      "doc": "Returns true if right shift key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "InputEvent_IsShiftDown",
+      "return": "bool",
+      "doc": "Returns true if either shift key was down when this event occurred",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "Key_GetDisplayName",
+      "return": "FText",
+      "doc": "Returns the display name of the key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        },
+        {
+          "name": "bLongDisplayName",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Key_GetNavigationActionFromKey",
+      "return": "EUINavigationAction",
+      "doc": "Returns the navigation action corresponding to this key, or Invalid if not found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKeyEvent",
+          "type": "FKeyEvent"
+        }
+      ]
+    },
+    {
+      "name": "Key_GetNavigationDirectionFromAnalog",
+      "return": "EUINavigation",
+      "doc": "Returns the navigation action corresponding to this key, or Invalid if not found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnalogEvent",
+          "type": "FAnalogInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "Key_GetNavigationDirectionFromKey",
+      "return": "EUINavigation",
+      "doc": "Returns the navigation action corresponding to this key, or Invalid if not found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKeyEvent",
+          "type": "FKeyEvent"
+        }
+      ]
+    },
+    {
+      "name": "Key_IsAnalog",
+      "return": "bool",
+      "doc": "Returns true if the key is an analog axis",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "Key_IsAxis1D",
+      "return": "bool",
+      "doc": "Returns true if the key is a 1D (float) axis",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "Key_IsAxis2D",
+      "return": "bool",
+      "doc": "Returns true if the key is a 2D (vector) axis",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "Key_IsAxis3D",
+      "return": "bool",
+      "doc": "Returns true if the key is a 3D (vector) axis",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "Key_IsButtonAxis",
+      "return": "bool",
+      "doc": "Returns true if the key is a 1D axis emulating a digital button press.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "Key_IsDigital",
+      "return": "bool",
+      "doc": "Returns true if the key is a digital button press",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "Key_IsGamepadKey",
+      "return": "bool",
+      "doc": "Returns true if the key is a gamepad button",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "Key_IsKeyboardKey",
+      "return": "bool",
+      "doc": "Returns true if the key is a keyboard button",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "Key_IsModifierKey",
+      "return": "bool",
+      "doc": "Returns true if the key is a modifier key: Ctrl, Command, Alt, Shift",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "Key_IsMouseButton",
+      "return": "bool",
+      "doc": "Returns true if the key is a mouse button",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "Key_IsValid",
+      "return": "bool",
+      "doc": "Returns true if this is a valid key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "ModifierKeysState_IsAltDown",
+      "return": "bool",
+      "doc": "Returns true if either alt key was down when the key state was captured",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeysState",
+          "type": "FSlateModifierKeysState"
+        }
+      ]
+    },
+    {
+      "name": "ModifierKeysState_IsCommandDown",
+      "return": "bool",
+      "doc": "Returns true if either command key was down when the key state was captured",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeysState",
+          "type": "FSlateModifierKeysState"
+        }
+      ]
+    },
+    {
+      "name": "ModifierKeysState_IsControlDown",
+      "return": "bool",
+      "doc": "Returns true if either control key was down when the key state was captured",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeysState",
+          "type": "FSlateModifierKeysState"
+        }
+      ]
+    },
+    {
+      "name": "ModifierKeysState_IsShiftDown",
+      "return": "bool",
+      "doc": "Returns true if either shift key was down when the key state was captured",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "KeysState",
+          "type": "FSlateModifierKeysState"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_GetCursorDelta",
+      "return": "FVector2D",
+      "doc": "Returns the distance the mouse traveled since the last event was handled.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_GetEffectingButton",
+      "return": "FKey",
+      "doc": "Mouse button that caused this event to be raised (possibly FKey::Invalid)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_GetGestureDelta",
+      "return": "FVector2D",
+      "doc": "Returns the change in gesture value since the last gesture event of the same type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_GetGestureType",
+      "return": "ESlateGesture",
+      "doc": "Returns the type of touch gesture",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_GetLastScreenSpacePosition",
+      "return": "FVector2D",
+      "doc": "Returns the position of the cursor in screen space last time we handled an input event",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_GetPointerIndex",
+      "return": "int",
+      "doc": "Returns the unique identifier of the pointer (e.g., finger index)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_GetScreenSpacePosition",
+      "return": "FVector2D",
+      "doc": "Returns The position of the cursor in screen space",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_GetTouchpadIndex",
+      "return": "int",
+      "doc": "Returns the index of the touch pad that generated this event (for platforms with multiple touch pads per user)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_GetUserIndex",
+      "return": "int",
+      "doc": "Returns the index of the user that caused the event",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_GetWheelDelta",
+      "return": "float32",
+      "doc": "How much did the mouse wheel turn since the last mouse event",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_IsMouseButtonDown",
+      "return": "bool",
+      "doc": "Mouse buttons that are currently pressed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        },
+        {
+          "name": "MouseButton",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "PointerEvent_IsTouchEvent",
+      "return": "bool",
+      "doc": "Returns true if this event a result from a touch (as opposed to a mouse)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FPointerEvent"
+        }
+      ]
+    }
+  ]
+}

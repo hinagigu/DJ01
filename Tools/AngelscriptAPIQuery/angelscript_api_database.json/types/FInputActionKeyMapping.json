@@ -1,0 +1,54 @@
+{
+  "name": "FInputActionKeyMapping",
+  "isStruct": true,
+  "doc": "Defines a mapping between an action and key\n\n@see https://docs.unrealengine.com/latest/INT/Gameplay/Input/index.html",
+  "properties": {
+    "ActionName": [
+      "FName",
+      "Friendly name of action, e.g \"jump\""
+    ],
+    "Key": [
+      "FKey",
+      "Key to bind it to."
+    ],
+    "bShift": [
+      "bool",
+      "true if one of the Shift keys must be down when the KeyEvent is received to be acknowledged"
+    ],
+    "bCtrl": [
+      "bool",
+      "true if one of the Ctrl keys must be down when the KeyEvent is received to be acknowledged"
+    ],
+    "bAlt": [
+      "bool",
+      "true if one of the Alt keys must be down when the KeyEvent is received to be acknowledged"
+    ],
+    "bCmd": [
+      "bool",
+      "true if one of the Cmd keys must be down when the KeyEvent is received to be acknowledged"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInputActionKeyMapping"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "FInputActionKeyMapping&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInputActionKeyMapping"
+        }
+      ]
+    }
+  ]
+}

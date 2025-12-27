@@ -1,0 +1,1995 @@
+{
+  "name": "__Animation",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddAnimationNotifyEvent",
+      "return": "const UAnimNotify",
+      "doc": "Adds an Animation Notify Event to Notify track in the given Animation with the given Notify creation data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        },
+        {
+          "name": "StartTime",
+          "type": "float32"
+        },
+        {
+          "name": "NotifyClass",
+          "type": "TSubclassOf<UAnimNotify>"
+        }
+      ]
+    },
+    {
+      "name": "AddAnimationNotifyEventObject",
+      "return": "void",
+      "doc": "Adds an the specific Animation Notify to the Animation Sequence (requires Notify's outer to be the Animation Sequence)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "StartTime",
+          "type": "float32"
+        },
+        {
+          "name": "Notify",
+          "type": "const UAnimNotify"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "AddAnimationNotifyStateEvent",
+      "return": "const UAnimNotifyState",
+      "doc": "Adds an Animation Notify State Event to Notify track in the given Animation with the given Notify State creation data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        },
+        {
+          "name": "StartTime",
+          "type": "float32"
+        },
+        {
+          "name": "Duration",
+          "type": "float32"
+        },
+        {
+          "name": "NotifyStateClass",
+          "type": "TSubclassOf<UAnimNotifyState>"
+        }
+      ]
+    },
+    {
+      "name": "AddAnimationNotifyStateEventObject",
+      "return": "void",
+      "doc": "Adds an the specific Animation Notify State to the Animation Sequence (requires Notify State's outer to be the Animation Sequence)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "StartTime",
+          "type": "float32"
+        },
+        {
+          "name": "Duration",
+          "type": "float32"
+        },
+        {
+          "name": "NotifyState",
+          "type": "const UAnimNotifyState"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "AddAnimationNotifyTrack",
+      "return": "void",
+      "doc": "Adds an Animation Notify Track to the Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        },
+        {
+          "name": "TrackColor",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "AddAnimationSyncMarker",
+      "return": "void",
+      "doc": "Adds an Animation Sync Marker to Notify track in the given Animation with the corresponding Marker Name and Time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "MarkerName",
+          "type": "FName"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "AddCurve",
+      "return": "void",
+      "doc": "Adds an Animation Curve by Type and Name to the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "CurveType",
+          "default": "ERawCurveTrackTypes :: RCT_Float",
+          "type": "ERawCurveTrackTypes"
+        },
+        {
+          "name": "bMetaDataCurve",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddFloatCurveKey",
+      "return": "void",
+      "doc": "Adds a Float Key to the specified Animation Curve inside of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddFloatCurveKeys",
+      "return": "void",
+      "doc": "Adds a multiple of Float Keys to the specified Animation Curve inside of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "Times",
+          "type": "TArray<float32>"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<float32>"
+        }
+      ]
+    },
+    {
+      "name": "AddMetaData",
+      "return": "void",
+      "doc": "Creates and Adds an instance of the specified MetaData Class to the given Animation Asset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationAsset",
+          "type": "UAnimationAsset"
+        },
+        {
+          "name": "MetaDataClass",
+          "type": "TSubclassOf<UAnimMetaData>"
+        },
+        {
+          "name": "MetaDataInstance",
+          "type": "UAnimMetaData&"
+        }
+      ]
+    },
+    {
+      "name": "AddMetaDataObject",
+      "return": "void",
+      "doc": "Adds an instance of the specified MetaData Class to the given Animation Asset (requires MetaDataObject's outer to be the Animation Asset)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationAsset",
+          "type": "UAnimationAsset"
+        },
+        {
+          "name": "MetaDataObject",
+          "type": "UAnimMetaData"
+        }
+      ]
+    },
+    {
+      "name": "AddNodeAssetOverride",
+      "return": "void",
+      "doc": "Adds an Animation Asset override for the provided AnimationBlueprint, replacing any instance of Target with Override\n\n@param AnimBlueprint                                 The Animation Blueprint to add/set the Override for\n@param Target                                                The Animation Asset to add an override for (overrides all instances of the asset)\n@param Override                                              The Animation Asset to used to override the Target with (types have to match)\n@param bPrintAppliedOverrides                Flag whether or not to print the applied overrides",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimBlueprint",
+          "type": "UAnimBlueprint"
+        },
+        {
+          "name": "Target",
+          "type": "const UAnimationAsset"
+        },
+        {
+          "name": "Override",
+          "type": "UAnimationAsset"
+        },
+        {
+          "name": "bPrintAppliedOverrides",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddTransformationCurveKey",
+      "return": "void",
+      "doc": "Adds a Transformation Key to the specified Animation Curve inside of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "Transform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "AddTransformationCurveKeys",
+      "return": "void",
+      "doc": "Adds a multiple of Transformation Keys to the specified Animation Curve inside of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "Times",
+          "type": "TArray<float32>"
+        },
+        {
+          "name": "Transforms",
+          "type": "TArray<FTransform>"
+        }
+      ]
+    },
+    {
+      "name": "AddVectorCurveKey",
+      "return": "void",
+      "doc": "Adds a Vector Key to the specified Animation Curve inside of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "Vector",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "AddVectorCurveKeys",
+      "return": "void",
+      "doc": "Adds a multiple of Vector Keys to the specified Animation Curve inside of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "Times",
+          "type": "TArray<float32>"
+        },
+        {
+          "name": "Vectors",
+          "type": "TArray<FVector>"
+        }
+      ]
+    },
+    {
+      "name": "AddVirtualBone",
+      "return": "void",
+      "doc": "Adds a Virtual Bone between the Source and Target Bones to the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "SourceBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "TargetBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "VirtualBoneName",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "ContainsMetaDataOfClass",
+      "return": "bool",
+      "doc": "Checks whether or not the given Animation Asset contains Meta Data Instance of the specified Meta Data Class",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationAsset",
+          "type": "const UAnimationAsset"
+        },
+        {
+          "name": "MetaDataClass",
+          "type": "TSubclassOf<UAnimMetaData>"
+        }
+      ]
+    },
+    {
+      "name": "CopyAnimNotifiesFromSequence",
+      "return": "void",
+      "doc": "Copies animation notifies from Src Animation Sequence to Dest. Creates anim notify tracks as necessary. Returns true on success.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceAnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "DestinationAnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "bDeleteExistingNotifies",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DoesBoneNameExist",
+      "return": "void",
+      "doc": "Checks whether or not the given Bone Name exist on the Skeleton referenced by the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "bExists",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "DoesCurveExist",
+      "return": "bool",
+      "doc": "Checks whether or not the given Curve Name exist on the Skeleton referenced by the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "CurveType",
+          "type": "ERawCurveTrackTypes"
+        }
+      ]
+    },
+    {
+      "name": "EvaluateRootBoneTimecodeAttributesAtTime",
+      "return": "bool",
+      "doc": "Evaluates timecode attributes (e.g. \"TCFrame\", \"TCSecond\", etc.) of the root bone and returns the resulting qualified frame time.\n\n@param AnimationSequenceBase: Anim sequence for which to evaluate the root bone attributes.\n@param EvalTime: Time (in seconds) at which to evaluate the timecode bone attributes.\n@param OutQualifiedFrameTime: Resulting qualified frame time from evaluation. If the anim sequence has an import file frame rate\n    set, then that will be used as the frame rate of the qualified frame time. Otherwise, the sampling frame rate of the anim\n    sequence is used. If no timecode attributes are present on the bone or if none can be evaluated, the passed object will not be modified.\n@return: true if the root bone had timecode attributes that could be evaluated and a qualified frame time was set, or false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "EvalTime",
+          "type": "float32"
+        },
+        {
+          "name": "OutQualifiedFrameTime",
+          "type": "FQualifiedFrameTime&"
+        }
+      ]
+    },
+    {
+      "name": "EvaluateRootBoneTimecodeSubframeAttributeAtTime",
+      "return": "bool",
+      "doc": "Evaluates the subframe timecode attribute (e.g. \"TCSubframe\") of the root bone and returns the resulting value.\n\nSince the subframe component of FFrameTime is clamped to the range [0.0, 1.0), it cannot accurately represent the use\ncase where the timecode metadata represents subframe values as whole numbered subframes instead of as a percentage of a\nframe the way the engine does. The subframe component of the FQualifiedFrameTime returned by\nEvaluateRootBoneTimecodeAttributesAtTime() may not reflect the authored subframe metadata in that case.\n\nThis function allows access to the subframe values that were actually authored in the timecode metadata.\n\n@param AnimationSequenceBase: Anim sequence for which to evaluate the root bone subframe attribute.\n@param EvalTime: Time (in seconds) at which to evaluate the subframe timecode bone attribute.\n@param OutSubframe: Resulting subframe value from evaluation. If no subframe timecode attribute is present\n    on the bone or if it cannot be evaluated, the output parameter will not be modified.\n@return: true if the root bone had a subframe timecode attribute that could be evaluated and a value was set, or false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "EvalTime",
+          "type": "float32"
+        },
+        {
+          "name": "OutSubframe",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "FindBonePathToRoot",
+      "return": "void",
+      "doc": "Finds the Bone Path from the given Bone to the Root Bone",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "BonePath",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAdditiveAnimationType",
+      "return": "void",
+      "doc": "Retrieves the Additive Animation type for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "AdditiveAnimationType",
+          "type": "EAdditiveAnimationType&"
+        }
+      ]
+    },
+    {
+      "name": "GetAdditiveBasePoseType",
+      "return": "void",
+      "doc": "Retrieves the Additive Base Pose type for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "AdditiveBasePoseType",
+          "type": "EAdditiveBasePoseType&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimationCurveNames",
+      "return": "void",
+      "doc": "Retrieves the Names of the individual float curves for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "CurveType",
+          "type": "ERawCurveTrackTypes"
+        },
+        {
+          "name": "CurveNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimationGraphs",
+      "return": "void",
+      "doc": "Returns all Animation Graphs contained by the provided Animation Blueprint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationBlueprint",
+          "type": "UAnimBlueprint"
+        },
+        {
+          "name": "AnimationGraphs",
+          "type": "TArray<UAnimationGraph>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimationInterpolationType",
+      "return": "void",
+      "doc": "Retrieves the Animation Interpolation type for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "InterpolationType",
+          "type": "EAnimInterpolationType&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimationNotifyEventNames",
+      "return": "void",
+      "doc": "Retrieves all Unique Animation Notify Events found within the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "EventNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimationNotifyEvents",
+      "return": "void",
+      "doc": "Retrieves all Animation Notify Events found within the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "NotifyEvents",
+          "type": "TArray<FAnimNotifyEvent>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimationNotifyEventsForTrack",
+      "return": "void",
+      "doc": "Retrieves all Animation Notify Events for the given Notify Track Name from the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        },
+        {
+          "name": "Events",
+          "type": "TArray<FAnimNotifyEvent>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimationNotifyTrackNames",
+      "return": "void",
+      "doc": "Retrieves all Unique Animation Notify Track Names found within the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "TrackNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimationSyncMarkers",
+      "return": "void",
+      "doc": "Retrieves all the Animation Sync Markers for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "Markers",
+          "type": "TArray<FAnimSyncMarker>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimationSyncMarkersForTrack",
+      "return": "void",
+      "doc": "Retrieves all Animation Sync Markers for the given Notify Track Name from the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        },
+        {
+          "name": "Markers",
+          "type": "TArray<FAnimSyncMarker>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimationTrackNames",
+      "return": "void",
+      "doc": "Retrieves the Names of the individual ATracks for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "TrackNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimNotifyEventDuration",
+      "return": "float32",
+      "doc": "Returns the duration for a NotifyEvent, only non-zero for Anim Notify States",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NotifyEvent",
+          "type": "FAnimNotifyEvent"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimNotifyEventTriggerTime",
+      "return": "float32",
+      "doc": "Returns the actual trigger time for a NotifyEvent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NotifyEvent",
+          "type": "FAnimNotifyEvent"
+        }
+      ]
+    },
+    {
+      "name": "GetBoneCompressionSettings",
+      "return": "void",
+      "doc": "Retrieves the Bone Compression Settings for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "CompressionSettings",
+          "type": "UAnimBoneCompressionSettings&"
+        }
+      ]
+    },
+    {
+      "name": "GetBonePoseForFrame",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "int"
+        },
+        {
+          "name": "bExtractRootMotion",
+          "type": "bool"
+        },
+        {
+          "name": "Pose",
+          "type": "FTransform&"
+        }
+      ]
+    },
+    {
+      "name": "GetBonePoseForTime",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "bExtractRootMotion",
+          "type": "bool"
+        },
+        {
+          "name": "Pose",
+          "type": "FTransform&"
+        }
+      ]
+    },
+    {
+      "name": "GetBonePosesForFrame",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "BoneNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "Frame",
+          "type": "int"
+        },
+        {
+          "name": "bExtractRootMotion",
+          "type": "bool"
+        },
+        {
+          "name": "Poses",
+          "type": "TArray<FTransform>&"
+        },
+        {
+          "name": "PreviewMesh",
+          "default": "nullptr",
+          "type": "const USkeletalMesh"
+        }
+      ]
+    },
+    {
+      "name": "GetBonePosesForTime",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "BoneNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "bExtractRootMotion",
+          "type": "bool"
+        },
+        {
+          "name": "Poses",
+          "type": "TArray<FTransform>&"
+        },
+        {
+          "name": "PreviewMesh",
+          "default": "nullptr",
+          "type": "const USkeletalMesh"
+        }
+      ]
+    },
+    {
+      "name": "GetCurveCompressionSettings",
+      "return": "void",
+      "doc": "Retrieves the Curve Compression Settings for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "CompressionSettings",
+          "type": "UAnimCurveCompressionSettings&"
+        }
+      ]
+    },
+    {
+      "name": "GetFloatKeys",
+      "return": "void",
+      "doc": "Retrieves, a multiple of, Float Key(s) from the specified Animation Curve inside of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "Times",
+          "type": "TArray<float32>&"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<float32>&"
+        }
+      ]
+    },
+    {
+      "name": "GetFloatValueAtTime",
+      "return": "float32",
+      "doc": "Retrieves an evaluated float value for a given time from the specified Animation Curve inside of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetFrameAtTime",
+      "return": "void",
+      "doc": "Retrieves the Frame Index at the specified Time Value for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "Frame",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetMetaData",
+      "return": "void",
+      "doc": "Retrieves all Meta Data Instances from the given Animation Asset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationAsset",
+          "type": "const UAnimationAsset"
+        },
+        {
+          "name": "MetaData",
+          "type": "TArray<UAnimMetaData>&"
+        }
+      ]
+    },
+    {
+      "name": "GetMetaDataOfClass",
+      "return": "void",
+      "doc": "Retrieves all Meta Data Instances from the given Animation Asset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationAsset",
+          "type": "const UAnimationAsset"
+        },
+        {
+          "name": "MetaDataClass",
+          "type": "TSubclassOf<UAnimMetaData>"
+        },
+        {
+          "name": "MetaDataOfClass",
+          "type": "TArray<UAnimMetaData>&"
+        }
+      ]
+    },
+    {
+      "name": "GetMontageSlotNames",
+      "return": "void",
+      "doc": "Retrieves the Names of the Animation Slots used in the given Montage",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationMontage",
+          "type": "const UAnimMontage"
+        },
+        {
+          "name": "SlotNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetNodesOfClass",
+      "return": "void",
+      "doc": "Returns all Animation Graph Nodes of the provided Node Class contained by the Animation Blueprint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationBlueprint",
+          "type": "UAnimBlueprint"
+        },
+        {
+          "name": "NodeClass",
+          "type": "TSubclassOf<UAnimGraphNode_Base>"
+        },
+        {
+          "name": "GraphNodes",
+          "type": "TArray<UAnimGraphNode_Base>&"
+        },
+        {
+          "name": "bIncludeChildClasses",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetNumFrames",
+      "return": "void",
+      "doc": "Retrieves the number of animation frames for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "NumFrames",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetNumKeys",
+      "return": "void",
+      "doc": "Retrieves the number of animation keys for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "NumKeys",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetRateScale",
+      "return": "void",
+      "doc": "Retrieves the (Play) Rate Scale of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "RateScale",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetRawTrackData",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "TrackName",
+          "type": "FName"
+        },
+        {
+          "name": "PositionKeys",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "RotationKeys",
+          "type": "TArray<FQuat>&"
+        },
+        {
+          "name": "ScalingKeys",
+          "type": "TArray<FVector>&"
+        }
+      ]
+    },
+    {
+      "name": "GetRawTrackPositionData",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "TrackName",
+          "type": "FName"
+        },
+        {
+          "name": "PositionData",
+          "type": "TArray<FVector>&"
+        }
+      ]
+    },
+    {
+      "name": "GetRawTrackRotationData",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "TrackName",
+          "type": "FName"
+        },
+        {
+          "name": "RotationData",
+          "type": "TArray<FQuat>&"
+        }
+      ]
+    },
+    {
+      "name": "GetRawTrackScaleData",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "TrackName",
+          "type": "FName"
+        },
+        {
+          "name": "ScaleData",
+          "type": "TArray<FVector>&"
+        }
+      ]
+    },
+    {
+      "name": "GetRootMotionLockType",
+      "return": "void",
+      "doc": "Retrieves the Root Motion Lock Type for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "LockType",
+          "type": "ERootMotionRootLock&"
+        }
+      ]
+    },
+    {
+      "name": "GetSequenceLength",
+      "return": "void",
+      "doc": "Retrieves the Length of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "Length",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetTimeAtFrame",
+      "return": "void",
+      "doc": "Retrieves the Time Value at the specified Frame Indexfor the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "Frame",
+          "type": "int"
+        },
+        {
+          "name": "Time",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetTransformationKeys",
+      "return": "void",
+      "doc": "Retrieves, a multiple of, Transformation Key(s) from the specified Animation Curve inside of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "Times",
+          "type": "TArray<float32>&"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<FTransform>&"
+        }
+      ]
+    },
+    {
+      "name": "GetUniqueMarkerNames",
+      "return": "void",
+      "doc": "Retrieves all the Unique Names for the Animation Sync Markers contained by the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "MarkerNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetVariableFrameStrippingSettings",
+      "return": "void",
+      "doc": "Retrieves the Variable Frame Stripping Settings for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "VariableFrameStrippingSettings",
+          "type": "UVariableFrameStrippingSettings&"
+        }
+      ]
+    },
+    {
+      "name": "GetVectorKeys",
+      "return": "void",
+      "doc": "Retrieves, a multiple of, Vector Key(s) from the specified Animation Curve inside of the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "Times",
+          "type": "TArray<float32>&"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<FVector>&"
+        }
+      ]
+    },
+    {
+      "name": "IsRootMotionEnabled",
+      "return": "bool",
+      "doc": "Checks whether or not Root Motion is Enabled for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        }
+      ]
+    },
+    {
+      "name": "IsRootMotionLockForced",
+      "return": "bool",
+      "doc": "Checks whether or not Root Motion locking is Forced for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        }
+      ]
+    },
+    {
+      "name": "IsValidAnimationSyncMarkerName",
+      "return": "bool",
+      "doc": "Checks whether or not the given Marker Name is a valid Animation Sync Marker Name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "MarkerName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsValidAnimNotifyTrackName",
+      "return": "bool",
+      "doc": "Checks whether or not the given Track Name is a valid Animation Notify Track in the Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsValidRawAnimationTrackName",
+      "return": "bool",
+      "doc": "Checks whether or not the given Animation Track Name is contained within the Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "TrackName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsValidTime",
+      "return": "void",
+      "doc": "Checks whether or not the given Time Value lies within the given Animation Sequence's Length",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllAnimationNotifyTracks",
+      "return": "void",
+      "doc": "Removes All Animation Notify Tracks from Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllAnimationSyncMarkers",
+      "return": "void",
+      "doc": "Removes All Animation Sync Markers found within the Animation Sequence, and returns the number of removed instances",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllBoneAnimation",
+      "return": "void",
+      "doc": "Removes all Animation Bone Track Data from the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllCurveData",
+      "return": "void",
+      "doc": "Removes all Animation Curve Data from the given Animation Sequence (Raw Animation Curves [Names] may not be removed from the Skeleton)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllMetaData",
+      "return": "void",
+      "doc": "Removes all Meta Data from the given Animation Asset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationAsset",
+          "type": "UAnimationAsset"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllVirtualBones",
+      "return": "void",
+      "doc": "Removes all Virtual Bones from the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAnimationNotifyEventsByName",
+      "return": "int",
+      "doc": "Removes Animation Notify Events found by Name within the Animation Sequence, and returns the number of removed name instances",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "NotifyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAnimationNotifyEventsByTrack",
+      "return": "int",
+      "doc": "Removes Animation Notify Events found by Track within the Animation Sequence, and returns the number of removed name instances",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAnimationNotifyTrack",
+      "return": "void",
+      "doc": "Removes an Animation Notify Track from Animation Sequence by Name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAnimationSyncMarkersByName",
+      "return": "int",
+      "doc": "Removes All Animation Sync Marker found within the Animation Sequence whose name matches MarkerName, and returns the number of removed instances",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "MarkerName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAnimationSyncMarkersByTrack",
+      "return": "int",
+      "doc": "Removes All Animation Sync Marker found within the Animation Sequence that belong to the specific Notify Track, and returns the number of removed instances",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "NotifyTrackName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveBoneAnimation",
+      "return": "void",
+      "doc": "Removes an Animation Curve by Name from the given Animation Sequence (Raw Animation Curves [Names] may not be removed from the Skeleton)\n\n    @param AnimationSequence : AnimSequence\n    @param BoneName : Name of bone track user wants to remove\n    @param bIncludeChildren : true if user wants to include all children of BoneName\n@param bFinalize : If you set this to true, it will trigger compression. If you set bFinalize to be false, you'll have to manually trigger Finalize.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "bIncludeChildren",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bFinalize",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveCurve",
+      "return": "void",
+      "doc": "Removes an Animation Curve by Name from the given Animation Sequence (Raw Animation Curves [Names] may not be removed from the Skeleton)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        },
+        {
+          "name": "bRemoveNameFromSkeleton",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveMetaData",
+      "return": "void",
+      "doc": "Removes the specified Meta Data Instance from the given Animation Asset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationAsset",
+          "type": "UAnimationAsset"
+        },
+        {
+          "name": "MetaDataObject",
+          "type": "UAnimMetaData"
+        }
+      ]
+    },
+    {
+      "name": "RemoveMetaDataOfClass",
+      "return": "void",
+      "doc": "Removes all Meta Data Instance of the specified Class from the given Animation Asset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationAsset",
+          "type": "UAnimationAsset"
+        },
+        {
+          "name": "MetaDataClass",
+          "type": "TSubclassOf<UAnimMetaData>"
+        }
+      ]
+    },
+    {
+      "name": "RemoveVirtualBone",
+      "return": "void",
+      "doc": "Removes a Virtual Bone with the specified Bone Name from the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "VirtualBoneName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveVirtualBones",
+      "return": "void",
+      "doc": "Removes Virtual Bones with the specified Bone Names from the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "const UAnimSequence"
+        },
+        {
+          "name": "VirtualBoneNames",
+          "type": "TArray<FName>"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceAnimNotifies",
+      "return": "void",
+      "doc": "Replaces animation notifies in the specified Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "OldNotifyClass",
+          "type": "TSubclassOf<UAnimNotify>"
+        },
+        {
+          "name": "NewNotifyClass",
+          "type": "TSubclassOf<UAnimNotify>"
+        },
+        {
+          "name": "OnNotifyReplaced",
+          "default": "FOnNotifyReplaced ( )",
+          "type": "FOnNotifyReplaced"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceAnimNotifyStates",
+      "return": "void",
+      "doc": "Replaces animation notifies in the specified Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "OldNotifyClass",
+          "type": "TSubclassOf<UAnimNotifyState>"
+        },
+        {
+          "name": "NewNotifyClass",
+          "type": "TSubclassOf<UAnimNotifyState>"
+        },
+        {
+          "name": "OnNotifyStateReplaced",
+          "default": "FOnNotifyStateReplaced ( )",
+          "type": "FOnNotifyStateReplaced"
+        }
+      ]
+    },
+    {
+      "name": "SetAdditiveAnimationType",
+      "return": "void",
+      "doc": "Sets the Additive Animation type for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "AdditiveAnimationType",
+          "type": "EAdditiveAnimationType"
+        }
+      ]
+    },
+    {
+      "name": "SetAdditiveBasePoseType",
+      "return": "void",
+      "doc": "Sets the Additive Base Pose type for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "AdditiveBasePoseType",
+          "type": "EAdditiveBasePoseType"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimationInterpolationType",
+      "return": "void",
+      "doc": "Sets the Animation Interpolation type for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "InterpolationType",
+          "type": "EAnimInterpolationType"
+        }
+      ]
+    },
+    {
+      "name": "SetBoneCompressionSettings",
+      "return": "void",
+      "doc": "Sets the Bone Compression Settings for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "CompressionSettings",
+          "type": "UAnimBoneCompressionSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetCurveCompressionSettings",
+      "return": "void",
+      "doc": "Sets the Curve Compression Settings for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "CompressionSettings",
+          "type": "UAnimCurveCompressionSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetIsRootMotionLockForced",
+      "return": "void",
+      "doc": "Sets whether or not Root Motion locking is Forced for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "bForced",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetRateScale",
+      "return": "void",
+      "doc": "Sets the (Play) Rate Scale for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "RateScale",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRootMotionEnabled",
+      "return": "void",
+      "doc": "Sets whether or not Root Motion is Enabled for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetRootMotionLockType",
+      "return": "void",
+      "doc": "Sets the Root Motion Lock Type for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "RootMotionLockType",
+          "type": "ERootMotionRootLock"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableFrameStrippingSettings",
+      "return": "void",
+      "doc": "Sets the Variable Frame Stripping Settings for the given Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "VariableFrameStrippingSettings",
+          "type": "UVariableFrameStrippingSettings"
+        }
+      ]
+    }
+  ]
+}

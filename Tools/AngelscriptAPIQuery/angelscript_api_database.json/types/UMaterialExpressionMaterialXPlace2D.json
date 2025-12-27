@@ -1,0 +1,18 @@
+{
+  "name": "UMaterialExpressionMaterialXPlace2D",
+  "inherits": "UMaterialExpression",
+  "doc": "Transform incoming UV texture coordinates from one 2D frame of reference to another.\noperationorder (integer enum): the order in which to perform the transform operations.\n\"0\" or \"SRT\" performs -pivot, scale, rotate, translate, +pivot as per the original\nimplementation matching the behavior of certain DCC packages, and \"1\" or \"TRS\" performs\n-pivot, translate, rotate, scale, +pivot which does not introduce texture shear.\nDefault is 0 \"SRT\" for backward compatibility.",
+  "properties": {
+    "ConstRotationAngle": [
+      "float32",
+      2,
+      "only used if RotationAngle is not hooked up"
+    ],
+    "ConstCoordinate": [
+      "uint8",
+      2,
+      "only used if Coordinates is not hooked up"
+    ]
+  },
+  "methods": []
+}

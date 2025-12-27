@@ -1,0 +1,81 @@
+{
+  "name": "UParticleModuleLocationSkelVertSurface",
+  "inherits": "UParticleModuleLocationBase",
+  "properties": {
+    "SourceType": [
+      "ELocationSkelVertSurfaceSource",
+      2,
+      "Whether the module uses Verts or Surfaces for locations.\n\nVERTSURFACESOURCE_Vert          - Use Verts as the source locations.\nVERTSURFACESOURCE_Surface       - Use Surfaces as the source locations."
+    ],
+    "UniversalOffset": [
+      "FVector",
+      2,
+      "An offset to apply to each vert/surface"
+    ],
+    "InheritVelocityScale": [
+      "float32",
+      2,
+      "A scale on how much of the bone's velocity a particle will inherit."
+    ],
+    "SkelMeshActorParamName": [
+      "FName",
+      2,
+      "The parameter name of the skeletal mesh actor that supplies the SkelMeshComponent for in-game."
+    ],
+    "EditorSkelMesh": [
+      "USkeletalMesh",
+      2,
+      "The name of the skeletal mesh to use in the editor"
+    ],
+    "ValidAssociatedBones": [
+      "TArray<FName>",
+      2,
+      "This module will only spawn from verts or surfaces associated with the bones in this list"
+    ],
+    "NormalToCompare": [
+      "FVector",
+      2,
+      "Use this normal to restrict spawning locations"
+    ],
+    "NormalCheckToleranceDegrees": [
+      "float32",
+      2,
+      "Normal tolerance.  0 degrees means it must be an exact match, 180 degrees means it can be any angle."
+    ],
+    "ValidMaterialIndices": [
+      "TArray<int>",
+      2,
+      "Array of material indices that are valid materials to spawn from.\nIf empty, any material will be considered valid"
+    ],
+    "InheritUVChannel": [
+      "uint",
+      2,
+      "UV channel to inherit from the spawn mesh, internally clamped to those available."
+    ],
+    "bUpdatePositionEachFrame": [
+      "bool",
+      "If true, update the particle locations each frame with that of the vert/surface"
+    ],
+    "bOrientMeshEmitters": [
+      "bool",
+      "If true, rotate mesh emitter meshes to orient w/ the vert/surface"
+    ],
+    "bInheritBoneVelocity": [
+      "bool",
+      "If true, particles inherit the associated bone velocity when spawned"
+    ],
+    "bEnforceNormalCheck": [
+      "bool",
+      "When true use the RestrictToNormal and NormalTolerance values to check surface normals"
+    ],
+    "bInheritVertexColor": [
+      "bool",
+      "If true, particles inherit the associated vertex color on spawn. This feature is not supported for GPU particles."
+    ],
+    "bInheritUV": [
+      "bool",
+      "If true, particles inherit the associated UV data on spawn. Accessed through dynamic parameter module X and Y, must be a \"Spawn Time Only\" parameter on \"AutoSet\" mode. This feature is not supported for GPU particles."
+    ]
+  },
+  "methods": []
+}

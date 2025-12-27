@@ -1,0 +1,73 @@
+{
+  "name": "FAnimationStateEntry",
+  "isStruct": true,
+  "properties": {
+    "State": [
+      "uint8",
+      2,
+      "Enum value linked to this state"
+    ],
+    "AnimationSetups": [
+      "TArray<FAnimationSetup>",
+      2,
+      "Per state animation setup"
+    ],
+    "bOnDemand": [
+      "bool",
+      2,
+      "Flag whether or not this state is an on-demand state, this means that we kick off a unique animation when needed"
+    ],
+    "bAdditive": [
+      "bool",
+      2,
+      "Whether or not this state is an additive state"
+    ],
+    "BlendTime": [
+      "float32",
+      2,
+      "Duration of blending when blending to this state"
+    ],
+    "bReturnToPreviousState": [
+      "bool",
+      2,
+      "Flag whether or not we should return to the previous state, only used when this state is an on-demand one"
+    ],
+    "bSetNextState": [
+      "bool",
+      2,
+      ""
+    ],
+    "NextState": [
+      "uint8",
+      2,
+      "State value to which the actors part of an on demand state should be set to when its animation has finished"
+    ],
+    "MaximumNumberOfConcurrentInstances": [
+      "FPerPlatformInt",
+      2,
+      "Number of instances that will be created for this state (platform-specific)"
+    ],
+    "WiggleTimePercentage": [
+      "float32",
+      2,
+      "Percentage of 'wiggle' frames, this is used when we run out of available entries in Components, if one of the on-demand animations has started SequenceLength * WiggleFramePercentage ago or earlier,\n      it is used instead of a brand new one"
+    ],
+    "bRequiresCurves": [
+      "bool",
+      2,
+      "Whether or not this animation requires curves or morphtargets to function correctly for follower components"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimationStateEntry&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimationStateEntry"
+        }
+      ]
+    }
+  ]
+}

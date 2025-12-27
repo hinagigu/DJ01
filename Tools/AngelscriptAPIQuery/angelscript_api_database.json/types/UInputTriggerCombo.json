@@ -1,0 +1,26 @@
+{
+  "name": "UInputTriggerCombo",
+  "inherits": "UInputTrigger",
+  "doc": "UInputTriggerCombo\nAll actions in the combo array must be completed (based on combo completion event specified - triggered, completed, etc.) to trigger the action this trigger is on.\nActions must also be completed in the order specified by the combo actions array (starting at index 0).\nNote: This will only trigger for one frame before resetting the combo trigger's progress",
+  "properties": {
+    "CurrentComboStepIndex": [
+      "int",
+      1,
+      "Keeps track of what action we're currently at in the combo"
+    ],
+    "CurrentTimeBetweenComboSteps": [
+      "float32",
+      1,
+      "Time elapsed between last combo InputAction trigger and current time"
+    ],
+    "ComboActions": [
+      "TArray<FInputComboStepData>",
+      "List of input actions that need to be completed (according to Combo Step Completion States) to trigger this action.\nInput actions must be triggered in order (starting at index 0) to count towards the triggering of the combo."
+    ],
+    "InputCancelActions": [
+      "TArray<FInputCancelAction>",
+      "Actions that will cancel the combo if they are completed (according to Cancellation States)"
+    ]
+  },
+  "methods": []
+}

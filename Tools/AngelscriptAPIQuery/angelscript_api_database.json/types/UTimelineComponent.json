@@ -1,0 +1,401 @@
+{
+  "name": "UTimelineComponent",
+  "inherits": "UActorComponent",
+  "doc": "TimelineComponent holds a series of events, floats, vectors or colors with associated keyframes.\nEvents can be triggered at keyframes along the timeline.\nFloats, vectors, and colors are interpolated between keyframes along the timeline.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddEvent",
+      "return": "void",
+      "doc": "Add a callback event to the timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "EventFunc",
+          "default": "FOnTimelineEvent ( )",
+          "type": "FOnTimelineEvent"
+        }
+      ]
+    },
+    {
+      "name": "AddInterpFloat",
+      "return": "void",
+      "doc": "Add a float interpolation to the timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FloatCurve",
+          "type": "UCurveFloat"
+        },
+        {
+          "name": "InterpFunc",
+          "default": "FOnTimelineFloat ( )",
+          "type": "FOnTimelineFloat"
+        },
+        {
+          "name": "PropertyName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "TrackName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "AddInterpLinearColor",
+      "return": "void",
+      "doc": "Add a linear color interpolation to the timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LinearColorCurve",
+          "type": "UCurveLinearColor"
+        },
+        {
+          "name": "InterpFunc",
+          "default": "FOnTimelineLinearColor ( )",
+          "type": "FOnTimelineLinearColor"
+        },
+        {
+          "name": "PropertyName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "TrackName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "AddInterpVector",
+      "return": "void",
+      "doc": "Add a vector interpolation to the timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VectorCurve",
+          "type": "UCurveVector"
+        },
+        {
+          "name": "InterpFunc",
+          "default": "FOnTimelineVector ( )",
+          "type": "FOnTimelineVector"
+        },
+        {
+          "name": "PropertyName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "TrackName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetIgnoreTimeDilation",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether to ignore time dilation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlaybackPosition",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the current playback position of the Timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlayRate",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the current play rate for this timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetScaledTimelineLength",
+      "return": "float32",
+      "const": true,
+      "doc": "Get length of the timeline divided by the play rate",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTimelineLength",
+      "return": "float32",
+      "const": true,
+      "doc": "Get length of the timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLooping",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether we are looping or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPlaying",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether this timeline is playing or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsReversing",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether we are reversing or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Play",
+      "return": "void",
+      "doc": "Start playback of timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PlayFromStart",
+      "return": "void",
+      "doc": "Start playback of timeline from the start",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Reverse",
+      "return": "void",
+      "doc": "Start playback of timeline in reverse",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReverseFromEnd",
+      "return": "void",
+      "doc": "Start playback of timeline in reverse from the end",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetFloatCurve",
+      "return": "void",
+      "doc": "Update a certain float track's curve",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewFloatCurve",
+          "type": "UCurveFloat"
+        },
+        {
+          "name": "FloatTrackName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetIgnoreTimeDilation",
+      "return": "void",
+      "doc": "Set whether to ignore time dilation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewIgnoreTimeDilation",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearColorCurve",
+      "return": "void",
+      "doc": "Update a certain linear color track's curve",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLinearColorCurve",
+          "type": "UCurveLinearColor"
+        },
+        {
+          "name": "LinearColorTrackName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetLooping",
+      "return": "void",
+      "doc": "true means we would loop, false means we should not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewLooping",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNewTime",
+      "return": "void",
+      "doc": "Set the new playback position time to use",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackPosition",
+      "return": "void",
+      "doc": "Jump to a position in the timeline.\n@param bFireEvents If true, event functions that are between current position and new playback position will fire.\n@param bFireUpdate If true, the update output exec will fire after setting the new playback position.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPosition",
+          "type": "float32"
+        },
+        {
+          "name": "bFireEvents",
+          "type": "bool"
+        },
+        {
+          "name": "bFireUpdate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPlayRate",
+      "return": "void",
+      "doc": "Sets the new play rate for this timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRate",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTimelineFinishedFunc",
+      "return": "void",
+      "doc": "Set the delegate to call when timeline is finished",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTimelineFinishedFunc",
+          "default": "FOnTimelineEvent ( )",
+          "type": "FOnTimelineEvent"
+        }
+      ]
+    },
+    {
+      "name": "SetTimelineLength",
+      "return": "void",
+      "doc": "Set length of the timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLength",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTimelineLengthMode",
+      "return": "void",
+      "doc": "Sets the length mode of the timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLengthMode",
+          "type": "ETimelineLengthMode"
+        }
+      ]
+    },
+    {
+      "name": "SetTimelinePostUpdateFunc",
+      "return": "void",
+      "doc": "Set the delegate to call after each timeline tick",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTimelinePostUpdateFunc",
+          "default": "FOnTimelineEvent ( )",
+          "type": "FOnTimelineEvent"
+        }
+      ]
+    },
+    {
+      "name": "SetVectorCurve",
+      "return": "void",
+      "doc": "Update a certain vector track's curve",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewVectorCurve",
+          "type": "UCurveVector"
+        },
+        {
+          "name": "VectorTrackName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "Stop",
+      "return": "void",
+      "doc": "Stop playback of timeline",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

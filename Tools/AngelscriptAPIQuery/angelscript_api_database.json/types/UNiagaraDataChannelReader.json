@@ -1,0 +1,285 @@
+{
+  "name": "UNiagaraDataChannelReader",
+  "inherits": "UObject",
+  "doc": "Initial simple API for reading and writing data in a data channel from game code / BP.\nLikely to be replaced in the near future with a custom BP node and a helper struct.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "InitAccess",
+      "return": "bool",
+      "doc": "Call before each access to the data channel to grab the correct data to read.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SearchParams",
+          "type": "FNiagaraDataChannelSearchParameters"
+        },
+        {
+          "name": "bReadPrevFrameData",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Num",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReadBool",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "ReadEnum",
+      "return": "uint8",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "ReadFloat",
+      "return": "float",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "ReadID",
+      "return": "FNiagaraID",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "ReadInt",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "ReadLinearColor",
+      "return": "FLinearColor",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "ReadPosition",
+      "return": "FVector",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "ReadQuat",
+      "return": "FQuat",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "ReadSpawnInfo",
+      "return": "FNiagaraSpawnInfo",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "ReadVector",
+      "return": "FVector",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "ReadVector2D",
+      "return": "FVector2D",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "ReadVector4",
+      "return": "FVector4",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "IsValid",
+          "type": "bool&"
+        }
+      ]
+    }
+  ]
+}

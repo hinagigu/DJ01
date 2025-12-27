@@ -1,0 +1,46 @@
+{
+  "name": "FNiagaraBakerTextureSettings",
+  "isStruct": true,
+  "properties": {
+    "OutputName": [
+      "FName",
+      2,
+      "Optional output name, if left empty a name will be auto generated using the index of the texture/"
+    ],
+    "SourceBinding": [
+      "FNiagaraBakerTextureSource",
+      2,
+      "Source visualization we should capture, i.e. Scene Color, World Normal, etc"
+    ],
+    "FrameSize": [
+      "FIntPoint",
+      2,
+      "Size of each frame generated."
+    ],
+    "TextureSize": [
+      "FIntPoint",
+      2,
+      "Overall texture size that will be generated."
+    ],
+    "GeneratedTexture": [
+      "UTexture2D",
+      2,
+      "Final texture generated, an existing entry will be updated with new capture data."
+    ],
+    "bUseFrameSize": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraBakerTextureSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraBakerTextureSettings"
+        }
+      ]
+    }
+  ]
+}

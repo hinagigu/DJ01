@@ -1,0 +1,43 @@
+{
+  "name": "FWorldPartitionStreamingQuerySource",
+  "isStruct": true,
+  "doc": "Structure containing all properties required to query a streaming state",
+  "properties": {
+    "Location": [
+      "FVector",
+      "Location to query. (not used if bSpatialQuery is false)"
+    ],
+    "Radius": [
+      "float32",
+      "Radius to query. (not used if bSpatialQuery is false)"
+    ],
+    "bUseGridLoadingRange": [
+      "bool",
+      "If True, Instead of providing a query radius, query can be bound to loading range radius."
+    ],
+    "DataLayers": [
+      "TArray<FName>",
+      "Optional list of data layers to specialize the query. If empty only non data layer cells will be returned by the query."
+    ],
+    "bDataLayersOnly": [
+      "bool",
+      "If True, Only cells that are in a data layer found in DataLayers property will be returned by the query."
+    ],
+    "bSpatialQuery": [
+      "bool",
+      "If False, Location/Radius will not be used to find the cells. Only AlwaysLoaded cells will be returned by the query."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FWorldPartitionStreamingQuerySource&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FWorldPartitionStreamingQuerySource"
+        }
+      ]
+    }
+  ]
+}

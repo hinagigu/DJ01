@@ -1,0 +1,47 @@
+{
+  "name": "URevolveSplineToolProperties",
+  "inherits": "URevolveProperties",
+  "properties": {
+    "SampleMode": [
+      "ERevolveSplineSampleMode",
+      2,
+      "Determines how points to revolve are actually picked from the spline."
+    ],
+    "ErrorTolerance": [
+      "float",
+      2,
+      "How far to allow the triangulation boundary can deviate from the spline curve before we add more vertices."
+    ],
+    "MaxSampleDistance": [
+      "float",
+      2,
+      "The maximal distance that the spacing should be allowed to be."
+    ],
+    "CapFillMode": [
+      "ERevolvePropertiesCapFillMode",
+      2,
+      "Determines how end caps are created. This is not relevant if the end caps are not visible or if the path is not closed."
+    ],
+    "bClosePathToAxis": [
+      "bool",
+      2,
+      "Connect the ends of an open path to the axis to add caps to the top and bottom of the revolved result.\nThis is not relevant for paths that are already closed."
+    ],
+    "AxisOrigin": [
+      "FVector",
+      2,
+      "Sets the revolution axis origin."
+    ],
+    "AxisOrientation": [
+      "FVector2D",
+      2,
+      "Sets the revolution axis pitch and yaw."
+    ],
+    "bResetAxisOnStart": [
+      "bool",
+      2,
+      "If true, the revolution axis is re-fit to the input spline on each tool start. If false, the previous\nrevolution axis is kept."
+    ]
+  },
+  "methods": []
+}

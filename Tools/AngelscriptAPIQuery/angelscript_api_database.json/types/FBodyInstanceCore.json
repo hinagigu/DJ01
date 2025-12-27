@@ -1,0 +1,50 @@
+{
+  "name": "FBodyInstanceCore",
+  "isStruct": true,
+  "properties": {
+    "bSimulatePhysics": [
+      "bool",
+      "If true, this body will use simulation. If false, will be 'fixed' (ie kinematic) and move where it is told.\nFor a Skeletal Mesh Component, simulating requires a physics asset setup and assigned on the SkeletalMesh asset.\nFor a Static Mesh Component, simulating requires simple collision to be setup on the StaticMesh asset."
+    ],
+    "bOverrideMass": [
+      "bool",
+      "If true, mass will not be automatically computed and you must set it directly"
+    ],
+    "bEnableGravity": [
+      "bool",
+      "If object should have the force of gravity applied"
+    ],
+    "bUpdateKinematicFromSimulation": [
+      "bool",
+      "When kinematic, whether the actor transform should be updated as a result of movement in the simulation, rather than immediately whenever a target transform is set."
+    ],
+    "bAutoWeld": [
+      "bool",
+      "If true and is attached to a parent, the two bodies will be joined into a single rigid body. Physical settings like collision profile and body settings are determined by the root"
+    ],
+    "bStartAwake": [
+      "bool",
+      "If object should start awake, or if it should initially be sleeping"
+    ],
+    "bGenerateWakeEvents": [
+      "bool",
+      "Should 'wake/sleep' events fire when this object is woken up or put to sleep by the physics simulation."
+    ],
+    "bUpdateMassWhenScaleChanges": [
+      "bool",
+      "If true, it will update mass when scale change *"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FBodyInstanceCore&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBodyInstanceCore"
+        }
+      ]
+    }
+  ]
+}

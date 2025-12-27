@@ -1,0 +1,59 @@
+{
+  "name": "FProximityDataflowNode",
+  "isStruct": true,
+  "doc": "Update the proximity (contact) graph for the bones in a Collection",
+  "properties": {
+    "ProximityMethod": [
+      "EProximityMethodEnum",
+      2,
+      "Which method to use to decide whether a given piece of geometry is in proximity with another"
+    ],
+    "DistanceThreshold": [
+      "float32",
+      2,
+      "If hull-based proximity detection is enabled, amount to expand hulls when searching for overlapping neighbors"
+    ],
+    "ContactThreshold": [
+      "float32",
+      2,
+      "If greater than zero, proximity will be additionally filtered by a 'contact' threshold, in cm, to exclude grazing / corner proximity"
+    ],
+    "FilterContactMethod": [
+      "EProximityContactFilteringMethodEnum",
+      2,
+      "How to use the Contact Threshold (if > 0) to filter out unwanted small or corner contacts from the proximity graph. If contact threshold is zero, no filtering is applied."
+    ],
+    "bUseAsConnectionGraph": [
+      "bool",
+      2,
+      "Whether to automatically transform the proximity graph into a connection graph to be used for simulation"
+    ],
+    "ContactAreaMethod": [
+      "EConnectionContactAreaMethodEnum",
+      2,
+      "The method used to compute contact areas for simulation purposes (only when 'Use As Connection Graph' is enabled)"
+    ],
+    "bRecomputeConvexHulls": [
+      "bool",
+      2,
+      "Whether to compute new convex hulls for proximity, or use the pre-existing hulls on the Collection, when using convex hulls to determine proximity"
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FProximityDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FProximityDataflowNode"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "FCreateLeafConvexHullsDataflowNode",
+  "isStruct": true,
+  "properties": {
+    "GenerateMethod": [
+      "EGenerateConvexMethod",
+      2,
+      "How convex hulls are generated -- computed from geometry, imported from external collision shapes, or an intersection of both options."
+    ],
+    "IntersectIfComputedIsSmallerByFactor": [
+      "float32",
+      2,
+      "If GenerateMethod is Intersect, only actually intersect when the volume of the Computed Hull is less than this fraction of the volume of the External Hull(s)."
+    ],
+    "MinExternalVolumeToIntersect": [
+      "float32",
+      2,
+      "If GenerateMethod is Intersect, only actually intersect if the volume of the External Hull(s) exceed this threshold."
+    ],
+    "bComputeIntersectionsBeforeHull": [
+      "bool",
+      2,
+      "Whether to compute the intersection before computing convex hulls. Typically should be enabled."
+    ],
+    "SimplificationDistanceThreshold": [
+      "float32",
+      2,
+      "Computed convex hulls are simplified to keep points spaced at least this far apart (except where needed to keep the hull from collapsing to zero volume)."
+    ],
+    "ConvexDecompositionSettings": [
+      "FDataflowConvexDecompositionSettings",
+      2,
+      ""
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCreateLeafConvexHullsDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCreateLeafConvexHullsDataflowNode"
+        }
+      ]
+    }
+  ]
+}

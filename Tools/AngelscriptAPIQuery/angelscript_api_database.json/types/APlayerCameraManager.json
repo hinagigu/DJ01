@@ -1,0 +1,500 @@
+{
+  "name": "APlayerCameraManager",
+  "inherits": "AActor",
+  "doc": "A PlayerCameraManager is responsible for managing the camera for a particular\nplayer. It defines the final view properties used by other systems (e.g. the renderer),\nmeaning you can think of it as your virtual eyeball in the world. It can compute the\nfinal camera properties directly, or it can arbitrate/blend between other objects or\nactors that influence the camera (e.g. blending from one CameraActor to another).\n\nThe PlayerCameraManagers primary external responsibility is to reliably respond to\nvarious Get*() functions, such as GetCameraViewPoint. Most everything else is\nimplementation detail and overrideable by user projects.\n\nBy default, a PlayerCameraManager maintains a \"view target\", which is the primary actor\nthe camera is associated with. It can also apply various \"post\" effects to the final\nview state, such as camera animations, shakes, post-process effects or special\neffects such as dirt on the lens.\n\n@see https://docs.unrealengine.com/latest/INT/Gameplay/Framework/Camera/",
+  "properties": {
+    "TransformComponent": [
+      "USceneComponent",
+      "Dummy component we can use to attach things to the camera."
+    ],
+    "DefaultFOV": [
+      "float32",
+      "FOV to use by default."
+    ],
+    "DefaultOrthoWidth": [
+      "float32",
+      "The default desired width (in world units) of the orthographic view (ignored in Perspective mode)"
+    ],
+    "DefaultAspectRatio": [
+      "float32",
+      "Default aspect ratio. Most of the time the value from a camera component will be used instead."
+    ],
+    "DefaultModifiers": [
+      "TArray<TSubclassOf<UCameraModifier>>",
+      "List of modifiers to create by default for this camera"
+    ],
+    "FreeCamDistance": [
+      "float32",
+      "Distance to place free camera from view target (used in certain CameraStyles)"
+    ],
+    "FreeCamOffset": [
+      "FVector",
+      "Offset to Z free camera position (used in certain CameraStyles)"
+    ],
+    "ViewTargetOffset": [
+      "FVector",
+      "Offset to view target (used in certain CameraStyles)"
+    ],
+    "OnAudioFadeChangeEvent": [
+      "FOnAudioFadeChangeSignature",
+      "If bound, broadcast on fade start (with fade time) instead of manually altering audio device's primary volume directly"
+    ],
+    "AutoPlaneShift": [
+      "float32",
+      "Manually adjusts the planes of this camera, maintaining the distance between them. Positive moves out to the farplane, negative towards the near plane"
+    ],
+    "ViewPitchMin": [
+      "float32",
+      "Minimum view pitch, in degrees."
+    ],
+    "ViewPitchMax": [
+      "float32",
+      "Maximum view pitch, in degrees."
+    ],
+    "ViewYawMin": [
+      "float32",
+      "Minimum view yaw, in degrees."
+    ],
+    "ViewYawMax": [
+      "float32",
+      "Maximum view yaw, in degrees."
+    ],
+    "ViewRollMin": [
+      "float32",
+      "Minimum view roll, in degrees."
+    ],
+    "ViewRollMax": [
+      "float32",
+      "Maximum view roll, in degrees."
+    ],
+    "bIsOrthographic": [
+      "bool",
+      "True when this camera should use an orthographic perspective instead of FOV"
+    ],
+    "bAutoCalculateOrthoPlanes": [
+      "bool",
+      "True when this camera should automatically calculated the Near+Far planes"
+    ],
+    "bUpdateOrthoPlanes": [
+      "bool",
+      "Adjusts the near/far planes and the view origin of the current camera automatically to avoid clipping and light artefacting"
+    ],
+    "bUseCameraHeightAsViewTarget": [
+      "bool",
+      "If UpdateOrthoPlanes is enabled, this setting will use the cameras current height to compensate the distance to the general view (as a pseudo distance to view target when one isn't present)"
+    ],
+    "bDefaultConstrainAspectRatio": [
+      "bool",
+      "True if black bars should be added if the destination view has a different aspect ratio (only used when a view target doesn't specify whether or not to constrain the aspect ratio; most of the time the value from a camera component is used instead)"
+    ],
+    "bClientSimulatingViewTarget": [
+      "bool",
+      "True if clients are handling setting their own viewtarget and the server should not replicate it."
+    ],
+    "bUseClientSideCameraUpdates": [
+      "bool",
+      "True if server will use camera positions replicated from the client instead of calculating them locally."
+    ],
+    "bGameCameraCutThisFrame": [
+      "bool",
+      "True if we did a camera cut this frame. Automatically reset to false every frame.\nThis flag affects various things in the renderer (such as whether to use the occlusion queries from last frame, and motion blur)."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddNewCameraModifier",
+      "return": "UCameraModifier",
+      "doc": "Creates and initializes a new camera modifier of the specified class.\n@param ModifierClass - The class of camera modifier to create.\n@return Returns the newly created camera modifier.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ModifierClass",
+          "type": "TSubclassOf<UCameraModifier>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "BlueprintUpdateCamera",
+      "return": "bool",
+      "callable": false,
+      "doc": "Blueprint hook to allow blueprints to override existing camera behavior or implement custom cameras.\nIf this function returns true, we will use the given returned values and skip further calculations to determine\nfinal camera POV.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CameraTarget",
+          "type": "AActor"
+        },
+        {
+          "name": "NewCameraLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "NewCameraRotation",
+          "type": "FRotator&"
+        },
+        {
+          "name": "NewCameraFOV",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "ClearCameraLensEffects",
+      "return": "void",
+      "doc": "Removes all camera lens effects.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FindCameraModifierByClass",
+      "return": "UCameraModifier",
+      "doc": "Returns camera modifier for this camera of the given class, if it exists.\nExact class match only. If there are multiple modifiers of the same class, the first one is returned.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ModifierClass",
+          "type": "TSubclassOf<UCameraModifier>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetCameraLocation",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns camera's current location.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCameraRotation",
+      "return": "FRotator",
+      "const": true,
+      "doc": "Returns camera's current rotation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFOVAngle",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the camera's current full FOV angle, in degrees.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningPlayerController",
+      "return": "APlayerController",
+      "const": true,
+      "doc": "Returns the PlayerController that owns this camera.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnPhotographyMultiPartCaptureEnd",
+      "return": "void",
+      "callable": false,
+      "doc": "Event triggered upon the end of a multi-part photograph capture, when manual\nfree-roaming photographic camera control is about to be returned to the user.\nHere you may re-enable whatever was turned off within\nOnPhotographyMultiPartCaptureStart.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnPhotographyMultiPartCaptureStart",
+      "return": "void",
+      "callable": false,
+      "doc": "Event triggered upon the start of a multi-part photograph capture (i.e. a\nstereoscopic or 360-degree shot).  This is an ideal time to turn off\nrendering effects that tile badly (UI, subtitles, vignette, very aggressive\nbloom, etc; most of these are automatically disabled when\nr.Photography.AutoPostprocess is 1).",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnPhotographySessionEnd",
+      "return": "void",
+      "callable": false,
+      "doc": "Event triggered upon leaving Photography mode (after unpausing, if\nr.Photography.AutoPause is 1).",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnPhotographySessionStart",
+      "return": "void",
+      "callable": false,
+      "doc": "Event triggered upon entering Photography mode (before pausing, if\nr.Photography.AutoPause is 1).",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PhotographyCameraModify",
+      "return": "void",
+      "callable": false,
+      "doc": "Implementable blueprint hook to allow a PlayerCameraManager subclass to\nconstrain or otherwise modify the camera during free-camera photography.\nFor example, a blueprint may wish to limit the distance from the camera's\noriginal point, or forbid the camera from passing through walls.\nNewCameraLocation contains the proposed new camera location.\nPreviousCameraLocation contains the camera location in the previous frame.\nOriginalCameraLocation contains the camera location before the game was put\ninto photography mode.\nReturn ResultCameraLocation as modified according to your constraints.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewCameraLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "PreviousCameraLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "OriginalCameraLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "ResultCameraLocation",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "RemoveCameraModifier",
+      "return": "bool",
+      "doc": "Removes the given camera modifier from this camera (if it's on the camera in the first place) and discards it.\n@return True if successfully removed, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ModifierToRemove",
+          "type": "UCameraModifier"
+        }
+      ]
+    },
+    {
+      "name": "SetGameCameraCutThisFrame",
+      "return": "void",
+      "doc": "Sets the bGameCameraCutThisFrame flag to true (indicating we did a camera cut this frame; useful for game code to call, e.g., when performing a teleport that should be seamless)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetManualCameraFade",
+      "return": "void",
+      "doc": "Turns on camera fading at the given opacity. Does not auto-animate, allowing user to animate themselves.\nCall StopCameraFade to turn fading back off.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFadeAmount",
+          "type": "float32"
+        },
+        {
+          "name": "Color",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bInFadeAudio",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StartCameraFade",
+      "return": "void",
+      "doc": "Does a camera fade to/from a solid color.  Animates automatically.\n@param FromAlpha - Alpha at which to begin the fade. Range [0..1], where 0 is fully transparent and 1 is fully opaque solid color.\n@param ToAlpha - Alpha at which to finish the fade.\n@param Duration - How long the fade should take, in seconds.\n@param Color - Color to fade to/from.\n@param bShouldFadeAudio - True to fade audio volume along with the alpha of the solid color.\n@param bHoldWhenFinished - True for fade to hold at the ToAlpha until explicitly stopped (e.g. with StopCameraFade)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FromAlpha",
+          "type": "float32"
+        },
+        {
+          "name": "ToAlpha",
+          "type": "float32"
+        },
+        {
+          "name": "Duration",
+          "type": "float32"
+        },
+        {
+          "name": "Color",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bShouldFadeAudio",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bHoldWhenFinished",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StartCameraShake",
+      "return": "UCameraShakeBase",
+      "doc": "Plays a camera shake on this camera.\n@param Shake - The class of camera shake to play.\n@param Scale - Scalar defining how \"intense\" to play the shake. 1.0 is normal (as authored).\n@param PlaySpace - Which coordinate system to play the shake in (affects oscillations and camera anims)\n@param UserPlaySpaceRot - Coordinate system to play shake when PlaySpace == CAPS_UserDefined.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ShakeClass",
+          "type": "TSubclassOf<UCameraShakeBase>"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PlaySpace",
+          "default": "ECameraShakePlaySpace :: CameraLocal",
+          "type": "ECameraShakePlaySpace"
+        },
+        {
+          "name": "UserPlaySpaceRot",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "StartCameraShakeFromSource",
+      "return": "UCameraShakeBase",
+      "doc": "Plays a camera shake on this camera.\n@param Shake - The class of camera shake to play.\n@param SourceComponent - The source from which the camera shake originates.\n@param Scale - Applies an additional constant scale on top of the dynamic scale computed with the distance to the source\n@param PlaySpace - Which coordinate system to play the shake in (affects oscillations and camera anims)\n@param UserPlaySpaceRot - Coordinate system to play shake when PlaySpace == CAPS_UserDefined.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ShakeClass",
+          "type": "TSubclassOf<UCameraShakeBase>"
+        },
+        {
+          "name": "SourceComponent",
+          "type": "UCameraShakeSourceComponent"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PlaySpace",
+          "default": "ECameraShakePlaySpace :: CameraLocal",
+          "type": "ECameraShakePlaySpace"
+        },
+        {
+          "name": "UserPlaySpaceRot",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "StopAllCameraShakes",
+      "return": "void",
+      "doc": "Stops all active camera shakes on this camera.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StopAllCameraShakesFromSource",
+      "return": "void",
+      "doc": "Stops playing all shakes originating from the given source.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceComponent",
+          "type": "UCameraShakeSourceComponent"
+        },
+        {
+          "name": "bImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StopAllInstancesOfCameraShake",
+      "return": "void",
+      "doc": "Stops playing all shakes of the given class.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Shake",
+          "type": "TSubclassOf<UCameraShakeBase>"
+        },
+        {
+          "name": "bImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StopAllInstancesOfCameraShakeFromSource",
+      "return": "void",
+      "doc": "Stops playing all shakes of the given class originating from the given source.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Shake",
+          "type": "TSubclassOf<UCameraShakeBase>"
+        },
+        {
+          "name": "SourceComponent",
+          "type": "UCameraShakeSourceComponent"
+        },
+        {
+          "name": "bImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StopCameraFade",
+      "return": "void",
+      "doc": "Stops camera fading.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopCameraShake",
+      "return": "void",
+      "doc": "Immediately stops the given shake instance and invalidates it.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ShakeInstance",
+          "type": "UCameraShakeBase"
+        },
+        {
+          "name": "bImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

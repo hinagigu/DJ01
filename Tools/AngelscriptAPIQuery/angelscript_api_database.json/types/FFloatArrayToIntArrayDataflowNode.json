@@ -1,0 +1,34 @@
+{
+  "name": "FFloatArrayToIntArrayDataflowNode",
+  "isStruct": true,
+  "doc": "Converts a Float array to Int array using the specified method.",
+  "properties": {
+    "Function": [
+      "EFloatArrayToIntArrayFunctionEnum",
+      2,
+      "Conversion method:\nFloor takes the floor of each input float value - 1.1 turns into 1.\nCeil takes the ceil - 1.1 turns into 2.\nRound rounds to the nearest integer - 1.1 turns into 1.\nTuncate trucates like a type cast - 1.1 turns into 1.\nNon-zero to Index appends the index of all non-zero values to the output array.\nZero to Index appends the index of all zero values to the output array."
+    ],
+    "FloatArray": [
+      "TArray<float32>",
+      2,
+      "Float array value to convert"
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FFloatArrayToIntArrayDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FFloatArrayToIntArrayDataflowNode"
+        }
+      ]
+    }
+  ]
+}

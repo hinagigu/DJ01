@@ -1,0 +1,85 @@
+{
+  "name": "UEnvQueryGenerator_BlueprintBase",
+  "inherits": "UEnvQueryGenerator",
+  "properties": {
+    "GeneratorsActionDescription": [
+      "FText",
+      2,
+      "A short description of what test does, like \"Generate pawn named Joe\""
+    ],
+    "Context": [
+      "TSubclassOf<UEnvQueryContext>",
+      2,
+      "context"
+    ],
+    "GeneratedItemType": [
+      "TSubclassOf<UEnvQueryItemType>",
+      2,
+      "@todo this should show up only in the generator's BP, but\n    due to the way EQS editor is generating widgets it's there as well\n    It's a bug and we'll fix it"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddGeneratedActor",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GeneratedActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "AddGeneratedVector",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GeneratedVector",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "DoItemGeneration",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContextLocations",
+          "type": "TArray<FVector>"
+        }
+      ]
+    },
+    {
+      "name": "DoItemGenerationFromActors",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContextActors",
+          "type": "TArray<AActor>"
+        }
+      ]
+    },
+    {
+      "name": "GetQuerier",
+      "return": "UObject",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

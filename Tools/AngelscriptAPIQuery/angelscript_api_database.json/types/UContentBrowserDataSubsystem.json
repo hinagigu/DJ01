@@ -1,0 +1,122 @@
+{
+  "name": "UContentBrowserDataSubsystem",
+  "inherits": "UEditorSubsystem",
+  "doc": "Subsystem that provides access to Content Browser data.\nThis type deals with the composition of multiple data sources, which provide information about the folders and files available in the Content Browser.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ActivateAllDataSources",
+      "return": "void",
+      "doc": "Activate all available data sources.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ActivateDataSource",
+      "return": "bool",
+      "doc": "Attempt to activate the named data source.\n@return True if the data source was available and not already active, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "DeactivateAllDataSources",
+      "return": "void",
+      "doc": "Deactivate all active data sources.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DeactivateDataSource",
+      "return": "bool",
+      "doc": "Attempt to deactivate the named data source.\n@return True if the data source was available and active, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveDataSources",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Get the list of current active data sources.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAvailableDataSources",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Get the list of current available data sources.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetItemAtPath",
+      "return": "FContentBrowserItem",
+      "const": true,
+      "doc": "Get the first item (folder and/or file) that exists at the given virtual path.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FName"
+        },
+        {
+          "name": "InItemTypeFilter",
+          "type": "EContentBrowserItemTypeFilter"
+        }
+      ]
+    },
+    {
+      "name": "GetItemsAtPath",
+      "return": "TArray<FContentBrowserItem>",
+      "const": true,
+      "doc": "Get the items (folders and/or files) that exist at the given virtual path.\n@note Multiple items may have the same virtual path if they are different types, or come from different data sources.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FName"
+        },
+        {
+          "name": "InItemTypeFilter",
+          "type": "EContentBrowserItemTypeFilter"
+        }
+      ]
+    },
+    {
+      "name": "GetItemsUnderPath",
+      "return": "TArray<FContentBrowserItem>",
+      "const": true,
+      "doc": "Get the items (folders and/or files) that exist under the given virtual path.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FName"
+        },
+        {
+          "name": "InFilter",
+          "type": "FContentBrowserDataFilter"
+        }
+      ]
+    }
+  ]
+}

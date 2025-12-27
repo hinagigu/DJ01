@@ -1,0 +1,39 @@
+{
+  "name": "FRigUnit_SetSpaceTransform",
+  "isStruct": true,
+  "doc": "SetSpaceTransform is used to perform a change in the hierarchy by setting a single space's transform.",
+  "properties": {
+    "Space": [
+      "FName",
+      "The name of the Space to set the transform for."
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the change - how much the change should be applied"
+    ],
+    "Transform": [
+      "FTransform",
+      "The transform value to set for the given Space."
+    ],
+    "SpaceType": [
+      "ERigVMTransformSpace",
+      "Defines if the bone's transform should be set\nin local or global space."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SetSpaceTransform&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SetSpaceTransform"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "FARPDomainDefinitionByContentRoot",
+  "isStruct": true,
+  "properties": {
+    "DomainName": [
+      "FString",
+      2,
+      "The name of this domain"
+    ],
+    "DomainDisplayName": [
+      "FText",
+      2,
+      "The display name of this domain (used in error message when attempting to reference content incorrectly)"
+    ],
+    "ErrorMessageIfUsedElsewhere": [
+      "FText",
+      2,
+      "The error message if something that is not allowed to attempts to reference content from this domain"
+    ],
+    "ContentRoots": [
+      "TArray<FDirectoryPath>",
+      2,
+      "The list of content root paths considered to be part of this domain"
+    ],
+    "SpecificAssets": [
+      "TArray<FName>",
+      2,
+      "A list of specific assets considered to be part of this domain"
+    ],
+    "ReferenceMode": [
+      "EARPDomainAllowedToReferenceMode",
+      2,
+      "What content is this domain allowed to access?"
+    ],
+    "CanReferenceTheseDomains": [
+      "TArray<FString>",
+      2,
+      "The list of additional domains always visible from this domain\n(EngineContent is always visible)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FARPDomainDefinitionByContentRoot&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FARPDomainDefinitionByContentRoot"
+        }
+      ]
+    }
+  ]
+}

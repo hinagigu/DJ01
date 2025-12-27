@@ -1,0 +1,48 @@
+{
+  "name": "UVREditorMode",
+  "inherits": "UVREditorModeBase",
+  "doc": "VR Editor Mode. Extends editor viewports with functionality for VR controls and object manipulation",
+  "properties": {
+    "InteractorClass": [
+      "TSoftClassPtr<UVREditorInteractor>",
+      "The controller to use when UnrealEd is in VR mode. Use VREditorInteractor get default editor behavior, or select a custom controller for special behavior"
+    ],
+    "TeleporterClass": [
+      "TSoftClassPtr<AVREditorTeleporter>",
+      "The teleporter to use when UnrealEd is in VR mode. Use VREditorTeleporter to get default editor behavior, or select a custom teleporter"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetWorldScaleFactor",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the world scale factor, which can be multiplied by a scale vector to convert to room space",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsInGameView",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether game view is currently active.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetGameView",
+      "return": "void",
+      "doc": "Display the scene more closely to how it would appear at runtime (as opposed to edit time).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bGameView",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

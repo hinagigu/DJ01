@@ -1,0 +1,16 @@
+{
+  "name": "UCommonMappingContextMetadata",
+  "inherits": "UDataAsset",
+  "doc": "Base CommonUI metadata implementation for specification in IMC's.\n\nUtilizes a map of input actions to metadata to prevent users from having to create\nmultiple metadata assets / instances. Using this map is not mandatory.",
+  "properties": {
+    "EnhancedInputMetadata": [
+      "UCommonInputMetadata",
+      "Fallback or default metadata CommonUI relies on if no per-action meta is found below"
+    ],
+    "PerActionEnhancedInputMetadata": [
+      "TMap<TObjectPtr<UInputAction>,TObjectPtr<UCommonInputMetadata>>",
+      "Map of action to metadata, allows creation of single metadata asset rather than one per input action type"
+    ]
+  },
+  "methods": []
+}

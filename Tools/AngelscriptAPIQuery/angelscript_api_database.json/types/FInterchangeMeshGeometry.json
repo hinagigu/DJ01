@@ -1,0 +1,39 @@
+{
+  "name": "FInterchangeMeshGeometry",
+  "isStruct": true,
+  "doc": "* A mesh geometry is a description of a translated mesh asset node that defines a geometry.",
+  "properties": {
+    "MeshUid": [
+      "FString",
+      2,
+      "The unique ID of the UInterchangeMeshNode represented by this structure."
+    ],
+    "MeshNode": [
+      "const UInterchangeMeshNode",
+      2,
+      "The UInterchangeMeshNode pointer represented by this structure."
+    ],
+    "ReferencingMeshInstanceUids": [
+      "TArray<FString>",
+      2,
+      "All mesh instances that refer to this UInterchangeMeshNode pointer."
+    ],
+    "AttachedSocketUids": [
+      "TArray<FString>",
+      2,
+      "A list of all scene nodes that represent sockets attached to this mesh."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInterchangeMeshGeometry&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInterchangeMeshGeometry"
+        }
+      ]
+    }
+  ]
+}

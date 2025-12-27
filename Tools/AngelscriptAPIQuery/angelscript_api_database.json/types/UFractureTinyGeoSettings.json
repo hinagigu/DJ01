@@ -1,0 +1,58 @@
+{
+  "name": "UFractureTinyGeoSettings",
+  "inherits": "UFractureToolSettings",
+  "doc": "Settings controlling how geometry is selected and merged into neighboring geometry",
+  "properties": {
+    "MergeType": [
+      "EMergeType",
+      2,
+      "Whether to merge small geometry, or small clusters"
+    ],
+    "bOnFractureLevel": [
+      "bool",
+      2,
+      "Only consider bones at the current Fracture Level"
+    ],
+    "bOnlyClusters": [
+      "bool",
+      2,
+      "Only auto-consider clusters for merging. Note that leaf nodes can still be consider if manually selected."
+    ],
+    "bOnlySameParent": [
+      "bool",
+      2,
+      "Only merge to neighbors with the same parent in the hierarchy"
+    ],
+    "NeighborSelection": [
+      "ENeighborSelectionMethod",
+      2,
+      ""
+    ],
+    "bOnlyToConnected": [
+      "bool",
+      2,
+      "Only merge pieces that are connected in the proximity graph. If unchecked, connected pieces will still be favored, but if none are available the closest disconnected piece can be merged."
+    ],
+    "UseBoneSelection": [
+      "EUseBoneSelection",
+      2,
+      "Options for using the current bone selection"
+    ],
+    "SelectionMethod": [
+      "EGeometrySelectionMethod",
+      2,
+      ""
+    ],
+    "MinVolumeCubeRoot": [
+      "float",
+      2,
+      "If size (cube root of volume) is less than this value, geometry should be merged into neighbors -- i.e. a value of 2 merges geometry smaller than a 2x2x2 cube"
+    ],
+    "RelativeVolume": [
+      "float",
+      2,
+      "If cube root of volume relative to the overall shape's cube root of volume is less than this, the geometry should be merged into its neighbors.\n      (Note: This is a bit different from the histogram viewer's \"Relative Size,\" which instead shows values relative to the largest rigid bone.)"
+    ]
+  },
+  "methods": []
+}

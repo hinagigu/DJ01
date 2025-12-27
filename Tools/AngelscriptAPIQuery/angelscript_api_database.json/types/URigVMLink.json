@@ -1,0 +1,94 @@
+{
+  "name": "URigVMLink",
+  "inherits": "UObject",
+  "doc": "The Link represents a connection between two Pins\nwithin a Graph. The Link can be accessed on the\nGraph itself - or through the URigVMPin::GetLinks()\nmethod.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetGraph",
+      "return": "URigVMGraph",
+      "const": true,
+      "doc": "Returns the Link's owning Graph/",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGraphDepth",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the graph nesting depth of this link",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLinkIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the current index of this Link within its owning Graph.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOppositePin",
+      "return": "URigVMPin",
+      "const": true,
+      "doc": "Returns the opposite Pin of this Link given one of its edges (or nullptr)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPin",
+          "type": "const URigVMPin"
+        }
+      ]
+    },
+    {
+      "name": "GetPinPathRepresentation",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns a string representation of the Link,\nfor example: \"NodeA.Color.R -> NodeB.Translation.X\"\nnote: can be split again using SplitPinPathRepresentation",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSourceNode",
+      "return": "URigVMNode",
+      "const": true,
+      "doc": "Returns the source Node of this Link (or nullptr)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSourcePin",
+      "return": "URigVMPin",
+      "const": true,
+      "doc": "Returns the source Pin of this Link (or nullptr)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTargetNode",
+      "return": "URigVMNode",
+      "const": true,
+      "doc": "Returns the target Node of this Link (or nullptr)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTargetPin",
+      "return": "URigVMPin",
+      "const": true,
+      "doc": "Returns the target Pin of this Link (or nullptr)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

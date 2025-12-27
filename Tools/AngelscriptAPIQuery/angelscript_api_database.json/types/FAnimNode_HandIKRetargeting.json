@@ -1,0 +1,82 @@
+{
+  "name": "FAnimNode_HandIKRetargeting",
+  "isStruct": true,
+  "doc": "Node to handle re-targeting of Hand IK bone chain.\nIt looks at position in Mesh Space of Left and Right FK bones, and moves Left and Right IK bones to those.\nbased on HandFKWeight. (0 = favor left hand, 1 = favor right hand, 0.5 = equal weight).\nThis is used so characters of different proportions can handle the same props.",
+  "properties": {
+    "RightHandFK": [
+      "FBoneReference",
+      2,
+      "Bone for Right Hand FK"
+    ],
+    "LeftHandFK": [
+      "FBoneReference",
+      2,
+      "Bone for Left Hand FK"
+    ],
+    "RightHandIK": [
+      "FBoneReference",
+      2,
+      "Bone for Right Hand IK"
+    ],
+    "LeftHandIK": [
+      "FBoneReference",
+      2,
+      "Bone for Left Hand IK"
+    ],
+    "IKBonesToMove": [
+      "TArray<FBoneReference>",
+      2,
+      "IK Bones to move."
+    ],
+    "PerAxisAlpha": [
+      "FVector",
+      "Alpha values per axis to apply on the resulting retargeting translation"
+    ],
+    "HandFKWeight": [
+      "float32",
+      "Which hand to favor. 0.5 is equal weight for both, 1 = right hand, 0 = left hand."
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_HandIKRetargeting&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_HandIKRetargeting"
+        }
+      ]
+    }
+  ]
+}

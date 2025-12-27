@@ -1,0 +1,93 @@
+{
+  "name": "UPropertyTemplateObject",
+  "inherits": "UObject",
+  "doc": "In order to use PropertyEditorModule.CreateSingleProperty we have to give it an object instance\nand the name of the target property to edit. It will then iterate the object for a property with that\nname and create a property editor widget.\n\nThis is very limiting when editing a single entry within an FArrayProperty, as the inner and the\narray prop will have the same name, leading it to create an array editor. Also, since we have to\ngive it an instance, modifying the widget will automatically modify the object, which we may not\nwant, we may just want a property editor of a particular type.\n\nThis class is a hack around all that: It has an instance of most property types,\nso that you can instantiate one of these and just pass along the name of the property type you want.\nThey are all be named Captured<propertyType> (e.g. CapturedFloatProperty, CapturedObjectProperty,\nbCapturedBoolProperty) but you can use the helper function to get the name of the property you want.\n// TODO: Convert this into a static dictionary that maps to a small separate class for each property type\n// Maybe even template it for array/map/set property types",
+  "properties": {
+    "CapturedByteProperty": [
+      "uint8",
+      2,
+      "Captured byte property"
+    ],
+    "CapturedUInt16Property": [
+      "uint16",
+      2,
+      "Captured uint16 property"
+    ],
+    "CapturedUInt32Property": [
+      "uint",
+      2,
+      "Captured uint32 property"
+    ],
+    "CapturedUInt64Property": [
+      "uint64",
+      2,
+      "Captured uint16 property"
+    ],
+    "CapturedInt8Property": [
+      "int8",
+      2,
+      "Captured int8 property"
+    ],
+    "CapturedInt16Property": [
+      "int16",
+      2,
+      "Captured int16 property"
+    ],
+    "CapturedIntProperty": [
+      "int",
+      2,
+      "Captured int32 property"
+    ],
+    "CapturedInt64Property": [
+      "int64",
+      2,
+      "Captured int64 property"
+    ],
+    "CapturedFloatProperty": [
+      "float32",
+      2,
+      "Captured float property"
+    ],
+    "CapturedDoubleProperty": [
+      "float",
+      2,
+      "Captured double property"
+    ],
+    "bCapturedBoolProperty": [
+      "bool",
+      2,
+      "Captured boolean property"
+    ],
+    "CapturedObjectProperty": [
+      "UObject",
+      2,
+      "Captured UObject property"
+    ],
+    "CapturedSoftObjectProperty": [
+      "TSoftObjectPtr<UObject>",
+      2,
+      "Captured Soft UObject property"
+    ],
+    "CapturedNameProperty": [
+      "FName",
+      2,
+      "Captured FName property"
+    ],
+    "CapturedStrProperty": [
+      "FString",
+      2,
+      "Captured FString property"
+    ],
+    "CapturedTextProperty": [
+      "FText",
+      2,
+      "Captured FText property"
+    ],
+    "CapturedVectorProperty": [
+      "FVector",
+      2,
+      "Captured FVector property"
+    ]
+  },
+  "methods": []
+}

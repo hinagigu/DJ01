@@ -1,0 +1,28 @@
+{
+  "name": "FARPDomainSettingsForPlugins",
+  "isStruct": true,
+  "properties": {
+    "DefaultRule": [
+      "FARPDefaultPluginDomainRules",
+      2,
+      "The default rule if a more specific plugin rule doesn't apply"
+    ],
+    "AdditionalRules": [
+      "TArray<FARPDomainDefinitionForMatchingPlugins>",
+      2,
+      "Discovered plugins will be matched against these templates\nPriority rules (a path match is preferred to a category match, and within each the longest match wins):\n  Highest: The most specific path match\n           Any path match\n           The most specific category match\n           Any category match"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FARPDomainSettingsForPlugins&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FARPDomainSettingsForPlugins"
+        }
+      ]
+    }
+  ]
+}

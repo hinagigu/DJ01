@@ -1,0 +1,27 @@
+{
+  "name": "__EGBufferFormat",
+  "isEnum": true,
+  "doc": "Enumerates available GBufferFormats.\n@warning When this enum is updated please update CVarGBufferFormat comments",
+  "properties": {
+    "Force8BitsPerChannel": [
+      "EGBufferFormat",
+      "Forces all GBuffers to 8 bits per channel. Intended as profiling for best performance. (Substrate: Octahedral encoding as 2x11bits for simple and single materials, 2x16bits for complex materials)"
+    ],
+    "Default": [
+      "EGBufferFormat",
+      "See GBuffer allocation function for layout details. (Substrate: Octahedral encoding as 2x11bits for simple and single material, 2x16bits for complex materials)"
+    ],
+    "HighPrecisionNormals": [
+      "EGBufferFormat",
+      "Same as Default except normals are encoded at 16 bits per channel. (Substrate: Octahedral encoding as 2x16bits for all materials.)"
+    ],
+    "Force16BitsPerChannel": [
+      "EGBufferFormat",
+      "Forces all GBuffers to 16 bits per channel. Intended as profiling for best quality. (Substrate: Octahedral encoding as 2x16bits for all materials.)"
+    ],
+    "EGBufferFormat_MAX": [
+      "EGBufferFormat"
+    ]
+  },
+  "methods": []
+}

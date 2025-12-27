@@ -1,0 +1,68 @@
+{
+  "name": "UVRScoutingInteractor",
+  "inherits": "UVREditorInteractor",
+  "doc": "Represents the interactor in the world",
+  "properties": {
+    "FlyingIndicatorComponent": [
+      "UStaticMeshComponent",
+      "Shown in Navigation mode"
+    ],
+    "bReceivesEditorInput": [
+      "bool",
+      "If set to true, then this interactor will be able to recieve input delegate callbacks when in the editor. Defaults to true since we will always want this interactor to consume input"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetGizmoMode",
+      "return": "EGizmoHandleTypes",
+      "const": true,
+      "doc": "Gets the gizmo mode for selected object",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInputComponent",
+      "return": "UInputComponent",
+      "const": true,
+      "doc": "Returns the current InputComponent. This will be NULL unless bReceivesEditorInput is set to true.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetReceivesEditorInput",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetGizmoMode",
+      "return": "void",
+      "doc": "Sets the gizmo mode for selected object",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGizmoMode",
+          "type": "EGizmoHandleTypes"
+        }
+      ]
+    },
+    {
+      "name": "SetReceivesEditorInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInValue",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

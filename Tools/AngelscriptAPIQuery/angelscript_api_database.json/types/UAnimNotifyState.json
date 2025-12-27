@@ -1,0 +1,113 @@
+{
+  "name": "UAnimNotifyState",
+  "inherits": "UObject",
+  "properties": {
+    "NotifyColor": [
+      "FColor",
+      "Color of Notify in editor"
+    ],
+    "bShouldFireInEditor": [
+      "bool",
+      "Whether this notify state instance should fire in animation editors"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDefaultTriggerWeightThreshold",
+      "return": "float32",
+      "const": true,
+      "callable": false,
+      "doc": "TriggerWeightThreshold to use when creating notifies of this type",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNotifyName",
+      "return": "FString",
+      "const": true,
+      "callable": false,
+      "doc": "Implementable event to get a custom name for the notify",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "NotifyBegin",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "unrealname": "Received_NotifyBegin",
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshComp",
+          "type": "USkeletalMeshComponent"
+        },
+        {
+          "name": "Animation",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "TotalDuration",
+          "type": "float"
+        },
+        {
+          "name": "EventReference",
+          "type": "FAnimNotifyEventReference"
+        }
+      ]
+    },
+    {
+      "name": "NotifyEnd",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "unrealname": "Received_NotifyEnd",
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshComp",
+          "type": "USkeletalMeshComponent"
+        },
+        {
+          "name": "Animation",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "EventReference",
+          "type": "FAnimNotifyEventReference"
+        }
+      ]
+    },
+    {
+      "name": "NotifyTick",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "unrealname": "Received_NotifyTick",
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshComp",
+          "type": "USkeletalMeshComponent"
+        },
+        {
+          "name": "Animation",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "FrameDeltaTime",
+          "type": "float"
+        },
+        {
+          "name": "EventReference",
+          "type": "FAnimNotifyEventReference"
+        }
+      ]
+    }
+  ]
+}

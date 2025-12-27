@@ -1,0 +1,29 @@
+{
+  "name": "FTargetDeviceServicePowerOff",
+  "isStruct": true,
+  "doc": "Implements a message for powering on a target device.",
+  "properties": {
+    "Force": [
+      "bool",
+      2,
+      "Holds a flag indicating whether the power-off should be enforced.\n\nIf powering off is not enforced, if may fail if some running application prevents it."
+    ],
+    "Operator": [
+      "FString",
+      2,
+      "Holds the name of the user that wishes to power off the device."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTargetDeviceServicePowerOff&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTargetDeviceServicePowerOff"
+        }
+      ]
+    }
+  ]
+}

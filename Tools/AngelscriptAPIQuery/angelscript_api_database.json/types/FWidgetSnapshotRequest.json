@@ -1,0 +1,29 @@
+{
+  "name": "FWidgetSnapshotRequest",
+  "isStruct": true,
+  "doc": "Implements a message that is used to request a widget snapshot from a remote target.",
+  "properties": {
+    "TargetInstanceId": [
+      "FGuid",
+      2,
+      "The instance ID of the remote target we want to receive a snapshot from"
+    ],
+    "SnapshotRequestId": [
+      "FGuid",
+      2,
+      "The request ID of this snapshot (used to identify the correct response from the target)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FWidgetSnapshotRequest&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FWidgetSnapshotRequest"
+        }
+      ]
+    }
+  ]
+}

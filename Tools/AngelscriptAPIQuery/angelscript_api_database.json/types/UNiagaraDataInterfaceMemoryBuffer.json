@@ -1,0 +1,18 @@
+{
+  "name": "UNiagaraDataInterfaceMemoryBuffer",
+  "inherits": "UNiagaraDataInterface",
+  "doc": "Data interface used to access a memory buffer.\nThe user is responsible for how data is read / wrote.\nThe DI will ensure no out of bounds access but not that the elements are of the correct type (i.e. float or int)\nElements are considered to be 4 bytes in size.",
+  "properties": {
+    "DefaultNumElements": [
+      "int",
+      2,
+      "Default space we will allocate for the memory buffer."
+    ],
+    "GpuSyncMode": [
+      "ENiagaraGpuSyncMode",
+      2,
+      "How should we synhronize the data between CPU and GPU memory."
+    ]
+  },
+  "methods": []
+}

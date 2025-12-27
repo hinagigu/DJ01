@@ -1,0 +1,156 @@
+{
+  "name": "UCableComponent",
+  "inherits": "UMeshComponent",
+  "doc": "Component that allows you to specify custom triangle mesh geometry",
+  "properties": {
+    "bAttachStart": [
+      "bool",
+      "Should we fix the start to something, or leave it free.\nIf false, component transform is just used for initial location of start of cable"
+    ],
+    "bAttachEnd": [
+      "bool",
+      "Should we fix the end to something (using AttachEndTo and EndLocation), or leave it free.\nIf false, AttachEndTo and EndLocation are just used for initial location of end of cable"
+    ],
+    "AttachEndToSocketName": [
+      "FName",
+      2,
+      "Socket name on the AttachEndTo component to attach to"
+    ],
+    "EndLocation": [
+      "FVector",
+      "End location of cable, relative to AttachEndTo (or AttachEndToSocketName) if specified, otherwise relative to cable component."
+    ],
+    "CableLength": [
+      "float32",
+      "Rest length of the cable"
+    ],
+    "NumSegments": [
+      "int",
+      "How many segments the cable has"
+    ],
+    "SubstepTime": [
+      "float32",
+      "Controls the simulation substep time for the cable"
+    ],
+    "SolverIterations": [
+      "int",
+      "The number of solver iterations controls how 'stiff' the cable is"
+    ],
+    "bEnableStiffness": [
+      "bool",
+      "Add stiffness constraints to cable."
+    ],
+    "bUseSubstepping": [
+      "bool",
+      "When false, will still wait for SubstepTime to elapse before updating, but will only run the cable simulation once using all of accumulated simulation time"
+    ],
+    "bSkipCableUpdateWhenNotVisible": [
+      "bool"
+    ],
+    "bSkipCableUpdateWhenNotOwnerRecentlyRendered": [
+      "bool"
+    ],
+    "bEnableCollision": [
+      "bool",
+      "EXPERIMENTAL. Perform sweeps for each cable particle, each substep, to avoid collisions with the world.\nUses the Collision Preset on the component to determine what is collided with.\nThis greatly increases the cost of the cable simulation."
+    ],
+    "CollisionFriction": [
+      "float32",
+      "If collision is enabled, control how much sliding friction is applied when cable is in contact."
+    ],
+    "CableForce": [
+      "FVector",
+      "Force vector (world space) applied to all particles in cable."
+    ],
+    "CableGravityScale": [
+      "float32",
+      "Scaling applied to world gravity affecting this cable."
+    ],
+    "CableWidth": [
+      "float32",
+      "How wide the cable geometry is"
+    ],
+    "NumSides": [
+      "int",
+      "Number of sides of the cable geometry"
+    ],
+    "TileMaterial": [
+      "float32",
+      "How many times to repeat the material along the length of the cable"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAttachedActor",
+      "return": "AActor",
+      "const": true,
+      "doc": "Gets the Actor that the cable is attached to *",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAttachedComponent",
+      "return": "USceneComponent",
+      "const": true,
+      "doc": "Gets the specific USceneComponent that the cable is attached to *",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCableParticleLocations",
+      "return": "void",
+      "const": true,
+      "doc": "Get array of locations of particles (in world space) making up the cable simulation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Locations",
+          "type": "TArray<FVector>&"
+        }
+      ]
+    },
+    {
+      "name": "SetAttachEndTo",
+      "return": "void",
+      "doc": "Attaches the end of the cable to a specific Component within an Actor *",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "ComponentProperty",
+          "type": "FName"
+        },
+        {
+          "name": "SocketName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetAttachEndToComponent",
+      "return": "void",
+      "doc": "Attaches the end of the cable to a specific Component *",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "SocketName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

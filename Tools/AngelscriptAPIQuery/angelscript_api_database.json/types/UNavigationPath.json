@@ -1,0 +1,101 @@
+{
+  "name": "UNavigationPath",
+  "inherits": "UObject",
+  "doc": "UObject wrapper for FNavigationPath",
+  "properties": {
+    "PathUpdatedNotifier": [
+      "FOnNavigationPathUpdated"
+    ],
+    "PathPoints": [
+      "TArray<FVector>",
+      1,
+      ""
+    ],
+    "RecalculateOnInvalidation": [
+      "ENavigationOptionFlag",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "EnableDebugDrawing",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bShouldDrawDebugData",
+          "type": "bool"
+        },
+        {
+          "name": "PathColor",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "EnableRecalculationOnInvalidation",
+      "return": "void",
+      "doc": "if enabled path will request recalculation if it gets invalidated due to a change to underlying navigation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DoRecalculation",
+          "type": "ENavigationOptionFlag"
+        }
+      ]
+    },
+    {
+      "name": "GetDebugString",
+      "return": "FString",
+      "const": true,
+      "doc": "UObject end",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPathCost",
+      "return": "float",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPathLength",
+      "return": "float",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPartial",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsStringPulled",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

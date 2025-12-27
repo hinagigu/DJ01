@@ -1,0 +1,84 @@
+{
+  "name": "UNavLinkCustomComponent",
+  "inherits": "UNavRelevantComponent",
+  "doc": "Encapsulates NavLinkCustomInterface interface, can be used with Actors not relevant for navigation\n\nAdditional functionality:\n- can be toggled\n- can create obstacle area for easier/forced separation of link end points\n- can broadcast state changes to nearby agents",
+  "properties": {
+    "EnabledAreaClass": [
+      "TSubclassOf<UNavArea>",
+      2,
+      "area class to use when link is enabled"
+    ],
+    "DisabledAreaClass": [
+      "TSubclassOf<UNavArea>",
+      2,
+      "area class to use when link is disabled"
+    ],
+    "SupportedAgents": [
+      "FNavAgentSelector",
+      2,
+      "restrict area only to specified agents"
+    ],
+    "LinkRelativeStart": [
+      "FVector",
+      2,
+      "start point, relative to owner"
+    ],
+    "LinkRelativeEnd": [
+      "FVector",
+      2,
+      "end point, relative to owner"
+    ],
+    "LinkDirection": [
+      "ENavLinkDirection",
+      2,
+      "direction of link"
+    ],
+    "ObstacleOffset": [
+      "FVector",
+      2,
+      "offset of simple box obstacle"
+    ],
+    "ObstacleExtent": [
+      "FVector",
+      2,
+      "extent of simple box obstacle"
+    ],
+    "ObstacleAreaClass": [
+      "TSubclassOf<UNavArea>",
+      2,
+      "area class for simple box obstacle"
+    ],
+    "BroadcastRadius": [
+      "float32",
+      2,
+      "radius of state change broadcast"
+    ],
+    "BroadcastInterval": [
+      "float32",
+      2,
+      "interval for state change broadcast (0 = single broadcast)"
+    ],
+    "BroadcastChannel": [
+      "ECollisionChannel",
+      2,
+      "trace channel for state change broadcast"
+    ],
+    "bLinkEnabled": [
+      "bool",
+      "is link currently in enabled state? (area class)"
+    ],
+    "bNotifyWhenEnabled": [
+      "bool",
+      "should link notify nearby agents when it changes state to enabled"
+    ],
+    "bNotifyWhenDisabled": [
+      "bool",
+      "should link notify nearby agents when it changes state to disabled"
+    ],
+    "bCreateBoxObstacle": [
+      "bool",
+      "if set, box obstacle area will be added to generation"
+    ]
+  },
+  "methods": []
+}

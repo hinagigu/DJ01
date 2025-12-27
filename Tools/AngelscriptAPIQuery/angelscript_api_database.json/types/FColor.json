@@ -1,0 +1,89 @@
+{
+  "name": "FColor",
+  "isStruct": true,
+  "doc": "Stores a color with 8 bits of precision per channel. (BGRA).\n@note The full C++ class is located here: Engine\\Source\\Runtime\\Core\\Public\\Math\\Color.h",
+  "properties": {
+    "DWColor": [
+      "uint"
+    ],
+    "B": [
+      "uint8"
+    ],
+    "G": [
+      "uint8"
+    ],
+    "R": [
+      "uint8"
+    ],
+    "A": [
+      "uint8"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "ColorB",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "void",
+      "args": [
+        {
+          "name": "ColorB",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "ToHex",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "InitFromString",
+      "return": "bool",
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "FromRGBE",
+      "return": "FLinearColor",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ReinterpretAsLinear",
+      "return": "FLinearColor",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "opAssign",
+      "return": "FColor&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FColor"
+        }
+      ]
+    }
+  ]
+}

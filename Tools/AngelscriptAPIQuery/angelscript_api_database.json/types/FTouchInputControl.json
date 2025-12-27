@@ -1,0 +1,68 @@
+{
+  "name": "FTouchInputControl",
+  "isStruct": true,
+  "properties": {
+    "bTreatAsButton": [
+      "bool",
+      2,
+      "Set this to true to treat the joystick as a simple button"
+    ],
+    "Image1": [
+      "UTexture2D",
+      2,
+      "For sticks, this is the Thumb"
+    ],
+    "Image2": [
+      "UTexture2D",
+      2,
+      "For sticks, this is the Background"
+    ],
+    "Center": [
+      "FVector2D",
+      2,
+      "The initial center point of the control. If Time Until Reset is < 0, control resets back to here.\nUse negative numbers to invert positioning from top to bottom, left to right. (if <= 1.0, it's relative to screen, > 1.0 is absolute)"
+    ],
+    "VisualSize": [
+      "FVector2D",
+      2,
+      "The size of the control (if <= 1.0, it's relative to screen, > 1.0 is absolute)"
+    ],
+    "ThumbSize": [
+      "FVector2D",
+      2,
+      "For sticks, the size of the thumb (if <= 1.0, it's relative to screen, > 1.0 is absolute)"
+    ],
+    "InteractionSize": [
+      "FVector2D",
+      2,
+      "The interactive size of the control. Measured outward from Center. (if <= 1.0, it's relative to screen, > 1.0 is absolute)"
+    ],
+    "InputScale": [
+      "FVector2D",
+      2,
+      "The scale for control input"
+    ],
+    "MainInputKey": [
+      "FKey",
+      2,
+      "The main input to send from this control (for sticks, this is the horizontal axis)"
+    ],
+    "AltInputKey": [
+      "FKey",
+      2,
+      "The alternate input to send from this control (for sticks, this is the vertical axis)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTouchInputControl&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTouchInputControl"
+        }
+      ]
+    }
+  ]
+}

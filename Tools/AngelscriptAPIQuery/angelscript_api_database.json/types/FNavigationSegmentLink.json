@@ -1,0 +1,83 @@
+{
+  "name": "FNavigationSegmentLink",
+  "isStruct": true,
+  "properties": {
+    "LeftStart": [
+      "FVector",
+      2,
+      ""
+    ],
+    "LeftEnd": [
+      "FVector",
+      2,
+      ""
+    ],
+    "RightStart": [
+      "FVector",
+      2,
+      ""
+    ],
+    "RightEnd": [
+      "FVector",
+      2,
+      ""
+    ],
+    "LeftProjectHeight": [
+      "float32",
+      2,
+      "if greater than 0 nav system will attempt to project navlink's start point on geometry below"
+    ],
+    "MaxFallDownLength": [
+      "float32",
+      2,
+      "if greater than 0 nav system will attempt to project navlink's end point on geometry below"
+    ],
+    "SnapRadius": [
+      "float32",
+      2,
+      ""
+    ],
+    "SnapHeight": [
+      "float32",
+      2,
+      ""
+    ],
+    "SupportedAgents": [
+      "FNavAgentSelector",
+      2,
+      "restrict area only to specified agents"
+    ],
+    "Description": [
+      "FString",
+      2,
+      "this is an editor-only property to put descriptions in navlinks setup, to be able to identify it easier"
+    ],
+    "Direction": [
+      "ENavLinkDirection"
+    ],
+    "AreaClass": [
+      "TSubclassOf<UNavAreaBase>",
+      2,
+      "Area type of this link (empty = default)"
+    ],
+    "bUseSnapHeight": [
+      "bool"
+    ],
+    "bSnapToCheapestArea": [
+      "bool",
+      "If set, link will try to snap to cheapest area in given radius"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNavigationSegmentLink&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNavigationSegmentLink"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "name": "FMargin",
+  "isStruct": true,
+  "doc": "Describes the space around a Widget.",
+  "properties": {
+    "Left": [
+      "float32",
+      "Holds the margin to the left."
+    ],
+    "Top": [
+      "float32",
+      "Holds the margin to the top."
+    ],
+    "Right": [
+      "float32",
+      "Holds the margin to the right."
+    ],
+    "Bottom": [
+      "float32",
+      "Holds the margin to the bottom."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opMul",
+      "return": "FMargin",
+      "const": true,
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "opMul",
+      "return": "FMargin",
+      "const": true,
+      "args": [
+        {
+          "name": "InScale",
+          "type": "FMargin"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FMargin",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMargin"
+        }
+      ]
+    },
+    {
+      "name": "opSub",
+      "return": "FMargin",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMargin"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMargin"
+        }
+      ]
+    },
+    {
+      "name": "GetTopLeft",
+      "return": "FVector2D",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetDesiredSize",
+      "return": "FVector2D",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetTotalSpaceAlongHorizontal",
+      "return": "float32",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetTotalSpaceAlongVertical",
+      "return": "float32",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "opAssign",
+      "return": "FMargin&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMargin"
+        }
+      ]
+    }
+  ]
+}

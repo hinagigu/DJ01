@@ -1,0 +1,95 @@
+{
+  "name": "UPoseAsset",
+  "inherits": "UAnimationAsset",
+  "doc": "Pose Asset that can be blended by weight of curves",
+  "properties": {
+    "bAdditivePose": [
+      "bool",
+      2,
+      "Whether or not Additive Pose or not - these are property that needs post process, so"
+    ],
+    "RetargetSource": [
+      "FName",
+      2,
+      "Base pose to use when retargeting"
+    ],
+    "RetargetSourceAsset": [
+      "TSoftObjectPtr<USkeletalMesh>",
+      2,
+      "If RetargetSource is set to Default (None), this is asset for the base pose to use when retargeting. Transform data will be saved in RetargetSourceAssetReferencePose."
+    ],
+    "SourceAnimation": [
+      "UAnimSequence",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetBasePoseName",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns base pose name, only valid when additive, NAME_None indicates reference pose",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPoseNames",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the name of all contained poses",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PoseNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "RenamePose",
+      "return": "void",
+      "doc": "Renames a specific pose",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OriginalPoseName",
+          "type": "FName"
+        },
+        {
+          "name": "NewPoseName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetBasePoseName",
+      "return": "bool",
+      "doc": "Set base pose index by name, NAME_None indicates reference pose - returns true if set successfully",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewBasePoseName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "UpdatePoseFromAnimation",
+      "return": "void",
+      "doc": "Contained poses are re-generated from the provided Animation Sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimSequence",
+          "type": "UAnimSequence"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "FAnimationSetup",
+  "isStruct": true,
+  "properties": {
+    "AnimSequence": [
+      "UAnimSequence",
+      2,
+      "Animation Sequence to play for this particular setup"
+    ],
+    "AnimBlueprint": [
+      "TSubclassOf<UAnimSharingStateInstance>",
+      2,
+      "Animation blueprint to use for playing back the Animation Sequence"
+    ],
+    "NumRandomizedInstances": [
+      "FPerPlatformInt",
+      2,
+      "The number of randomized instances created from this setup, it will create instance with different start time offsets (Length / Number of Instance) * InstanceIndex"
+    ],
+    "Enabled": [
+      "FPerPlatformBool",
+      2,
+      "Whether or not this setup is enabled for specific platforms"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimationSetup&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimationSetup"
+        }
+      ]
+    }
+  ]
+}

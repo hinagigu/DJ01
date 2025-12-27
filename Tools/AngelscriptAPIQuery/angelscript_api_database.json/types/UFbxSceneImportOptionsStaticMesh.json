@@ -1,0 +1,45 @@
+{
+  "name": "UFbxSceneImportOptionsStaticMesh",
+  "inherits": "UObject",
+  "properties": {
+    "VertexColorImportOption": [
+      "EFbxSceneVertexColorImportOption",
+      2,
+      "Specify how vertex colors should be imported"
+    ],
+    "VertexOverrideColor": [
+      "FColor",
+      2,
+      "Specify override color in the case that VertexColorImportOption is set to Override"
+    ],
+    "NormalImportMethod": [
+      "EFBXSceneNormalImportMethod",
+      2,
+      "Enabling this option will read the tangents(tangent,binormal,normal) from FBX file instead of generating them automatically."
+    ],
+    "NormalGenerationMethod": [
+      "EFBXSceneNormalGenerationMethod",
+      2,
+      "Use the MikkTSpace tangent space generator for generating normals and tangents on the mesh"
+    ],
+    "bAutoGenerateCollision": [
+      "bool",
+      "If checked, collision will automatically be generated (ignored if custom collision is imported or used)."
+    ],
+    "bRemoveDegenerates": [
+      "bool",
+      "Disabling this option will keep degenerate triangles found.  In general you should leave this option on."
+    ],
+    "bBuildReversedIndexBuffer": [
+      "bool"
+    ],
+    "bGenerateLightmapUVs": [
+      "bool"
+    ],
+    "bOneConvexHullPerUCX": [
+      "bool",
+      "If checked, one convex hull per UCX_ prefixed collision mesh will be generated instead of decomposing into multiple hulls"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,63 @@
+{
+  "name": "UDJ01CameraMode_ThirdPerson",
+  "inherits": "UDJ01CameraMode",
+  "doc": "UDJ01CameraMode_ThirdPerson\n\n     A basic third person camera mode.",
+  "properties": {
+    "TargetOffsetCurve": [
+      "const UCurveVector",
+      2,
+      "Curve that defines local-space offsets from the target using the view pitch to evaluate the curve."
+    ],
+    "bUseRuntimeFloatCurves": [
+      "bool",
+      2,
+      "UE-103986: Live editing of RuntimeFloatCurves during PIE does not work (unlike curve assets).\nOnce that is resolved this will become the default and TargetOffsetCurve will be removed."
+    ],
+    "TargetOffsetX": [
+      "FRuntimeFloatCurve",
+      2,
+      ""
+    ],
+    "TargetOffsetY": [
+      "FRuntimeFloatCurve",
+      2,
+      ""
+    ],
+    "TargetOffsetZ": [
+      "FRuntimeFloatCurve",
+      2,
+      ""
+    ],
+    "CrouchOffsetBlendMultiplier": [
+      "float32",
+      "Alters the speed that a crouch offset is blended in or out"
+    ],
+    "PenetrationBlendInTime": [
+      "float32"
+    ],
+    "PenetrationBlendOutTime": [
+      "float32"
+    ],
+    "bPreventPenetration": [
+      "bool",
+      "If true, does collision checks to keep the camera out of the world."
+    ],
+    "bDoPredictiveAvoidance": [
+      "bool",
+      "If true, try to detect nearby walls and move the camera in anticipation.  Helps prevent popping."
+    ],
+    "CollisionPushOutDistance": [
+      "float32"
+    ],
+    "ReportPenetrationPercent": [
+      "float32",
+      "When the camera's distance is pushed into this percentage of its full distance due to penetration"
+    ],
+    "PenetrationAvoidanceFeelers": [
+      "TArray<FDJ01PenetrationAvoidanceFeeler>",
+      2,
+      "These are the feeler rays that are used to find where to place the camera.\nIndex: 0  : This is the normal feeler we use to prevent collisions.\nIndex: 1+ : These feelers are used if you bDoPredictiveAvoidance=true, to scan for potential impacts if the player\n            were to rotate towards that direction and primitively collide the camera so that it pulls in before\n            impacting the occluder."
+    ]
+  },
+  "methods": []
+}

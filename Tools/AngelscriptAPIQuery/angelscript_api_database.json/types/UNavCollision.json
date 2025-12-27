@@ -1,0 +1,30 @@
+{
+  "name": "UNavCollision",
+  "inherits": "UNavCollisionBase",
+  "properties": {
+    "CylinderCollision": [
+      "TArray<FNavCollisionCylinder>",
+      2,
+      "list of nav collision cylinders"
+    ],
+    "BoxCollision": [
+      "TArray<FNavCollisionBox>",
+      2,
+      "list of nav collision boxes"
+    ],
+    "AreaClass": [
+      "TSubclassOf<UNavArea>",
+      2,
+      "navigation area type that will be use when this static mesh is used as\n    a navigation obstacle. See bIsDynamicObstacle.\n    Empty AreaClass means the default obstacle class will be used"
+    ],
+    "bGatherConvexGeometry": [
+      "bool",
+      "If set, convex collisions will be exported offline for faster runtime navmesh building (increases memory usage)"
+    ],
+    "bCreateOnClient": [
+      "bool",
+      "If false, will not create nav collision when connecting as a client"
+    ]
+  },
+  "methods": []
+}

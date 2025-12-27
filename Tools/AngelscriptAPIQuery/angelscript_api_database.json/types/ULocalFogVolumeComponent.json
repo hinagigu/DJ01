@@ -1,0 +1,124 @@
+{
+  "name": "ULocalFogVolumeComponent",
+  "inherits": "USceneComponent",
+  "properties": {
+    "FogSortPriority": [
+      "int",
+      "The priority can be used as a way to override the sorting by distance. A lower value means the volume will be considered further away, i.e. it will draw behind the one with a higher priority value."
+    ],
+    "RadialFogExtinction": [
+      "float32",
+      "The density of the radial fog representing its extinction coefficient at the center of the sphere. The final look of the volume is determined by combining the \"Coverage=1-Transmittance\" of both radial and height fog in order to achieve both soft edges and height fog."
+    ],
+    "HeightFogExtinction": [
+      "float32",
+      "The density of the radial fog representing its extinction coefficient at height 0 in the unit sphere. The final look of the volume is determined by combining the \"Coverage=1-Transmittance\" of both radial and height fog in order to achieve both soft edges and height fog."
+    ],
+    "HeightFogFalloff": [
+      "float32",
+      "Controls how the density decreases as height increases. Smaller values make the visible transition larger. 1.0 is the lowest value before visual artifact are visible at the horizon."
+    ],
+    "HeightFogOffset": [
+      "float32",
+      "Height offset, relative to the actor Z position."
+    ],
+    "FogPhaseG": [
+      "float32",
+      "Controls the phase `G` parameter, describing the directionality of the scattering within this fog volume."
+    ],
+    "FogAlbedo": [
+      "FLinearColor",
+      "Controls the albedo of this fog volume."
+    ],
+    "FogEmissive": [
+      "FLinearColor",
+      "Controls the emissive color of this fog volume."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetFogAlbedo",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetFogEmissive",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetFogPhaseG",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetHeightFogExtinction",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetHeightFogFalloff",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetHeightFogOffset",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRadialFogExtinction",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

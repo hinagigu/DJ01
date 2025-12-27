@@ -1,0 +1,40 @@
+{
+  "name": "__HealthSnapshot",
+  "properties": {},
+  "methods": [
+    {
+      "name": "LogPerformanceSnapshot",
+      "return": "void",
+      "doc": "Writes a snapshot to the log. Captures memory stats by default. Also captures performance stats if called after StartHealthSnapshotChart and before SopHealthSnapshotChart.\n\n@param        SnapshotTitle                   The name to be given to the new HealthSnapshot.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SnapshotTitle",
+          "type": "FString"
+        },
+        {
+          "name": "bResetStats",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StartPerformanceSnapshots",
+      "return": "void",
+      "doc": "Begins capturing FPS charts that can be used to include performance data in a HealthSnapshot. If snapshots are already running clears all accumulated performance data",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopPerformanceSnapshots",
+      "return": "void",
+      "doc": "Stops capturing FPS charts only if StartHealthSnapshotChart has first been called. Does nothing if FPS charts are not running. HealthSnapshots captured after this is called will not include performance stats.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

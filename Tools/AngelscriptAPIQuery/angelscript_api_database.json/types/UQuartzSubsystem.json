@@ -1,0 +1,232 @@
+{
+  "name": "UQuartzSubsystem",
+  "inherits": "UTickableWorldSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateNewClock",
+      "return": "UQuartzClockHandle",
+      "doc": "Clock Creation\ncreate a new clock (or return handle if clock already exists)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClockName",
+          "type": "FName"
+        },
+        {
+          "name": "InSettings",
+          "type": "FQuartzClockSettings"
+        },
+        {
+          "name": "bOverrideSettingsIfClockExists",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bUseAudioEngineClockManager",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DeleteClockByHandle",
+      "return": "void",
+      "doc": "delete an existing clock given its clock handle",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InClockHandle",
+          "type": "UQuartzClockHandle&"
+        }
+      ]
+    },
+    {
+      "name": "DeleteClockByName",
+      "return": "void",
+      "doc": "delete an existing clock given its name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClockName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "DoesClockExist",
+      "return": "bool",
+      "doc": "returns true if the clock exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClockName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetAudioRenderThreadToGameThreadAverageLatency",
+      "return": "float32",
+      "doc": "latency data (Audio Render Thread -> Game thread)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAudioRenderThreadToGameThreadMaxLatency",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAudioRenderThreadToGameThreadMinLatency",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentClockTimestamp",
+      "return": "FQuartzTransportTimeStamp",
+      "doc": "Retrieves a timestamp for the clock",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InClockName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetDurationOfQuantizationTypeInSeconds",
+      "return": "float32",
+      "doc": "Returns the duration in seconds of the given Quantization Type",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClockName",
+          "type": "FName"
+        },
+        {
+          "name": "QuantizationType",
+          "type": "EQuartzCommandQuantization"
+        },
+        {
+          "name": "Multiplier",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetEstimatedClockRunTime",
+      "return": "float32",
+      "doc": "Returns the amount of time, in seconds, the clock has been running. Caution: due to latency, this will not be perfectly accurate",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InClockName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetGameThreadToAudioRenderThreadAverageLatency",
+      "return": "float32",
+      "doc": "latency data (Game thread -> Audio Render Thread)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGameThreadToAudioRenderThreadMaxLatency",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGameThreadToAudioRenderThreadMinLatency",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHandleForClock",
+      "return": "UQuartzClockHandle",
+      "doc": "get handle for existing clock",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClockName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetRoundTripAverageLatency",
+      "return": "float32",
+      "doc": "latency data (Round trip)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRoundTripMaxLatency",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRoundTripMinLatency",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsClockRunning",
+      "return": "bool",
+      "doc": "returns true if the clock is running",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClockName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsQuartzEnabled",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetQuartzSubsystemTickableWhenPaused",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInTickableWhenPaused",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

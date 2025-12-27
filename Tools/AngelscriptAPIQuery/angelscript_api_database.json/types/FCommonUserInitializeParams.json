@@ -1,0 +1,61 @@
+{
+  "name": "FCommonUserInitializeParams",
+  "isStruct": true,
+  "doc": "Parameter struct for initialize functions, this would normally be filled in by wrapper functions like async nodes",
+  "properties": {
+    "LocalPlayerIndex": [
+      "int",
+      "What local player index to use, can specify one above current if can create player is enabled"
+    ],
+    "ControllerId": [
+      "int",
+      "Deprecated method of selecting platform user and input device"
+    ],
+    "PrimaryInputDevice": [
+      "FInputDeviceId",
+      1,
+      "Primary controller input device for this user, they could also have additional secondary devices"
+    ],
+    "PlatformUser": [
+      "FPlatformUserId",
+      1,
+      "Specifies the logical user on the local platform"
+    ],
+    "RequestedPrivilege": [
+      "ECommonUserPrivilege",
+      "Generally either CanPlay or CanPlayOnline, specifies what level of privilege is required"
+    ],
+    "OnlineContext": [
+      "ECommonUserOnlineContext",
+      "What specific online context to log in to, game means to login to all relevant ones"
+    ],
+    "bCanCreateNewLocalPlayer": [
+      "bool",
+      "True if this is allowed to create a new local player for initial login"
+    ],
+    "bCanUseGuestLogin": [
+      "bool",
+      "True if this player can be a guest user without an actual online presence"
+    ],
+    "bSuppressLoginErrors": [
+      "bool",
+      "True if we should not show login errors, the game will be responsible for displaying them"
+    ],
+    "OnUserInitializeComplete": [
+      "FCommonUserOnInitializeComplete",
+      "If bound, call this dynamic delegate at completion of login"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCommonUserInitializeParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCommonUserInitializeParams"
+        }
+      ]
+    }
+  ]
+}

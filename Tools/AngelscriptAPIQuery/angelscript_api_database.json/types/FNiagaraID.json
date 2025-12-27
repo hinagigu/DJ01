@@ -1,0 +1,28 @@
+{
+  "name": "FNiagaraID",
+  "isStruct": true,
+  "properties": {
+    "Index": [
+      "int",
+      1,
+      "Index in the indirection table for this particle. Allows fast access to this particles data.\nIs always unique among currently living particles but will be reused after the particle dies."
+    ],
+    "AcquireTag": [
+      "int",
+      1,
+      "A unique tag for when this ID was acquired.\nAllows us to differentiate between particles when one dies and another reuses it's Index."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraID&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraID"
+        }
+      ]
+    }
+  ]
+}

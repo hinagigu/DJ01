@@ -1,0 +1,38 @@
+{
+  "name": "FBlackboardKeySelector",
+  "isStruct": true,
+  "doc": "helper struct for defining types of allowed blackboard entries\n(e.g. only entries holding points and objects derived form actor class)",
+  "properties": {
+    "AllowedTypes": [
+      "TArray<TObjectPtr<UBlackboardKeyType>>",
+      "array of allowed types with additional properties (e.g. uobject's base class)\nEditAnywhere is required for FBlackboardSelectorDetails::CacheBlackboardData()"
+    ],
+    "SelectedKeyName": [
+      "FName",
+      "name of selected key"
+    ],
+    "SelectedKeyType": [
+      "TSubclassOf<UBlackboardKeyType>",
+      "class of selected key"
+    ],
+    "SelectedKeyID": [
+      "int",
+      "ID of selected key"
+    ],
+    "bNoneIsAllowedValue": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FBlackboardKeySelector&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBlackboardKeySelector"
+        }
+      ]
+    }
+  ]
+}

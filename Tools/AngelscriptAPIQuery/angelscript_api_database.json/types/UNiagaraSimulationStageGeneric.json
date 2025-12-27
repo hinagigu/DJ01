@@ -1,0 +1,83 @@
+{
+  "name": "UNiagaraSimulationStageGeneric",
+  "inherits": "UNiagaraSimulationStageBase",
+  "properties": {
+    "IterationSource": [
+      "ENiagaraIterationSource",
+      2,
+      "Select what we should be iterating over, particles or data interfaces.\nThe source provides things such as element count (when not overriden) and stack context variables (i.e. attributes on grids)"
+    ],
+    "NumIterations": [
+      "FNiagaraParameterBindingWithValue",
+      2,
+      "Number of times (or iterations) the simulation stage will execute in a row.\nFor example, setting this to 10 will mean this simulation stage runs 10 times in a row before the next stage.\nCan also be bound to a attribute so the simulation can dynamically decide"
+    ],
+    "ExecuteBehavior": [
+      "ENiagaraSimStageExecuteBehavior",
+      2,
+      "Controls when the simulation stage should execute, only valid for data interface iteration stages"
+    ],
+    "ParticleIterationStateRange": [
+      "FIntPoint",
+      2,
+      "The inclusive range used to check particle state binding against when enabled."
+    ],
+    "OverrideGpuDispatchNumThreadsX": [
+      "FNiagaraParameterBindingWithValue",
+      2,
+      "Parameter binding / constant value for Num Threads X"
+    ],
+    "OverrideGpuDispatchNumThreadsY": [
+      "FNiagaraParameterBindingWithValue",
+      2,
+      "Parameter binding / constant value for Num Threads Y"
+    ],
+    "OverrideGpuDispatchNumThreadsZ": [
+      "FNiagaraParameterBindingWithValue",
+      2,
+      "Parameter binding / constant value for Num Threads Z"
+    ],
+    "DirectDispatchType": [
+      "ENiagaraGpuDispatchType",
+      2,
+      "Dimensions to use for dispatch."
+    ],
+    "DirectDispatchElementType": [
+      "ENiagaraDirectDispatchElementType",
+      2,
+      "Customizes what the element count means for a direct dispatch."
+    ],
+    "ElementCountX": [
+      "FNiagaraParameterBindingWithValue",
+      2,
+      "Integer binding to override the number of elements the stage will execute along X.\nFor example, if you want to iterate over a custom source such as triangles on a mesh you can\nset an int to the triangle count in an emitter script and bind that as the element count."
+    ],
+    "ElementCountY": [
+      "FNiagaraParameterBindingWithValue",
+      2,
+      "Integer binding to override the number of elements the stage will execute along Y.\nFor example, if you want to iterate over a 2D texture you can set an int to the texture height\nin an emitter script and bind that as the element count."
+    ],
+    "ElementCountZ": [
+      "FNiagaraParameterBindingWithValue",
+      2,
+      "Integer binding to override the number of elements the stage will execute along Z.\nFor example, if you want to iterate over a 3D texture you can set an int to the texture depth\nin an emitter script and bind that as the element count."
+    ],
+    "bDisablePartialParticleUpdate": [
+      "bool",
+      "Disables the ability to read / write from the same particle buffer, i.e. only update position and no other attributes.\nBy default this should not be changed, but can be used to debug issues."
+    ],
+    "bParticleIterationStateEnabled": [
+      "bool",
+      "When enabled we iterate over the subset of particles that satisfy the binding & range selected.\nFor example, if the binding was set to Particles.MyStateIndex and the range was 1-3 only the particles\nwith values of 1, 2 or 3 for Particles.MyStateIndex would run the script, all others would be ignored."
+    ],
+    "bGpuDispatchForceLinear": [
+      "bool",
+      "When enabled we force the dispatch to be linear (i.e. one dimension is used).\nNOTE: Cannot be used with OverrideGpuDispatchType."
+    ],
+    "bOverrideGpuDispatchNumThreads": [
+      "bool",
+      "When enabled we use a custom number of threads for the dispatch."
+    ]
+  },
+  "methods": []
+}

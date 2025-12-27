@@ -1,0 +1,48 @@
+{
+  "name": "FMovieSceneSectionParameters",
+  "isStruct": true,
+  "doc": "namespace UE::MovieScene",
+  "properties": {
+    "StartFrameOffset": [
+      "FFrameNumber",
+      "Number of frames (in display rate) to skip at the beginning of the sub-sequence."
+    ],
+    "bCanLoop": [
+      "bool",
+      "Whether this section supports looping the sub-sequence."
+    ],
+    "EndFrameOffset": [
+      "FFrameNumber",
+      "Number of frames (in display rate) to skip at the beginning of the sub-sequence."
+    ],
+    "FirstLoopStartFrameOffset": [
+      "FFrameNumber",
+      "Number of frames (in display rate) to offset the first loop of the sub-sequence."
+    ],
+    "TimeScale": [
+      "float32",
+      "Playback time scaling factor."
+    ],
+    "HierarchicalBias": [
+      "int",
+      "Hierachical bias. Higher bias will take precedence."
+    ],
+    "Flags": [
+      "EMovieSceneSubSectionFlags",
+      1,
+      "Sub-section flags defining how to deal with this sub-sequence"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMovieSceneSectionParameters&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMovieSceneSectionParameters"
+        }
+      ]
+    }
+  ]
+}

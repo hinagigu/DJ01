@@ -1,0 +1,40 @@
+{
+  "name": "__AudioCapture",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateAudioCapture",
+      "return": "UAudioCapture",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Conv_AudioInputDeviceInfoToString",
+      "return": "FString",
+      "doc": "Returns the device info in a human readable format\n@param info - The audio device data to print\n@return The data in a string format",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "info",
+          "type": "FAudioInputDeviceInfo"
+        }
+      ]
+    },
+    {
+      "name": "GetAvailableAudioInputDevices",
+      "return": "void",
+      "doc": "Gets information about all audio output devices available in the system\n@param OnObtainDevicesEvent - the event to fire when the audio endpoint devices have been retrieved",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OnObtainDevicesEvent",
+          "default": "FOnAudioInputDevicesObtained ( )",
+          "type": "FOnAudioInputDevicesObtained"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "name": "UFbxImportUI",
+  "inherits": "UObject",
+  "properties": {
+    "bIsObjImport": [
+      "bool",
+      1,
+      "Whether or not the imported file is in OBJ format"
+    ],
+    "OriginalImportType": [
+      "EFBXImportType",
+      1,
+      "The original detected type of this import"
+    ],
+    "MeshTypeToImport": [
+      "EFBXImportType",
+      1,
+      "Type of asset to import from the FBX file"
+    ],
+    "bImportAsSkeletal": [
+      "bool",
+      "Whether to import the incoming FBX as a skeletal object"
+    ],
+    "bImportMesh": [
+      "bool",
+      "Whether to import the mesh. Allows animation only import when importing a skeletal mesh."
+    ],
+    "Skeleton": [
+      "USkeleton",
+      "Skeleton to use for imported asset. When importing a mesh, leaving this as \"None\" will create a new skeleton. When importing an animation this MUST be specified to import the asset."
+    ],
+    "PhysicsAsset": [
+      "UPhysicsAsset",
+      "If this is set, use this PhysicsAsset. It is possible bCreatePhysicsAsset == false, and PhysicsAsset == NULL. It is possible they do not like to create anything."
+    ],
+    "LodDistance0": [
+      "float32",
+      "Set a screen size value for LOD 0"
+    ],
+    "LodDistance1": [
+      "float32",
+      "Set a screen size value for LOD 1"
+    ],
+    "LodDistance2": [
+      "float32",
+      "Set a screen size value for LOD 2"
+    ],
+    "LodDistance3": [
+      "float32",
+      "Set a screen size value for LOD 3"
+    ],
+    "LodDistance4": [
+      "float32",
+      "Set a screen size value for LOD 4"
+    ],
+    "LodDistance5": [
+      "float32",
+      "Set a screen size value for LOD 5"
+    ],
+    "LodDistance6": [
+      "float32",
+      "Set a screen size value for LOD 6"
+    ],
+    "LodDistance7": [
+      "float32",
+      "Set a screen size value for LOD 7"
+    ],
+    "MinimumLodNumber": [
+      "int",
+      "Set the minimum LOD used for rendering. Setting the value to 0 will use the default value of LOD0."
+    ],
+    "LodNumber": [
+      "int",
+      "Set the number of LODs for the editor to import. Setting the value to 0 imports the number of LODs found in the file (up to the maximum)."
+    ],
+    "OverrideAnimationName": [
+      "FString",
+      "Override for the name of the animation to import. By default, it will be the name of FBX *"
+    ],
+    "StaticMeshImportData": [
+      "UFbxStaticMeshImportData",
+      "Import data used when importing static meshes"
+    ],
+    "SkeletalMeshImportData": [
+      "UFbxSkeletalMeshImportData",
+      "Import data used when importing skeletal meshes"
+    ],
+    "AnimSequenceImportData": [
+      "UFbxAnimSequenceImportData",
+      "Import data used when importing animations"
+    ],
+    "TextureImportData": [
+      "UFbxTextureImportData",
+      "Import data used when importing textures"
+    ],
+    "bAutomatedImportShouldDetectType": [
+      "bool",
+      1,
+      "If true the automated import path should detect the import type.  If false the import type was specified by the user"
+    ],
+    "bOverrideFullName": [
+      "bool",
+      "Use the string in \"Name\" field as full name of mesh. The option only works when the scene contains one mesh."
+    ],
+    "bCreatePhysicsAsset": [
+      "bool",
+      "If checked, create new PhysicsAsset if it doesn't have it"
+    ],
+    "bAutoComputeLodDistances": [
+      "bool",
+      "If checked, the editor will automatically compute screen size values for the static mesh's LODs. If unchecked, the user can enter custom screen size values for each LOD."
+    ],
+    "bImportAnimations": [
+      "bool",
+      "True to import animations from the FBX File"
+    ],
+    "bImportRigidMesh": [
+      "bool",
+      "Enables importing of 'rigid skeletalmesh' (unskinned, hierarchy-based animation) from this FBX file, no longer shown, used behind the scenes"
+    ],
+    "bImportMaterials": [
+      "bool",
+      "If no existing materials are found, whether to automatically create Unreal materials for materials found in the FBX scene"
+    ],
+    "bImportTextures": [
+      "bool",
+      "Whether or not we should import textures. This option is disabled when we are importing materials because textures are always imported in that case."
+    ],
+    "bResetToFbxOnMaterialConflict": [
+      "bool",
+      "If true, the imported material sections will automatically be reset to the imported data in case of a reimport conflict."
+    ]
+  },
+  "methods": [
+    {
+      "name": "ResetToDefault",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

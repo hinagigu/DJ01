@@ -1,0 +1,31 @@
+{
+  "name": "FDeviceColorCurveData",
+  "isStruct": true,
+  "doc": "Data required for setting the Input Device Color",
+  "properties": {
+    "bEnable": [
+      "bool",
+      "True if the light should be enabled at all"
+    ],
+    "bResetAfterCompletion": [
+      "bool",
+      "If true, the light color will be reset to \"off\" after the curve values are finished evaluating."
+    ],
+    "DeviceColorCurve": [
+      "UCurveLinearColor",
+      "The color the device light should be"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDeviceColorCurveData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDeviceColorCurveData"
+        }
+      ]
+    }
+  ]
+}

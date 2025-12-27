@@ -1,0 +1,90 @@
+{
+  "name": "TOptional",
+  "subtypes": [
+    "T"
+  ],
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "TOptional<T>&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TOptional<T>"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "TOptional<T>&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "TOptional<T>"
+        }
+      ]
+    },
+    {
+      "name": "IsSet",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns if the optional has a valid value. This must be true in order for Get() or GetValue() to be called.\n",
+      "args": []
+    },
+    {
+      "name": "Set",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "GetValue",
+      "return": "T",
+      "const": true,
+      "doc": "Gets a const reference to the optional's set value. IsSet() must return true for this function to be called.\n",
+      "args": []
+    },
+    {
+      "name": "GetValue",
+      "return": "T&",
+      "doc": "Gets a non-const reference to the optional's set value. IsSet() must return true for this function to be called.\n",
+      "args": []
+    },
+    {
+      "name": "Get",
+      "return": "T",
+      "const": true,
+      "doc": "If set returns the optional's set value, otherwise returns DefaultValue",
+      "args": [
+        {
+          "name": "DefaultValue",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "doc": "Destruct the value inside the optional and unset it.\n",
+      "args": []
+    }
+  ]
+}

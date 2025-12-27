@@ -1,0 +1,49 @@
+{
+  "name": "FInputRayHit",
+  "isStruct": true,
+  "doc": "* FInputRayHit is returned by various hit-test interface functions.\n* Generally this is intended to be returned as the result of a hit-test with a FInputDeviceRay",
+  "properties": {
+    "bHit": [
+      "bool",
+      1,
+      "true if ray hit something, false otherwise"
+    ],
+    "HitDepth": [
+      "float",
+      1,
+      "distance along ray at which intersection occurred"
+    ],
+    "HitNormal": [
+      "FVector",
+      1,
+      "Normal at hit point, if available"
+    ],
+    "bHasHitNormal": [
+      "bool",
+      1,
+      "True if HitNormal was set"
+    ],
+    "HitIdentifier": [
+      "int",
+      1,
+      "Client-defined integer identifier for hit object/element/target/etc"
+    ],
+    "HitObject": [
+      "TWeakObjectPtr<UObject>",
+      1,
+      "Client-defined pointer for UObject-derived hit owners.\nHitOwner and HitObject should be set to the same pointer if the HitOwner derives from UObject."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInputRayHit&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInputRayHit"
+        }
+      ]
+    }
+  ]
+}

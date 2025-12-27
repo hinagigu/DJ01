@@ -1,0 +1,66 @@
+{
+  "name": "USoundNodeEnveloper",
+  "inherits": "USoundNode",
+  "doc": "Allows manipulation of volume and pitch over a set time period",
+  "properties": {
+    "LoopStart": [
+      "float32",
+      2,
+      "The time in seconds where the envelope's loop begins."
+    ],
+    "LoopEnd": [
+      "float32",
+      2,
+      "The time in seconds where the envelope's loop ends."
+    ],
+    "DurationAfterLoop": [
+      "float32",
+      2,
+      "The time in seconds it takes the evelope to fade out after the last loop is completed."
+    ],
+    "LoopCount": [
+      "int",
+      2,
+      "The number of times the envelope should loop if looping is enabled and the envelope is not set to loop indefinitely."
+    ],
+    "VolumeCurve": [
+      "FRuntimeFloatCurve",
+      2,
+      "The distribution defining the volume envelope."
+    ],
+    "PitchCurve": [
+      "FRuntimeFloatCurve",
+      2,
+      "The distribution defining the pitch envelope."
+    ],
+    "PitchMin": [
+      "float32",
+      2,
+      "The lower bound of pitch (1.0 is no change)"
+    ],
+    "PitchMax": [
+      "float32",
+      2,
+      "The upper bound of pitch (1.0 is no change)"
+    ],
+    "VolumeMin": [
+      "float32",
+      2,
+      "The lower bound of volume (1.0 is no change)"
+    ],
+    "VolumeMax": [
+      "float32",
+      2,
+      "The upper bound of volume (1.0 is no change)"
+    ],
+    "bLoopIndefinitely": [
+      "bool",
+      "If enabled, the envelope will continue to loop indefenitely regardless of the Loop Count value."
+    ],
+    "bLoop": [
+      "bool",
+      "If enabled, the envelope will loop using the loop settings."
+    ]
+  },
+  "methods": []
+}

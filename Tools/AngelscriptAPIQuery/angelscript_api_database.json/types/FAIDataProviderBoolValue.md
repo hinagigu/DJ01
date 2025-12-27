@@ -1,0 +1,22 @@
+# FAIDataProviderBoolValue
+
+## 属性
+
+### DefaultValue
+- **类型**: `bool`
+
+### DataBinding
+- **类型**: `UAIDataProvider`
+- **描述**: (optional) provider for dynamic data binding
+
+### DataField
+- **类型**: `FName`
+- **描述**: name of provider's value property
+
+## 方法
+
+### opAssign
+```angelscript
+FAIDataProviderBoolValue& opAssign(FAIDataProviderBoolValue Other)
+```
+

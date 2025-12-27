@@ -1,0 +1,43 @@
+{
+  "name": "FCameraLookatTrackingSettings",
+  "isStruct": true,
+  "doc": "Settings to control the camera's lookat feature",
+  "properties": {
+    "LookAtTrackingInterpSpeed": [
+      "float32",
+      "Controls degree of smoothing. 0.f for no smoothing, higher numbers for faster/tighter tracking."
+    ],
+    "ActorToTrack": [
+      "TSoftObjectPtr<AActor>",
+      "If set, camera will track this actor's location"
+    ],
+    "RelativeOffset": [
+      "FVector",
+      "Offset from actor position to look at. Relative to actor if tracking an actor, relative to world otherwise."
+    ],
+    "bEnableLookAtTracking": [
+      "bool",
+      "True to enable lookat tracking, false otherwise."
+    ],
+    "bDrawDebugLookAtTrackingPosition": [
+      "bool",
+      "True to draw a debug representation of the lookat location"
+    ],
+    "bAllowRoll": [
+      "bool",
+      "True to allow user-defined roll, false otherwise."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCameraLookatTrackingSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCameraLookatTrackingSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+# FOnQuartzMetronomeEvent
+
+## 方法
+
+### opAssign
+```angelscript
+FOnQuartzMetronomeEvent& opAssign(FOnQuartzMetronomeEvent Other)
+```
+
+### IsBound
+```angelscript
+bool IsBound()
+```
+
+### Clear
+```angelscript
+void Clear()
+```
+
+### AddUFunction
+```angelscript
+void AddUFunction(const UObject Object, FName FunctionName)
+```
+
+### Unbind
+```angelscript
+void Unbind(UObject Object, FName FunctionName)
+```
+
+### UnbindObject
+```angelscript
+void UnbindObject(UObject Object)
+```
+
+### Broadcast
+```angelscript
+void Broadcast(FName ClockName, EQuartzCommandQuantization QuantizationType, int NumBars, int Beat, float32 BeatFraction)
+```
+

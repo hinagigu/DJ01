@@ -1,0 +1,39 @@
+{
+  "name": "FClothConstraintSetupNv",
+  "isStruct": true,
+  "doc": "Container for a constraint setup, these can be horizontal, vertical, shear and bend.",
+  "properties": {
+    "Stiffness": [
+      "float32",
+      2,
+      "How stiff this constraint is, this affects how closely it will follow the desired position"
+    ],
+    "StiffnessMultiplier": [
+      "float32",
+      2,
+      "A multiplier affecting the above value"
+    ],
+    "StretchLimit": [
+      "float32",
+      2,
+      "The hard limit on how far this constraint can stretch"
+    ],
+    "CompressionLimit": [
+      "float32",
+      2,
+      "The hard limit on how far this constraint can compress"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FClothConstraintSetupNv&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FClothConstraintSetupNv"
+        }
+      ]
+    }
+  ]
+}

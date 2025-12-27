@@ -1,0 +1,103 @@
+{
+  "name": "FSoundClassProperties",
+  "isStruct": true,
+  "properties": {
+    "Volume": [
+      "float32",
+      "Volume multiplier."
+    ],
+    "Pitch": [
+      "float32",
+      "Pitch multiplier."
+    ],
+    "LowPassFilterFrequency": [
+      "float32",
+      "Lowpass filter cutoff frequency"
+    ],
+    "AttenuationDistanceScale": [
+      "float32",
+      "Scales the distance measurement used by the audio engine when determining distance-based attenuation.\nE.g., a sound 1000 units away with an AttenuationDistanceScale of .5 will be attenuated\nas if it is 500 units away from the listener.\nAllows adjusting attenuation settings dynamically."
+    ],
+    "LFEBleed": [
+      "float32",
+      "The amount of a sound to bleed to the LFE channel"
+    ],
+    "VoiceCenterChannelVolume": [
+      "float32",
+      "The amount to send to center channel (does not propagate to child classes)"
+    ],
+    "RadioFilterVolume": [
+      "float32",
+      "Volume of the radio filter effect."
+    ],
+    "RadioFilterVolumeThreshold": [
+      "float32",
+      "Volume at which the radio filter kicks in"
+    ],
+    "Default2DReverbSendAmount": [
+      "float32",
+      "Send amount to master reverb effect for referencing unattenuated (2D) sounds."
+    ],
+    "ModulationSettings": [
+      "FSoundModulationDefaultSettings",
+      "Default modulation settings for sounds directly referencing this class"
+    ],
+    "OutputTarget": [
+      "EAudioOutputTarget",
+      "Which output target the sound should be played through"
+    ],
+    "LoadingBehavior": [
+      "ESoundWaveLoadingBehavior",
+      "Specifies how and when compressed audio data is loaded for asset if stream caching is enabled."
+    ],
+    "SizeOfFirstAudioChunkInSeconds": [
+      "FPerPlatformFloat",
+      2,
+      "How much audio to add to First Audio Chunk (in seconds)"
+    ],
+    "DefaultSubmix": [
+      "USoundSubmix",
+      "Default output submix of referencing sounds. If unset, falls back to the 'Master Submix' as set in the 'Audio' category of Project Settings.\n(Unavailable if legacy 'Output to Master EQ Submix' is set)"
+    ],
+    "bApplyEffects": [
+      "bool",
+      "Whether to use 'Master EQ Submix' as set in the 'Audio' category of Project Settings as the default submix for referencing sounds."
+    ],
+    "bAlwaysPlay": [
+      "bool",
+      "Whether to inflate referencing sound's priority to always play."
+    ],
+    "bIsUISound": [
+      "bool",
+      "Whether or not this sound plays when the game is paused in the UI"
+    ],
+    "bIsMusic": [
+      "bool",
+      "Whether or not this is music (propagates to child classes only if parent is true)"
+    ],
+    "bCenterChannelOnly": [
+      "bool",
+      "Whether or not this sound class forces sounds to the center channel"
+    ],
+    "bApplyAmbientVolumes": [
+      "bool",
+      "Whether the Interior/Exterior volume and LPF modifiers should be applied"
+    ],
+    "bReverb": [
+      "bool",
+      "Whether or not sounds referencing this class send to the reverb submix"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSoundClassProperties&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSoundClassProperties"
+        }
+      ]
+    }
+  ]
+}

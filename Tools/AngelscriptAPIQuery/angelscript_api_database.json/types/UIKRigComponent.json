@@ -1,0 +1,82 @@
+{
+  "name": "UIKRigComponent",
+  "inherits": "UActorComponent",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ClearAllGoals",
+      "return": "void",
+      "doc": "Remove all stored goals in this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetIKRigGoal",
+      "return": "void",
+      "doc": "Apply a IKRigGoal and store it on this rig. Goal transform assumed in Component Space of Skeletal Mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Goal",
+          "type": "FIKRigGoal"
+        }
+      ]
+    },
+    {
+      "name": "SetIKRigGoalPositionAndRotation",
+      "return": "void",
+      "doc": "Set an IK Rig Goal position and rotation (assumed in Component Space of Skeletal Mesh) with separate alpha values.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GoalName",
+          "type": "FName"
+        },
+        {
+          "name": "Position",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "type": "FQuat"
+        },
+        {
+          "name": "PositionAlpha",
+          "type": "float32"
+        },
+        {
+          "name": "RotationAlpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetIKRigGoalTransform",
+      "return": "void",
+      "doc": "Set an IK Rig Goal transform (assumed in Component Space of Skeletal Mesh) with separate alpha values.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GoalName",
+          "type": "FName"
+        },
+        {
+          "name": "Transform",
+          "type": "FTransform"
+        },
+        {
+          "name": "PositionAlpha",
+          "type": "float32"
+        },
+        {
+          "name": "RotationAlpha",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

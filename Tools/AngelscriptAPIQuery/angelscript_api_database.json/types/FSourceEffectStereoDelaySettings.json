@@ -1,0 +1,58 @@
+{
+  "name": "FSourceEffectStereoDelaySettings",
+  "isStruct": true,
+  "properties": {
+    "DelayMode": [
+      "EStereoDelaySourceEffect",
+      "What mode to set the stereo delay effect."
+    ],
+    "DelayTimeMsec": [
+      "float32",
+      "The base amount of delay in the left and right channels of the delay line."
+    ],
+    "Feedback": [
+      "float32",
+      "The amount of audio to feedback into the delay line once the delay has been tapped."
+    ],
+    "DelayRatio": [
+      "float32",
+      "Delay spread for left and right channels. Allows left and right channels to have differential delay amounts. Useful for stereo channel decorrelation."
+    ],
+    "WetLevel": [
+      "float32",
+      "The amount of delay effect to mix with the dry input signal into the effect."
+    ],
+    "DryLevel": [
+      "float32",
+      "The dry level of the effect"
+    ],
+    "bFilterEnabled": [
+      "bool",
+      "Whether or not to enable filtering"
+    ],
+    "FilterType": [
+      "EStereoDelayFiltertype",
+      "Filter type to feed feedback audio to"
+    ],
+    "FilterFrequency": [
+      "float32",
+      "Cutoff frequency of the filter"
+    ],
+    "FilterQ": [
+      "float32",
+      "Q of the filter"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSourceEffectStereoDelaySettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSourceEffectStereoDelaySettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "FLocalizationImportDialogueSettings",
+  "isStruct": true,
+  "properties": {
+    "RawAudioPath": [
+      "FDirectoryPath",
+      2,
+      "Path to the folder to import the audio from. This folder is expected to contain culture sub-folders, which in turn contain the raw WAV files to import."
+    ],
+    "ImportedDialogueFolder": [
+      "FString",
+      2,
+      "Folder in which to create the generated sound waves. This is relative to the root of the L10N culture folder (or the root content folder if importing native dialogue as source dialogue)."
+    ],
+    "bImportNativeAsSource": [
+      "bool",
+      2,
+      "Should the dialogue for the native culture be imported as if it were source audio? If false, the native culture dialogue will be imported as localized data for the native culture."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLocalizationImportDialogueSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLocalizationImportDialogueSettings"
+        }
+      ]
+    }
+  ]
+}

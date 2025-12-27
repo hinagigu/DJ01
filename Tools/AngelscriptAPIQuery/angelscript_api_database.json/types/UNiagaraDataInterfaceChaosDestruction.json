@@ -1,0 +1,218 @@
+{
+  "name": "UNiagaraDataInterfaceChaosDestruction",
+  "inherits": "UNiagaraDataInterface",
+  "doc": "Data Interface allowing sampling of Chaos Destruction data.",
+  "properties": {
+    "ChaosSolverActorSet": [
+      "TSet<TObjectPtr<AChaosSolverActor>>",
+      2,
+      "Chaos Solver"
+    ],
+    "DataSourceType": [
+      "EDataSourceTypeEnum",
+      2,
+      ""
+    ],
+    "DataProcessFrequency": [
+      "int",
+      2,
+      "Number of times the RBD collision data gets processed every second"
+    ],
+    "MaxNumberOfDataEntriesToSpawn": [
+      "int",
+      2,
+      "Maximum number of collision/breaking/trailing entry used for spawning particles every time data from the physics solver gets processed"
+    ],
+    "DoSpawn": [
+      "bool",
+      2,
+      "Turn on/off particle spawning"
+    ],
+    "SpawnMultiplierMinMax": [
+      "FVector2D",
+      2,
+      "For every collision random number of particles will be spawned in the range of [SpawnMultiplierMin, SpawnMultiplierMax]"
+    ],
+    "SpawnChance": [
+      "float32",
+      2,
+      "For every collision random number of particles will be spawned in the range of [SpawnMultiplierMin, SpawnMultiplierMax]"
+    ],
+    "ImpulseToSpawnMinMax": [
+      "FVector2D",
+      2,
+      "Min/Max collision accumulated impulse to spawn particles"
+    ],
+    "SpeedToSpawnMinMax": [
+      "FVector2D",
+      2,
+      "Min/Max speed to spawn particles"
+    ],
+    "MassToSpawnMinMax": [
+      "FVector2D",
+      2,
+      "Min/Max mass to spawn particles"
+    ],
+    "ExtentMinToSpawnMinMax": [
+      "FVector2D",
+      2,
+      "Min/Max ExtentMin to spawn particles"
+    ],
+    "ExtentMaxToSpawnMinMax": [
+      "FVector2D",
+      2,
+      "Min/Max ExtentMax to spawn particles"
+    ],
+    "VolumeToSpawnMinMax": [
+      "FVector2D",
+      2,
+      "Min/Max volume to spawn particles"
+    ],
+    "SolverTimeToSpawnMinMax": [
+      "FVector2D",
+      2,
+      "Min/Max solver time mass to spawn particles"
+    ],
+    "SurfaceTypeToSpawn": [
+      "int",
+      2,
+      "SurfaceType to spawn particles"
+    ],
+    "LocationFilteringMode": [
+      "ELocationFilteringModeEnum",
+      2,
+      "Location Filtering Mode"
+    ],
+    "LocationXToSpawn": [
+      "ELocationXToSpawnEnum",
+      2,
+      "How to use LocationX to filter"
+    ],
+    "LocationXToSpawnMinMax": [
+      "FVector2D",
+      2,
+      "Min/Max LocationX to spawn particles"
+    ],
+    "LocationYToSpawn": [
+      "ELocationYToSpawnEnum",
+      2,
+      "How to use LocationY to filter"
+    ],
+    "LocationYToSpawnMinMax": [
+      "FVector2D",
+      2,
+      "Min/Max LocationY to spawn particles"
+    ],
+    "LocationZToSpawn": [
+      "ELocationZToSpawnEnum",
+      2,
+      "How to use LocationZ to filter"
+    ],
+    "LocationZToSpawnMinMax": [
+      "FVector2D",
+      2,
+      "Min/Max LocationX to spawn particles"
+    ],
+    "TrailMinSpeedToSpawn": [
+      "float32",
+      2,
+      "Min Linear Speed to generate trailing particles"
+    ],
+    "DataSortingType": [
+      "EDataSortTypeEnum",
+      2,
+      "Sorting method to sort the collision data"
+    ],
+    "DoSpatialHash": [
+      "bool",
+      2,
+      ""
+    ],
+    "SpatialHashVolumeMin": [
+      "FVector",
+      2,
+      "SpatialHash volume min"
+    ],
+    "SpatialHashVolumeMax": [
+      "FVector",
+      2,
+      "SpatialHash volume max"
+    ],
+    "SpatialHashVolumeCellSize": [
+      "FVector",
+      2,
+      "SpatialHash volume resolution"
+    ],
+    "MaxDataPerCell": [
+      "int",
+      2,
+      ""
+    ],
+    "bApplyMaterialsFilter": [
+      "bool",
+      2,
+      "Materials Filter"
+    ],
+    "ChaosBreakingMaterialSet": [
+      "TSet<TObjectPtr<UPhysicalMaterial>>",
+      2,
+      "TODO: Explanatory comment"
+    ],
+    "bGetExternalBreakingData": [
+      "bool",
+      2,
+      "TODO: Explanatory comment"
+    ],
+    "RandomPositionMagnitudeMinMax": [
+      "FVector2D",
+      2,
+      "Random displacement value for the particle spawn position"
+    ],
+    "InheritedVelocityMultiplier": [
+      "float32",
+      2,
+      "How much of the collision velocity gets inherited"
+    ],
+    "RandomVelocityGenerationType": [
+      "ERandomVelocityGenerationTypeEnum",
+      2,
+      "The method used to create the random velocities for the newly spawned particles"
+    ],
+    "RandomVelocityMagnitudeMinMax": [
+      "FVector2D",
+      2,
+      "Every particles will be spawned with random velocity with magnitude in the range of [RandomVelocityMagnitudeMin, RandomVelocityMagnitudeMax]"
+    ],
+    "SpreadAngleMax": [
+      "float32",
+      2,
+      ""
+    ],
+    "VelocityOffsetMin": [
+      "FVector",
+      2,
+      "Min Offset value added to spawned particles velocity"
+    ],
+    "VelocityOffsetMax": [
+      "FVector",
+      2,
+      "Max Offset value added to spawned particles velocity"
+    ],
+    "FinalVelocityMagnitudeMinMax": [
+      "FVector2D",
+      2,
+      "Clamp particles velocity"
+    ],
+    "MaxLatency": [
+      "float32",
+      2,
+      ""
+    ],
+    "DebugType": [
+      "EDebugTypeEnum",
+      2,
+      "Debug visualization method"
+    ]
+  },
+  "methods": []
+}

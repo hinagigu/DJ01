@@ -1,0 +1,71 @@
+{
+  "name": "FTopLevelAssetPath",
+  "isStruct": true,
+  "doc": "A struct that can reference a top level asset such as '/Path/To/Package.AssetName'\n@note The full C++ class is located here: Engine\\Source\\Runtime\\CoreUObject\\Public\\UObject\\TopLevelAssetPath.h",
+  "properties": {
+    "PackageName": [
+      "FName",
+      "Name of the package containing the asset e.g. /Path/To/Package"
+    ],
+    "AssetName": [
+      "FName",
+      "Name of the asset within the package e.g. 'AssetName'"
+    ]
+  },
+  "methods": [
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsNull",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTopLevelAssetPath"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "FTopLevelAssetPath&",
+      "args": [
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "opAssign",
+      "return": "FTopLevelAssetPath&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTopLevelAssetPath"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "name": "UPluginMetadataObject",
+  "inherits": "UObject",
+  "doc": "We use this object to display plugin properties using details view.",
+  "properties": {
+    "VersionName": [
+      "FString",
+      2,
+      "Name of the version for this plugin.  This is the front-facing part of the version number.  It doesn't need to match\n      the version number numerically, but should be updated when the version number is increased accordingly."
+    ],
+    "FriendlyName": [
+      "FString",
+      2,
+      "Friendly name of the plugin"
+    ],
+    "Description": [
+      "FString",
+      2,
+      "Description of the plugin"
+    ],
+    "Category": [
+      "FString",
+      2,
+      "The category that this plugin belongs to"
+    ],
+    "CreatedBy": [
+      "FString",
+      2,
+      "The company or individual who created this plugin.  This is an optional field that may be displayed in the user interface."
+    ],
+    "CreatedByURL": [
+      "FString",
+      2,
+      "Hyperlink URL string for the company or individual who created this plugin.  This is optional."
+    ],
+    "DocsURL": [
+      "FString",
+      2,
+      "Documentation URL string."
+    ],
+    "MarketplaceURL": [
+      "FString",
+      2,
+      "Marketplace URL string."
+    ],
+    "SupportURL": [
+      "FString",
+      2,
+      "Support URL/email for this plugin. Email addresses must be prefixed with 'mailto:'"
+    ],
+    "EditorCustomVirtualPath": [
+      "FString",
+      2,
+      "Optional custom virtual path to display in editor to better organize. Inserted just before this plugin's directory in the path: /All/Plugins/EditorCustomVirtualPath/PluginName"
+    ],
+    "bCanContainContent": [
+      "bool",
+      2,
+      "Can this plugin contain content?"
+    ],
+    "bIsBetaVersion": [
+      "bool",
+      2,
+      "Marks the plugin as beta in the UI"
+    ],
+    "bIsSealed": [
+      "bool",
+      2,
+      "If true, prevents other plugins from depending on this plugin"
+    ],
+    "bNoCode": [
+      "bool",
+      2,
+      ""
+    ],
+    "Plugins": [
+      "TArray<FPluginReferenceMetadata>",
+      2,
+      "Plugins used by this plugin"
+    ],
+    "DisallowedPlugins": [
+      "TArray<FPluginDisallowedMetadata>",
+      2,
+      "Plugins that cannot be used by this plugin"
+    ]
+  },
+  "methods": []
+}

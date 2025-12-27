@@ -1,0 +1,31 @@
+{
+  "name": "__ESlateAccessibleBehavior",
+  "isEnum": true,
+  "doc": "Whether a widget should be included in accessibility, and if so, how its text should be retrieved.",
+  "properties": {
+    "NotAccessible": [
+      "ESlateAccessibleBehavior",
+      "Not accessible."
+    ],
+    "Auto": [
+      "ESlateAccessibleBehavior",
+      "Accessible, first checking to see if there's any custom default text assigned for widgets of this type.\nIf not, then it will attempt to use the alternate behavior (ie AccessibleSummaryBehavior instead of AccessibleBehavior)\nand return that value instead. This acts as a reference so that you only need to set one value for both of them\nto return the same thing."
+    ],
+    "Summary": [
+      "ESlateAccessibleBehavior",
+      "Accessible, and traverse all child widgets and concat their AccessibleSummaryText together."
+    ],
+    "Custom": [
+      "ESlateAccessibleBehavior",
+      "Accessible, and retrieve manually-assigned text from a TAttribute."
+    ],
+    "ToolTip": [
+      "ESlateAccessibleBehavior",
+      "Accessible, and use the tooltip's accessible text."
+    ],
+    "ESlateAccessibleBehavior_MAX": [
+      "ESlateAccessibleBehavior"
+    ]
+  },
+  "methods": []
+}

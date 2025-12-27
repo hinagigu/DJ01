@@ -1,0 +1,49 @@
+{
+  "name": "FRigUnit_SetBoneTransform",
+  "isStruct": true,
+  "doc": "SetBoneTransform is used to perform a change in the hierarchy by setting a single bone's transform.",
+  "properties": {
+    "Bone": [
+      "FName",
+      "The name of the Bone to set the transform for."
+    ],
+    "Transform": [
+      "FTransform",
+      "The transform value to set for the given Bone."
+    ],
+    "Result": [
+      "FTransform",
+      1,
+      "The transform value result (after weighting)"
+    ],
+    "Space": [
+      "ERigVMTransformSpace",
+      "Defines if the bone's transform should be set\nin local or global space."
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the change - how much the change should be applied"
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      1,
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SetBoneTransform&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SetBoneTransform"
+        }
+      ]
+    }
+  ]
+}

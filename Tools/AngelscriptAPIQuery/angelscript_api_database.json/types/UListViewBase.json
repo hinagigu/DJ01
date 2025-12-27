@@ -1,0 +1,172 @@
+{
+  "name": "UListViewBase",
+  "inherits": "UWidget",
+  "doc": "Bare-bones base class to make creating custom UListView widgets easier.\nChild classes should also inherit from ITypedUMGListView<T> to get a basic public ListView API for free.\n\nChild classes will own the actual SListView<T> widgets, but this provides some boilerplate functionality for generating entries.\nTo generate a row for the child list, use GenerateTypedRow with the appropriate SObjectTableRow<T> type for your list\n\nAdditionally, the entry widget class can be filtered for a particular class and interface with the EntryClass and EntryInterface metadata arguments\nThis can be specified either on the class directly (see below) or on any BindWidget FProperty\n\nExample:\nclass UMyUserWidget : public UUserWidget\n{\n            UPROPERTY(BindWidget, meta = (EntryClass = MyListEntryWidget))\n            UListView* ListView_InventoryItems;\n}",
+  "properties": {
+    "BP_OnEntryGenerated": [
+      "FOnListEntryGeneratedDynamic",
+      "Called when a row widget is generated for a list item"
+    ],
+    "EntryWidgetClass": [
+      "TSubclassOf<UUserWidget>",
+      "The type of widget to create for each entry displayed in the list."
+    ],
+    "bEnableScrollAnimation": [
+      "bool",
+      "True to enable lerped animation when scrolling through the list"
+    ],
+    "bInEnableTouchAnimatedScrolling": [
+      "bool",
+      "True to enable lerped animation when scrolling through the list with touch"
+    ],
+    "AllowOverscroll": [
+      "bool",
+      2,
+      "Disable to stop scrollbars from activating inertial overscrolling"
+    ],
+    "bEnableRightClickScrolling": [
+      "bool",
+      2,
+      "True to allow right click drag scrolling."
+    ],
+    "bEnableTouchScrolling": [
+      "bool",
+      2,
+      "True to allow scrolling using touch input."
+    ],
+    "bIsPointerScrollingEnabled": [
+      "bool",
+      2,
+      "Enable/Disable scrolling using Touch or Mouse."
+    ],
+    "bEnableFixedLineOffset": [
+      "bool",
+      2,
+      ""
+    ],
+    "FixedLineScrollOffset": [
+      "float32",
+      2,
+      "Optional fixed offset (in lines) to always apply to the top/left (depending on orientation) of the list.\nIf provided, all non-inertial means of scrolling will settle with exactly this offset of the topmost entry.\nEx: A value of 0.25 would cause the topmost full entry to be offset down by a quarter length of the preceeding entry."
+    ],
+    "bAllowDragging": [
+      "bool",
+      "True to allow dragging of row widgets in the list"
+    ],
+    "BP_OnEntryReleased": [
+      "FOnListEntryReleasedDynamic",
+      "Called when a row widget is released by the list (i.e. when it no longer represents a list item)"
+    ],
+    "NumDesignerPreviewEntries": [
+      "int",
+      2,
+      "The number of dummy item entry widgets to preview in the widget designer"
+    ],
+    "WheelScrollMultiplier": [
+      "float32",
+      "The multiplier to apply when wheel scrolling"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDisplayedEntryWidgets",
+      "return": "TArray<UUserWidget>",
+      "const": true,
+      "doc": "Gets all of the list entry widgets currently being displayed by the list",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetScrollOffset",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the scroll offset of this view (in items)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RegenerateAllEntries",
+      "return": "void",
+      "doc": "Full regeneration of all entries in the list. Note that the entry UWidget instances will not be destroyed, but they will be released and re-generated.\nIn other words, entry widgets will not receive Destruct/Construct events. They will receive OnEntryReleased and IUserObjectListEntry implementations will receive OnListItemObjectSet.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RequestRefresh",
+      "return": "void",
+      "doc": "Sets the list to refresh on the next tick.\n\nNote that refreshing, from a list perspective, is limited to accounting for discrepancies between items and entries.\nIn other words, it will only release entries that no longer have items and generate entries for new items (or newly visible items).\n\nIt does NOT account for changes within existing items - that is up to the item to announce and an entry to listen to as needed.\nThis can be onerous to set up for simple cases, so it's also reasonable (though not ideal) to call RegenerateAllEntries when changes within N list items need to be reflected.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScrollToBottom",
+      "return": "void",
+      "doc": "Scroll the entire list down to the bottom-most item",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScrollToTop",
+      "return": "void",
+      "doc": "Scroll the entire list up to the first item",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetIsPointerScrollingEnabled",
+      "return": "void",
+      "doc": "Enable/Disable the ability of the list to scroll. This should be use as a temporary disable.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsPointerScrollingEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetScrollbarVisibility",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVisibility",
+          "type": "ESlateVisibility"
+        }
+      ]
+    },
+    {
+      "name": "SetScrollOffset",
+      "return": "void",
+      "doc": "Set the scroll offset of this view (in items)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InScrollOffset",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetWheelScrollMultiplier",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewWheelScrollMultiplier",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

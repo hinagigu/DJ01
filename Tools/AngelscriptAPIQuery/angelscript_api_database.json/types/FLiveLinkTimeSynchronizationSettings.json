@@ -1,0 +1,28 @@
+{
+  "name": "FLiveLinkTimeSynchronizationSettings",
+  "isStruct": true,
+  "properties": {
+    "FrameRate": [
+      "FFrameRate",
+      2,
+      "The frame rate of the source.\nThis should be the frame rate the source is \"stamped\" at, not necessarily the frame rate the source is sending.\nThe source should supply this whenever possible."
+    ],
+    "FrameOffset": [
+      "FFrameNumber",
+      2,
+      "When evaluating: how far back from current timecode should we read the buffer (in frame number)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLiveLinkTimeSynchronizationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLiveLinkTimeSynchronizationSettings"
+        }
+      ]
+    }
+  ]
+}

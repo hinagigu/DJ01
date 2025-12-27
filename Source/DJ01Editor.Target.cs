@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class DJ01EditorTarget : TargetRules
 {
-	public DJ01EditorTarget( TargetInfo Target) : base(Target)
+	public DJ01EditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V5;

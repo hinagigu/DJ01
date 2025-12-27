@@ -1,0 +1,78 @@
+{
+  "name": "FLiveLinkSourceBufferManagementSettings",
+  "isStruct": true,
+  "properties": {
+    "bValidEngineTimeEnabled": [
+      "bool",
+      2,
+      "Enabled the ValidEngineTime setting."
+    ],
+    "ValidEngineTime": [
+      "float32",
+      2,
+      "If the frame is older than ValidTime, remove it from the buffer list (in seconds)."
+    ],
+    "EngineTimeOffset": [
+      "float32",
+      2,
+      "When evaluating with time: how far back from current time should we read the buffer (in seconds)"
+    ],
+    "bGenerateSubFrame": [
+      "bool",
+      2,
+      ""
+    ],
+    "bUseTimecodeSmoothLatest": [
+      "bool",
+      2,
+      "When evaluating with timecode, align source timecode using a continuous clock offset to do a smooth latest\nThis means that even if engine Timecode and source Timecode are not aligned, the offset between both clocks\nwill be tracked to keep them aligned. With an additionnal offset, 1.5 is a good number, you can evaluate\nyour subject using the latest frame by keeping just enough margin to have a smooth playback and avoid starving."
+    ],
+    "SourceTimecodeFrameRate": [
+      "FFrameRate",
+      2,
+      "What is the source frame rate.\nWhen the refresh rate of the source is bigger than the timecode frame rate, LiveLink will try to generate sub frame numbers.\n@note The source should generate the sub frame numbers. Use this setting when the source is not able to do so.\n@note The generated sub frame numbers will not be saved by Sequencer."
+    ],
+    "bValidTimecodeFrameEnabled": [
+      "bool",
+      2,
+      "If the frame timecode is older than ValidTimecodeFrame, remove it from the buffer list (in TimecodeFrameRate)."
+    ],
+    "ValidTimecodeFrame": [
+      "int",
+      2,
+      "If the frame timecode is older than ValidTimecodeFrame, remove it from the buffer list (in TimecodeFrameRate)."
+    ],
+    "TimecodeFrameOffset": [
+      "float32",
+      2,
+      "When evaluating with timecode: how far back from current timecode should we read the buffer (in TimecodeFrameRate)."
+    ],
+    "LatestOffset": [
+      "int",
+      2,
+      "When evaluating with latest: how far back from latest frame should we read the buffer"
+    ],
+    "MaxNumberOfFrameToBuffered": [
+      "int",
+      2,
+      "Maximum number of frame to keep in memory."
+    ],
+    "bKeepAtLeastOneFrame": [
+      "bool",
+      2,
+      "When cleaning the buffer keep at least one frame, even if the frame doesn't matches the other options."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLiveLinkSourceBufferManagementSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLiveLinkSourceBufferManagementSettings"
+        }
+      ]
+    }
+  ]
+}

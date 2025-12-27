@@ -1,0 +1,46 @@
+{
+  "name": "UHLODLayer",
+  "inherits": "UObject",
+  "properties": {
+    "LayerType": [
+      "EHLODLayerType",
+      2,
+      "Type of HLOD generation to use"
+    ],
+    "HLODBuilderClass": [
+      "TSubclassOf<UHLODBuilder>",
+      2,
+      "HLOD Builder class"
+    ],
+    "CellSize": [
+      "int",
+      2,
+      "Cell size of the runtime grid created to encompass HLOD actors generated for this HLOD Layer"
+    ],
+    "LoadingRange": [
+      "float",
+      2,
+      "Loading range of the runtime grid created to encompass HLOD actors generated for this HLOD Layer"
+    ],
+    "ParentLayer": [
+      "UHLODLayer",
+      2,
+      "HLOD Layer to assign to the generated HLOD actors"
+    ],
+    "HLODActorClass": [
+      "TSubclassOf<AWorldPartitionHLOD>",
+      2,
+      "Specify a custom HLOD Actor class, the default is AWorldPartitionHLOD"
+    ],
+    "HLODModifierClass": [
+      "TSubclassOf<UWorldPartitionHLODModifier>",
+      2,
+      "HLOD Modifier class, to allow changes to the HLOD at runtime"
+    ],
+    "bIsSpatiallyLoaded": [
+      "bool",
+      "Whether HLOD actors generated for this layer will be spatially loaded"
+    ]
+  },
+  "methods": []
+}

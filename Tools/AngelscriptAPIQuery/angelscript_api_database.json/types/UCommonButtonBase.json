@@ -1,0 +1,913 @@
+{
+  "name": "UCommonButtonBase",
+  "inherits": "UCommonUserWidget",
+  "doc": "Button that disables itself when not active. Also updates actions for CommonActionWidget if bound to display platform-specific icons.",
+  "properties": {
+    "ClickEvent": [
+      "FWidgetEventField",
+      1,
+      ""
+    ],
+    "MinWidth": [
+      "int",
+      "The minimum width of the button (only used if greater than the style's minimum)"
+    ],
+    "MinHeight": [
+      "int",
+      "The minimum height of the button (only used if greater than the style's minimum)"
+    ],
+    "bHideInputAction": [
+      "bool",
+      "Whether to hide the input action widget at all times (useful for textless small buttons)"
+    ],
+    "PressedSlateSoundOverride": [
+      "FSlateSound",
+      "Optional override for the sound to play when this button is pressed.\nAlso used for the Selected and Locked Pressed state if their respective overrides are empty."
+    ],
+    "HoveredSlateSoundOverride": [
+      "FSlateSound",
+      "Optional override for the sound to play when this button is hovered.\nAlso used for the Selected and Locked Hovered state if their respective overrides are empty."
+    ],
+    "SelectedPressedSlateSoundOverride": [
+      "FSlateSound",
+      "Optional override for the sound to play when this button is pressed while Selected"
+    ],
+    "SelectedHoveredSlateSoundOverride": [
+      "FSlateSound",
+      "Optional override for the sound to play when this button is hovered while Selected"
+    ],
+    "LockedPressedSlateSoundOverride": [
+      "FSlateSound",
+      "Optional override for the sound to play when this button is pressed while Locked"
+    ],
+    "LockedHoveredSlateSoundOverride": [
+      "FSlateSound",
+      "Optional override for the sound to play when this button is hovered while Locked"
+    ],
+    "HoldData": [
+      "TSubclassOf<UCommonUIHoldData>",
+      "Press and Hold values used for Keyboard and Mouse, Gamepad and Touch, depending on the current input type"
+    ],
+    "bSimulateHoverOnTouchInput": [
+      "bool",
+      "True if this button should play the hover effect when pressed by a touch input"
+    ],
+    "InputPriority": [
+      "int",
+      "This is the priority for the TriggeringInputAction.  The first, HIGHEST PRIORITY widget will handle the input action, and no other widgets will be considered.\nAdditionally, no inputs with a priority below the current ActivatablePanel's Input Priority value will even be considered!\n\n@TODO: This is part of legacy CommonUI and should be removed"
+    ],
+    "OnSelectedChangedBase": [
+      "FCommonSelectedStateChangedBase"
+    ],
+    "OnButtonBaseClicked": [
+      "FCommonButtonBaseClicked"
+    ],
+    "OnButtonBaseDoubleClicked": [
+      "FCommonButtonBaseClicked"
+    ],
+    "OnButtonBaseHovered": [
+      "FCommonButtonBaseClicked"
+    ],
+    "OnButtonBaseUnhovered": [
+      "FCommonButtonBaseClicked"
+    ],
+    "bIsPersistentBinding": [
+      "bool",
+      2,
+      "DANGER! Be very, very careful with this. Unless you absolutely know what you're doing, this is not the property you're looking for.\n\nTrue to register the action bound to this button as a \"persistent\" binding. False (default) will register a standard activation-based binding.\nA persistent binding ignores the standard ruleset for UI input routing - the binding will be live immediately upon construction of the button."
+    ],
+    "InputModeOverride": [
+      "ECommonInputMode",
+      2,
+      "Set this to Game for special cases where an input action needs to be set for an in-game button."
+    ],
+    "InputActionWidget": [
+      "UCommonActionWidget",
+      1,
+      "Optionally bound widget for visualization behavior of an input action;\nNOTE: If specified, will visualize according to the following algorithm:\nIf TriggeringEnhancedInputAction is specified, visualize it else:\nIf TriggeringInputAction is specified, visualize it else:\nIf TriggeredInputAction is specified, visualize it else:\nVisualize the default click action while hovered"
+    ],
+    "bApplyAlphaOnDisable": [
+      "bool",
+      "The type of mouse action required by the user to trigger the button's 'Click'"
+    ],
+    "bLocked": [
+      "bool",
+      "True if this button is currently locked.\nLocked button can be hovered, focused, and pressed, but the Click event will not go through.\nBusiness logic behind it will not be executed. Designed for progressive disclosure"
+    ],
+    "bSelectable": [
+      "bool",
+      "True if the button supports being in a \"selected\" state, which will update the style accordingly"
+    ],
+    "bShouldSelectUponReceivingFocus": [
+      "bool",
+      "If true, the button will be selected when it receives focus."
+    ],
+    "bInteractableWhenSelected": [
+      "bool",
+      "If true, the button may be clicked while selected. Otherwise, interaction is disabled in the selected state."
+    ],
+    "bToggleable": [
+      "bool",
+      "True if the button can be deselected by clicking it when selected"
+    ],
+    "bTriggerClickedAfterSelection": [
+      "bool"
+    ],
+    "bDisplayInputActionWhenNotInteractable": [
+      "bool",
+      "True if the input action should be displayed when the button is not interactable"
+    ],
+    "bHideInputActionWithKeyboard": [
+      "bool",
+      "True if the input action should be hidden while the user is using a keyboard"
+    ],
+    "bShouldUseFallbackDefaultInputAction": [
+      "bool",
+      "True if this button should use the default fallback input action (bool is useful for buttons that shouldn't because they are never directly hit via controller)"
+    ],
+    "bRequiresHold": [
+      "bool",
+      "True if this button should have a press and hold behavior, triggering the click when the specified hold time is met"
+    ],
+    "ClickMethod": [
+      "EButtonClickMethod",
+      "The type of mouse action required by the user to trigger the button's 'Click'"
+    ],
+    "TouchMethod": [
+      "EButtonTouchMethod"
+    ],
+    "PressMethod": [
+      "EButtonPressMethod"
+    ],
+    "TriggeringInputAction": [
+      "FDataTableRowHandle",
+      "The input action that is bound to this button. The common input manager will trigger this button to\nclick if the action was pressed"
+    ],
+    "TriggeringEnhancedInputAction": [
+      "UInputAction",
+      "The enhanced input action that is bound to this button. The common input manager will trigger this button to\nclick if the action was pressed"
+    ]
+  },
+  "methods": [
+    {
+      "name": "OnClicked",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnClicked",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnDeselected",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnDeselected",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnDisabled",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnDisabled",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnDoubleClicked",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnDoubleClicked",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnEnabled",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnEnabled",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "BP_OnFocusLost",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "BP_OnFocusReceived",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnHovered",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnHovered",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnInputActionTriggered",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnInputActionTriggered",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnInputMethodChanged",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnInputMethodChanged",
+      "meta": null,
+      "args": [
+        {
+          "name": "CurrentInputType",
+          "type": "ECommonInputType"
+        }
+      ]
+    },
+    {
+      "name": "OnLockClicked",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnLockClicked",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnLockDoubleClicked",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnLockDoubleClicked",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnLockedChanged",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnLockedChanged",
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsLocked",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "OnPressed",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnPressed",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnReleased",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnReleased",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnSelected",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnSelected",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnUnhovered",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnUnhovered",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearSelection",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DisableButtonWithReason",
+      "return": "void",
+      "doc": "Disables this button with a reason (use instead of SetIsEnabled)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DisabledReason",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentButtonPadding",
+      "return": "void",
+      "const": true,
+      "doc": "@return The current button padding that corresponds to the current size and selection state",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutButtonPadding",
+          "type": "FMargin&"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentCustomPadding",
+      "return": "void",
+      "const": true,
+      "doc": "@return The custom padding that corresponds to the current size and selection state",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutCustomPadding",
+          "type": "FMargin&"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentTextStyle",
+      "return": "UCommonTextStyle",
+      "const": true,
+      "doc": "@return The text style that corresponds to the current size and selection state",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentTextStyleClass",
+      "return": "TSubclassOf<UCommonTextStyle>",
+      "const": true,
+      "doc": "@return The class of the text style that corresponds to the current size and selection state",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEnhancedInputAction",
+      "return": "UInputAction",
+      "const": true,
+      "doc": "Gets the appropriate enhanced input action that is set",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInputAction",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets the appropriate input action that is set",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputActionRow",
+          "type": "FDataTableRowHandle&"
+        }
+      ]
+    },
+    {
+      "name": "GetIsFocusable",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets the bIsFocusable flag",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLocked",
+      "return": "bool",
+      "const": true,
+      "doc": "@returns True if the button is currently locked, False otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelected",
+      "return": "bool",
+      "const": true,
+      "doc": "@returns True if the button is currently in a selected state, False otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetShouldSelectUponReceivingFocus",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether the button should become selected upon receiving focus or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSingleMaterialStyleMID",
+      "return": "UMaterialInstanceDynamic",
+      "const": true,
+      "doc": "Returns the dynamic instance of the material being used for this button, if it is using a single material style.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStyle",
+      "return": "UCommonButtonStyle",
+      "const": true,
+      "doc": "@Returns Current button style",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsInteractionEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Is this button currently interactable? (use instead of GetIsEnabled)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPressed",
+      "return": "bool",
+      "const": true,
+      "doc": "Is this button currently pressed?",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnActionComplete",
+      "return": "void",
+      "callable": false,
+      "doc": "Callback fired when hold events complete",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnActionProgress",
+      "return": "void",
+      "callable": false,
+      "doc": "Callback fired continously during hold interactions",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HeldPercent",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "OnCurrentTextStyleChanged",
+      "return": "void",
+      "protected": true,
+      "callable": false,
+      "doc": "Allows derived classes to take action when the current text style has changed",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnTriggeredInputActionChanged",
+      "return": "void",
+      "callable": false,
+      "doc": "Callback fired when input action datatable row changes",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTriggeredAction",
+          "type": "FDataTableRowHandle"
+        }
+      ]
+    },
+    {
+      "name": "OnTriggeringEnhancedInputActionChanged",
+      "return": "void",
+      "callable": false,
+      "doc": "Callback fired when enhanced input action changes",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InInputAction",
+          "type": "const UInputAction"
+        }
+      ]
+    },
+    {
+      "name": "OnTriggeringInputActionChanged",
+      "return": "void",
+      "callable": false,
+      "doc": "Callback fired when triggered input action datatable row changes",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTriggeredAction",
+          "type": "FDataTableRowHandle"
+        }
+      ]
+    },
+    {
+      "name": "SetClickMethod",
+      "return": "void",
+      "doc": "Set the click method for mouse interaction",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InClickMethod",
+          "type": "EButtonClickMethod"
+        }
+      ]
+    },
+    {
+      "name": "SetHideInputAction",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInHideInputAction",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetHoveredSoundOverride",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        }
+      ]
+    },
+    {
+      "name": "SetInputActionProgressMaterial",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InProgressMaterialBrush",
+          "type": "FSlateBrush"
+        },
+        {
+          "name": "InProgressMaterialParam",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetIsFocusable",
+      "return": "void",
+      "doc": "Updates the bIsFocusable flag",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsFocusable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIsInteractableWhenSelected",
+      "return": "void",
+      "doc": "Change whether this widget is selectable at all. If false and currently selected, will deselect.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInInteractableWhenSelected",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIsInteractionEnabled",
+      "return": "void",
+      "doc": "Change whether this widget is selectable at all. If false and currently selected, will deselect.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsInteractionEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIsLocked",
+      "return": "void",
+      "doc": "Change whether this widget is locked. If locked, the button can be focusable and responsive to mouse input but will not broadcast OnClicked events.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsLocked",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIsSelectable",
+      "return": "void",
+      "doc": "Change whether this widget is selectable at all. If false and currently selected, will deselect.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsSelectable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIsSelected",
+      "return": "void",
+      "doc": "Change the selected state manually.\n@param bGiveClickFeedback    If true, the button may give user feedback as if it were clicked. IE: Play a click sound, trigger animations as if it were clicked.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSelected",
+          "type": "bool"
+        },
+        {
+          "name": "bGiveClickFeedback",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIsToggleable",
+      "return": "void",
+      "doc": "Change whether this widget is toggleable. If toggleable, clicking when selected will deselect.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsToggleable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLockedHoveredSoundOverride",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        }
+      ]
+    },
+    {
+      "name": "SetLockedPressedSoundOverride",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        }
+      ]
+    },
+    {
+      "name": "SetMinDimensions",
+      "return": "void",
+      "doc": "Sets the minimum dimensions of this button",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMinWidth",
+          "type": "int"
+        },
+        {
+          "name": "InMinHeight",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetPressedSoundOverride",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        }
+      ]
+    },
+    {
+      "name": "SetPressMethod",
+      "return": "void",
+      "doc": "Set the click method for keyboard/gamepad button press interaction",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPressMethod",
+          "type": "EButtonPressMethod"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectedHoveredSoundOverride",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectedInternal",
+      "return": "void",
+      "protected": true,
+      "doc": "Internal method to allow the selected state to be set regardless of selectability or toggleability",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInSelected",
+          "type": "bool"
+        },
+        {
+          "name": "bAllowSound",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bBroadcast",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectedPressedSoundOverride",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        }
+      ]
+    },
+    {
+      "name": "SetShouldSelectUponReceivingFocus",
+      "return": "void",
+      "doc": "Set whether the button should become selected upon receiving focus or not; Only settable for buttons that are selectable",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInShouldSelectUponReceivingFocus",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetShouldUseFallbackDefaultInputAction",
+      "return": "void",
+      "doc": "Change whether this widget should use the fallback default input action.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInShouldUseFallbackDefaultInputAction",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStyle",
+      "return": "void",
+      "doc": "Sets the style of this button, rebuilds the internal styling",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStyle",
+          "default": "nullptr",
+          "type": "TSubclassOf<UCommonButtonStyle>"
+        }
+      ]
+    },
+    {
+      "name": "SetTouchMethod",
+      "return": "void",
+      "doc": "Set the click method for touch interaction",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTouchMethod",
+          "type": "EButtonTouchMethod"
+        }
+      ]
+    },
+    {
+      "name": "SetTriggeredInputAction",
+      "return": "void",
+      "doc": "Updates the current triggered action",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputActionRow",
+          "type": "FDataTableRowHandle"
+        }
+      ]
+    },
+    {
+      "name": "SetTriggeringEnhancedInputAction",
+      "return": "void",
+      "doc": "Updates the current triggering enhanced input action, requires enhanced input enabled in CommonUI settings",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InInputAction",
+          "type": "UInputAction"
+        }
+      ]
+    },
+    {
+      "name": "SetTriggeringInputAction",
+      "return": "void",
+      "doc": "Updates the current triggering action",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputActionRow",
+          "type": "FDataTableRowHandle"
+        }
+      ]
+    },
+    {
+      "name": "StopDoubleClickPropagation",
+      "return": "void",
+      "doc": "Unless this is called, we will assume the double click should be converted into a normal click.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

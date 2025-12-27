@@ -1,0 +1,16 @@
+{
+  "name": "UAbilityTask_StartAbilityState",
+  "inherits": "UAbilityTask",
+  "doc": "An ability state is simply an ability task that provides a way to handle the ability being interrupted.\nYou can use ability states to do state-specific cleanup if the ability ends or was interrupted at a certain point during it's execution.\n\nAn ability state will always result in either 'OnStateEnded' or 'OnStateInterrupted' being called.\n\n'OnStateEnded' will be called if:\n- The ability itself ends via AGameplayAbility::EndAbility\n- The ability state is manually ended via AGameplayAbility::EndAbilityState\n- Another ability state is started will 'bEndCurrentState' set to true\n\n'OnStateInterrupted' will be called if:\n- The ability itself is cancelled via AGameplayAbility::CancelAbility",
+  "properties": {
+    "OnStateEnded": [
+      "FAbilityStateDelegate",
+      "Invoked if 'EndAbilityState' is called or if 'EndAbility' is called and this state is active."
+    ],
+    "OnStateInterrupted": [
+      "FAbilityStateDelegate",
+      "Invoked if the ability was interrupted and this state is active."
+    ]
+  },
+  "methods": []
+}

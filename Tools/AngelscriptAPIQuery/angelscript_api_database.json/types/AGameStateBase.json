@@ -1,0 +1,98 @@
+{
+  "name": "AGameStateBase",
+  "inherits": "AInfo",
+  "doc": "GameStateBase is a class that manages the game's global state, and is spawned by GameModeBase.\nIt exists on both the client and the server and is fully replicated.",
+  "properties": {
+    "GameModeClass": [
+      "TSubclassOf<AGameModeBase>",
+      1,
+      "Class of the server's game mode, assigned by GameModeBase."
+    ],
+    "AuthorityGameMode": [
+      "AGameModeBase",
+      1,
+      "Instance of the current game mode, exists only on the server. For non-authority clients, this will be NULL."
+    ],
+    "SpectatorClass": [
+      "TSubclassOf<ASpectatorPawn>",
+      1,
+      "Class used by spectators, assigned by GameModeBase."
+    ],
+    "PlayerArray": [
+      "TArray<TObjectPtr<APlayerState>>",
+      1,
+      "Array of all PlayerStates, maintained on both server and clients (PlayerStates are always relevant)"
+    ],
+    "ServerWorldTimeSecondsUpdateFrequency": [
+      "float32",
+      2,
+      "Frequency that the server updates the replicated TimeSeconds from the world. Set to zero to disable periodic updates."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetPlayerRespawnDelay",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns how much time needs to be spent before a player can respawn",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Controller",
+          "type": "AController"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerStartTime",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the time that should be used as when a player started",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Controller",
+          "type": "AController"
+        }
+      ]
+    },
+    {
+      "name": "GetServerWorldTimeSeconds",
+      "return": "float",
+      "const": true,
+      "doc": "Returns the simulated TimeSeconds on the server, will be synchronized on client and server",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasBegunPlay",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the world has started play (called BeginPlay on actors)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasMatchEnded",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the match can be considered ended. Defaults to false.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasMatchStarted",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the world has started match (called MatchStarted callbacks)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

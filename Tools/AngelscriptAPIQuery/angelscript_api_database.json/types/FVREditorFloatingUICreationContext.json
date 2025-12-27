@@ -1,0 +1,58 @@
+{
+  "name": "FVREditorFloatingUICreationContext",
+  "isStruct": true,
+  "doc": "Creation parameters for AVREditorFloatingUI",
+  "properties": {
+    "WidgetClass": [
+      "TSubclassOf<UUserWidget>",
+      "Widget to open in the VR window. null to close an open window (if if matches the PanelID)"
+    ],
+    "PanelID": [
+      "FName",
+      "ID that the UI system will use to identify the panel. MUST BE UNIQUE!"
+    ],
+    "ParentActor": [
+      "AActor"
+    ],
+    "PanelSpawnOffset": [
+      "FTransform",
+      "Optional offset from HMD where the window opens. Pass FTransform::Identity for default logic - window will open at controller location."
+    ],
+    "PanelSize": [
+      "FVector2D",
+      "Panel size. Should match the size of the UMG passed in."
+    ],
+    "PanelMesh": [
+      "UStaticMesh",
+      "Optional custom mesh to use for the VR window."
+    ],
+    "EditorUISize": [
+      "float32",
+      "Optional override for \"VREd.EditorUISize\". Leave at 0 for default."
+    ],
+    "bHideWindowHandles": [
+      "bool",
+      "Turn off handles under window? (X-To-Close, movement bar...)"
+    ],
+    "bMaskOutWidgetBackground": [
+      "bool",
+      "Turn off the widget's background to create a see-through look."
+    ],
+    "bNoCloseButton": [
+      "bool",
+      "If bHideWindowHandles is false, this window doesn't have a close button. ("
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FVREditorFloatingUICreationContext&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVREditorFloatingUICreationContext"
+        }
+      ]
+    }
+  ]
+}

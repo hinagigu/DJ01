@@ -1,0 +1,57 @@
+{
+  "name": "UNiagaraLightRendererProperties",
+  "inherits": "UNiagaraRendererProperties",
+  "properties": {
+    "SourceMode": [
+      "ENiagaraRendererSourceDataMode",
+      2,
+      "Whether or not to draw a single element for the Emitter or to draw the particles."
+    ],
+    "RadiusScale": [
+      "float32",
+      2,
+      "A factor used to scale each particle light radius"
+    ],
+    "DefaultExponent": [
+      "float32",
+      2,
+      "The exponent to use for all lights if no exponent binding was found"
+    ],
+    "SpecularScale": [
+      "float32",
+      2,
+      "The specular scale to use for all lights if no binding was found"
+    ],
+    "ColorAdd": [
+      "FVector3f",
+      2,
+      "A static color shift applied to each rendered light"
+    ],
+    "InverseExposureBlend": [
+      "float32",
+      "Blend Factor used to blend between Intensity and Intensity/Exposure.\nThis is useful for gameplay lights that should have constant brighness on screen independent of current exposure.\nThis feature can cause issues with exposure particularly when used on the primary light on a scene, as such it's usage should be limited."
+    ],
+    "RendererVisibility": [
+      "int",
+      2,
+      "If a render visibility tag is present, particles whose tag matches this value will be visible in this renderer."
+    ],
+    "bUseInverseSquaredFalloff": [
+      "bool",
+      "Whether to use physically based inverse squared falloff from the light.  If unchecked, the value from the LightExponent binding will be used instead."
+    ],
+    "bAffectsTranslucency": [
+      "bool",
+      "Whether lights from this renderer should affect translucency.\nUse with caution - if enabled, create only a few particle lights at most, and the smaller they are, the less they will cost."
+    ],
+    "bAlphaScalesBrightness": [
+      "bool",
+      "When checked, will treat the alpha value of the particle's color as a multiplier of the light's brightness."
+    ],
+    "bOverrideInverseExposureBlend": [
+      "bool",
+      "When enabled we will override the project default setting with our local setting."
+    ]
+  },
+  "methods": []
+}

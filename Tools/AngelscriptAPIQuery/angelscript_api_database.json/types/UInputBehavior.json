@@ -1,0 +1,7 @@
+{
+  "name": "UInputBehavior",
+  "inherits": "UObject",
+  "doc": "An InputBehavior implements a state machine for a user interaction.\nThe InputRouter maintains a set of active Behaviors, and when new input\nevents occur, it calls WantsCapture() to check if the Behavior would like to\nbegin capturing the applicable input event stream (eg for a mouse, one or both VR controllers, etc).\nIf the Behavior acquires capture, UpdateCapture() is called until the Behavior\nindicates that it wants to release the device, or until the InputRouter force-terminates\nthe capture via ForceEndCapture().\n\nFor example, something like ButtonSetClickBehavior might work as follows:\n   - in WantsCapture(), if left mouse is pressed and a button is under cursor, return Begin, otherwise Ignore\n   - in BeginCapture(), save identifier for button that is under cursor\n   - in UpdateCapture()\n       - if left mouse is down, return Continue\n       - if left mouse is released:\n           - if saved button is still under cursor, call button.Clicked()\n           - return End\n\nWritten sufficiently generically, the above Behavior doesn't need to know about buttons,\nit just needs to know how to hit-test the clickable object(s). Similarly separate\nBehaviors can be written for mouse, VR, touch, gamepad, etc.\n\nImplementing interactions in this way allows the input handling to be separated from functionality.",
+  "properties": {},
+  "methods": []
+}

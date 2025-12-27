@@ -1,0 +1,200 @@
+{
+  "name": "UNiagaraSettings",
+  "inherits": "UDeveloperSettings",
+  "properties": {
+    "AdditionalParameterTypes": [
+      "TArray<FSoftObjectPath>",
+      2,
+      ""
+    ],
+    "AdditionalPayloadTypes": [
+      "TArray<FSoftObjectPath>",
+      2,
+      ""
+    ],
+    "AdditionalParameterEnums": [
+      "TArray<FSoftObjectPath>",
+      2,
+      ""
+    ],
+    "bSystemViewportInOrbitMode": [
+      "bool",
+      2,
+      "Sets the default navigation behavior for the system preview viewport."
+    ],
+    "bShowConvertibleInputsInStack": [
+      "bool",
+      2,
+      "If true then the \"link input\" menu will also show variables of different types, as long as there is a conversion script for them."
+    ],
+    "QuickSimCacheCaptureFrameCount": [
+      "int",
+      2,
+      "The number of frames to capture when capturing a Sim Cache from the Niagara Component Details Panel. *"
+    ],
+    "bSystemsSupportLargeWorldCoordinates": [
+      "bool",
+      2,
+      "If true then active effects rebase the simulation positions to not lose precision. Can be turned off if not needed to skip unnecessary rebasing calculations."
+    ],
+    "bEnforceStrictStackTypes": [
+      "bool",
+      2,
+      "If set to true, types like positions and vectors cannot be assigned to each other without an explicit conversion step.\nIf false, type checks are loosened and some types can be implicitly converted into each other.\nIt is recommended to not disable this when working with large world coordinates."
+    ],
+    "bExperimentalVMEnabled": [
+      "bool",
+      2,
+      "True indicates that we will generate byte code for the new optimized VM.  Control over whether the new VM will\nbe used when executing NiagaraScripts will also take into account the overrides on the system (bDisableExperimentalVM) and\nthe cvars fx.NiagaraScript.StripByteCodeOnLoad and fx.ForceExecVMPath."
+    ],
+    "bStatelessEmittersEnabled": [
+      "bool",
+      2,
+      "Enables Lightweight Emitters experimental feature.\nStatless emitters are lightweight fixed function emitters, they are not fully programmable like regular emitters and do not run scripts on the CPU.\nParticle data is extrapolated per frame for the current particle age.  This means we never store particle data, we only generate it on demand.\nSystems that contain only lightweight emitters and no system script modules can take advantage of a much faster path to execute.\n* There is no guarantee on backwards compatability for this feature currently.  Do not ship lightweight content. **"
+    ],
+    "bAccurateQuatInterpolation": [
+      "bool",
+      2,
+      "If set to true, quaternion attributes will be interpolated via slerp instead of lerp in interpolated spawn scripts."
+    ],
+    "InvalidNamespaceWriteSeverity": [
+      "ENiagaraCompileErrorSeverity",
+      2,
+      "If the Niagara compiler sees that a script writes to a namespace that is read only (e.g. a particle script writing to a system attribute), what should it do."
+    ],
+    "bLimitDeltaTime": [
+      "bool",
+      "Whether to limit the max tick delta time or not."
+    ],
+    "MaxDeltaTimePerTick": [
+      "float32",
+      "Limits the delta time per tick for emitters to prevent simulation spikes due to frame lags."
+    ],
+    "DefaultEffectType": [
+      "FSoftObjectPath",
+      2,
+      "Default effect type to use for effects that don't define their own. Can be null."
+    ],
+    "RequiredEffectType": [
+      "FSoftObjectPath",
+      2,
+      "Specifies a required effect type which must be used for effects in the project."
+    ],
+    "bAllowCreateActorFromSystemWithNoEffectType": [
+      "bool",
+      2,
+      "Should we allow placing a Niagara System in the editor into a level which has no effect type assigned?"
+    ],
+    "PositionPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Position pin type color. The other pin colors are defined in the general editor settings."
+    ],
+    "ByteCodeStripOption": [
+      "ENiagaraStripScriptByteCodeOption",
+      2,
+      "Controls how byte code will be stripped when loading assets that have multiple sets of bytecode (i.e. optimized)."
+    ],
+    "CompilationMode": [
+      "ENiagaraCompilationMode",
+      2,
+      ""
+    ],
+    "QualityLevels": [
+      "TArray<FText>",
+      2,
+      "The quality levels Niagara uses."
+    ],
+    "ComponentRendererWarningsPerClass": [
+      "TMap<FString,FText>",
+      2,
+      "Info texts that the component renderer shows the user depending on the selected component class."
+    ],
+    "DefaultRenderTargetFormat": [
+      "ETextureRenderTargetFormat",
+      2,
+      "The default render target format used by all Niagara Render Target Data Interfaces unless overridden."
+    ],
+    "DefaultGridFormat": [
+      "ENiagaraGpuBufferFormat",
+      2,
+      "The default buffer format used by all Niagara Grid Data Interfaces unless overridden."
+    ],
+    "DefaultRendererMotionVectorSetting": [
+      "ENiagaraDefaultRendererMotionVectorSetting",
+      2,
+      "The default setting for motion vectors in Niagara renderers"
+    ],
+    "DefaultPixelCoverageMode": [
+      "ENiagaraDefaultRendererPixelCoverageMode",
+      2,
+      "The default setting for pixel coverage mode when automatic is set on the Niagara Renderer."
+    ],
+    "DefaultSortPrecision": [
+      "ENiagaraDefaultSortPrecision",
+      2,
+      "The default setting for sorting precision when automatic is set on the Niagara Renderer."
+    ],
+    "DefaultGpuTranslucentLatency": [
+      "ENiagaraDefaultGpuTranslucentLatency",
+      2,
+      "The default setting for Gpu simulation translucent draw latency."
+    ],
+    "DefaultLightInverseExposureBlend": [
+      "float32",
+      2,
+      "The default InverseExposureBlend used for the light renderer."
+    ],
+    "NDISkelMesh_SupportReadingDeformedGeometry": [
+      "bool",
+      2,
+      "When enabled we will read deformed geometry if available, i.e. data from the deformed graph / skin cache\nWhen disable we will only read from the default vertex data which does not include morph targets, skin, etc.\nChanging this setting requires restarting the editor.\nNote: Enabling this does add additional branches to the skel mesh data reading."
+    ],
+    "NDISkelMesh_Support16BitIndexWeight": [
+      "bool",
+      2,
+      "Enabled support for 16 bit bone index & bone weight, optional to reduce shader complexity.  Changing this setting requires restarting the editor."
+    ],
+    "NDISkelMesh_GpuMaxInfluences": [
+      "ENDISkelMesh_GpuMaxInfluences",
+      2,
+      "Controls the maximum number of influences we allow the Skeletal Mesh Data Interface to use on the GPU.  Changing this setting requires restarting the editor."
+    ],
+    "NDISkelMesh_GpuUniformSamplingFormat": [
+      "ENDISkelMesh_GpuUniformSamplingFormat",
+      2,
+      "Controls the format used for uniform sampling on the GPU.  Changing this setting requires restarting the editor."
+    ],
+    "NDISkelMesh_AdjacencyTriangleIndexFormat": [
+      "ENDISkelMesh_AdjacencyTriangleIndexFormat",
+      2,
+      "Controls the format used for specifying triangle indexes in adjacency buffers.  Changing this setting requires restarting the editor."
+    ],
+    "NDIStaticMesh_AllowDistanceFields": [
+      "bool",
+      2,
+      "When enabled the static mesh data interface is allowed to sample from the distance field data (if present) on the GPU.\nEnabling this feature will move all systems that contain static mesh samples into PostRenderOpaque tick group regardless of the features used.\nChanging this setting requires restarting the editor."
+    ],
+    "NDICollisionQuery_AsyncGpuTraceProviderOrder": [
+      "TArray<ENDICollisionQuery_AsyncGpuTraceProvider>",
+      2,
+      "Defines how traces tagged as 'Project Default' will be interpreted when using the AsyncGpuTrace data interface.\nThe system will go through (starting at element 0) to find the first provider that is available."
+    ],
+    "SimCacheAuxiliaryFileBasePath": [
+      "FString",
+      2,
+      "Base path for auxiliary files written out during the generation of a Niagara Sim Cache (ie: volume files)."
+    ],
+    "SimCacheMaxCPUMemoryVolumetrics": [
+      "int64",
+      2,
+      "Max memory in megabytes for total CPU memory for cached volumetric data"
+    ],
+    "PlatformSetRedirects": [
+      "TArray<FNiagaraPlatformSetRedirect>",
+      2,
+      ""
+    ]
+  },
+  "methods": []
+}

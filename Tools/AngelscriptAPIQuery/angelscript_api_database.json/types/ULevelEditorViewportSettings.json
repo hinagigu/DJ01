@@ -1,0 +1,301 @@
+{
+  "name": "ULevelEditorViewportSettings",
+  "inherits": "UObject",
+  "doc": "Implements the Level Editor's view port settings.",
+  "properties": {
+    "FlightCameraControlType": [
+      "EWASDType",
+      2,
+      "Enable the use of flight camera controls under various circumstances."
+    ],
+    "FlightCameraControlExperimentalNavigation": [
+      "bool",
+      2,
+      "Enable the use of the experimental navigation in the flight camera controls."
+    ],
+    "LandscapeEditorControlType": [
+      "ELandscapeFoliageEditorControlType",
+      2,
+      "Choose the control scheme for landscape tools (ignored for pen input)"
+    ],
+    "FoliageEditorControlType": [
+      "ELandscapeFoliageEditorControlType",
+      2,
+      "Choose the control scheme for foliage tools"
+    ],
+    "MinimumOrthographicZoom": [
+      "float32",
+      2,
+      "The closest possible distance allowed when viewing through an orthographic camera"
+    ],
+    "MouseScrollCameraSpeed": [
+      "int",
+      2,
+      "How fast the perspective camera moves through the world when using mouse scroll."
+    ],
+    "MouseSensitivty": [
+      "float32",
+      2,
+      "The sensitivity of mouse movement when rotating the camera."
+    ],
+    "bInvertMouseLookYAxis": [
+      "bool",
+      2,
+      "Whether or not to invert mouse on the y axis in free look mode"
+    ],
+    "bInvertOrbitYAxis": [
+      "bool",
+      2,
+      "Whether or not to invert mouse on y axis in orbit mode"
+    ],
+    "bInvertMiddleMousePan": [
+      "bool",
+      2,
+      "Whether or not to invert the direction of middle mouse panning in viewports"
+    ],
+    "bInvertRightMouseDollyYAxis": [
+      "bool",
+      2,
+      "Whether or not to invert the direction of right mouse dolly on the Y axis in orbit mode"
+    ],
+    "bLevelStreamingVolumePrevis": [
+      "bool",
+      2,
+      "If enabled, the viewport will stream in levels automatically when the camera is moved."
+    ],
+    "bUseUE3OrbitControls": [
+      "bool",
+      2,
+      "When checked, orbit the camera by using the L or U keys when unchecked, Alt and Left Mouse Drag will orbit around the look at point"
+    ],
+    "ScrollGestureDirectionFor3DViewports": [
+      "EScrollGestureDirection",
+      2,
+      "Direction of the scroll gesture for 3D viewports"
+    ],
+    "ScrollGestureDirectionForOrthoViewports": [
+      "EScrollGestureDirection",
+      2,
+      "Direction of the scroll gesture for orthographic viewports"
+    ],
+    "bLevelEditorJoystickControls": [
+      "bool",
+      2,
+      "Enables joystick-based camera movement in 3D level editing viewports"
+    ],
+    "bUseDistanceScaledCameraSpeed": [
+      "bool",
+      2,
+      "If enabled, scale the perspective camera speed based on the distance between the camera and its look-at position"
+    ],
+    "bOrbitCameraAroundSelection": [
+      "bool",
+      2,
+      "If enabled, the camera will orbit around the current selection in the viewport"
+    ],
+    "bUsePowerOf2SnapSize": [
+      "bool",
+      2,
+      "If enabled will use power of 2 grid settings (e.g, 1,2,4,8,16,...,1024) instead of decimal grid sizes"
+    ],
+    "DecimalGridSizes": [
+      "TArray<float32>",
+      2,
+      "Decimal grid sizes (for translation snapping and grid rendering)"
+    ],
+    "DecimalGridIntervals": [
+      "TArray<float32>",
+      2,
+      "The number of lines between each major line interval for decimal grids"
+    ],
+    "Pow2GridSizes": [
+      "TArray<float32>",
+      2,
+      "Power of 2 grid sizes (for translation snapping and grid rendering)"
+    ],
+    "Pow2GridIntervals": [
+      "TArray<float32>",
+      2,
+      "The number of lines between each major line interval for pow2 grids"
+    ],
+    "CommonRotGridSizes": [
+      "TArray<float32>",
+      2,
+      "User defined grid intervals for rotations"
+    ],
+    "DivisionsOf360RotGridSizes": [
+      "TArray<float32>",
+      2,
+      "Preset grid intervals for rotations"
+    ],
+    "ScalingGridSizes": [
+      "TArray<float32>",
+      2,
+      "Grid sizes for scaling"
+    ],
+    "AspectRatioAxisConstraint": [
+      "EAspectRatioAxisConstraint",
+      2,
+      "How to constrain perspective view port FOV"
+    ],
+    "SelectionHighlightIntensity": [
+      "float32",
+      2,
+      "Sets the intensity of the overlay displayed when an object is selected"
+    ],
+    "BSPSelectionHighlightIntensity": [
+      "float32",
+      2,
+      "Sets the intensity of the overlay displayed when an object is selected"
+    ],
+    "CameraPreviewSize": [
+      "float32",
+      2,
+      "Affects the size of 'picture in picture' previews if they are enabled"
+    ],
+    "BackgroundDropDistance": [
+      "float32",
+      2,
+      "Distance from the camera to place actors which are dropped on nothing in the view port."
+    ],
+    "PreviewMeshes": [
+      "TArray<FSoftObjectPath>",
+      2,
+      "A list of meshes that can be used as preview mesh in the editor view port by holding down the backslash key"
+    ],
+    "BillboardScale": [
+      "float32",
+      2,
+      ""
+    ],
+    "TransformWidgetSizeAdjustment": [
+      "int",
+      2,
+      "The size adjustment to apply to the translate/rotate/scale widgets (in Unreal units)."
+    ],
+    "MeasuringToolUnits": [
+      "EMeasuringToolUnits",
+      2,
+      "Specify the units used by the measuring tool"
+    ],
+    "SelectedSplinePointSizeAdjustment": [
+      "float32",
+      2,
+      "The size adjustment to apply to selected spline points (in screen space units)."
+    ],
+    "SplineLineThicknessAdjustment": [
+      "float32",
+      2,
+      "The size adjustment to apply to spline line thickness which increases the spline's hit tolerance."
+    ],
+    "SplineTangentHandleSizeAdjustment": [
+      "float32",
+      2,
+      "The size adjustment to apply to spline tangent handle (in screen space units)."
+    ],
+    "SplineTangentScale": [
+      "float32",
+      2,
+      "The scale to apply to spline tangent lengths"
+    ],
+    "MaterialForDroppedTextures": [
+      "TSoftObjectPtr<UMaterialInterface>",
+      2,
+      "When dropping a texture in the viewport, create an instance of this material instead of creating a new material. Populate MaterialParamsForDroppedTextures to specify the parameter names."
+    ],
+    "MaterialParamsForDroppedTextures": [
+      "TMap<EMaterialKind,FName>",
+      2,
+      "When dropping a texture in the viewport, determines which material parameter to assign for each found texture type. Only relevant if MaterialForDroppedTextures is assigned."
+    ],
+    "bPanMovesCanvas": [
+      "bool",
+      "If true, moves the canvas and shows the mouse.  If false, uses original camera movement."
+    ],
+    "bCenterZoomAroundCursor": [
+      "bool",
+      "If checked, in orthographic view ports zooming will center on the mouse position.  If unchecked, the zoom is around the center of the viewport."
+    ],
+    "bAllowTranslateRotateZWidget": [
+      "bool",
+      "Allow translate/rotate widget"
+    ],
+    "bAllowArcballRotate": [
+      "bool",
+      "Allow arcball rotation with rotate widget"
+    ],
+    "bAllowScreenRotate": [
+      "bool",
+      "Allow screen rotation with rotate widget"
+    ],
+    "bClickBSPSelectsBrush": [
+      "bool",
+      "If true, Clicking a BSP selects the brush and ctrl+shift+click selects the surface. If false, vice versa"
+    ],
+    "bShowActorEditorContext": [
+      "bool",
+      "If true, viewport will show actor editor context (current level, current data layer(s), current folder)"
+    ],
+    "bAllowEditWidgetAxisDisplay": [
+      "bool",
+      "If true, the Edit widget of a transform will display the axis"
+    ],
+    "bUseLegacyCameraMovementNotifications": [
+      "bool",
+      "Camera movement notification toggle to switch back to the behavior that caused camera notifications to be sent during gizmo movement."
+    ],
+    "bUseAbsoluteTranslation": [
+      "bool",
+      "Whether to use mouse position as direct widget position."
+    ],
+    "GridEnabled": [
+      "bool",
+      "If enabled, actor positions will snap to the grid."
+    ],
+    "RotGridEnabled": [
+      "bool",
+      "If enabled, actor rotations will snap to the grid."
+    ],
+    "SnapScaleEnabled": [
+      "bool",
+      "If enabled, actor sizes will snap to the grid."
+    ],
+    "bUsePercentageBasedScaling": [
+      "bool",
+      "If enabled, use the old-style multiplicative/percentage scaling method instead of the new additive/fraction method"
+    ],
+    "bEnableLayerSnap": [
+      "bool",
+      "If enabled, new Actors that you drag into the viewport snap to the active 2D layer."
+    ],
+    "bEnableViewportHoverFeedback": [
+      "bool",
+      "Enables real-time hover feedback when mousing over objects in editor view ports"
+    ],
+    "bHighlightWithBrackets": [
+      "bool",
+      "If enabled, selected objects will be highlighted with brackets in all modes rather than a special highlight color."
+    ],
+    "bUseLinkedOrthographicViewports": [
+      "bool",
+      "If checked all orthographic view ports are linked to the same position and move together."
+    ],
+    "bUseSelectionOutline": [
+      "bool",
+      "Whether to show selection outlines for selected Actors"
+    ],
+    "bEnableViewportCameraToUpdateFromPIV": [
+      "bool",
+      "Enables the editor perspective camera to be dropped at the last PlayInViewport cam position"
+    ],
+    "bPreviewSelectedCameras": [
+      "bool",
+      "When enabled, selecting a camera actor will display a live 'picture in picture' preview from the camera's perspective within the current editor view port.  This can be used to easily tweak camera positioning, post-processing and other settings without having to possess the camera itself.  This feature may reduce application performance when enabled."
+    ],
+    "bSaveEngineStats": [
+      "bool",
+      "When enabled, engine stats that are enabled in level viewports are preserved between editor sessions"
+    ]
+  },
+  "methods": []
+}

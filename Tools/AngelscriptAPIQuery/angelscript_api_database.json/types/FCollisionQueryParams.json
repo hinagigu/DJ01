@@ -1,0 +1,149 @@
+{
+  "name": "FCollisionQueryParams",
+  "isStruct": true,
+  "properties": {
+    "TraceTag": [
+      "FName"
+    ],
+    "OwnerTag": [
+      "FName"
+    ],
+    "bTraceComplex": [
+      "bool"
+    ],
+    "bFindInitialOverlaps": [
+      "bool"
+    ],
+    "bReturnFaceIndex": [
+      "bool"
+    ],
+    "bReturnPhysicalMaterial": [
+      "bool"
+    ],
+    "bIgnoreBlocks": [
+      "bool"
+    ],
+    "bIgnoreTouches": [
+      "bool"
+    ],
+    "bSkipNarrowPhase": [
+      "bool"
+    ],
+    "MobilityType": [
+      "EQueryMobilityType"
+    ],
+    "IgnoreMask": [
+      "uint8"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetIgnoredComponents",
+      "return": "TArray<uint>",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetIgnoredActors",
+      "return": "TArray<uint>",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ClearIgnoredComponents",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "ClearIgnoredActors",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "SetNumIgnoredComponents",
+      "return": "void",
+      "args": [
+        {
+          "name": "NewNum",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "AddIgnoredActor",
+      "return": "void",
+      "args": [
+        {
+          "name": "InIgnoreActor",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "AddIgnoredActor",
+      "return": "void",
+      "args": [
+        {
+          "name": "InIgnoreActorID",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "AddIgnoredActors",
+      "return": "void",
+      "args": [
+        {
+          "name": "InIgnoreActors",
+          "type": "TArray<AActor>"
+        }
+      ]
+    },
+    {
+      "name": "AddIgnoredActors",
+      "return": "void",
+      "args": [
+        {
+          "name": "InIgnoreActors",
+          "type": "TArray<const AActor>"
+        }
+      ]
+    },
+    {
+      "name": "AddIgnoredComponent",
+      "return": "void",
+      "args": [
+        {
+          "name": "InIgnoreComponent",
+          "type": "const UPrimitiveComponent"
+        }
+      ]
+    },
+    {
+      "name": "AddIgnoredComponents",
+      "return": "void",
+      "args": [
+        {
+          "name": "InIgnoreComponents",
+          "type": "TArray<UPrimitiveComponent>"
+        }
+      ]
+    },
+    {
+      "name": "AddIgnoredComponent_LikelyDuplicatedRoot",
+      "return": "void",
+      "args": [
+        {
+          "name": "InIgnoreComponent",
+          "type": "const UPrimitiveComponent"
+        }
+      ]
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    }
+  ]
+}

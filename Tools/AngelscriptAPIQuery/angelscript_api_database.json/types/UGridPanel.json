@@ -1,0 +1,71 @@
+{
+  "name": "UGridPanel",
+  "inherits": "UPanelWidget",
+  "doc": "A table-like panel that retains the width of every column throughout the table.\n\n* Many Children",
+  "properties": {
+    "ColumnFill": [
+      "TArray<float32>",
+      "The column fill rules"
+    ],
+    "RowFill": [
+      "TArray<float32>",
+      "The row fill rules"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddChildToGrid",
+      "return": "UGridSlot",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Content",
+          "type": "UWidget"
+        },
+        {
+          "name": "InRow",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "InColumn",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetColumnFill",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ColumnIndex",
+          "type": "int"
+        },
+        {
+          "name": "Coefficient",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRowFill",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RowIndex",
+          "type": "int"
+        },
+        {
+          "name": "Coefficient",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

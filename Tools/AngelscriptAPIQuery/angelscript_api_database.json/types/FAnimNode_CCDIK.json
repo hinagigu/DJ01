@@ -1,0 +1,99 @@
+{
+  "name": "FAnimNode_CCDIK",
+  "isStruct": true,
+  "doc": "Controller which implements the CCDIK IK approximation algorithm",
+  "properties": {
+    "EffectorLocation": [
+      "FVector",
+      2,
+      "Coordinates for target location of tip bone - if EffectorLocationSpace is bone, this is the offset from Target Bone to use as target location"
+    ],
+    "EffectorLocationSpace": [
+      "EBoneControlSpace",
+      2,
+      "Reference frame of Effector Transform."
+    ],
+    "EffectorTarget": [
+      "FBoneSocketTarget",
+      2,
+      "If EffectorTransformSpace is a bone, this is the bone to use. *"
+    ],
+    "TipBone": [
+      "FBoneReference",
+      2,
+      "Name of tip bone"
+    ],
+    "RootBone": [
+      "FBoneReference",
+      2,
+      "Name of the root bone"
+    ],
+    "Precision": [
+      "float32",
+      2,
+      "Tolerance for final tip location delta from EffectorLocation"
+    ],
+    "MaxIterations": [
+      "int",
+      2,
+      "Maximum number of iterations allowed, to control performance."
+    ],
+    "bStartFromTail": [
+      "bool",
+      2,
+      "Toggle drawing of axes to debug joint rotation"
+    ],
+    "bEnableRotationLimit": [
+      "bool",
+      2,
+      "Tolerance for final tip location delta from EffectorLocation"
+    ],
+    "RotationLimitPerJoints": [
+      "TArray<float32>",
+      2,
+      "symmetry rotation limit per joint. Index 0 matches with root bone and last index matches with tip bone."
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_CCDIK&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_CCDIK"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "FRigVMFunction_TimeLoop",
+  "isStruct": true,
+  "doc": "Simulates a time value - and outputs loop information",
+  "properties": {
+    "Speed": [
+      "float32"
+    ],
+    "Duration": [
+      "float32",
+      "the duration of a single loop in seconds"
+    ],
+    "Normalize": [
+      "bool",
+      "if set to true the output relative and flipflop\nwill be normalized over the duration."
+    ],
+    "Absolute": [
+      "float32",
+      1,
+      "the overall time in seconds"
+    ],
+    "Relative": [
+      "float32",
+      1,
+      "the relative time in seconds (within the loop)"
+    ],
+    "FlipFlop": [
+      "float32",
+      1,
+      "the relative time in seconds (within the loop),\ngoing from 0 to duration and then back from duration to 0,\nor 0 to 1 and 1 to 0 if Normalize is turned on"
+    ],
+    "Even": [
+      "bool",
+      1,
+      "true if the iteration of the loop is even"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigVMFunction_TimeLoop&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigVMFunction_TimeLoop"
+        }
+      ]
+    }
+  ]
+}

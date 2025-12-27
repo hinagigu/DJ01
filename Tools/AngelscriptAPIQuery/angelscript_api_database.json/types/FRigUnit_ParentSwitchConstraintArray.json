@@ -1,0 +1,53 @@
+{
+  "name": "FRigUnit_ParentSwitchConstraintArray",
+  "isStruct": true,
+  "doc": "The Parent Switch Constraint is used to have an item follow one of multiple parents,\nand allowing to switch between the parent in question.",
+  "properties": {
+    "Subject": [
+      "FRigElementKey",
+      "The subject to constrain"
+    ],
+    "ParentIndex": [
+      "int",
+      "The parent index to use for constraining the subject"
+    ],
+    "Parents": [
+      "TArray<FRigElementKey>",
+      "The list of parents to constrain to"
+    ],
+    "InitialGlobalTransform": [
+      "FTransform",
+      "The initial global transform for the subject"
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the change - how much the change should be applied"
+    ],
+    "Transform": [
+      "FTransform",
+      1,
+      "The transform result (full without weighting)"
+    ],
+    "Switched": [
+      "bool",
+      1,
+      "Returns true if the parent has changed"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_ParentSwitchConstraintArray&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_ParentSwitchConstraintArray"
+        }
+      ]
+    }
+  ]
+}

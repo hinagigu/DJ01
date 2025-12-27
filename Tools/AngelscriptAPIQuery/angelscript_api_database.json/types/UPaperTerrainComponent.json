@@ -1,0 +1,61 @@
+{
+  "name": "UPaperTerrainComponent",
+  "inherits": "UPrimitiveComponent",
+  "doc": "The terrain visualization component for an associated spline component.\nThis takes a 2D terrain material and instances sprite geometry along the spline path.",
+  "properties": {
+    "TerrainMaterial": [
+      "UPaperTerrainMaterial",
+      "The terrain material to apply to this component (set of rules for which sprites are used on different surfaces or the interior)"
+    ],
+    "bClosedSpline": [
+      "bool"
+    ],
+    "bFilledSpline": [
+      "bool"
+    ],
+    "RandomSeed": [
+      "int",
+      2,
+      "Random seed used for choosing which spline meshes to use."
+    ],
+    "SegmentOverlapAmount": [
+      "float32",
+      2,
+      "The overlap amount between segments"
+    ],
+    "ReparamStepsPerSegment": [
+      "int",
+      2,
+      "Number of steps per spline segment to place in the reparameterization table"
+    ],
+    "SpriteCollisionDomain": [
+      "ESpriteCollisionMode",
+      2,
+      "Collision domain (no collision, 2D (experimental), or 3D)"
+    ],
+    "CollisionThickness": [
+      "float32",
+      2,
+      "The extrusion thickness of collision geometry when using a 3D collision domain"
+    ],
+    "TerrainColor": [
+      "FLinearColor",
+      "The color of the terrain (passed to the sprite material as a vertex color)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetTerrainColor",
+      "return": "void",
+      "doc": "Set color of the terrain",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewColor",
+          "type": "FLinearColor"
+        }
+      ]
+    }
+  ]
+}

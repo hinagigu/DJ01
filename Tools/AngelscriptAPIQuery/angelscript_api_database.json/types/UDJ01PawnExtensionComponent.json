@@ -1,0 +1,23 @@
+{
+  "name": "UDJ01PawnExtensionComponent",
+  "inherits": "UPawnComponent",
+  "doc": "UDJ01PawnExtensionComponent\n\n为所有 Pawn 类添加功能的组件，可用于角色/载具等\n协调其他组件的初始化顺序，管理 Pawn 的整个生命周期\n\n初始化状态链：Spawned -> DataAvailable -> DataInitialized -> GameplayReady",
+  "properties": {
+    "PawnData": [
+      "const UDJ01PawnData",
+      2,
+      "用于创建 Pawn 的 PawnData。从生成函数指定或在已放置的实例上指定"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDJ01AbilitySystemComponent",
+      "return": "UDJ01AbilitySystemComponent",
+      "const": true,
+      "doc": "获取当前的 AbilitySystem 组件，可能由不同的 Actor 拥有",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

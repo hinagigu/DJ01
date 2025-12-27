@@ -1,0 +1,44 @@
+{
+  "name": "FRigUnit_GetJointTransform",
+  "isStruct": true,
+  "properties": {
+    "Joint": [
+      "FName"
+    ],
+    "Type": [
+      "ETransformGetterType"
+    ],
+    "TransformSpace": [
+      "ETransformSpaceMode"
+    ],
+    "BaseTransform": [
+      "FTransform",
+      "Transform op option. Use if ETransformSpace is BaseTransform"
+    ],
+    "BaseJoint": [
+      "FName",
+      "Transform op option. Use if ETransformSpace is BaseJoint"
+    ],
+    "Output": [
+      "FTransform",
+      1,
+      "possibly space, relative transform so on can be input"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_GetJointTransform&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_GetJointTransform"
+        }
+      ]
+    }
+  ]
+}

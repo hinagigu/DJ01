@@ -1,0 +1,37 @@
+{
+  "name": "FSpecularProfileStruct",
+  "isStruct": true,
+  "doc": "struct with all the settings we want in USpecularProfile, separate to make it easer to pass this data around in the engine.",
+  "properties": {
+    "Format": [
+      "ESpecularProfileFormat",
+      "Define the texture used as a specular profile"
+    ],
+    "ViewColor": [
+      "FRuntimeCurveLinearColor",
+      2,
+      "Define the view facing color"
+    ],
+    "LightColor": [
+      "FRuntimeCurveLinearColor",
+      2,
+      "Define the light facing color"
+    ],
+    "Texture": [
+      "UTexture2D",
+      "Define the texture used as a specular profile"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSpecularProfileStruct&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSpecularProfileStruct"
+        }
+      ]
+    }
+  ]
+}

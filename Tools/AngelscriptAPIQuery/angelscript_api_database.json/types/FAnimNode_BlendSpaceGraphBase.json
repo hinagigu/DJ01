@@ -1,0 +1,35 @@
+{
+  "name": "FAnimNode_BlendSpaceGraphBase",
+  "isStruct": true,
+  "doc": "Allows multiple animations to be blended between based on input parameters",
+  "properties": {
+    "X": [
+      "float32",
+      "The X coordinate to sample in the blendspace"
+    ],
+    "Y": [
+      "float32",
+      "The Y coordinate to sample in the blendspace"
+    ],
+    "GroupName": [
+      "FName",
+      "The group name that we synchronize with (NAME_None if it is not part of any group). Note that\nthis is the name of the group used to sync the output of this node - it will not force\nsyncing of animations contained by it. Animations inside this Blend Space have their own\noptions for syncing."
+    ],
+    "GroupRole": [
+      "EAnimGroupRole",
+      "The role this Blend Space can assume within the group (ignored if GroupName is not set). Note\nthat this is the role of the output of this node, not of animations contained by it."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_BlendSpaceGraphBase&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_BlendSpaceGraphBase"
+        }
+      ]
+    }
+  ]
+}

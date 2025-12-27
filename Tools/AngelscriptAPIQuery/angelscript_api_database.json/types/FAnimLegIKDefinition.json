@@ -1,0 +1,64 @@
+{
+  "name": "FAnimLegIKDefinition",
+  "isStruct": true,
+  "doc": "Per foot definitions",
+  "properties": {
+    "IKFootBone": [
+      "FBoneReference",
+      2,
+      ""
+    ],
+    "FKFootBone": [
+      "FBoneReference",
+      2,
+      ""
+    ],
+    "NumBonesInLimb": [
+      "int",
+      2,
+      ""
+    ],
+    "MinRotationAngle": [
+      "float32",
+      2,
+      "Only used if bEnableRotationLimit is enabled. Prevents the leg from folding onto itself,\nand forces at least this angle between Parent and Child bone."
+    ],
+    "FootBoneForwardAxis": [
+      "EAxis",
+      2,
+      "Forward Axis for Foot bone."
+    ],
+    "HingeRotationAxis": [
+      "EAxis",
+      2,
+      "Hinge Bones Rotation Axis. This is essentially the plane normal for (hip - knee - foot)."
+    ],
+    "bEnableRotationLimit": [
+      "bool",
+      2,
+      "If enabled, we prevent the leg from bending backwards and enforce a min compression angle"
+    ],
+    "bEnableKneeTwistCorrection": [
+      "bool",
+      2,
+      "Enable Knee Twist correction, by comparing Foot FK with Foot IK orientation."
+    ],
+    "TwistOffsetCurveName": [
+      "FName",
+      2,
+      "Name of the curve to use as the twist offset angle(in degrees).\nThis is useful for injecting knee motion, while keeping the IK chain's goal/hand and root/hip locked in place.\nReasonable values are usually between -+15 degrees, although this is depends on how far in/out the knee is in the original pose."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimLegIKDefinition&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimLegIKDefinition"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "FRigUnit_ResolveConnector",
+  "isStruct": true,
+  "doc": "Returns the resolved item of the connector.",
+  "properties": {
+    "Connector": [
+      "FRigElementKey",
+      "* The key of the connector to resolve"
+    ],
+    "SkipSocket": [
+      "bool",
+      "* If the connector is resolved to a socket the node\n* will return the socket's direct parent (skipping it)."
+    ],
+    "Result": [
+      "FRigElementKey",
+      1,
+      "* The resulting item the connector is resolved to"
+    ],
+    "bIsConnected": [
+      "bool",
+      1,
+      "* Returns true if the connector is resolved to a target."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_ResolveConnector&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_ResolveConnector"
+        }
+      ]
+    }
+  ]
+}

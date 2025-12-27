@@ -1,0 +1,112 @@
+{
+  "name": "USceneCaptureComponent2D",
+  "inherits": "USceneCaptureComponent",
+  "doc": "Used to capture a 'snapshot' of the scene from a single plane and feed it to a render target.",
+  "properties": {
+    "ProjectionType": [
+      "ECameraProjectionMode"
+    ],
+    "FOVAngle": [
+      "float32",
+      "Camera field of view (in degrees)."
+    ],
+    "OrthoWidth": [
+      "float32",
+      "The desired width (in world units) of the orthographic view (ignored in Perspective mode)"
+    ],
+    "bAutoCalculateOrthoPlanes": [
+      "bool",
+      "Automatically determine a min/max Near/Far clip plane position depending on OrthoWidth value"
+    ],
+    "AutoPlaneShift": [
+      "float32",
+      "Manually adjusts the planes of this camera, maintaining the distance between them. Positive moves out to the farplane, negative towards the near plane"
+    ],
+    "bUpdateOrthoPlanes": [
+      "bool",
+      "Adjusts the near/far planes and the view origin of the current camera automatically to avoid clipping and light artefacting"
+    ],
+    "bUseCameraHeightAsViewTarget": [
+      "bool",
+      "If UpdateOrthoPlanes is enabled, this setting will use the cameras current height to compensate the distance to the general view (as a pseudo distance to view target when one isn't present)"
+    ],
+    "TextureTarget": [
+      "UTextureRenderTarget2D",
+      "Output render target of the scene capture that can be read in materials."
+    ],
+    "CompositeMode": [
+      "ESceneCaptureCompositeMode",
+      "When enabled, the scene capture will composite into the render target instead of overwriting its contents."
+    ],
+    "PostProcessSettings": [
+      "FPostProcessSettings"
+    ],
+    "PostProcessBlendWeight": [
+      "float32",
+      "Range (0.0, 1.0) where 0 indicates no effect, 1 indicates full effect."
+    ],
+    "CustomNearClippingPlane": [
+      "float32",
+      "Set bOverride_CustomNearClippingPlane to true if you want to use a custom clipping plane instead of GNearClippingPlane."
+    ],
+    "bUseCustomProjectionMatrix": [
+      "bool",
+      1,
+      "Whether a custom projection matrix will be used during rendering. Use with caution. Does not currently affect culling"
+    ],
+    "CustomProjectionMatrix": [
+      "FMatrix",
+      1,
+      "The custom projection matrix to use"
+    ],
+    "bEnableOrthographicTiling": [
+      "bool",
+      "Render the scene in n frames (i.e TileCount) - Ignored in Perspective mode, works only in Orthographic mode when CaptureSource uses SceneColor (not FinalColor)\nIf CaptureSource uses FinalColor, tiling will be ignored and a Warning message will be logged"
+    ],
+    "NumXTiles": [
+      "int",
+      "Number of X tiles to render. Ignored in Perspective mode, works only in Orthographic mode"
+    ],
+    "NumYTiles": [
+      "int",
+      "Number of Y tiles to render. Ignored in Perspective mode, works only in Orthographic mode"
+    ],
+    "bEnableClipPlane": [
+      "bool",
+      "Enables a clip plane while rendering the scene capture which is useful for portals.\nThe global clip plane must be enabled in the renderer project settings for this to work."
+    ],
+    "ClipPlaneBase": [
+      "FVector",
+      "Base position for the clip plane, can be any position on the plane."
+    ],
+    "ClipPlaneNormal": [
+      "FVector",
+      "Normal for the plane."
+    ],
+    "bRenderInMainRenderer": [
+      "bool",
+      "Render scene capture as additional render passes of the main renderer rather than as an independent renderer. Can only apply to scene depth and device depth modes."
+    ],
+    "bOverride_CustomNearClippingPlane": [
+      "bool"
+    ],
+    "bCameraCutThisFrame": [
+      "bool",
+      "True if we did a camera cut this frame. Automatically reset to false at every capture.\nThis flag affects various things in the renderer (such as whether to use the occlusion queries from last frame, and motion blur).\nSimilar to UPlayerCameraManager::bGameCameraCutThisFrame."
+    ],
+    "bConsiderUnrenderedOpaquePixelAsFullyTranslucent": [
+      "bool",
+      "Whether to only render exponential height fog on opaque pixels which were rendered by the scene capture."
+    ]
+  },
+  "methods": [
+    {
+      "name": "CaptureScene",
+      "return": "void",
+      "doc": "Render the scene to the texture target immediately.\nThis should not be used if bCaptureEveryFrame is enabled, or the scene capture will render redundantly.\nIf r.SceneCapture.CullByDetailMode is set, nothing will happen if DetailMode is higher than r.DetailMode.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

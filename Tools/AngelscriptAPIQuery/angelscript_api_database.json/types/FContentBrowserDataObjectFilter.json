@@ -1,0 +1,31 @@
+{
+  "name": "FContentBrowserDataObjectFilter",
+  "isStruct": true,
+  "doc": "Data used to filter object instances by their name and tags.\n@note This will typically limit your query to returning assets.",
+  "properties": {
+    "ObjectNamesToInclude": [
+      "TArray<FName>",
+      "Array of object names that should be included in this query"
+    ],
+    "ObjectNamesToExclude": [
+      "TArray<FName>",
+      "Array of object names that should be excluded from this query"
+    ],
+    "bOnDiskObjectsOnly": [
+      "bool",
+      "Whether we should only include on-disk objects (ignoring those that exist only in memory)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FContentBrowserDataObjectFilter&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FContentBrowserDataObjectFilter"
+        }
+      ]
+    }
+  ]
+}

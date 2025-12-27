@@ -1,0 +1,45 @@
+{
+  "name": "UDynamicMeshPool",
+  "inherits": "UObject",
+  "doc": "UDynamicMeshPool manages a Pool of UDynamicMesh objects. This allows\nthe meshes to be re-used instead of being garbage-collected. This\nis intended to be used by Blueprints that need to do procedural geometry\noperations that generate temporary meshes, as these will commonly run their\nconstruction scripts many times as the user (eg) manipulates parameters,\nand constantly spawning new UDynamicMesh instances will result in enormous\nmemory usage hanging around until GC runs.\n\nUsage is to call RequestMesh() to take ownership of an available UDynamicMesh (which\nwill allocate a new one if the pool is empty) and ReturnMesh() to return it to the pool.\n\nReturnAllMeshes() can be called to return all allocated meshes.\n\nIn both cases, there is nothing preventing you from still holding on to the mesh.\nSo, be careful.\n\nFreeAllMeshes() calls ReturnAllMeshes() and then releases the pool's references to\nthe allocated meshes, so they can be Garbage Collected\n\nIf you Request() more meshes than you Return(), the Pool will still be holding on to\nreferences to those meshes, and they will never be Garbage Collected (ie memory leak).\nAs a failsafe, if the number of allocated meshes exceeds geometry.DynamicMesh.MaxPoolSize,\nthe Pool will release all it's references and run garbage collection on the next call to RequestMesh().\n(Do not rely on this as a memory management strategy)\n\nAn alternate strategy that could be employed here is for the Pool to not hold\nreferences to meshes it has provided, only those that have been explicitly returned.\nThen non-returned meshes would simply be garbage-collected, however it allows\npotentially a large amount of memory to be consumed until that occurs.\n\nUDynamicMesh::Reset() is called on the object returned to the Pool, which clears\nthe internal FDynamicMesh3 (which uses normal C++ memory management, so no garbage collection involved)\nSo the Pool does not re-use mesh memory, only the UObject containers.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "FreeAllMeshes",
+      "return": "void",
+      "doc": "Release all GeneratedMeshes back to the pool and allow them to be garbage collected",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RequestMesh",
+      "return": "UDynamicMesh",
+      "doc": "@return an available UDynamicMesh from the pool (possibly allocating a new mesh)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReturnAllMeshes",
+      "return": "void",
+      "doc": "Release all GeneratedMeshes back to the pool",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReturnMesh",
+      "return": "void",
+      "doc": "Release a UDynamicMesh returned by RequestMesh() back to the pool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Mesh",
+          "type": "UDynamicMesh"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "name": "UAnimGraphNode_PoseDriver",
+  "inherits": "UAnimGraphNode_PoseHandler",
+  "properties": {
+    "Node": [
+      "FAnimNode_PoseDriver"
+    ],
+    "AxisLength": [
+      "float32",
+      2,
+      "Length of axis in world units used for debug drawing"
+    ],
+    "ConeSubdivision": [
+      "int",
+      2,
+      "Number of subdivisions / lines used when debug drawing a cone"
+    ],
+    "bDrawDebugCones": [
+      "bool",
+      2,
+      "If checked the cones will be drawn in 3d for debugging"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CopyTargetsFromPoseAsset",
+      "return": "void",
+      "doc": "Util to replace current contents of PoseTargets with info from assigned PoseAsset",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDrivingBoneNames",
+      "return": "void",
+      "doc": "Returns the pose-driver its driven bones by name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPoseDriverOutput",
+      "return": "EPoseDriverOutput&",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPoseDriverSource",
+      "return": "EPoseDriverSource&",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRBFParameters",
+      "return": "FRBFParams&",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSourceBoneNames",
+      "return": "void",
+      "doc": "Returns the pose-driver its source bones by name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "SetDrivingBones",
+      "return": "void",
+      "doc": "Set the pose-driver its driven bones by name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneNames",
+          "type": "TArray<FName>"
+        }
+      ]
+    },
+    {
+      "name": "SetPoseDriverOutput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DriverOutput",
+          "type": "EPoseDriverOutput"
+        }
+      ]
+    },
+    {
+      "name": "SetPoseDriverSource",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DriverSource",
+          "type": "EPoseDriverSource"
+        }
+      ]
+    },
+    {
+      "name": "SetRBFParameters",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FRBFParams"
+        }
+      ]
+    },
+    {
+      "name": "SetSourceBones",
+      "return": "void",
+      "doc": "Sets the pose-driver its source bones by name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneNames",
+          "type": "TArray<FName>"
+        }
+      ]
+    }
+  ]
+}

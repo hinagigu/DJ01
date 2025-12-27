@@ -1,0 +1,82 @@
+{
+  "name": "UPlaneFalloff",
+  "inherits": "UFieldNodeFloat",
+  "doc": "Plane scalar field that will be defined only within a distance from a plane",
+  "properties": {
+    "Magnitude": [
+      "float32",
+      "Magnitude of the plane falloff field"
+    ],
+    "MinRange": [
+      "float32",
+      "The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude"
+    ],
+    "MaxRange": [
+      "float32",
+      "The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude"
+    ],
+    "Default": [
+      "float32",
+      "The field value will be set to Default if the sample distance from the plane is higher than the distance"
+    ],
+    "Distance": [
+      "float32",
+      "Distance limit for the plane falloff field"
+    ],
+    "Position": [
+      "FVector",
+      "Plane position of the plane falloff field"
+    ],
+    "Normal": [
+      "FVector",
+      "Plane normal of the plane falloff field"
+    ],
+    "Falloff": [
+      "EFieldFalloffType",
+      "Type of falloff function used to model the evolution of the field from the plane surface to the distance isosurface"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetPlaneFalloff",
+      "return": "UPlaneFalloff",
+      "doc": "Plane scalar field that will be defined only within a distance from a plane\n@param    Magnitude Magnitude of the plane falloff field\n@param    MinRange The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude\n@param    MaxRange The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude\n@param    Default The field value will be set to default if the sample projected distance ((Sample Position - Center Position).dot(Plane Normal)) is higher than the Plane Distance\n@param    Distance Distance limit for the plane falloff field starting from the center position and extending in the direction of the plane normal\n@param    Position Plane center position of the plane falloff field\n@param    Normal Plane normal of the plane falloff field\n@param    Falloff Type of falloff function used to model the evolution of the field from the plane surface to the distance isosurface",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Magnitude",
+          "type": "float32"
+        },
+        {
+          "name": "MinRange",
+          "type": "float32"
+        },
+        {
+          "name": "MaxRange",
+          "type": "float32"
+        },
+        {
+          "name": "Default",
+          "type": "float32"
+        },
+        {
+          "name": "Distance",
+          "type": "float32"
+        },
+        {
+          "name": "Position",
+          "type": "FVector"
+        },
+        {
+          "name": "Normal",
+          "type": "FVector"
+        },
+        {
+          "name": "Falloff",
+          "type": "EFieldFalloffType"
+        }
+      ]
+    }
+  ]
+}

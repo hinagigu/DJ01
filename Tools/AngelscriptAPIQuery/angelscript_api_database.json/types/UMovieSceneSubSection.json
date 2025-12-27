@@ -1,0 +1,44 @@
+{
+  "name": "UMovieSceneSubSection",
+  "inherits": "UMovieSceneSection",
+  "doc": "Implements a section in sub-sequence tracks.",
+  "properties": {
+    "Parameters": [
+      "FMovieSceneSectionParameters"
+    ],
+    "NetworkMask": [
+      "uint8",
+      2,
+      ""
+    ],
+    "SubSequence": [
+      "UMovieSceneSequence",
+      2,
+      "Movie scene being played by this section"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetSequence",
+      "return": "UMovieSceneSequence",
+      "const": true,
+      "doc": "Get the sequence that is assigned to this section.\n\n@return The sequence.\n@see SetSequence",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetSequence",
+      "return": "void",
+      "doc": "Sets the sequence played by this section.\n\n@param Sequence The sequence to play.\n@see GetSequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    }
+  ]
+}

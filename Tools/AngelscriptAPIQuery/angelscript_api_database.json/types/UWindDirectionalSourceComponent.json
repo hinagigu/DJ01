@@ -1,0 +1,105 @@
+{
+  "name": "UWindDirectionalSourceComponent",
+  "inherits": "USceneComponent",
+  "doc": "Component that provides a directional wind source. Only affects SpeedTree assets.",
+  "properties": {
+    "MinGustAmount": [
+      "float32"
+    ],
+    "MaxGustAmount": [
+      "float32"
+    ],
+    "Strength": [
+      "float32"
+    ],
+    "Speed": [
+      "float32"
+    ],
+    "Radius": [
+      "float32"
+    ],
+    "bPointWind": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetMaximumGustAmount",
+      "return": "void",
+      "doc": "Set maximum deviation for wind gusts",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewMaxGust",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMinimumGustAmount",
+      "return": "void",
+      "doc": "Set minimum deviation for wind gusts",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewMinGust",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRadius",
+      "return": "void",
+      "doc": "Set the effect radius for point wind",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewRadius",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSpeed",
+      "return": "void",
+      "doc": "Sets the windspeed of the generated wind",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetStrength",
+      "return": "void",
+      "doc": "Sets the strength of the generated wind",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewStrength",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetWindType",
+      "return": "void",
+      "doc": "Set the type of wind generator to use",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewType",
+          "type": "EWindSourceType"
+        }
+      ]
+    }
+  ]
+}

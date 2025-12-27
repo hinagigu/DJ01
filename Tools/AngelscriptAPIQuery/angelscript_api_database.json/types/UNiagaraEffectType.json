@@ -1,0 +1,53 @@
+{
+  "name": "UNiagaraEffectType",
+  "inherits": "UObject",
+  "doc": "Contains settings and working data shared among many NiagaraSystems that share some commonality of type. For example ImpactFX vs EnvironmentalFX.",
+  "properties": {
+    "bAllowCullingForLocalPlayers": [
+      "bool",
+      2,
+      "Controls whether or not culling is allowed for FX that are owned by, attached to or instigated by a locally controlled pawn."
+    ],
+    "UpdateFrequency": [
+      "ENiagaraScalabilityUpdateFrequency",
+      2,
+      "How regularly effects of this type are checked for scalability."
+    ],
+    "CullReaction": [
+      "ENiagaraCullReaction",
+      2,
+      "How effects of this type react when they fail the cull checks."
+    ],
+    "SignificanceHandler": [
+      "UNiagaraSignificanceHandler",
+      2,
+      "Used to determine the relative significance of FX in the scene which is used in other scalability systems such as instance count culling."
+    ],
+    "SystemScalabilitySettings": [
+      "FNiagaraSystemScalabilitySettingsArray",
+      2,
+      ""
+    ],
+    "EmitterScalabilitySettings": [
+      "FNiagaraEmitterScalabilitySettingsArray",
+      2,
+      ""
+    ],
+    "ValidationRules": [
+      "TArray<TObjectPtr<UNiagaraValidationRule>>",
+      2,
+      "A set of rules to apply when checking content. To create your own rules, write a custom class that extends UNiagaraValidationRule."
+    ],
+    "ValidationRuleSets": [
+      "TArray<TObjectPtr<UNiagaraValidationRuleSet>>",
+      2,
+      "Array of reusable rule sets to apply when checking content. To create your own rules, write a custom class that extends UNiagaraValidationRule."
+    ],
+    "PerformanceBaselineController": [
+      "UNiagaraBaselineController",
+      2,
+      "Controls generation of performance baseline data for this effect type."
+    ]
+  },
+  "methods": []
+}

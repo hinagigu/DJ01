@@ -1,0 +1,31 @@
+{
+  "name": "FQuartzTimeSignature",
+  "isStruct": true,
+  "doc": "Quartz Time Signature",
+  "properties": {
+    "NumBeats": [
+      "int",
+      "numerator"
+    ],
+    "BeatType": [
+      "EQuartzTimeSignatureQuantization",
+      "denominator"
+    ],
+    "OptionalPulseOverride": [
+      "TArray<FQuartzPulseOverrideStep>",
+      "beat override"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FQuartzTimeSignature&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuartzTimeSignature"
+        }
+      ]
+    }
+  ]
+}

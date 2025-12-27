@@ -1,0 +1,68 @@
+{
+  "name": "UDynamicEntryBox",
+  "inherits": "UDynamicEntryBoxBase",
+  "doc": "A special box panel that auto-generates its entries at both design-time and runtime.\nUseful for cases where you can have a varying number of entries, but it isn't worth the effort or conceptual overhead to set up a list/tile view.\nNote that entries here are *not* virtualized as they are in the list views, so generally this should be avoided if you intend to scroll through lots of items.\n\nNo children can be manually added in the designer - all are auto-generated based on the given entry class.",
+  "properties": {
+    "NumDesignerPreviewEntries": [
+      "int",
+      2,
+      ""
+    ],
+    "EntryWidgetClass": [
+      "TSubclassOf<UUserWidget>",
+      "The class of widget to create entries of.\nIf natively binding this widget, use the EntryClass UPROPERTY metadata to specify the desired entry widget base class."
+    ]
+  },
+  "methods": [
+    {
+      "name": "CreateEntry",
+      "return": "UUserWidget",
+      "doc": "Creates and establishes a new dynamic entry in the box",
+      "ufunction": true,
+      "unrealname": "BP_CreateEntry",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CreateEntryOfClass",
+      "return": "UUserWidget",
+      "doc": "Creates and establishes a new dynamic entry in the box using the specified class instead of the default.",
+      "ufunction": true,
+      "unrealname": "BP_CreateEntryOfClass",
+      "meta": null,
+      "args": [
+        {
+          "name": "EntryClass",
+          "type": "TSubclassOf<UUserWidget>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "RemoveEntry",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EntryWidget",
+          "type": "UUserWidget"
+        }
+      ]
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "doc": "Clear out the box entries, optionally deleting the underlying Slate widgets entirely as well.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bDeleteWidgets",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

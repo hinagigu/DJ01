@@ -1,0 +1,29 @@
+{
+  "name": "FWidgetSnapshotResponse",
+  "isStruct": true,
+  "doc": "Implements a message that is used to receive a widget snapshot from a remote target.",
+  "properties": {
+    "SnapshotRequestId": [
+      "FGuid",
+      2,
+      "The request ID of this snapshot (used to identify the correct response from the target)"
+    ],
+    "SnapshotData": [
+      "TArray<uint8>",
+      2,
+      "The snapshot data, to be used by FWidgetSnapshotData::LoadSnapshotFromBuffer"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FWidgetSnapshotResponse&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FWidgetSnapshotResponse"
+        }
+      ]
+    }
+  ]
+}

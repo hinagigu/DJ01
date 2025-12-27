@@ -1,0 +1,77 @@
+{
+  "name": "FHierarchicalSimplification",
+  "isStruct": true,
+  "properties": {
+    "TransitionScreenSize": [
+      "float32",
+      2,
+      "The screen radius an mesh object should reach before swapping to the LOD actor, once one of parent displays, it won't draw any of children."
+    ],
+    "OverrideDrawDistance": [
+      "float32",
+      2,
+      ""
+    ],
+    "SimplificationMethod": [
+      "EHierarchicalSimplificationMethod",
+      2,
+      ""
+    ],
+    "ProxySetting": [
+      "FMeshProxySettings",
+      2,
+      "Simplification settings, used if SimplificationMethod is Simplify"
+    ],
+    "MergeSetting": [
+      "FMeshMergingSettings",
+      2,
+      "Merge settings, used if SimplificationMethod is Merge"
+    ],
+    "ApproximateSettings": [
+      "FMeshApproximationSettings",
+      2,
+      "Approximate settings, used if SimplificationMethod is Approximate"
+    ],
+    "DesiredBoundRadius": [
+      "float32",
+      2,
+      "Desired Bounding Radius for clustering - this is not guaranteed but used to calculate filling factor for auto clustering"
+    ],
+    "DesiredFillingPercentage": [
+      "float32",
+      2,
+      "Desired Filling Percentage for clustering - this is not guaranteed but used to calculate filling factor  for auto clustering"
+    ],
+    "MinNumberOfActorsToBuild": [
+      "int",
+      2,
+      "Min number of actors to build LODActor"
+    ],
+    "bUseOverrideDrawDistance": [
+      "bool"
+    ],
+    "bAllowSpecificExclusion": [
+      "bool"
+    ],
+    "bOnlyGenerateClustersForVolumes": [
+      "bool",
+      "Only generate clusters for HLOD volumes"
+    ],
+    "bReusePreviousLevelClusters": [
+      "bool",
+      "Will reuse the clusters generated for the previous (lower) HLOD level"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FHierarchicalSimplification&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FHierarchicalSimplification"
+        }
+      ]
+    }
+  ]
+}

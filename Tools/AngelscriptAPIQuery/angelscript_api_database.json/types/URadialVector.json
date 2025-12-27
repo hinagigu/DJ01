@@ -1,0 +1,34 @@
+{
+  "name": "URadialVector",
+  "inherits": "UFieldNodeVector",
+  "doc": "Set a radial vector value, the direction being the vector from the sample position to the field one. The output is equal to magnitude * direction",
+  "properties": {
+    "Magnitude": [
+      "float32",
+      "Magnitude of the radial vector field"
+    ],
+    "Position": [
+      "FVector",
+      "Center position of the radial vector field"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetRadialVector",
+      "return": "URadialVector",
+      "doc": "Set a radial vector value. The direction is the normalized vector from the field position to the sample one. The output is equal to this direction * magnitude.\n@param    Magnitude Magnitude of the radial vector field\n@param    Position Center position of the radial vector field",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Magnitude",
+          "type": "float32"
+        },
+        {
+          "name": "Position",
+          "type": "FVector"
+        }
+      ]
+    }
+  ]
+}

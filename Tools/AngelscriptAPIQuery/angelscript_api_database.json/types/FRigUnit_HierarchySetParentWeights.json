@@ -1,0 +1,31 @@
+{
+  "name": "FRigUnit_HierarchySetParentWeights",
+  "isStruct": true,
+  "doc": "Sets the item's parents' weights",
+  "properties": {
+    "Child": [
+      "FRigElementKey",
+      "* The child to set the parents' weights for"
+    ],
+    "Weights": [
+      "TArray<FRigElementWeight>",
+      "* The weights to set for the child's parents.\n* The number of weights needs to match the current number of parents."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_HierarchySetParentWeights&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_HierarchySetParentWeights"
+        }
+      ]
+    }
+  ]
+}

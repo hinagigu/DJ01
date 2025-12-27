@@ -1,0 +1,32 @@
+{
+  "name": "FSoundModulationDestinationSettings",
+  "isStruct": true,
+  "doc": "Parameter destination settings allowing modulation control override for parameter destinations opting in to the Modulation System.",
+  "properties": {
+    "Value": [
+      "float32",
+      "Base value of parameter"
+    ],
+    "bEnableModulation": [
+      "bool",
+      2,
+      "Whether or not to enable modulation"
+    ],
+    "Modulators": [
+      "TSet<TObjectPtr<USoundModulatorBase>>",
+      "Set of modulation sources, which provides values to mix with base value."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSoundModulationDestinationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSoundModulationDestinationSettings"
+        }
+      ]
+    }
+  ]
+}

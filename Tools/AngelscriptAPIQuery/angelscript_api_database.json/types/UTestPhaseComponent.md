@@ -1,0 +1,4 @@
+# UTestPhaseComponent
+
+**继承自**: `USceneComponent`
+

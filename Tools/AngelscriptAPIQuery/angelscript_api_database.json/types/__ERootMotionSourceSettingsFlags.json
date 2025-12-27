@@ -1,0 +1,23 @@
+{
+  "name": "__ERootMotionSourceSettingsFlags",
+  "isEnum": true,
+  "doc": "Enumeration for RootMotionSource settings",
+  "properties": {
+    "UseSensitiveLiftoffCheck": [
+      "ERootMotionSourceSettingsFlags",
+      "Source will switch character to Falling mode with any \"Z up\" velocity added.\nUse this for jump-like root motion. If not enabled, uses default jump impulse\ndetection (which keeps you stuck on ground in Walking fairly strongly)"
+    ],
+    "DisablePartialEndTick": [
+      "ERootMotionSourceSettingsFlags",
+      "If Duration of Source would end partway through the last tick it is active,\ndo not reduce SimulationTime. Disabling this is useful for sources that\nare more about providing velocity (like jumps), vs. sources that need\nthe precision of partial ticks for say ending up at an exact location (MoveTo)"
+    ],
+    "IgnoreZAccumulate": [
+      "ERootMotionSourceSettingsFlags",
+      "Whether to ignore impact to Z when accumulating output to Velocity\nSetting this flag on override sources provides the same behavior as\nanimation root motion"
+    ],
+    "ERootMotionSourceSettingsFlags_MAX": [
+      "ERootMotionSourceSettingsFlags"
+    ]
+  },
+  "methods": []
+}

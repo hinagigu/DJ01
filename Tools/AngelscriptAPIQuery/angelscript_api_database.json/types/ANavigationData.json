@@ -1,0 +1,34 @@
+{
+  "name": "ANavigationData",
+  "inherits": "AActor",
+  "doc": "Represents abstract Navigation Data (sub-classed as NavMesh, NavGraph, etc)\nUsed as a common interface for all navigation types handled by NavigationSystem",
+  "properties": {
+    "RuntimeGeneration": [
+      "ERuntimeGenerationType",
+      2,
+      "Navigation data runtime generation options"
+    ],
+    "ObservedPathsTickInterval": [
+      "float32",
+      2,
+      "all observed paths will be processed every ObservedPathsTickInterval seconds"
+    ],
+    "bEnableDrawing": [
+      "bool",
+      "if set to true then this navigation data will be drawing itself when requested as part of \"show navigation\""
+    ],
+    "bForceRebuildOnLoad": [
+      "bool",
+      "By default navigation will skip the first update after being successfully loaded\nsetting bForceRebuildOnLoad to false can override this behavior"
+    ],
+    "bAutoDestroyWhenNoNavigation": [
+      "bool",
+      "Should this instance auto-destroy when there's no navigation system on\n    world when it gets created/loaded"
+    ],
+    "bCanBeMainNavData": [
+      "bool",
+      "If set, navigation data can act as default one in navigation system's queries"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,38 @@
+{
+  "name": "FAutomationTestExcludeOptions",
+  "isStruct": true,
+  "properties": {
+    "Reason": [
+      "FName",
+      2,
+      "Reason to why the test is excluded"
+    ],
+    "RHIs": [
+      "TSet<FName>",
+      2,
+      "Options to target specific RHI. No option means it should be applied to all RHIs"
+    ],
+    "Platforms": [
+      "TSet<FName>",
+      2,
+      "Options to target specific platform. No option means it should be applied to all platforms"
+    ],
+    "Warn": [
+      "bool",
+      2,
+      "Should the Reason be reported as a warning in the log"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAutomationTestExcludeOptions&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAutomationTestExcludeOptions"
+        }
+      ]
+    }
+  ]
+}

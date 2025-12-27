@@ -1,0 +1,57 @@
+{
+  "name": "UEditorSettings",
+  "inherits": "UObject",
+  "properties": {
+    "GlobalLocalDDCPath": [
+      "FDirectoryPath",
+      2,
+      "Adjusts the Local Cache location. This affects every project on your computer that uses the UE-LocalDataCachePath environment environment variable override.\nThis is usually the first location to query for previously built data."
+    ],
+    "GlobalSharedDDCPath": [
+      "FDirectoryPath",
+      2,
+      "Adjusts the Shared cache location. This affects every project on your computer that uses the UE-SharedDataCachePath environment variable override.\nThe Shared Cache location is usually queried if we do't find previously built data in the Local cache. Colleauges should point to the same shared location so that work can be distributed."
+    ],
+    "LocalDerivedDataCache": [
+      "FDirectoryPath",
+      2,
+      "Project specific overide for the Local Cache location. The editor must be restarted for changes to take effect.\nThis will override the 'Global Local DDC Path'."
+    ],
+    "SharedDerivedDataCache": [
+      "FDirectoryPath",
+      2,
+      "Project specific overide for the Shared Cache location. The editor must be restarted for changes to take effect.\nThis will override the 'Global Shared DDC Path'."
+    ],
+    "bEnableDDCNotifications": [
+      "bool",
+      2,
+      "Whether to enable any DDC Notifications"
+    ],
+    "bNotifyUseUnrealCloudDDC": [
+      "bool",
+      2,
+      "Whether to enable the Unreal Cloud DDC notification"
+    ],
+    "bNotifySetupDDCPath": [
+      "bool",
+      2,
+      "Whether to enable the DDC path notification"
+    ],
+    "bNotifyEnableS3DD": [
+      "bool",
+      2,
+      "Whether to enable the DDC path notification"
+    ],
+    "bEnableS3DDC": [
+      "bool",
+      2,
+      "Whether to enable the S3 derived data cache backend"
+    ],
+    "GlobalS3DDCPath": [
+      "FDirectoryPath",
+      2,
+      "Adjusts the Local Cache location for AWS/S3 downloaded package bundles.\nThis affects every project on your computer that uses the UE-S3DataCachePath environment variable override."
+    ]
+  },
+  "methods": []
+}

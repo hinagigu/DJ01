@@ -1,0 +1,58 @@
+{
+  "name": "FAnimNode_TwoWayBlend",
+  "isStruct": true,
+  "doc": "This represents a baked transition",
+  "properties": {
+    "A": [
+      "FPoseLink"
+    ],
+    "B": [
+      "FPoseLink"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType",
+      "The data type used to control the alpha blending between the A and B poses.\n              Note: Changing this value will disconnect alpha input pins."
+    ],
+    "Alpha": [
+      "float32",
+      "The float value that controls the alpha blending when the alpha input type is set to 'Float'"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName",
+      "The animation curve that controls the alpha blending when the alpha input type is set to 'Curve'"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool",
+      "The boolean value that controls the alpha blending when the alpha input type is set to 'Bool'"
+    ],
+    "bResetChildOnActivation": [
+      "bool",
+      "This reinitializes child pose when re-activated. For example, when active child changes"
+    ],
+    "bAlwaysUpdateChildren": [
+      "bool",
+      "Always update children, regardless of whether or not that child has weight."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_TwoWayBlend&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_TwoWayBlend"
+        }
+      ]
+    }
+  ]
+}

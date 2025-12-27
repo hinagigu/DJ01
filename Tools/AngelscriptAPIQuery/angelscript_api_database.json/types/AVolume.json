@@ -1,0 +1,59 @@
+{
+  "name": "AVolume",
+  "inherits": "ABrush",
+  "doc": "An editable 3D volume placed in a level. Different types of volumes perform different functions\n@see https://docs.unrealengine.com/latest/INT/Engine/Actors/Volumes",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetBounds",
+      "return": "FBoxSphereBounds",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "EncompassesPoint",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Point",
+          "type": "FVector"
+        },
+        {
+          "name": "SphereRadius",
+          "default": "0.f",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "EncompassesPoint",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Point",
+          "type": "FVector"
+        },
+        {
+          "name": "SphereRadius",
+          "type": "float32"
+        },
+        {
+          "name": "OutDistanceToPoint",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushColor",
+      "return": "void",
+      "args": [
+        {
+          "name": "InBrushColor",
+          "type": "FLinearColor"
+        }
+      ]
+    }
+  ]
+}

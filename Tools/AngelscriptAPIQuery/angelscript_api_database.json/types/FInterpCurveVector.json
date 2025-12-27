@@ -1,0 +1,31 @@
+{
+  "name": "FInterpCurveVector",
+  "isStruct": true,
+  "doc": "Describes an entire curve that is used to compute a 3D vector output value from a float input.\n@note This is a mirror of TInterpCurve<FVector>, defined in InterpCurve.h",
+  "properties": {
+    "Points": [
+      "TArray<FInterpCurvePointVector>",
+      "Holds the collection of interpolation points."
+    ],
+    "bIsLooped": [
+      "bool",
+      "Specify whether the curve is looped or not"
+    ],
+    "LoopKeyOffset": [
+      "float32",
+      "Specify the offset from the last point's input key corresponding to the loop point"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInterpCurveVector&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInterpCurveVector"
+        }
+      ]
+    }
+  ]
+}

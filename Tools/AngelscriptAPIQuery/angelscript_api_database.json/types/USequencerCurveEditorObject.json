@@ -1,0 +1,188 @@
+{
+  "name": "USequencerCurveEditorObject",
+  "inherits": "UObject",
+  "doc": "* Class to hold sequencer curve editor functions",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CloseCurveEditor",
+      "return": "void",
+      "doc": "Close curve editor",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DeleteColorForChannels",
+      "return": "void",
+      "doc": "Delete for specified channel idendified by it's class and identifier.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "UClass"
+        },
+        {
+          "name": "Identifier",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "EmptySelection",
+      "return": "void",
+      "doc": "Empties the current selection.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetChannelsWithSelectedKeys",
+      "return": "TArray<FSequencerChannelProxy>",
+      "doc": "Gets the channel with selected keys",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCustomColorForChannel",
+      "return": "FLinearColor",
+      "doc": "Get custom color for specified channel idendified by it's class and identifier,if none exists will return white",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "UClass"
+        },
+        {
+          "name": "Identifier",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectedKeys",
+      "return": "TArray<int>",
+      "doc": "Gets the selected keys with this channel",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ChannelProxy",
+          "type": "FSequencerChannelProxy"
+        }
+      ]
+    },
+    {
+      "name": "HasCustomColorForChannel",
+      "return": "bool",
+      "doc": "Get if a custom color for specified channel idendified by it's class and identifier exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "UClass"
+        },
+        {
+          "name": "Identifier",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsCurveEditorOpen",
+      "return": "bool",
+      "doc": "Is curve editor open",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OpenCurveEditor",
+      "return": "void",
+      "doc": "Open curve editor",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SelectKeys",
+      "return": "void",
+      "doc": "Select keys",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Channel",
+          "type": "FSequencerChannelProxy"
+        },
+        {
+          "name": "Indices",
+          "type": "TArray<int>"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomColorForChannel",
+      "return": "void",
+      "doc": "Set Custom Color for specified channel idendified by it's class and identifier. This will be stored in editor user preferences.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "UClass"
+        },
+        {
+          "name": "Identifier",
+          "type": "FString"
+        },
+        {
+          "name": "NewColor",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomColorForChannels",
+      "return": "void",
+      "doc": "Set Custom Color for specified channels idendified by it's class and identifiers. This will be stored in editor user preferences.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "UClass"
+        },
+        {
+          "name": "Identifiers",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "NewColors",
+          "type": "TArray<FLinearColor>"
+        }
+      ]
+    },
+    {
+      "name": "SetRandomColorForChannels",
+      "return": "void",
+      "doc": "Set Random Colors for specified channels idendified by it's class and identifiers. This will be stored in editor user preferences.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "UClass"
+        },
+        {
+          "name": "Identifiers",
+          "type": "TArray<FString>"
+        }
+      ]
+    }
+  ]
+}

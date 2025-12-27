@@ -1,0 +1,449 @@
+{
+  "name": "ULightComponent",
+  "inherits": "ULightComponentBase",
+  "properties": {
+    "MaxDrawDistance": [
+      "float32",
+      2,
+      ""
+    ],
+    "MaxDistanceFadeRange": [
+      "float32",
+      2,
+      ""
+    ],
+    "ShadowResolutionScale": [
+      "float32",
+      "Scales the resolution of shadowmaps used to shadow this light.  By default shadowmap resolution is chosen based on screen size of the caster.\nSetting the scale to zero disables shadow maps, but does not disable, e.g., contact shadows.\nNote: shadowmap resolution is still clamped by 'r.Shadow.MaxResolution'"
+    ],
+    "ShadowSharpen": [
+      "float32",
+      "Amount to sharpen shadow filtering"
+    ],
+    "ContactShadowLength": [
+      "float32",
+      "Length of screen space ray trace for sharp contact shadows. Zero is disabled."
+    ],
+    "ContactShadowCastingIntensity": [
+      "float32",
+      "Intensity of the shadows cast by primitives with \"cast contact shadow\" enabled. 0 = no shadow, 1 (default) = fully shadowed."
+    ],
+    "ContactShadowNonCastingIntensity": [
+      "float32",
+      "Intensity of the shadows cast by primitives with \"cast contact shadow\" disabled. 0 (default) = no shadow, 1 = fully shadowed."
+    ],
+    "DisabledBrightness": [
+      "float32",
+      "Brightness factor applied to the light when the light function is specified but disabled, for example in scene captures that use SceneCapView_LitNoShadows.\nThis should be set to the average brightness of the light function material's emissive input, which should be between 0 and 1."
+    ],
+    "bUseRayTracedDistanceFieldShadows": [
+      "bool",
+      "Whether to use ray traced distance field area shadows.  The project setting bGenerateMeshDistanceFields must be enabled for this to have effect.\nDistance field shadows support area lights so they create soft shadows with sharp contacts.\nThey have less aliasing artifacts than standard shadowmaps, but inherit all the limitations of distance field representations (only uniform scale, no deformation).\nThese shadows have a low per-object cost (and don't depend on triangle count) so they are effective for distant shadows from a dynamic sun."
+    ],
+    "RayStartOffsetDepthScale": [
+      "float32",
+      "Controls how large of an offset ray traced shadows have from the receiving surface as the camera gets further away.\nThis can be useful to hide self-shadowing artifacts from low resolution distance fields on huge static meshes."
+    ],
+    "Temperature": [
+      "float32",
+      "Color temperature in Kelvin of the blackbody illuminant.\nWhite (D65) is 6500K."
+    ],
+    "bUseTemperature": [
+      "bool",
+      "false: use white (D65) as illuminant."
+    ],
+    "SpecularScale": [
+      "float32",
+      "Multiplier on specular highlights. Use only with great care! Any value besides 1 is not physical!\nCan be used to artistically remove highlights mimicking polarizing filters or photo touch up."
+    ],
+    "ShadowBias": [
+      "float32",
+      "Controls how accurate self shadowing of whole scene shadows from this light are.\nAt 0, shadows will start at the their caster surface, but there will be many self shadowing artifacts.\nlarger values, shadows will start further from their caster, and there won't be self shadowing artifacts but object might appear to fly.\naround 0.5 seems to be a good tradeoff. This also affects the soft transition of shadows"
+    ],
+    "ShadowSlopeBias": [
+      "float32",
+      "Controls how accurate self shadowing of whole scene shadows from this light are. This works in addition to shadow bias, by increasing the\namount of bias depending on the slope of a surface.\nAt 0, shadows will start at the their caster surface, but there will be many self shadowing artifacts.\nlarger values, shadows will start further from their caster, and there won't be self shadowing artifacts but object might appear to fly.\naround 0.5 seems to be a good tradeoff. This also affects the soft transition of shadows"
+    ],
+    "ContactShadowLengthInWS": [
+      "bool",
+      "Where Length of screen space ray trace for sharp contact shadows is in world space units or in screen space units."
+    ],
+    "CastTranslucentShadows": [
+      "bool",
+      "Whether the light is allowed to cast dynamic shadows from translucency."
+    ],
+    "bCastShadowsFromCinematicObjectsOnly": [
+      "bool",
+      "Whether the light should only cast shadows from components marked as bCastCinematicShadows.\nThis is useful for setting up cinematic Movable spotlights aimed at characters and avoiding the shadow depth rendering costs of the background.\nNote: this only works with dynamic shadow maps, not with static shadowing or Ray Traced Distance Field shadows."
+    ],
+    "bForceCachedShadowsForMovablePrimitives": [
+      "bool",
+      "Enables cached shadows for movable primitives for this light even if r.shadow.cachedshadowscastfrommovableprimitives is 0"
+    ],
+    "LightingChannels": [
+      "FLightingChannels",
+      "Channels that this light should affect.\nThese channels only apply to opaque materials, direct lighting, and dynamic lighting and shadowing."
+    ],
+    "LightFunctionMaterial": [
+      "UMaterialInterface",
+      "The light function material to be applied to this light.\nNote that only non-lightmapped lights (UseDirectLightMap=False) can have a light function.\nLight functions are supported within VolumetricFog, but only for Directional, Point and Spot lights. Rect lights are not supported."
+    ],
+    "LightFunctionScale": [
+      "FVector",
+      "Scales the light function projection.  X and Y scale in the directions perpendicular to the light's direction, Z scales along the light direction."
+    ],
+    "IESTexture": [
+      "UTextureLightProfile",
+      "IES texture (light profiles from real world measured data)"
+    ],
+    "bUseIESBrightness": [
+      "bool",
+      "true: take light brightness from IES profile, false: use the light brightness - the maximum light in one direction is used to define no masking. Use with InverseSquareFalloff. Will be disabled if a valid IES profile texture is not supplied."
+    ],
+    "IESBrightnessScale": [
+      "float32",
+      "Global scale for IES brightness contribution. Only available when \"Use IES Brightness\" is selected, and a valid IES profile texture is set"
+    ],
+    "LightFunctionFadeDistance": [
+      "float32",
+      "Distance at which the light function should be completely faded to DisabledBrightness.\nThis is useful for hiding aliasing from light functions applied in the distance."
+    ],
+    "bEnableLightShaftBloom": [
+      "bool",
+      "Whether to render light shaft bloom from this light.\nFor directional lights, the color around the light direction will be blurred radially and added back to the scene.\nfor point lights, the color on pixels closer than the light's SourceRadius will be blurred radially and added back to the scene."
+    ],
+    "BloomScale": [
+      "float32",
+      "Scales the additive color."
+    ],
+    "BloomThreshold": [
+      "float32",
+      "Scene color must be larger than this to create bloom in the light shafts."
+    ],
+    "BloomMaxBrightness": [
+      "float32",
+      "After exposure is applied, scene color brightness larger than BloomMaxBrightness will be rescaled down to BloomMaxBrightness."
+    ],
+    "BloomTint": [
+      "FColor",
+      "Multiplies against scene color to create the bloom color."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetAffectTranslucentLighting",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetBloomMaxBrightness",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetBloomScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetBloomThreshold",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetBloomTint",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableLightShaftBloom",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetForceCachedShadowsForMovablePrimitives",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIESBrightnessScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetIESTexture",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "UTextureLightProfile"
+        }
+      ]
+    },
+    {
+      "name": "SetIndirectLightingIntensity",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewIntensity",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetIntensity",
+      "return": "void",
+      "doc": "Set intensity of the light",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewIntensity",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLightColor",
+      "return": "void",
+      "doc": "Set color of the light",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLightColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bSRGB",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLightFunctionDisabledBrightness",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLightFunctionFadeDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLightFunctionFadeDistance",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLightFunctionMaterial",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLightFunctionMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetLightFunctionScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLightFunctionScale",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetLightingChannels",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bChannel0",
+          "type": "bool"
+        },
+        {
+          "name": "bChannel1",
+          "type": "bool"
+        },
+        {
+          "name": "bChannel2",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetShadowBias",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetShadowSlopeBias",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSpecularScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTemperature",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTemperature",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTransmission",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetUseIESBrightness",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetUseTemperature",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetVolumetricScatteringIntensity",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewIntensity",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "UMaterialExpressionComposite",
+  "inherits": "UMaterialExpression",
+  "doc": "Composite (subgraph) expression. Exists purely for organzational purposes.\nUnder the hood uses reroute expressions for graph compilation. See below\nto understand how a particular reroute's input / output correlates to\nthe inputs / outputs of composites and their pin bases.\n\n     _________________          _________________\n    |   INPUT BASE    |        |   OUTPUT BASE   |\n    +--------+--------+        +--------+--------+\n    |        |   (>)  |   ->   |  (>)   |        |\n    |        |   (>)  |        |  (>)   |        |\n    |        |   (>)  |        |  (>)   |        |\n    |        |   (>)  |        |  (>)   |        |\n    |        |        |        |        |        |\n    +--------+--------+        +--------+--------+\n    | NODE IN:  NONE  |        | NODE IN:  PINS  |\n    | NODE OUT: PINS  |        | NODE OUT: NONE  |\n    |_________________|        |_________________|\n\n                  ^                |\n                  |                v\n             ____________________________\n            |         COMPOSITE          |\n            +---------+--------+---------+\n        ->  |    (>)  |        |  (>)    |  ->\n            |    (>)  |        |  (>)    |\n            |    (>)  |        |  (>)    |\n            |    (>)  |        |  (>)    |\n            |         |        |         |\n            +---------+--------+---------+\n            | NODE IN:  TO INPUT BASE    |\n            | NODE OUT: FROM OUTPUT BASE |\n            |____________________________|",
+  "properties": {
+    "SubgraphName": [
+      "FString",
+      2,
+      ""
+    ]
+  },
+  "methods": []
+}

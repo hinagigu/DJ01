@@ -1,0 +1,63 @@
+{
+  "name": "FRigUnit_SpringInterpV2",
+  "isStruct": true,
+  "doc": "Uses a simple spring model to interpolate a float from Current to Target.",
+  "properties": {
+    "Target": [
+      "float32",
+      "Rest/target position of the spring."
+    ],
+    "Strength": [
+      "float32",
+      "The spring strength determines how hard it will pull towards the target. The value is the frequency\nat which it will oscillate when there is no damping."
+    ],
+    "CriticalDamping": [
+      "float32",
+      "The amount of damping in the spring.\nSet it smaller than 1 to make the spring oscillate before stabilizing on the target.\nSet it equal to 1 to reach the target without overshooting.\nSet it higher than one to make the spring take longer to reach the target."
+    ],
+    "Force": [
+      "float32",
+      "Extra force to apply (since the mass is 1, this is also the acceleration)."
+    ],
+    "bUseCurrentInput": [
+      "bool",
+      1,
+      "If true, then the Current input will be used to initialize the state, and is required to be a variable that\nholds the current state. If false then the Target value will be used to initialize the state and the Current\ninput will be ignored/unnecessary as a state will be maintained by this node."
+    ],
+    "Current": [
+      "float32",
+      "Current position of the spring."
+    ],
+    "TargetVelocityAmount": [
+      "float32",
+      "The amount that the velocity should be passed through to the spring. A value of 1 will result in more\nresponsive output, but if the input is noisy or has step changes, these discontinuities will be passed\nthrough to the output much more than if a smaller value such as 0 is used."
+    ],
+    "bInitializeFromTarget": [
+      "bool",
+      1,
+      "If true, then the initial value will be taken from the target value, and not from the current value."
+    ],
+    "Result": [
+      "float32",
+      1,
+      "New position of the spring after delta time."
+    ],
+    "Velocity": [
+      "float32",
+      1,
+      "Velocity"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SpringInterpV2&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SpringInterpV2"
+        }
+      ]
+    }
+  ]
+}

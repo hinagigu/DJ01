@@ -1,0 +1,566 @@
+{
+  "name": "URigVMPin",
+  "inherits": "UObject",
+  "doc": "The Pin represents a single connector / pin on a node in the RigVM model.\nPins can be connected based on rules. Pins also provide access to a 'PinPath',\nwhich essentially represents . separated list of names to reach the pin within\nthe owning graph. PinPaths are unique.\nIn comparison to the EdGraph Pin the URigVMPin supports the concept of 'SubPins',\nso child / parent relationships between pins. A FVector Pin for example might\nhave its X, Y and Z components as SubPins. Array Pins will have its elements as\nSubPins, and so on.\nA URigVMPin is owned solely by a URigVMNode.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ContainsWildCardSubPin",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if any of the subpins is a wildcard",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FindLinkForPin",
+      "return": "URigVMLink",
+      "const": true,
+      "doc": "Returns the link that represents the connection\nbetween this pin and InOtherPin. nullptr is returned\nif the pins are not connected.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOtherPin",
+          "type": "const URigVMPin"
+        }
+      ]
+    },
+    {
+      "name": "FindSubPin",
+      "return": "URigVMPin",
+      "const": true,
+      "doc": "Returns a SubPin given a name / path or nullptr.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetAbsolutePinIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the absolute index of the Pin within the node / parent Pin",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetArrayElementCppType",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the C++ data type of an element of the Pin array",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetArraySize",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of elements within an array Pin",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCPPType",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the C++ data type of the pin",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCPPTypeObject",
+      "return": "UObject",
+      "const": true,
+      "doc": "Returns the struct of the data type of the Pin,\nor nullptr otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCustomWidgetName",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns the name of a custom widget to be used\nfor editing the Pin.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDefaultValue",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the default value of the Pin as a string.\nNote that this value is computed based on the Pin's\nSubPins - so for example for a FVector typed Pin\nthe default value is actually composed out of the\ndefault values of the X, Y and Z SubPins.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDirection",
+      "return": "ERigVMPinDirection",
+      "const": true,
+      "doc": "Returns the direction of the pin",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDisplayName",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns the display label of the pin",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEnum",
+      "return": "UEnum",
+      "const": true,
+      "doc": "Returns the enum of the data type of the Pin,\nor nullptr otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGraph",
+      "return": "URigVMGraph",
+      "const": true,
+      "doc": "Returns the graph of this Pin.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLinkedSourcePins",
+      "return": "TArray<URigVMPin>",
+      "const": true,
+      "doc": "Returns all of the linked source Pins,\nusing this Pin as the target.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetLinkedTargetPins",
+      "return": "TArray<URigVMPin>",
+      "const": true,
+      "doc": "Returns all of the linked target Pins,\nusing this Pin as the source.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetLinks",
+      "return": "TArray<URigVMLink>",
+      "const": true,
+      "doc": "Returns all of the links linked to this Pin.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMetaData",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the keyed metadata associated with this pin, if any",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetNode",
+      "return": "URigVMNode",
+      "const": true,
+      "doc": "Returns the node of this Pin.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOriginalPinFromInjectedNode",
+      "return": "URigVMPin",
+      "const": true,
+      "doc": "Returns the original pin for a pin on an injected\nnode. This can be used to determine where a link\nshould go in the user interface",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetParentPin",
+      "return": "URigVMPin",
+      "const": true,
+      "doc": "Returns the parent Pin - or nullptr if the Pin\nis nested directly below a node.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPinForLink",
+      "return": "URigVMPin",
+      "const": true,
+      "doc": "Returns the pin to be used for a link.\nThis might differ from this actual pin, since\nthe pin might contain injected nodes.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPinIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the index of the Pin within the node / parent Pin",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPinPath",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns a . separated path containing all names of the pin and its owners,\nthis includes the node name, for example \"Node.Color.R\"",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bUseNodePath",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetRootPin",
+      "return": "URigVMPin",
+      "const": true,
+      "doc": "Returns the top-most parent Pin, so for example\nfor \"Node.Transform.Translation.X\" this returns\nthe Pin for \"Node.Transform\".",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetScriptStruct",
+      "return": "UScriptStruct",
+      "const": true,
+      "doc": "Returns the struct of the data type of the Pin,\nor nullptr otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSegmentPath",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns a . separated path containing all names of the pin within its main\nmemory owner / storage. This is typically used to create an offset pointer\nwithin memory (FRigVMRegisterOffset).\nSo for example for a PinPath such as \"Node.Transform.Translation.X\" the\ncorresponding SegmentPath is \"Translation.X\", since the transform is the\nstorage / memory.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIncludeRootPin",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetSourceLinks",
+      "return": "TArray<URigVMLink>",
+      "const": true,
+      "doc": "Returns all of the source pins\nusing this Pin as the target.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetSubPinPath",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns a . separated path containing all names of the pin and its owners\nuntil we hit the provided parent pin.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InParentPin",
+          "type": "const URigVMPin"
+        },
+        {
+          "name": "bIncludeParentPinName",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetSubPins",
+      "return": "TArray<URigVMPin>",
+      "const": true,
+      "doc": "Returns all of the SubPins of this one.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTargetLinks",
+      "return": "TArray<URigVMLink>",
+      "const": true,
+      "doc": "Returns all of the target links,\nusing this Pin as the source.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetToolTipText",
+      "return": "FText",
+      "const": true,
+      "doc": "Returns the tooltip of this pin",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsArray",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the data type of the Pin is an array",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsArrayElement",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the Pin is a SubPin within an array",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDecoratorPin",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this pin represents a decorator",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDefinedAsConstant",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the pin is defined as a constant value / literal",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDynamicArray",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this pin represents a dynamic array",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsEnum",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the data type of the Pin is a enum",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsExecuteContext",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the C++ data type is an execute context",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsExpanded",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the pin is currently expanded",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsFixedSizeArray",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this pin is an array that should be displayed as elements only",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsInterface",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the data type of the Pin is a interface",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLazy",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this pin's value may be executed lazily",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLinkedTo",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this Pin is linked to another Pin",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPin",
+          "type": "const URigVMPin"
+        }
+      ]
+    },
+    {
+      "name": "IsReferenceCountedContainer",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this data type is referenced counted",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsRootPin",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this pin is a root pin",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsStringType",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the C++ data type is FString or FName",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsStruct",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the data type of the Pin is a struct",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsStructMember",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the Pin is a SubPin within a struct",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsUObject",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the data type of the Pin is a uobject",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsWildCard",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the C++ data type is unknown",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RequiresWatch",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the pin should be watched",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bCheckExposedPinChain",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ShouldHideSubPins",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this pin's subpins should be hidden in the UI",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ShouldOnlyShowSubPins",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this pin is an array that should be displayed as elements only",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

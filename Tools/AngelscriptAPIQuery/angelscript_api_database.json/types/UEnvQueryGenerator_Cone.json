@@ -1,0 +1,36 @@
+{
+  "name": "UEnvQueryGenerator_Cone",
+  "inherits": "UEnvQueryGenerator_ProjectedPoints",
+  "properties": {
+    "AlignedPointsDistance": [
+      "FAIDataProviderFloatValue",
+      2,
+      "Distance between each point of the same angle"
+    ],
+    "ConeDegrees": [
+      "FAIDataProviderFloatValue",
+      2,
+      "Maximum degrees of the generated cone"
+    ],
+    "AngleStep": [
+      "FAIDataProviderFloatValue",
+      2,
+      "The step of the angle increase. Angle step must be >=1\nSmaller values generate less items"
+    ],
+    "Range": [
+      "FAIDataProviderFloatValue",
+      2,
+      "Generation distance"
+    ],
+    "CenterActor": [
+      "TSubclassOf<UEnvQueryContext>",
+      2,
+      "The actor (or actors) that will generate a cone in their facing direction"
+    ],
+    "bIncludeContextLocation": [
+      "bool",
+      "Whether to include CenterActors' locations when generating items.\n    Note that this option skips the MinAngledPointsDistance parameter."
+    ]
+  },
+  "methods": []
+}

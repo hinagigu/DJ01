@@ -1,0 +1,55 @@
+{
+  "name": "FGameplayCueNotify_DecalInfo",
+  "isStruct": true,
+  "doc": "FGameplayCueNotify_DecalInfo\n\n    Properties that specify how to spawn a decal.",
+  "properties": {
+    "SpawnConditionOverride": [
+      "FGameplayCueNotify_SpawnCondition",
+      "Condition to check before spawning the decal."
+    ],
+    "PlacementInfoOverride": [
+      "FGameplayCueNotify_PlacementInfo",
+      "Defines how the decal will be placed."
+    ],
+    "DecalMaterial": [
+      "UMaterialInterface",
+      "Decal material to spawn."
+    ],
+    "DecalSize": [
+      "FVector",
+      "Decal size in local space (does not include the component scale)."
+    ],
+    "FadeOutStartDelay": [
+      "float32",
+      "Sets when the decal actor will start fading out.  Will override setting in class."
+    ],
+    "FadeOutDuration": [
+      "float32",
+      "Sets how long it takes for decal actor to fade out.  Will override setting in class."
+    ],
+    "bOverrideSpawnCondition": [
+      "bool",
+      "If enabled, use the spawn condition override and not the default one."
+    ],
+    "bOverridePlacementInfo": [
+      "bool",
+      "If enabled, use the placement info override and not the default one."
+    ],
+    "bOverrideFadeOut": [
+      "bool",
+      "If enabled, override default decal actor fade out values."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayCueNotify_DecalInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayCueNotify_DecalInfo"
+        }
+      ]
+    }
+  ]
+}

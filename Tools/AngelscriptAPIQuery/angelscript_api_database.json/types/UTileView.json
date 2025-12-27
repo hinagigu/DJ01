@@ -1,0 +1,73 @@
+{
+  "name": "UTileView",
+  "inherits": "UListView",
+  "doc": "A ListView that presents the contents as a set of tiles all uniformly sized.\n\nTo make a widget usable as an entry in a TileView, it must inherit from the IUserObjectListEntry interface.",
+  "properties": {
+    "TileAlignment": [
+      "EListItemAlignment",
+      2,
+      "The method by which to align the tile entries in the available space for the tile view"
+    ],
+    "bWrapHorizontalNavigation": [
+      "bool",
+      2,
+      "True to allow left/right navigation to wrap back to the tile on the opposite edge"
+    ],
+    "ScrollbarDisabledVisibility": [
+      "ESlateVisibility",
+      2,
+      "Set the visibility of the Scrollbar when it's not needed"
+    ],
+    "bEntrySizeIncludesEntrySpacing": [
+      "bool",
+      2,
+      "True if entry dimensions should be the sum of the entry widget dimensions and the spacing.\nThis means the size of the entry widget will be adjusted so that the summation of the widget size and entry spacing always equals entry size."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetEntryHeight",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the height of tile entries",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEntryWidth",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the width of tile entries",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetEntryHeight",
+      "return": "void",
+      "doc": "Sets the height of every tile entry",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewHeight",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetEntryWidth",
+      "return": "void",
+      "doc": "Sets the width of every tile entry",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewWidth",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

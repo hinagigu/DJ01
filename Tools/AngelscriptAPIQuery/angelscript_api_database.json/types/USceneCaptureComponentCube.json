@@ -1,0 +1,25 @@
+{
+  "name": "USceneCaptureComponentCube",
+  "inherits": "USceneCaptureComponent",
+  "doc": "Used to capture a 'snapshot' of the scene from a 6 planes and feed it to a render target.",
+  "properties": {
+    "TextureTarget": [
+      "UTextureRenderTargetCube",
+      "Temporary render target that can be used by the editor."
+    ],
+    "bCaptureRotation": [
+      "bool",
+      "Preserve the rotation of the actor when updating the capture. The default behavior is to capture the cube aligned to the world axis system."
+    ]
+  },
+  "methods": [
+    {
+      "name": "CaptureScene",
+      "return": "void",
+      "doc": "Render the scene to the texture target immediately.\nThis should not be used if bCaptureEveryFrame is enabled, or the scene capture will render redundantly.\nIf r.SceneCapture.CullByDetailMode is set, nothing will happen if DetailMode is higher than r.DetailMode.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

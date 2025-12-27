@@ -1,0 +1,35 @@
+{
+  "name": "FCharacterMovementComponentPostPhysicsTickFunction",
+  "isStruct": true,
+  "doc": "Tick function that calls UCharacterMovementComponent::PostPhysicsTickComponent",
+  "properties": {
+    "TickGroup": [
+      "ETickingGroup",
+      2,
+      "Defines the minimum tick group for this tick function. These groups determine the relative order of when objects tick during a frame update.\nGiven prerequisites, the tick may be delayed.\n\n@see ETickingGroup\n@see FTickFunction::AddPrerequisite()"
+    ],
+    "EndTickGroup": [
+      "ETickingGroup",
+      2,
+      "Defines the tick group that this tick function must finish in. These groups determine the relative order of when objects tick during a frame update.\n\n@see ETickingGroup"
+    ],
+    "TickInterval": [
+      "float32",
+      2,
+      "The frequency in seconds at which this tick function will be executed.  If less than or equal to 0 then it will tick every frame"
+    ],
+    "bTickEvenWhenPaused": [
+      "bool",
+      "Bool indicating that this function should execute even if the game is paused. Pause ticks are very limited in capabilities. *"
+    ],
+    "bStartWithTickEnabled": [
+      "bool",
+      "If true, this tick function will start enabled, but can be disabled later on."
+    ],
+    "bAllowTickOnDedicatedServer": [
+      "bool",
+      "If we allow this tick to run on a dedicated server"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,31 @@
+{
+  "name": "__EHMDTrackingOrigin",
+  "isEnum": true,
+  "doc": "Specifies the type of tracking space origin we should use.  Be aware that not all devices support all Tracking Origin types. https://registry.khronos.org/OpenXR/specs/1.0/html/xrspec.html#reference-spaces",
+  "properties": {
+    "View": [
+      "EHMDTrackingOrigin",
+      "Previously sometimes used Eye space to query for the view transform, this space is fixed to the HMD, meaning that as the hmd moves this space moves relative to other spaces. This isn't used as a tracking origin."
+    ],
+    "LocalFloor": [
+      "EHMDTrackingOrigin",
+      "For standing stationary experiences. Typically centered around HMDs initial position either at app startup or device startup, with Z 0 set to match the floor as in the Stage Space. Falls back to local."
+    ],
+    "Local": [
+      "EHMDTrackingOrigin",
+      "For seated experiences. Always Supported. Typically centered around the HMDs initial position either at app startup or device startup.  Useful for seated experiences. Previously called Eye Space.  "
+    ],
+    "Stage": [
+      "EHMDTrackingOrigin",
+      "For walking-around experiences.  The origin will be at floor level and typically within a defined play areas who's bounds will be available. Falls back to local."
+    ],
+    "CustomOpenXR": [
+      "EHMDTrackingOrigin",
+      "Custom OpenXR tracking space of some kind. You cannot set this space explictly, it is automatically used by some platform plugin extensions."
+    ],
+    "EHMDTrackingOrigin_MAX": [
+      "EHMDTrackingOrigin"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,32 @@
+{
+  "name": "APostProcessVolume",
+  "inherits": "AVolume",
+  "doc": "for FPostprocessSettings",
+  "properties": {
+    "Settings": [
+      "FPostProcessSettings",
+      "Post process settings to use for this volume."
+    ],
+    "Priority": [
+      "float32",
+      "Priority of this volume. In the case of overlapping volumes the one with the highest priority\noverrides the lower priority ones. The order is undefined if two or more overlapping volumes have the same priority."
+    ],
+    "BlendRadius": [
+      "float32",
+      "World space radius around the volume that is used for blending (only if not unbound)."
+    ],
+    "BlendWeight": [
+      "float32",
+      "0:no effect, 1:full effect"
+    ],
+    "bEnabled": [
+      "bool",
+      "Whether this volume is enabled or not."
+    ],
+    "bUnbound": [
+      "bool",
+      "Whether this volume covers the whole world, or just the area inside its bounds."
+    ]
+  },
+  "methods": []
+}

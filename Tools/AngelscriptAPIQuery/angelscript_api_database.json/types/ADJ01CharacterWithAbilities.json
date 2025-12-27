@@ -1,0 +1,23 @@
+{
+  "name": "ADJ01CharacterWithAbilities",
+  "inherits": "ADJ01Character",
+  "doc": "ADJ01CharacterWithAbilities\n\nADJ01Character 通常从控制它的 PlayerState 获取 AbilitySystemComponent。\n这个类代表一个带有自包含 AbilitySystemComponent 的角色。\n\n使用场景：\n- AI 控制的角色（没有 PlayerState）\n- 不需要持久化技能状态的角色\n- 单机游戏中的简化角色\n\n注意：属性集（HealthSet, CombatSet 等）现在通过 GameFeatureAction_AddAbilities 动态添加，\n而非在此类中硬编码。请在对应的 GameFeature 配置中添加属性集。",
+  "properties": {
+    "AbilitySystemComponent": [
+      "UDJ01AbilitySystemComponent",
+      2,
+      "此角色使用的 AbilitySystemComponent（自包含，不依赖 PlayerState）"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDJ01AbilitySystemComponent",
+      "return": "UDJ01AbilitySystemComponent",
+      "const": true,
+      "doc": "获取 DJ01 版本的 AbilitySystemComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

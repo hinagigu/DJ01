@@ -1,0 +1,79 @@
+{
+  "name": "FInAppPurchaseProductInfo2",
+  "isStruct": true,
+  "doc": "Micro-transaction purchase information",
+  "properties": {
+    "Identifier": [
+      "FString",
+      1,
+      "The unique product identifier"
+    ],
+    "TransactionIdentifier": [
+      "FString",
+      1,
+      "the unique transaction identifier"
+    ],
+    "DisplayName": [
+      "FString",
+      1,
+      "The localized display name"
+    ],
+    "DisplayDescription": [
+      "FString",
+      1,
+      "The localized display description name"
+    ],
+    "DisplayPrice": [
+      "FString",
+      1,
+      "The localized display price name"
+    ],
+    "RawPrice": [
+      "float32",
+      1,
+      "Raw price without currency code and symbol"
+    ],
+    "CurrencyCode": [
+      "FString",
+      1,
+      "The localized currency code of the price"
+    ],
+    "CurrencySymbol": [
+      "FString",
+      1,
+      "The localized currency symbol of the price"
+    ],
+    "DecimalSeparator": [
+      "FString",
+      1,
+      "The localized decimal separator used in the price"
+    ],
+    "GroupingSeparator": [
+      "FString",
+      1,
+      "The localized grouping separator of the price"
+    ],
+    "ReceiptData": [
+      "FString",
+      1,
+      "Opaque receipt data for the transaction"
+    ],
+    "DynamicFields": [
+      "TMap<FString,FString>",
+      1,
+      "Dynamic fields from raw Json data."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInAppPurchaseProductInfo2&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInAppPurchaseProductInfo2"
+        }
+      ]
+    }
+  ]
+}

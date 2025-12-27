@@ -1,0 +1,138 @@
+{
+  "name": "UMeshComponent",
+  "inherits": "UPrimitiveComponent",
+  "doc": "MeshComponent is an abstract base for any component that is an instance of a renderable collection of triangles.\n\n@see UStaticMeshComponent\n@see USkeletalMeshComponent",
+  "properties": {
+    "OverrideMaterials": [
+      "TArray<TObjectPtr<UMaterialInterface>>",
+      2,
+      "Material overrides."
+    ],
+    "bEnableMaterialParameterCaching": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetMaterials",
+      "return": "TArray<UMaterialInterface>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOverlayMaterial",
+      "return": "UMaterialInterface",
+      "const": true,
+      "doc": "Get the overlay material used by this instance",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOverlayMaterialMaxDrawDistance",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the overlay material used by this instance",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PrestreamMeshLODs",
+      "return": "bool",
+      "doc": "Tell the streaming system to start streaming in all LODs for the mesh.\n Note: this function may set bIgnoreStreamingMipBias on this component enable the FastForceResident system.\n@return bool                                                        True if streaming was successfully requested\n@param Seconds                                                  Number of seconds to force all LODs to be resident",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Seconds",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "PrestreamTextures",
+      "return": "void",
+      "doc": "Tell the streaming system to start loading all textures with all mip-levels.\n@param Seconds                                                  Number of seconds to force all mip-levels to be resident\n@param bPrioritizeCharacterTextures             Whether character textures should be prioritized for a while by the streaming system\n@param CinematicTextureGroups                   Bitfield indicating which texture groups that use extra high-resolution mips",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Seconds",
+          "type": "float32"
+        },
+        {
+          "name": "bPrioritizeCharacterTextures",
+          "type": "bool"
+        },
+        {
+          "name": "CinematicTextureGroups",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetOverlayMaterial",
+      "return": "void",
+      "doc": "Change the overlay material used by this instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewOverlayMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetOverlayMaterialMaxDrawDistance",
+      "return": "void",
+      "doc": "Change the overlay material max draw distance used by this instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMaxDrawDistance",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetScalarParameterValueOnMaterials",
+      "return": "void",
+      "doc": "Set all occurrences of Scalar Material Parameters with ParameterName in the set of materials of the SkeletalMesh to ParameterValue",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "ParameterValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetVectorParameterValueOnMaterials",
+      "return": "void",
+      "doc": "Set all occurrences of Vector Material Parameters with ParameterName in the set of materials of the SkeletalMesh to ParameterValue",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "ParameterValue",
+          "type": "FVector"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "__ENiagaraMeshFacingMode",
+  "isEnum": true,
+  "doc": "This enum decides how a mesh particle will orient its \"facing\" axis relative to camera. Must keep these in sync with NiagaraMeshVertexFactory.ush",
+  "properties": {
+    "Default": [
+      "ENiagaraMeshFacingMode",
+      "Ignores the camera altogether. The mesh aligns its local-space X-axis with the particles' local-space X-axis, after transforming by the Particles.Transform vector (if it exists)."
+    ],
+    "Velocity": [
+      "ENiagaraMeshFacingMode",
+      "The mesh aligns it's local-space X-axis with the particle's Particles.Velocity vector."
+    ],
+    "CameraPosition": [
+      "ENiagaraMeshFacingMode",
+      "Has the mesh local-space X-axis point towards the camera's position."
+    ],
+    "CameraPlane": [
+      "ENiagaraMeshFacingMode",
+      "Has the mesh local-space X-axis point towards the closest point on the camera view plane."
+    ],
+    "ENiagaraMeshFacingMode_MAX": [
+      "ENiagaraMeshFacingMode"
+    ]
+  },
+  "methods": []
+}

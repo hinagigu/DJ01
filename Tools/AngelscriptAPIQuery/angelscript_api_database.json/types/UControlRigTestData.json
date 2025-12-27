@@ -1,0 +1,131 @@
+{
+  "name": "UControlRigTestData",
+  "inherits": "UObject",
+  "properties": {
+    "ControlRigObjectPath": [
+      "FSoftObjectPath",
+      1,
+      ""
+    ],
+    "Initial": [
+      "FControlRigTestDataFrame",
+      1,
+      ""
+    ],
+    "InputFrames": [
+      "TArray<FControlRigTestDataFrame>",
+      1,
+      ""
+    ],
+    "OutputFrames": [
+      "TArray<FControlRigTestDataFrame>",
+      1,
+      ""
+    ],
+    "FramesToSkip": [
+      "TArray<int>"
+    ],
+    "Tolerance": [
+      "float"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetFrameIndexForTime",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSeconds",
+          "type": "float"
+        },
+        {
+          "name": "bInput",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetPlaybackMode",
+      "return": "EControlRigTestDataPlaybackMode",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTimeRange",
+      "return": "FVector2D",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInput",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "IsRecording",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsReplaying",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Record",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "InRecordingDuration",
+          "default": "0.000000",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "ReleaseReplay",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetupReplay",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "bGroundTruth",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

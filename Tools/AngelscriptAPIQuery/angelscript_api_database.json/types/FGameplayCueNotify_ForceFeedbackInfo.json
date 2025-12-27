@@ -1,0 +1,59 @@
+{
+  "name": "FGameplayCueNotify_ForceFeedbackInfo",
+  "isStruct": true,
+  "doc": "FGameplayCueNotify_ForceFeedbackInfo\n\n    Properties that specify how to play a force feedback effect.",
+  "properties": {
+    "SpawnConditionOverride": [
+      "FGameplayCueNotify_SpawnCondition",
+      "Condition to check before playing the force feedback."
+    ],
+    "PlacementInfoOverride": [
+      "FGameplayCueNotify_PlacementInfo",
+      "Defines how the force feedback will be placed."
+    ],
+    "ForceFeedbackEffect": [
+      "UForceFeedbackEffect",
+      "Force feedback effect to play."
+    ],
+    "ForceFeedbackTag": [
+      "FName",
+      "Tag used to identify the force feedback effect so it can later be canceled.\nWarning: If this is \"None\" it will stop ALL force feedback effects if it is canceled."
+    ],
+    "WorldIntensity": [
+      "float32",
+      "Multiplier applied to the force feedback when played in world."
+    ],
+    "WorldAttenuation": [
+      "UForceFeedbackAttenuation",
+      "How the force feedback is attenuated over distance when played in world."
+    ],
+    "bIsLooping": [
+      "bool",
+      "If enabled, the force feedback will be set to loop."
+    ],
+    "bOverrideSpawnCondition": [
+      "bool",
+      "If enabled, use the spawn condition override and not the default one."
+    ],
+    "bOverridePlacementInfo": [
+      "bool",
+      "If enabled, use the placement info override and not the default one."
+    ],
+    "bPlayInWorld": [
+      "bool",
+      "If enabled, the force feedback will be played in the world and affect all players."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayCueNotify_ForceFeedbackInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayCueNotify_ForceFeedbackInfo"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "UInterchangeGenericTexturePipeline",
+  "inherits": "UInterchangePipelineBase",
+  "properties": {
+    "PipelineDisplayName": [
+      "FString",
+      "The name of the pipeline that will be display in the import dialog."
+    ],
+    "bImportTextures": [
+      "bool",
+      "If enabled, imports all texture assets found in the source."
+    ],
+    "AssetName": [
+      "FString",
+      "If set, and there is only one asset and one source, the imported asset will be given this name."
+    ],
+    "bDetectNormalMapTexture": [
+      "bool",
+      "If enabled, tests each newly imported texture to see if it is a normal map.\nIf it is, the SRGB, Compression Settings, and LOD Group properties of that texture will be adjusted."
+    ],
+    "bFlipNormalMapGreenChannel": [
+      "bool",
+      "If enabled, the texture's green channel will be inverted for normal maps. This setting is only used if the Detect Normal Map Texture setting is also enabled."
+    ],
+    "bImportUDIMs": [
+      "bool",
+      "If enabled, imports textures as UDIMs if they are named using a UDIM naming pattern."
+    ],
+    "FileExtensionsToImportAsLongLatCubemap": [
+      "TSet<FString>",
+      "Specify the file types that should be imported as long/lat cubemaps."
+    ],
+    "bPreferCompressedSourceData": [
+      "bool",
+      "If enabled, the translator compresses the source data payload whenever possible. This generally results in smaller assets.\nHowever, some operations like the texture build might be slower, because the source data first needs to be decompressed.\nIf disabled, the translator leaves the decision to the factory or the pipelines."
+    ],
+    "bAllowNonPowerOfTwo": [
+      "bool",
+      "If enabled, textures that have a non-power-of-two resolution are imported."
+    ]
+  },
+  "methods": []
+}

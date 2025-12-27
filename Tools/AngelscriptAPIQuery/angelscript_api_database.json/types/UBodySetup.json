@@ -1,0 +1,40 @@
+{
+  "name": "UBodySetup",
+  "inherits": "UBodySetupCore",
+  "doc": "BodySetup contains all collision information that is associated with a single asset.\nA single BodySetup instance is shared among many BodyInstances so that geometry data is not duplicated.\nAssets typically implement a GetBodySetup function that is used during physics state creation.\n\n@see GetBodySetup\n@see FBodyInstance",
+  "properties": {
+    "AggGeom": [
+      "FKAggregateGeom",
+      2,
+      "Simplified collision representation of this"
+    ],
+    "PhysMaterial": [
+      "UPhysicalMaterial",
+      2,
+      "Physical material to use for simple collision on this body. Encodes information about density, friction etc."
+    ],
+    "WalkableSlopeOverride": [
+      "FWalkableSlopeOverride",
+      2,
+      "Custom walkable slope setting for this body."
+    ],
+    "DefaultInstance": [
+      "FBodyInstance",
+      2,
+      "Default properties of the body instance, copied into objects on instantiation, was URB_BodyInstance"
+    ],
+    "bConsiderForBounds": [
+      "bool",
+      "Should this BodySetup be considered for the bounding box of the PhysicsAsset (and hence SkeletalMeshComponent).\nThere is a speed improvement from having less BodySetups processed each frame when updating the bounds."
+    ],
+    "bDoubleSidedGeometry": [
+      "bool",
+      "If true, the physics triangle mesh will use double sided faces when doing scene queries.\nThis is useful for planes and single sided meshes that need traces to work on both sides."
+    ],
+    "bNeverNeedsCookedCollisionData": [
+      "bool",
+      "TODO Chaos this is to opt out of CreatePhysicsMeshes for certain meshes\nBetter long term mesh is to not call CreatePhysicsMeshes until it is known there is a mesh instance that needs it."
+    ]
+  },
+  "methods": []
+}

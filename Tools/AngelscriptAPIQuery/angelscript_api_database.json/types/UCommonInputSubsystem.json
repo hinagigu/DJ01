@@ -1,0 +1,91 @@
+{
+  "name": "UCommonInputSubsystem",
+  "inherits": "ULocalPlayerSubsystem",
+  "properties": {
+    "OnInputMethodChanged": [
+      "FInputMethodChangedDelegate"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCurrentGamepadName",
+      "return": "FName",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentInputType",
+      "return": "ECommonInputType",
+      "const": true,
+      "doc": "The current input type based on the last input received on the device.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDefaultInputType",
+      "return": "ECommonInputType",
+      "const": true,
+      "doc": "The default input type for the current platform.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsInputMethodActive",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputMethod",
+          "type": "ECommonInputType"
+        }
+      ]
+    },
+    {
+      "name": "IsUsingPointerInput",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCurrentInputType",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewInputType",
+          "type": "ECommonInputType"
+        }
+      ]
+    },
+    {
+      "name": "SetGamepadInputType",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGamepadInputType",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ShouldShowInputKeys",
+      "return": "bool",
+      "const": true,
+      "doc": "Should display indicators for the current input device on screen.  This is needed when capturing videos, but we don't want to reveal the capture source device.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

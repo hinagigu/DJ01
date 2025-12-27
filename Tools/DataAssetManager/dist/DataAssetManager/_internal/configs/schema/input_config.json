@@ -1,0 +1,32 @@
+{
+  "InputConfig": {
+    "class_name": "UDJ01InputConfig",
+    "parent_class": "UDataAsset",
+    "asset_type": "DataAsset",
+    "display_name": "输入配置",
+    "description": "输入配置，映射输入动作到 Gameplay 标签",
+    "content_path": "/Game/Input/InputConfig",
+    "icon": "🎮",
+    
+    "properties": {
+      "NativeInputActions": {
+        "type": "array",
+        "item_type": "FDJ01InputAction",
+        "display_name": "原生输入动作",
+        "description": "需要手动绑定的输入动作列表",
+        "widget": "struct_array_editor",
+        "struct_type": "FDJ01InputAction",
+        "category": "Input"
+      },
+      "AbilityInputActions": {
+        "type": "array",
+        "item_type": "FDJ01InputAction",
+        "display_name": "技能输入动作",
+        "description": "自动绑定到技能的输入动作列表",
+        "widget": "struct_array_editor",
+        "struct_type": "FDJ01InputAction",
+        "category": "Input"
+      }
+    }
+  }
+}

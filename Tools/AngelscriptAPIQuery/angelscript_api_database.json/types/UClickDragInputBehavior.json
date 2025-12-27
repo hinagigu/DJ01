@@ -1,0 +1,7 @@
+{
+  "name": "UClickDragInputBehavior",
+  "inherits": "UAnyButtonInputBehavior",
+  "doc": "UClickDragInputBehavior implements a standard \"button-click-drag\"-style input behavior.\nAn IClickDragBehaviorTarget instance must be provided which is manipulated by this behavior.\n\nThe state machine works as follows:\n   1) on input-device-button-press, call Target::CanBeginClickDragSequence to determine if capture should begin\n   2) on input-device-move, call Target::OnClickDrag\n   3) on input-device-button-release, call Target::OnClickRelease\n\nIf a ForceEndCapture occurs we call Target::OnTerminateDragSequence",
+  "properties": {},
+  "methods": []
+}

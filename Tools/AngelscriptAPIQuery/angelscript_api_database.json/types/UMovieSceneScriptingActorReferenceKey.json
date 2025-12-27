@@ -1,0 +1,68 @@
+{
+  "name": "UMovieSceneScriptingActorReferenceKey",
+  "inherits": "UMovieSceneScriptingKey",
+  "doc": "Exposes a Sequencer Actor Reference type key to Python/Blueprints.\nStores a reference to the data so changes to this class are forwarded onto the underlying data structures.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetTime",
+      "return": "FFrameTime",
+      "const": true,
+      "doc": "Gets the time for this key from the owning channel.\n@param TimeUnit       Should the time be returned in Display Rate frames (possibly with a sub-frame value) or in Tick Resolution with no sub-frame values?\n@return                       The time of this key which combines both the frame number and the sub-frame it is on. Sub-frame will be zero if you request Tick Resolution.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetValue",
+      "return": "FMovieSceneObjectBindingID",
+      "const": true,
+      "doc": "Gets the value for this key from the owning channel.\n@return       The object binding for this key.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetTime",
+      "return": "void",
+      "doc": "Sets the time for this key in the owning channel. Will replace any key that already exists at that frame number in this channel.\n@param NewFrameNumber What frame should this key be moved to? This should be in the time unit specified by TimeUnit.\n@param SubFrame               If using Display Rate time, what is the sub-frame this should go to? Clamped [0-1), and ignored with when TimeUnit is set to Tick Resolution.\n@param TimeUnit               Should the NewFrameNumber be interpreted as Display Rate frames or in Tick Resolution?",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewFrameNumber",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "SubFrame",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetValue",
+      "return": "void",
+      "doc": "Sets the value for this key, reflecting it in the owning channel.\n@param InNewValue     The new object binding for this key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewValue",
+          "type": "FMovieSceneObjectBindingID"
+        }
+      ]
+    }
+  ]
+}

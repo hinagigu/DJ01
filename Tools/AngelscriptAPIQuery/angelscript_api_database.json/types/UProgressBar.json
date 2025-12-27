@@ -1,0 +1,75 @@
+{
+  "name": "UProgressBar",
+  "inherits": "UWidget",
+  "doc": "The progress bar widget is a simple bar that fills up that can be restyled to fit any number of uses.\n\n* No Children",
+  "properties": {
+    "WidgetStyle": [
+      "FProgressBarStyle",
+      "The progress bar style"
+    ],
+    "BarFillType": [
+      "EProgressBarFillType",
+      "Defines the direction in which the progress bar fills"
+    ],
+    "BarFillStyle": [
+      "EProgressBarFillStyle",
+      "Defines the visual style of the progress bar fill - scale or mask"
+    ],
+    "BorderPadding": [
+      "FVector2D"
+    ],
+    "bIsMarquee": [
+      "bool",
+      "Sets the progress bar to show as a marquee."
+    ],
+    "Percent": [
+      "float32",
+      "Used to determine the fill position of the progress bar ranging 0..1"
+    ],
+    "FillColorAndOpacity": [
+      "FLinearColor",
+      "Fill Color and Opacity"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetFillColorAndOpacity",
+      "return": "void",
+      "doc": "Sets the fill color of the progress bar.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InColor",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetIsMarquee",
+      "return": "void",
+      "doc": "Sets the progress bar to show as a marquee.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InbIsMarquee",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPercent",
+      "return": "void",
+      "doc": "Sets the current value of the ProgressBar.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPercent",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

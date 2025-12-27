@@ -1,0 +1,60 @@
+{
+  "name": "UModelingObjectsCreationAPI",
+  "inherits": "UObject",
+  "doc": "UModelingObjectsCreationAPI is a base interface for functions that can be used to\ncreate various types of objects from Modeling Tools, or other sources. The \"type\" is\nvery generic here - \"Mesh\", \"Texture\", etc - because this API is meant to provide\nan abstraction for Tools to emit different types of objects in different situations.\nFor example an Tool might emit StaticMesh Asset/Actors in-Editor, but ProceduralMeshComponents at Runtime.\n\nThe creation inputs are specified via the structs above (eg FCreateMeshObjectParams, FCreateTextureObjectParams),\nwhich are very extensive, kitchen-sink sort of structs. Generally \"New Mesh Object\"\ncreation behavior will be very complex and so this API is really just a way to route\nthe data, and very few guarantees can be made about any specific implementation.\n\nThe assumed (but not really required) usage of instances of this type are that they\nwill be registered with an InteractiveToolsContext's ContextObjectStore, and then\nfetched from there by Tools/Algorithms/etc that need to use these capabilities can\nuse the UE::Modeling::CreateXObject() helper functions below. However the interface\ndoes not have any dependencies on this usage model.\n\nSee UEditorModelingObjectsCreationAPI for an example implementation suitable for in-Editor use.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateMaterialObject",
+      "return": "FCreateMaterialObjectResult",
+      "doc": "Create a new material object based on the data in CreateMaterialParams\n@return a results data structure, containing a result code and information about any new objects created",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CreateMaterialParams",
+          "type": "FCreateMaterialObjectParams"
+        }
+      ]
+    },
+    {
+      "name": "CreateMeshObject",
+      "return": "FCreateMeshObjectResult",
+      "doc": "Create a new mesh object based on the data in CreateMeshParams\n@return a results data structure, containing a result code and information about any new objects created",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CreateMeshParams",
+          "type": "FCreateMeshObjectParams"
+        }
+      ]
+    },
+    {
+      "name": "CreateNewActor",
+      "return": "FCreateActorResult",
+      "doc": "Create a new material object based on the data in CreateMaterialParams\n@return a results data structure, containing a result code and information about any new objects created",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CreateActorParams",
+          "type": "FCreateActorParams"
+        }
+      ]
+    },
+    {
+      "name": "CreateTextureObject",
+      "return": "FCreateTextureObjectResult",
+      "doc": "Create a new texture object based on the data in CreateTexParams\n@return a results data structure, containing a result code and information about any new objects created",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CreateTexParams",
+          "type": "FCreateTextureObjectParams"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "FInterpCurvePointLinearColor",
+  "isStruct": true,
+  "doc": "Describes one specific point on an interpolation curve.\n@note This is a mirror of TInterpCurvePoint<FLinearColor>, defined in InterpCurvePoint.h",
+  "properties": {
+    "InVal": [
+      "float32",
+      "Float input value that corresponds to this key (eg. time)."
+    ],
+    "OutVal": [
+      "FLinearColor",
+      "Color output value of when input is equal to InVal."
+    ],
+    "ArriveTangent": [
+      "FLinearColor",
+      "Tangent of curve arriving at this point."
+    ],
+    "LeaveTangent": [
+      "FLinearColor",
+      "Tangent of curve leaving this point."
+    ],
+    "InterpMode": [
+      "EInterpCurveMode",
+      "Interpolation mode between this point and the next one."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInterpCurvePointLinearColor&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInterpCurvePointLinearColor"
+        }
+      ]
+    }
+  ]
+}

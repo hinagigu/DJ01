@@ -1,0 +1,96 @@
+{
+  "name": "FRigUnit_TwoBoneIKSimple",
+  "isStruct": true,
+  "doc": "Solves the two bone IK given two bones.\nNote: This node operates in world space!",
+  "properties": {
+    "BoneA": [
+      "FName",
+      "The name of first bone"
+    ],
+    "BoneB": [
+      "FName",
+      "The name of second bone"
+    ],
+    "EffectorBone": [
+      "FName",
+      "The name of the effector bone (if exists)"
+    ],
+    "Effector": [
+      "FTransform",
+      "The transform of the effector"
+    ],
+    "PrimaryAxis": [
+      "FVector",
+      "The major axis being aligned - along the bone"
+    ],
+    "SecondaryAxis": [
+      "FVector",
+      "The minor axis being aligned - towards the polevector"
+    ],
+    "SecondaryAxisWeight": [
+      "float32",
+      "Determines how much the secondary axis roll is being applied"
+    ],
+    "PoleVector": [
+      "FVector",
+      "The polevector to use for the IK solver\nThis can be a location or direction."
+    ],
+    "PoleVectorKind": [
+      "EControlRigVectorKind",
+      "The kind of pole vector this is representing - can be a direction or a location"
+    ],
+    "PoleVectorSpace": [
+      "FName",
+      "The space in which the pole vector is expressed"
+    ],
+    "bEnableStretch": [
+      "bool",
+      "If set to true the stretch feature of the solver will be enabled"
+    ],
+    "StretchStartRatio": [
+      "float32",
+      "The ratio where the stretch starts"
+    ],
+    "StretchMaximumRatio": [
+      "float32",
+      "The maximum allowed stretch ratio"
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the solver - how much the IK should be applied."
+    ],
+    "BoneALength": [
+      "float32",
+      "The length of the first bone.\nIf set to 0.0 it will be determined by the hierarchy"
+    ],
+    "BoneBLength": [
+      "float32",
+      "The length of the second  bone.\nIf set to 0.0 it will be determined by the hierarchy"
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      1,
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "DebugSettings": [
+      "FRigUnit_TwoBoneIKSimple_DebugSettings",
+      "The settings for debug drawing"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_TwoBoneIKSimple&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_TwoBoneIKSimple"
+        }
+      ]
+    }
+  ]
+}

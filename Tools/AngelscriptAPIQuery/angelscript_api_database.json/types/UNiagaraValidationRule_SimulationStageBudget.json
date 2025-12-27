@@ -1,0 +1,43 @@
+{
+  "name": "UNiagaraValidationRule_SimulationStageBudget",
+  "inherits": "UNiagaraValidationRule",
+  "doc": "This validation rule can be used to enforce a budget on the number of simulation stages and the iterations that may execute.",
+  "properties": {
+    "bMaxSimulationStagesEnabled": [
+      "bool",
+      2,
+      ""
+    ],
+    "bMaxIterationsPerStageEnabled": [
+      "bool",
+      2,
+      ""
+    ],
+    "bMaxTotalIterationsEnabled": [
+      "bool",
+      2,
+      ""
+    ],
+    "Severity": [
+      "ENiagaraValidationSeverity",
+      2,
+      "How do we want to repro the error in the stack"
+    ],
+    "MaxSimulationStages": [
+      "int",
+      2,
+      "Maximum number of simulation stages allowed, where 0 means no simulation stages."
+    ],
+    "MaxIterationsPerStage": [
+      "int",
+      2,
+      "Maximum number of iterations a single stage is allowed to execute.\nNote: Can only check across explicit counts, dynamic bindings will be ignored."
+    ],
+    "MaxTotalIterations": [
+      "int",
+      2,
+      "Maximum total iterations across all the enabled simulation stages.\nNote: Can only check across explicit counts, dynamic bindings will be ignored."
+    ]
+  },
+  "methods": []
+}

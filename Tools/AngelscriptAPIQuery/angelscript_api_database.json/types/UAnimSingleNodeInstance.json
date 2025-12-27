@@ -1,0 +1,215 @@
+{
+  "name": "UAnimSingleNodeInstance",
+  "inherits": "UAnimInstance",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetAnimationAsset",
+      "return": "UAnimationAsset",
+      "const": true,
+      "doc": "Get the currently used asset",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLength",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMirrorDataTable",
+      "return": "const UMirrorDataTable",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PlayAnim",
+      "return": "void",
+      "doc": "For AnimSequence specific *",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsLooping",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "InPlayRate",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "InStartPosition",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimationAsset",
+      "return": "void",
+      "doc": "Set New Asset - calls InitializeAnimation, for now we need MeshComponent *",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAsset",
+          "type": "UAnimationAsset"
+        },
+        {
+          "name": "bIsLooping",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "InPlayRate",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetBlendSpacePosition",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPosition",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetLooping",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsLooping",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMirrorDataTable",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MirrorDataTable",
+          "type": "const UMirrorDataTable"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaying",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsPlaying",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPlayRate",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPlayRate",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPosition",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPosition",
+          "type": "float32"
+        },
+        {
+          "name": "bFireNotifies",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPositionWithPreviousTime",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPosition",
+          "type": "float32"
+        },
+        {
+          "name": "InPreviousTime",
+          "type": "float32"
+        },
+        {
+          "name": "bFireNotifies",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPreviewCurveOverride",
+      "return": "void",
+      "doc": "Set pose value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PoseName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        },
+        {
+          "name": "bRemoveIfZero",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetReverse",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInReverse",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StopAnim",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

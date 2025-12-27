@@ -1,0 +1,84 @@
+{
+  "name": "FPacketSimulationSettings",
+  "isStruct": true,
+  "doc": "Holds the packet simulation settings in one place",
+  "properties": {
+    "PktLoss": [
+      "int",
+      2,
+      "When set, will cause calls to FlushNet to drop packets.\nValue is treated as % of packets dropped (i.e. 0 = None, 100 = All).\nNo general pattern / ordering is guaranteed.\nClamped between 0 and 100.\n\nWorks with all other settings."
+    ],
+    "PktLossMaxSize": [
+      "int",
+      2,
+      "Sets the maximum size of packets in bytes that will be dropped\naccording to the PktLoss setting. Default is INT_MAX.\n\nWorks with all other settings."
+    ],
+    "PktLossMinSize": [
+      "int",
+      2,
+      "Sets the minimum size of packets in bytes that will be dropped\naccording to the PktLoss setting. Default is 0.\n\nWorks with all other settings."
+    ],
+    "PktOrder": [
+      "int",
+      2,
+      "When set, will cause calls to FlushNet to change ordering of packets at random.\nValue is treated as a bool (i.e. 0 = False, anything else = True).\nThis works by randomly selecting packets to be delayed until a subsequent call to FlushNet.\n\nTakes precedence over PktDup and PktLag."
+    ],
+    "PktDup": [
+      "int",
+      2,
+      "When set, will cause calls to FlushNet to duplicate packets.\nValue is treated as % of packets duplicated (i.e. 0 = None, 100 = All).\nNo general pattern / ordering is guaranteed.\nClamped between 0 and 100.\n\nCannot be used with PktOrder or PktLag."
+    ],
+    "PktLag": [
+      "int",
+      2,
+      "When set, will cause calls to FlushNet to delay packets.\nValue is treated as millisecond lag.\n\nCannot be used with PktOrder."
+    ],
+    "PktLagVariance": [
+      "int",
+      2,
+      "When set, will cause PktLag to use variable lag instead of constant.\nValue is treated as millisecond lag range (e.g. -GivenVariance <= 0 <= GivenVariance).\n\nCan only be used when PktLag is enabled."
+    ],
+    "PktLagMin": [
+      "int",
+      2,
+      "If set lag values will randomly fluctuate between Min and Max.\nIgnored if PktLag value is set"
+    ],
+    "PktLagMax": [
+      "int",
+      2,
+      ""
+    ],
+    "PktIncomingLagMin": [
+      "int",
+      2,
+      "Set a value to add a minimum delay in milliseconds to incoming\npackets before they are processed."
+    ],
+    "PktIncomingLagMax": [
+      "int",
+      2,
+      "The maximum delay in milliseconds to add to incoming\npackets before they are processed."
+    ],
+    "PktIncomingLoss": [
+      "int",
+      2,
+      "The ratio of incoming packets that will be dropped\nto simulate packet loss"
+    ],
+    "PktJitter": [
+      "int",
+      2,
+      "Causes sent packets to have a variable latency that fluctuates from [PktLagMin] to [PktLagMin+PktJitter]\nNote that this will cause packet loss on the receiving end."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPacketSimulationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPacketSimulationSettings"
+        }
+      ]
+    }
+  ]
+}

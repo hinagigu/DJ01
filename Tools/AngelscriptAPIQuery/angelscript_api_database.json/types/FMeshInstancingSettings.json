@@ -1,0 +1,39 @@
+{
+  "name": "FMeshInstancingSettings",
+  "isStruct": true,
+  "doc": "Mesh instance-replacement settings",
+  "properties": {
+    "ActorClassToUse": [
+      "TSubclassOf<AActor>",
+      "The actor class to attach new instance static mesh components to"
+    ],
+    "InstanceReplacementThreshold": [
+      "int",
+      "The number of static mesh instances needed before a mesh is replaced with an instanced version"
+    ],
+    "bSkipMeshesWithVertexColors": [
+      "bool",
+      "Whether to skip the conversion to an instanced static mesh for meshes with vertex colors.\nInstanced static meshes do not support vertex colors per-instance, so conversion will lose\nthis data."
+    ],
+    "bUseHLODVolumes": [
+      "bool",
+      "Whether split up instanced static mesh components based on their intersection with HLOD volumes"
+    ],
+    "ISMComponentToUse": [
+      "TSubclassOf<UInstancedStaticMeshComponent>",
+      "Whether to use the Instanced Static Mesh Compoment or the Hierarchical Instanced Static Mesh Compoment"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMeshInstancingSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMeshInstancingSettings"
+        }
+      ]
+    }
+  ]
+}

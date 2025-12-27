@@ -1,0 +1,139 @@
+{
+  "name": "UButton",
+  "inherits": "UContentWidget",
+  "doc": "The button is a click-able primitive widget to enable basic interaction, you\ncan place any other widget inside a button to make a more complex and\ninteresting click-able element in your UI.\n\n* Single Child\n* Clickable",
+  "properties": {
+    "IsFocusable": [
+      "bool",
+      "Sometimes a button should only be mouse-clickable and never keyboard focusable."
+    ],
+    "OnClicked": [
+      "FOnButtonClickedEvent",
+      "Called when the button is clicked"
+    ],
+    "OnPressed": [
+      "FOnButtonPressedEvent",
+      "Called when the button is pressed"
+    ],
+    "OnReleased": [
+      "FOnButtonReleasedEvent",
+      "Called when the button is released"
+    ],
+    "OnHovered": [
+      "FOnButtonHoverEvent"
+    ],
+    "OnUnhovered": [
+      "FOnButtonHoverEvent"
+    ],
+    "WidgetStyle": [
+      "FButtonStyle",
+      "The button style used at runtime"
+    ],
+    "ColorAndOpacity": [
+      "FLinearColor",
+      "The color multiplier for the button content"
+    ],
+    "BackgroundColor": [
+      "FLinearColor",
+      "The color multiplier for the button background"
+    ],
+    "ClickMethod": [
+      "EButtonClickMethod",
+      "The type of mouse action required by the user to trigger the buttons 'Click'"
+    ],
+    "TouchMethod": [
+      "EButtonTouchMethod",
+      "The type of touch action required by the user to trigger the buttons 'Click'"
+    ],
+    "PressMethod": [
+      "EButtonPressMethod",
+      "The type of keyboard/gamepad button press action required by the user to trigger the buttons 'Click'"
+    ]
+  },
+  "methods": [
+    {
+      "name": "IsPressed",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the user is actively pressing the button.  Do not use this for detecting 'Clicks', use the OnClicked event instead.\n\n@return true if the user is actively pressing the button otherwise false.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBackgroundColor",
+      "return": "void",
+      "doc": "Sets the color multiplier for the button background",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBackgroundColor",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetClickMethod",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InClickMethod",
+          "type": "EButtonClickMethod"
+        }
+      ]
+    },
+    {
+      "name": "SetColorAndOpacity",
+      "return": "void",
+      "doc": "Sets the color multiplier for the button content",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InColorAndOpacity",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetPressMethod",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPressMethod",
+          "type": "EButtonPressMethod"
+        }
+      ]
+    },
+    {
+      "name": "SetStyle",
+      "return": "void",
+      "doc": "Sets the color multiplier for the button background",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStyle",
+          "type": "FButtonStyle"
+        }
+      ]
+    },
+    {
+      "name": "SetTouchMethod",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTouchMethod",
+          "type": "EButtonTouchMethod"
+        }
+      ]
+    }
+  ]
+}

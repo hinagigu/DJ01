@@ -1,0 +1,42 @@
+{
+  "name": "UCullingField",
+  "inherits": "UFieldNodeBase",
+  "doc": "Evaluate the input field according to the result of the culling field",
+  "properties": {
+    "Culling": [
+      "const UFieldNodeBase",
+      "Culling field to be used"
+    ],
+    "Field": [
+      "const UFieldNodeBase",
+      "Input field that will be evaluated according to the culling field result"
+    ],
+    "Operation": [
+      "EFieldCullingOperationType",
+      "Evaluate the input field if the result of the culling field is equal to 0 (Inside) or different from 0 (Outside)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetCullingField",
+      "return": "UCullingField",
+      "doc": "Evaluate the input field according to the result of the culling field.\n\n@param    Culling Culling field to be used.\n@param    Field Input field that will be evaluated according to the culling field result.\n@param    Operation Evaluate the input field if the result of the culling field is equal to 0 (Inside) or different from 0 (Outside).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Culling",
+          "type": "const UFieldNodeBase"
+        },
+        {
+          "name": "Field",
+          "type": "const UFieldNodeBase"
+        },
+        {
+          "name": "Operation",
+          "type": "EFieldCullingOperationType"
+        }
+      ]
+    }
+  ]
+}

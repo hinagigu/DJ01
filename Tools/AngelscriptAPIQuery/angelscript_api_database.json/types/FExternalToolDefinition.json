@@ -1,0 +1,49 @@
+{
+  "name": "FExternalToolDefinition",
+  "isStruct": true,
+  "doc": "Structure for defining an external tool",
+  "properties": {
+    "ToolName": [
+      "FString",
+      2,
+      "The name of the tool / test."
+    ],
+    "ExecutablePath": [
+      "FFilePath",
+      2,
+      "The executable to run."
+    ],
+    "CommandLineOptions": [
+      "FString",
+      2,
+      "The command line options to pass to the executable."
+    ],
+    "WorkingDirectory": [
+      "FDirectoryPath",
+      2,
+      "The working directory for the new process."
+    ],
+    "ScriptExtension": [
+      "FString",
+      2,
+      "If set, look for scripts with this extension."
+    ],
+    "ScriptDirectory": [
+      "FDirectoryPath",
+      2,
+      "If the ScriptExtension is set, look here for the script files."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FExternalToolDefinition&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FExternalToolDefinition"
+        }
+      ]
+    }
+  ]
+}

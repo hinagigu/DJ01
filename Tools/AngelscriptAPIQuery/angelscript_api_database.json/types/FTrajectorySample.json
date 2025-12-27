@@ -1,0 +1,30 @@
+{
+  "name": "FTrajectorySample",
+  "isStruct": true,
+  "properties": {
+    "AccumulatedSeconds": [
+      "float32",
+      "The relative accumulated time that this sample is associated with\nZero value for instantaneous, negative values for the past, and positive values for the future"
+    ],
+    "Transform": [
+      "FTransform",
+      "Position relative to the sampled in-motion object"
+    ],
+    "LinearVelocity": [
+      "FVector",
+      "Linear velocity relative to the sampled in-motion object"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTrajectorySample&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTrajectorySample"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "UMaterialBillboardComponent",
+  "inherits": "UPrimitiveComponent",
+  "doc": "A 2d material that will be rendered always facing the camera.",
+  "properties": {
+    "Elements": [
+      "TArray<FMaterialSpriteElement>",
+      "Current array of material billboard elements"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddElement",
+      "return": "void",
+      "doc": "Adds an element to the sprite.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "DistanceToOpacityCurve",
+          "type": "UCurveFloat"
+        },
+        {
+          "name": "bSizeIsInScreenSpace",
+          "type": "bool"
+        },
+        {
+          "name": "BaseSizeX",
+          "type": "float32"
+        },
+        {
+          "name": "BaseSizeY",
+          "type": "float32"
+        },
+        {
+          "name": "DistanceToSizeCurve",
+          "type": "UCurveFloat"
+        }
+      ]
+    },
+    {
+      "name": "SetElements",
+      "return": "void",
+      "doc": "Set all elements of this material billboard component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewElements",
+          "type": "TArray<FMaterialSpriteElement>"
+        }
+      ]
+    }
+  ]
+}

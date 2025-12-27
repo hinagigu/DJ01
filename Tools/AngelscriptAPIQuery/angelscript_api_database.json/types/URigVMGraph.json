@@ -1,0 +1,287 @@
+{
+  "name": "URigVMGraph",
+  "inherits": "UObject",
+  "doc": "The Graph represents a Function definition\nusing Nodes as statements.\nGraphs can be compiled into a URigVM using the\nFRigVMCompiler.\nGraphs provide access to its Nodes, Pins and\nLinks.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ContainsLink",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the graph contains a link given its string representation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPathRepresentation",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "FindLink",
+      "return": "URigVMLink",
+      "const": true,
+      "doc": "Returns a link given its string representation,\nfor example \"NodeA.Color.R -> NodeB.Translation.X\"",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLinkPinPathRepresentation",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "FindNode",
+      "return": "URigVMNode",
+      "const": true,
+      "doc": "Returns a Node given its path (or nullptr).\n(for now this is the same as finding a node by its name.)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodePath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "FindNodeByName",
+      "return": "URigVMNode",
+      "const": true,
+      "doc": "Returns a Node given its name (or nullptr).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FindPin",
+      "return": "URigVMPin",
+      "const": true,
+      "doc": "Returns a Pin given its path, for example \"Node.Color.R\".",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetContainedGraphs",
+      "return": "TArray<URigVMGraph>",
+      "const": true,
+      "doc": "Returns all of the contained graphs",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetDefaultFunctionLibrary",
+      "return": "URigVMFunctionLibrary",
+      "const": true,
+      "doc": "Returns the locally available function library",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEntryNode",
+      "return": "URigVMFunctionEntryNode",
+      "const": true,
+      "doc": "Returns the entry node of this graph",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEventNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Returns array of event names",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGraphDepth",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the root / top level parent graph of this graph (or this if it is the root graph)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGraphName",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the name of this graph (as defined by the node path)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInputArguments",
+      "return": "TArray<FRigVMGraphVariableDescription>",
+      "const": true,
+      "doc": "Returns the input arguments of this graph",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLinks",
+      "return": "TArray<URigVMLink>",
+      "const": true,
+      "doc": "Returns all of the Links within this Graph.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLocalVariables",
+      "return": "TArray<FRigVMGraphVariableDescription>",
+      "const": true,
+      "doc": "Returns the local variables of this function",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIncludeInputArguments",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetNodePath",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the path of this graph as defined by its invoking nodes",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNodes",
+      "return": "TArray<URigVMNode>",
+      "const": true,
+      "doc": "Returns all of the Nodes within this Graph.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOutputArguments",
+      "return": "TArray<FRigVMGraphVariableDescription>",
+      "const": true,
+      "doc": "Returns the output arguments of this graph",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetParentGraph",
+      "return": "URigVMGraph",
+      "const": true,
+      "doc": "Returns the parent graph of this graph",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetReturnNode",
+      "return": "URigVMFunctionReturnNode",
+      "const": true,
+      "doc": "Returns the return node of this graph",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRootGraph",
+      "return": "URigVMGraph",
+      "const": true,
+      "doc": "Returns the root / top level parent graph of this graph (or this if it is the root graph)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectNodes",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Returns the names of all currently selected Nodes.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVariableDescriptions",
+      "return": "TArray<FRigVMGraphVariableDescription>",
+      "const": true,
+      "doc": "Returns a list of unique Variable descriptions within this Graph.\nMultiple Variable Nodes can share the same description.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsNodeSelected",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if a Node with a given name is selected.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsRootGraph",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this graph is a root / top level graph",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsTopLevelGraph",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this graph is the top level graph",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetDefaultFunctionLibrary",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionLibrary",
+          "type": "URigVMFunctionLibrary"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "FRigVMFunction_MathVectorClampSpatially",
+  "isStruct": true,
+  "doc": "Clamps a position using a plane collision, cylindric collision or spherical collision.\nThe collision happens both towards an inner envelope (minimum) and towards an outer envelope (maximum).\nYou can disable the inner / outer envelope / collision by setting the minimum / maximum to 0.0.",
+  "properties": {
+    "Value": [
+      "FVector"
+    ],
+    "Axis": [
+      "EAxis"
+    ],
+    "Type": [
+      "ERigVMClampSpatialMode"
+    ],
+    "Minimum": [
+      "float32",
+      "The minimum allowed distance at which a collision occurs.\nNote: For capsule this represents the radius.\nDisable by setting to 0.0."
+    ],
+    "Maximum": [
+      "float32",
+      "This maximum allowed distance.\nA collision will occur towards the center at this wall.\nNote: For capsule this represents the length.\nDisable by setting to 0.0."
+    ],
+    "Space": [
+      "FTransform",
+      "The space this spatial clamp happens within.\nThe input position will be projected into this space."
+    ],
+    "bDrawDebug": [
+      "bool"
+    ],
+    "DebugColor": [
+      "FLinearColor"
+    ],
+    "DebugThickness": [
+      "float32"
+    ],
+    "Result": [
+      "FVector",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigVMFunction_MathVectorClampSpatially&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigVMFunction_MathVectorClampSpatially"
+        }
+      ]
+    }
+  ]
+}

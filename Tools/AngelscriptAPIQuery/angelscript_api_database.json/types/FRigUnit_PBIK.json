@@ -1,0 +1,47 @@
+{
+  "name": "FRigUnit_PBIK",
+  "isStruct": true,
+  "doc": "* Based on a Position Based solver at core, this node can solve multi chains within a root using multi effectors",
+  "properties": {
+    "Root": [
+      "FName",
+      "This is usually the top-most skinned bone; often the \"Pelvis\" or \"Hips\", but can be set to any bone.\nBones above the root will be ignored by the solver.\nBones that are located *between* the Root and the effectors will be included in the solve."
+    ],
+    "Effectors": [
+      "TArray<FPBIKEffector>",
+      "An array of effectors. These specify target transforms for different parts of the skeleton."
+    ],
+    "BoneSettings": [
+      "TArray<FPBIKBoneSetting>",
+      "Per-bone settings to control the resulting pose. Includes limits and preferred angles."
+    ],
+    "ExcludedBones": [
+      "TArray<FName>",
+      "These bones will be excluded from the solver. They will not bend and will not contribute to the constraint set.\nUse the ExcludedBones array instead of setting Rotation Stiffness to very high values or Rotation Limits with zero range."
+    ],
+    "Settings": [
+      "FPBIKSolverSettings",
+      "Global solver settings."
+    ],
+    "Debug": [
+      "FPBIKDebug",
+      "Debug drawing options."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_PBIK&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_PBIK"
+        }
+      ]
+    }
+  ]
+}

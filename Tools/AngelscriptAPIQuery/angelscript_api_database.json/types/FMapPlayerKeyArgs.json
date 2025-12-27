@@ -1,0 +1,47 @@
+{
+  "name": "FMapPlayerKeyArgs",
+  "isStruct": true,
+  "doc": "Arguments that can be used when mapping a player key",
+  "properties": {
+    "MappingName": [
+      "FName",
+      "The name of the mapping for this key. This is either the default mapping name from an Input Action asset, or one\nthat is overridden in the Input Mapping Context."
+    ],
+    "Slot": [
+      "EPlayerMappableKeySlot",
+      "What slot this key mapping is for"
+    ],
+    "NewKey": [
+      "FKey",
+      "The new Key that this should be mapped to"
+    ],
+    "HardwareDeviceId": [
+      "FName",
+      "An OPTIONAL specifier about what kind of hardware this mapping is for."
+    ],
+    "ProfileId": [
+      "FGameplayTag",
+      "The Key Mapping Profile identifier that this mapping should be set on. If this is empty, then the currently equipped profile will be used."
+    ],
+    "bCreateMatchingSlotIfNeeded": [
+      "bool",
+      "If there is not a player mapping already with the same Slot and Hardware Device ID, then create a new mapping for this slot."
+    ],
+    "bDeferOnSettingsChangedBroadcast": [
+      "bool",
+      "Defers setting changed delegates until the next frame if set to true."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMapPlayerKeyArgs&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMapPlayerKeyArgs"
+        }
+      ]
+    }
+  ]
+}

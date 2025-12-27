@@ -1,0 +1,4131 @@
+{
+  "name": "__Math",
+  "properties": {},
+  "methods": [
+    {
+      "name": "RandHelper",
+      "return": "int",
+      "args": [
+        {
+          "name": "Max",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RandRange",
+      "return": "int",
+      "doc": "Returns a random integer >= Min and <= Max",
+      "args": [
+        {
+          "name": "Min",
+          "type": "int"
+        },
+        {
+          "name": "Max",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RandRange",
+      "return": "float",
+      "args": [
+        {
+          "name": "Min",
+          "type": "float"
+        },
+        {
+          "name": "Max",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "RandRange",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Min",
+          "type": "float32"
+        },
+        {
+          "name": "Max",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RandBool",
+      "return": "bool",
+      "args": []
+    },
+    {
+      "name": "VRand",
+      "return": "FVector",
+      "doc": "Returns a random vector with length of 1",
+      "args": []
+    },
+    {
+      "name": "VRandCone",
+      "return": "FVector",
+      "doc": "Returns a random unit vector, uniformly distributed, within the specified cone\nConeHalfAngleRad is the half-angle of cone, in radians.  Returns a normalized vector.",
+      "args": [
+        {
+          "name": "DDir",
+          "type": "FVector"
+        },
+        {
+          "name": "HorizontalConeHalfAngleRad",
+          "type": "float32"
+        },
+        {
+          "name": "VerticalConeHalfAngleRad",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "VRandCone",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "DDir",
+          "type": "FVector"
+        },
+        {
+          "name": "ConeHalfAngleRad",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RandPointInCircle",
+      "return": "FVector2D",
+      "doc": "Get a random point on a unit circle, evenly spread across the circumference.",
+      "args": [
+        {
+          "name": "Radius",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetReflectionVector",
+      "return": "FVector",
+      "doc": "Given a direction vector and a surface normal, returns the vector reflected across the surface normal.\nProduces a result like shining a laser at a mirror!\n@param Direction Direction vector the ray is coming from.\n@param SurfaceNormal A normal of the surface the ray should be reflected on.\n@returns Reflected vector.",
+      "args": [
+        {
+          "name": "Direction",
+          "type": "FVector"
+        },
+        {
+          "name": "SurfaceNormal",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MakePulsatingValue",
+      "return": "float32",
+      "doc": "Simple function to create a pulsating scalar value\n@param  InCurrentTime  Current absolute time\n@param  InPulsesPerSecond  How many full pulses per second?\n@param  InPhase  Optional phase amount, between 0.0 and 1.0 (to synchronize pulses)\n@return  Pulsating value (0.0-1.0)",
+      "args": [
+        {
+          "name": "InCurrentTime",
+          "type": "float"
+        },
+        {
+          "name": "InPulsesPerSecond",
+          "type": "float32"
+        },
+        {
+          "name": "InPhase",
+          "default": "0.0f",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsNearlyEqual",
+      "return": "bool",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "ErrorTolerance",
+          "default": "SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsNearlyEqual",
+      "return": "bool",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "ErrorTolerance",
+          "default": "SMALL_NUMBER",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsNearlyZero",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        },
+        {
+          "name": "ErrorTolerance",
+          "default": "SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsNearlyZero",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        },
+        {
+          "name": "ErrorTolerance",
+          "default": "SMALL_NUMBER",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsPowerOfTwo",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SmoothStep",
+      "return": "float",
+      "doc": "Returns a smooth Hermite interpolation between 0 and 1 for the value X (where X ranges between A and B)\nClamped to 0 for X <= A and 1 for X >= B.\n@param A Minimum value of X\n@param B Maximum value of X\n@param X Parameter\n@return Smoothed value between 0 and 1\n",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "X",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SmoothStep",
+      "return": "float32",
+      "doc": "Returns a smooth Hermite interpolation between 0 and 1 for the value X (where X ranges between A and B)\nClamped to 0 for X <= A and 1 for X >= B.\n@param A Minimum value of X\n@param B Maximum value of X\n@param X Parameter\n@return Smoothed value between 0 and 1\n",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "X",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Clamp",
+      "return": "float",
+      "doc": "Clamps X to be between Min and Max, inclusive",
+      "args": [
+        {
+          "name": "X",
+          "type": "float"
+        },
+        {
+          "name": "Min",
+          "type": "float"
+        },
+        {
+          "name": "Max",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Clamp",
+      "return": "float32",
+      "doc": "Clamps X to be between Min and Max, inclusive",
+      "args": [
+        {
+          "name": "X",
+          "type": "float32"
+        },
+        {
+          "name": "Min",
+          "type": "float32"
+        },
+        {
+          "name": "Max",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Clamp",
+      "return": "int",
+      "doc": "Clamps X to be between Min and Max, inclusive",
+      "args": [
+        {
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Min",
+          "type": "int"
+        },
+        {
+          "name": "Max",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Clamp",
+      "return": "uint",
+      "doc": "Clamps X to be between Min and Max, inclusive",
+      "args": [
+        {
+          "name": "X",
+          "type": "uint"
+        },
+        {
+          "name": "Min",
+          "type": "uint"
+        },
+        {
+          "name": "Max",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "FastAsin",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "FastAsin",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RadiansToDegrees",
+      "return": "float",
+      "args": [
+        {
+          "name": "RadVal",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "DegreesToRadians",
+      "return": "float",
+      "args": [
+        {
+          "name": "DegVal",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "RadiansToDegrees",
+      "return": "float32",
+      "args": [
+        {
+          "name": "RadVal",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "DegreesToRadians",
+      "return": "float32",
+      "args": [
+        {
+          "name": "DegVal",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClampAngle",
+      "return": "float32",
+      "args": [
+        {
+          "name": "AngleDegrees",
+          "type": "float32"
+        },
+        {
+          "name": "MinAngleDegrees",
+          "type": "float32"
+        },
+        {
+          "name": "MaxAngleDegrees",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClampAngle",
+      "return": "float",
+      "args": [
+        {
+          "name": "AngleDegrees",
+          "type": "float"
+        },
+        {
+          "name": "MinAngleDegrees",
+          "type": "float"
+        },
+        {
+          "name": "MaxAngleDegrees",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "FindDeltaAngleDegrees",
+      "return": "float",
+      "args": [
+        {
+          "name": "A1",
+          "type": "float"
+        },
+        {
+          "name": "A2",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "FindDeltaAngleRadians",
+      "return": "float",
+      "args": [
+        {
+          "name": "A1",
+          "type": "float"
+        },
+        {
+          "name": "A2",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "FindDeltaAngleDegrees",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A1",
+          "type": "float32"
+        },
+        {
+          "name": "A2",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "FindDeltaAngleRadians",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A1",
+          "type": "float32"
+        },
+        {
+          "name": "A2",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "UnwindDegrees",
+      "return": "float",
+      "doc": "Utility to ensure angle is between +/- 180 degrees by unwinding.",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "UnwindRadians",
+      "return": "float",
+      "doc": "Utility to ensure angle is between +/- 180 degrees by unwinding.",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "UnwindDegrees",
+      "return": "float32",
+      "doc": "Utility to ensure angle is between +/- 180 degrees by unwinding.",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "UnwindRadians",
+      "return": "float32",
+      "doc": "Utility to ensure angle is between +/- 180 degrees by unwinding.",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "LerpStable",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "LerpStable",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Lerp",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Lerp",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Lerp",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Lerp",
+      "return": "FVector2D",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector2D"
+        },
+        {
+          "name": "B",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Lerp",
+      "return": "FVector3f",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector3f"
+        },
+        {
+          "name": "B",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Lerp",
+      "return": "FVector2f",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector2f"
+        },
+        {
+          "name": "B",
+          "type": "FVector2f"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "VLerp",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "Lerp",
+      "return": "FLinearColor",
+      "args": [
+        {
+          "name": "A",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "B",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsWithin",
+      "return": "bool",
+      "args": [
+        {
+          "name": "TestValue",
+          "type": "float"
+        },
+        {
+          "name": "MinValue",
+          "type": "float"
+        },
+        {
+          "name": "MaxValue",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsWithin",
+      "return": "bool",
+      "args": [
+        {
+          "name": "TestValue",
+          "type": "float32"
+        },
+        {
+          "name": "MinValue",
+          "type": "float32"
+        },
+        {
+          "name": "MaxValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsWithin",
+      "return": "bool",
+      "args": [
+        {
+          "name": "TestValue",
+          "type": "int"
+        },
+        {
+          "name": "MinValue",
+          "type": "int"
+        },
+        {
+          "name": "MaxValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "IsWithinInclusive",
+      "return": "bool",
+      "args": [
+        {
+          "name": "TestValue",
+          "type": "float"
+        },
+        {
+          "name": "MinValue",
+          "type": "float"
+        },
+        {
+          "name": "MaxValue",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsWithinInclusive",
+      "return": "bool",
+      "args": [
+        {
+          "name": "TestValue",
+          "type": "float32"
+        },
+        {
+          "name": "MinValue",
+          "type": "float32"
+        },
+        {
+          "name": "MaxValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsWithinInclusive",
+      "return": "bool",
+      "args": [
+        {
+          "name": "TestValue",
+          "type": "int"
+        },
+        {
+          "name": "MinValue",
+          "type": "int"
+        },
+        {
+          "name": "MaxValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterp",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FVector"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FVector"
+        },
+        {
+          "name": "Point1",
+          "type": "FVector"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterp",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FQuat"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FQuat"
+        },
+        {
+          "name": "Point1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterp",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FVector"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FVector"
+        },
+        {
+          "name": "Point1",
+          "type": "FVector"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterp",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FQuat"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FQuat"
+        },
+        {
+          "name": "Point1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FQuat"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterp",
+      "return": "FVector3f",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Point1",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterp",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Point1",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterpDerivative",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FVector"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FVector"
+        },
+        {
+          "name": "Point1",
+          "type": "FVector"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterpDerivative",
+      "return": "FRotator",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FRotator"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FRotator"
+        },
+        {
+          "name": "Point1",
+          "type": "FRotator"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FRotator"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterpDerivative",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FVector"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FVector"
+        },
+        {
+          "name": "Point1",
+          "type": "FVector"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterpDerivative",
+      "return": "FRotator",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FRotator"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FRotator"
+        },
+        {
+          "name": "Point1",
+          "type": "FRotator"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FRotator"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterpDerivative",
+      "return": "FVector3f",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Point1",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CubicInterpDerivative",
+      "return": "FRotator3f",
+      "args": [
+        {
+          "name": "Point0",
+          "type": "FRotator3f"
+        },
+        {
+          "name": "Tangent0",
+          "type": "FRotator3f"
+        },
+        {
+          "name": "Point1",
+          "type": "FRotator3f"
+        },
+        {
+          "name": "Tangent1",
+          "type": "FRotator3f"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "VInterpNormalRotationTo",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FVector"
+        },
+        {
+          "name": "Target",
+          "type": "FVector"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "RotationSpeedDegrees",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "VInterpConstantTo",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FVector"
+        },
+        {
+          "name": "Target",
+          "type": "FVector"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "VInterpTo",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FVector"
+        },
+        {
+          "name": "Target",
+          "type": "FVector"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Vector2DInterpConstantTo",
+      "return": "FVector2D",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Target",
+          "type": "FVector2D"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Vector2DInterpTo",
+      "return": "FVector2D",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Target",
+          "type": "FVector2D"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RInterpConstantTo",
+      "return": "FRotator",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FRotator"
+        },
+        {
+          "name": "Target",
+          "type": "FRotator"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RInterpTo",
+      "return": "FRotator",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FRotator"
+        },
+        {
+          "name": "Target",
+          "type": "FRotator"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RotatorFromAxisAndAngle",
+      "return": "FRotator",
+      "args": [
+        {
+          "name": "Axis",
+          "type": "FVector"
+        },
+        {
+          "name": "Angle",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RandomPointInBoundingBox",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Center",
+          "type": "FVector"
+        },
+        {
+          "name": "HalfSize",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "RandomRotator",
+      "return": "FRotator",
+      "args": [
+        {
+          "name": "bRoll",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "QInterpConstantTo",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FQuat"
+        },
+        {
+          "name": "Target",
+          "type": "FQuat"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "QInterpTo",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FQuat"
+        },
+        {
+          "name": "Target",
+          "type": "FQuat"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "QInterpConstantTo",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Target",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "QInterpTo",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Target",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "FInterpConstantTo",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Current",
+          "type": "float32"
+        },
+        {
+          "name": "Target",
+          "type": "float32"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "FInterpTo",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Current",
+          "type": "float32"
+        },
+        {
+          "name": "Target",
+          "type": "float32"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "FInterpConstantTo",
+      "return": "float",
+      "args": [
+        {
+          "name": "Current",
+          "type": "float"
+        },
+        {
+          "name": "Target",
+          "type": "float"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "FInterpTo",
+      "return": "float",
+      "args": [
+        {
+          "name": "Current",
+          "type": "float"
+        },
+        {
+          "name": "Target",
+          "type": "float"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CInterpTo",
+      "return": "FLinearColor",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Target",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SphereAABBIntersection",
+      "return": "bool",
+      "args": [
+        {
+          "name": "SphereCenter",
+          "type": "FVector"
+        },
+        {
+          "name": "RadiusSquared",
+          "type": "float"
+        },
+        {
+          "name": "AABB",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "SphereAABBIntersection",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Sphere",
+          "type": "FSphere"
+        },
+        {
+          "name": "AABB",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "SphereAABBIntersection",
+      "return": "bool",
+      "args": [
+        {
+          "name": "SphereCenter",
+          "type": "FVector3f"
+        },
+        {
+          "name": "RadiusSquared",
+          "type": "float32"
+        },
+        {
+          "name": "AABB",
+          "type": "FBox3f"
+        }
+      ]
+    },
+    {
+      "name": "SphereAABBIntersection",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Sphere",
+          "type": "FSphere3f"
+        },
+        {
+          "name": "AABB",
+          "type": "FBox3f"
+        }
+      ]
+    },
+    {
+      "name": "RayPlaneIntersection",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "RayOrigin",
+          "type": "FVector"
+        },
+        {
+          "name": "RayDirection",
+          "type": "FVector"
+        },
+        {
+          "name": "Plane",
+          "type": "FPlane"
+        }
+      ]
+    },
+    {
+      "name": "LinePlaneIntersection",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Point1",
+          "type": "FVector"
+        },
+        {
+          "name": "Point2",
+          "type": "FVector"
+        },
+        {
+          "name": "PlaneOrigin",
+          "type": "FVector"
+        },
+        {
+          "name": "PlaneNormal",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "LinePlaneIntersection",
+      "return": "FVector3f",
+      "args": [
+        {
+          "name": "Point1",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Point2",
+          "type": "FVector3f"
+        },
+        {
+          "name": "PlaneOrigin",
+          "type": "FVector3f"
+        },
+        {
+          "name": "PlaneNormal",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "LineSphereIntersection",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Start",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Dir",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Length",
+          "type": "float32"
+        },
+        {
+          "name": "Origin",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "LineSphereIntersection",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Start",
+          "type": "FVector"
+        },
+        {
+          "name": "Dir",
+          "type": "FVector"
+        },
+        {
+          "name": "Length",
+          "type": "float"
+        },
+        {
+          "name": "Origin",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "LineBoxIntersection",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Box",
+          "type": "FBox"
+        },
+        {
+          "name": "Start",
+          "type": "FVector"
+        },
+        {
+          "name": "End",
+          "type": "FVector"
+        },
+        {
+          "name": "StartToEnd",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ClosestPointOnLine",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "LineStart",
+          "type": "FVector"
+        },
+        {
+          "name": "LineEnd",
+          "type": "FVector"
+        },
+        {
+          "name": "Point",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ClosestPointOnInfiniteLine",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "LineStart",
+          "type": "FVector"
+        },
+        {
+          "name": "LineEnd",
+          "type": "FVector"
+        },
+        {
+          "name": "Point",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ComputeBoundingSphereForCone",
+      "return": "FSphere",
+      "args": [
+        {
+          "name": "ConeOrigin",
+          "type": "FVector"
+        },
+        {
+          "name": "ConeDirection",
+          "type": "FVector"
+        },
+        {
+          "name": "ConeRadius",
+          "type": "float"
+        },
+        {
+          "name": "CosConeAngle",
+          "type": "float"
+        },
+        {
+          "name": "SinConeAngle",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "ComputeBoundingSphereForCone",
+      "return": "FSphere3f",
+      "args": [
+        {
+          "name": "ConeOrigin",
+          "type": "FVector3f"
+        },
+        {
+          "name": "ConeDirection",
+          "type": "FVector3f"
+        },
+        {
+          "name": "ConeRadius",
+          "type": "float32"
+        },
+        {
+          "name": "CosConeAngle",
+          "type": "float32"
+        },
+        {
+          "name": "SinConeAngle",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "TruncToInt",
+      "return": "int",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "TruncToInt",
+      "return": "int",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "TruncToFloat",
+      "return": "float",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "TruncToFloat",
+      "return": "float32",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "TruncToDouble",
+      "return": "float",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "RoundToInt",
+      "return": "int",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "RoundToInt",
+      "return": "int",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RoundToFloat",
+      "return": "float",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "RoundToFloat",
+      "return": "float32",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RoundToDouble",
+      "return": "float",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "FloorToInt",
+      "return": "int",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "FloorToInt",
+      "return": "int",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "FloorToFloat",
+      "return": "float",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "FloorToFloat",
+      "return": "float32",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "FloorToDouble",
+      "return": "float",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CeilToInt",
+      "return": "int",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CeilToInt",
+      "return": "int",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CeilToFloat",
+      "return": "float",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CeilToFloat",
+      "return": "float32",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RoundFromZero",
+      "return": "float",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "RoundFromZero",
+      "return": "float32",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsNaN",
+      "return": "bool",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsFinite",
+      "return": "bool",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "InvSqrt",
+      "return": "float",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "InvSqrtEst",
+      "return": "float",
+      "args": [
+        {
+          "name": "F",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Fractional",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Frac",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsNaN",
+      "return": "bool",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsFinite",
+      "return": "bool",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "InvSqrt",
+      "return": "float32",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "InvSqrtEst",
+      "return": "float32",
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Fractional",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Frac",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Exp",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Exp2",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Loge",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Log2",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "LogX",
+      "return": "float",
+      "args": [
+        {
+          "name": "Base",
+          "type": "float"
+        },
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Fmod",
+      "return": "float",
+      "args": [
+        {
+          "name": "X",
+          "type": "float"
+        },
+        {
+          "name": "Y",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Sin",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Asin",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Sinh",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Cos",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Acos",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Tan",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Atan",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Atan2",
+      "return": "float",
+      "args": [
+        {
+          "name": "Y",
+          "type": "float"
+        },
+        {
+          "name": "X",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Sqrt",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Pow",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Exp",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Exp2",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Loge",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Log2",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "LogX",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Base",
+          "type": "float32"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Fmod",
+      "return": "float32",
+      "args": [
+        {
+          "name": "X",
+          "type": "float32"
+        },
+        {
+          "name": "Y",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Sin",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Asin",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Sinh",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Cos",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Acos",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Tan",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Atan",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Atan2",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Y",
+          "type": "float32"
+        },
+        {
+          "name": "X",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Sqrt",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Pow",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Rand",
+      "return": "int",
+      "args": []
+    },
+    {
+      "name": "FRand",
+      "return": "float32",
+      "args": []
+    },
+    {
+      "name": "Abs",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Abs",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Abs",
+      "return": "int",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Sign",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Sign",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Sign",
+      "return": "int",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Min",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Min",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Min",
+      "return": "int",
+      "args": [
+        {
+          "name": "A",
+          "type": "int"
+        },
+        {
+          "name": "B",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Min",
+      "return": "uint",
+      "args": [
+        {
+          "name": "A",
+          "type": "uint"
+        },
+        {
+          "name": "B",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "Max3",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "C",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Max3",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "C",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Max",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Max",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Max",
+      "return": "int",
+      "args": [
+        {
+          "name": "A",
+          "type": "int"
+        },
+        {
+          "name": "B",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Max",
+      "return": "uint",
+      "args": [
+        {
+          "name": "A",
+          "type": "uint"
+        },
+        {
+          "name": "B",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "Square",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Square",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Square",
+      "return": "int",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Square",
+      "return": "uint",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "GetMappedRangeValueClamped",
+      "return": "float",
+      "args": [
+        {
+          "name": "InputRange",
+          "type": "FVector2D"
+        },
+        {
+          "name": "OutputRange",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "GetMappedRangeValueUnclamped",
+      "return": "float",
+      "args": [
+        {
+          "name": "InputRange",
+          "type": "FVector2D"
+        },
+        {
+          "name": "OutputRange",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "GetMappedRangeValueClamped",
+      "return": "float32",
+      "args": [
+        {
+          "name": "InputRange",
+          "type": "FVector2f"
+        },
+        {
+          "name": "OutputRange",
+          "type": "FVector2f"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetMappedRangeValueUnclamped",
+      "return": "float32",
+      "args": [
+        {
+          "name": "InputRange",
+          "type": "FVector2f"
+        },
+        {
+          "name": "OutputRange",
+          "type": "FVector2f"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "PerlinNoise1D",
+      "return": "float32",
+      "doc": "Generates a 1D Perlin noise from the given value.  Returns a continuous random value between -1.0 and 1.0.\n@param\tValue\tThe input value that Perlin noise will be generated from.  This is usually a steadily incrementing time value.\n@return\tPerlin noise in the range of -1.0 to 1.0",
+      "args": [
+        {
+          "name": "X",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "PerlinNoise2D",
+      "return": "float32",
+      "doc": "Generates a 1D Perlin noise sample at the given location.  Returns a continuous random value between -1.0 and 1.0.\n@param\tLocation\tWhere to sample\n@return\tPerlin noise in the range of -1.0 to 1.0\n",
+      "args": [
+        {
+          "name": "Location",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "PerlinNoise3D",
+      "return": "float32",
+      "doc": "Generates a 3D Perlin noise sample at the given location.  Returns a continuous random value between -1.0 and 1.0.\n@param\tLocation\tWhere to sample\n@return\tPerlin noise in the range of -1.0 to 1.0",
+      "args": [
+        {
+          "name": "Location",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "GridSnap",
+      "return": "float",
+      "args": [
+        {
+          "name": "Location",
+          "type": "float"
+        },
+        {
+          "name": "Grid",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "GridSnap",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Location",
+          "type": "float32"
+        },
+        {
+          "name": "Grid",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SegmentIntersection2D",
+      "return": "bool",
+      "doc": "Returns true if there is an intersection between the segment specified by SegmentStartA and SegmentEndA, and\nthe segment specified by SegmentStartB and SegmentEndB, in 2D space. If there is an intersection, the point is placed in out_IntersectionPoint\n@param SegmentStartA - start point of first segment\n@param SegmentEndA   - end point of first segment\n@param SegmentStartB - start point of second segment\n@param SegmentEndB   - end point of second segment\n@param out_IntersectionPoint - out var for the intersection point (if any)\n@return true if intersection occurred",
+      "args": [
+        {
+          "name": "SegmentStartA",
+          "type": "FVector"
+        },
+        {
+          "name": "SegmentEndA",
+          "type": "FVector"
+        },
+        {
+          "name": "SegmentStartB",
+          "type": "FVector"
+        },
+        {
+          "name": "SegmentEndB",
+          "type": "FVector"
+        },
+        {
+          "name": "out_IntersectionPoint",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "FloatSpringInterp",
+      "return": "float32",
+      "doc": "Uses a simple spring model to interpolate a float32 from Current to Target.\n@param Current\t\t\t\tCurrent value\n@param Target\t\t\t\tTarget value\n@param SpringState\t\t\tData related to spring model (velocity, error, etc..) - Create a unique variable per spring\n@param Stiffness\t\t\t\tHow stiff the spring model is (more stiffness means more oscillation around the target value)\n@param CriticalDampingFactor\tHow much damping to apply to the spring (0 means no damping, 1 means critically damped which means no oscillation)\n@param Mass\t\t\t\t\tMultiplier that acts like mass on a spring\n@param TargetVelocityAmount\tIf 1 then the target velocity will be calculated and used, which results following the target more closely/without lag. Values down to zero (recommended when using this to smooth data) will progressively disable this effect.",
+      "args": [
+        {
+          "name": "Current",
+          "type": "float32"
+        },
+        {
+          "name": "Target",
+          "type": "float32"
+        },
+        {
+          "name": "SpringState",
+          "type": "FFloatSpringState&"
+        },
+        {
+          "name": "Stiffness",
+          "type": "float32"
+        },
+        {
+          "name": "CriticalDampingFactor",
+          "type": "float32"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "Mass",
+          "default": "1.f",
+          "type": "float32"
+        },
+        {
+          "name": "TargetVelocityAmount",
+          "default": "1.f",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "VectorSpringInterp",
+      "return": "FVector",
+      "doc": "Uses a simple spring model to interpolate a vector from Current to Target.\n@param Current\t\t\t\tCurrent value\n@param Target\t\t\t\tTarget value\n@param SpringState\t\t\tData related to spring model (velocity, error, etc..) - Create a unique variable per spring\n@param Stiffness\t\t\t\tHow stiff the spring model is (more stiffness means more oscillation around the target value)\n@param CriticalDampingFactor\tHow much damping to apply to the spring (0 means no damping, 1 means critically damped which means no oscillation)\n@param Mass\t\t\t\t\tMultiplier that acts like mass on a spring\n@param TargetVelocityAmount\tIf 1 then the target velocity will be calculated and used, which results following the target more closely/without lag. Values down to zero (recommended when using this to smooth data) will progressively disable this effect.",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FVector"
+        },
+        {
+          "name": "Target",
+          "type": "FVector"
+        },
+        {
+          "name": "SpringState",
+          "type": "FVectorSpringState&"
+        },
+        {
+          "name": "Stiffness",
+          "type": "float32"
+        },
+        {
+          "name": "CriticalDampingFactor",
+          "type": "float32"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "Mass",
+          "default": "1.f",
+          "type": "float32"
+        },
+        {
+          "name": "TargetVelocityAmount",
+          "default": "1.f",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "QuaternionSpringInterp",
+      "return": "FQuat",
+      "doc": "Uses a simple spring model to interpolate a quaternion from Current to Target.\n@param Current\t\t\t\tCurrent value\n@param Target\t\t\t\tTarget value\n@param SpringState\t\t\tData related to spring model (velocity, error, etc..) - Create a unique variable per spring\n@param Stiffness\t\t\t\tHow stiff the spring model is (more stiffness means more oscillation around the target value)\n@param CriticalDampingFactor\tHow much damping to apply to the spring (0 means no damping, 1 means critically damped which means no oscillation)\n@param Mass\t\t\t\t\tMultiplier that acts like mass on a spring\n@param TargetVelocityAmount\tIf 1 then the target velocity will be calculated and used, which results following the target more closely/without lag. Values down to zero (recommended when using this to smooth data) will progressively disable this effect.",
+      "args": [
+        {
+          "name": "Current",
+          "type": "FQuat"
+        },
+        {
+          "name": "Target",
+          "type": "FQuat"
+        },
+        {
+          "name": "SpringState",
+          "type": "FQuaternionSpringState&"
+        },
+        {
+          "name": "Stiffness",
+          "type": "float32"
+        },
+        {
+          "name": "CriticalDampingFactor",
+          "type": "float32"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "Mass",
+          "default": "1.f",
+          "type": "float32"
+        },
+        {
+          "name": "TargetVelocityAmount",
+          "default": "1.f",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "EaseIn",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        },
+        {
+          "name": "Exp",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "EaseOut",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        },
+        {
+          "name": "Exp",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "EaseInOut",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        },
+        {
+          "name": "Exp",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SinusoidalIn",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SinusoidalOut",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SinusoidalInOut",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "ExpoIn",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "ExpoOut",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "ExpoInOut",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CircularIn",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CircularOut",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CircularInOut",
+      "return": "float",
+      "args": [
+        {
+          "name": "A",
+          "type": "float"
+        },
+        {
+          "name": "B",
+          "type": "float"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "EaseIn",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        },
+        {
+          "name": "Exp",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "EaseOut",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        },
+        {
+          "name": "Exp",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "EaseInOut",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        },
+        {
+          "name": "Exp",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SinusoidalIn",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SinusoidalOut",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SinusoidalInOut",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ExpoIn",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ExpoOut",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ExpoInOut",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CircularIn",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CircularOut",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CircularInOut",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "float32"
+        },
+        {
+          "name": "B",
+          "type": "float32"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "EaseIn",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        },
+        {
+          "name": "Exp",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "EaseOut",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        },
+        {
+          "name": "Exp",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "EaseInOut",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        },
+        {
+          "name": "Exp",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SinusoidalIn",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SinusoidalOut",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SinusoidalInOut",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ExpoIn",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ExpoOut",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ExpoInOut",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CircularIn",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CircularOut",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CircularInOut",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        },
+        {
+          "name": "B",
+          "type": "FVector"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsPointInBox",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Point",
+          "type": "FVector"
+        },
+        {
+          "name": "BoxOrigin",
+          "type": "FVector"
+        },
+        {
+          "name": "BoxExtent",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "IsPointInBoxWithTransform",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Point",
+          "type": "FVector"
+        },
+        {
+          "name": "BoxWorldTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "BoxExtent",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "FindNearestPointsOnLineSegments",
+      "return": "void",
+      "args": [
+        {
+          "name": "Segment1Start",
+          "type": "FVector"
+        },
+        {
+          "name": "Segment1End",
+          "type": "FVector"
+        },
+        {
+          "name": "Segment2Start",
+          "type": "FVector"
+        },
+        {
+          "name": "Segment2End",
+          "type": "FVector"
+        },
+        {
+          "name": "Segment1Point",
+          "type": "FVector&"
+        },
+        {
+          "name": "Segment2Point",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "NormalizeToRange",
+      "return": "float",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        },
+        {
+          "name": "RangeMin",
+          "type": "float"
+        },
+        {
+          "name": "RangeMax",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IntegerDivisionTrunc",
+      "return": "int",
+      "doc": "Divide integer Value by DivideBy, truncating any decimals from the result.",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        },
+        {
+          "name": "DivideBy",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "IntegerDivisionTrunc",
+      "return": "int64",
+      "doc": "Divide integer Value by DivideBy, truncating any decimals from the result.",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int64"
+        },
+        {
+          "name": "DivideBy",
+          "type": "int64"
+        }
+      ]
+    },
+    {
+      "name": "IntegerDivisionTrunc",
+      "return": "uint",
+      "doc": "Divide integer Value by DivideBy, truncating any decimals from the result.",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint"
+        },
+        {
+          "name": "DivideBy",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "IntegerDivisionTrunc",
+      "return": "uint64",
+      "doc": "Divide integer Value by DivideBy, truncating any decimals from the result.",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint64"
+        },
+        {
+          "name": "DivideBy",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "LerpShortestPath",
+      "return": "FRotator",
+      "doc": "Lerp between two rotators along the shortest path between them. Uses a quaternion slerp internally.",
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FRotator"
+        },
+        {
+          "name": "B",
+          "type": "FRotator"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "LineBoxIntersection",
+      "return": "bool",
+      "meta": null,
+      "args": [
+        {
+          "name": "Box",
+          "type": "FBox"
+        },
+        {
+          "name": "Start",
+          "type": "FVector"
+        },
+        {
+          "name": "End",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "Modf",
+      "return": "float32",
+      "unrealname": "Modf_32",
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        },
+        {
+          "name": "OutIntPart",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "Modf",
+      "return": "float",
+      "unrealname": "Modf_64",
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float"
+        },
+        {
+          "name": "OutIntPart",
+          "type": "float&"
+        }
+      ]
+    },
+    {
+      "name": "RInterpConstantShortestPathTo",
+      "return": "FRotator",
+      "doc": "Interp with constant speed between two rotators along the shortest path between them. Uses a quaternion interp internally.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Current",
+          "type": "FRotator"
+        },
+        {
+          "name": "Target",
+          "type": "FRotator"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeedDegrees",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RInterpShortestPathTo",
+      "return": "FRotator",
+      "doc": "Interp between two rotators along the shortest path between them. Uses a quaternion interp internally.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Current",
+          "type": "FRotator"
+        },
+        {
+          "name": "Target",
+          "type": "FRotator"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SinCos",
+      "return": "void",
+      "unrealname": "SinCos_32",
+      "meta": null,
+      "args": [
+        {
+          "name": "ScalarSin",
+          "type": "float32&"
+        },
+        {
+          "name": "ScalarCos",
+          "type": "float32&"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SinCos",
+      "return": "void",
+      "unrealname": "SinCos_64",
+      "meta": null,
+      "args": [
+        {
+          "name": "ScalarSin",
+          "type": "float&"
+        },
+        {
+          "name": "ScalarCos",
+          "type": "float&"
+        },
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "TInterpTo",
+      "return": "FTransform",
+      "meta": null,
+      "args": [
+        {
+          "name": "Current",
+          "type": "FTransform"
+        },
+        {
+          "name": "Target",
+          "type": "FTransform"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "InterpSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Wrap",
+      "return": "float",
+      "doc": "Wraps X to be between Min and Max, inclusive.\nWhen X can wrap to both Min and Max, it will wrap to Min if it lies below the range and wrap to Max if it is above the range.",
+      "unrealname": "WrapDouble",
+      "meta": null,
+      "args": [
+        {
+          "name": "X",
+          "type": "float"
+        },
+        {
+          "name": "Min",
+          "type": "float"
+        },
+        {
+          "name": "Max",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Wrap",
+      "return": "float32",
+      "doc": "Wraps X to be between Min and Max, inclusive.\nWhen X can wrap to both Min and Max, it will wrap to Min if it lies below the range and wrap to Max if it is above the range.",
+      "unrealname": "WrapFloat",
+      "meta": null,
+      "args": [
+        {
+          "name": "X",
+          "type": "float32"
+        },
+        {
+          "name": "Min",
+          "type": "float32"
+        },
+        {
+          "name": "Max",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "WrapIndex",
+      "return": "int",
+      "doc": "Wrap the index so it is always [>= Min, < Max)\nValues lower than Min are wrapped below Max.\nValues Max or higher are wrapped to Min.\n\nThis differs from Math::Wrap() in that the Max boundary is exclusive,\nrather than inclusive.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        },
+        {
+          "name": "Min",
+          "type": "int"
+        },
+        {
+          "name": "Max",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "WrapIndex",
+      "return": "uint",
+      "doc": "Wrap the index so it is always [>= Min, < Max)\nValues lower than Min are wrapped below Max.\nValues Max or higher are wrapped to Min.\n\nThis differs from Math::Wrap() in that the Max boundary is exclusive,\nrather than inclusive.",
+      "unrealname": "WrapIndexUInt",
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint"
+        },
+        {
+          "name": "Min",
+          "type": "uint"
+        },
+        {
+          "name": "Max",
+          "type": "uint"
+        }
+      ]
+    }
+  ]
+}

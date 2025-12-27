@@ -1,0 +1,478 @@
+{
+  "name": "UInterchangeBaseNode",
+  "inherits": "UObject",
+  "doc": "This struct is used to store and retrieve key-value attributes. The attributes are stored in a generic FAttributeStorage that serializes the values in a TArray64<uint8>.\nSee UE::Interchange::EAttributeTypes to know the supported template types.\nThis is an abstract class. This is the base class of the interchange node graph format; all classes in this format should derive from this class.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddBooleanAttribute",
+      "return": "bool",
+      "doc": "Add a Boolean attribute to this node. Returns false if the attribute does not exist or if it cannot be added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddDoubleAttribute",
+      "return": "bool",
+      "doc": "Add a double attribute to this node. Returns false if the attribute does not exist or if it cannot be added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "AddFloatAttribute",
+      "return": "bool",
+      "doc": "Add a float attribute to this node. Returns false if the attribute does not exist or if it cannot be added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddGuidAttribute",
+      "return": "bool",
+      "doc": "Add a GUID attribute to this node. Returns false if the attribute does not exist or if it cannot be added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "FGuid"
+        }
+      ]
+    },
+    {
+      "name": "AddInt32Attribute",
+      "return": "bool",
+      "doc": "Add a int32 attribute to this node. Returns false if the attribute does not exist or if it cannot be added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "AddLinearColorAttribute",
+      "return": "bool",
+      "doc": "Add an FLinearColor attribute to this node. Returns false if the attribute does not exist or if it cannot be added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "AddStringAttribute",
+      "return": "bool",
+      "doc": "Add a string attribute to this node. Returns false if the attribute does not exist or if it cannot be added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AddTargetNodeUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Add an asset node UID relating to this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AddVector2Attribute",
+      "return": "bool",
+      "doc": "Add a Vector2 attribute to this node. Returns false if the attribute does not exist or if it cannot be added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "FVector2f"
+        }
+      ]
+    },
+    {
+      "name": "GetAssetName",
+      "return": "FString",
+      "const": true,
+      "doc": "Optional. Any node that can import or export an asset should set the desired name for the asset.\nIf the attribute was never set, returns GetDisplayLabel().",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBooleanAttribute",
+      "return": "bool",
+      "const": true,
+      "doc": "Get a Boolean attribute from this node. Returns false if the attribute does not exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "OutValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetDisplayLabel",
+      "return": "FString",
+      "const": true,
+      "doc": "Return the display label.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDoubleAttribute",
+      "return": "bool",
+      "const": true,
+      "doc": "Get a double attribute from this node. Returns false if the attribute does not exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "OutValue",
+          "type": "float&"
+        }
+      ]
+    },
+    {
+      "name": "GetFloatAttribute",
+      "return": "bool",
+      "const": true,
+      "doc": "Get a float attribute from this node. Returns false if the attribute does not exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "OutValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetGuidAttribute",
+      "return": "bool",
+      "const": true,
+      "doc": "Get a GUID attribute from this node. Returns false if the attribute does not exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "OutValue",
+          "type": "FGuid&"
+        }
+      ]
+    },
+    {
+      "name": "GetInt32Attribute",
+      "return": "bool",
+      "const": true,
+      "doc": "Get a int32 attribute from this node. Returns false if the attribute does not exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "OutValue",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearColorAttribute",
+      "return": "bool",
+      "const": true,
+      "doc": "Get an FLinearColor attribute from this node. Returns false if the attribute does not exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "OutValue",
+          "type": "FLinearColor&"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeContainerType",
+      "return": "EInterchangeNodeContainerType",
+      "const": true,
+      "doc": "Return the node container type that defines the purpose of the node (factory node, translated scene node, or translated asset node).",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetParentUid",
+      "return": "FString",
+      "const": true,
+      "doc": "Return the parent unique ID. If the attribute does not exist, returns InvalidNodeUid().",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStringAttribute",
+      "return": "bool",
+      "const": true,
+      "doc": "Get a string attribute from this node. Returns false if the attribute does not exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "OutValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetTargetNodeCount",
+      "return": "int",
+      "const": true,
+      "doc": "Get the number of target assets relating to this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTargetNodeUids",
+      "return": "void",
+      "const": true,
+      "doc": "Get the target assets relating to this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutTargetAssets",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetUniqueID",
+      "return": "FString",
+      "const": true,
+      "doc": "Return the unique ID passed in the constructor.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVector2Attribute",
+      "return": "bool",
+      "const": true,
+      "doc": "Get a Vector2 attribute from this node. Returns false if the attribute does not exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        },
+        {
+          "name": "OutValue",
+          "type": "FVector2f&"
+        }
+      ]
+    },
+    {
+      "name": "InitializeNode",
+      "return": "void",
+      "doc": "Initialize the base data of the node.\n@param UniqueID - The unique ID for this node.\n@param DisplayLabel - The name of the node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UniqueID",
+          "type": "FString"
+        },
+        {
+          "name": "DisplayLabel",
+          "type": "FString"
+        },
+        {
+          "name": "NodeContainerType",
+          "type": "EInterchangeNodeContainerType"
+        }
+      ]
+    },
+    {
+      "name": "IsEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "If true, the node is imported or exported. If false, it is discarded.\nReturns false if the node was disabled. Returns true if the attribute is not there or if it was enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveAttribute",
+      "return": "bool",
+      "doc": "Remove the specified attribute from this node. Returns false if it could not be removed. If the attribute does not exist, returns true.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeAttributeKey",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveTargetNodeUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Remove an asset node UID relating to this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetAssetName",
+      "return": "bool",
+      "doc": "Set the name for the imported asset this node represents. The asset factory will call GetAssetName().",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetDisplayLabel",
+      "return": "bool",
+      "doc": "Change the display label.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DisplayName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetEnabled",
+      "return": "bool",
+      "doc": "Determine whether this node should be part of the import or export process.\n@param bIsEnabled - If true, this node is imported or exported. If false, it is discarded.\n@return true if the attribute was set, or false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetParentUid",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParentUid",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

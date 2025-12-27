@@ -1,0 +1,133 @@
+{
+  "name": "UMultiLineEditableTextBox",
+  "inherits": "UTextLayoutWidget",
+  "doc": "Allows a user to enter multiple lines of text",
+  "properties": {
+    "WidgetStyle": [
+      "FEditableTextBoxStyle",
+      "The style"
+    ],
+    "bIsReadOnly": [
+      "bool",
+      "Sets the Text as Readonly to prevent it from being modified interactively by the user"
+    ],
+    "AllowContextMenu": [
+      "bool",
+      2,
+      "Whether the context menu can be opened"
+    ],
+    "VirtualKeyboardOptions": [
+      "FVirtualKeyboardOptions",
+      2,
+      "Additional options to be used by the virtual keyboard summoned from this widget"
+    ],
+    "VirtualKeyboardDismissAction": [
+      "EVirtualKeyboardDismissAction",
+      2,
+      "What action should be taken when the virtual keyboard is dismissed?"
+    ],
+    "OnTextChanged": [
+      "FOnMultiLineEditableTextBoxChangedEvent__MultiLineEditableTextBox",
+      "Called whenever the text is changed programmatically or interactively by the user"
+    ],
+    "OnTextCommitted": [
+      "FOnMultiLineEditableTextBoxCommittedEvent__MultiLineEditableTextBox",
+      "Called whenever the text is committed.  This happens when the user presses enter or the text box loses focus."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetHintText",
+      "return": "FText",
+      "const": true,
+      "doc": "Returns the Hint text that appears when there is no text in the text box",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetText",
+      "return": "FText",
+      "const": true,
+      "doc": "Gets the widget text\n@return The widget text",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetError",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InError",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetForegroundColor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "color",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetHintText",
+      "return": "void",
+      "doc": "Sets the Hint text that appears when there is no text in the text box\n@param InHintText The text that appears when there is no text in the text box",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHintText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetIsReadOnly",
+      "return": "void",
+      "doc": "Sets the Text as Readonly to prevent it from being modified interactively by the user",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bReadOnly",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetText",
+      "return": "void",
+      "doc": "Directly sets the widget text.\nWarning: This will wipe any binding created for the Text property!\n@param InText The text to assign to the widget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetTextStyle",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTextStyle",
+          "type": "FTextBlockStyle"
+        }
+      ]
+    }
+  ]
+}

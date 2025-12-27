@@ -1,0 +1,141 @@
+{
+  "name": "USynth2DSlider",
+  "inherits": "UWidget",
+  "doc": "A simple widget that shows a sliding bar with a handle that allows you to control the value between 0..1.\n\n* No Children",
+  "properties": {
+    "ValueX": [
+      "float32",
+      2,
+      ""
+    ],
+    "ValueY": [
+      "float32",
+      2,
+      ""
+    ],
+    "WidgetStyle": [
+      "FSynth2DSliderStyle",
+      "The progress bar style"
+    ],
+    "IsFocusable": [
+      "bool",
+      "Should the slider be focusable?"
+    ],
+    "OnMouseCaptureBegin": [
+      "FOnMouseCaptureBeginEventSynth2D",
+      "Invoked when the mouse is pressed and a capture begins."
+    ],
+    "OnMouseCaptureEnd": [
+      "FOnMouseCaptureEndEventSynth2D",
+      "Invoked when the mouse is released and a capture ends."
+    ],
+    "OnControllerCaptureBegin": [
+      "FOnControllerCaptureBeginEventSynth2D",
+      "Invoked when the controller capture begins."
+    ],
+    "OnControllerCaptureEnd": [
+      "FOnControllerCaptureEndEventSynth2D",
+      "Invoked when the controller capture ends."
+    ],
+    "OnValueChangedX": [
+      "FOnFloatValueChangedEventSynth2D",
+      "Called when the value is changed by slider or typing."
+    ],
+    "OnValueChangedY": [
+      "FOnFloatValueChangedEventSynth2D",
+      "Called when the value is changed by slider or typing."
+    ],
+    "SliderHandleColor": [
+      "FLinearColor",
+      "The color to draw the slider handle in."
+    ],
+    "IndentHandle": [
+      "bool",
+      "Whether the slidable area should be indented to fit the handle."
+    ],
+    "Locked": [
+      "bool",
+      "Whether the handle is interactive or fixed."
+    ],
+    "StepSize": [
+      "float32",
+      "The amount to adjust the value by, when using a controller or keyboard"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetValue",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Gets the current value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetIndentHandle",
+      "return": "void",
+      "doc": "Sets if the slidable area should be indented to fit the handle",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocked",
+      "return": "void",
+      "doc": "Sets the handle to be interactive or fixed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderHandleColor",
+      "return": "void",
+      "doc": "Sets the color of the handle bar",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetStepSize",
+      "return": "void",
+      "doc": "Sets the amount to adjust the value by, when using a controller or keyboard",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetValue",
+      "return": "void",
+      "doc": "Sets the current value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FVector2D"
+        }
+      ]
+    }
+  ]
+}

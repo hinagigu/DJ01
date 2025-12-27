@@ -1,0 +1,47 @@
+{
+  "name": "UPolyEditPushPullProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "properties": {
+    "DistanceMode": [
+      "EPolyEditExtrudeDistanceMode",
+      2,
+      "How the extrusion distance is set."
+    ],
+    "Distance": [
+      "float",
+      2,
+      "Extrusion distance."
+    ],
+    "DirectionMode": [
+      "EPolyEditPushPullModeOptions",
+      2,
+      "Which way to move vertices while extruding."
+    ],
+    "SingleDirection": [
+      "EPolyEditExtrudeDirection",
+      2,
+      "Direction in which to extrude."
+    ],
+    "MaxDistanceScaleFactor": [
+      "float",
+      2,
+      "Controls the maximum distance vertices can move from the target distance in order to stay parallel with their source triangles."
+    ],
+    "bShellsToSolids": [
+      "bool",
+      2,
+      "Controls whether offsetting an entire open-border patch should create a solid or an open shell"
+    ],
+    "MeasureDirection": [
+      "EPolyEditExtrudeDirection",
+      2,
+      "What axis to measure the extrusion distance along."
+    ],
+    "bUseColinearityForSettingBorderGroups": [
+      "bool",
+      2,
+      "When offsetting regions that touch the mesh border, assign the side groups (groups on the\nstitched side of the extrude) in a way that considers edge colinearity. For instance, when\ntrue, extruding a flat rectangle will give four different groups on its sides rather than\none connected group."
+    ]
+  },
+  "methods": []
+}

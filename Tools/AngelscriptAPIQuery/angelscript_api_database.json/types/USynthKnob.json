@@ -1,0 +1,113 @@
+{
+  "name": "USynthKnob",
+  "inherits": "UWidget",
+  "doc": "A simple widget that shows a sliding bar with a handle that allows you to control the value between 0..1.\n\n* No Children",
+  "properties": {
+    "MouseSpeed": [
+      "float32",
+      "The speed of the mouse knob control"
+    ],
+    "MouseFineTuneSpeed": [
+      "float32",
+      "The speed of the mouse knob control when fine-tuning the knob"
+    ],
+    "ParameterName": [
+      "FText",
+      "The name of the pararameter. Will show when knob turns."
+    ],
+    "ParameterUnits": [
+      "FText",
+      "The parameter units (e.g. hz). Will append to synth tooltip info."
+    ],
+    "WidgetStyle": [
+      "FSynthKnobStyle",
+      "The synth knob style"
+    ],
+    "IsFocusable": [
+      "bool",
+      "Should the slider be focusable?"
+    ],
+    "OnMouseCaptureBegin": [
+      "FOnMouseCaptureBeginEvent",
+      "Invoked when the mouse is pressed and a capture begins."
+    ],
+    "OnMouseCaptureEnd": [
+      "FOnMouseCaptureEndEvent",
+      "Invoked when the mouse is released and a capture ends."
+    ],
+    "OnControllerCaptureBegin": [
+      "FOnControllerCaptureBeginEvent",
+      "Invoked when the controller capture begins."
+    ],
+    "OnControllerCaptureEnd": [
+      "FOnControllerCaptureEndEvent",
+      "Invoked when the controller capture ends."
+    ],
+    "OnValueChanged": [
+      "FOnFloatValueChangedEvent",
+      "Called when the value is changed by slider or typing."
+    ],
+    "StepSize": [
+      "float32",
+      "The amount to adjust the value by, when using a controller or keyboard"
+    ],
+    "ShowTooltipInfo": [
+      "bool",
+      "Enable tool tip window to show parameter information while knob turns"
+    ],
+    "Locked": [
+      "bool",
+      "Whether the handle is interactive or fixed."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetLocked",
+      "return": "void",
+      "doc": "Sets the handle to be interactive or fixed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStepSize",
+      "return": "void",
+      "doc": "Sets the amount to adjust the value by, when using a controller or keyboard",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetValue",
+      "return": "void",
+      "doc": "Sets the current value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

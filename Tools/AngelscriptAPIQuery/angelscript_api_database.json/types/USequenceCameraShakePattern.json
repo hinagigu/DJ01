@@ -1,0 +1,43 @@
+{
+  "name": "USequenceCameraShakePattern",
+  "inherits": "UCameraShakePattern",
+  "doc": "A camera shake pattern that plays a sequencer animation.",
+  "properties": {
+    "Sequence": [
+      "UCameraAnimationSequence",
+      2,
+      "Source camera animation sequence to play."
+    ],
+    "PlayRate": [
+      "float32",
+      2,
+      "Scalar defining how fast to play the anim."
+    ],
+    "Scale": [
+      "float32",
+      2,
+      "Scalar defining how \"intense\" to play the anim."
+    ],
+    "BlendInTime": [
+      "float32",
+      2,
+      "Linear blend-in time."
+    ],
+    "BlendOutTime": [
+      "float32",
+      2,
+      "Linear blend-out time."
+    ],
+    "RandomSegmentDuration": [
+      "float32",
+      2,
+      "When bRandomSegment is true, defines how long the sequence should play."
+    ],
+    "bRandomSegment": [
+      "bool",
+      2,
+      "When true, plays a random snippet of the sequence for RandomSegmentDuration seconds.\n\n@note The sequence we be forced to loop when bRandomSegment is enabled, in case the duration\n      is longer than what's left to play from the random start time."
+    ]
+  },
+  "methods": []
+}

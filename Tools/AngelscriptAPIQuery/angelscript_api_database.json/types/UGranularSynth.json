@@ -1,0 +1,280 @@
+{
+  "name": "UGranularSynth",
+  "inherits": "USynthComponent",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetCurrentPlayheadTime",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSampleDuration",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLoaded",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "NoteOff",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Note",
+          "type": "float32"
+        },
+        {
+          "name": "bKill",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "NoteOn",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Note",
+          "type": "float32"
+        },
+        {
+          "name": "Velocity",
+          "type": "int"
+        },
+        {
+          "name": "Duration",
+          "default": "- 1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAttackTime",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttackTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDecayTime",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DecayTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetGrainDuration",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseDurationMsec",
+          "type": "float32"
+        },
+        {
+          "name": "DurationRange",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetGrainEnvelopeType",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EnvelopeType",
+          "type": "EGranularSynthEnvelopeType"
+        }
+      ]
+    },
+    {
+      "name": "SetGrainPan",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BasePan",
+          "type": "float32"
+        },
+        {
+          "name": "PanRange",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetGrainPitch",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BasePitch",
+          "type": "float32"
+        },
+        {
+          "name": "PitchRange",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetGrainProbability",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGrainProbability",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetGrainsPerSecond",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGrainsPerSecond",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetGrainVolume",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseVolume",
+          "type": "float32"
+        },
+        {
+          "name": "VolumeRange",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackSpeed",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPlayheadRate",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPlayheadTime",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPositionSec",
+          "type": "float32"
+        },
+        {
+          "name": "LerpTimeSec",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "SeekType",
+          "default": "EGranularSynthSeekType :: FromBeginning",
+          "type": "EGranularSynthSeekType"
+        }
+      ]
+    },
+    {
+      "name": "SetReleaseTimeMsec",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ReleaseTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetScrubMode",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bScrubMode",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSoundWave",
+      "return": "void",
+      "doc": "This will override the current sound wave if one is set, stop audio, and reload the new sound wave",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSoundWave",
+          "type": "USoundWave"
+        }
+      ]
+    },
+    {
+      "name": "SetSustainGain",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SustainGain",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

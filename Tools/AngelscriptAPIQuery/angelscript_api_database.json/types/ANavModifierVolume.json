@@ -1,0 +1,35 @@
+{
+  "name": "ANavModifierVolume",
+  "inherits": "AVolume",
+  "doc": "Allows applying selected AreaClass to navmesh, using Volume's shape",
+  "properties": {
+    "bMaskFillCollisionUnderneathForNavmesh": [
+      "bool",
+      2,
+      "Experimental: if set, the 2D space occupied by the volume box will ignore FillCollisionUnderneathForNavmesh"
+    ],
+    "NavMeshResolution": [
+      "ENavigationDataResolution",
+      2,
+      "Experimental: When not set to None, the navmesh tiles touched by the navigation modifier volume will be built\nusing the highest resolution found."
+    ],
+    "AreaClass": [
+      "TSubclassOf<UNavArea>"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetAreaClass",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAreaClass",
+          "default": "nullptr",
+          "type": "TSubclassOf<UNavArea>"
+        }
+      ]
+    }
+  ]
+}

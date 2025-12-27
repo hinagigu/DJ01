@@ -1,0 +1,83 @@
+{
+  "name": "ALandscapeBlueprintBrushBase",
+  "inherits": "AActor",
+  "properties": {
+    "UpdateOnPropertyChange": [
+      "bool"
+    ],
+    "AffectHeightmap": [
+      "bool"
+    ],
+    "AffectWeightmap": [
+      "bool"
+    ],
+    "AffectVisibilityLayer": [
+      "bool"
+    ],
+    "AffectedWeightmapLayers": [
+      "TArray<FName>"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetBlueprintRenderDependencies",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutStreamableAssets",
+          "type": "TArray<UObject>&"
+        }
+      ]
+    },
+    {
+      "name": "Initialize",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLandscapeTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "InLandscapeSize",
+          "type": "FIntPoint"
+        },
+        {
+          "name": "InLandscapeRenderTargetSize",
+          "type": "FIntPoint"
+        }
+      ]
+    },
+    {
+      "name": "RenderLayer",
+      "return": "UTextureRenderTarget2D",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InParameters",
+          "type": "FLandscapeBrushParameters"
+        }
+      ]
+    },
+    {
+      "name": "RequestLandscapeUpdate",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInUserTriggered",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

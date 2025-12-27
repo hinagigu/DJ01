@@ -1,0 +1,45 @@
+{
+  "name": "UParticleModuleTrailSource",
+  "inherits": "UParticleModuleTrailBase",
+  "properties": {
+    "SourceMethod": [
+      "ETrail2SourceMethod",
+      2,
+      "The source method for the trail."
+    ],
+    "SourceName": [
+      "FName",
+      2,
+      "The name of the source - either the emitter or Actor."
+    ],
+    "SourceStrength": [
+      "FRawDistributionFloat",
+      2,
+      "The strength of the tangent from the source point for each Trail."
+    ],
+    "SourceOffsetCount": [
+      "int",
+      2,
+      "SourceOffsetCount\nThe number of source offsets that can be expected to be found on the instance.\nThese must be named\n        TrailSourceOffset#"
+    ],
+    "SourceOffsetDefaults": [
+      "TArray<FVector>",
+      2,
+      "Default offsets from the source(s).\nIf there are < SourceOffsetCount slots, the grabbing of values will simply wrap."
+    ],
+    "SelectionMethod": [
+      "EParticleSourceSelectionMethod",
+      2,
+      "Particle selection method, when using the SourceMethod of Particle."
+    ],
+    "bLockSourceStength": [
+      "bool",
+      "Whether to lock the source to the life of the particle."
+    ],
+    "bInheritRotation": [
+      "bool",
+      "Interhit particle rotation - only valid for SourceMethod of PET2SRCM_Particle."
+    ]
+  },
+  "methods": []
+}

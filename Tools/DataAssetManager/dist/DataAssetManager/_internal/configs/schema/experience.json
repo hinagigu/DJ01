@@ -1,0 +1,56 @@
+{
+  "Experience": {
+    "class_name": "UDJ01ExperienceDefinition",
+    "parent_class": "UPrimaryDataAsset",
+    "asset_type": "Blueprint",
+    "display_name": "游戏体验",
+    "description": "定义一个完整的游戏体验，包括默认 Pawn、GameFeature 和 Actions",
+    "content_path": "/Game/System/Experiences",
+    "icon": "📦",
+    
+    "properties": {
+      "GameFeaturesToEnable": {
+        "type": "array",
+        "item_type": "string",
+        "display_name": "启用的 GameFeature",
+        "description": "此体验需要激活的 GameFeature 插件列表",
+        "widget": "checkbox_list",
+        "options_source": "game_features",
+        "category": "Gameplay"
+      },
+      "DefaultPawnData": {
+        "type": "TObjectPtr<UDJ01PawnData>",
+        "display_name": "默认 Pawn 数据",
+        "description": "玩家生成时使用的默认 PawnData",
+        "widget": "combobox",
+        "options_source": "pawn_data",
+        "allow_empty": false,
+        "category": "Gameplay",
+        "required": true
+      },
+      "Actions": {
+        "type": "array",
+        "item_type": "UGameFeatureAction",
+        "display_name": "GameFeature Actions",
+        "description": "此体验直接执行的 GameFeature Actions（如添加组件、输入绑定等）",
+        "widget": "instanced_array_editor",
+        "available_types": [
+          "UGameFeatureAction_AddAbilities",
+          "UGameFeatureAction_AddInputBinding",
+          "UGameFeatureAction_AddInputContextMapping",
+          "UGameFeatureAction_AddWidget"
+        ],
+        "category": "Actions"
+      },
+      "ActionSets": {
+        "type": "array",
+        "item_type": "TObjectPtr<UDJ01ExperienceActionSet>",
+        "display_name": "Action 集合",
+        "description": "组合到此体验中的 ActionSet 列表（包含多个 Actions 的集合）",
+        "widget": "checkbox_list",
+        "options_source": "action_sets",
+        "category": "Actions"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ADJ01Character",
+  "inherits": "AModularCharacter",
+  "doc": "ADJ01Character\n\n项目的基础角色类，使用模块化游戏框架\n- 实现 IAbilitySystemInterface 以支持技能系统\n- 实现 IGameplayTagAssetInterface 以支持 GameplayTag 查询\n- 负责向 Pawn 组件发送事件\n- 新行为应尽可能通过 Pawn 组件添加\n\n注意：HeroComponent 不在这里创建，而是通过 Game Feature Data (GFD) 的 Action 动态添加",
+  "properties": {
+    "PawnExtComponent": [
+      "UDJ01PawnExtensionComponent",
+      "PawnExtension 组件 - 管理 Pawn 的生命周期和初始化状态"
+    ],
+    "CameraComponent": [
+      "UDJ01CameraComponent",
+      "Camera 组件 - 处理相机逻辑"
+    ]
+  },
+  "methods": []
+}

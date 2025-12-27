@@ -1,0 +1,62 @@
+{
+  "name": "FRetargetGlobalSettings",
+  "isStruct": true,
+  "properties": {
+    "bEnableRoot": [
+      "bool",
+      "When false, the motion of the Retarget Root bone is not copied from the source. Useful for debugging issues with the root settings.\nNote: the retargeting order is: Root > FK > IK > Post"
+    ],
+    "bEnableFK": [
+      "bool",
+      "When false, limbs are not copied via FK. Useful for debugging limb issues suspected to be caused by FK chain settings.\nNote: the retargeting order is: Root > FK > IK > Post"
+    ],
+    "bEnableIK": [
+      "bool",
+      "When false, IK is not applied as part of retargeter. Useful for debugging limb issues suspected to be caused by IK.\nNote: the retargeting order is: Root > FK > IK > Post"
+    ],
+    "bEnablePost": [
+      "bool",
+      "When false, Post operations are not applied as part of retargeter. Useful for debugging issues suspected to be caused by the post phase.\nNote: the retargeting order is: Root > FK > IK > Post"
+    ],
+    "bWarping": [
+      "bool",
+      "Enable IK Warping.\nThese options allow for global modifications to all IK Goals that have \"Affected by IK Warping\" turned on (the default).\n\"Affected by IK Warping\" can be found in the IK settings of a retarget chain."
+    ],
+    "DirectionSource": [
+      "EWarpingDirectionSource",
+      "Defines the source used to determine the forward direction as the character animates in world space. Default is \"Goals\".\nThis method uses various positions on the character to create a \"best fit\" global rotation that approximates the facing direction of the character over time.\nThis global rotation is used to define the forward and sideways directions used when warping goals along those axes.\nThe options are:\nGoals: uses the positions of the IK goals to approximate the facing direction. This is best used on characters with a vertical spine, like bipeds.\nChain: uses the positions of the bones in a retarget chain to approximate the facing direction. This is best when used with the spine chain for characters with a horizontal spine, like quadrupeds.\nRoot Bone: uses the rotation of the root bone of the skeleton. This is most robust, but character must have correct root motion with yaw rotation in movement direction."
+    ],
+    "ForwardDirection": [
+      "EBasicAxis",
+      "The world space axis that represents the forward facing direction for your character. By default, in Unreal, this is +Y."
+    ],
+    "DirectionChain": [
+      "FName",
+      "When using the \"Chain\" option as a Direction Source, this defines the chain to use to determine the facing direction of the character.\nTypically this would be the chain that contains the Spine bones."
+    ],
+    "WarpForwards": [
+      "float32",
+      "Range 0 to Inf. Default 1. Warps IK goal positions in the forward direction. Useful for stride warping.\nValues below 1 will create smaller, squashed strides. Values greater than 1 will create stretched, longer strides."
+    ],
+    "SidewaysOffset": [
+      "float32",
+      "Range -+Inf. Default is 0. A static offset in world units to move the IK goals perpendicular to the forward direction.\nValues less than zero will move the goals towards the center-line of the character. Values greater than zero push the goals outwards."
+    ],
+    "WarpSplay": [
+      "float32",
+      "Range 0 to +Inf. Default is 1.0f.\nValues below 1 pull all the goals towards the average of all the goals (towards each other).\nValues greater than 1 push the goals apart."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRetargetGlobalSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRetargetGlobalSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "FCameraShakePatternUpdateParams",
+  "isStruct": true,
+  "doc": "Parameters for updating a camera shake pattern.",
+  "properties": {
+    "DeltaTime": [
+      "float32",
+      "The time elapsed since last update"
+    ],
+    "ShakeScale": [
+      "float32",
+      "The base scale for this shake"
+    ],
+    "DynamicScale": [
+      "float32",
+      "The dynamic scale being passed down from the camera manger for the next update"
+    ],
+    "POV": [
+      "FMinimalViewInfo",
+      "The current view that this camera shake should modify"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCameraShakePatternUpdateParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCameraShakePatternUpdateParams"
+        }
+      ]
+    }
+  ]
+}

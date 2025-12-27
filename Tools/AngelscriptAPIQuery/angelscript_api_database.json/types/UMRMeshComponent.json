@@ -1,0 +1,127 @@
+{
+  "name": "UMRMeshComponent",
+  "inherits": "UPrimitiveComponent",
+  "properties": {
+    "bCreateMeshProxySections": [
+      "bool",
+      2,
+      "If true, MRMesh will create a renderable mesh proxy.  If false it will not, but could still provide collision."
+    ],
+    "bUpdateNavMeshOnMeshUpdate": [
+      "bool",
+      2,
+      "If true, MRMesh will automatically update its navmesh whenever any Mesh section is updated. This may be expensive. If this is disabled use ForceNavMeshUpdate to trigger a navmesh update when necessary.  Moving the component will also trigger a navmesh update."
+    ],
+    "bNeverCreateCollisionMesh": [
+      "bool",
+      2,
+      "If true, MRMesh will not create a collidable ridgid body for each mesh section and can therefore never have collision.  Avoids the cost of generating collision."
+    ]
+  },
+  "methods": [
+    {
+      "name": "Clear",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ForceNavMeshUpdate",
+      "return": "void",
+      "doc": "Force navmesh generation to run using the current collision data.  This will run even if the collision data has not been udpated! Unless you are changing navmesh settings or similar RequestNavMeshUpdate is reccomended.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEnableMeshOcclusion",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUseWireframe",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWireframeColor",
+      "return": "FLinearColor",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsConnected",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RequestNavMeshUpdate",
+      "return": "void",
+      "doc": "Generate nav mesh if collision data has changed since the last nav mesh generation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetEnableMeshOcclusion",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetUseWireframe",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bUseWireframe",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWireframeColor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InColor",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetWireframeMaterial",
+      "return": "void",
+      "doc": "Set the wireframe material.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    }
+  ]
+}

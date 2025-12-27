@@ -1,0 +1,34 @@
+{
+  "name": "FMovieSceneDynamicBinding",
+  "isStruct": true,
+  "doc": "Data for a dynamic binding endpoint call.",
+  "properties": {
+    "PayloadVariables": [
+      "TMap<FName,FMovieSceneDynamicBindingPayloadVariable>",
+      2,
+      "Array of payload variables to be added to the generated function"
+    ],
+    "ResolveParamsPinName": [
+      "FName",
+      2,
+      "Pin name for passing the resolve params"
+    ],
+    "WeakEndpoint": [
+      "TWeakObjectPtr<UObject>",
+      2,
+      "Endpoint node in the sequence director"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMovieSceneDynamicBinding&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMovieSceneDynamicBinding"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "name": "FAutoClusterDataflowNode",
+  "isStruct": true,
+  "doc": "Automatically group pieces of a fractured Collection into a specified number of clusters",
+  "properties": {
+    "ClusterSizeMethod": [
+      "EClusterSizeMethodEnum",
+      2,
+      "How to choose the size of the clusters to create"
+    ],
+    "ClusterSites": [
+      "int",
+      2,
+      "Use a Voronoi diagram with this many Voronoi sites as a guide for deciding cluster boundaries"
+    ],
+    "ClusterFraction": [
+      "float32",
+      2,
+      "Choose the number of Voronoi sites used for clustering as a fraction of the number of child bones to process"
+    ],
+    "SiteSize": [
+      "float32",
+      2,
+      "Choose the Edge-Size of the cube used to groups bones under a cluster (in cm)."
+    ],
+    "ClusterGridWidth": [
+      "int",
+      2,
+      "Choose the number of cluster sites to distribute along the X axis"
+    ],
+    "ClusterGridDepth": [
+      "int",
+      2,
+      "Choose the number of cluster sites to distribute along the Y axis"
+    ],
+    "ClusterGridHeight": [
+      "int",
+      2,
+      "Choose the number of cluster sites to distribute along the Z axis"
+    ],
+    "DriftIterations": [
+      "int",
+      2,
+      "For a grid distribution, optionally iteratively recenter the grid points to the center of the cluster geometry (technically: applying K-Means iterations) to balance the shape and distribution of the clusters"
+    ],
+    "MinimumSize": [
+      "float32",
+      2,
+      "If a cluster has volume less than this value (in cm) cubed, then the auto-cluster process will attempt to merge it into a neighboring cluster."
+    ],
+    "bPreferConvexity": [
+      "bool",
+      2,
+      "Whether to favor clusters that have a convex shape. (Note: Does not support ByGrid clustering.)"
+    ],
+    "ConcavityTolerance": [
+      "float32",
+      2,
+      "If > 0, cube root of maximum concave volume to add per cluster (ignoring concavity of individual parts)"
+    ],
+    "AutoCluster": [
+      "bool",
+      2,
+      "If true, bones will only be added to the same cluster if they are physically connected (either directly, or via other bones in the same cluster)"
+    ],
+    "EnforceSiteParameters": [
+      "bool",
+      2,
+      "If true, make sure the site parameters are matched as close as possible ( bEnforceConnectivity can make the number of site larger than the requested input may produce without it )"
+    ],
+    "AvoidIsolated": [
+      "bool",
+      2,
+      "If true, prevent the creation of clusters with only a single child. Either by merging into a neighboring cluster, or not creating the cluster."
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAutoClusterDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAutoClusterDataflowNode"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "UCommonBorder",
+  "inherits": "UBorder",
+  "doc": "Uses the border style template defined in CommonUI project settings by default",
+  "properties": {
+    "bReducePaddingBySafezone": [
+      "bool",
+      "Turning this on will cause the safe zone size to be removed from this borders content padding down to the minimum specified"
+    ],
+    "MinimumPadding": [
+      "FMargin",
+      "The minimum padding we will reduce to when the safezone grows"
+    ],
+    "Style": [
+      "TSubclassOf<UCommonBorderStyle>",
+      "References the border style to use"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetStyle",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStyle",
+          "type": "TSubclassOf<UCommonBorderStyle>"
+        }
+      ]
+    }
+  ]
+}

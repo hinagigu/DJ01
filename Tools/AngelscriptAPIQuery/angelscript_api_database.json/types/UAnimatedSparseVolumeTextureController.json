@@ -1,0 +1,125 @@
+{
+  "name": "UAnimatedSparseVolumeTextureController",
+  "inherits": "UObject",
+  "doc": "Utility (blueprint) class for controlling SparseVolumeTexture playback.",
+  "properties": {
+    "SparseVolumeTexture": [
+      "USparseVolumeTexture",
+      1,
+      ""
+    ],
+    "Time": [
+      "float32",
+      1,
+      ""
+    ],
+    "bIsPlaying": [
+      "bool",
+      1,
+      ""
+    ],
+    "FrameRate": [
+      "float32",
+      1,
+      ""
+    ],
+    "MipLevel": [
+      "int",
+      1,
+      ""
+    ],
+    "bBlockingStreamingRequests": [
+      "bool",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCurrentFrame",
+      "return": "USparseVolumeTextureFrame",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentFramesForInterpolation",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Frame0",
+          "type": "USparseVolumeTextureFrame&"
+        },
+        {
+          "name": "Frame1",
+          "type": "USparseVolumeTextureFrame&"
+        },
+        {
+          "name": "LerpAlpha",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetDuration",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFractionalFrameIndex",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFrameByIndex",
+      "return": "USparseVolumeTextureFrame",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FrameIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Pause",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Play",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Stop",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Update",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

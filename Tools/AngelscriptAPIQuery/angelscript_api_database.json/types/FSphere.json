@@ -1,0 +1,116 @@
+{
+  "name": "FSphere",
+  "isStruct": true,
+  "properties": {
+    "W": [
+      "float"
+    ],
+    "Center": [
+      "FVector"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAdd",
+      "return": "FSphere",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSphere"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FSphere&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSphere"
+        }
+      ]
+    },
+    {
+      "name": "Equals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Sphere",
+          "type": "FSphere"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsInside",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSphere"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsInside",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "In",
+          "type": "FVector"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Intersects",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSphere"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "TransformBy",
+      "return": "FSphere",
+      "const": true,
+      "args": [
+        {
+          "name": "M",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "GetVolume",
+      "return": "float32",
+      "const": true,
+      "args": []
+    }
+  ]
+}

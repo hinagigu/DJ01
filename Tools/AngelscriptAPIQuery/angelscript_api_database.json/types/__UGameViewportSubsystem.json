@@ -1,0 +1,58 @@
+{
+  "name": "__UGameViewportSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "SetWidgetSlotDesiredSize",
+      "return": "FGameViewportWidgetSlot",
+      "doc": "Helper function to set the desired size in the viewport for the Slot.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Slot",
+          "type": "FGameViewportWidgetSlot"
+        },
+        {
+          "name": "Size",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetWidgetSlotPosition",
+      "return": "FGameViewportWidgetSlot",
+      "doc": "Helper function to set the position in the viewport for the Slot.\n@param Position The 2D position to set the widget to in the viewport.\n@param bRemoveDPIScale If you've already calculated inverse DPI, set this to false.\nOtherwise inverse DPI is applied to the position so that when the location is scaled\nby DPI, it ends up in the expected position.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Slot",
+          "type": "FGameViewportWidgetSlot"
+        },
+        {
+          "name": "Widget",
+          "type": "const UWidget"
+        },
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bRemoveDPIScale",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    },
+    {
+      "name": "Get",
+      "return": "UGameViewportSubsystem",
+      "args": []
+    }
+  ]
+}

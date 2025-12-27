@@ -1,0 +1,160 @@
+{
+  "name": "APlayerState",
+  "inherits": "AInfo",
+  "doc": "A PlayerState is created for every player on a server (or in a standalone game).\nPlayerStates are replicated to all clients, and contain network game relevant information about the player, such as playername, score, etc.",
+  "properties": {
+    "OnPawnSet": [
+      "FOnPlayerStatePawnSet",
+      "Broadcast whenever this player's possessed pawn is set"
+    ],
+    "PawnPrivate": [
+      "APawn",
+      1,
+      "The pawn that is controlled by by this player state."
+    ],
+    "bIsSpectator": [
+      "bool",
+      "Gets the literal value of bIsSpectator."
+    ],
+    "bIsABot": [
+      "bool",
+      "Gets the literal value of bIsABot."
+    ],
+    "bShouldUpdateReplicatedPing": [
+      "bool",
+      "Whether or not this player's replicated CompressedPing value is updated automatically.\nSince player states are always relevant by default, in cases where there are many players replicating,\nreplicating the ping value can cause additional unnecessary overhead on servers if the value isn't\nneeded on clients."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetUniqueId",
+      "return": "FUniqueNetIdRepl",
+      "const": true,
+      "doc": "Gets the online unique id for a player. If a player is logged in this will be consistent across all clients and servers.",
+      "ufunction": true,
+      "unrealname": "BP_GetUniqueId",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCompressedPing",
+      "return": "uint8",
+      "const": true,
+      "doc": "Gets the literal value of the compressed Ping value (Ping = PingInMS / 4).",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPawn",
+      "return": "APawn",
+      "const": true,
+      "doc": "Return the pawn controlled by this Player State.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPingInMilliseconds",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the ping (in milliseconds)\n\nReturns ExactPing if available (local players or when running on the server), and\nthe replicated CompressedPing (converted back to milliseconds) otherwise.\n\nNote that replication of CompressedPing is controlled by bShouldUpdateReplicatedPing,\nand if disabled then this will return 0 or a stale value on clients for player states\nthat aren't related to local players",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlayerController",
+      "return": "APlayerController",
+      "const": true,
+      "doc": "Return the player controller that created this player state, or null for remote clients",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlayerId",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the literal value of PlayerId.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlayerName",
+      "return": "FString",
+      "const": true,
+      "doc": "returns current player name",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetScore",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the literal value of Score.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsABot",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets the literal value of bIsABot.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsOnlyASpectator",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets the literal value of bOnlySpectator.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsSpectator",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets the literal value of bIsSpectator.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CopyProperties",
+      "return": "void",
+      "callable": false,
+      "doc": "* Can be implemented in Blueprint Child to move more properties from old to new PlayerState when traveling to a new level\n*\n* @param NewPlayerState         New PlayerState, which we fill with the current properties",
+      "event": true,
+      "unrealname": "ReceiveCopyProperties",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayerState",
+          "type": "APlayerState"
+        }
+      ]
+    },
+    {
+      "name": "OverrideWith",
+      "return": "void",
+      "callable": false,
+      "doc": "* Can be implemented in Blueprint Child to move more properties from old to new PlayerState when reconnecting\n*\n* @param OldPlayerState         Old PlayerState, which we use to fill the new one with",
+      "event": true,
+      "unrealname": "ReceiveOverrideWith",
+      "meta": null,
+      "args": [
+        {
+          "name": "OldPlayerState",
+          "type": "APlayerState"
+        }
+      ]
+    }
+  ]
+}

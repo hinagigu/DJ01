@@ -1,0 +1,49 @@
+{
+  "name": "UInputModifier",
+  "inherits": "UObject",
+  "doc": "Base class for building modifiers.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetVisualizationColor",
+      "return": "FLinearColor",
+      "const": true,
+      "callable": false,
+      "doc": "Helper to allow debug visualization of the modifier.\n@param SampleValue - The base input action value pre-modification (ranging -1 -> 1 across all applicable axes).\n@param FinalValue - The post-modification input action value for the provided SampleValue.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SampleValue",
+          "type": "FInputActionValue"
+        },
+        {
+          "name": "FinalValue",
+          "type": "FInputActionValue"
+        }
+      ]
+    },
+    {
+      "name": "ModifyRaw",
+      "return": "FInputActionValue",
+      "doc": "ModifyRaw\nWill be called by each modifier in the modifier chain\n@param CurrentValue - The modified value returned by the previous modifier in the chain, or the base raw value if this is the first modifier in the chain.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerInput",
+          "type": "const UEnhancedPlayerInput"
+        },
+        {
+          "name": "CurrentValue",
+          "type": "FInputActionValue"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float"
+        }
+      ]
+    }
+  ]
+}

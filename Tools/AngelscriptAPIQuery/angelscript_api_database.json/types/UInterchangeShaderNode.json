@@ -1,0 +1,100 @@
+{
+  "name": "UInterchangeShaderNode",
+  "inherits": "UInterchangeBaseNode",
+  "doc": "A shader node is a named set of inputs and outputs. It can be connected to other shader nodes and finally to a shader graph input.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddFloatInput",
+      "return": "bool",
+      "doc": "Set the Float Attribute on the Shader Node. If bIsAParameter is set to true, it would be treated as a ScalarParameter\nwhen the Material Pipeline creates the materials. Otherwise it would be a constant expression in the shader graph.\nNote: It is assumed that the input name would be the parameter name when bIsAParameter is true.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "AttributeValue",
+          "type": "float32"
+        },
+        {
+          "name": "bIsAParameter",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddLinearColorInput",
+      "return": "bool",
+      "doc": "Set the Linear Color Attribute on the Shader Node. If bIsAParameter is set to true, it would be treated as a VectorParameter\nwhen the Material Pipeline creates the materials. Otherwise it would be a constant 3 vector expression in the shader graph.\nNote: It is assumed that the input name would be the parameter name when bIsAParameter is true.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "AttributeValue",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bIsAParameter",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddStringInput",
+      "return": "bool",
+      "doc": "Set the String Attribute on the Shader Node. If bIsAParameter is set to true, it would be treated as a overridable Texture\nor else it should be treated as a LUT Texture.\nNote: It is assumed that the input name would be the parameter name when bIsAParameter is true.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "AttributeValue",
+          "type": "FString"
+        },
+        {
+          "name": "bIsAParameter",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomShaderType",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomShaderType",
+      "return": "bool",
+      "doc": "Sets which type of shader this nodes represents. Can be arbitrary or one of the predefined shader types.\nThe material pipeline handling the shader node should be aware of the shader type that is being set here.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

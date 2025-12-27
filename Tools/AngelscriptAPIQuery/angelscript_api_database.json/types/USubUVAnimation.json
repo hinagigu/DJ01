@@ -1,0 +1,38 @@
+{
+  "name": "USubUVAnimation",
+  "inherits": "UObject",
+  "doc": "SubUV animation asset, which caches bounding geometry for regions in the SubUVTexture with non-zero opacity.\nParticle emitters with a SubUV module which use this asset leverage the optimal bounding geometry to reduce overdraw.",
+  "properties": {
+    "SubUVTexture": [
+      "UTexture2D",
+      2,
+      "Texture to generate bounding geometry from."
+    ],
+    "SubImages_Horizontal": [
+      "int",
+      2,
+      "The number of sub-images horizontally in the texture"
+    ],
+    "SubImages_Vertical": [
+      "int",
+      2,
+      "The number of sub-images vertically in the texture"
+    ],
+    "BoundingMode": [
+      "ESubUVBoundingVertexCount",
+      2,
+      "More bounding vertices results in reduced overdraw, but adds more triangle overhead.\nThe eight vertex mode is best used when the SubUV texture has a lot of space to cut out that is not captured by the four vertex version,\nand when the particles using the texture will be few and large."
+    ],
+    "OpacitySourceMode": [
+      "EOpacitySourceMode",
+      2,
+      ""
+    ],
+    "AlphaThreshold": [
+      "float32",
+      2,
+      "Alpha channel values larger than the threshold are considered occupied and will be contained in the bounding geometry.\nRaising this threshold slightly can reduce overdraw in particles using this animation asset."
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,77 @@
+{
+  "name": "FMovieSceneNiagaraCacheParams",
+  "isStruct": true,
+  "properties": {
+    "CacheParameters": [
+      "FNiagaraSimCacheCreateParameters",
+      2,
+      ""
+    ],
+    "SimCache": [
+      "UNiagaraSimCache",
+      2,
+      "The sim cache this section plays and records into"
+    ],
+    "bLockCacheToReadOnly": [
+      "bool",
+      2,
+      "If true then the section properties might still be changed (so the section itself is not locked), but the cache cannot be rerecorded to prevent accidentally overriding the data within"
+    ],
+    "bOverrideQualityLevel": [
+      "bool",
+      2,
+      ""
+    ],
+    "RecordQualityLevel": [
+      "EPerQualityLevels",
+      2,
+      "If set, then the engine scalability setting will be overriden with this value when recording a new cache for this track"
+    ],
+    "CacheReplayPlayMode": [
+      "ENiagaraSimCacheSectionPlayMode",
+      2,
+      "What should the effect do when the track has no cache data to display"
+    ],
+    "SectionStretchMode": [
+      "ENiagaraSimCacheSectionStretchMode",
+      2,
+      "What should the effect do when the cache section is stretched?"
+    ],
+    "FirstLoopStartFrameOffset": [
+      "FFrameNumber",
+      2,
+      "The offset for the first loop of the animation clip"
+    ],
+    "StartFrameOffset": [
+      "FFrameNumber",
+      2,
+      "The offset into the beginning of the animation clip"
+    ],
+    "EndFrameOffset": [
+      "FFrameNumber",
+      2,
+      "The offset into the end of the animation clip"
+    ],
+    "PlayRate": [
+      "float32",
+      2,
+      "The playback rate of the animation clip"
+    ],
+    "bReverse": [
+      "bool",
+      "Reverse the playback of the animation clip"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMovieSceneNiagaraCacheParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMovieSceneNiagaraCacheParams"
+        }
+      ]
+    }
+  ]
+}

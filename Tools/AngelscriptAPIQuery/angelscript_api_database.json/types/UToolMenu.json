@@ -1,0 +1,173 @@
+{
+  "name": "UToolMenu",
+  "inherits": "UToolMenuBase",
+  "doc": "Represents a menu in the ToolMenus system.\n\nAn instance of this class is returned by basic APIs such as UToolMenus::RegisterMenu and UToolMenus::ExtendMenu.",
+  "properties": {
+    "MenuName": [
+      "FName"
+    ],
+    "MenuParent": [
+      "FName"
+    ],
+    "StyleName": [
+      "FName"
+    ],
+    "TutorialHighlightName": [
+      "FName"
+    ],
+    "MenuType": [
+      "EMultiBoxType"
+    ],
+    "bShouldCloseWindowAfterMenuSelection": [
+      "bool"
+    ],
+    "bCloseSelfOnly": [
+      "bool"
+    ],
+    "bSearchable": [
+      "bool"
+    ],
+    "bToolBarIsFocusable": [
+      "bool"
+    ],
+    "bToolBarForceSmallIcons": [
+      "bool"
+    ],
+    "bPreventCustomization": [
+      "bool",
+      "Prevent menu from being customized"
+    ],
+    "MenuOwner": [
+      "FToolMenuOwner"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddDynamicSection",
+      "return": "void",
+      "ufunction": true,
+      "unrealname": "AddDynamicSectionScript",
+      "meta": null,
+      "args": [
+        {
+          "name": "SectionName",
+          "type": "FName"
+        },
+        {
+          "name": "Object",
+          "type": "UToolMenuSectionDynamic"
+        }
+      ]
+    },
+    {
+      "name": "AddMenuEntry",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SectionName",
+          "type": "FName"
+        },
+        {
+          "name": "Args",
+          "type": "FToolMenuEntry"
+        }
+      ]
+    },
+    {
+      "name": "AddMenuEntryObject",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InObject",
+          "type": "UToolMenuEntryScript"
+        }
+      ]
+    },
+    {
+      "name": "AddSection",
+      "return": "void",
+      "ufunction": true,
+      "unrealname": "AddSectionScript",
+      "meta": null,
+      "args": [
+        {
+          "name": "SectionName",
+          "type": "FName"
+        },
+        {
+          "name": "Label",
+          "type": "FText"
+        },
+        {
+          "name": "InsertName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "InsertType",
+          "default": "EToolMenuInsertType :: Default",
+          "type": "EToolMenuInsertType"
+        }
+      ]
+    },
+    {
+      "name": "AddSubMenu",
+      "return": "UToolMenu",
+      "ufunction": true,
+      "unrealname": "AddSubMenuScript",
+      "meta": null,
+      "args": [
+        {
+          "name": "Owner",
+          "type": "FName"
+        },
+        {
+          "name": "SectionName",
+          "type": "FName"
+        },
+        {
+          "name": "Name",
+          "type": "FName"
+        },
+        {
+          "name": "Label",
+          "type": "FText"
+        },
+        {
+          "name": "ToolTip",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "InitMenu",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Owner",
+          "type": "FToolMenuOwner"
+        },
+        {
+          "name": "Name",
+          "type": "FName"
+        },
+        {
+          "name": "Parent",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "Type",
+          "default": "EMultiBoxType :: Menu",
+          "type": "EMultiBoxType"
+        }
+      ]
+    }
+  ]
+}

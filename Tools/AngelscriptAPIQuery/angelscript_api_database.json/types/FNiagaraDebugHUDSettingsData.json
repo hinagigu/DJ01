@@ -1,0 +1,364 @@
+{
+  "name": "FNiagaraDebugHUDSettingsData",
+  "isStruct": true,
+  "doc": "Settings for Niagara debug HUD. Contained in it's own struct so that we can pass it whole in a message to the debugger client.",
+  "properties": {
+    "bHudEnabled": [
+      "bool",
+      2,
+      "Primary control for all HUD features."
+    ],
+    "bHudRenderingEnabled": [
+      "bool",
+      2,
+      "Primary control for HUD rendering."
+    ],
+    "bValidateSystemSimulationDataBuffers": [
+      "bool",
+      2,
+      "When enabled all Niagara systems that pass the filter will have the simulation data buffers validation.\ni.e. we will look for NaN or other invalidate data  inside it\nNote: This will have an impact on performance."
+    ],
+    "bValidateParticleDataBuffers": [
+      "bool",
+      2,
+      "When enabled all Niagara systems that pass the filter will have the particle data buffers validation.\ni.e. we will look for NaN or other invalidate data  inside it\nNote: This will have an impact on performance."
+    ],
+    "bValidationLogErrors": [
+      "bool",
+      2,
+      "When enabled all validation errors will be sent to the log as warnings.\nThis can be useful to try and narrow down the exact source of an invalid value in the data buffers as often\nthey will cascade from the first frame where one is generated into other attributes in the subsequent frames."
+    ],
+    "ValidationAttributeDisplayTruncate": [
+      "int",
+      2,
+      "When > 0 this is the maximum number of attributes we will display that contain a NaN,\nthere could be more but the display will be truncated to this amount.  This is to reduce generating long strings."
+    ],
+    "bOverviewEnabled": [
+      "bool",
+      2,
+      "When enabled the overview display will be enabled."
+    ],
+    "bIncludeCascade": [
+      "bool",
+      2,
+      "When enabled the overview display will include cascade FX."
+    ],
+    "OverviewMode": [
+      "ENiagaraDebugHUDOverviewMode",
+      2,
+      ""
+    ],
+    "OverviewSortMode": [
+      "ENiagaraDebugHUDDOverviewSort",
+      2,
+      ""
+    ],
+    "OverviewFont": [
+      "ENiagaraDebugHudFont",
+      2,
+      "Overview display font to use."
+    ],
+    "OverviewLocation": [
+      "FVector2D",
+      2,
+      "Overview display location."
+    ],
+    "bShowRegisteredComponents": [
+      "bool",
+      2,
+      "Overview display font to use."
+    ],
+    "bOverviewShowFilteredSystemOnly": [
+      "bool",
+      2,
+      "When enabled the overview will only show the filter system information."
+    ],
+    "ActorFilter": [
+      "FString",
+      2,
+      "Wildcard filter which is compared against the Components Actor name to narrow down the detailed information.\nFor example, \"*Water*\" would match all actors that contain the string \"water\"."
+    ],
+    "bComponentFilterEnabled": [
+      "bool",
+      2,
+      ""
+    ],
+    "ComponentFilter": [
+      "FString",
+      2,
+      "Wildcard filter for the components to show more detailed information about.\nFor example, \"*MyComp*\" would match all components that contain MyComp."
+    ],
+    "bSystemFilterEnabled": [
+      "bool",
+      2,
+      ""
+    ],
+    "SystemFilter": [
+      "FString",
+      2,
+      "Wildcard filter for the systems to show more detailed information about.\nFor example,. \"NS_*\" would match all systems starting with NS_."
+    ],
+    "bEmitterFilterEnabled": [
+      "bool",
+      2,
+      ""
+    ],
+    "EmitterFilter": [
+      "FString",
+      2,
+      "Wildcard filter used to match emitters when generating particle attribute view.\nFor example,. \"Fluid*\" would match all emtiters starting with Fluid and only particle attributes for those would be visible."
+    ],
+    "bActorFilterEnabled": [
+      "bool",
+      2,
+      ""
+    ],
+    "SystemDebugVerbosity": [
+      "ENiagaraDebugHudVerbosity",
+      2,
+      "When enabled system debug information will be displayed in world."
+    ],
+    "SystemEmitterVerbosity": [
+      "ENiagaraDebugHudVerbosity",
+      2,
+      "When enabled we show information about emitter / particle counts."
+    ],
+    "DataInterfaceVerbosity": [
+      "ENiagaraDebugHudVerbosity",
+      2,
+      "When enabled allows data interfaces to include additional debugging information."
+    ],
+    "bSystemShowBounds": [
+      "bool",
+      2,
+      "When enabled will show the system bounds for all filtered systems."
+    ],
+    "SystemBoundsSolidBoxAlpha": [
+      "float32",
+      2,
+      "When bounds display is enabled allows you to draw a solid box if alpha is > 0."
+    ],
+    "bSystemShowActiveOnlyInWorld": [
+      "bool",
+      2,
+      "When disabled in world rendering will show systems deactivated by scalability."
+    ],
+    "bShowSystemVariables": [
+      "bool",
+      2,
+      "Should we display the system attributes."
+    ],
+    "SystemVariables": [
+      "TArray<FNiagaraDebugHUDVariable>",
+      2,
+      "List of attributes to show about the system, each entry uses wildcard matching.\nFor example, \"System.*\" would match all system attributes."
+    ],
+    "SystemTextOptions": [
+      "FNiagaraDebugHudTextOptions",
+      2,
+      "Sets display text options for system information."
+    ],
+    "bShowParticleVariables": [
+      "bool",
+      2,
+      "When enabled will show particle attributes from the list."
+    ],
+    "bEnableGpuParticleReadback": [
+      "bool",
+      2,
+      "When enabled GPU particle data will be copied from the GPU to the CPU.\nWarning: This has an impact on performance & memory since we copy the whole buffer.\nThe displayed data is latent since we are seeing what happened a few frames ago."
+    ],
+    "bShowParticleIndex": [
+      "bool",
+      2,
+      "When enabled the particle index will be displayed along with any attributes.\nNote: This is the index in the particle data buffer and not the persistent ID index."
+    ],
+    "ParticlesVariables": [
+      "TArray<FNiagaraDebugHUDVariable>",
+      2,
+      "List of attributes to show per particle, each entry uses wildcard matching.\nFor example, \"*Position\" would match all attributes that end in Position."
+    ],
+    "ParticleTextOptions": [
+      "FNiagaraDebugHudTextOptions",
+      2,
+      "Sets display text options for particle information."
+    ],
+    "bShowParticlesVariablesWithSystem": [
+      "bool",
+      2,
+      "When enabled particle attributes will display with the system information\nrather than in world at the particle location."
+    ],
+    "bShowParticleVariablesVertical": [
+      "bool",
+      2,
+      ""
+    ],
+    "bUseMaxParticlesToDisplay": [
+      "bool",
+      2,
+      ""
+    ],
+    "bUseParticleDisplayClip": [
+      "bool",
+      2,
+      "When enabled we use the clip planes to narrow down which particles to display"
+    ],
+    "ParticleDisplayClip": [
+      "FVector2D",
+      2,
+      "Clipping planes used to display particle attributes."
+    ],
+    "bUseParticleDisplayCenterRadius": [
+      "bool",
+      2,
+      "When enabled we use a radius from the display center to avoid showing too many particle attributes."
+    ],
+    "ParticleDisplayCenterRadius": [
+      "float32",
+      2,
+      "Radius from screen center where 0 is center to 1.0 is edge to avoid display too many particle attributes."
+    ],
+    "MaxParticlesToDisplay": [
+      "int",
+      2,
+      "When enabled, the maximum number of particles to show information about.\nWhen disabled all particles will show attributes, this can result in poor performance & potential OOM on some platforms."
+    ],
+    "PerfReportFrames": [
+      "int",
+      2,
+      "How many frames to capture in between updates to the max and average perf report values."
+    ],
+    "PerfSampleMode": [
+      "ENiagaraDebugHUDPerfSampleMode",
+      2,
+      ""
+    ],
+    "PerfUnits": [
+      "ENiagaraDebugHUDPerfUnits",
+      2,
+      ""
+    ],
+    "PerfGraphMode": [
+      "ENiagaraDebugHUDPerfGraphMode",
+      2,
+      "Time range of the Y Axis of the perf graph"
+    ],
+    "PerfHistoryFrames": [
+      "int",
+      2,
+      "How many frames of history to display in the perf graphs."
+    ],
+    "bUsePerfGraphTimeRange": [
+      "bool",
+      2,
+      "Use the specified user range when enabled, otherwise we will auto detect the range to use."
+    ],
+    "PerfGraphTimeRange": [
+      "float32",
+      2,
+      "Time range of the Y Axis of the perf graph"
+    ],
+    "PerfGraphSize": [
+      "FVector2D",
+      2,
+      "Pixel size of the perf graph."
+    ],
+    "PerfGraphAxisColor": [
+      "FLinearColor",
+      2,
+      ""
+    ],
+    "bEnableSmoothing": [
+      "bool",
+      2,
+      "True if perf graphs should be smoothed."
+    ],
+    "SmoothingWidth": [
+      "int",
+      2,
+      "Number of samples to use either size of a value when smoothing perf graphs."
+    ],
+    "DefaultBackgroundColor": [
+      "FLinearColor",
+      2,
+      "Default background color used generally for panels"
+    ],
+    "OverviewHeadingColor": [
+      "FLinearColor",
+      2,
+      "Overview heading text color"
+    ],
+    "OverviewDetailColor": [
+      "FLinearColor",
+      2,
+      "Overview detail text color"
+    ],
+    "OverviewDetailHighlightColor": [
+      "FLinearColor",
+      2,
+      "Overview detail highlight text color"
+    ],
+    "InWorldErrorTextColor": [
+      "FLinearColor",
+      2,
+      "In world text if an error is detected"
+    ],
+    "InWorldTextColor": [
+      "FLinearColor",
+      2,
+      "In world text color"
+    ],
+    "MessageInfoTextColor": [
+      "FLinearColor",
+      2,
+      "Message display text color"
+    ],
+    "MessageWarningTextColor": [
+      "FLinearColor",
+      2,
+      "Message display warning text color"
+    ],
+    "MessageErrorTextColor": [
+      "FLinearColor",
+      2,
+      "Message display error text color"
+    ],
+    "SystemColorTableOpacity": [
+      "float32",
+      2,
+      "Opacity of the system color background tile in overview table rows."
+    ],
+    "SystemColorSeed": [
+      "uint",
+      2,
+      "Additional seed value for random system colors. Useful if current colors of systems are too similar."
+    ],
+    "SystemColorHSVMin": [
+      "FVector",
+      2,
+      "Minimum HSV values for the random colors generated for each System."
+    ],
+    "SystemColorHSVMax": [
+      "FVector",
+      2,
+      "Maximum HSV values for the random colors generated for each System."
+    ],
+    "bShowGlobalBudgetInfo": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraDebugHUDSettingsData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraDebugHUDSettingsData"
+        }
+      ]
+    }
+  ]
+}

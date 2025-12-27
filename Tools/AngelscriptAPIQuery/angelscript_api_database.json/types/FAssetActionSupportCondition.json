@@ -1,0 +1,33 @@
+{
+  "name": "FAssetActionSupportCondition",
+  "isStruct": true,
+  "properties": {
+    "Filter": [
+      "FString",
+      2,
+      "This is a content browser styled filter.  For example, ..._N AND VirtualTextureStreaming=FALSE, would require that\nasset tag VirtualTextureStreaming be false, and the asset name end in _N.\n\nYou can learn more about the content browser search syntax in the \"Advanced Search Syntax\" documentation."
+    ],
+    "FailureReason": [
+      "FString",
+      2,
+      "This is the failure reason to reply to the user with if the condition above fails.\nIf you fill in the reason, it will override the default failure text in the tooltip for the function menu option."
+    ],
+    "bShowInMenuIfFilterFails": [
+      "bool",
+      2,
+      "If this filter does not pass, show the corresponding functions from the menu anyways.\nIf true, the menu option will display with the error tooltip, but be disabled.\nIf false, the menu options will be removed entirely."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAssetActionSupportCondition&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAssetActionSupportCondition"
+        }
+      ]
+    }
+  ]
+}

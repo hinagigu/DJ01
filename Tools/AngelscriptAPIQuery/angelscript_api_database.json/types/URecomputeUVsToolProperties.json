@@ -1,0 +1,67 @@
+{
+  "name": "URecomputeUVsToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "properties": {
+    "IslandGeneration": [
+      "ERecomputeUVsPropertiesIslandMode",
+      2,
+      "Generation method for initial UV islands."
+    ],
+    "UnwrapType": [
+      "ERecomputeUVsPropertiesUnwrapType",
+      2,
+      "Type of UV flattening algorithm to use"
+    ],
+    "AutoRotation": [
+      "ERecomputeUVsToolOrientationMode",
+      2,
+      "Type of automatic rotation applied to each UV island"
+    ],
+    "bPreserveIrregularity": [
+      "bool",
+      2,
+      "If enabled, reduces distortion for meshes with triangles of vastly different sizes, This is only enabled if the Unwrap Type is set to Spectral Conformal."
+    ],
+    "SmoothingSteps": [
+      "int",
+      2,
+      "Number of smoothing steps to apply; this slightly increases distortion but produces more stable results. This is only enabled if the Unwrap Type is set to ExpMap or Island Merging."
+    ],
+    "SmoothingAlpha": [
+      "float32",
+      2,
+      "Smoothing parameter; larger values result in faster smoothing in each step. This is only enabled if the Unwrap Type is set to ExpMap or Island Merging."
+    ],
+    "MergingDistortionThreshold": [
+      "float32",
+      2,
+      "Threshold for stretching and distortion below which island merging is allowed; larger values increase the allowable UV distortion. This is only enabled if the Unwrap Type is set to Island Merging."
+    ],
+    "MergingAngleThreshold": [
+      "float32",
+      2,
+      "Threshold for the average face normal deviation below  which island merging is allowed. This is only enabled if the Unwrap Type is set to Island Merging."
+    ],
+    "LayoutType": [
+      "ERecomputeUVsPropertiesLayoutType",
+      2,
+      "Uniformly scale and translate UV islands collectively to pack them into the unit square, i.e. fit between 0 and 1 with no overlap."
+    ],
+    "TextureResolution": [
+      "int",
+      2,
+      "Expected resolution of the output textures; this controls spacing left between UV islands to avoid interpolation artifacts. This is only enabled when the Layout Type is set to Repack."
+    ],
+    "NormalizeScale": [
+      "float32",
+      2,
+      "Scaling factor used for UV island normalization/scaling. This is only enabled when the Layout Type is set to Normalize to Bounds or Normalize to World."
+    ],
+    "bEnableUDIMLayout": [
+      "bool",
+      2,
+      "Enable UDIM aware layout and keep islands within their originating UDIM tiles when laying out."
+    ]
+  },
+  "methods": []
+}

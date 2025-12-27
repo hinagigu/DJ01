@@ -1,0 +1,29 @@
+{
+  "name": "ULoadingProcessTask",
+  "inherits": "UObject",
+  "doc": "ULoadingProcessTask\n\nA simple UObject that implements ILoadingProcessInterface, useful for Blueprint-driven loading scenarios.\nCreate an instance of this, and it will keep the loading screen visible until you call Unregister().",
+  "properties": {},
+  "methods": [
+    {
+      "name": "SetShowLoadingScreenReason",
+      "return": "void",
+      "doc": "Updates the reason string (useful for debugging)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InReason",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Unregister",
+      "return": "void",
+      "doc": "Call this when you're done with the loading task to allow the loading screen to be dismissed",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

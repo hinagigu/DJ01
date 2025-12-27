@@ -1,0 +1,103 @@
+{
+  "name": "UAnimCompress_PerTrackCompression",
+  "inherits": "UAnimCompress_RemoveLinearKeys",
+  "properties": {
+    "MaxZeroingThreshold": [
+      "float32",
+      2,
+      "Maximum threshold to use when replacing a component with zero. Lower values retain more keys, but yield less compression."
+    ],
+    "MaxPosDiffBitwise": [
+      "float32",
+      2,
+      "Maximum position difference to use when testing if an animation key may be removed. Lower values retain more keys, but yield less compression."
+    ],
+    "MaxAngleDiffBitwise": [
+      "float32",
+      2,
+      "Maximum angle difference to use when testing if an animation key may be removed. Lower values retain more keys, but yield less compression."
+    ],
+    "MaxScaleDiffBitwise": [
+      "float32",
+      2,
+      "Maximum position difference to use when testing if an animation key may be removed. Lower values retain more keys, but yield less compression."
+    ],
+    "AllowedRotationFormats": [
+      "TArray<AnimationCompressionFormat>",
+      2,
+      "Which encoding formats is the per-track compressor allowed to try on rotation keys"
+    ],
+    "AllowedTranslationFormats": [
+      "TArray<AnimationCompressionFormat>",
+      2,
+      "Which encoding formats is the per-track compressor allowed to try on translation keys"
+    ],
+    "AllowedScaleFormats": [
+      "TArray<AnimationCompressionFormat>",
+      2,
+      "Which encoding formats is the per-track compressor allowed to try on scale keys"
+    ],
+    "ResampledFramerate": [
+      "float32",
+      2,
+      "When bResampleAnimation is true, this defines the desired framerate"
+    ],
+    "MinKeysForResampling": [
+      "int",
+      2,
+      "Animations with fewer keys than MinKeysForResampling will not be resampled."
+    ],
+    "TrackHeightBias": [
+      "int",
+      2,
+      "A bias added to the track height before using it to calculate the adaptive error"
+    ],
+    "ParentingDivisor": [
+      "float32",
+      2,
+      "Reduces the error tolerance the further up the tree that a key occurs\nEffectiveErrorTolerance = Max(BaseErrorTolerance / Power(ParentingDivisor, Max(Height+Bias,0) * ParentingDivisorExponent), ZeroingThreshold)\nOnly has an effect bUseAdaptiveError is true"
+    ],
+    "ParentingDivisorExponent": [
+      "float32",
+      2,
+      "Reduces the error tolerance the further up the tree that a key occurs\nEffectiveErrorTolerance = Max(BaseErrorTolerance / Power(ParentingDivisor, Max(Height+Bias,0) * ParentingDivisorExponent), ZeroingThreshold)\nOnly has an effect bUseAdaptiveError is true"
+    ],
+    "RotationErrorSourceRatio": [
+      "float32",
+      2,
+      "This ratio determines how much error in end effector rotation can come from a given track's rotation error or translation error.\nIf 1, all of it must come from rotation error, if 0.5, half can come from each, and if 0.0, all must come from translation error."
+    ],
+    "TranslationErrorSourceRatio": [
+      "float32",
+      2,
+      "This ratio determines how much error in end effector translation can come from a given track's rotation error or translation error.\nIf 1, all of it must come from rotation error, if 0.5, half can come from each, and if 0.0, all must come from translation error."
+    ],
+    "ScaleErrorSourceRatio": [
+      "float32",
+      2,
+      "This ratio determines how much error in end effector scale can come from a given track's rotation error or scale error.\nIf 1, all of it must come from rotation error, if 0.5, half can come from each, and if 0.0, all must come from scale error."
+    ],
+    "MaxErrorPerTrackRatio": [
+      "float32",
+      2,
+      "A fraction that determines how much of the total error budget can be introduced by any particular track"
+    ],
+    "bResampleAnimation": [
+      "bool",
+      "If true, resample the animation to ResampleFramerate frames per second"
+    ],
+    "bUseAdaptiveError": [
+      "bool",
+      "If true, adjust the error thresholds based on the 'height' within the skeleton"
+    ],
+    "bUseOverrideForEndEffectors": [
+      "bool",
+      "If true, uses MinEffectorDiff as the threshold for end effectors"
+    ],
+    "bUseAdaptiveError2": [
+      "bool",
+      "If true, the adaptive error system will determine how much error to allow for each track, based on the\nerror introduced in end effectors due to errors in the track."
+    ]
+  },
+  "methods": []
+}

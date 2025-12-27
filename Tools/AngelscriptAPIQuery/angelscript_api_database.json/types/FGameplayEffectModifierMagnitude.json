@@ -1,0 +1,44 @@
+{
+  "name": "FGameplayEffectModifierMagnitude",
+  "isStruct": true,
+  "doc": "Struct representing the magnitude of a gameplay effect modifier, potentially calculated in numerous different ways",
+  "properties": {
+    "MagnitudeCalculationType": [
+      "EGameplayEffectMagnitudeCalculation",
+      2,
+      "Type of calculation to perform to derive the magnitude"
+    ],
+    "ScalableFloatMagnitude": [
+      "FScalableFloat",
+      2,
+      "Magnitude value represented by a scalable float"
+    ],
+    "AttributeBasedMagnitude": [
+      "FAttributeBasedFloat",
+      2,
+      "Magnitude value represented by an attribute-based float\n      (Coefficient * (PreMultiplyAdditiveValue + [Eval'd Attribute Value According to Policy])) + PostMultiplyAdditiveValue"
+    ],
+    "CustomMagnitude": [
+      "FCustomCalculationBasedFloat",
+      2,
+      "Magnitude value represented by a custom calculation class"
+    ],
+    "SetByCallerMagnitude": [
+      "FSetByCallerFloat",
+      2,
+      "Magnitude value represented by a SetByCaller magnitude"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayEffectModifierMagnitude&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayEffectModifierMagnitude"
+        }
+      ]
+    }
+  ]
+}

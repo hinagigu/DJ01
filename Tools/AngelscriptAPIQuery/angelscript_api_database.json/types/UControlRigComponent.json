@@ -1,0 +1,850 @@
+{
+  "name": "UControlRigComponent",
+  "inherits": "UPrimitiveComponent",
+  "doc": "A component that hosts an animation ControlRig, manages control components and marshals data between the two",
+  "properties": {
+    "OnPreInitializeDelegate": [
+      "FControlRigComponentDelegate",
+      "Event fired just before this component's ControlRig is initialized"
+    ],
+    "OnPostInitializeDelegate": [
+      "FControlRigComponentDelegate",
+      "Event fired after this component's ControlRig is initialized"
+    ],
+    "OnPreConstructionDelegate": [
+      "FControlRigComponentDelegate",
+      "Event fired before this component's ControlRig is setup"
+    ],
+    "OnPostConstructionDelegate": [
+      "FControlRigComponentDelegate",
+      "Event fired after this component's ControlRig is setup"
+    ],
+    "OnPreForwardsSolveDelegate": [
+      "FControlRigComponentDelegate",
+      "Event fired before this component's ControlRig's forwards solve"
+    ],
+    "OnPostForwardsSolveDelegate": [
+      "FControlRigComponentDelegate",
+      "Event fired after this component's ControlRig's forwards solve"
+    ],
+    "UserDefinedElements": [
+      "TArray<FControlRigComponentMappedElement>",
+      2,
+      ""
+    ],
+    "bEnableLazyEvaluation": [
+      "bool",
+      2,
+      "When checked the rig will only run if any of the mapped inputs has changed"
+    ],
+    "LazyEvaluationPositionThreshold": [
+      "float32",
+      2,
+      "The delta threshold for a translation / position difference. 0.0 disables position differences."
+    ],
+    "LazyEvaluationRotationThreshold": [
+      "float32",
+      2,
+      "The delta threshold for a rotation difference (in degrees). 0.0 disables rotation differences."
+    ],
+    "LazyEvaluationScaleThreshold": [
+      "float32",
+      2,
+      "The delta threshold for a scale difference. 0.0 disables scale differences."
+    ],
+    "bResetTransformBeforeTick": [
+      "bool",
+      2,
+      "When checked the transforms are reset before a tick / update of the rig"
+    ],
+    "bResetInitialsBeforeConstruction": [
+      "bool",
+      2,
+      "When checked the initial transforms on bones, nulls and controls are reset prior to a construction event"
+    ],
+    "bUpdateRigOnTick": [
+      "bool",
+      2,
+      "When checked this ensures to run the rig's update on the component's tick automatically"
+    ],
+    "bUpdateInEditor": [
+      "bool",
+      2,
+      "When checked the rig is run in the editor viewport without running / simulation the game"
+    ],
+    "bDrawBones": [
+      "bool",
+      2,
+      "When checked the rig's bones are drawn using debug drawing similar to the animation editor viewport"
+    ],
+    "bShowDebugDrawing": [
+      "bool",
+      2,
+      "When checked the rig's debug drawing instructions are drawn in the viewport"
+    ],
+    "ControlRigClass": [
+      "TSubclassOf<UControlRig>",
+      "The class of control rig to instantiate"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddMappedCompleteSkeletalMesh",
+      "return": "void",
+      "doc": "Adds all matching bones to the rig, should not be used before OnPreInitialize Event",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMeshComponent",
+          "type": "USkeletalMeshComponent"
+        },
+        {
+          "name": "InDirection",
+          "default": "EControlRigComponentMapDirection :: Output",
+          "type": "EControlRigComponentMapDirection"
+        }
+      ]
+    },
+    {
+      "name": "AddMappedComponents",
+      "return": "void",
+      "doc": "Adds a series of mapped bones to the rig, should not be used before OnPreInitialize Event",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Components",
+          "type": "TArray<FControlRigComponentMappedComponent>"
+        }
+      ]
+    },
+    {
+      "name": "AddMappedElements",
+      "return": "void",
+      "doc": "Adds the provided mapped elements to the component, should not be used before OnPreInitialize Event",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMappedElements",
+          "type": "TArray<FControlRigComponentMappedElement>"
+        }
+      ]
+    },
+    {
+      "name": "AddMappedSkeletalMesh",
+      "return": "void",
+      "doc": "Adds a series of mapped bones to the rig, should not be used before OnPreInitialize Event",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMeshComponent",
+          "type": "USkeletalMeshComponent"
+        },
+        {
+          "name": "Bones",
+          "type": "TArray<FControlRigComponentMappedBone>"
+        },
+        {
+          "name": "Curves",
+          "type": "TArray<FControlRigComponentMappedCurve>"
+        },
+        {
+          "name": "InDirection",
+          "default": "EControlRigComponentMapDirection :: Output",
+          "type": "EControlRigComponentMapDirection"
+        }
+      ]
+    },
+    {
+      "name": "CanExecute",
+      "return": "bool",
+      "doc": "Returns true if the Component can execute its Control Rig",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearMappedElements",
+      "return": "void",
+      "doc": "Removes all mapped elements from the component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DoesElementExist",
+      "return": "bool",
+      "doc": "Returns true if an element given a type and name exists in the rig\n@param Name The name for the element to look up\n@param ElementType The type of element to look up\n\n@return true if the element exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        },
+        {
+          "name": "ElementType",
+          "default": "ERigElementType :: Bone",
+          "type": "ERigElementType"
+        }
+      ]
+    },
+    {
+      "name": "GetAbsoluteTime",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the ControlRig's local time in seconds since its last initialize",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBoneTransform",
+      "return": "FTransform",
+      "doc": "Returns the transform of the bone in the requested space\n@param BoneName The name of the bone to retrieve the transform for\n@param Space The space to retrieve the transform in\n\n@return the transform of the bone in the requested space",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: RigSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "GetControlBool",
+      "return": "bool",
+      "doc": "Returns the value of a bool control\n@param ControlName The name of the control to retrieve the value for\n\n@return The bool value of the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetControlFloat",
+      "return": "float32",
+      "doc": "Returns the value of a float control\n@param ControlName The name of the control to retrieve the value for\n\n@return The float value of the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetControlInt",
+      "return": "int",
+      "doc": "Returns the value of an integer control\n@param ControlName The name of the control to retrieve the value for\n\n@return The int32 value of the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetControlOffset",
+      "return": "FTransform",
+      "doc": "Returns the offset transform of a control\n@param ControlName The name of the control to retrieve the offset transform for\n@param Space The space to retrieve the offset transform in\n\n@return The offset transform of a control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: RigSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "GetControlPosition",
+      "return": "FVector",
+      "doc": "Returns the value of a position control\n@param ControlName The name of the control to retrieve the value for\n@param Space The space to retrieve the control's value in\n\n@return The position value of the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: LocalSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "GetControlRig",
+      "return": "UControlRig",
+      "doc": "Get the ControlRig hosted by this component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetControlRotator",
+      "return": "FRotator",
+      "doc": "Returns the value of a rotator control\n@param ControlName The name of the control to retrieve the value for\n@param Space The space to retrieve the control's value in\n\n@return The rotator value of the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: LocalSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "GetControlScale",
+      "return": "FVector",
+      "doc": "Returns the value of a scale control\n@param ControlName The name of the control to retrieve the value for\n@param Space The space to retrieve the control's value in\n\n@return The scale value of the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: LocalSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "GetControlTransform",
+      "return": "FTransform",
+      "doc": "Returns the value of a transform control\n@param ControlName The name of the control to retrieve the value for\n@param Space The space to retrieve the control's value in\n\n@return The transform value of the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: RigSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "GetControlVector2D",
+      "return": "FVector2D",
+      "doc": "Returns the value of a Vector3D control\n@param ControlName The name of the control to retrieve the value for\n\n@return The Vector3D value of the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetElementNames",
+      "return": "TArray<FName>",
+      "doc": "Returns all of the names for a given element type (Bone, Control, etc)\n@param ElementType The type of elements to return the names for\n\n@return all of the names for a given element type (Bone, Control, etc)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementType",
+          "default": "ERigElementType :: Bone",
+          "type": "ERigElementType"
+        }
+      ]
+    },
+    {
+      "name": "GetInitialBoneTransform",
+      "return": "FTransform",
+      "doc": "Returns the initial transform of the bone in the requested space\n@param BoneName The name of the bone to retrieve the transform for\n@param Space The space to retrieve the transform in\n\n@return the initial transform of the bone in the requested space",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: RigSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "GetInitialSpaceTransform",
+      "return": "FTransform",
+      "doc": "Returns the initial transform of the space in the requested space\n@param SpaceName The name of the space to retrieve the transform for\n@param Space The space to retrieve the transform in\n\n@return the initial transform of the space in the requested space",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpaceName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: RigSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "GetSpaceTransform",
+      "return": "FTransform",
+      "doc": "Returns the transform of the space in the requested space\n@param SpaceName The name of the space to retrieve the transform for\n@param Space The space to retrieve the transform in\n\n@return the transform of the space in the requested space",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpaceName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: RigSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "Initialize",
+      "return": "void",
+      "doc": "Initializes the rig's memory and calls the construction event",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnPostConstruction",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UControlRigComponent"
+        }
+      ]
+    },
+    {
+      "name": "OnPostForwardsSolve",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UControlRigComponent"
+        }
+      ]
+    },
+    {
+      "name": "OnPostInitialize",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UControlRigComponent"
+        }
+      ]
+    },
+    {
+      "name": "OnPreConstruction",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UControlRigComponent"
+        }
+      ]
+    },
+    {
+      "name": "OnPreForwardsSolve",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UControlRigComponent"
+        }
+      ]
+    },
+    {
+      "name": "OnPreInitialize",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UControlRigComponent"
+        }
+      ]
+    },
+    {
+      "name": "SetBoneInitialTransformsFromSkeletalMesh",
+      "return": "void",
+      "doc": "Setup the initial transforms / ref pose of the bones based on a skeletal mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSkeletalMesh",
+          "type": "USkeletalMesh"
+        }
+      ]
+    },
+    {
+      "name": "SetBoneTransform",
+      "return": "void",
+      "doc": "Sets the transform of the bone in the requested space\n@param BoneName The name of the bone to set the transform for\n@param Space The space to set the transform in\n@param Weight The weight of how much the change should be applied (0.0 to 1.0)\n@param bPropagateToChildren If true the child bones will be moved together with the affected bone",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Transform",
+          "type": "FTransform"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: RigSpace",
+          "type": "EControlRigComponentSpace"
+        },
+        {
+          "name": "Weight",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bPropagateToChildren",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlBool",
+      "return": "void",
+      "doc": "Sets the value of a bool control\n@param ControlName The name of the control to set\n@param Value The new value for the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlFloat",
+      "return": "void",
+      "doc": "Sets the value of a float control\n@param ControlName The name of the control to set\n@param Value The new value for the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetControlInt",
+      "return": "void",
+      "doc": "Sets the value of an integer control\n@param ControlName The name of the control to set\n@param Value The new value for the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetControlOffset",
+      "return": "void",
+      "doc": "Sets the offset transform of a control\n@param ControlName The name of the control to set\n@param OffsetTransform The new offset trasnform for the control\n@param Space The space to set the offset transform in",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "OffsetTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: RigSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "SetControlPosition",
+      "return": "void",
+      "doc": "Sets the value of a position control\n@param ControlName The name of the control to set\n@param Value The new value for the control\n@param Space The space to set the value in",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "FVector"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: LocalSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "SetControlRigClass",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlRigClass",
+          "type": "TSubclassOf<UControlRig>"
+        }
+      ]
+    },
+    {
+      "name": "SetControlRotator",
+      "return": "void",
+      "doc": "Sets the value of a rotator control\n@param ControlName The name of the control to set\n@param Value The new value for the control\n@param Space The space to set the value in",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "FRotator"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: LocalSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "SetControlScale",
+      "return": "void",
+      "doc": "Sets the value of a scale control\n@param ControlName The name of the control to set\n@param Value The new value for the control\n@param Space The space to set the value in",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "FVector"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: LocalSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "SetControlTransform",
+      "return": "void",
+      "doc": "Sets the value of a transform control\n@param ControlName The name of the control to set\n@param Value The new value for the control\n@param Space The space to set the value in",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "FTransform"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: RigSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "SetControlVector2D",
+      "return": "void",
+      "doc": "Sets the value of a vector2D control\n@param ControlName The name of the control to set\n@param Value The new value for the control",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetInitialBoneTransform",
+      "return": "void",
+      "doc": "Sets the initial transform of the bone in the requested space\n@param BoneName The name of the bone to set the transform for\n@param InitialTransform The initial transform to set for the bone\n@param Space The space to set the transform in\n@param bPropagateToChildren If true the child bones will be moved together with the affected bone",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "InitialTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: RigSpace",
+          "type": "EControlRigComponentSpace"
+        },
+        {
+          "name": "bPropagateToChildren",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetInitialSpaceTransform",
+      "return": "void",
+      "doc": "Sets the transform of the space in the requested space\n@param SpaceName The name of the space to set the transform for\n@param Space The space to set the transform in",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpaceName",
+          "type": "FName"
+        },
+        {
+          "name": "InitialTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "Space",
+          "default": "EControlRigComponentSpace :: RigSpace",
+          "type": "EControlRigComponentSpace"
+        }
+      ]
+    },
+    {
+      "name": "SetMappedElements",
+      "return": "void",
+      "doc": "Replaces the mapped elements on the component with the provided array, should not be used before OnPreInitialize Event",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMappedElements",
+          "type": "TArray<FControlRigComponentMappedElement>"
+        }
+      ]
+    },
+    {
+      "name": "SetObjectBinding",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InObjectToBind",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "Update",
+      "return": "void",
+      "doc": "Updates and ticks the rig.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTime",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

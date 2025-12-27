@@ -1,0 +1,37 @@
+{
+  "name": "UMovieSceneAnimationTrackRecorderEditorSettings",
+  "inherits": "UMovieSceneTrackRecorderSettings",
+  "properties": {
+    "AnimationTrackName": [
+      "FText",
+      "Name of the recorded animation track."
+    ],
+    "AnimationAssetName": [
+      "FString",
+      "The name of the animation asset.\nSupports any of the following format specifiers that will be substituted when a take is recorded:\n{day}       - The day of the timestamp for the start of the recording.\n{month}     - The month of the timestamp for the start of the recording.\n{year}      - The year of the timestamp for the start of the recording.\n{hour}      - The hour of the timestamp for the start of the recording.\n{minute}    - The minute of the timestamp for the start of the recording.\n{second}    - The second of the timestamp for the start of the recording.\n{take}      - The take number.\n{slate}     - The slate string.\n{actor}     - The name of the actor being recorded."
+    ],
+    "AnimationSubDirectory": [
+      "FString",
+      "The name of the subdirectory animations will be placed in. Leave this empty to place into the same directory as the sequence base path.\nSupports any of the following format specifiers that will be substituted when a take is recorded:\n{day}       - The day of the timestamp for the start of the recording.\n{month}     - The month of the timestamp for the start of the recording.\n{year}      - The year of the timestamp for the start of the recording.\n{hour}      - The hour of the timestamp for the start of the recording.\n{minute}    - The minute of the timestamp for the start of the recording.\n{second}    - The second of the timestamp for the start of the recording.\n{take}      - The take number.\n{slate}     - The slate string.\n{actor}     - The name of the actor being recorded."
+    ],
+    "InterpMode": [
+      "ERichCurveInterpMode",
+      2,
+      "Interpolation mode for the recorded keys."
+    ],
+    "TangentMode": [
+      "ERichCurveTangentMode",
+      2,
+      "Tangent mode for the recorded keys."
+    ],
+    "bRemoveRootAnimation": [
+      "bool",
+      "If true we remove the root animation and move it to a transform track, if false we leave it on the root bone in the anim sequence"
+    ],
+    "TimecodeBoneMethod": [
+      "FTimecodeBoneMethod",
+      "The method to record timecode values onto bones"
+    ]
+  },
+  "methods": []
+}

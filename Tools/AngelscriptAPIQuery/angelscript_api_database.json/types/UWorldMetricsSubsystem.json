@@ -1,0 +1,7 @@
+{
+  "name": "UWorldMetricsSubsystem",
+  "inherits": "UWorldSubsystem",
+  "doc": "World metrics subsystem\n\nThis subsystem provides an interface to add and remove world metrics implementing the UWorldMetricInterface class.\n\n- Added metrics get automatically updated by the subsystem's ticker.\n- The subsystem becomes an owner of all added metrics. The user is responsible for removing them when no longer\n  needed so they can be garbage collected.\n- Metrics can have extensions to add shared functionality.\n- Extensions implement the UWorldMetricsExtension class and use Acquire/Release semantics. They can be acquired by\n  either metrics or extensions. Initialization and deinitialization are the ideal phases to do so.\n- The subsystem solely owns extensions and can automatically remove them for garbage collection whenever they are no\n  longer acquired by any metric or extension.",
+  "properties": {},
+  "methods": []
+}

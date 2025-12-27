@@ -1,0 +1,18 @@
+{
+  "name": "FActorInstanceHandle",
+  "isStruct": true,
+  "doc": "Handle to a unique object. This may specify a full weigh actor or it may only specify the actor instance that represents the same object.\n\n@note The handle has game thread constraints related to UObjects and should be used carefully from other threads.\n\n    Can only be used on the game thread\n    -       all constructors\n    -       all getters (GetXYZ, FetchActor, IsActorValid, DoesRepresent) *\n    -       comparison operators against live AActor pointer\n\n    Can be used on any thread\n    -       MakeActorHandleToResolve to create a handle that will be lazily resolved on the game thread\n            since it only stores a weak object ptr without any access to the live object\n    -       handle validity and comparison operators against another handle (i.e. IsValid(), operator==|!=(const FActorInstanceHandle& Other))",
+  "properties": {},
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FActorInstanceHandle&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FActorInstanceHandle"
+        }
+      ]
+    }
+  ]
+}

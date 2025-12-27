@@ -1,0 +1,81 @@
+{
+  "name": "UMetasoundGeneratorHandle",
+  "inherits": "UObject",
+  "doc": "Blueprint-facing interface to a FMetasoundGenerator on a UAudioComponent.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ApplyParameterPack",
+      "return": "bool",
+      "doc": "Makes a copy of the supplied parameter pack and passes it to the MetaSoundGenerator\nfor asynchronous processing. IT ALSO caches this copy so that if the AudioComponent\nis virtualized the parameter pack will be sent again when/if the AudioComponent is\n\"unvirtualized\".",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pack",
+          "type": "UMetasoundParameterPack"
+        }
+      ]
+    },
+    {
+      "name": "EnableRuntimeRenderTiming",
+      "return": "void",
+      "const": true,
+      "doc": "Enable the profiling of the MetaSound render for this playing instance. You\nmust call this before calling \"GetRuntimeCPUCoreUtilization\" (below) or you will just\nget 0.0 back for core utilization.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Enable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetCPUCoreUtilization",
+      "return": "float",
+      "const": true,
+      "doc": "Get the CPU usage as \"fraction of real time\" used to render this metasound.\nNOTE: The MetasoundSource asset MUST have had its EnableRenderTiming function called\nbefore the metasound is started!",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UpdateWatchers",
+      "return": "void",
+      "const": true,
+      "doc": "Update any watched outputs",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "WatchOutput",
+      "return": "bool",
+      "doc": "Watch an output value.\n\n@param OutputName - The user-specified name of the output in the Metasound\n@param OnOutputValueChanged - The event to fire when the output's value changes\n@param AnalyzerName - (optional) The name of the analyzer to use on the output, defaults to a passthrough\n@param AnalyzerOutputName - (optional) The name of the output on the analyzer to watch, defaults to the passthrough output\n@returns true if the watch setup succeeded, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutputName",
+          "type": "FName"
+        },
+        {
+          "name": "OnOutputValueChanged",
+          "default": "FOnMetasoundOutputValueChanged ( )",
+          "type": "FOnMetasoundOutputValueChanged"
+        },
+        {
+          "name": "AnalyzerName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "AnalyzerOutputName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

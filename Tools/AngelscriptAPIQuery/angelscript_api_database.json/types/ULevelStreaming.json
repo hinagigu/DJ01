@@ -1,0 +1,226 @@
+{
+  "name": "ULevelStreaming",
+  "inherits": "UObject",
+  "doc": "Abstract base class of container object encapsulating data required for streaming and providing\ninterface for when a level should be streamed in and out of memory.",
+  "properties": {
+    "WorldAsset": [
+      "TSoftObjectPtr<UWorld>",
+      1,
+      "The reference to the world containing the level to load"
+    ],
+    "LevelTransform": [
+      "FTransform",
+      "Transform applied to actors after loading."
+    ],
+    "LevelColor": [
+      "FLinearColor",
+      2,
+      "The level color used for visualization. (Show -> Advanced -> Level Coloration)"
+    ],
+    "EditorStreamingVolumes": [
+      "TArray<TObjectPtr<ALevelStreamingVolume>>",
+      2,
+      "The level streaming volumes bound to this level."
+    ],
+    "MinTimeBetweenVolumeUnloadRequests": [
+      "float32",
+      2,
+      "Cooldown time in seconds between volume-based unload requests.  Used in preventing spurious unload requests."
+    ],
+    "OnLevelLoaded": [
+      "FLevelStreamingLoadedStatus",
+      "Called when level is streamed in"
+    ],
+    "OnLevelUnloaded": [
+      "FLevelStreamingLoadedStatus",
+      "Called when level is streamed out"
+    ],
+    "OnLevelShown": [
+      "FLevelStreamingVisibilityStatus",
+      "Called when level is added to the world and is visible"
+    ],
+    "OnLevelHidden": [
+      "FLevelStreamingVisibilityStatus",
+      "Called when level is no longer visible, may not be removed from world yet"
+    ],
+    "StreamingPriority": [
+      "int",
+      "The relative priority of considering the streaming level. Changing the priority will not interrupt the currently considered level, but will affect the next time a level is being selected for evaluation."
+    ],
+    "bShouldBeVisible": [
+      "bool",
+      "Whether the level should be visible if it is loaded"
+    ],
+    "bShouldBeLoaded": [
+      "bool",
+      "Whether the level should be loaded"
+    ],
+    "LevelLODIndex": [
+      "int",
+      "Requested LOD. Non LOD sub-levels have Index = -1"
+    ],
+    "bIsStatic": [
+      "bool",
+      "Whether this level only contains static actors that aren't affected by gameplay or replication.\nIf true, the engine can make certain optimizations and will add this level to the StaticLevels collection."
+    ],
+    "bShouldBlockOnLoad": [
+      "bool",
+      "Whether we want to force a blocking load"
+    ],
+    "bShouldBlockOnUnload": [
+      "bool",
+      "Whether we want to force a blocking unload"
+    ],
+    "bDisableDistanceStreaming": [
+      "bool",
+      "Whether this level streaming object should be ignored by world composition distance streaming,\nso streaming state can be controlled by other systems (ex: in blueprints)"
+    ],
+    "bDrawOnLevelStatusMap": [
+      "bool",
+      "If true, will be drawn on the 'level streaming status' map (STAT LEVELMAP console command)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CreateInstance",
+      "return": "ULevelStreaming",
+      "doc": "Creates a new instance of this streaming level with a provided unique instance name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UniqueInstanceName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetIsRequestingUnloadAndRemoval",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns if the streaming level has requested to be unloaded and removed.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLoadedLevel",
+      "return": "ULevel",
+      "const": true,
+      "doc": "Gets a pointer to the LoadedLevel value",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWorldAssetPackageFName",
+      "return": "FName",
+      "const": true,
+      "doc": "Gets the package name for the world asset referred to by this level streaming as an FName",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLevelLoaded",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether streaming level is loaded",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLevelVisible",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether streaming level is visible",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsStreamingStatePending",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether level has streaming state change pending",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetIsRequestingUnloadAndRemoval",
+      "return": "void",
+      "doc": "Sets if the streaming level should be unloaded and removed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsRequestingUnloadAndRemoval",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLevelLODIndex",
+      "return": "void",
+      "doc": "Sets the world composition level LOD index and marks the streaming level as requiring consideration.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LODIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetPriority",
+      "return": "void",
+      "doc": "Sets the relative priority of considering the streaming level. Changing the priority will not interrupt the currently considered level, but will affect the next time a level is being selected for evaluation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPriority",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetShouldBeLoaded",
+      "return": "void",
+      "doc": "Virtual that can be overridden to change whether a streaming level should be loaded.\nDoesn't do anything at the base level as should be loaded defaults to true",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInShouldBeLoaded",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetShouldBeVisible",
+      "return": "void",
+      "doc": "Sets the should be visible flag and marks the streaming level as requiring consideration.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInShouldBeVisible",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ShouldBeLoaded",
+      "return": "bool",
+      "const": true,
+      "doc": "Return whether this level should be present in memory which in turn tells the\nstreaming code to stream it in. Please note that a change in value from false\nto true only tells the streaming code that it needs to START streaming it in\nso the code needs to return true an appropriate amount of time before it is\nneeded.\n\n@return true if level should be loaded/ streamed in, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "name": "UPointLightComponent",
+  "inherits": "ULocalLightComponent",
+  "doc": "A light component which emits light from a single point equally in all directions.",
+  "properties": {
+    "bUseInverseSquaredFalloff": [
+      "bool",
+      "Whether to use physically based inverse squared distance falloff, where AttenuationRadius is only clamping the light's contribution.\nDisabling inverse squared falloff can be useful when placing fill lights (don't want a super bright spot near the light).\nWhen enabled, the light's Intensity is in units of lumens, where 1700 lumens is a 100W lightbulb.\nWhen disabled, the light's Intensity is a brightness scale."
+    ],
+    "LightFalloffExponent": [
+      "float32",
+      "Controls the radial falloff of the light when UseInverseSquaredFalloff is disabled.\n2 is almost linear and very unrealistic and around 8 it looks reasonable.\nWith large exponents, the light has contribution to only a small area of its influence radius but still costs the same as low exponents."
+    ],
+    "SourceRadius": [
+      "float32",
+      "Radius of light source shape.\nNote that light sources shapes which intersect shadow casting geometry can cause shadowing artifacts."
+    ],
+    "SoftSourceRadius": [
+      "float32",
+      "Soft radius of light source shape.\nNote that light sources shapes which intersect shadow casting geometry can cause shadowing artifacts."
+    ],
+    "SourceLength": [
+      "float32",
+      "Length of light source shape.\nNote that light sources shapes which intersect shadow casting geometry can cause shadowing artifacts."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetInverseExposureBlend",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewInverseExposureBlend",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLightFalloffExponent",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLightFalloffExponent",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSoftSourceRadius",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSourceLength",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSourceRadius",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetUseInverseSquaredFalloff",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

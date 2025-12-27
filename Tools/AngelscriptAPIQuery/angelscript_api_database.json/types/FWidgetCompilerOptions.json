@@ -1,0 +1,38 @@
+{
+  "name": "FWidgetCompilerOptions",
+  "isStruct": true,
+  "properties": {
+    "bAllowBlueprintTick": [
+      "bool",
+      2,
+      "If you disable this, these widgets these compiler options apply to will not be allowed to implement Tick."
+    ],
+    "bAllowBlueprintPaint": [
+      "bool",
+      2,
+      "If you disable this, these widgets these compiler options apply to will not be allowed to implement Paint."
+    ],
+    "PropertyBindingRule": [
+      "EPropertyBindingPermissionLevel",
+      2,
+      "Controls if you allow property bindings in widgets.  They can have a large performance impact if used."
+    ],
+    "Rules": [
+      "TArray<TSoftClassPtr<UWidgetCompilerRule>>",
+      2,
+      "Custom rules."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FWidgetCompilerOptions&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FWidgetCompilerOptions"
+        }
+      ]
+    }
+  ]
+}

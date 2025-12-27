@@ -1,0 +1,63 @@
+{
+  "name": "UAnimationAsset",
+  "inherits": "UObject",
+  "properties": {
+    "MetaData": [
+      "TArray<TObjectPtr<UAnimMetaData>>",
+      2,
+      "Meta data that can be saved with the asset\n\nYou can query by GetMetaData function"
+    ],
+    "AssetUserData": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the asset"
+    ],
+    "ThumbnailInfo": [
+      "UThumbnailInfo",
+      2,
+      "Information for thumbnail rendering"
+    ],
+    "PreviewPoseAsset": [
+      "UPoseAsset",
+      2,
+      "The default skeletal mesh to use when previewing this asset - this only applies when you open Persona using this asset// @todo: note that this doesn't retarget right now"
+    ]
+  },
+  "methods": [
+    {
+      "name": "FindMetaDataByClass",
+      "return": "UAnimMetaData",
+      "const": true,
+      "doc": "Returns the first metadata of the specified class",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MetaDataClass",
+          "type": "TSubclassOf<UAnimMetaData>"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayLength",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetPreviewSkeletalMesh",
+      "return": "void",
+      "doc": "Sets or updates the preview skeletal mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PreviewMesh",
+          "type": "USkeletalMesh"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "__EMovementMode",
+  "isEnum": true,
+  "doc": "Movement modes for Characters.",
+  "properties": {
+    "MOVE_None": [
+      "EMovementMode",
+      "None (movement is disabled)."
+    ],
+    "MOVE_Walking": [
+      "EMovementMode",
+      "Walking on a surface."
+    ],
+    "MOVE_NavWalking": [
+      "EMovementMode",
+      "Simplified walking on navigation data (e.g. navmesh).\nIf GetGenerateOverlapEvents() is true, then we will perform sweeps with each navmesh move.\nIf GetGenerateOverlapEvents() is false then movement is cheaper but characters can overlap other objects without some extra process to repel/resolve their collisions."
+    ],
+    "MOVE_Falling": [
+      "EMovementMode",
+      "Falling under the effects of gravity, such as after jumping or walking off the edge of a surface."
+    ],
+    "MOVE_Swimming": [
+      "EMovementMode",
+      "Swimming through a fluid volume, under the effects of gravity and buoyancy."
+    ],
+    "MOVE_Flying": [
+      "EMovementMode",
+      "Flying, ignoring the effects of gravity. Affected by the current physics volume's fluid friction."
+    ],
+    "MOVE_Custom": [
+      "EMovementMode",
+      "User-defined custom movement mode, including many possible sub-modes."
+    ],
+    "MOVE_MAX": [
+      "EMovementMode"
+    ]
+  },
+  "methods": []
+}

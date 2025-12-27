@@ -1,0 +1,2017 @@
+{
+  "name": "FString",
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "opCmp",
+      "return": "int",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "opIndex",
+      "return": "int16&",
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "opIndex",
+      "return": "int16",
+      "const": true,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AppendChar",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Character",
+          "type": "int16"
+        }
+      ]
+    },
+    {
+      "name": "Empty",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "Empty",
+      "return": "void",
+      "args": [
+        {
+          "name": "Slack",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "IsEmpty",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "args": [
+        {
+          "name": "NewReservedSize",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Reserve",
+      "return": "void",
+      "args": [
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Shrink",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "IsValidIndex",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Len",
+      "return": "int",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsNumeric",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Reverse",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "RemoveFromStart",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Prefix",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "RemoveFromEnd",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Suffix",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "Left",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "LeftChop",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Right",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RightChop",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Mid",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Start",
+          "type": "int"
+        },
+        {
+          "name": "Count",
+          "default": "MAX_int32",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Split",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Needle",
+          "type": "FString"
+        },
+        {
+          "name": "OutLeft",
+          "type": "FString&"
+        },
+        {
+          "name": "OutRight",
+          "type": "FString&"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        },
+        {
+          "name": "SearchDir",
+          "default": "ESearchDir :: FromStart",
+          "type": "ESearchDir"
+        }
+      ]
+    },
+    {
+      "name": "Replace",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "From",
+          "type": "FString"
+        },
+        {
+          "name": "To",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "Find",
+      "return": "int",
+      "const": true,
+      "args": [
+        {
+          "name": "SubStr",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        },
+        {
+          "name": "SearchDir",
+          "default": "ESearchDir :: FromStart",
+          "type": "ESearchDir"
+        },
+        {
+          "name": "StartPosition",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Contains",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "SubStr",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        },
+        {
+          "name": "SearchDir",
+          "default": "ESearchDir :: FromStart",
+          "type": "ESearchDir"
+        }
+      ]
+    },
+    {
+      "name": "FindChar",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Char",
+          "type": "int16"
+        },
+        {
+          "name": "Index",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "FindLastChar",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Char",
+          "type": "int16"
+        },
+        {
+          "name": "Index",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "StartsWith",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "SubStr",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "EndsWith",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "SubStr",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "MatchesWildcard",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Wildcard",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "Equals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: CaseSensitive",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "ToUpper",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToLower",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "LeftPad",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RightPad",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "TrimQuotes",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "OutQuotesRemoved",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "TrimStartAndEnd",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "TrimStart",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "TrimEnd",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Compare",
+      "return": "int",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: CaseSensitive",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "ToBool",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToDisplayName",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "bIsBool",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetHash",
+      "return": "uint",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "opAdd_r",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign_r",
+      "return": "FString&",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FQuat4f"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FQuat4f"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FQuat4f"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FRandomStream"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FRandomStream"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FRandomStream"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FIntVector2"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FIntVector2"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FIntVector2"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FIntVector4"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FIntVector4"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FIntVector4"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FIntVector"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FIntVector"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FIntVector"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBox3f"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBox3f"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBox3f"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBoxSphereBounds3f"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBoxSphereBounds3f"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBoxSphereBounds3f"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FRotator3f"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FRotator3f"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FRotator3f"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int8"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int8"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int8"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int16"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int16"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int16"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int64"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int64"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int64"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint16"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint16"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint16"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector4f"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector4f"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector4f"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBoxSphereBounds"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBoxSphereBounds"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FBoxSphereBounds"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector4"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector4"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector4"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector2f"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector2f"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector2f"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FTransform3f"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FTransform3f"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FTransform3f"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FDateTime"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FDateTime"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FDateTime"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FSoftObjectPath"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FSoftObjectPath"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FSoftObjectPath"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FSoftClassPath"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FSoftClassPath"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FSoftClassPath"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FPrimaryAssetType"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FPrimaryAssetType"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FPrimaryAssetType"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FPrimaryAssetId"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FPrimaryAssetId"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FPrimaryAssetId"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FTopLevelAssetPath"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FTopLevelAssetPath"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FTopLevelAssetPath"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "FString&",
+      "args": [
+        {
+          "name": "Value",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "ParseIntoArray",
+      "return": "int",
+      "const": true,
+      "args": [
+        {
+          "name": "OutArray",
+          "type": "TArray<FString>&"
+        },
+        {
+          "name": "Delimiter",
+          "type": "FString"
+        },
+        {
+          "name": "bCullEmpty",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ParseIntoArray",
+      "return": "int",
+      "const": true,
+      "args": [
+        {
+          "name": "OutArray",
+          "type": "TArray<FString>&"
+        },
+        {
+          "name": "Delimiters",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "bCullEmpty",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

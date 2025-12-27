@@ -1,0 +1,18 @@
+{
+  "name": "FUniversalObjectLocator",
+  "isStruct": true,
+  "doc": "Universal Object Locators (UOLs) define an address to an object.\n\nThe address is implemented as a chain of FUniversalObjectLocatorFragments, allowing addressing of objects\n  that may be nested deeply within levels of externally defined spawn or ownership logic.\n\nFor example, a Universal Object Locator may reference an Anim Instance within a Skeletal Mesh Actor\n  is spawned by a Child Actor Component that is spawned by Sequencer. This is impossible with a\n  regular soft object path, but is perfectly feasible for a UOL.\n\nThis type is 16 bytes.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FUniversalObjectLocator&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FUniversalObjectLocator"
+        }
+      ]
+    }
+  ]
+}

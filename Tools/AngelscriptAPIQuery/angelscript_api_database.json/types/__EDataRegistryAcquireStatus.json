@@ -1,0 +1,39 @@
+{
+  "name": "__EDataRegistryAcquireStatus",
+  "isEnum": true,
+  "doc": "State of a registry async request",
+  "properties": {
+    "NotStarted": [
+      "EDataRegistryAcquireStatus",
+      "Not started yet"
+    ],
+    "WaitingForInitialAcquire": [
+      "EDataRegistryAcquireStatus",
+      "Initial acquire still in progress"
+    ],
+    "InitialAcquireFinished": [
+      "EDataRegistryAcquireStatus",
+      "Temporary state, finished acquiring data but need to check resources"
+    ],
+    "WaitingForResources": [
+      "EDataRegistryAcquireStatus",
+      "Data requested and returned, still loading dependent resources"
+    ],
+    "AcquireFinished": [
+      "EDataRegistryAcquireStatus",
+      "Fully loaded"
+    ],
+    "AcquireError": [
+      "EDataRegistryAcquireStatus",
+      "Failed to acquire, may have timed out or had network issues, can be retried later"
+    ],
+    "DoesNotExist": [
+      "EDataRegistryAcquireStatus",
+      "Known to not exist, cannot be retried"
+    ],
+    "EDataRegistryAcquireStatus_MAX": [
+      "EDataRegistryAcquireStatus"
+    ]
+  },
+  "methods": []
+}

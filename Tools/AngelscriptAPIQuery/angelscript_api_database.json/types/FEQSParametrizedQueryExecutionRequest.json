@@ -1,0 +1,41 @@
+{
+  "name": "FEQSParametrizedQueryExecutionRequest",
+  "isStruct": true,
+  "properties": {
+    "QueryTemplate": [
+      "UEnvQuery",
+      2,
+      ""
+    ],
+    "QueryConfig": [
+      "TArray<FAIDynamicParam>",
+      2,
+      ""
+    ],
+    "EQSQueryBlackboardKey": [
+      "FBlackboardKeySelector",
+      2,
+      "blackboard key storing an EQS query template"
+    ],
+    "RunMode": [
+      "EEnvQueryRunMode",
+      2,
+      "determines which item will be stored (All = only first matching)"
+    ],
+    "bUseBBKeyForQueryTemplate": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FEQSParametrizedQueryExecutionRequest&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FEQSParametrizedQueryExecutionRequest"
+        }
+      ]
+    }
+  ]
+}

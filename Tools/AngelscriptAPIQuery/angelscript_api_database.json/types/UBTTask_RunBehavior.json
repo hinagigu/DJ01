@@ -1,0 +1,13 @@
+{
+  "name": "UBTTask_RunBehavior",
+  "inherits": "UBTTaskNode",
+  "doc": "RunBehavior task allows pushing subtrees on execution stack.\nSubtree asset can't be changed in runtime!\n\nThis limitation is caused by support for subtree's root level decorators,\nwhich are injected into parent tree, and structure of running tree\ncannot be modified in runtime (see: BTNode: ExecutionIndex, MemoryOffset)\n\nUse RunBehaviorDynamic task for subtrees that need to be changed in runtime.",
+  "properties": {
+    "BehaviorAsset": [
+      "UBehaviorTree",
+      2,
+      "behavior to run"
+    ]
+  },
+  "methods": []
+}

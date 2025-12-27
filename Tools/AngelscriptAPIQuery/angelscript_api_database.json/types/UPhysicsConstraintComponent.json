@@ -1,0 +1,671 @@
+{
+  "name": "UPhysicsConstraintComponent",
+  "inherits": "USceneComponent",
+  "doc": "This is effectively a joint that allows you to connect 2 rigid bodies together. You can create different types of joints using the various parameters of this component.",
+  "properties": {
+    "ConstraintActor1": [
+      "AActor",
+      2,
+      "Pointer to first Actor to constrain."
+    ],
+    "ComponentName1": [
+      "FConstrainComponentPropName",
+      2,
+      "Name of first component property to constrain. If Actor1 is NULL, will look within Owner.\nIf this is NULL, will use RootComponent of Actor1"
+    ],
+    "ConstraintActor2": [
+      "AActor",
+      2,
+      "Pointer to second Actor to constrain."
+    ],
+    "ComponentName2": [
+      "FConstrainComponentPropName",
+      2,
+      "Name of second component property to constrain. If Actor2 is NULL, will look within Owner.\nIf this is NULL, will use RootComponent of Actor2"
+    ],
+    "OnConstraintBroken": [
+      "FConstraintBrokenSignature",
+      "Notification when constraint is broken."
+    ],
+    "OnPlasticDeformation": [
+      "FPlasticDeformationEventSignature",
+      "Notification when constraint plasticity drive target changes."
+    ],
+    "ConstraintInstance": [
+      "FConstraintInstance",
+      2,
+      "All constraint settings"
+    ]
+  },
+  "methods": [
+    {
+      "name": "BreakConstraint",
+      "return": "void",
+      "doc": "Break this constraint",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetConstrainedComponents",
+      "return": "void",
+      "doc": "Get connected components and potential related attachement bones",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutComponent1",
+          "type": "UPrimitiveComponent&"
+        },
+        {
+          "name": "OutBoneName1",
+          "type": "FName&"
+        },
+        {
+          "name": "OutComponent2",
+          "type": "UPrimitiveComponent&"
+        },
+        {
+          "name": "OutBoneName2",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "GetConstraint",
+      "return": "FConstraintInstanceAccessor",
+      "doc": "Gets the constraint object",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetConstraintForce",
+      "return": "void",
+      "doc": "Retrieve the constraint force most recently applied to maintain this constraint. Returns 0 forces if the constraint is not initialized or broken.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutLinearForce",
+          "type": "FVector&"
+        },
+        {
+          "name": "OutAngularForce",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentSwing1",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current Swing1 of the constraint",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentSwing2",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current Swing2 of the constraint",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentTwist",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current Angular Twist of the constraint",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsBroken",
+      "return": "bool",
+      "doc": "Retrieve the status of constraint being broken.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsProjectionEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Is projection enabled. See SetProjectionEnabled",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAngularBreakable",
+      "return": "void",
+      "doc": "Sets the Angular Breakable properties\n     @param bAngularBreakable                Whether it is possible to break the joint with angular force\n     @param AngularBreakThreshold    Torque needed to break the joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAngularBreakable",
+          "type": "bool"
+        },
+        {
+          "name": "AngularBreakThreshold",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularDriveMode",
+      "return": "void",
+      "doc": "Switches the angular drive mode between SLERP and Twist And Swing\n\n     @param DriveMode        The angular drive mode to use. SLERP uses shortest spherical path, but will not work if any angular constraints are locked. Twist and Swing decomposes the path into the different angular degrees of freedom but may experience gimbal lock",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DriveMode",
+          "type": "EAngularDriveMode"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularDriveParams",
+      "return": "void",
+      "doc": "Sets the drive params for the angular drive.\n    @param PositionStrength         Positional strength for the drive (stiffness)\n    @param VelocityStrength         Velocity strength of the drive (damping)\n    @param InForceLimit     Max force applied by the drive",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PositionStrength",
+          "type": "float32"
+        },
+        {
+          "name": "VelocityStrength",
+          "type": "float32"
+        },
+        {
+          "name": "InForceLimit",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularOrientationTarget",
+      "return": "void",
+      "doc": "Sets the target orientation for the angular drive.\n    @param InPosTarget              Target orientation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPosTarget",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularPlasticity",
+      "return": "void",
+      "doc": "Sets the Angular Plasticity properties\n     @param bAngularPlasticity               Whether it is possible to reset the target angle from the angular displacement\n     @param AngularPlasticityThreshold       Degrees needed to reset the rest state of the joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAngularPlasticity",
+          "type": "bool"
+        },
+        {
+          "name": "AngularPlasticityThreshold",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularSwing1Limit",
+      "return": "void",
+      "doc": "Sets the Angular Swing1 Motion Type\n     @param ConstraintType   New Constraint Type\n     @param Swing1LimitAngle Size of limit in degrees",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MotionType",
+          "type": "EAngularConstraintMotion"
+        },
+        {
+          "name": "Swing1LimitAngle",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularSwing2Limit",
+      "return": "void",
+      "doc": "Sets the Angular Swing2 Motion Type\n     @param ConstraintType   New Constraint Type\n     @param Swing2LimitAngle Size of limit in degrees",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MotionType",
+          "type": "EAngularConstraintMotion"
+        },
+        {
+          "name": "Swing2LimitAngle",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularTwistLimit",
+      "return": "void",
+      "doc": "Sets the Angular Twist Motion Type\n     @param ConstraintType   New Constraint Type\n     @param TwistLimitAngle  Size of limit in degrees",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ConstraintType",
+          "type": "EAngularConstraintMotion"
+        },
+        {
+          "name": "TwistLimitAngle",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularVelocityDriveSLERP",
+      "return": "void",
+      "doc": "Enables/Disables the angular velocity slerp drive. Only relevant if the AngularDriveMode is set to SLERP\n\n     @param bEnableSLERP             Indicates whether the SLERP drive should be enabled. Only relevant if the AngularDriveMode is set to SLERP",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnableSLERP",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularVelocityDriveTwistAndSwing",
+      "return": "void",
+      "doc": "Enables/Disables angular velocity twist and swing drive. Only relevant if the AngularDriveMode is set to Twist and Swing\n\n     @param bEnableSwingDrive        Indicates whether the drive for the swing axis should be enabled. Only relevant if the AngularDriveMode is set to Twist and Swing\n     @param bEnableTwistDrive        Indicates whether the drive for the twist axis should be enabled. Only relevant if the AngularDriveMode is set to Twist and Swing",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnableTwistDrive",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableSwingDrive",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularVelocityTarget",
+      "return": "void",
+      "doc": "Sets the target velocity for the angular drive.\n    @param InVelTarget              Target velocity",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVelTarget",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetConstrainedComponents",
+      "return": "void",
+      "doc": "Directly specify component to connect. Will update frames based on current position.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component1",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "BoneName1",
+          "type": "FName"
+        },
+        {
+          "name": "Component2",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "BoneName2",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetConstraintReferenceFrame",
+      "return": "void",
+      "doc": "Pass in reference frame in. If the constraint is currently active, this will set its active local pose. Otherwise the change will take affect in InitConstraint.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Frame",
+          "type": "EConstraintFrame"
+        },
+        {
+          "name": "RefFrame",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "SetConstraintReferenceOrientation",
+      "return": "void",
+      "doc": "Pass in reference orientation in (maintains reference position). If the constraint is currently active, this will set its active local pose. Otherwise the change will take affect in InitConstraint.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Frame",
+          "type": "EConstraintFrame"
+        },
+        {
+          "name": "PriAxis",
+          "type": "FVector"
+        },
+        {
+          "name": "SecAxis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetConstraintReferencePosition",
+      "return": "void",
+      "doc": "Pass in reference position in (maintains reference orientation). If the constraint is currently active, this will set its active local pose. Otherwise the change will take affect in InitConstraint.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Frame",
+          "type": "EConstraintFrame"
+        },
+        {
+          "name": "RefPosition",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetContactTransferScale",
+      "return": "void",
+      "doc": "Sets the contact transfer scale properties\n     @param ContactTransferScale                Set the contact transfer scale for the parent of the joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContactTransferScale",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDisableCollision",
+      "return": "void",
+      "doc": "If true, the collision between the two rigid bodies of the constraint will be disabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bDisableCollision",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearBreakable",
+      "return": "void",
+      "doc": "Sets the Linear Breakable properties\n     @param bLinearBreakable         Whether it is possible to break the joint with linear force\n     @param LinearBreakThreshold     Force needed to break the joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bLinearBreakable",
+          "type": "bool"
+        },
+        {
+          "name": "LinearBreakThreshold",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearDriveParams",
+      "return": "void",
+      "doc": "Sets the drive params for the linear drive.\n    @param PositionStrength         Positional strength for the drive (stiffness)\n    @param VelocityStrength         Velocity strength of the drive (damping)\n    @param InForceLimit     Max force applied by the drive",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PositionStrength",
+          "type": "float32"
+        },
+        {
+          "name": "VelocityStrength",
+          "type": "float32"
+        },
+        {
+          "name": "InForceLimit",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearPlasticity",
+      "return": "void",
+      "doc": "Sets the Linear Plasticity properties\n     @param bLinearPlasticity                    Whether it is possible to reset the target angle from the Linear displacement\n     @param LinearPlasticityThreshold        Percent deformation needed to reset the rest length of the joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bLinearPlasticity",
+          "type": "bool"
+        },
+        {
+          "name": "LinearPlasticityThreshold",
+          "type": "float32"
+        },
+        {
+          "name": "PlasticityType",
+          "type": "EConstraintPlasticityType"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearPositionDrive",
+      "return": "void",
+      "doc": "Enables/Disables linear position drive\n\n    @param bEnableDriveX    Indicates whether the drive for the X-Axis should be enabled\n    @param bEnableDriveY    Indicates whether the drive for the Y-Axis should be enabled\n    @param bEnableDriveZ    Indicates whether the drive for the Z-Axis should be enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnableDriveX",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableDriveY",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableDriveZ",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearPositionTarget",
+      "return": "void",
+      "doc": "Sets the target position for the linear drive.\n    @param InPosTarget              Target position",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPosTarget",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearVelocityDrive",
+      "return": "void",
+      "doc": "Enables/Disables linear position drive\n\n    @param bEnableDriveX    Indicates whether the drive for the X-Axis should be enabled\n    @param bEnableDriveY    Indicates whether the drive for the Y-Axis should be enabled\n    @param bEnableDriveZ    Indicates whether the drive for the Z-Axis should be enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnableDriveX",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableDriveY",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableDriveZ",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearVelocityTarget",
+      "return": "void",
+      "doc": "Sets the target velocity for the linear drive.\n    @param InVelTarget              Target velocity",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVelTarget",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearXLimit",
+      "return": "void",
+      "doc": "Sets the LinearX Motion Type\n     @param ConstraintType   New Constraint Type\n     @param LimitSize                Size of limit",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ConstraintType",
+          "type": "ELinearConstraintMotion"
+        },
+        {
+          "name": "LimitSize",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearYLimit",
+      "return": "void",
+      "doc": "Sets the LinearY Motion Type\n     @param ConstraintType   New Constraint Type\n     @param LimitSize                Size of limit",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ConstraintType",
+          "type": "ELinearConstraintMotion"
+        },
+        {
+          "name": "LimitSize",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearZLimit",
+      "return": "void",
+      "doc": "Sets the LinearZ Motion Type\n     @param ConstraintType   New Constraint Type\n     @param LimitSize                Size of limit",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ConstraintType",
+          "type": "ELinearConstraintMotion"
+        },
+        {
+          "name": "LimitSize",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOrientationDriveSLERP",
+      "return": "void",
+      "doc": "Enables/Disables the angular orientation slerp drive. Only relevant if the AngularDriveMode is set to SLERP\n\n     @param bEnableSLERP             Indicates whether the SLERP drive should be enabled. Only relevant if the AngularDriveMode is set to SLERP",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnableSLERP",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetOrientationDriveTwistAndSwing",
+      "return": "void",
+      "doc": "Enables/Disables angular orientation drive. Only relevant if the AngularDriveMode is set to Twist and Swing\n\n     @param bEnableSwingDrive        Indicates whether the drive for the swing axis should be enabled. Only relevant if the AngularDriveMode is set to Twist and Swing\n     @param bEnableTwistDrive        Indicates whether the drive for the twist axis should be enabled. Only relevant if the AngularDriveMode is set to Twist and Swing",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnableTwistDrive",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableSwingDrive",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetProjectionEnabled",
+      "return": "void",
+      "doc": "If true, joint projection is enabled. Projection is a semi-physics post-solve correction for fixing small errors, and a teleport for fixing larger errors. See SetProjectionParams",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bProjectionEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetProjectionParams",
+      "return": "void",
+      "doc": "Set the projection settings for use when projection is enabled. See SetProjectionEnabled.\nFor ragdolls you usually require that ProjectionLinearAlpha and ProjectionAngularAlpha be zero. They are most useful for cosmetic chains etc. ProjectionLinearTolerance and ProjectionAngularTolerance\nare emergency error recovery settings and should only rarely affect the simulation. If the simulation is significantly affected by the Tolerance settings, it likely indicates a setup stability issue.\n\n@param ProjectionLinearAlpha Controls the semi-physical correction of linear error remaining after the joint solve. Will add energy into the system. Best for joint chains connected to a kinematic.\n@param ProjectionAngularAlpha Controls the semi-physical correction of angular error remaining after the joint solve. Will add energy into the system. Best for joint chains connected to a kinematic.\n@param ProjectionLinearTolerance Linear errors above this will be corrected with a non-physical teleport.\n@param ProjectionAngularTolerance Angular errors above this will be corrected with a non-physical teleport.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ProjectionLinearAlpha",
+          "type": "float32"
+        },
+        {
+          "name": "ProjectionAngularAlpha",
+          "type": "float32"
+        },
+        {
+          "name": "ProjectionLinearTolerance",
+          "type": "float32"
+        },
+        {
+          "name": "ProjectionAngularTolerance",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

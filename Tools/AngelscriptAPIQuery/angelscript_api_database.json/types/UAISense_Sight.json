@@ -1,0 +1,52 @@
+{
+  "name": "UAISense_Sight",
+  "inherits": "UAISense",
+  "properties": {
+    "MaxTracesPerTick": [
+      "int",
+      2,
+      ""
+    ],
+    "MaxAsyncTracesPerTick": [
+      "int",
+      2,
+      "Maximum number of asynchronous traces that can be requested in a single update call"
+    ],
+    "MinQueriesPerTimeSliceCheck": [
+      "int",
+      2,
+      ""
+    ],
+    "MaxTimeSlicePerTick": [
+      "float",
+      2,
+      ""
+    ],
+    "HighImportanceQueryDistanceThreshold": [
+      "float32",
+      2,
+      ""
+    ],
+    "MaxQueryImportance": [
+      "float32",
+      2,
+      ""
+    ],
+    "SightLimitQueryImportance": [
+      "float32",
+      2,
+      ""
+    ],
+    "PendingQueriesBudgetReductionRatio": [
+      "float32",
+      2,
+      "Defines the amount of async trace queries to prevent based on the number of pending queries at the start of an update.\n1 means that the async trace budget is slashed by the pending queries count\n0 means that the async trace budget is not impacted by the pending queries"
+    ],
+    "bUseAsynchronousTraceForDefaultSightQueries": [
+      "bool",
+      2,
+      "Defines if we are allowed to use asynchronous trace queries when there is no IAISightTargetInterface for a Target"
+    ]
+  },
+  "methods": []
+}

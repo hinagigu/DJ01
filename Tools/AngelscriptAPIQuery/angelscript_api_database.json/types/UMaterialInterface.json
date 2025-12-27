@@ -1,0 +1,150 @@
+{
+  "name": "UMaterialInterface",
+  "inherits": "UObject",
+  "properties": {
+    "SubsurfaceProfile": [
+      "USubsurfaceProfile",
+      "SubsurfaceProfile, for Screen Space Subsurface Scattering.."
+    ],
+    "NeuralProfile": [
+      "UNeuralProfile",
+      "Neural network profile. For internal usage, not editable/visible"
+    ],
+    "LightmassSettings": [
+      "FLightmassMaterialInterfaceSettings",
+      2,
+      "The Lightmass settings for this object."
+    ],
+    "AssetUserData": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the asset"
+    ],
+    "PreviewMesh": [
+      "FSoftObjectPath",
+      2,
+      "The mesh used by the material editor to preview the material."
+    ],
+    "ThumbnailInfo": [
+      "UThumbnailInfo",
+      2,
+      "Information for thumbnail rendering"
+    ],
+    "AssetImportData": [
+      "UAssetImportData",
+      2,
+      "Importing data and options used for this material"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetBaseMaterial",
+      "return": "UMaterial",
+      "doc": "Walks up parent chain and finds the base Material that this is an instance of. Just calls the virtual GetMaterial()",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBlendMode",
+      "return": "EBlendMode",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNaniteOverideMaterial",
+      "return": "UMaterialInterface",
+      "const": true,
+      "doc": "Get the associated nanite override material.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetParameterInfo",
+      "return": "FMaterialParameterInfo",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Association",
+          "type": "EMaterialParameterAssociation"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "LayerFunction",
+          "type": "UMaterialFunctionInterface"
+        }
+      ]
+    },
+    {
+      "name": "GetPhysicalMaterial",
+      "return": "UPhysicalMaterial",
+      "const": true,
+      "doc": "Return a pointer to the physical material used by this material instance.\n@return The physical material.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPhysicalMaterialFromMap",
+      "return": "UPhysicalMaterial",
+      "const": true,
+      "doc": "Return a pointer to the physical material from mask map at given index.\n@return The physical material.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetPhysicalMaterialMask",
+      "return": "UPhysicalMaterialMask",
+      "const": true,
+      "doc": "Return a pointer to the physical material mask used by this material instance.\n@return The physical material.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetForceMipLevelsToBeResident",
+      "return": "void",
+      "doc": "Force the streaming system to disregard the normal logic for the specified duration and\ninstead always load all mip-levels for all textures used by this material.\n\n@param OverrideForceMiplevelsToBeResident    - Whether to use (true) or ignore (false) the bForceMiplevelsToBeResidentValue parameter.\n@param bForceMiplevelsToBeResidentValue              - true forces all mips to stream in. false lets other factors decide what to do with the mips.\n@param ForceDuration                                                 - Number of seconds to keep all mip-levels in memory, disregarding the normal priority logic. Negative value turns it off.\n@param CinematicTextureGroups                                - Bitfield indicating texture groups that should use extra high-resolution mips\n@param bFastResponse                                                 - USE WITH EXTREME CAUTION! Fast response textures incur sizable GT overhead and disturb streaming metric calculation. Avoid whenever possible.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OverrideForceMiplevelsToBeResident",
+          "type": "bool"
+        },
+        {
+          "name": "bForceMiplevelsToBeResidentValue",
+          "type": "bool"
+        },
+        {
+          "name": "ForceDuration",
+          "type": "float32"
+        },
+        {
+          "name": "CinematicTextureGroups",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "bFastResponse",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

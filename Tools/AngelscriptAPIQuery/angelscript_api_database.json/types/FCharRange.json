@@ -1,0 +1,29 @@
+{
+  "name": "FCharRange",
+  "isStruct": true,
+  "doc": "Represents a range of characters, specified by the Unicode code point of the first and last characters in the range, both included.\n If you need a single-character range, simply use the same character for both the first and last characters.",
+  "properties": {
+    "First": [
+      "uint16",
+      2,
+      "Unicode code point of the first character in the range (inclusive). Only characters within the Basic Multilingual Plane are supported.\n Note: The code point must be entered in decimal, not hexadecimal."
+    ],
+    "Last": [
+      "uint16",
+      2,
+      "Unicode code point of the last character in the range (inclusive). Only characters within the Basic Multilingual Plane are supported.\n Note: The code point must be entered in decimal, not hexadecimal."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCharRange&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCharRange"
+        }
+      ]
+    }
+  ]
+}

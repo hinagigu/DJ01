@@ -1,0 +1,33 @@
+{
+  "name": "UCommonInputActionDomain",
+  "inherits": "UDataAsset",
+  "doc": "Describes an input-event handling domain. It's InnerBehavior determines how events\nflow between widgets within the domain and Behavior determines how events will flow to\nother Domains in the DomainTable.",
+  "properties": {
+    "Behavior": [
+      "ECommonInputEventFlowBehavior",
+      2,
+      "Behavior of an input event between Action Domains, i.e., how an event flows into the next Action Domain"
+    ],
+    "InnerBehavior": [
+      "ECommonInputEventFlowBehavior",
+      2,
+      "Behavior of an input event within an Action Domain, i.e., how an event flows to a lower ZOrder active widget\nwithin the same Action Domain"
+    ],
+    "bUseActionDomainDesiredInputConfig": [
+      "bool",
+      2,
+      ""
+    ],
+    "InputMode": [
+      "ECommonInputMode",
+      2,
+      ""
+    ],
+    "MouseCaptureMode": [
+      "EMouseCaptureMode",
+      2,
+      ""
+    ]
+  },
+  "methods": []
+}

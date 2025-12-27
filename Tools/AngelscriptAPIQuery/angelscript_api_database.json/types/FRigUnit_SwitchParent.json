@@ -1,0 +1,39 @@
+{
+  "name": "FRigUnit_SwitchParent",
+  "isStruct": true,
+  "doc": "Switches an element to a new parent.",
+  "properties": {
+    "Mode": [
+      "ERigSwitchParentMode",
+      "Depending on this the child will switch to the world,\n       * back to its default or to the item provided by the Parent pin"
+    ],
+    "Child": [
+      "FRigElementKey",
+      "The child to switch to a new parent"
+    ],
+    "Parent": [
+      "FRigElementKey",
+      "The optional parent to switch to. This is only used if the mode is set to 'Parent Item'"
+    ],
+    "bMaintainGlobal": [
+      "bool",
+      "If set to true the item will maintain its global transform,\n       * otherwise it will maintain local"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SwitchParent&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SwitchParent"
+        }
+      ]
+    }
+  ]
+}

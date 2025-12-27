@@ -1,0 +1,63 @@
+{
+  "name": "UImgMediaSettings",
+  "inherits": "UObject",
+  "doc": "Settings for the ImgMedia module.",
+  "properties": {
+    "DefaultFrameRate": [
+      "FFrameRate",
+      2,
+      "Default frame rate to use if none was specified in image sequence or media source (default = 1/24)."
+    ],
+    "BandwidthThrottlingEnabled": [
+      "bool",
+      2,
+      "If there is not enough bandwidth to play the media, then lower it (for example by skipping frames) to try and get playback."
+    ],
+    "CacheBehindPercentage": [
+      "float32",
+      2,
+      "Percentage of cache to use for frames behind the play head (default = 25%)."
+    ],
+    "CacheSizeGB": [
+      "float32",
+      2,
+      "Maximum size of the look-ahead cache (in GB; default = 1 GB)."
+    ],
+    "CacheThreads": [
+      "int",
+      2,
+      "Maximum number of image caching threads to use (0 = number of cores, default = 2)."
+    ],
+    "CacheThreadStackSizeKB": [
+      "int",
+      2,
+      "Size of the stack for each caching thread (in kB; default = 128)."
+    ],
+    "GlobalCacheSizeGB": [
+      "float32",
+      2,
+      "Maximum size of the global look-ahead cache (in GB; default = 1 GB). Must be greater or equal to CacheSizeGB."
+    ],
+    "UseGlobalCache": [
+      "bool",
+      2,
+      "Whether to use the global cache or not."
+    ],
+    "ExrDecoderThreads": [
+      "uint",
+      2,
+      "Number of worker threads to use when decoding EXR images (0 = auto)."
+    ],
+    "DefaultProxy": [
+      "FString",
+      2,
+      "Name of default media source proxy URLs (default = 'proxy').\n\nImage sequence media sources may contain more than one media source URL. Additional\nURLs are called media source proxies, and they are generally used for switching to\nlower resolution media content for improved performance during development and testing.\n\nEach proxy URL has a name associated with it, such as 'proxy', 'lowres', or any\nother user defined tag. It is up to the media source to interpret this value and\nmap it to a media source URL. For example, a media source consisting of a sequence\nof uncompressed images may use a proxy name as the name of the sub-directory that\ncontains proxy content, such as a low-res version of the image sequence.\n\nWhen default proxies are enabled via the UseDefaultProxy setting, media players\nwill first try to locate the proxy content identified by the DefaultProxy tag.\nIf no such proxy content is available, they will fall back to the media source's\ndefault URL.\n\n@see UseDefaultProxy"
+    ],
+    "UseDefaultProxy": [
+      "bool",
+      2,
+      "Whether to enable image sequence proxies (default = false).\n\nImage sequence media sources may contain more than one media source URL. Additional\nURLs are called media source proxies, and they are generally used for switching to\nlower resolution media content for improved performance during development and testing.\n\nEach proxy URL has a name associated with it, such as 'proxy', 'lowres', or any\nother user defined tag. It is up to the media source to interpret this value and\nmap it to a media source URL. For example, a media source consisting of a sequence\nof uncompressed images may use a proxy name as the name of the sub-directory that\ncontains proxy content, such as a low-res version of the image sequence.\n\nWhen default proxies are enabled via the UseDefaultProxy setting, media players\nwill first try to locate the proxy content identified by the DefaultProxy tag.\nIf no such proxy content is available, they will fall back to the media source's\ndefault URL.\n\n@see DefaultProxy"
+    ]
+  },
+  "methods": []
+}

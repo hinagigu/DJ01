@@ -1,0 +1,66 @@
+{
+  "name": "UEnhancedInputDeveloperSettings",
+  "inherits": "UDeveloperSettingsBackedByCVars",
+  "doc": "Developer settings for Enhanced Input",
+  "properties": {
+    "DefaultMappingContexts": [
+      "TArray<FDefaultContextSetting>",
+      2,
+      "Array of any input mapping contexts that you want to be applied by default to the Enhanced Input local player subsystem.\nNOTE: These mapping context's can only be from your game's root content directory, not plugins."
+    ],
+    "DefaultWorldSubsystemMappingContexts": [
+      "TArray<FDefaultContextSetting>",
+      2,
+      "Array of any input mapping contexts that you want to be applied by default to the Enhanced Input world subsystem.\nNOTE: These mapping context's can only be from your game's root content directory, not plugins."
+    ],
+    "PlatformSettings": [
+      "FPerPlatformSettings",
+      2,
+      "Platform specific settings for Enhanced Input.\n@see UEnhancedInputPlatformSettings"
+    ],
+    "UserSettingsClass": [
+      "TSoftClassPtr<UEnhancedInputUserSettings>",
+      2,
+      "The class that should be used for the User Settings by each Enhanced Input subsystem.\nAn instance of this class will be spawned by each Enhanced Input subsytem as a place to store\nuser settings such as keymappings, accessibility settings, etc. Subclass this to add more custom\noptions to your game.\n\nNote: This is a new experimental feature!"
+    ],
+    "DefaultPlayerMappableKeyProfileClass": [
+      "TSoftClassPtr<UEnhancedPlayerMappableKeyProfile>",
+      2,
+      "The default class for the player mappable key profile, used to store the key mappings set by the player in the user settings.\n\nNote: This is a new experimental feature!"
+    ],
+    "DefaultWorldInputClass": [
+      "TSoftClassPtr<UEnhancedPlayerInput>",
+      2,
+      "The default player input class that the Enhanced Input world subsystem will use."
+    ],
+    "bSendTriggeredEventsWhenInputIsFlushed": [
+      "bool",
+      "If true, then any in progress Enhanced Input Actions will fire Cancelled and Triggered events\nwhen input is flushed (i.e. the viewport has lost focus, or UEnhancedPlayerInput::FlushPressedKeys has been called)\n\nIf false, then enhanced input actions may not fire their delegates when input is flushed and their key state would be retained."
+    ],
+    "bEnableUserSettings": [
+      "bool",
+      "If true, then an instance of the User Settings Class will be created on each Enhanced Input subsystem.\n\nNote: This is a new experimental feature!"
+    ],
+    "bEnableDefaultMappingContexts": [
+      "bool",
+      "If true, then the DefaultMappingContexts will be applied to all Enhanced Input Subsystems."
+    ],
+    "bShouldOnlyTriggerLastActionInChord": [
+      "bool",
+      "If true, then only the last action in a ChordedAction trigger will be fired.\nThis means that only the action that has the ChordedTrigger on it will be fired, not the individual steps.\n\nDefault value is true."
+    ],
+    "bLogOnDeprecatedConfigUsed": [
+      "bool",
+      "If true, then a warning will be logged when a UPlayerMappableInputConfig that has been marked as deprecated is used."
+    ],
+    "bEnableWorldSubsystem": [
+      "bool",
+      "If true, then the world subsystem will be created."
+    ],
+    "bShouldLogAllWorldSubsystemInputs": [
+      "bool",
+      "If true then the Enhanced Input world subsystem will log all input that is being processed by it (keypresses, analog values, etc)\nNote: This can produce A LOT of logs, so only use this if you are debugging something. Does nothing in shipping builds"
+    ]
+  },
+  "methods": []
+}

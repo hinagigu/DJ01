@@ -1,0 +1,34 @@
+{
+  "name": "FUserGeneratedContentLocalizationDescriptor",
+  "isStruct": true,
+  "doc": "Minimal descriptor needed to generate a localization target for UGC localization.",
+  "properties": {
+    "NativeCulture": [
+      "FString",
+      2,
+      "The culture that the source text is authored in.\n@note You shouldn't change this once you start to localize your text."
+    ],
+    "CulturesToGenerate": [
+      "TArray<FString>",
+      2,
+      "The cultures that we should generate localization data for.\n@note Will implicitly always contain the native culture during export/compile."
+    ],
+    "PoFormat": [
+      "EPortableObjectFormat",
+      2,
+      "What format of PO file should we use?\n@note You can adjust this later and we'll attempt to preserve any existing localization data by importing with the old setting prior to export."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FUserGeneratedContentLocalizationDescriptor&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FUserGeneratedContentLocalizationDescriptor"
+        }
+      ]
+    }
+  ]
+}

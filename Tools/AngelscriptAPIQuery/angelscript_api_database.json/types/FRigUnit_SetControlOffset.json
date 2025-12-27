@@ -1,0 +1,35 @@
+{
+  "name": "FRigUnit_SetControlOffset",
+  "isStruct": true,
+  "doc": "SetControlOffset is used to perform a change in the hierarchy by setting a single control's transform.\nThis is typically only used during the Construction Event.",
+  "properties": {
+    "Control": [
+      "FName",
+      "The name of the Control to set the transform for."
+    ],
+    "Offset": [
+      "FTransform",
+      "The offset transform to set for the control"
+    ],
+    "Space": [
+      "ERigVMTransformSpace",
+      "Defines if the bone's transform should be set\nin local or global space."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SetControlOffset&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SetControlOffset"
+        }
+      ]
+    }
+  ]
+}

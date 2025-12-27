@@ -1,0 +1,319 @@
+{
+  "name": "UScrollBox",
+  "inherits": "UPanelWidget",
+  "doc": "An arbitrary scrollable collection of widgets.  Great for presenting 10-100 widgets in a list.  Doesn't support virtualization.",
+  "properties": {
+    "WidgetStyle": [
+      "FScrollBoxStyle",
+      "The style"
+    ],
+    "WidgetBarStyle": [
+      "FScrollBarStyle",
+      "The bar style"
+    ],
+    "AlwaysShowScrollbarTrack": [
+      "bool"
+    ],
+    "BackPadScrolling": [
+      "bool",
+      "Whether to back pad this scroll box, allowing user to scroll backward until child contents are no longer visible"
+    ],
+    "FrontPadScrolling": [
+      "bool",
+      "Whether to front pad this scroll box, allowing user to scroll forward until child contents are no longer visible"
+    ],
+    "NavigationScrollPadding": [
+      "float32",
+      "The amount of padding to ensure exists between the item being navigated to, at the edge of the\nscrollbox.  Use this if you want to ensure there's a preview of the next item the user could scroll to."
+    ],
+    "bAllowRightClickDragScrolling": [
+      "bool",
+      "Option to disable right-click-drag scrolling"
+    ],
+    "OnUserScrolled": [
+      "FOnUserScrolledEvent",
+      "Called when the scroll has changed"
+    ],
+    "OnScrollBarVisibilityChanged": [
+      "FOnScrollBarVisibilityChangedEvent",
+      "Called when the scrollbar visibility has changed"
+    ],
+    "bAnimateWheelScrolling": [
+      "bool",
+      "True to lerp smoothly when wheel scrolling along the scroll box"
+    ],
+    "Orientation": [
+      "EOrientation",
+      "The orientation of the scrolling and stacking in the box."
+    ],
+    "ScrollBarVisibility": [
+      "ESlateVisibility",
+      "Visibility"
+    ],
+    "ConsumeMouseWheel": [
+      "EConsumeMouseWheel",
+      "When mouse wheel events should be consumed."
+    ],
+    "ScrollbarThickness": [
+      "FVector2D",
+      "The thickness of the scrollbar thumb"
+    ],
+    "ScrollbarPadding": [
+      "FMargin",
+      "The margin around the scrollbar"
+    ],
+    "AlwaysShowScrollbar": [
+      "bool"
+    ],
+    "AllowOverscroll": [
+      "bool",
+      "Disable to stop scrollbars from activating inertial overscrolling"
+    ],
+    "NavigationDestination": [
+      "EDescendantScrollDestination",
+      "Sets where to scroll a widget to when using explicit navigation or if ScrollWhenFocusChanges is enabled"
+    ],
+    "ScrollWhenFocusChanges": [
+      "EScrollWhenFocusChanges",
+      "Scroll behavior when user focus is given to a child widget"
+    ],
+    "WheelScrollMultiplier": [
+      "float32",
+      "The multiplier to apply when wheel scrolling"
+    ]
+  },
+  "methods": [
+    {
+      "name": "EndInertialScrolling",
+      "return": "void",
+      "doc": "Instantly stops any inertial scrolling that is currently in progress",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetScrollOffset",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the scroll offset of the scrollbox in Slate Units.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetScrollOffsetOfEnd",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the scroll offset of the bottom of the ScrollBox in Slate Units.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetViewFraction",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the fraction currently visible in the scrollbox",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetViewOffsetFraction",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScrollToEnd",
+      "return": "void",
+      "doc": "Scrolls the ScrollBox to the bottom instantly during the next layout pass.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScrollToStart",
+      "return": "void",
+      "doc": "Scrolls the ScrollBox to the top instantly",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScrollWidgetIntoView",
+      "return": "void",
+      "doc": "Scrolls the ScrollBox to the widget during the next layout pass.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetToFind",
+          "type": "UWidget"
+        },
+        {
+          "name": "AnimateScroll",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "ScrollDestination",
+          "default": "EDescendantScrollDestination :: IntoView",
+          "type": "EDescendantScrollDestination"
+        },
+        {
+          "name": "Padding",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAllowOverscroll",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAllowOverscroll",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAlwaysShowScrollbar",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAlwaysShowScrollbar",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimateWheelScrolling",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bShouldAnimateWheelScrolling",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetConsumeMouseWheel",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewConsumeMouseWheel",
+          "type": "EConsumeMouseWheel"
+        }
+      ]
+    },
+    {
+      "name": "SetNavigationDestination",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewNavigationDestination",
+          "type": "EDescendantScrollDestination"
+        }
+      ]
+    },
+    {
+      "name": "SetOrientation",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewOrientation",
+          "type": "EOrientation"
+        }
+      ]
+    },
+    {
+      "name": "SetScrollbarPadding",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewScrollbarPadding",
+          "type": "FMargin"
+        }
+      ]
+    },
+    {
+      "name": "SetScrollbarThickness",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewScrollbarThickness",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetScrollBarVisibility",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewScrollBarVisibility",
+          "type": "ESlateVisibility"
+        }
+      ]
+    },
+    {
+      "name": "SetScrollOffset",
+      "return": "void",
+      "doc": "Updates the scroll offset of the scrollbox.\n@param NewScrollOffset is in Slate Units.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewScrollOffset",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetScrollWhenFocusChanges",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewScrollWhenFocusChanges",
+          "type": "EScrollWhenFocusChanges"
+        }
+      ]
+    },
+    {
+      "name": "SetWheelScrollMultiplier",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewWheelScrollMultiplier",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

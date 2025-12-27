@@ -1,0 +1,213 @@
+{
+  "name": "__UAssetRegistryHelpers",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateAssetData",
+      "return": "FAssetData",
+      "doc": "Creates asset data from a UObject.\n\n@param InAsset       The asset to create asset data for\n@param bAllowBlueprintClass  By default trying to create asset data for a blueprint class will create one for the UBlueprint instead",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAsset",
+          "type": "const UObject"
+        },
+        {
+          "name": "bAllowBlueprintClass",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "FindAssetNativeClass",
+      "return": "UClass",
+      "doc": "Returns the first native class of the asset type that can be found.  Normally this is just the FAssetData::GetClass(),\nhowever if the class is a blueprint generated class it may not be loaded.  In which case GetAncestorClassNames will\nbe used to find the first native super class.  This can be slow if temporary caching mode is not on.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "GetAsset",
+      "return": "UObject",
+      "doc": "Returns the asset UObject if it is loaded or loads the asset if it is unloaded then returns the result",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "GetBlueprintAssets",
+      "return": "void",
+      "doc": "Gets asset data for all blueprint assets that match the filter. ClassPaths in the filter specify the blueprint's parent class.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFilter",
+          "type": "FARFilter"
+        },
+        {
+          "name": "OutAssetData",
+          "type": "TArray<FAssetData>&"
+        }
+      ]
+    },
+    {
+      "name": "GetClass",
+      "return": "UClass",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "GetExportTextName",
+      "return": "FString",
+      "doc": "Returns the name for the asset in the form: Class'ObjectPath'",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "GetFullName",
+      "return": "FString",
+      "doc": "Returns the full name for the asset in the form: Class ObjectPath",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "GetTagValue",
+      "return": "bool",
+      "doc": "Gets the value associated with the given tag as a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetData",
+          "type": "FAssetData"
+        },
+        {
+          "name": "InTagName",
+          "type": "FName"
+        },
+        {
+          "name": "OutTagValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "IsAssetLoaded",
+      "return": "bool",
+      "doc": "Returns true if the asset is loaded",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "IsRedirector",
+      "return": "bool",
+      "doc": "Returns true if the this asset is a redirector.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "IsUAsset",
+      "return": "bool",
+      "doc": "Returns true if this is the primary asset in a package, true for maps and assets but false for secondary objects like class redirectors",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "doc": "Checks to see if this AssetData refers to an asset or is NULL",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterTagsAndValues",
+      "return": "FARFilter",
+      "doc": "Populates the FARFilters tags and values map with the passed in tags and values",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFilter",
+          "type": "FARFilter"
+        },
+        {
+          "name": "InTagsAndValues",
+          "type": "TArray<FTagAndValue>"
+        }
+      ]
+    },
+    {
+      "name": "ToSoftObjectPath",
+      "return": "FSoftObjectPath",
+      "doc": "Convert to a SoftObjectPath for loading",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "name": "UCineCameraComponent",
+  "inherits": "UCameraComponent",
+  "doc": "A specialized version of a camera component, geared toward cinematic usage.",
+  "properties": {
+    "CurrentFocusDistance": [
+      "float32",
+      1,
+      "Read-only. Control this value via FocusSettings."
+    ],
+    "Filmback": [
+      "FCameraFilmbackSettings",
+      "Controls the filmback of the camera."
+    ],
+    "LensSettings": [
+      "FCameraLensSettings",
+      "Controls the camera's lens."
+    ],
+    "FocusSettings": [
+      "FCameraFocusSettings",
+      "Controls the camera's focus."
+    ],
+    "CropSettings": [
+      "FPlateCropSettings",
+      "Controls the crop settings."
+    ],
+    "CurrentFocalLength": [
+      "float32",
+      "Current focal length of the camera (i.e. controls FoV, zoom)"
+    ],
+    "CurrentAperture": [
+      "float32",
+      "Current aperture, in terms of f-stop (e.g. 2.8 for f/2.8)"
+    ],
+    "bOverride_CustomNearClippingPlane": [
+      "bool"
+    ],
+    "CustomNearClippingPlane": [
+      "float32",
+      "Set bOverride_CustomNearClippingPlane to true if you want to use a custom clipping plane instead of GNearClippingPlane."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCropPresetName",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the lens name of the camera with the current settings.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDefaultFilmbackPresetName",
+      "return": "FString",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFilmbackPresetName",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the filmback name of the camera with the current settings.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHorizontalFieldOfView",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the horizonal FOV of the camera with current settings.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLensPresetName",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the lens name of the camera with the current settings.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVerticalFieldOfView",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the vertical FOV of the camera with current settings.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCropPresetByName",
+      "return": "void",
+      "doc": "Set the current lens settings by preset name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPresetName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCropSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewCropSettings",
+          "type": "FPlateCropSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetCurrentAperture",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewCurrentAperture",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetCurrentFocalLength",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFocalLength",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomNearClippingPlane",
+      "return": "void",
+      "doc": "Sets near clipping plane of the cine camera.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewCustomNearClippingPlane",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFilmback",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewFilmback",
+          "type": "FCameraFilmbackSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetFilmbackPresetByName",
+      "return": "void",
+      "doc": "Set the current preset settings by preset name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPresetName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetFocusSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewFocusSettings",
+          "type": "FCameraFocusSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetLensPresetByName",
+      "return": "void",
+      "doc": "Set the current lens settings by preset name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPresetName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetLensSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLensSettings",
+          "type": "FCameraLensSettings"
+        }
+      ]
+    }
+  ]
+}

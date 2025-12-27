@@ -1,0 +1,125 @@
+{
+  "name": "UAISense_Blueprint",
+  "inherits": "UAISense",
+  "properties": {
+    "ListenerDataType": [
+      "TSubclassOf<UUserDefinedStruct>"
+    ],
+    "ListenerContainer": [
+      "TArray<TObjectPtr<UAIPerceptionComponent>>",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAllListenerActors",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ListenerActors",
+          "type": "TArray<AActor>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllListenerComponents",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ListenerComponents",
+          "type": "TArray<UAIPerceptionComponent>&"
+        }
+      ]
+    },
+    {
+      "name": "OnNewPawn",
+      "return": "void",
+      "callable": false,
+      "doc": "called when sense's instance gets notified about new pawn that has just been spawned",
+      "event": true,
+      "unrealname": "K2_OnNewPawn",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPawn",
+          "type": "APawn"
+        }
+      ]
+    },
+    {
+      "name": "OnListenerRegistered",
+      "return": "void",
+      "callable": false,
+      "doc": "@param PerceptionComponent is ActorListener's AIPerceptionComponent instance",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorListener",
+          "type": "AActor"
+        },
+        {
+          "name": "PerceptionComponent",
+          "type": "UAIPerceptionComponent"
+        }
+      ]
+    },
+    {
+      "name": "OnListenerUnregistered",
+      "return": "void",
+      "callable": false,
+      "doc": "called when a listener unregistered from this sense. Most often this is called due to actor's death\n    @param PerceptionComponent is ActorListener's AIPerceptionComponent instance",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorListener",
+          "type": "AActor"
+        },
+        {
+          "name": "PerceptionComponent",
+          "type": "UAIPerceptionComponent"
+        }
+      ]
+    },
+    {
+      "name": "OnListenerUpdated",
+      "return": "void",
+      "callable": false,
+      "doc": "@param PerceptionComponent is ActorListener's AIPerceptionComponent instance",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorListener",
+          "type": "AActor"
+        },
+        {
+          "name": "PerceptionComponent",
+          "type": "UAIPerceptionComponent"
+        }
+      ]
+    },
+    {
+      "name": "OnUpdate",
+      "return": "float32",
+      "callable": false,
+      "doc": "returns requested amount of time to pass until next frame.\n    Return 0 to get update every frame (WARNING: hits performance)",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EventsToProcess",
+          "type": "TArray<UAISenseEvent>"
+        }
+      ]
+    }
+  ]
+}

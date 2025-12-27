@@ -1,0 +1,63 @@
+{
+  "name": "UPlanarReflectionComponent",
+  "inherits": "USceneCaptureComponent",
+  "doc": "UPlanarReflectionComponent",
+  "properties": {
+    "NormalDistortionStrength": [
+      "float32",
+      2,
+      "Controls the strength of normals when distorting the planar reflection."
+    ],
+    "PrefilterRoughness": [
+      "float32",
+      2,
+      "The roughness value to prefilter the planar reflection texture with, useful for hiding low resolution.  Larger values have larger GPU cost."
+    ],
+    "PrefilterRoughnessDistance": [
+      "float32",
+      2,
+      "The distance at which the prefilter roughness value will be achieved."
+    ],
+    "ScreenPercentage": [
+      "int",
+      2,
+      "Downsample percent, can be used to reduce GPU time rendering the planar reflection."
+    ],
+    "ExtraFOV": [
+      "float32",
+      2,
+      "Additional FOV used when rendering to the reflection texture.\nThis is useful when normal distortion is causing reads outside the reflection texture.\nLarger values increase rendering thread and GPU cost, as more objects and triangles have to be rendered into the planar reflection."
+    ],
+    "DistanceFromPlaneFadeoutStart": [
+      "float32",
+      2,
+      "Receiving pixels at this distance from the reflection plane will begin to fade out the planar reflection."
+    ],
+    "DistanceFromPlaneFadeoutEnd": [
+      "float32",
+      2,
+      "Receiving pixels at this distance from the reflection plane will have completely faded out the planar reflection."
+    ],
+    "AngleFromPlaneFadeStart": [
+      "float32",
+      2,
+      "Receiving pixels whose normal is at this angle from the reflection plane will begin to fade out the planar reflection."
+    ],
+    "AngleFromPlaneFadeEnd": [
+      "float32",
+      2,
+      "Receiving pixels whose normal is at this angle from the reflection plane will have completely faded out the planar reflection."
+    ],
+    "bShowPreviewPlane": [
+      "bool",
+      2,
+      ""
+    ],
+    "bRenderSceneTwoSided": [
+      "bool",
+      2,
+      "Whether to render the scene as two-sided, which can be useful to hide artifacts where normal distortion would read 'under' an object that has been clipped by the reflection plane.\nWith this setting enabled, the backfaces of a mesh would be displayed in the clipped region instead of the background which is potentially a bright sky.\nBe sure to add the water plane to HiddenActors if enabling this, as the water plane will now block the reflection."
+    ]
+  },
+  "methods": []
+}

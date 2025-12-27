@@ -1,0 +1,112 @@
+{
+  "name": "UCommonVisibilitySwitcher",
+  "inherits": "UOverlay",
+  "doc": "Basic switcher that toggles visibility on its children to only show one widget at a time. Activates visible widget if possible.",
+  "properties": {
+    "ShownVisibility": [
+      "ESlateVisibility",
+      2,
+      ""
+    ],
+    "bAutoActivateSlot": [
+      "bool",
+      2,
+      "Whether or not to automatically activate a slot when it becomes visible"
+    ],
+    "bActivateFirstSlotOnAdding": [
+      "bool",
+      2,
+      "Whether or not to activate the first slot if one is added dynamically"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ActivateVisibleSlot",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DeactivateVisibleSlot",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DecrementActiveWidgetIndex",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAllowWrapping",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveWidget",
+      "return": "UWidget",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActiveWidgetIndex",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IncrementActiveWidgetIndex",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAllowWrapping",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "IsCurrentlySwitching",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetActiveWidget",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Widget",
+          "type": "const UWidget"
+        }
+      ]
+    },
+    {
+      "name": "SetActiveWidgetIndex",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

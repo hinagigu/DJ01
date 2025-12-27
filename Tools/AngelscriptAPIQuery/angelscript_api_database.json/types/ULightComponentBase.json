@@ -1,0 +1,169 @@
+{
+  "name": "ULightComponentBase",
+  "inherits": "USceneComponent",
+  "properties": {
+    "Intensity": [
+      "float32",
+      "Total energy that the light emits."
+    ],
+    "DeepShadowLayerDistribution": [
+      "float32",
+      "Change the deep shadow layers distribution 0:linear distribution (uniform layer distribution), 1:exponential (more details on near small details)."
+    ],
+    "IndirectLightingIntensity": [
+      "float32",
+      "Scales the indirect lighting contribution from this light.\nA value of 0 disables any GI from this light. Default is 1."
+    ],
+    "VolumetricScatteringIntensity": [
+      "float32",
+      "Intensity of the volumetric scattering from this light.  This scales Intensity and LightColor."
+    ],
+    "LightColor": [
+      "FColor",
+      "Filter color of the light.\nNote that this can change the light's effective intensity."
+    ],
+    "bAffectsWorld": [
+      "bool",
+      "Whether the light can affect the world, or whether it is disabled.\nA disabled light will not contribute to the scene in any way.  This setting cannot be changed at runtime and unbuilds lighting when changed.\nSetting this to false has the same effect as deleting the light, so it is useful for non-destructive experiments."
+    ],
+    "CastShadows": [
+      "bool",
+      "Whether the light should cast any shadows."
+    ],
+    "CastStaticShadows": [
+      "bool",
+      "Whether the light should cast shadows from static objects.  Also requires Cast Shadows to be set to True."
+    ],
+    "CastDynamicShadows": [
+      "bool",
+      "Whether the light should cast shadows from dynamic objects.  Also requires Cast Shadows to be set to True."
+    ],
+    "bAffectTranslucentLighting": [
+      "bool",
+      "Whether the light affects translucency or not.  Disabling this can save GPU time when there are many small lights."
+    ],
+    "bTransmission": [
+      "bool",
+      "Whether light from this light transmits through surfaces with subsurface scattering profiles. Requires light to be movable."
+    ],
+    "bCastVolumetricShadow": [
+      "bool",
+      "Whether the light shadows volumetric fog.  Disabling this can save GPU time."
+    ],
+    "bCastDeepShadow": [
+      "bool",
+      "Whether the light should cast high quality hair-strands self-shadowing. When this option is enabled, an extra GPU cost for this light."
+    ],
+    "CastRaytracedShadow": [
+      "ECastRayTracedShadow"
+    ],
+    "bAffectReflection": [
+      "bool",
+      "Whether the light affects objects in reflections, when ray-traced reflection is enabled."
+    ],
+    "bAffectGlobalIllumination": [
+      "bool",
+      "Whether the light affects global illumination, when ray-traced global illumination is enabled."
+    ],
+    "SamplesPerPixel": [
+      "int",
+      "Samples per pixel for ray tracing"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetLightColor",
+      "return": "FLinearColor",
+      "const": true,
+      "doc": "Gets the light color as a linear color",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAffectGlobalIllumination",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAffectReflection",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCastDeepShadow",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCastRaytracedShadows",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "ECastRayTracedShadow"
+        }
+      ]
+    },
+    {
+      "name": "SetCastShadows",
+      "return": "void",
+      "doc": "Sets whether this light casts shadows",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCastVolumetricShadow",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSamplesPerPixel",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "name": "FGameplayEffectQuery",
+  "isStruct": true,
+  "doc": "Every set condition within this query must match in order for the query to match. i.e. individual query elements are ANDed together.",
+  "properties": {
+    "CustomMatchDelegate_BP": [
+      "FActiveGameplayEffectQueryCustomMatch_Dynamic",
+      1,
+      "BP-exposed delegate for providing custom matching conditions."
+    ],
+    "OwningTagQuery": [
+      "FGameplayTagQuery",
+      "Query that is matched against tags this GE gives"
+    ],
+    "EffectTagQuery": [
+      "FGameplayTagQuery",
+      "Query that is matched against tags this GE has"
+    ],
+    "SourceTagQuery": [
+      "FGameplayTagQuery",
+      "Query that is matched against spec tags the source of this GE has"
+    ],
+    "SourceAggregateTagQuery": [
+      "FGameplayTagQuery",
+      "Query that is matched against all tags the source of this GE has"
+    ],
+    "ModifyingAttribute": [
+      "FGameplayAttribute",
+      "Matches on GameplayEffects which modify given attribute."
+    ],
+    "EffectSource": [
+      "const UObject",
+      "Matches on GameplayEffects which come from this source"
+    ],
+    "EffectDefinition": [
+      "TSubclassOf<UGameplayEffect>",
+      "Matches on GameplayEffects with this definition"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayEffectQuery&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayEffectQuery"
+        }
+      ]
+    }
+  ]
+}

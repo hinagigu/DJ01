@@ -1,0 +1,25 @@
+{
+  "name": "UEnvQueryTest_Volume",
+  "inherits": "UEnvQueryTest",
+  "properties": {
+    "VolumeContext": [
+      "TSubclassOf<UEnvQueryContext>",
+      2,
+      "Context that populates a list of Actors derived from AVolume to test against"
+    ],
+    "VolumeClass": [
+      "TSubclassOf<AVolume>",
+      2,
+      "If VolumeContext is null, AVolume Class will be used to populate a list of AVolume to test against"
+    ],
+    "bDoComplexVolumeTest": [
+      "bool",
+      "If bDoComplexVolumeTest is set, it will use a full volume physic test (not only a bounding box test)"
+    ],
+    "bSkipTestIfNoVolumes": [
+      "bool",
+      "If no volumes are returned to evaluate the points against then just ignore the test rather than failing each item"
+    ]
+  },
+  "methods": []
+}

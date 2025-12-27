@@ -1,0 +1,109 @@
+{
+  "name": "UCommonRotator",
+  "inherits": "UCommonButtonBase",
+  "doc": "A button that can rotate between given text labels.",
+  "properties": {
+    "OnRotatedWithDirection": [
+      "FOnRotatedWithDirection",
+      "Called when the Selected state of this button changes. Provides the direction of rotation."
+    ],
+    "OnRotated": [
+      "FOnRotated"
+    ],
+    "MyText": [
+      "UCommonTextBlock",
+      1,
+      "The displayed text"
+    ]
+  },
+  "methods": [
+    {
+      "name": "OnOptionSelected",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnOptionSelected",
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "OnOptionsPopulated",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_OnOptionsPopulated",
+      "meta": null,
+      "args": [
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectedIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the current selected index",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedText",
+      "return": "FText",
+      "const": true,
+      "doc": "Gets the current text value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PopulateTextLabels",
+      "return": "void",
+      "doc": "Set the array of texts available",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Labels",
+          "type": "TArray<FText>"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectedItem",
+      "return": "void",
+      "doc": "Sets the current value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ShiftTextLeft",
+      "return": "void",
+      "doc": "Shift the current text left.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ShiftTextRight",
+      "return": "void",
+      "doc": "Shift the current text right.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

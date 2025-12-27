@@ -1,0 +1,67 @@
+{
+  "name": "FCameraAnimationParams",
+  "isStruct": true,
+  "doc": "Parameter struct for adding new camera animations to UCameraAnimationCameraModifier",
+  "properties": {
+    "PlayRate": [
+      "float32",
+      "Time scale for playing the new camera animation"
+    ],
+    "Scale": [
+      "float32",
+      "Global scale to use for the new camera animation"
+    ],
+    "EaseInType": [
+      "ECameraAnimationEasingType",
+      "Ease-in function type"
+    ],
+    "EaseInDuration": [
+      "float32",
+      "Ease-in duration in seconds"
+    ],
+    "EaseOutType": [
+      "ECameraAnimationEasingType",
+      "Ease-out function type"
+    ],
+    "EaseOutDuration": [
+      "float32",
+      "Ease-out duration in seconds"
+    ],
+    "bLoop": [
+      "bool",
+      "Whether the camera animation should loop"
+    ],
+    "StartOffset": [
+      "int",
+      "Offset, in frames, into the animation to start at"
+    ],
+    "bRandomStartTime": [
+      "bool",
+      "Whether the camera animation should have a random start time"
+    ],
+    "DurationOverride": [
+      "float32",
+      "Override the duration of the animation with a new duration (including blends)"
+    ],
+    "PlaySpace": [
+      "ECameraAnimationPlaySpace",
+      "The transform space to use for the new camera shake"
+    ],
+    "UserPlaySpaceRot": [
+      "FRotator",
+      "User space to use when PlaySpace is UserDefined"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCameraAnimationParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCameraAnimationParams"
+        }
+      ]
+    }
+  ]
+}

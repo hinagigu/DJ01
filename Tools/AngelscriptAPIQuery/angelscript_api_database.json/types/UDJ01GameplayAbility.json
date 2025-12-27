@@ -1,0 +1,170 @@
+{
+  "name": "UDJ01GameplayAbility",
+  "inherits": "UGameplayAbility",
+  "doc": "UDJ01GameplayAbility\n\n    The base gameplay ability class used by this project.",
+  "properties": {
+    "ActivationPolicy": [
+      "EDJ01AbilityActivationPolicy",
+      "Defines how this ability is meant to activate."
+    ],
+    "ActivationGroup": [
+      "EDJ01AbilityActivationGroup",
+      "Defines the relationship between this ability activating and other abilities activating."
+    ],
+    "AdditionalCosts": [
+      "TArray<TObjectPtr<UDJ01AbilityCost>>",
+      2,
+      "Additional costs that must be paid to activate this ability"
+    ],
+    "FailureTagToUserFacingMessages": [
+      "TMap<FGameplayTag,FText>",
+      2,
+      "Map of failure tags to simple error messages"
+    ],
+    "FailureTagToAnimMontage": [
+      "TMap<FGameplayTag,TObjectPtr<UAnimMontage>>",
+      2,
+      "Map of failure tags to anim montages that should be played with them"
+    ],
+    "bLogCancelation": [
+      "bool",
+      2,
+      "If true, extra information should be logged when this ability is canceled. This is temporary, used for tracking a bug."
+    ]
+  },
+  "methods": [
+    {
+      "name": "CanChangeActivationGroup",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the requested activation group is a valid transition.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewGroup",
+          "type": "EDJ01AbilityActivationGroup"
+        }
+      ]
+    },
+    {
+      "name": "ChangeActivationGroup",
+      "return": "bool",
+      "doc": "Tries to change the activation group.  Returns true if it successfully changed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewGroup",
+          "type": "EDJ01AbilityActivationGroup"
+        }
+      ]
+    },
+    {
+      "name": "ClearCameraMode",
+      "return": "void",
+      "doc": "Clears the ability's camera mode.  Automatically called if needed when the ability ends.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetControllerFromActorInfo",
+      "return": "AController",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDJ01AbilitySystemComponentFromActorInfo",
+      "return": "UDJ01AbilitySystemComponent",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDJ01CharacterFromActorInfo",
+      "return": "ADJ01Character",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDJ01PlayerControllerFromActorInfo",
+      "return": "ADJ01PlayerController",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHeroComponentFromActorInfo",
+      "return": "UDJ01HeroComponent",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnAbilityAdded",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when this ability is granted to the ability system component.",
+      "event": true,
+      "unrealname": "K2_OnAbilityAdded",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnAbilityRemoved",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when this ability is removed from the ability system component.",
+      "event": true,
+      "unrealname": "K2_OnAbilityRemoved",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnPawnAvatarSet",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when the ability system is initialized with a pawn avatar.",
+      "event": true,
+      "unrealname": "K2_OnPawnAvatarSet",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScriptOnAbilityFailedToActivate",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "doc": "Called when the ability fails to activate",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FailedReason",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "SetCameraMode",
+      "return": "void",
+      "doc": "Sets the ability's camera mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CameraMode",
+          "type": "TSubclassOf<UDJ01CameraMode>"
+        }
+      ]
+    }
+  ]
+}

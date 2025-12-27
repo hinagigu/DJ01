@@ -1,0 +1,275 @@
+{
+  "name": "UProjectileMovementComponent",
+  "inherits": "UMovementComponent",
+  "doc": "ProjectileMovementComponent updates the position of another component during its tick.\n\nBehavior such as bouncing after impacts and homing toward a target are supported.\n\nNormally the root component of the owning actor is moved, however another component may be selected (see SetUpdatedComponent()).\nIf the updated component is simulating physics, only the initial launch parameters (when initial velocity is non-zero)\nwill affect the projectile, and the physics sim will take over from there.\n\n@see UMovementComponent",
+  "properties": {
+    "InitialSpeed": [
+      "float32",
+      "Initial speed of projectile. If greater than zero, this will override the initial Velocity value and instead treat Velocity as a direction."
+    ],
+    "PreviousHitTime": [
+      "float32",
+      1,
+      "Saved HitResult Time (0 to 1) from previous simulation step. Equal to 1.0 when there was no impact."
+    ],
+    "PreviousHitNormal": [
+      "FVector",
+      1,
+      "Saved HitResult Normal from previous simulation step that resulted in an impact. If PreviousHitTime is 1.0, then the hit was not in the last step."
+    ],
+    "ProjectileGravityScale": [
+      "float32",
+      "Custom gravity scale for this projectile. Set to 0 for no gravity."
+    ],
+    "Bounciness": [
+      "float32",
+      "Percentage of velocity maintained after the bounce in the direction of the normal of impact (coefficient of restitution).\n1.0 = no velocity lost, 0.0 = no bounce. Ignored if bShouldBounce is false."
+    ],
+    "Friction": [
+      "float32",
+      "Coefficient of friction, affecting the resistance to sliding along a surface.\nNormal range is [0,1] : 0.0 = no friction, 1.0+ = very high friction.\nAlso affects the percentage of velocity maintained after the bounce in the direction tangent to the normal of impact.\nIgnored if bShouldBounce is false.\n@see bBounceAngleAffectsFriction"
+    ],
+    "BounceVelocityStopSimulatingThreshold": [
+      "float32",
+      "If velocity is below this threshold after a bounce, stops simulating and triggers the OnProjectileStop event.\nIgnored if bShouldBounce is false, in which case the projectile stops simulating on the first impact.\n@see StopSimulating(), OnProjectileStop"
+    ],
+    "MinFrictionFraction": [
+      "float32",
+      "When bounce angle affects friction, apply at least this fraction of normal friction.\nHelps consistently slow objects sliding or rolling along surfaces or in valleys when the usual friction amount would take a very long time to settle."
+    ],
+    "OnProjectileBounce": [
+      "FOnProjectileBounceDelegate__ProjectileMovementComponent",
+      "Called when projectile impacts something and bounces are enabled."
+    ],
+    "OnProjectileStop": [
+      "FOnProjectileStopDelegate__ProjectileMovementComponent",
+      "Called when projectile has come to a stop (velocity is below simulation threshold, bounces are disabled, or it is forcibly stopped)."
+    ],
+    "HomingAccelerationMagnitude": [
+      "float32",
+      "The magnitude of our acceleration towards the homing target. Overall velocity magnitude will still be limited by MaxSpeed."
+    ],
+    "MaxSimulationTimeStep": [
+      "float32",
+      "Max time delta for each discrete simulation step.\nLowering this value can address precision issues with fast-moving objects or complex collision scenarios, at the cost of performance.\n\nWARNING: if (MaxSimulationTimeStep * MaxSimulationIterations) is too low for the min framerate, the last simulation step may exceed MaxSimulationTimeStep to complete the simulation.\n@see MaxSimulationIterations, bForceSubStepping"
+    ],
+    "MaxSimulationIterations": [
+      "int",
+      "Max number of iterations used for each discrete simulation step.\nIncreasing this value can address precision issues with fast-moving objects or complex collision scenarios, at the cost of performance.\n\nWARNING: if (MaxSimulationTimeStep * MaxSimulationIterations) is too low for the min framerate, the last simulation step may exceed MaxSimulationTimeStep to complete the simulation.\n@see MaxSimulationTimeStep, bForceSubStepping"
+    ],
+    "BounceAdditionalIterations": [
+      "int",
+      "On the first few bounces (up to this amount), allow extra iterations over MaxSimulationIterations if necessary."
+    ],
+    "InterpLocationTime": [
+      "float32",
+      "\"Time\" over which most of the location interpolation occurs, when the UpdatedComponent (target) moves ahead of the interpolated component.\nSince the implementation uses exponential lagged smoothing, this is a rough time value and experimentation should inform a final result.\nA value of zero is effectively instantaneous interpolation."
+    ],
+    "InterpRotationTime": [
+      "float32",
+      "\"Time\" over which most of the rotation interpolation occurs, when the UpdatedComponent (target) moves ahead of the interpolated component.\nSince the implementation uses exponential lagged smoothing, this is a rough time value and experimentation should inform a final result.\nA value of zero is effectively instantaneous interpolation."
+    ],
+    "InterpLocationMaxLagDistance": [
+      "float32",
+      "Max distance behind UpdatedComponent which the interpolated component is allowed to lag."
+    ],
+    "InterpLocationSnapToTargetDistance": [
+      "float32",
+      "Max distance behind UpdatedComponent beyond which the interpolated component is snapped to the target location instead.\nFor instance if the target teleports this far beyond the interpolated component, the interpolation is snapped to match the target."
+    ],
+    "ThrottleInterpolationThresholdNotRenderedShortTime": [
+      "float32",
+      "Time after not rendered recently when we consider throttling interpolation."
+    ],
+    "ThrottleInterpolationThresholdNotRenderedLongTime": [
+      "float32",
+      "Time after not rendered for a long time when we consider throttling interpolation."
+    ],
+    "ThrottleInterpolationSkipFramesRecent": [
+      "int",
+      "When recently relevant, skip this many frames of interpolation if throttling is enabled."
+    ],
+    "ThrottleInterpolationSkipFramesNotRecent": [
+      "int",
+      "When not recently relevant, skip this many frames of interpolation if throttling is enabled."
+    ],
+    "MaxSpeed": [
+      "float32",
+      "Limit on speed of projectile (0 means no limit)."
+    ],
+    "bRotationFollowsVelocity": [
+      "bool",
+      "If true, this projectile will have its rotation updated each frame to match the direction of its velocity."
+    ],
+    "bRotationRemainsVertical": [
+      "bool",
+      "If true, this projectile will have its rotation updated each frame to maintain the rotations Yaw only. (bRotationFollowsVelocity is required to be true)"
+    ],
+    "bShouldBounce": [
+      "bool",
+      "If true, simple bounces will be simulated. Set this to false to stop simulating on contact."
+    ],
+    "bInitialVelocityInLocalSpace": [
+      "bool",
+      "If true, the initial Velocity is interpreted as being in local space upon startup.\n@see SetVelocityInLocalSpace()"
+    ],
+    "bForceSubStepping": [
+      "bool",
+      "If true, forces sub-stepping to break up movement into discrete smaller steps to improve accuracy of the trajectory.\nObjects that move in a straight line typically do *not* need to set this, as movement always uses continuous collision detection (sweeps) so collision is not missed.\nSub-stepping is automatically enabled when under the effects of gravity or when homing towards a target.\n@see MaxSimulationTimeStep, MaxSimulationIterations"
+    ],
+    "bSimulationEnabled": [
+      "bool",
+      "If true, does normal simulation ticking and update. If false, simulation is halted, but component will still tick (allowing interpolation to run)."
+    ],
+    "bSweepCollision": [
+      "bool",
+      "If true, movement uses swept collision checks.\nIf false, collision effectively teleports to the destination. Note that when this is disabled, movement will never generate blocking collision hits (though overlaps will be updated)."
+    ],
+    "bIsHomingProjectile": [
+      "bool",
+      "If true, we will accelerate toward our homing target. HomingTargetComponent must be set after the projectile is spawned.\n@see HomingTargetComponent, HomingAccelerationMagnitude"
+    ],
+    "bBounceAngleAffectsFriction": [
+      "bool",
+      "Controls the effects of friction on velocity parallel to the impact surface when bouncing.\nIf true, friction will be modified based on the angle of impact, making friction higher for perpendicular impacts and lower for glancing impacts.\nIf false, a bounce will retain a proportion of tangential velocity equal to (1.0 - Friction), acting as a \"horizontal restitution\"."
+    ],
+    "bIsSliding": [
+      "bool",
+      "If true, projectile is sliding / rolling along a surface."
+    ],
+    "bInterpMovement": [
+      "bool",
+      "If true and there is an interpolated component set, location (and optionally rotation) interpolation is enabled which allows the interpolated object to smooth uneven updates\nof the UpdatedComponent's location (usually to smooth network updates). This requires using SetInterpolatedComponent() to indicate the visual component that lags behind the collision,\nand using MoveInterpolationTarget() when the new target location/rotation is received (usually on a net update).\n@see SetInterpolatedComponent(), MoveInterpolationTarget()"
+    ],
+    "bInterpRotation": [
+      "bool",
+      "If true and there is an interpolated component set, rotation interpolation is enabled which allows the interpolated object to smooth uneven updates\nof the UpdatedComponent's rotation (usually to smooth network updates).\nRotation interpolation is *only* applied if bInterpMovement is also enabled.\n@see SetInterpolatedComponent(), MoveInterpolationTarget()"
+    ],
+    "bThrottleInterpolation": [
+      "bool",
+      "If true, throttle interpolation when not relevant.\n@see ThrottleInterpolationSkipFramesNotRecent, ThrottleInterpolationSkipFramesRecent, ThrottleInterpolationThresholdNotRenderedShortTime, ThrottleInterpolationThresholdNotRenderedLongTime"
+    ],
+    "bSimulationUseScopedMovement": [
+      "bool",
+      "If true, uses FScopedMovementUpdate to avoid moving the UpdatedComponent more than once during a tick during simulation.\nThis also defers overlap updates and some impact events until after the simulation update completes, so it may delay important events and continue deflection, so use with caution."
+    ],
+    "bInterpolationUseScopedMovement": [
+      "bool",
+      "If true, uses FScopedMovementUpdate to avoid moving the attached interpolated object's children more than once during a tick when it would both interpolate and move during projectile simulation.\nThis also defers overlap updates for the interpolated object until after the simulation update completes."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetHomingTargetComponent",
+      "return": "const USceneComponent",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetHomingTargetComponent",
+      "return": "void",
+      "args": [
+        {
+          "name": "HomingTargetComponent",
+          "type": "USceneComponent"
+        }
+      ]
+    },
+    {
+      "name": "IsInterpolationComplete",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether interpolation is complete because the target has been reached. True when interpolation is disabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsVelocityUnderSimulationThreshold",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if velocity magnitude is less than BounceVelocityStopSimulatingThreshold.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LimitVelocity",
+      "return": "FVector",
+      "const": true,
+      "doc": "Don't allow velocity magnitude to exceed MaxSpeed, if MaxSpeed is non-zero.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewVelocity",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MoveInterpolationTarget",
+      "return": "void",
+      "doc": "Moves the UpdatedComponent, which is also the interpolation target for the interpolated component. If there is not interpolated component, this simply moves UpdatedComponent.\nUse this typically from PostNetReceiveLocationAndRotation() or similar from an Actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "ResetInterpolation",
+      "return": "void",
+      "doc": "Resets interpolation so that interpolated component snaps back to the initial location/rotation without any additional offsets.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetInterpolatedComponent",
+      "return": "void",
+      "doc": "Assigns the component that will be used for network interpolation/smoothing. It is expected that this is a component attached somewhere below the UpdatedComponent.\nWhen network updates use MoveInterpolationTarget() to move the UpdatedComponent, the interpolated component's relative offset will be maintained and smoothed over\nthe course of future component ticks. The current relative location and rotation of the component is saved as the target offset for future interpolation.\n@see MoveInterpolationTarget(), bInterpMovement, bInterpRotation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "USceneComponent"
+        }
+      ]
+    },
+    {
+      "name": "SetVelocityInLocalSpace",
+      "return": "void",
+      "doc": "Sets the velocity to the new value, rotated into Actor space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewVelocity",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "StopSimulating",
+      "return": "void",
+      "doc": "Clears the reference to UpdatedComponent, fires stop event (OnProjectileStop), and stops ticking (if bAutoUpdateTickRegistration is true).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HitResult",
+          "type": "FHitResult"
+        }
+      ]
+    }
+  ]
+}

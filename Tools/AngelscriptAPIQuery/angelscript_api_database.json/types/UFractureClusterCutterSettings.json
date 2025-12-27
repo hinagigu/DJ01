@@ -1,0 +1,42 @@
+{
+  "name": "UFractureClusterCutterSettings",
+  "inherits": "UFractureToolSettings",
+  "properties": {
+    "NumberClustersMin": [
+      "int",
+      2,
+      "Minimum number of clusters of Voronoi sites to create. The amount of clusters created will be chosen at random between Min and Max"
+    ],
+    "NumberClustersMax": [
+      "int",
+      2,
+      "Maximum number of clusters of Voronoi sites to create. The amount of clusters created will be chosen at random between Min and Max"
+    ],
+    "SitesPerClusterMin": [
+      "int",
+      2,
+      "Minimum number of Voronoi sites per cluster. The amount of sites in each cluster will be chosen at random between Min and Max"
+    ],
+    "SitesPerClusterMax": [
+      "int",
+      2,
+      "Maximum number of Voronoi sites per cluster. The amount of sites in each cluster will be chosen at random between Min and Max"
+    ],
+    "ClusterRadiusFractionMin": [
+      "float32",
+      2,
+      "Minimum cluster radius (as fraction of the overall Voronoi diagram size). Cluster Radius Offset will be added to this\nEach Voronoi site will be placed at least this far (plus the Cluster Radius Offset) from its cluster center"
+    ],
+    "ClusterRadiusFractionMax": [
+      "float32",
+      2,
+      "Maximum cluster radius (as fraction of the overall Voronoi diagram size). Cluster Radius Offset will be added to this\nEach Voronoi site will be placed at most this far (plus the Cluster Radius Offset) from its cluster center"
+    ],
+    "ClusterRadiusOffset": [
+      "float32",
+      2,
+      "Cluster radius offset (in cm). This offset will be added to the 'Min/Max Dist from Center' distance"
+    ]
+  },
+  "methods": []
+}

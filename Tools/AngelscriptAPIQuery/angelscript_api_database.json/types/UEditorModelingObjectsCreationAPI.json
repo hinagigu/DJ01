@@ -1,0 +1,7 @@
+{
+  "name": "UEditorModelingObjectsCreationAPI",
+  "inherits": "UModelingObjectsCreationAPI",
+  "doc": "Implementation of UModelingObjectsCreationAPI suitable for use in UE Editor.\n- CreateMeshObject() currently creates a StaticMesh Asset/Actor, a Volume Actor or a DynamicMesh Actor\n- CreateTextureObject() currently creates a UTexture2D Asset\n- CreateMaterialObject() currently creates a UMaterial Asset\n\nThis is intended to be registered in the ToolsContext ContextObjectStore.\nStatic utility functions ::Register() / ::Find() / ::Deregister() can be used to do this in a consistent way.\n\nSeveral client-provided callbacks can be used to customize functionality (eg in Modeling Mode)\n - GetNewAssetPathNameCallback is called to determine an asset path. This can be used to do\n   things like pop up an interactive path-selection dialog, use project-defined paths, etc\n - OnModelingMeshCreated is broadcast for each new created mesh object\n - OnModelingTextureCreated is broadcast for each new created texture object\n - OnModelingMaterialCreated is broadcast for each new created material object",
+  "properties": {},
+  "methods": []
+}

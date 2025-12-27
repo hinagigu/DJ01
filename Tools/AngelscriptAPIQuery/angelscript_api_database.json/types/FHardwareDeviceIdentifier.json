@@ -1,0 +1,35 @@
+{
+  "name": "FHardwareDeviceIdentifier",
+  "isStruct": true,
+  "doc": "An identifier that can be used to determine what input devices are available based on the FInputDeviceScope.\nThese mappings should match a FInputDeviceScope that is used by an IInputDevice",
+  "properties": {
+    "InputClassName": [
+      "FName",
+      "The name of the Input Class that uses this hardware device.\nThis should correspond with a FInputDeviceScope that is used by an IInputDevice"
+    ],
+    "HardwareDeviceIdentifier": [
+      "FName",
+      "The name of this hardware device.\nThis should correspond with a FInputDeviceScope that is used by an IInputDevice"
+    ],
+    "PrimaryDeviceType": [
+      "EHardwareDevicePrimaryType",
+      "The generic type that this hardware identifies as. This can be used to easily determine behaviors"
+    ],
+    "SupportedFeaturesMask": [
+      "int",
+      "Flags that represent this hardware device's traits"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FHardwareDeviceIdentifier&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FHardwareDeviceIdentifier"
+        }
+      ]
+    }
+  ]
+}

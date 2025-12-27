@@ -1,0 +1,35 @@
+{
+  "name": "FSubmixEffectFilterSettings",
+  "isStruct": true,
+  "doc": "FSubmixEffectFilterSettings\nUStruct used to define user-exposed params for use with your effect.",
+  "properties": {
+    "FilterType": [
+      "ESubmixFilterType",
+      "What type of filter to use for the submix filter effect"
+    ],
+    "FilterAlgorithm": [
+      "ESubmixFilterAlgorithm",
+      "What type of filter algorithm to use for the submix filter effect"
+    ],
+    "FilterFrequency": [
+      "float32",
+      "The output filter cutoff frequency (hz) [0.0, 20000.0]"
+    ],
+    "FilterQ": [
+      "float32",
+      "The output filter resonance (Q) [0.5, 10]"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSubmixEffectFilterSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSubmixEffectFilterSettings"
+        }
+      ]
+    }
+  ]
+}

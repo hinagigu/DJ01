@@ -1,0 +1,23 @@
+# FRigUnit_GetRelativeBoneTransform
+
+GetBoneTransform is used to retrieve a single transform from a hierarchy.
+
+## 属性
+
+### Bone
+- **类型**: `FName`
+
+### Space
+- **类型**: `FName`
+
+### Transform
+- **类型**: `FTransform`
+- **描述**: The current transform of the given bone - or identity in case it wasn't found.
+
+## 方法
+
+### opAssign
+```angelscript
+FRigUnit_GetRelativeBoneTransform& opAssign(FRigUnit_GetRelativeBoneTransform Other)
+```
+

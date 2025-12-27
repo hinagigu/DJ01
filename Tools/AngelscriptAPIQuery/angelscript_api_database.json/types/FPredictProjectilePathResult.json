@@ -1,0 +1,34 @@
+{
+  "name": "FPredictProjectilePathResult",
+  "isStruct": true,
+  "doc": "Container for the result of a projectile path trace (using PredictProjectilePath).",
+  "properties": {
+    "PathData": [
+      "TArray<FPredictProjectilePathPointData>",
+      1,
+      "Info for each point on the path."
+    ],
+    "LastTraceDestination": [
+      "FPredictProjectilePathPointData",
+      1,
+      "Info on the last point we tried to trace to, which may have been beyond the final hit."
+    ],
+    "HitResult": [
+      "FHitResult",
+      1,
+      "Hit along the trace, if tracing with collision was enabled."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPredictProjectilePathResult&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPredictProjectilePathResult"
+        }
+      ]
+    }
+  ]
+}

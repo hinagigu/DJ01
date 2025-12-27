@@ -1,0 +1,23 @@
+# FLocalizationImportDialogueSettings
+
+## 属性
+
+### RawAudioPath
+- **类型**: `FDirectoryPath`
+- **描述**: Path to the folder to import the audio from. This folder is expected to contain culture sub-folders, which in turn contain the raw WAV files to import.
+
+### ImportedDialogueFolder
+- **类型**: `FString`
+- **描述**: Folder in which to create the generated sound waves. This is relative to the root of the L10N culture folder (or the root content folder if importing native dialogue as source dialogue).
+
+### bImportNativeAsSource
+- **类型**: `bool`
+- **描述**: Should the dialogue for the native culture be imported as if it were source audio? If false, the native culture dialogue will be imported as localized data for the native culture.
+
+## 方法
+
+### opAssign
+```angelscript
+FLocalizationImportDialogueSettings& opAssign(FLocalizationImportDialogueSettings Other)
+```
+

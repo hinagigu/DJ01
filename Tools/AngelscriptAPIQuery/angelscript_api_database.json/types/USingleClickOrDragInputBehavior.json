@@ -1,0 +1,7 @@
+{
+  "name": "USingleClickOrDragInputBehavior",
+  "inherits": "UAnyButtonInputBehavior",
+  "doc": "USingleClickOrDragInputBehavior is a combination of a USingleClickBehavior and UClickDragBehavior,\nand allows for the common UI interaction where a click-and-release does one action, but if the mouse\nis moved, then a drag interaction is started. For example click-to-select is often combined with\na drag-marquee-rectangle in this way. This can be directly implemented with a UClickDragBehavior but\nrequires the client to (eg) detect movement thresholds, etc. This class encapsulates all that state/logic.\n\nThe .ClickDistanceThreshold parameter determines how far the mouse must move (in whatever device units are in use)\nto switch from a click to drag interaction\n\nThe .bBeginDragIfClickTargetNotHit parameter determines if the drag interaction will be immediately initiated\nif the initial 'click' mouse-down does not hit a valid clickable target. Defaults to true.\n\nThe hit-test and on-clicked functions are provided by a IClickBehaviorTarget instance, while an\nIClickDragBehaviorTarget provides the can-click-drag/begin-drag/update-drag/end-drag functionality.",
+  "properties": {},
+  "methods": []
+}

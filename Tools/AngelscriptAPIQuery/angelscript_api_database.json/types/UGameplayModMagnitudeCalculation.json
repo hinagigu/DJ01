@@ -1,0 +1,176 @@
+{
+  "name": "UGameplayModMagnitudeCalculation",
+  "inherits": "UGameplayEffectCalculation",
+  "doc": "Class used to perform custom gameplay effect modifier calculations, either via blueprint or native code",
+  "properties": {
+    "bAllowNonNetAuthorityDependencyRegistration": [
+      "bool",
+      2,
+      "Whether the calculation allows non-net authorities to register the external dependency multi-cast delegate or not; Effectively\nwhether clients are allowed to perform the custom calculation themselves or not\n\n@Note:       This is an advanced use case that should only be enabled under very specific circumstances. This is designed for games\n                     that are utilizing network dormancy and may want to trust the client to update non-gameplay critical attributes client-side without\n                     causing a network dormancy flush. Usage of this flag is *NOT* compatible with attribute capture within the calculation and will trigger\n                     an ensure if used in tandem. Clients are incapable of performing custom calculations that require attribute captures. In general,\n                     if your game is not using network dormancy, this should always remain disabled.\n\n@Note:       If enabling this for a custom calculation, be sure that the external delegate is sourced from something guaranteed to be on the client to avoid\n                     timing issues. As an example, binding to a delegate on a GameState is potentially unreliable, as the client reference to that actor may not be\n                     available during registration."
+    ]
+  },
+  "methods": [
+    {
+      "name": "CalculateBaseMagnitude",
+      "return": "float32",
+      "const": true,
+      "callable": false,
+      "doc": "Calculate the base magnitude of the gameplay effect modifier, given the specified spec. Note that the owning spec def can still modify this base value\nwith a coeffecient and pre/post multiply adds. see FCustomCalculationBasedFloat::CalculateMagnitude for details.\n\n@param Spec  Gameplay effect spec to use to calculate the magnitude with\n\n@return Computed magnitude of the modifier",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Spec",
+          "type": "FGameplayEffectSpec"
+        }
+      ]
+    },
+    {
+      "name": "GetSetByCallerMagnitudeByName",
+      "return": "float32",
+      "const": true,
+      "doc": "Extracts the Set by Caller Magnitude from a Gameplay Effect Spec\n\n@param EffectSpec The Gameplay Effect Spec to get the info from\n@param MagnitudeName The effect name to query\n\n@return The magnitude value if found, zero otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpec",
+          "type": "FGameplayEffectSpec"
+        },
+        {
+          "name": "MagnitudeName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetSetByCallerMagnitudeByTag",
+      "return": "float32",
+      "const": true,
+      "doc": "Extracts the Set by Caller Magnitude from a Gameplay Effect Spec\n\n@param EffectSpec The Gameplay Effect Spec to get the info from\n@param Tag The effect tag to query\n\n@return The magnitude value if found, zero otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpec",
+          "type": "FGameplayEffectSpec"
+        },
+        {
+          "name": "Tag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "GetSourceActorTags",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "doc": "Returns the source actor tags from a Gameplay Effect Spec\n\n@param EffectSpec The Gameplay Effect Spec to get the info from\n\n@return Gameplay Tag Container with the copied tags. The container will be empty if no captured source tags exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpec",
+          "type": "FGameplayEffectSpec"
+        }
+      ]
+    },
+    {
+      "name": "GetSourceAggregatedTags",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "doc": "Copies and returns the source aggregated tags from a Gameplay Effect Spec\n\n@param EffectSpec The Gameplay Effect Spec to get the info from\n\n@return Gameplay Tag Container with the copied tags. The container will be empty if no captured source tags exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpec",
+          "type": "FGameplayEffectSpec"
+        }
+      ]
+    },
+    {
+      "name": "GetSourceSpecTags",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "doc": "Returns the source spec tags from a Gameplay Effect Spec\n\n@param EffectSpec The Gameplay Effect Spec to get the info from\n\n@return Gameplay Tag Container with the copied tags. The container will be empty if no captured source tags exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpec",
+          "type": "FGameplayEffectSpec"
+        }
+      ]
+    },
+    {
+      "name": "GetTargetActorTags",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "doc": "Returns the target actor tags from a Gameplay Effect Spec\nUseful for Modifier Magnitude Calculations\n\n@param EffectSpec The Gameplay Effect Spec to get the info from\n\n@return Gameplay Tag Container with the copied tags. The container will be empty if no captured source tags exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpec",
+          "type": "FGameplayEffectSpec"
+        }
+      ]
+    },
+    {
+      "name": "GetTargetAggregatedTags",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "doc": "Copies and returns the target aggregated tags from a Gameplay Effect Spec\n\n@param EffectSpec The Gameplay Effect Spec to get the info from\n\n@return Gameplay Tag Container with the copied tags. The container will be empty if no captured source tags exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpec",
+          "type": "FGameplayEffectSpec"
+        }
+      ]
+    },
+    {
+      "name": "GetTargetSpecTags",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "doc": "Returns the target spec tags from a Gameplay Effect Spec\nUseful for Modifier Magnitude Calculations\n\n@param EffectSpec The Gameplay Effect Spec to get the info from\n\n@return Gameplay Tag Container with the copied tags. The container will be empty if no captured source tags exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpec",
+          "type": "FGameplayEffectSpec"
+        }
+      ]
+    },
+    {
+      "name": "GetCapturedAttributeMagnitude",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the captured magnitude value for the given Attribute\nFor this to work correctly, the Attribute needs to be added to the Relevant Attributes to Capture array\n\n@param EffectSpec The Gameplay Effect Spec to get the info from\n@param Attribute The attribute to query\n\n@return The magnitude value if found, zero otherwise",
+      "ufunction": true,
+      "unrealname": "K2_GetCapturedAttributeMagnitude",
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpec",
+          "type": "FGameplayEffectSpec"
+        },
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "SourceTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "TargetTags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    }
+  ]
+}

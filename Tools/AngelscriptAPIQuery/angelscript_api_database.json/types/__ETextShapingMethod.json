@@ -1,0 +1,23 @@
+{
+  "name": "__ETextShapingMethod",
+  "isEnum": true,
+  "doc": "Methods that can be used to shape text.\n@note If you change this enum, make sure and update CVarDefaultTextShapingMethod and GetDefaultTextShapingMethod.",
+  "properties": {
+    "Auto": [
+      "ETextShapingMethod",
+      "Automatically picks the fastest possible shaping method (either KerningOnly or FullShaping) based on the reading direction of the text.\nLeft-to-right text uses the KerningOnly method, and right-to-left text uses the FullShaping method."
+    ],
+    "KerningOnly": [
+      "ETextShapingMethod",
+      "Provides fake shaping using only kerning data.\nThis can be faster than full shaping, but won't render complex right-to-left or bi-directional glyphs (such as Arabic) correctly.\nThis can be useful as an optimization when you know your text block will only show simple glyphs (such as numbers)."
+    ],
+    "FullShaping": [
+      "ETextShapingMethod",
+      "Provides full text shaping, allowing accurate rendering of complex right-to-left or bi-directional glyphs (such as Arabic).\nThis mode will perform ligature replacement for all languages (such as the combined \"fi\" glyph in English)."
+    ],
+    "ETextShapingMethod_MAX": [
+      "ETextShapingMethod"
+    ]
+  },
+  "methods": []
+}

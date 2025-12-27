@@ -1,0 +1,27 @@
+{
+  "name": "FDJ01TeamConfig",
+  "isStruct": true,
+  "doc": "FDJ01TeamConfig - 团队配置\n\n只需两个字段就能定义完整的团队行为！",
+  "properties": {
+    "MyTeam": [
+      "EDJ01Team",
+      "我的阵营标识"
+    ],
+    "AttackMask": [
+      "uint8",
+      "我可以攻击的目标阵营（位掩码）\n\n例如：\n- 玩家：Monster | Boss (可以攻击怪物和Boss)\n- 怪物：Player | NPC (可以攻击玩家和NPC)\n- NPC：Monster (只攻击怪物，不攻击玩家)\n- 中立生物：None (不攻击任何人)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDJ01TeamConfig&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDJ01TeamConfig"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,520 @@
+{
+  "name": "UInterchangeMeshFactoryNode",
+  "inherits": "UInterchangeFactoryBaseNode",
+  "doc": "namespace Interchange",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddLodDataUniqueId",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LodDataUniqueId",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomComputeWeightedNormals",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether normals are recomputed by weighting the surface area and the corner angle of the triangle as a ratio.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomKeepSectionsSeparate",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether sections with matching materials are kept separate and will not get combined.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomLODGroup",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether a custom LOD group is set for the mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomRecomputeNormals",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether normals in the imported mesh are ignored and recomputed. When normals are recomputed, the tangents are also recomputed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomRecomputeTangents",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether tangents in the imported mesh are ignored and recomputed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomRemoveDegenerates",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether degenerate triangles are removed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomUseBackwardsCompatibleF16TruncUVs",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether UVs are converted to 16-bit by a legacy truncation process instead of the default rounding process. This may avoid differences when reimporting older content.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomUseFullPrecisionUVs",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether UVs are stored at full floating point precision.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomUseHighPrecisionTangentBasis",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether tangents are stored at 16-bit precision instead of the default 8-bit precision.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomUseMikkTSpace",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether tangents are recomputed using MikkTSpace when they need to be recomputed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomVertexColorIgnore",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether the static mesh factory should ignore the vertex color. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomVertexColorOverride",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether the static mesh factory should override the vertex color. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FColor&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomVertexColorReplace",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether the static mesh factory should replace the vertex color. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetLodDataCount",
+      "return": "int",
+      "const": true,
+      "doc": "Return the number of LODs this static mesh has.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLodDataUniqueIds",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutLodDataUniqueIds",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetSlotMaterialDependencies",
+      "return": "void",
+      "const": true,
+      "doc": "Retrieve the correspondence table between slot names and assigned materials for this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutMaterialDependencies",
+          "type": "TMap<FString,FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetSlotMaterialDependencyUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Retrieve the Material dependency for the specified slot of this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "OutMaterialDependency",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLodDataUniqueId",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LodDataUniqueId",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSlotMaterialDependencyUid",
+      "return": "bool",
+      "doc": "Remove the Material dependency associated with the specfied slot name of this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ResetSlotMaterialDependencies",
+      "return": "bool",
+      "doc": "Reset all the material dependencies.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCustomComputeWeightedNormals",
+      "return": "bool",
+      "doc": "Set whether normals are recomputed by weighting the surface area and the corner angle of the triangle as a ratio.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomKeepSectionsSeparate",
+      "return": "bool",
+      "doc": "Set whether sections with matching materials are kept separate and will not get combined.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomLODGroup",
+      "return": "bool",
+      "doc": "Set a custom LOD group for the mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FName"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomRecomputeNormals",
+      "return": "bool",
+      "doc": "Set whether normals in the imported mesh are ignored and recomputed. When normals are recomputed, the tangents are also recomputed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomRecomputeTangents",
+      "return": "bool",
+      "doc": "Set whether tangents in the imported mesh are ignored and recomputed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomRemoveDegenerates",
+      "return": "bool",
+      "doc": "Set whether degenerate triangles are removed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomUseBackwardsCompatibleF16TruncUVs",
+      "return": "bool",
+      "doc": "Set whether UVs are converted to 16-bit by a legacy truncation process instead of the default rounding process. This may avoid differences when reimporting older content.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomUseFullPrecisionUVs",
+      "return": "bool",
+      "doc": "Set whether UVs are stored at full floating point precision.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomUseHighPrecisionTangentBasis",
+      "return": "bool",
+      "doc": "Set whether tangents are stored at 16-bit precision instead of the default 8-bit precision.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomUseMikkTSpace",
+      "return": "bool",
+      "doc": "Set whether tangents are recomputed using MikkTSpace when they need to be recomputed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomVertexColorIgnore",
+      "return": "bool",
+      "doc": "Set whether the static mesh factory should ignore the vertex color. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomVertexColorOverride",
+      "return": "bool",
+      "doc": "Set whether the static mesh factory should override the vertex color. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomVertexColorReplace",
+      "return": "bool",
+      "doc": "Set whether the static mesh factory should replace the vertex color. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSlotMaterialDependencyUid",
+      "return": "bool",
+      "doc": "Add a Material dependency to the specified slot of this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "MaterialDependencyUid",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

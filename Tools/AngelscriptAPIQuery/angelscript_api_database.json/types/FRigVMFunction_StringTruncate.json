@@ -1,0 +1,40 @@
+{
+  "name": "FRigVMFunction_StringTruncate",
+  "isStruct": true,
+  "doc": "Returns the left or right most characters from the string chopping the given number of characters from the start or the end",
+  "properties": {
+    "Name": [
+      "FString"
+    ],
+    "Count": [
+      "int",
+      "Number of characters to remove from left or right"
+    ],
+    "FromEnd": [
+      "bool",
+      "if set to true the characters will be removed from the end"
+    ],
+    "Remainder": [
+      "FString",
+      1,
+      "the part of the string without the chopped characters"
+    ],
+    "Chopped": [
+      "FString",
+      1,
+      "the part of the name that has been chopped off"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigVMFunction_StringTruncate&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigVMFunction_StringTruncate"
+        }
+      ]
+    }
+  ]
+}

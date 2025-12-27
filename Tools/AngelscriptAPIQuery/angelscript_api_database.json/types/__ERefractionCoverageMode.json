@@ -1,0 +1,19 @@
+{
+  "name": "__ERefractionCoverageMode",
+  "isEnum": true,
+  "doc": "Determines how the refraction account for the coverage with Substrate. It can only be used when Substrate is enabled.",
+  "properties": {
+    "RCM_CoverageIgnored": [
+      "ERefractionCoverageMode",
+      "This is the pre-Substrate behavior: coverage is ignored and always 1.\nWhen rough refraction is disabled, this is behavior is forced ON."
+    ],
+    "RCM_CoverageAccountedFor": [
+      "ERefractionCoverageMode",
+      "This is a new behavior available with Substrate when rough refraction are enabled: account for roughness, coverage and depth.\nThis is a more physically based behavior: the background scene will be visible untouched according to (1-coverage),\nwhile the blurred version will be visible according to coverage."
+    ],
+    "RCM_MAX": [
+      "ERefractionCoverageMode"
+    ]
+  },
+  "methods": []
+}

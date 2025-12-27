@@ -1,0 +1,61 @@
+{
+  "name": "__DEPRECATED_EditorSkeletalMesh",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreatePhysicsAsset",
+      "return": "UPhysicsAsset",
+      "doc": "This function creates a PhysicsAsset for the given SkeletalMesh with the same settings as if it were created through FBX import\n\n@Param SkeletalMesh: The SkeletalMesh we want to create the PhysicsAsset for",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLODs",
+      "return": "bool",
+      "doc": "Remove all the specified LODs. This function will remove all the valid LODs in the list.\nValid LOD is any LOD greater then 0 that exist in the skeletalmesh. We cannot remove the base LOD 0.\n\n@param SkeletalMesh  The mesh inside which we are renaming a socket\n@param ToRemoveLODs  The LODs we need to remove\n@return true if the successfully remove all the LODs. False otherwise, but evedn if it return false it\nwill have removed all valid LODs.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "ToRemoveLODs",
+          "type": "TArray<int>"
+        }
+      ]
+    },
+    {
+      "name": "StripLODGeometry",
+      "return": "bool",
+      "doc": "This function will strip all triangle in the specified LOD that don't have any UV area pointing on a black pixel in the TextureMask.\nWe use the UVChannel 0 to find the pixels in the texture.\n\n@Param SkeletalMesh: The skeletalmesh we want to optimize\n@Param LODIndex: The LOD we want to optimize\n@Param TextureMask: The texture containing the stripping mask. non black pixel strip triangle, black pixel keep them.\n@Param Threshold: The threshold we want when comparing the texture value with zero.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "TextureMask",
+          "type": "UTexture2D"
+        },
+        {
+          "name": "Threshold",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

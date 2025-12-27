@@ -1,0 +1,50 @@
+{
+  "name": "USoundSubmixBase",
+  "inherits": "UObject",
+  "properties": {
+    "bAutoDisable": [
+      "bool",
+      "Auto-manage enabling and disabling the submix as a CPU optimization. It will be disabled if the submix and all child submixes are silent. It will re-enable if a sound is sent to the submix or a child submix is audible."
+    ],
+    "AutoDisableTime": [
+      "float32",
+      "The minimum amount of time to wait before automatically disabling a submix if it is silent. Will immediately re-enable if source audio is sent to it."
+    ],
+    "ChildSubmixes": [
+      "TArray<TObjectPtr<USoundSubmixBase>>",
+      1,
+      "Child submixes to this sound mix"
+    ]
+  },
+  "methods": [
+    {
+      "name": "DynamicConnect",
+      "return": "bool",
+      "doc": "Dynamically Connects to a parent submix.\n@param        WorldContextObject      UObject that's used to GetWorld\n@param        InParent        Parent Submix to connect to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InParent",
+          "type": "USoundSubmixBase"
+        }
+      ]
+    },
+    {
+      "name": "DynamicDisconnect",
+      "return": "bool",
+      "doc": "Dynamically Disconnect from a parent.\n@param        WorldContextObject      UObject that's used to GetWorld",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FindDynamicAncestor",
+      "return": "USoundSubmixBase",
+      "doc": "Searching upwards from this Submix to the root looking for the first Submix marked Dynamic\nIf this Submix is Dynamic this will be returned.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

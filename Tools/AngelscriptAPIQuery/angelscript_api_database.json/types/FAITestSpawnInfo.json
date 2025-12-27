@@ -1,0 +1,49 @@
+{
+  "name": "FAITestSpawnInfo",
+  "isStruct": true,
+  "doc": "FAITestSpawnInfo\n\nGeneric AI Test Spawn Info used in FAITestSpawnSet within a generic AFunctionalAITest test.",
+  "properties": {
+    "PawnClass": [
+      "TSubclassOf<APawn>",
+      "Determines AI to be spawned"
+    ],
+    "ControllerClass": [
+      "TSubclassOf<AAIController>",
+      "class to override default pawn's controller class. If None the default will be used"
+    ],
+    "TeamID": [
+      "FGenericTeamId"
+    ],
+    "BehaviorTree": [
+      "UBehaviorTree",
+      "if set will be applied to spawned AI"
+    ],
+    "SpawnLocation": [
+      "AActor",
+      "Where should AI be spawned"
+    ],
+    "NumberToSpawn": [
+      "int"
+    ],
+    "SpawnDelay": [
+      "float32",
+      "delay between consecutive spawn attempts"
+    ],
+    "PreSpawnDelay": [
+      "float32",
+      "delay before attempting first spawn"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAITestSpawnInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAITestSpawnInfo"
+        }
+      ]
+    }
+  ]
+}

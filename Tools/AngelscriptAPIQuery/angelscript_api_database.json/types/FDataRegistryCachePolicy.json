@@ -1,0 +1,43 @@
+{
+  "name": "FDataRegistryCachePolicy",
+  "isStruct": true,
+  "doc": "Rules to use when deciding how to unload registry items and related assets",
+  "properties": {
+    "bCacheIsAlwaysVolatile": [
+      "bool",
+      "If this is true, the cache is always considered volatile when returning EDataRegistryCacheResult"
+    ],
+    "bUseCurveTableCacheVersion": [
+      "bool",
+      "If this is true, the cache version is synchronized with the global CurveTable cache version"
+    ],
+    "MinNumberKept": [
+      "int",
+      "Will not release items if fewer then this number loaded, 0 means infinite"
+    ],
+    "MaxNumberKept": [
+      "int",
+      "Maximum number of items to keep loaded, 0 means infinite"
+    ],
+    "ForceKeepSeconds": [
+      "float32",
+      "Any item accessed within this amount of seconds is never unloaded"
+    ],
+    "ForceReleaseSeconds": [
+      "float32",
+      "Any item not accessed within this amount of seconds is always unloaded"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDataRegistryCachePolicy&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDataRegistryCachePolicy"
+        }
+      ]
+    }
+  ]
+}

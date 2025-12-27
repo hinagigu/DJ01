@@ -1,0 +1,44 @@
+{
+  "name": "FDJ01PenetrationAvoidanceFeeler",
+  "isStruct": true,
+  "doc": "Struct defining a feeler ray used for camera penetration avoidance.",
+  "properties": {
+    "AdjustmentRot": [
+      "FRotator",
+      2,
+      "FRotator describing deviance from main ray"
+    ],
+    "WorldWeight": [
+      "float32",
+      2,
+      "how much this feeler affects the final position if it hits the world"
+    ],
+    "PawnWeight": [
+      "float32",
+      2,
+      "how much this feeler affects the final position if it hits a APawn (setting to 0 will not attempt to collide with pawns at all)"
+    ],
+    "Extent": [
+      "float32",
+      2,
+      "extent to use for collision when tracing this feeler"
+    ],
+    "TraceInterval": [
+      "int",
+      2,
+      "minimum frame interval between traces with this feeler if nothing was hit last frame"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDJ01PenetrationAvoidanceFeeler&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDJ01PenetrationAvoidanceFeeler"
+        }
+      ]
+    }
+  ]
+}

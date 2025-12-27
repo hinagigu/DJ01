@@ -1,0 +1,38 @@
+{
+  "name": "UCommonSession_HostSessionRequest",
+  "inherits": "UObject",
+  "doc": "A request object that stores the parameters used when hosting a gameplay session",
+  "properties": {
+    "OnlineMode": [
+      "ECommonSessionOnlineMode",
+      1,
+      "Indicates if the session is a full online session or a different type"
+    ],
+    "bUseLobbies": [
+      "bool",
+      1,
+      "True if this request should create a player-hosted lobbies if available"
+    ],
+    "ModeNameForAdvertisement": [
+      "FString",
+      1,
+      "String used during matchmaking to specify what type of game mode this is"
+    ],
+    "MapID": [
+      "FPrimaryAssetId",
+      1,
+      "The map that will be loaded at the start of gameplay, this needs to be a valid Primary Asset top-level map"
+    ],
+    "ExtraArgs": [
+      "TMap<FString,FString>",
+      1,
+      "Extra arguments passed as URL options to the game"
+    ],
+    "MaxPlayerCount": [
+      "int",
+      1,
+      "Maximum players allowed per gameplay session"
+    ]
+  },
+  "methods": []
+}

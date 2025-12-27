@@ -1,0 +1,101 @@
+{
+  "name": "FRigControlSettings",
+  "isStruct": true,
+  "properties": {
+    "AnimationType": [
+      "ERigControlAnimationType"
+    ],
+    "ControlType": [
+      "ERigControlType"
+    ],
+    "DisplayName": [
+      "FName"
+    ],
+    "PrimaryAxis": [
+      "ERigControlAxis",
+      "the primary axis to use for float controls"
+    ],
+    "LimitEnabled": [
+      "TArray<FRigControlLimitEnabled>",
+      "True if the control has limits."
+    ],
+    "bDrawLimits": [
+      "bool",
+      "True if the limits should be drawn in debug.\nFor this to be enabled you need to have at least one min and max limit turned on."
+    ],
+    "MinimumValue": [
+      "FRigControlValue",
+      1,
+      "The minimum limit of the control's value"
+    ],
+    "MaximumValue": [
+      "FRigControlValue",
+      1,
+      "The maximum limit of the control's value"
+    ],
+    "bShapeVisible": [
+      "bool",
+      "Set to true if the shape is currently visible in 3d"
+    ],
+    "ShapeVisibility": [
+      "ERigControlVisibility",
+      "Defines how the shape visibility should be changed"
+    ],
+    "ShapeName": [
+      "FName",
+      "This is optional UI setting - this doesn't mean this is always used, but it is optional for manipulation layer to use this"
+    ],
+    "ShapeColor": [
+      "FLinearColor"
+    ],
+    "bIsTransientControl": [
+      "bool",
+      1,
+      "If the control is transient and only visible in the control rig editor"
+    ],
+    "ControlEnum": [
+      "UEnum",
+      "If the control is integer it can use this enum to choose values"
+    ],
+    "Customization": [
+      "FRigControlElementCustomization",
+      "The User interface customization used for a control\nThis will be used as the default content for the space picker and other widgets"
+    ],
+    "DrivenControls": [
+      "TArray<FRigElementKey>",
+      "The list of driven controls for this proxy control."
+    ],
+    "bGroupWithParentControl": [
+      "bool",
+      "If set to true the animation channel will be grouped with the parent control in sequencer"
+    ],
+    "bRestrictSpaceSwitching": [
+      "bool",
+      "Allow to space switch only to the available spaces"
+    ],
+    "FilteredChannels": [
+      "TArray<ERigControlTransformChannel>",
+      "Filtered Visible Transform channels. If this is empty everything is visible"
+    ],
+    "PreferredRotationOrder": [
+      "EEulerRotationOrder",
+      "The euler rotation order this control prefers for animation, if we aren't using default UE rotator"
+    ],
+    "bUsePreferredRotationOrder": [
+      "bool",
+      "Whether to use a specified rotation order or just use the default FRotator order and conversion functions"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigControlSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigControlSettings"
+        }
+      ]
+    }
+  ]
+}

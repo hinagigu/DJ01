@@ -1,0 +1,103 @@
+{
+  "name": "UGameViewportSubsystem",
+  "inherits": "UEngineSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddWidget",
+      "return": "bool",
+      "doc": "Adds it to the game's viewport.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UWidget"
+        },
+        {
+          "name": "Slot",
+          "type": "FGameViewportWidgetSlot"
+        }
+      ]
+    },
+    {
+      "name": "AddWidgetForPlayer",
+      "return": "bool",
+      "doc": "Adds the widget to the game's viewport in the section dedicated to the player. This is valuable in a split screen\ngame where you need to only show a widget over a player's portion of the viewport.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UWidget"
+        },
+        {
+          "name": "Player",
+          "type": "ULocalPlayer"
+        },
+        {
+          "name": "Slot",
+          "type": "FGameViewportWidgetSlot"
+        }
+      ]
+    },
+    {
+      "name": "GetWidgetSlot",
+      "return": "FGameViewportWidgetSlot",
+      "const": true,
+      "doc": "The slot info from previously added widget or info that is store for later.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Widget",
+          "type": "const UWidget"
+        }
+      ]
+    },
+    {
+      "name": "IsWidgetAdded",
+      "return": "bool",
+      "const": true,
+      "doc": "@return true if the widget was added to the viewport using AddWidget or AddWidgetForPlayer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Widget",
+          "type": "const UWidget"
+        }
+      ]
+    },
+    {
+      "name": "RemoveWidget",
+      "return": "void",
+      "doc": "Removes the widget from the viewport.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "SetWidgetSlot",
+      "return": "void",
+      "doc": "Update the slot info of a previously added widget or Store the slot info for later use.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UWidget"
+        },
+        {
+          "name": "Slot",
+          "type": "FGameViewportWidgetSlot"
+        }
+      ]
+    }
+  ]
+}

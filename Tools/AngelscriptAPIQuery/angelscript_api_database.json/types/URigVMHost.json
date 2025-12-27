@@ -1,0 +1,272 @@
+{
+  "name": "URigVMHost",
+  "inherits": "UObject",
+  "doc": "set this to something larger than 0 to profile N runs",
+  "properties": {
+    "AssetUserData": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the asset"
+    ],
+    "AssetUserDataEditorOnly": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the asset"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CanExecute",
+      "return": "bool",
+      "const": true,
+      "doc": "Is valid for execution",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Execute",
+      "return": "bool",
+      "doc": "Execute",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InEventName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ExecuteEvent",
+      "return": "bool",
+      "doc": "Execute a user defined event",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InEventName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetAbsoluteTime",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current absolute time",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentFramesPerSecond",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the current frames per second (this may change over time)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDeltaTime",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current delta time",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetScriptAccessibleVariables",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Returns the names of variables accessible in scripting",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSupportedEvents",
+      "return": "TArray<FName>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVariableAsString",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the value of a given variable as a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetVariableType",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns the type of a given variable",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetVM",
+      "return": "URigVM",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsInitRequired",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this host requires the VM memory to be initialized",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveRunOnceEvent",
+      "return": "bool",
+      "doc": "Removes an event running once",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InEventName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RequestInit",
+      "return": "void",
+      "doc": "Requests to perform an init during the next execution",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RequestRunOnceEvent",
+      "return": "void",
+      "doc": "Requests to run an event once",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InEventName",
+          "type": "FName"
+        },
+        {
+          "name": "InEventIndex",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetAbsoluteAndDeltaTime",
+      "return": "void",
+      "doc": "Set the current absolute and delta times",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAbsoluteTime",
+          "type": "float32"
+        },
+        {
+          "name": "InDeltaTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAbsoluteTime",
+      "return": "void",
+      "doc": "Set the current absolute time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAbsoluteTime",
+          "type": "float32"
+        },
+        {
+          "name": "InSetDeltaTimeZero",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetDeltaTime",
+      "return": "void",
+      "doc": "Set the current delta time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDeltaTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFramesPerSecond",
+      "return": "void",
+      "doc": "Set the current fps",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFramesPerSecond",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableFromString",
+      "return": "bool",
+      "doc": "Returns the value of a given variable as a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SupportsEvent",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InEventName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

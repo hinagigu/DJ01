@@ -1,0 +1,195 @@
+{
+  "name": "__SequencePlayer",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ComputePlayRateFromDuration",
+      "return": "float32",
+      "doc": "Returns the Play Rate to provide when playing this animation if a specific animation duration is desired",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequencePlayer",
+          "type": "FSequencePlayerReference"
+        },
+        {
+          "name": "Duration",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ConvertToSequencePlayer",
+      "return": "FSequencePlayerReference",
+      "doc": "Get a sequence player context from an anim node context",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "Result",
+          "type": "EAnimNodeReferenceConversionResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConvertToSequencePlayerPure",
+      "return": "void",
+      "doc": "Get a sequence player context from an anim node context (pure)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "SequencePlayer",
+          "type": "FSequencePlayerReference&"
+        },
+        {
+          "name": "Result",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetAccumulatedTime",
+      "return": "float32",
+      "doc": "Gets the current accumulated time of the sequence player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequencePlayer",
+          "type": "FSequencePlayerReference"
+        }
+      ]
+    },
+    {
+      "name": "GetLoopAnimation",
+      "return": "bool",
+      "doc": "Get the looping state of the sequence player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequencePlayer",
+          "type": "FSequencePlayerReference"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayRate",
+      "return": "float32",
+      "doc": "Get the play rate of the sequence player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequencePlayer",
+          "type": "FSequencePlayerReference"
+        }
+      ]
+    },
+    {
+      "name": "GetSequencePure",
+      "return": "UAnimSequenceBase",
+      "doc": "Get the current sequence of the sequence player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequencePlayer",
+          "type": "FSequencePlayerReference"
+        }
+      ]
+    },
+    {
+      "name": "GetStartPosition",
+      "return": "float32",
+      "doc": "Get the start position of the sequence player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequencePlayer",
+          "type": "FSequencePlayerReference"
+        }
+      ]
+    },
+    {
+      "name": "SetAccumulatedTime",
+      "return": "FSequencePlayerReference",
+      "doc": "Set the current accumulated time of the sequence player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequencePlayer",
+          "type": "FSequencePlayerReference"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPlayRate",
+      "return": "FSequencePlayerReference",
+      "doc": "Set the play rate of the sequence player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequencePlayer",
+          "type": "FSequencePlayerReference"
+        },
+        {
+          "name": "PlayRate",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSequence",
+      "return": "FSequencePlayerReference",
+      "doc": "Set the current sequence of the sequence player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequencePlayer",
+          "type": "FSequencePlayerReference"
+        },
+        {
+          "name": "Sequence",
+          "type": "UAnimSequenceBase"
+        }
+      ]
+    },
+    {
+      "name": "SetStartPosition",
+      "return": "FSequencePlayerReference",
+      "doc": "Set the start position of the sequence player.\nIf this is called from On Become Relevant or On Initial Update then it should be accompanied by a call to\nSetAccumulatedTime to achieve the desired effect of resetting the play time of a sequence player.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequencePlayer",
+          "type": "FSequencePlayerReference"
+        },
+        {
+          "name": "StartPosition",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

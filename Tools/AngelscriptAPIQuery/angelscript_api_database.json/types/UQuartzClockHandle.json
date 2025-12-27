@@ -1,0 +1,435 @@
+{
+  "name": "UQuartzClockHandle",
+  "inherits": "UObject",
+  "doc": "This class is a BP / Game thread wrapper around FQuartzClockProxy\n   (to talk to the underlying clock)\n\n...and inherits from FQuartzTickableObject\n   (to listen to the underlying clock)\n\nIt can subscribe to Quantized Event & Metronome delegates to synchronize\ngameplay & VFX to Quartz events fired from the Audio Engine",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetBeatProgressPercent",
+      "return": "float32",
+      "doc": "Returns the current progress until the next occurrence of the provided musical duration as a float value from 0 (previous beat) to 1 (next beat).\nThis is useful for indexing into curves to animate parameters to musical time.\nMs and Phase offsets are combined internally.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QuantizationBoundary",
+          "default": "EQuartzCommandQuantization :: Beat",
+          "type": "EQuartzCommandQuantization"
+        },
+        {
+          "name": "PhaseOffset",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "MsOffset",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetBeatsPerMinute",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentTimestamp",
+      "return": "FQuartzTransportTimeStamp",
+      "doc": "Retrieves a timestamp for the clock",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDurationOfQuantizationTypeInSeconds",
+      "return": "float32",
+      "doc": "Returns the duration in seconds of the given Quantization Type\n\n@param The Quantization type to measure\n@param The quantity of the Quantization Type to calculate the time of\n@return The duration, in seconds, of a multiplier amount of the Quantization Type, or -1 in the case the clock is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QuantizationType",
+          "type": "EQuartzCommandQuantization"
+        },
+        {
+          "name": "Multiplier",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetEstimatedRunTime",
+      "return": "float32",
+      "doc": "Returns the amount of time, in seconds, the clock has been running. Caution: due to latency, this will not be perfectly accurate",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMillisecondsPerTick",
+      "return": "float32",
+      "const": true,
+      "doc": "Metronome getters",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSecondsPerTick",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetThirtySecondNotesPerMinute",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTicksPerSecond",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsClockRunning",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "NotifyOnQuantizationBoundary",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InQuantizationBoundary",
+          "type": "FQuartzQuantizationBoundary"
+        },
+        {
+          "name": "InDelegate",
+          "default": "FOnQuartzCommandEventBP ( )",
+          "type": "FOnQuartzCommandEventBP"
+        },
+        {
+          "name": "InMsOffset",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "PauseClock",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        }
+      ]
+    },
+    {
+      "name": "ResetTransport",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDelegate",
+          "default": "FOnQuartzCommandEventBP ( )",
+          "type": "FOnQuartzCommandEventBP"
+        }
+      ]
+    },
+    {
+      "name": "ResetTransportQuantized",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InQuantizationBoundary",
+          "type": "FQuartzQuantizationBoundary"
+        },
+        {
+          "name": "InDelegate",
+          "type": "FOnQuartzCommandEventBP"
+        },
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        }
+      ]
+    },
+    {
+      "name": "ResumeClock",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        }
+      ]
+    },
+    {
+      "name": "SetBeatsPerMinute",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QuantizationBoundary",
+          "type": "FQuartzQuantizationBoundary"
+        },
+        {
+          "name": "Delegate",
+          "type": "FOnQuartzCommandEventBP"
+        },
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        },
+        {
+          "name": "BeatsPerMinute",
+          "default": "60.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMillisecondsPerTick",
+      "return": "void",
+      "doc": "Metronome Alteration (setters)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QuantizationBoundary",
+          "type": "FQuartzQuantizationBoundary"
+        },
+        {
+          "name": "Delegate",
+          "type": "FOnQuartzCommandEventBP"
+        },
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        },
+        {
+          "name": "MillisecondsPerTick",
+          "default": "100.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSecondsPerTick",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QuantizationBoundary",
+          "type": "FQuartzQuantizationBoundary"
+        },
+        {
+          "name": "Delegate",
+          "type": "FOnQuartzCommandEventBP"
+        },
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        },
+        {
+          "name": "SecondsPerTick",
+          "default": "0.250000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetThirtySecondNotesPerMinute",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QuantizationBoundary",
+          "type": "FQuartzQuantizationBoundary"
+        },
+        {
+          "name": "Delegate",
+          "type": "FOnQuartzCommandEventBP"
+        },
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        },
+        {
+          "name": "ThirtySecondsNotesPerMinute",
+          "default": "960.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTicksPerSecond",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QuantizationBoundary",
+          "type": "FQuartzQuantizationBoundary"
+        },
+        {
+          "name": "Delegate",
+          "type": "FOnQuartzCommandEventBP"
+        },
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        },
+        {
+          "name": "TicksPerSecond",
+          "default": "10.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "StartClock",
+      "return": "void",
+      "doc": "Clock manipulation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        }
+      ]
+    },
+    {
+      "name": "StartOtherClock",
+      "return": "void",
+      "doc": "\"other\" clock manipulation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherClockName",
+          "type": "FName"
+        },
+        {
+          "name": "InQuantizationBoundary",
+          "type": "FQuartzQuantizationBoundary"
+        },
+        {
+          "name": "InDelegate",
+          "default": "FOnQuartzCommandEventBP ( )",
+          "type": "FOnQuartzCommandEventBP"
+        }
+      ]
+    },
+    {
+      "name": "StopClock",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CancelPendingEvents",
+          "type": "bool"
+        },
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        }
+      ]
+    },
+    {
+      "name": "SubscribeToAllQuantizationEvents",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OnQuantizationEvent",
+          "type": "FOnQuartzMetronomeEventBP"
+        },
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        }
+      ]
+    },
+    {
+      "name": "SubscribeToQuantizationEvent",
+      "return": "void",
+      "doc": "Metronome subscription",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InQuantizationBoundary",
+          "type": "EQuartzCommandQuantization"
+        },
+        {
+          "name": "OnQuantizationEvent",
+          "type": "FOnQuartzMetronomeEventBP"
+        },
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        }
+      ]
+    },
+    {
+      "name": "UnsubscribeFromAllTimeDivisions",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        }
+      ]
+    },
+    {
+      "name": "UnsubscribeFromTimeDivision",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InQuantizationBoundary",
+          "type": "EQuartzCommandQuantization"
+        },
+        {
+          "name": "ClockHandle",
+          "type": "UQuartzClockHandle&"
+        }
+      ]
+    }
+  ]
+}

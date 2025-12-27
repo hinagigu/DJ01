@@ -1,0 +1,7 @@
+{
+  "name": "UMovieSceneHierarchicalEasingFinalizationSystem",
+  "inherits": "UMovieSceneEntityInstantiatorSystem",
+  "doc": "System that finalizes creation of easing channels by allocating new channels for hierarchical blend targets if necessary\nThis is required in order to solve the problem that the hierarchical instantiator needs to run before the property instantiator,\nbut we can't allocate channels for blend targets until _after_ the property instantiator (which sets up the relevant BlendTarget components)",
+  "properties": {},
+  "methods": []
+}

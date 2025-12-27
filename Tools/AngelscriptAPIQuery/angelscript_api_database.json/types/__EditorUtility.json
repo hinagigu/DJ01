@@ -1,0 +1,148 @@
+{
+  "name": "__EditorUtility",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ConvertToEditorUtilityWidget",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBP",
+          "type": "UWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentContentBrowserItemPath",
+      "return": "FContentBrowserItemPath",
+      "doc": "Gets the current content browser path if one is open, whether it is internal or virtual.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentContentBrowserPath",
+      "return": "bool",
+      "doc": "Attempts to get the path for the active content browser, returns false if there is no active content browser\nor if it was a virtual path\n@param       OutPath The returned path if successfully found\n@return      Whether a path was successfully returned",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutPath",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectedAssetData",
+      "return": "TArray<FAssetData>",
+      "doc": "Gets the set of currently selected asset data",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedAssets",
+      "return": "TArray<UObject>",
+      "doc": "Gets the set of currently selected assets",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedAssetsOfClass",
+      "return": "TArray<UObject>",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetClass",
+          "type": "UClass"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectedBlueprintClasses",
+      "return": "TArray<UClass>",
+      "doc": "Gets the set of currently selected classes",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedFolderPaths",
+      "return": "TArray<FString>",
+      "doc": "Gets the path to the currently selected folder in the content browser",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedPathViewFolderPaths",
+      "return": "TArray<FString>",
+      "doc": "Returns the folders that are selected in the path view for the content browser",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectionBounds",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Origin",
+          "type": "FVector&"
+        },
+        {
+          "name": "BoxExtent",
+          "type": "FVector&"
+        },
+        {
+          "name": "SphereRadius",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectionSet",
+      "return": "TArray<AActor>",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RenameAsset",
+      "return": "void",
+      "doc": "Renames an asset (cannot move folders)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Asset",
+          "type": "UObject"
+        },
+        {
+          "name": "NewName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SyncBrowserToFolders",
+      "return": "void",
+      "doc": "Sync the Content Browser to the given folder(s)\n@param       FolderList      The list of folders to sync to in the Content Browser",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FolderList",
+          "type": "TArray<FString>"
+        }
+      ]
+    }
+  ]
+}

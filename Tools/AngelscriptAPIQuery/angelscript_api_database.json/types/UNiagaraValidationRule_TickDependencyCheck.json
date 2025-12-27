@@ -1,0 +1,33 @@
+{
+  "name": "UNiagaraValidationRule_TickDependencyCheck",
+  "inherits": "UNiagaraValidationRule",
+  "doc": "Validation rule to check for unwanted tick dependencies.",
+  "properties": {
+    "Severity": [
+      "ENiagaraValidationSeverity",
+      2,
+      "How do we want to repro the error in the stack"
+    ],
+    "bCheckActorComponentInterface": [
+      "bool",
+      2,
+      "Check that the actor component interface isn't adding a tick dependency on the CPU."
+    ],
+    "bCheckCameraDataInterface": [
+      "bool",
+      2,
+      "Check that the camera data interface isn't adding a tick dependency on the CPU."
+    ],
+    "bCheckSkeletalMeshInterface": [
+      "bool",
+      2,
+      "Check that the skeletal mesh interface isn't adding a tick dependency on the CPU."
+    ],
+    "EffectTypesToExclude": [
+      "TArray<TSoftObjectPtr<UNiagaraEffectType>>",
+      2,
+      "If the system uses one of these effect types the rule will not be run."
+    ]
+  },
+  "methods": []
+}

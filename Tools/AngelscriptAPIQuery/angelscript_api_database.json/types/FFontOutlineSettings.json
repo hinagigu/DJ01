@@ -1,0 +1,43 @@
+{
+  "name": "FFontOutlineSettings",
+  "isStruct": true,
+  "doc": "Settings for applying an outline to a font",
+  "properties": {
+    "OutlineSize": [
+      "int",
+      "Size of the outline in slate units (at 1.0 font scale this unit is a pixel)"
+    ],
+    "bMiteredCorners": [
+      "bool",
+      "When enabled, outlines have sharp mitered corners, otherwise they are rounded."
+    ],
+    "bSeparateFillAlpha": [
+      "bool",
+      "When enabled the outline will be completely translucent where the filled area will be.  This allows for a separate fill alpha value\nThe trade off when enabling this is slightly worse quality for completely opaque fills where the inner outline border meets the fill area"
+    ],
+    "bApplyOutlineToDropShadows": [
+      "bool",
+      "When enabled the outline will be applied to any drop shadow that uses this font"
+    ],
+    "OutlineMaterial": [
+      "UObject",
+      "Optional material to apply to the outline"
+    ],
+    "OutlineColor": [
+      "FLinearColor",
+      "The color of the outline for any character in this font"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FFontOutlineSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FFontOutlineSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "name": "UCommonActivatableWidgetContainerBase",
+  "inherits": "UWidget",
+  "doc": "Base of widgets built to manage N activatable widgets, displaying one at a time.\nIntentionally meant to be black boxes that do not expose child/slot modification like a normal panel widget.",
+  "properties": {
+    "TransitionType": [
+      "ECommonSwitcherTransition",
+      2,
+      "The type of transition to play between widgets"
+    ],
+    "TransitionCurveType": [
+      "ETransitionCurve",
+      2,
+      "The curve function type to apply to the transition animation"
+    ],
+    "TransitionFallbackStrategy": [
+      "ECommonSwitcherTransitionFallbackStrategy",
+      "Controls how we will choose another widget if a transitioning widget is removed during the transition.\nNote for Queues and Stacks, ECommonSwitcherTransitionFallbackStrategy::Previous is a good option."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddWidget",
+      "return": "UCommonActivatableWidget",
+      "doc": "Adds a widget of the given class to the container.\nNote that all widgets added to the container are pooled, so the caller should not try to cache and re-use the created widget.\n\nIt is possible for multiple instances of the same class to be added to the container at once, so any instance created in the past\nis not guaranteed to be the one returned this time.\n\nSo in practice, you should not trust that any prior state has been retained on the returned widget, and establish all appropriate properties every time.",
+      "ufunction": true,
+      "unrealname": "BP_AddWidget",
+      "meta": null,
+      "args": [
+        {
+          "name": "ActivatableWidgetClass",
+          "type": "TSubclassOf<UCommonActivatableWidget>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "ClearWidgets",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActiveWidget",
+      "return": "UCommonActivatableWidget",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTransitionDuration",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveWidget",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetToRemove",
+          "type": "UCommonActivatableWidget"
+        }
+      ]
+    },
+    {
+      "name": "SetTransitionDuration",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Duration",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

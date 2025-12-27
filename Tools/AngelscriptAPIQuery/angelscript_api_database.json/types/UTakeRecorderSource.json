@@ -1,0 +1,23 @@
+{
+  "name": "UTakeRecorderSource",
+  "inherits": "UObject",
+  "doc": "Base class for all sources that can be recorded with the Take Recorder. Custom recording sources can\nbe created by inheriting from this class and implementing the Start/Tick/Stop recording functions.\nThe level sequence that the recording is being placed into is provided so that the take can decide\nto store the data directly in the resulting level sequence, but sources are not limited to generating\ndata in the specified Level Sequence. The source should be registered with the ITakeRecorderModule for\nit to show up in the Take Recorder UI. If creating a recording setup via code you can just add instances\nof your Source to the UTakeRecorderSources instance you're using to record and skip registering them with\nthe module.\n\nSources should reset their state before recording as there is not a guarantee that the object will be newly\ncreated for each recording.",
+  "properties": {
+    "bEnabled": [
+      "bool",
+      1,
+      "True if this source is cued for recording or not"
+    ],
+    "TakeNumber": [
+      "int",
+      1,
+      ""
+    ],
+    "TrackTint": [
+      "FColor",
+      1,
+      ""
+    ]
+  },
+  "methods": []
+}

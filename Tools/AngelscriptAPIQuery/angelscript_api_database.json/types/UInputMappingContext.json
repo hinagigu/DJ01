@@ -1,0 +1,72 @@
+{
+  "name": "UInputMappingContext",
+  "inherits": "UDataAsset",
+  "doc": "UInputMappingContext : A collection of key to action mappings for a specific input context\nCould be used to:\n     Store predefined controller mappings (allow switching between controller config variants). TODO: Build a system allowing redirects of UInputMappingContexts to handle this.\n     Define per-vehicle control mappings\n     Define context specific mappings (e.g. I switch from a gun (shoot action) to a grappling hook (reel in, reel out, disconnect actions).\n     Define overlay mappings to be applied on top of existing control mappings (e.g. Hero specific action mappings in a MOBA)",
+  "properties": {
+    "Mappings": [
+      "TArray<FEnhancedActionKeyMapping>",
+      "List of key to action mappings."
+    ],
+    "ContextDescription": [
+      "FText",
+      "Localized context descriptor"
+    ]
+  },
+  "methods": [
+    {
+      "name": "MapKey",
+      "return": "FEnhancedActionKeyMapping&",
+      "doc": "Map a key to an action within the mapping context.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Action",
+          "type": "const UInputAction"
+        },
+        {
+          "name": "ToKey",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "UnmapAll",
+      "return": "void",
+      "doc": "Unmap everything within the mapping context.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UnmapAllKeysFromAction",
+      "return": "void",
+      "doc": "Unmap all key maps to an action within the mapping context.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Action",
+          "type": "const UInputAction"
+        }
+      ]
+    },
+    {
+      "name": "UnmapKey",
+      "return": "void",
+      "doc": "Unmap a key from an action within the mapping context.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Action",
+          "type": "const UInputAction"
+        },
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    }
+  ]
+}

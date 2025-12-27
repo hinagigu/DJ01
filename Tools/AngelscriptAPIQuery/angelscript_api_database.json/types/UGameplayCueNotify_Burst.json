@@ -1,0 +1,43 @@
+{
+  "name": "UGameplayCueNotify_Burst",
+  "inherits": "UGameplayCueNotify_Static",
+  "doc": "UGameplayCueNotify_Burst\n\n    This is a non-instanced gameplay cue notify for effects that are one-offs.\n    Since it is not instanced, it cannot do latent actions such as delays and time lines.",
+  "properties": {
+    "DefaultSpawnCondition": [
+      "FGameplayCueNotify_SpawnCondition",
+      "Default condition to check before spawning anything.  Applies for all spawns unless overridden."
+    ],
+    "DefaultPlacementInfo": [
+      "FGameplayCueNotify_PlacementInfo",
+      "Default placement rules.  Applies for all spawns unless overridden."
+    ],
+    "BurstEffects": [
+      "FGameplayCueNotify_BurstEffects",
+      "List of effects to spawn on burst."
+    ]
+  },
+  "methods": [
+    {
+      "name": "OnBurst",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "AActor"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "SpawnResults",
+          "type": "FGameplayCueNotify_SpawnResult"
+        }
+      ]
+    }
+  ]
+}

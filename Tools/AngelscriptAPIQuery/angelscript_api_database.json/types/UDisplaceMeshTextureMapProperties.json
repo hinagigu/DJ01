@@ -1,0 +1,48 @@
+{
+  "name": "UDisplaceMeshTextureMapProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "PropertySet for properties affecting the Image Map displacement type.",
+  "properties": {
+    "DisplacementMap": [
+      "UTexture2D",
+      2,
+      "Displacement map. Only the first channel is used."
+    ],
+    "Channel": [
+      "EDisplaceMeshToolChannelType",
+      2,
+      "Channel in the displacement map to use."
+    ],
+    "DisplacementMapBaseValue": [
+      "float32",
+      2,
+      "The value in the texture map that corresponds to no displacement. For instance, if set to 0, then all\n       displacement will be positive. If set to 0.5, displacement below 0.5 will be negative, and above will be\n       positive. Default is for 128/255 to be no displacement."
+    ],
+    "UVScale": [
+      "FVector2D",
+      2,
+      "When sampling from the texture map, how to scale the mesh UV's in the x and y directions. For a mesh with\n      UV's in the range 0 to 1, setting a scale above 1 will result in tiling the texture map, and scaling below\n      1 will result in using only part of the texture map."
+    ],
+    "UVOffset": [
+      "FVector2D",
+      2,
+      "When sampling from the texture map, how to offset the mesh UV's. This will result in offsetting the\n      tiling of the texture map across the mesh."
+    ],
+    "bApplyAdjustmentCurve": [
+      "bool",
+      2,
+      "When true, applies a function to remap the values in the displacement map, which can be used\n       for contrast adjustment. The texture map values are converted to the range [0,1] before applying\n       the remapping."
+    ],
+    "AdjustmentCurve": [
+      "UCurveFloat",
+      2,
+      "This curve is queried in the range [0,1] to adjust contrast of the displacement map."
+    ],
+    "bRecalcNormals": [
+      "bool",
+      2,
+      "Recalculate normals from displaced mesh. Disable this if you are applying Displacements that are paired with an existing Normal Map in your Material."
+    ]
+  },
+  "methods": []
+}

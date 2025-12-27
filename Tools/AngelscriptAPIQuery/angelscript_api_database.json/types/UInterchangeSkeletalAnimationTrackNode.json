@@ -1,0 +1,190 @@
+{
+  "name": "UInterchangeSkeletalAnimationTrackNode",
+  "inherits": "UInterchangeAnimationTrackBaseNode",
+  "doc": "* Class to hold onto the relationships between a set of animation tracks and the bones, morph targets of a skeleton.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetCustomAnimationSampleRate",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the animation sample rate. Return false if the attribute is not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SampleRate",
+          "type": "float&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomAnimationStartTime",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the animation start time. Return false if the attribute is not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartTime",
+          "type": "float&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomAnimationStopTime",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the animation stop time. Return false if the attribute is not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StopTime",
+          "type": "float&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomSkeletonNodeUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the unique ID of the skeleton factory node. Return false if the attribute is not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetMorphTargetNodeAnimationPayloadKeys",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutMorphTargetNodeAnimationPayloadKeyUids",
+          "type": "TMap<FString,FString>&"
+        },
+        {
+          "name": "OutMorphTargetNodeAnimationPayloadKeyTypes",
+          "type": "TMap<FString,uint8>&"
+        }
+      ]
+    },
+    {
+      "name": "GetSceneNodeAnimationPayloadKeys",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutSceneNodeAnimationPayloadKeyUids",
+          "type": "TMap<FString,FString>&"
+        },
+        {
+          "name": "OutSceneNodeAnimationPayloadKeyTypes",
+          "type": "TMap<FString,uint8>&"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimationPayloadKeyForMorphTargetNodeUid",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MorphTargetNodeUid",
+          "type": "FString"
+        },
+        {
+          "name": "InUniqueId",
+          "type": "FString"
+        },
+        {
+          "name": "InType",
+          "type": "EInterchangeAnimationPayLoadType"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimationPayloadKeyForSceneNodeUid",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SceneNodeUid",
+          "type": "FString"
+        },
+        {
+          "name": "InUniqueId",
+          "type": "FString"
+        },
+        {
+          "name": "InType",
+          "type": "EInterchangeAnimationPayLoadType"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomAnimationSampleRate",
+      "return": "bool",
+      "doc": "Set the animation sample rate. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SampleRate",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomAnimationStartTime",
+      "return": "bool",
+      "doc": "Set the animation start time. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartTime",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomAnimationStopTime",
+      "return": "bool",
+      "doc": "Set the animation stop time. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StopTime",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomSkeletonNodeUid",
+      "return": "bool",
+      "doc": "Set the unique ID of the skeleton factory node. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

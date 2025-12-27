@@ -1,0 +1,109 @@
+{
+  "name": "UCommonActionWidget",
+  "inherits": "UWidget",
+  "doc": "A widget that shows a platform-specific icon for the given input action.",
+  "properties": {
+    "OnInputMethodChanged": [
+      "FOnInputMethodChanged__CommonActionWidget"
+    ],
+    "ProgressMaterialBrush": [
+      "FSlateBrush",
+      "The material to use when showing held progress, the progress will be sent using the material parameter\ndefined by ProgressMaterialParam and the value will range from 0..1."
+    ],
+    "ProgressMaterialParam": [
+      "FName",
+      "The material parameter on ProgressMaterialBrush to update the held percentage.  This value will be 0..1."
+    ],
+    "DesignTimeKey": [
+      "FKey",
+      2,
+      ""
+    ],
+    "IconRimBrush": [
+      "FSlateBrush"
+    ],
+    "InputActions": [
+      "TArray<FDataTableRowHandle>",
+      "List all the input actions that this common action widget is intended to represent.  In some cases you might have multiple actions\nthat you need to represent as a single entry in the UI.  For example - zoom, might be mouse wheel up or down, but you just need to\nshow a single icon for Up & Down on the mouse, this solves that problem."
+    ],
+    "EnhancedInputAction": [
+      "UInputAction",
+      "Input Action this common action widget is intended to represent. Optional if using EnhancedInputs"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDisplayText",
+      "return": "FText",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetIcon",
+      "return": "FSlateBrush",
+      "const": true,
+      "doc": "End UWidet",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsHeldAction",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetEnhancedInputAction",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InInputAction",
+          "type": "UInputAction"
+        }
+      ]
+    },
+    {
+      "name": "SetIconRimBrush",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InIconRimBrush",
+          "type": "FSlateBrush"
+        }
+      ]
+    },
+    {
+      "name": "SetInputAction",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputActionRow",
+          "type": "FDataTableRowHandle"
+        }
+      ]
+    },
+    {
+      "name": "SetInputActions",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewInputActions",
+          "type": "TArray<FDataTableRowHandle>"
+        }
+      ]
+    }
+  ]
+}

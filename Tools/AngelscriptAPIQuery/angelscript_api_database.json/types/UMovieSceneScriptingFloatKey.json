@@ -1,0 +1,222 @@
+{
+  "name": "UMovieSceneScriptingFloatKey",
+  "inherits": "UMovieSceneScriptingKey",
+  "doc": "Exposes a Sequencer float type key to Python/Blueprints.\nStores a reference to the data so changes to this class are forwarded onto the underlying data structures.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetArriveTangent",
+      "return": "float32",
+      "const": true,
+      "doc": "If Interpolation Mode is RCIM_Cubic, the arriving tangent at this key\n@return Arrival Tangent value. Represents the geometric tangents in the form of \"tan(y/x)\" where y is the key's value and x is the seconds (both relative to key)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetArriveTangentWeight",
+      "return": "float32",
+      "const": true,
+      "doc": "If Tangent Weight Mode is RCTWM_WeightedArrive or RCTWM_WeightedBoth, the weight of the arriving tangent on the left side.\n@return Tangent Weight. Represents the length of the hypotenuse in the form of \"sqrt(x*x+y*y)\" using the same definitions for x and y as tangents.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInterpolationMode",
+      "return": "ERichCurveInterpMode",
+      "const": true,
+      "doc": "Gets the interpolation mode for this key from the owning channel.\n@return       Interpolation mode this key uses to interpolate between this key and the next.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLeaveTangent",
+      "return": "float32",
+      "const": true,
+      "doc": "If Interpolation Mode is RCIM_Cubic, the leaving tangent at this key\n@return Leaving Tangent value. Represents the geometric tangents in the form of \"tan(y/x)\" where y is the key's value and x is the seconds (both relative to key)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLeaveTangentWeight",
+      "return": "float32",
+      "const": true,
+      "doc": "If Tangent Weight Mode is RCTWM_WeightedLeave or RCTWM_WeightedBoth, the weight of the leaving tangent on the right side.\n@return Tangent Weight. Represents the length of the hypotenuse in the form of \"sqrt(x*x+y*y)\" using the same definitions for x and y as tangents.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTangentMode",
+      "return": "ERichCurveTangentMode",
+      "const": true,
+      "doc": "Gets the tangent mode for this key from the owning channel.\n@return       Tangent mode that this key is using specifying which tangent values are respected when evaluating.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTangentWeightMode",
+      "return": "ERichCurveTangentWeightMode",
+      "const": true,
+      "doc": "If Interpolation Mode is RCIM_Cubic, the tangent weight mode at this key\n@return Tangent Weight Mode. See ERichCurveTangentWeightMode for more detail on what each mode does.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTime",
+      "return": "FFrameTime",
+      "const": true,
+      "doc": "Gets the time for this key from the owning channel.\n@param TimeUnit       Should the time be returned in Display Rate frames (possibly with a sub-frame value) or in Tick Resolution with no sub-frame values?\n@return                       The time of this key which combines both the frame number and the sub-frame it is on. Sub-frame will be zero if you request Tick Resolution.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the value for this key from the owning channel.\n@return       The float value this key represents.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetArriveTangent",
+      "return": "void",
+      "doc": "If Interpolation Mode is RCIM_Cubic, the arriving tangent at this key.\n@param InNewValue     Represents the geometric tangents in the form of \"tan(y/x)\" where y is the key's value and x is the seconds (both relative to key)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetArriveTangentWeight",
+      "return": "void",
+      "doc": "If Tangent Weight Mode is RCTWM_WeightedArrive or RCTWM_WeightedBoth, the weight of the arriving tangent on the left side.\n@param InNewValue     Specifies the new arriving tangent weight. Represents the length of the hypotenuse in the form of \"sqrt(x*x+y*y)\" using the same definitions for x and y as tangents.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetInterpolationMode",
+      "return": "void",
+      "doc": "Sets the interpolation mode for this key, reflecting it in the owning channel.\n@param InNewValue     Interpolation mode this key should use to interpolate between this key and the next.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewValue",
+          "type": "ERichCurveInterpMode"
+        }
+      ]
+    },
+    {
+      "name": "SetLeaveTangent",
+      "return": "void",
+      "doc": "If Interpolation Mode is RCIM_Cubic, the leaving tangent at this key.\n@param InNewValue     Represents the geometric tangents in the form of \"tan(y/x)\" where y is the key's value and x is the seconds (both relative to key)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLeaveTangentWeight",
+      "return": "void",
+      "doc": "If Tangent Weight Mode is RCTWM_WeightedLeave or RCTWM_WeightedBoth, the weight of the leaving tangent on the right side.\n@param InNewValue     Specifies the new leaving tangent weight. Represents the length of the hypotenuse in the form of \"sqrt(x*x+y*y)\" using the same definitions for x and y as tangents.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTangentMode",
+      "return": "void",
+      "doc": "Sets the tangent mode for this key, reflecting it in the owning channel.\n@param InNewValue     Tangent mode that this key should use to specify which tangent values are respected when evaluating. See ERichCurveTangentMode for more details.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewValue",
+          "type": "ERichCurveTangentMode"
+        }
+      ]
+    },
+    {
+      "name": "SetTangentWeightMode",
+      "return": "void",
+      "doc": "If Interpolation Mode is RCIM_Cubic, the tangent weight mode at this key.\n@param InNewValue     Specifies which tangent weights should be respected when evaluating the key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewValue",
+          "type": "ERichCurveTangentWeightMode"
+        }
+      ]
+    },
+    {
+      "name": "SetTime",
+      "return": "void",
+      "doc": "Sets the time for this key in the owning channel. Will replace any key that already exists at that frame number in this channel.\n@param NewFrameNumber What frame should this key be moved to? This should be in the time unit specified by TimeUnit.\n@param SubFrame               If using Display Rate time, what is the sub-frame this should go to? Clamped [0-1), and ignored with when TimeUnit is set to Tick Resolution.\n@param TimeUnit               Should the NewFrameNumber be interpreted as Display Rate frames or in Tick Resolution?",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewFrameNumber",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "SubFrame",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetValue",
+      "return": "void",
+      "doc": "Sets the value for this key, reflecting it in the owning channel.\n@param InNewValue     The new float value for this key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewValue",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

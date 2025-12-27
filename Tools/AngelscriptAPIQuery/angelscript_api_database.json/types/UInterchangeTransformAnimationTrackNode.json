@@ -1,0 +1,35 @@
+{
+  "name": "UInterchangeTransformAnimationTrackNode",
+  "inherits": "UInterchangeAnimationTrackNode",
+  "doc": "Class to represent an animation on the transform of a camera, light, or scene node.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetCustomUsedChannels",
+      "return": "bool",
+      "const": true,
+      "doc": "Get which channels of this animation should be used. This is a bitmask.\nSee SetCustomUsedChannels for description of bitmask",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomUsedChannels",
+      "return": "bool",
+      "doc": "Set which channels of this animation should be used. This is a bitwise mask.\nBits are interpreted as follow:\n   None          = 0x000,\n   TranslationX  = 0x001,\n   TranslationY  = 0x002,\n   TranslationZ  = 0x004,\n   Translation   = TranslationX | TranslationY | TranslationZ,\n   RotationX     = 0x008,\n   RotationY     = 0x010,\n   RotationZ     = 0x020,\n   Rotation      = RotationX | RotationY | RotationZ,\n   ScaleX        = 0x040,\n   ScaleY        = 0x080,\n   ScaleZ        = 0x100,\n   Scale         = ScaleX | ScaleY | ScaleZ,\n   AllTransform  = Translation | Rotation | Scale,\n   Weight        = 0x200,\n   All           = Translation | Rotation | Scale | Weight,",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

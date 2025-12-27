@@ -1,0 +1,229 @@
+{
+  "name": "FGameplayTagContainer",
+  "isStruct": true,
+  "doc": "A Tag Container holds a collection of FGameplayTags, tags are included explicitly by adding them, and implicitly from adding child tags",
+  "properties": {
+    "GameplayTags": [
+      "TArray<FGameplayTag>",
+      1,
+      "Array of gameplay tags"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddLeafTag",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "TagToAdd",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "AddTag",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "TagToAdd",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "AddTagFast",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "TagToAdd",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "Filter",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherContainer",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "FilterExact",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherContainer",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "First",
+      "return": "FGameplayTag",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGameplayTagParents",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasAll",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContainerToCheck",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "HasAllExact",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContainerToCheck",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "HasAny",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContainerToCheck",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "HasAnyExact",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContainerToCheck",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "HasTag",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TagToCheck",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "HasTagExact",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TagToCheck",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "IsEmpty",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Last",
+      "return": "FGameplayTag",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "MatchesQuery",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Query",
+          "type": "FGameplayTagQuery"
+        }
+      ]
+    },
+    {
+      "name": "Num",
+      "return": "int",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveTag",
+      "return": "bool",
+      "meta": null,
+      "args": [
+        {
+          "name": "TagToRemove",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "RemoveTags",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "TagsToRemove",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "FGameplayTagContainer&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    }
+  ]
+}

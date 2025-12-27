@@ -1,0 +1,35 @@
+{
+  "name": "UInterchangeAnimationTrackBaseNode",
+  "inherits": "UInterchangeBaseNode",
+  "doc": "Abstract class providing the minimal services required for an animation track node.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetCustomCompletionMode",
+      "return": "bool",
+      "const": true,
+      "doc": "Get how the actor's animated property behaves once this animation is complete.\nThe output value will be clamped to the range of values defined in EInterchangeAimationCompletionMode.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomCompletionMode",
+      "return": "bool",
+      "doc": "Set how the actor's animated property should behave once its animation completes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

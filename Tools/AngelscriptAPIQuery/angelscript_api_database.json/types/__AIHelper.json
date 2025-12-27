@@ -1,0 +1,254 @@
+{
+  "name": "__AIHelper",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetAIController",
+      "return": "AAIController",
+      "doc": "The way it works exactly is if the actor passed in is a pawn, then the function retrieves\n    pawn's controller cast to AIController. Otherwise the function returns actor cast to AIController.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlledActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetBlackboard",
+      "return": "UBlackboardComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentPath",
+      "return": "UNavigationPath",
+      "doc": "Returns a NEW UOBJECT that is a COPY of navigation path given controller is currently using.\n    The result being a copy means you won't be able to influence agent's pathfollowing\n    by manipulating received path.\n    Please use GetCurrentPathPoints if you only need the array of path points.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Controller",
+          "type": "AController"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentPathIndex",
+      "return": "int",
+      "doc": "Return the path index the given controller is currently at. Returns INDEX_NONE if no path.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Controller",
+          "type": "const AController"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentPathPoints",
+      "return": "TArray<FVector>",
+      "doc": "Returns an array of navigation path points given controller is currently using.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Controller",
+          "type": "AController"
+        }
+      ]
+    },
+    {
+      "name": "GetNextNavLinkIndex",
+      "return": "int",
+      "doc": "Return the path index of the next nav link for the current path of the given controller. Returns INDEX_NONE if no path or no incoming nav link.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Controller",
+          "type": "const AController"
+        }
+      ]
+    },
+    {
+      "name": "IsValidAIDirection",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DirectionVector",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "IsValidAILocation",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "IsValidAIRotation",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Rotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "LockAIResourcesWithAnimation",
+      "return": "void",
+      "doc": "locks indicated AI resources of animated pawn",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimInstance",
+          "type": "UAnimInstance"
+        },
+        {
+          "name": "bLockMovement",
+          "type": "bool"
+        },
+        {
+          "name": "LockAILogic",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SendAIMessage",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "APawn"
+        },
+        {
+          "name": "Message",
+          "type": "FName"
+        },
+        {
+          "name": "MessageSource",
+          "type": "UObject"
+        },
+        {
+          "name": "bSuccess",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SimpleMoveToActor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Controller",
+          "type": "AController"
+        },
+        {
+          "name": "Goal",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "SimpleMoveToLocation",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Controller",
+          "type": "AController"
+        },
+        {
+          "name": "Goal",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SpawnAIFromClass",
+      "return": "APawn",
+      "doc": "Spawns AI agent of a given class. The PawnClass needs to have AIController\nset for the function to spawn a controller as well.\n@param BehaviorTree if set, and the function has successfully spawned\n     and AI controller, this BehaviorTree asset will be assigned to the AI\n     controller, and run.\n@param Owner lets you spawn the AI in a sublevel rather than in the\n     persistent level (which is the default behavior).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PawnClass",
+          "type": "TSubclassOf<APawn>"
+        },
+        {
+          "name": "BehaviorTree",
+          "type": "UBehaviorTree"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "bNoCollisionFail",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "Owner",
+          "default": "nullptr",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "UnlockAIResourcesWithAnimation",
+      "return": "void",
+      "doc": "unlocks indicated AI resources of animated pawn. Will unlock only animation-locked resources",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimInstance",
+          "type": "UAnimInstance"
+        },
+        {
+          "name": "bUnlockMovement",
+          "type": "bool"
+        },
+        {
+          "name": "UnlockAILogic",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

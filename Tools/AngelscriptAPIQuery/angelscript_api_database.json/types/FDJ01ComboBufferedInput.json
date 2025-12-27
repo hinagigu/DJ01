@@ -1,0 +1,49 @@
+{
+  "name": "FDJ01ComboBufferedInput",
+  "isStruct": true,
+  "doc": "FDJ01ComboBufferedInput\n\n缓冲的输入条目 - 用于连招系统",
+  "properties": {
+    "AbilityTag": [
+      "FGameplayTag",
+      1,
+      "请求激活的技能Tag"
+    ],
+    "Priority": [
+      "int",
+      1,
+      "技能优先级 (数值越小优先级越高)"
+    ],
+    "InputTime": [
+      "float32",
+      1,
+      "输入时间戳"
+    ],
+    "BufferDuration": [
+      "float32",
+      1,
+      "缓冲有效期 (秒)"
+    ],
+    "ComboIndex": [
+      "int",
+      1,
+      "当前连段索引"
+    ],
+    "InputDirection": [
+      "FVector2D",
+      1,
+      "输入方向 (用于方向技)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDJ01ComboBufferedInput&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDJ01ComboBufferedInput"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "UAnimNotify_PlayNiagaraEffect",
+  "inherits": "UAnimNotify",
+  "properties": {
+    "Template": [
+      "UNiagaraSystem",
+      "Niagara System to Spawn"
+    ],
+    "LocationOffset": [
+      "FVector",
+      "Location offset from the socket"
+    ],
+    "RotationOffset": [
+      "FRotator",
+      "Rotation offset from socket"
+    ],
+    "Scale": [
+      "FVector",
+      2,
+      "Scale to spawn the Niagara system at"
+    ],
+    "bAbsoluteScale": [
+      "bool",
+      2,
+      "Whether or not we are in absolute scale mode"
+    ],
+    "SocketName": [
+      "FName",
+      "SocketName to attach to"
+    ],
+    "Attached": [
+      "bool",
+      "Should attach to the bone/socket"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetSpawnedEffect",
+      "return": "UFXSystemComponent",
+      "const": true,
+      "doc": "Return FXSystemComponent created from SpawnEffect",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "name": "__USkeletalMeshEditorSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AssignPhysicsAsset",
+      "return": "bool",
+      "doc": "Assigns a PhysicsAsset to the given SkeletalMesh if it is compatible. Passing\nnullptr / None as the physics asset will always succeed and will clear the\nphysics asset assignment for the target SkeletalMesh\n\n@param TargetMesh The mesh to attempt to assign the PhysicsAsset to\n@param PhysicsAsset The physics asset to assign to the provided mesh (or nullptr/None)\n\n@return Whether the physics asset was successfully assigned to the mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "PhysicsAsset",
+          "type": "UPhysicsAsset"
+        }
+      ]
+    },
+    {
+      "name": "CreatePhysicsAsset",
+      "return": "UPhysicsAsset",
+      "doc": "This function creates a PhysicsAsset for the given SkeletalMesh with the same settings as if it were created through FBX import\n\n@Param SkeletalMesh: The SkeletalMesh we want to create the PhysicsAsset for",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        }
+      ]
+    },
+    {
+      "name": "GetLodBuildSettings",
+      "return": "void",
+      "doc": "Copy the build options with the specified LOD build settings.\n@param SkeletalMesh - Mesh to process.\n@param LodIndex - The LOD we get the reduction settings.\n@param OutBuildOptions - The build settings where we copy the build options.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "const USkeletalMesh"
+        },
+        {
+          "name": "LodIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutBuildOptions",
+          "type": "FSkeletalMeshBuildSettings&"
+        }
+      ]
+    },
+    {
+      "name": "GetLODCount",
+      "return": "int",
+      "doc": "Retrieve the number of LOD contain in the specified skeletal mesh.\n\n@param SkeletalMesh: The static mesh we import or re-import a LOD.\n\n@return The LOD number.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        }
+      ]
+    },
+    {
+      "name": "ImportLOD",
+      "return": "int",
+      "doc": "Import or re-import a LOD into the specified base mesh. If the LOD do not exist it will import it and add it to the base static mesh. If the LOD already exist it will re-import the specified LOD.\n\n@param BaseSkeletalMesh: The static mesh we import or re-import a LOD.\n@param LODIndex: The index of the LOD to import or re-import. Valid value should be between 0 and the base skeletal mesh LOD number. Invalid value will return INDEX_NONE\n@param SourceFilename: The fbx source filename. If we are re-importing an existing LOD, it can be empty in this case it will use the last import file. Otherwise it must be an existing fbx file.\n\n@return The index of the LOD that was imported or re-imported. Will return INDEX_NONE if anything goes bad.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SourceFilename",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsPhysicsAssetCompatible",
+      "return": "bool",
+      "doc": "Checks whether a physics asset is compatible with the given SkeletalMesh\n\n@param TargetMesh The mesh to test for compatibility\n@param PhysicsAsset The PhysicsAsset to test for compatibility\n\n@return Whether the physics asset is compatible with the target SkeletalMesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "PhysicsAsset",
+          "type": "UPhysicsAsset"
+        }
+      ]
+    },
+    {
+      "name": "RegenerateLOD",
+      "return": "bool",
+      "doc": "Regenerate LODs of the mesh\n\n@param SkeletalMesh  The mesh that will regenerate LOD\n@param NewLODCount   Set valid value (>0) if you want to change LOD count.\n                                            Otherwise, it will use the current LOD and regenerate\n@param bRegenerateEvenIfImported     If this is true, it only regenerate even if this LOD was imported before\n                                                                    If false, it will regenerate for only previously auto generated ones\n@param bGenerateBaseLOD If this is true and there is some reduction data, the base LOD will be reduce according to the settings\n@return      true if succeed. If mesh reduction is not available this will return false.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "NewLODCount",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "bRegenerateEvenIfImported",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bGenerateBaseLOD",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReimportAllCustomLODs",
+      "return": "bool",
+      "doc": "Re-import the specified skeletal mesh and all the custom LODs.\n\n@param SkeletalMesh: is the skeletal mesh we import or re-import a LOD.\n\n@return true if re-import works, false otherwise see log for explanation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        }
+      ]
+    },
+    {
+      "name": "RenameSocket",
+      "return": "bool",
+      "doc": "Rename a socket within a skeleton\n@param SkeletalMesh  The mesh inside which we are renaming a socket\n@param OldName       The old name of the socket\n@param NewName               The new name of the socket\n@return true if the renaming succeeded.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "OldName",
+          "type": "FName"
+        },
+        {
+          "name": "NewName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetLodBuildSettings",
+      "return": "void",
+      "doc": "Set the LOD build options for the specified LOD index.\n@param SkeletalMesh - Mesh to process.\n@param LodIndex - The LOD we will apply the build settings.\n@param BuildOptions - The build settings we want to apply to the LOD.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "LodIndex",
+          "type": "int"
+        },
+        {
+          "name": "BuildOptions",
+          "type": "FSkeletalMeshBuildSettings"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    },
+    {
+      "name": "Get",
+      "return": "USkeletalMeshEditorSubsystem",
+      "args": []
+    }
+  ]
+}

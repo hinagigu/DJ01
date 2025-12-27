@@ -1,0 +1,74 @@
+{
+  "name": "FSplineMeshParams",
+  "isStruct": true,
+  "doc": "Structure that holds info about spline, passed to renderer to deform UStaticMesh.\nAlso used by Lightmass, so be sure to update Lightmass::FSplineMeshParams and the static lighting code if this changes!",
+  "properties": {
+    "StartPos": [
+      "FVector",
+      2,
+      "Start location of spline, in component space."
+    ],
+    "StartTangent": [
+      "FVector",
+      2,
+      "Start tangent of spline, in component space."
+    ],
+    "StartScale": [
+      "FVector2D",
+      2,
+      "X and Y scale applied to mesh at start of spline."
+    ],
+    "StartRoll": [
+      "float32",
+      2,
+      "Roll around spline applied at start, in radians."
+    ],
+    "StartOffset": [
+      "FVector2D",
+      2,
+      "Starting offset of the mesh from the spline, in component space."
+    ],
+    "EndPos": [
+      "FVector",
+      2,
+      "End location of spline, in component space."
+    ],
+    "EndScale": [
+      "FVector2D",
+      2,
+      "X and Y scale applied to mesh at end of spline."
+    ],
+    "EndTangent": [
+      "FVector",
+      2,
+      "End tangent of spline, in component space."
+    ],
+    "EndRoll": [
+      "float32",
+      2,
+      "Roll around spline applied at end, in radians."
+    ],
+    "EndOffset": [
+      "FVector2D",
+      2,
+      "Ending offset of the mesh from the spline, in component space."
+    ],
+    "NaniteClusterBoundsScale": [
+      "float32",
+      2,
+      "How much to scale the calculated culling bounds of Nanite clusters after deformation.\nNOTE: This should only be set greater than 1.0 if it fixes visible issues with clusters being\nincorrectly culled."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSplineMeshParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSplineMeshParams"
+        }
+      ]
+    }
+  ]
+}

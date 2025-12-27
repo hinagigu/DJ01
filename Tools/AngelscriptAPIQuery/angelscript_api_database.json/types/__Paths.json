@@ -1,0 +1,904 @@
+{
+  "name": "__Paths",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AutomationDir",
+      "return": "FString",
+      "doc": "Returns the directory for automation save files",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "AutomationLogDir",
+      "return": "FString",
+      "doc": "Returns the directory for automation log files",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "AutomationTransientDir",
+      "return": "FString",
+      "doc": "Returns the directory for automation save files that are meant to be deleted every run",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "BugItDir",
+      "return": "FString",
+      "doc": "Returns the directory the engine uses to output BugIt files.\n\n@return screenshot directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ChangeExtension",
+      "return": "FString",
+      "doc": "Changes the extension of the given filename (does nothing if the file has no extension)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "InNewExtension",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "CloudDir",
+      "return": "FString",
+      "doc": "Returns the directory for local files used in cloud emulation or support",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CollapseRelativeDirectories",
+      "return": "bool",
+      "doc": "Takes a fully pathed string and eliminates relative pathing (eg: annihilates \"..\" with the adjacent directory).\nAssumes all slashes have been converted to TEXT('/').\nFor example, takes the string:\n      BaseDirectory/SomeDirectory/../SomeOtherDirectory/Filename.ext\nand converts it to:\n      BaseDirectory/SomeOtherDirectory/Filename.ext",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "OutPath",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "Combine",
+      "return": "FString",
+      "doc": "Combine two or more Paths into one single Path",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPaths",
+          "type": "TArray<FString>"
+        }
+      ]
+    },
+    {
+      "name": "ConvertFromSandboxPath",
+      "return": "FString",
+      "doc": "Converts a sandbox (in Saved/Sandboxes) path to a normal path.\n\n@param InSandboxName The name of the sandbox.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "InSandboxName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ConvertRelativePathToFull",
+      "return": "FString",
+      "doc": "Converts a relative path name to a fully qualified name relative to the specified BasePath.\nBasePath will be the process BaseDir() if not BasePath is given",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "InBasePath",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ConvertToSandboxPath",
+      "return": "FString",
+      "doc": "Converts a normal path to a sandbox path (in Saved/Sandboxes).\n\n@param InSandboxName The name of the sandbox.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "InSandboxName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "CreateTempFilename",
+      "return": "FString",
+      "doc": "Creates a temporary filename with the specified prefix.\n\n@param Path The file pathname.\n@param Prefix The file prefix.\n@param Extension File extension ('.' required).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Path",
+          "type": "FString"
+        },
+        {
+          "name": "Prefix",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "Extension",
+          "default": "\".tmp\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "DiffDir",
+      "return": "FString",
+      "doc": "Returns the directory for temp files used for diffing",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DirectoryExists",
+      "return": "bool",
+      "doc": "Returns true if this directory was found, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "EngineConfigDir",
+      "return": "FString",
+      "doc": "Returns the directory the root configuration files are located.\n\n@return root config directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EngineContentDir",
+      "return": "FString",
+      "doc": "Returns the content directory of the \"core\" engine that can be shared across\nseveral games or across games & mods.\n\n@return engine content directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EngineDir",
+      "return": "FString",
+      "doc": "Returns the base directory of the \"core\" engine that can be shared across\nseveral games or across games & mods. Shaders and base localization files\ne.g. reside in the engine directory.\n\n@return engine directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EngineIntermediateDir",
+      "return": "FString",
+      "doc": "Returns the intermediate directory of the engine\n\n@return content directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EnginePluginsDir",
+      "return": "FString",
+      "doc": "Returns the plugins directory of the engine\n\n@return Plugins directory.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EngineSavedDir",
+      "return": "FString",
+      "doc": "Returns the saved directory of the engine\n\n@return Saved directory.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EngineSourceDir",
+      "return": "FString",
+      "doc": "Returns the directory where engine source code files are kept",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EngineUserDir",
+      "return": "FString",
+      "doc": "Returns the root directory for user-specific engine files. Always writable.\n\n@return root user directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EngineVersionAgnosticUserDir",
+      "return": "FString",
+      "doc": "Returns the root directory for user-specific engine files which can be shared between versions. Always writable.\n\n@return root user directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EnterpriseDir",
+      "return": "FString",
+      "doc": "Returns the base directory enterprise directory.\n\n@return enterprise directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EnterpriseFeaturePackDir",
+      "return": "FString",
+      "doc": "Returns the enterprise FeaturePack directory\n\n@return FeaturePack directory.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EnterprisePluginsDir",
+      "return": "FString",
+      "doc": "Returns the enterprise plugins directory\n\n@return Plugins directory.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FeaturePackDir",
+      "return": "FString",
+      "doc": "Returns the directory where feature packs are kept",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FileExists",
+      "return": "bool",
+      "doc": "Returns true if this file was found, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GameAgnosticSavedDir",
+      "return": "FString",
+      "doc": "Returns the saved directory that is not game specific. This is usually the same as\nEngineSavedDir().\n\n@return saved directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GameDevelopersDir",
+      "return": "FString",
+      "doc": "Returns the directory that contains subfolders for developer-specific content",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GameSourceDir",
+      "return": "FString",
+      "doc": "Returns the directory where game source code files are kept",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GameUserDeveloperDir",
+      "return": "FString",
+      "doc": "Returns the directory that contains developer-specific content for the current user",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GeneratedConfigDir",
+      "return": "FString",
+      "doc": "Returns the directory the engine saves generated config files.\n\n@return config directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBaseFilename",
+      "return": "FString",
+      "doc": "Returns the same thing as GetCleanFilename, but without the extension",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "bRemovePath",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetCleanFilename",
+      "return": "FString",
+      "doc": "Returns the filename (with extension), minus any path information.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetEditorLocalizationPaths",
+      "return": "TArray<FString>",
+      "doc": "Returns a list of editor-specific localization paths",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEngineLocalizationPaths",
+      "return": "TArray<FString>",
+      "doc": "Returns a list of engine-specific localization paths",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetExtension",
+      "return": "FString",
+      "doc": "Gets the extension for this filename.\n\n@param        bIncludeDot             if true, includes the leading dot in the result\n\n@return       the extension of this filename, or an empty string if the filename doesn't have an extension.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "bIncludeDot",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetGameLocalizationPaths",
+      "return": "TArray<FString>",
+      "doc": "Returns a list of game-specific localization paths",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInvalidFileSystemChars",
+      "return": "FString",
+      "doc": "Returns a string containing all invalid characters as dictated by the operating system",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPath",
+      "return": "FString",
+      "doc": "Returns the path in front of the filename",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetProjectFilePath",
+      "return": "FString",
+      "doc": "Gets the path to the project file.\n\n@return Project file path.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPropertyNameLocalizationPaths",
+      "return": "TArray<FString>",
+      "doc": "Returns a list of property name localization paths",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRelativePathToRoot",
+      "return": "FString",
+      "doc": "Gets the relative path to get from BaseDir to RootDirectory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRestrictedFolderNames",
+      "return": "TArray<FString>",
+      "doc": "Returns a list of restricted/internal folder names (without any slashes) which may be tested against full paths to determine if a path is restricted or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetToolTipLocalizationPaths",
+      "return": "TArray<FString>",
+      "doc": "Returns a list of tool tip localization paths",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasProjectPersistentDownloadDir",
+      "return": "bool",
+      "doc": "* Returns true if a writable directory for downloaded data that persists across play sessions is available",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDrive",
+      "return": "bool",
+      "doc": "Returns true if this path represents a root drive or volume",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsProjectFilePathSet",
+      "return": "bool",
+      "doc": "Checks whether the path to the project file, if any, is set.\n\n@return true if the path is set, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsRelative",
+      "return": "bool",
+      "doc": "Returns true if this path is relative to another path",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsRestrictedPath",
+      "return": "bool",
+      "doc": "Determines if supplied path uses a restricted/internal subdirectory.  Note that slashes are normalized and character case is ignored for the comparison.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsSamePath",
+      "return": "bool",
+      "doc": "Checks if two paths are the same.\n\n@param PathA First path to check.\n@param PathB Second path to check.\n\n@returns True if both paths are the same. False otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PathA",
+          "type": "FString"
+        },
+        {
+          "name": "PathB",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "LaunchDir",
+      "return": "FString",
+      "doc": "Returns the directory the application was launched from (useful for commandline utilities)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "MakePathRelativeTo",
+      "return": "bool",
+      "doc": "Assuming both paths (or filenames) are relative to the same base dir, converts InPath to be relative to InRelativeTo\n\n@param InPath Path to change to be relative to InRelativeTo\n@param InRelativeTo Path to use as the new relative base\n@param InPath New path relative to InRelativeTo\n@returns true if OutPath was changed to be relative",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "InRelativeTo",
+          "type": "FString"
+        },
+        {
+          "name": "OutPath",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "MakePlatformFilename",
+      "return": "void",
+      "doc": "Takes an \"Unreal\" pathname and converts it to a platform filename.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "OutPath",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "MakeStandardFilename",
+      "return": "void",
+      "doc": "Make fully standard \"Unreal\" pathname:\n   - Normalizes path separators [NormalizeFilename]\n   - Removes extraneous separators  [NormalizeDirectoryName, as well removing adjacent separators]\n   - Collapses internal ..'s\n   - Makes relative to Engine\\Binaries\\<Platform> (will ALWAYS start with ..\\..\\..)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "OutPath",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "MakeValidFileName",
+      "return": "FString",
+      "doc": "Returns a string that is safe to use as a filename because all items in\nGetInvalidFileSystemChars() are removed\n\nOptionally specify the character to replace invalid characters with\n\n@param  InString\n@param  InReplacementChar",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        },
+        {
+          "name": "InReplacementChar",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "NormalizeDirectoryName",
+      "return": "void",
+      "doc": "Normalize all / and \\ to TEXT(\"/\") and remove any trailing TEXT(\"/\") if the character before that is not a TEXT(\"/\") or a colon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "OutPath",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "NormalizeFilename",
+      "return": "void",
+      "doc": "Convert all / and \\ to TEXT(\"/\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "OutPath",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "ProfilingDir",
+      "return": "FString",
+      "doc": "Returns the directory the engine uses to output profiling files.\n\n@return log directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ProjectConfigDir",
+      "return": "FString",
+      "doc": "Returns the directory the root configuration files are located.\n\n@return root config directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ProjectContentDir",
+      "return": "FString",
+      "doc": "Returns the content directory of the current game by looking at FApp::GetProjectName().\n\n@return content directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ProjectDir",
+      "return": "FString",
+      "doc": "Returns the base directory of the current project by looking at FApp::GetProjectName().\nThis is usually a subdirectory of the installation\nroot directory and can be overridden on the command line to allow self\ncontained mod support.\n\n@return base directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ProjectIntermediateDir",
+      "return": "FString",
+      "doc": "Returns the intermediate directory of the current game by looking at FApp::GetProjectName().\n\n@return intermediate directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ProjectLogDir",
+      "return": "FString",
+      "doc": "Returns the directory the engine uses to output logs. This currently can't\nbe an .ini setting as the game starts logging before it can read from .ini\nfiles.\n\n@return log directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ProjectModsDir",
+      "return": "FString",
+      "doc": "Returns the mods directory of the current project by looking at FApp::GetProjectName().\n\n@return mods directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ProjectPersistentDownloadDir",
+      "return": "FString",
+      "doc": "* Returns the writable directory for downloaded data that persists across play sessions.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ProjectPluginsDir",
+      "return": "FString",
+      "doc": "Returns the plugins directory of the current game by looking at FApp::GetProjectName().\n\n@return plugins directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ProjectSavedDir",
+      "return": "FString",
+      "doc": "Returns the saved directory of the current game by looking at FApp::GetProjectName().\n\n@return saved directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ProjectUserDir",
+      "return": "FString",
+      "doc": "Returns the root directory for user-specific game files.\n\n@return game user directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveDuplicateSlashes",
+      "return": "void",
+      "doc": "Removes duplicate slashes in paths.\nAssumes all slashes have been converted to TEXT('/').\nFor example, takes the string:\n      BaseDirectory/SomeDirectory//SomeOtherDirectory////Filename.ext\nand converts it to:\n      BaseDirectory/SomeDirectory/SomeOtherDirectory/Filename.ext",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "OutPath",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "RootDir",
+      "return": "FString",
+      "doc": "Returns the root directory of the engine directory tree\n\n@return Root directory.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SandboxesDir",
+      "return": "FString",
+      "doc": "Returns the directory the engine stores sandbox output\n\n@return sandbox directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScreenShotDir",
+      "return": "FString",
+      "doc": "Returns the directory the engine uses to output screenshot files.\n\n@return screenshot directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetExtension",
+      "return": "FString",
+      "doc": "Sets the extension of the given filename (like ChangeExtension, but also applies the extension if the file doesn't have one)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "InNewExtension",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetProjectFilePath",
+      "return": "void",
+      "doc": "Sets the path to the project file.\n\n@param NewGameProjectFilePath - The project file path to set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewGameProjectFilePath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ShaderWorkingDir",
+      "return": "FString",
+      "doc": "Returns the Shader Working Directory\n\n@return shader working directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ShouldSaveToUserDir",
+      "return": "bool",
+      "doc": "Should the \"saved\" directory structures be rooted in the user dir or relative to the \"engine/game\"",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SourceConfigDir",
+      "return": "FString",
+      "doc": "Returns the directory the engine uses to look for the source leaf ini files. This\ncan't be an .ini variable for obvious reasons.\n\n@return source config directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Split",
+      "return": "void",
+      "doc": "Parses a fully qualified or relative filename into its components (filename, path, extension).\n\n@param        Path            [out] receives the value of the path portion of the input string\n@param        Filename        [out] receives the value of the filename portion of the input string\n@param        Extension       [out] receives the value of the extension portion of the input string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "PathPart",
+          "type": "FString&"
+        },
+        {
+          "name": "FilenamePart",
+          "type": "FString&"
+        },
+        {
+          "name": "ExtensionPart",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "ValidatePath",
+      "return": "void",
+      "doc": "Validates that the parts that make up the path contain no invalid characters as dictated by the operating system\nNote that this is a different set of restrictions to those imposed by FPackageName\n\n@param InPath - path to validate\n@param OutReason - If validation fails, this is filled with the failure reason\n@param bDidSucceed - Whether the path could be validated",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FString"
+        },
+        {
+          "name": "bDidSucceed",
+          "type": "bool&"
+        },
+        {
+          "name": "OutReason",
+          "type": "FText&"
+        }
+      ]
+    },
+    {
+      "name": "VideoCaptureDir",
+      "return": "FString",
+      "doc": "Returns the directory the engine uses to output user requested video capture files.\n\n@return Video capture directory",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

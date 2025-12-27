@@ -1,0 +1,119 @@
+{
+  "name": "FAnimNode_DeadBlending",
+  "isStruct": true,
+  "doc": "Dead Blending Node\n\nDead blending is an alternative method of inertialization that extrapolates the animation being transitioned from\nforward in time and then performs a normal cross-fade blend between this extrapolated animation and the new animation\nbeing transitioned to.\n\nFor more background see: https://theorangeduck.com/page/dead-blending\n\nThis node works by extrapolating forward the animation being transition from using the animation's velocities at\nthe point of transition, with an exponential decay which reduces those velocities over time to avoid the pose\nbecoming invalid.\n\nThe rate of this decay is set automatically based on how much the velocities of the animation being transitioned\nfrom are moving toward the pose of the animation being transitioned to. If they are moving in the wrong direction or\ntoo quickly they will have a larger decay rate, while if they are in the correct direction and moving slowly relative\nto the difference they will have a smaller decay rate.\n\nThese decay rates can be controlled by the `ExtrapolationHalfLife`, `ExtrapolationHalfLifeMin` and\n`ExtrapolationHalfLifeMax` parameters, which specify the approximate average, min, and max decay periods.\nMore specifically they specify the \"half-life\" - or how it takes for the velocities to be decayed by half.",
+  "properties": {
+    "Source": [
+      "FPoseLink",
+      2,
+      "Input Pose"
+    ],
+    "bAlwaysUseDefaultBlendSettings": [
+      "bool",
+      2,
+      "When enabled, the default blend settings will always be used rather than those coming from the inertialization request."
+    ],
+    "DefaultBlendDuration": [
+      "float32",
+      2,
+      "The default blend duration to use when \"Always Use Default Blend Settings\" is set to true."
+    ],
+    "DefaultBlendProfile": [
+      "UBlendProfile",
+      2,
+      "Default blend profile to use when no blend profile is supplied with the inertialization request."
+    ],
+    "DefaultBlendMode": [
+      "EAlphaBlendOption",
+      2,
+      "Default blend mode to use when no blend mode is supplied with the inertialization request."
+    ],
+    "DefaultCustomBlendCurve": [
+      "UCurveFloat",
+      2,
+      "Default custom blend curve to use along with the default blend mode."
+    ],
+    "BlendTimeMultiplier": [
+      "float32",
+      2,
+      "Multiplier that can be used to scale the overall blend durations coming from inertialization requests."
+    ],
+    "bLinearlyInterpolateScales": [
+      "bool",
+      2,
+      "When enabled, bone scales will be linearly interpolated and extrapolated. This is slightly more performant and\nconsistent with the rest of Unreal but visually gives the appearance of the rate of change of scale being affected\nby the overall size of the bone. Note: this option must be enabled if you want this node to support negative scales."
+    ],
+    "FilteredCurves": [
+      "TArray<FName>",
+      2,
+      "List of curves that should not use inertial blending. These curves will change instantly when the animation switches."
+    ],
+    "ExtrapolationFilteredCurves": [
+      "TArray<FName>",
+      2,
+      "List of curves that will not be included in the extrapolation. Curves in this list will effectively act like they have had their value reset\nto zero at the point of the transition, and will be blended in with the curve values in the animation that is being transitioned to."
+    ],
+    "FilteredBones": [
+      "TArray<FBoneReference>",
+      2,
+      "List of bones that should not use inertial blending. These bones will change instantly when the animation switches."
+    ],
+    "ExtrapolationHalfLife": [
+      "float32",
+      2,
+      "The average half-life of decay in seconds to use when extrapolating the animation. To get the final half-life of\ndecay, this value will be scaled by the amount to which the velocities of the animation being transitioned from\nare moving toward the animation being transitioned to."
+    ],
+    "ExtrapolationHalfLifeMin": [
+      "float32",
+      2,
+      "The minimum half-life of decay in seconds to use when extrapolating the animation. This will be used when the\nvelocities of the animation being transitioned from are very small or moving away from the animation being\ntransitioned to."
+    ],
+    "ExtrapolationHalfLifeMax": [
+      "float32",
+      2,
+      "The maximum half-life of decay in seconds to use when extrapolating the animation. This will dictate the longest\ndecay duration possible when velocities of the animation being transitioned from are small and moving towards the\nanimation being transitioned to."
+    ],
+    "MaximumTranslationVelocity": [
+      "float32",
+      2,
+      "The maximum velocity to allow for extrapolation of bone translations in centimeters per second. Smaller values\nmay help prevent the pose breaking during blending but too small values can make the blend less smooth."
+    ],
+    "MaximumRotationVelocity": [
+      "float32",
+      2,
+      "The maximum velocity to allow for extrapolation of bone rotations in degrees per second. Smaller values\nmay help prevent the pose breaking during blending but too small values can make the blend less smooth."
+    ],
+    "MaximumScaleVelocity": [
+      "float32",
+      2,
+      "The maximum velocity to allow for extrapolation of bone scales. Smaller values may help prevent the pose\nbreaking during blending but too small values can make the blend less smooth."
+    ],
+    "MaximumCurveVelocity": [
+      "float32",
+      2,
+      "The maximum velocity to allow for extrapolation of curves. Smaller values may help prevent extreme curve values\nduring blending but too small values can make the blending of curves less smooth."
+    ],
+    "bResetOnBecomingRelevant": [
+      "bool",
+      2,
+      "Clear any active blends if we just became relevant, to avoid carrying over undesired blends."
+    ],
+    "bShowExtrapolations": [
+      "bool",
+      2,
+      "This setting can be used to show what the extrapolation of the animation looks like."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_DeadBlending&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_DeadBlending"
+        }
+      ]
+    }
+  ]
+}

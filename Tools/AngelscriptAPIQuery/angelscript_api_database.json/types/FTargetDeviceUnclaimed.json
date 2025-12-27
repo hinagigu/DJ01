@@ -1,0 +1,34 @@
+{
+  "name": "FTargetDeviceUnclaimed",
+  "isStruct": true,
+  "doc": "Implements a message that is sent when a device is no longer claimed.\n\n@see FTargetDeviceClaimDenied, FTargetDeviceClaimRequest",
+  "properties": {
+    "DeviceName": [
+      "FString",
+      2,
+      "Holds the identifier of the device that is no longer claimed."
+    ],
+    "HostName": [
+      "FString",
+      2,
+      "Holds the name of the host computer that had claimed the device."
+    ],
+    "HostUser": [
+      "FString",
+      2,
+      "Holds the name of the user that had claimed the device."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTargetDeviceUnclaimed&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTargetDeviceUnclaimed"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "UNiagaraDataChannel_Islands",
+  "inherits": "UNiagaraDataChannel",
+  "doc": "Data channel that will automatically sub-divide the world into discreet \"islands\" based on location.",
+  "properties": {
+    "Mode": [
+      "ENiagraDataChannel_IslandMode",
+      2,
+      "Controls how islands are placed and sized."
+    ],
+    "InitialExtents": [
+      "FVector",
+      2,
+      "Starting extents of the island's bounds."
+    ],
+    "MaxExtents": [
+      "FVector",
+      2,
+      "The maximum total extents of each island. If a new element would grow the bounds beyond this size then a new island is created."
+    ],
+    "PerElementExtents": [
+      "FVector",
+      2,
+      "The extents for every element entered into this data channel.\nWe use this to pad the ends of islands to ensure that all data in an island will be covered."
+    ],
+    "Systems": [
+      "TArray<TSoftObjectPtr<UNiagaraSystem>>",
+      2,
+      "One or more Niagara Systems to spawn that will consume the data in this island.\nEach island will have an instance of these systems created.\nThese systems are intended to consume data for this whole island and generate effects that cover the whole island.\nThe actual bounds of each of these system instances will be set to the current total bounds of the island."
+    ],
+    "IslandPoolSize": [
+      "int",
+      2,
+      "How many pre-allocated islands to keep in the pool. Higher values will incur a larger standing memory cost but will reduce activation times for new islands."
+    ],
+    "DebugDrawSettings": [
+      "FNDCIslandDebugDrawSettings",
+      2,
+      ""
+    ]
+  },
+  "methods": []
+}

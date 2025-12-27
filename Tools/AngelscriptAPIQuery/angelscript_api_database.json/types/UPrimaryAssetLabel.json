@@ -1,0 +1,40 @@
+{
+  "name": "UPrimaryAssetLabel",
+  "inherits": "UPrimaryDataAsset",
+  "doc": "A seed file that is created to mark referenced assets as part of this primary asset",
+  "properties": {
+    "Rules": [
+      "FPrimaryAssetRules",
+      2,
+      "Management rules for this specific asset, if set it will override the type rules"
+    ],
+    "ExplicitAssets": [
+      "TArray<TSoftObjectPtr<UObject>>",
+      2,
+      "List of manually specified assets to label"
+    ],
+    "ExplicitBlueprints": [
+      "TArray<TSoftClassPtr<UObject>>",
+      2,
+      "List of manually specified blueprint assets to label"
+    ],
+    "AssetCollection": [
+      "FCollectionReference",
+      2,
+      "Collection to load asset references out of"
+    ],
+    "bLabelAssetsInMyDirectory": [
+      "bool",
+      "True to Label everything in this directory and sub directories"
+    ],
+    "bIsRuntimeLabel": [
+      "bool",
+      "Set to true if the label asset itself should be cooked and available at runtime. This does not affect the assets that are labeled, they are set with cook rule"
+    ],
+    "bIncludeRedirectors": [
+      "bool",
+      "If true, redirectors found by the AssetLabel's explicit assets or directory will be labeled. If false, redirectors will be skipped."
+    ]
+  },
+  "methods": []
+}

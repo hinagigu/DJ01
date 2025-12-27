@@ -1,0 +1,429 @@
+{
+  "name": "__SourceControl",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AsyncQueryFileState",
+      "return": "void",
+      "doc": "Query the source control state of the specified file, asynchronously.\n\n@param        FileStateCallback Source control state - see USourceControlState. It will have bIsValid set to false if it could not have its values set.\n@param        InFile                    The file to query - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param        bSilent                   if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FileStateCallback",
+          "type": "FQueryFileStateDelegate__SourceControlHelpers"
+        },
+        {
+          "name": "InFile",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CheckInFile",
+      "return": "bool",
+      "doc": "Use currently set source control provider to check in a file.\n@note        Blocks until action is complete.\n\n@param       InFile                  The file to check in - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       InDescription   Description for check in\n@param       bSilent                 if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@param       bKeepCheckedOut Keep files checked-out after checking in. This is helpful for maintaining \"ownership\" of files if further operations are needed.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFile",
+          "type": "FString"
+        },
+        {
+          "name": "InDescription",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bKeepCheckedOut",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CheckInFiles",
+      "return": "bool",
+      "doc": "Use currently set source control provider to check in specified files.\n@note        Blocks until action is complete.\n\n@param       InFiles                 Files to check out - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       InDescription   Description for check in\n@param       bSilent                 if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@param       bKeepCheckedOut Keep files checked-out after checking in. This is helpful for maintaining \"ownership\" of files if further operations are needed.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFiles",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "InDescription",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bKeepCheckedOut",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CheckOutFile",
+      "return": "bool",
+      "doc": "Use currently set source control provider to check out a file.\n@note        Blocks until action is complete.\n\n@param       InFile          The file to check out - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent         if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFile",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CheckOutFiles",
+      "return": "bool",
+      "doc": "Use currently set source control provider to check out specified files.\n@note        Blocks until action is complete.\n\n@param       InFiles         Files to check out - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent         if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFiles",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CheckOutOrAddFile",
+      "return": "bool",
+      "doc": "Use currently set source control provider to check out file or mark it for add.\n@note        Blocks until action is complete.\n\n@param       InFile          The file to check out/add - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent         if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFile",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CheckOutOrAddFiles",
+      "return": "bool",
+      "doc": "Use currently set source control provider to check out files or mark them for add.\n@note        Blocks until action is complete.\n\n@param       InFiles         The files to check out/add - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent         if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFiles",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CopyFile",
+      "return": "bool",
+      "doc": "Use currently set source control provider to copy a file.\n@note        Blocks until action is complete.\n\n@param       InSourceFile    Source file string to copy from - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       InDestFile              Source file string to copy to - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard). If package, then uses same extension as source file.\n@param       bSilent                 if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSourceFile",
+          "type": "FString"
+        },
+        {
+          "name": "InDestFile",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CurrentProvider",
+      "return": "FString",
+      "doc": "Determine the name of the current source control provider.\n@return      the name of the current source control provider. If one is not set then \"None\" is returned.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsAvailable",
+      "return": "bool",
+      "doc": "Quick check if currently set source control provider is enabled and available for use\n(server-based providers can use this to return whether the server is available or not)\n\n@return      true if source control is available, false if it is not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsEnabled",
+      "return": "bool",
+      "doc": "Determine if there is a source control system enabled\n@return      true if enabled, false if not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LastErrorMsg",
+      "return": "FText",
+      "doc": "Get status text set by SourceControl system if an error occurs regardless whether bSilent is set or not.\nOnly set if there was an error.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "MarkFileForAdd",
+      "return": "bool",
+      "doc": "Use currently set source control provider to mark a file for add. Does nothing (and returns true) if the file is already under SC\n@note        Blocks until action is complete.\n\n@param       InFile          The file to add - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent         if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFile",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MarkFileForDelete",
+      "return": "bool",
+      "doc": "Use currently set source control provider to remove file from source control and\ndelete the file.\n@note        Blocks until action is complete.\n\n@param       InFile          The file to delete - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent         if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFile",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MarkFilesForAdd",
+      "return": "bool",
+      "doc": "Use currently set source control provider to mark files for add. Does nothing (and returns true) for any file that is already under SC\n@note        Blocks until action is complete.\n\n@param       InFiles         Files to check out - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent         if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFiles",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MarkFilesForDelete",
+      "return": "bool",
+      "doc": "Use currently set source control provider to remove files from source control and delete the files.\n@note        Blocks until action is complete.\n\n@param       InFile          The file to delete - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent         if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFiles",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "QueryFileState",
+      "return": "FSourceControlState",
+      "doc": "Use currently set source control provider to query a file's source control state.\n@note        Blocks until action is complete.\n\n@param       InFile                  The file to query - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent                 if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      Source control state - see USourceControlState. It will have bIsValid set to false if\n                     it could not have its values set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFile",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RevertAndReloadPackages",
+      "return": "bool",
+      "doc": "Reverts the provided files then reloads packages.\n@param       InPackagesToRevert                                      The packages to revert\n@param       bRevertAll                                                      Whether to revert all files\n@param       bReloadWorld                                            Reload the world\n@return true if succeeded.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPackagesToRevert",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "bRevertAll",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bReloadWorld",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RevertFile",
+      "return": "bool",
+      "doc": "Use currently set source control provider to revert a file regardless whether any changes will be lost or not.\n@note        Blocks until action is complete.\n\n@param       InFile  The file to revert - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFile",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RevertFiles",
+      "return": "bool",
+      "doc": "Use currently set source control provider to revert files regardless whether any changes will be lost or not.\n@note        Blocks until action is complete.\n\n@param       InFiles Files to revert - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFiles",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RevertUnchangedFile",
+      "return": "bool",
+      "doc": "Use currently set source control provider to revert a file provided no changes have been made.\n@note        Blocks until action is complete.\n\n@param       InFile  File to check out - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFile",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RevertUnchangedFiles",
+      "return": "bool",
+      "doc": "Use currently set source control provider to revert files provided no changes have been made.\n@note        Blocks until action is complete.\n\n@param       InFiles Files to check out - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFiles",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SyncFile",
+      "return": "bool",
+      "doc": "Use currently set source control provider to sync a file or directory to the head revision.\n@note        Blocks until action is complete.\n\n@param       InFile  The file or directory to sync - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFile",
+          "type": "FString"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SyncFiles",
+      "return": "bool",
+      "doc": "Use currently set source control provider to sync files or directories to the head revision.\n@note        Blocks until action is complete.\n\n@param       InFiles Files or directories to sync - can be either fully qualified path, relative path, long package name, asset path or export text path (often stored on clipboard)\n@param       bSilent if false (default) then write out any error info to the Log. Any error text can be retrieved by LastErrorMsg() regardless.\n@return      true if succeeded, false if failed and can call LastErrorMsg() for more info.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFiles",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "bSilent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

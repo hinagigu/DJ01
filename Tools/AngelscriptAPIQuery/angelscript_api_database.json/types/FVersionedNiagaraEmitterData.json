@@ -1,0 +1,89 @@
+{
+  "name": "FVersionedNiagaraEmitterData",
+  "isStruct": true,
+  "doc": "Struct containing all of the data that can be different between different emitter versions.",
+  "properties": {
+    "bLocalSpace": [
+      "bool",
+      "Toggles whether or not the particles within this emitter are relative to the emitter origin or in global space."
+    ],
+    "bDeterminism": [
+      "bool",
+      "Toggles whether to globally make the random number generator be deterministic or non-deterministic. Any random calculation that is set to the emitter defaults will inherit this value. It is still possible to tweak individual random to be deterministic or not. In this case deterministic means that it will return the same results for the same configuration of the emitter as long as delta time is not variable. Any changes to the emitter's individual scripts will adjust the results."
+    ],
+    "RandomSeed": [
+      "int",
+      "An emitter-based seed for the deterministic random number generator."
+    ],
+    "SimTarget": [
+      "ENiagaraSimTarget"
+    ],
+    "CalculateBoundsMode": [
+      "ENiagaraEmitterCalculateBoundMode",
+      2,
+      "How should we calculate bounds for the emitter.\nNote: If this is greyed out it means fixed bounds are enabled in the System Properties and these bounds are therefore ignored."
+    ],
+    "FixedBounds": [
+      "FBox",
+      "The fixed bounding box value. CalculateBoundsMode is the condition whether the fixed bounds can be edited.\nNote: If this is greyed out it means fixed bounds are enabled in the System Properties and these bounds are therefore ignored."
+    ],
+    "Platforms": [
+      "FNiagaraPlatformSet",
+      2,
+      ""
+    ],
+    "ScalabilityOverrides": [
+      "FNiagaraEmitterScalabilityOverrides",
+      2,
+      ""
+    ],
+    "MaxGPUParticlesSpawnPerFrame": [
+      "int",
+      "An override on the max number of GPU particles we expect to spawn in a single frame. A value of 0 means it'll use fx.MaxNiagaraGPUParticlesSpawnPerFrame."
+    ],
+    "AllocationMode": [
+      "EParticleAllocationMode",
+      "The emitter needs to allocate memory for the particles each tick.\nTo prevent reallocations, the emitter should allocate as much memory as is needed for the max particle count.\nThis setting controls if the allocation size should be automatically determined or manually entered."
+    ],
+    "PreAllocationCount": [
+      "int",
+      2,
+      "The emitter will allocate at least this many particles on it's first tick.\nThis can aid performance by avoiding many allocations as an emitter ramps up to it's max size."
+    ],
+    "AttributesToPreserve": [
+      "TArray<FString>",
+      2,
+      "An allow list of Particle attributes (e.g. \"Particle.Position\" or \"Particle.Age\") that will not be removed from the DataSet  even if they aren't read by the VM.\n          Used in conjunction with UNiagaraSystem::bTrimAttributes"
+    ],
+    "AddEmitterDefaultViewState": [
+      "ENiagaraEmitterDefaultSummaryState",
+      2,
+      "This determines how emitters will be added to a system by default. If summary view is setup, consider setting this to 'Summary'."
+    ],
+    "SimStageExecutionLoopEditorData": [
+      "TArray<FNiagaraSimStageExecutionLoopEditorData>",
+      2,
+      ""
+    ],
+    "bInterpolatedSpawning": [
+      "bool",
+      "When enabled, this will spawn using interpolated parameter values and perform a partial update at spawn time. This adds significant additional cost for spawning but will produce much smoother spawning for high spawn rates, erratic frame rates and fast moving emitters."
+    ],
+    "bRequiresPersistentIDs": [
+      "bool",
+      "Creates a stable Identifier (Particles.ID) which does not vary from frame to frame. This comes at a small memory and performance cost. This allows external objects to track the same particle over multiple frames. Particle arrays are tightly packed and a particle's actual index in the array may change from frame to frame. This optionally lets you use a lookup table to track a particle by index in the lookup table."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FVersionedNiagaraEmitterData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVersionedNiagaraEmitterData"
+        }
+      ]
+    }
+  ]
+}

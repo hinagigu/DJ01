@@ -1,0 +1,27 @@
+{
+  "name": "FLiveLinkBaseFrameData",
+  "isStruct": true,
+  "doc": "Base data structure for each frame coming in for a subject\n@note subclass can't contains reference to UObject",
+  "properties": {
+    "MetaData": [
+      "FLiveLinkMetaData",
+      "Frame's metadata."
+    ],
+    "PropertyValues": [
+      "TArray<float32>",
+      "Values of the properties defined in the static structure. Use FLiveLinkBaseStaticData.FindPropertyValue to evaluate."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLiveLinkBaseFrameData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLiveLinkBaseFrameData"
+        }
+      ]
+    }
+  ]
+}

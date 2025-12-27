@@ -1,0 +1,42 @@
+{
+  "name": "UFbxSceneImportOptions",
+  "inherits": "UObject",
+  "doc": "Fbx_AddToBlueprint UMETA(DisplayName = \"Add to an existing Blueprint asset\"),",
+  "properties": {
+    "HierarchyType": [
+      "EFBXSceneOptionsCreateHierarchyType",
+      2,
+      "Choose if you want to generate the scene hierarchy with normal level actors, one actor with multiple components, or one blueprint asset with multiple components."
+    ],
+    "bBakePivotInVertex": [
+      "bool",
+      2,
+      "- Experimental - If this option is true the inverse node pivot will be apply to the mesh vertices. The pivot from the DCC will then be the origin of the mesh. This option only work with static meshes."
+    ],
+    "bCreateContentFolderHierarchy": [
+      "bool",
+      "If checked, a folder's hierarchy will be created under the import asset path. All the created folders will match the actor hierarchy. In case there is more than one actor that links to an asset, the shared asset will be placed at the first actor's place."
+    ],
+    "bImportAsDynamic": [
+      "bool",
+      "If checked, the mobility of all actors or components will be dynamic. If unchecked, they will be static."
+    ],
+    "bForceFrontXAxis": [
+      "bool",
+      "Whether to force the front axis to be align with X instead of -Y."
+    ],
+    "bImportStaticMeshLODs": [
+      "bool",
+      "If enabled, creates LOD models for Unreal static meshes from LODs in the import file; If not enabled, only the base static mesh from the LOD group is imported."
+    ],
+    "bImportSkeletalMeshLODs": [
+      "bool",
+      "If enabled, creates LOD models for Unreal skeletal meshes from LODs in the import file; If not enabled, only the base skeletal mesh from the LOD group is imported."
+    ],
+    "bInvertNormalMaps": [
+      "bool",
+      "If enabled, this option will cause normal map Y (Green) values to be inverted when importing textures"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,68 @@
+{
+  "name": "FWaveTableSettings",
+  "isStruct": true,
+  "properties": {
+    "FilePath": [
+      "FFilePath",
+      2,
+      "File to import"
+    ],
+    "ChannelIndex": [
+      "int",
+      2,
+      "Index of channel in file to build WaveTable from (wraps if channel is greater than number in file)"
+    ],
+    "SourceData": [
+      "FWaveTableData",
+      2,
+      "Source data last imported from the source file"
+    ],
+    "Phase": [
+      "float32",
+      2,
+      "Percent to phase shift of table"
+    ],
+    "Top": [
+      "float32",
+      2,
+      "Percent to remove from beginning of sampled WaveTable."
+    ],
+    "Tail": [
+      "float32",
+      2,
+      "Percent to remove from end of sampled WaveTable."
+    ],
+    "FadeIn": [
+      "float32",
+      2,
+      "Percent to fade in over."
+    ],
+    "FadeOut": [
+      "float32",
+      2,
+      "Percent to fade out over."
+    ],
+    "bNormalize": [
+      "bool",
+      2,
+      "Whether or not to normalize the WaveTable."
+    ],
+    "bRemoveOffset": [
+      "bool",
+      2,
+      "Whether or not to remove offset from original file\n(analogous to \"DC offset\" in circuit theory)."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FWaveTableSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FWaveTableSettings"
+        }
+      ]
+    }
+  ]
+}

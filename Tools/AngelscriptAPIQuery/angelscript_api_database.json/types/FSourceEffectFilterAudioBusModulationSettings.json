@@ -1,0 +1,55 @@
+{
+  "name": "FSourceEffectFilterAudioBusModulationSettings",
+  "isStruct": true,
+  "properties": {
+    "AudioBus": [
+      "UAudioBus",
+      "Audio bus to use to modulate the filter"
+    ],
+    "EnvelopeFollowerAttackTimeMsec": [
+      "int",
+      "The amplitude envelope follower attack time (in milliseconds) on the audio bus."
+    ],
+    "EnvelopeFollowerReleaseTimeMsec": [
+      "int",
+      "The amplitude envelope follower release time (in milliseconds) on the audio bus."
+    ],
+    "EnvelopeGainMultiplier": [
+      "float32",
+      "An amount to scale the envelope follower output to map to the modulation values."
+    ],
+    "FilterParam": [
+      "ESourceEffectFilterParam",
+      2,
+      "Which parameter to modulate."
+    ],
+    "MinFrequencyModulation": [
+      "float32",
+      "The frequency modulation value (in semitones from the filter frequency) to use when the envelope is quietest"
+    ],
+    "MaxFrequencyModulation": [
+      "float32",
+      "The frequency modulation value (in semitones from the filter frequency) to use when the envelope is loudest"
+    ],
+    "MinResonanceModulation": [
+      "float32",
+      "The resonance modulation value to use when the envelope is quietest"
+    ],
+    "MaxResonanceModulation": [
+      "float32",
+      "The resonance modulation value to use when the envelope is loudest"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSourceEffectFilterAudioBusModulationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSourceEffectFilterAudioBusModulationSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "UNiagaraValidationRule_UserDataInterfaces",
+  "inherits": "UNiagaraValidationRule",
+  "doc": "This validation rule checks to see if you have exposed user data interfaces.",
+  "properties": {
+    "bOnlyIncludeExposedUObjects": [
+      "bool",
+      2,
+      "Only include data interfaces that contain exposed UObject properties in them."
+    ],
+    "BannedDataInterfaces": [
+      "TArray<TSubclassOf<UNiagaraDataInterface>>",
+      2,
+      "List data interfaces to validate against, if this list is empty all data interfaces will be included."
+    ],
+    "AllowDataInterfaces": [
+      "TArray<TSubclassOf<UNiagaraDataInterface>>",
+      2,
+      "List data interfaces that we always allow."
+    ],
+    "Severity": [
+      "ENiagaraValidationSeverity",
+      2,
+      "How do we want to repro the error in the stack"
+    ]
+  },
+  "methods": []
+}

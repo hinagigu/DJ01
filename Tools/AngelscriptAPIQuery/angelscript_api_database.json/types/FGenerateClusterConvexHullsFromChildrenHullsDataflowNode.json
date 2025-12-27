@@ -1,0 +1,79 @@
+{
+  "name": "FGenerateClusterConvexHullsFromChildrenHullsDataflowNode",
+  "isStruct": true,
+  "doc": "Generates cluster convex hulls for children hulls",
+  "properties": {
+    "ConvexCount": [
+      "int",
+      2,
+      "Maximum number of convex to generate for a specific cluster. Will be ignored if error tolerance is used instead"
+    ],
+    "ErrorTolerance": [
+      "float",
+      2,
+      "Error tolerance to use to decide to merge leaf convex together.\nThis is in centimeters and represents the side of a cube, the volume of which will be used as threshold\nto know if the volume of the generated convex is too large compared to the sum of the volume of the leaf convex"
+    ],
+    "bPreferExternalCollisionShapes": [
+      "bool",
+      2,
+      "Whether to prefer available External (imported) collision shapes instead of the computed convex hulls on the Collection"
+    ],
+    "bProtectNegativeSpace": [
+      "bool",
+      2,
+      "Whether to use a sphere cover to define negative space that should not be covered by convex hulls"
+    ],
+    "SampleMethod": [
+      "ENegativeSpaceSampleMethodDataflowEnum",
+      2,
+      "Method to use to find and sample negative space"
+    ],
+    "bRequireSearchSampleCoverage": [
+      "bool",
+      2,
+      "Whether to require that all candidate locations identified by Voxel Search are covered by negative space samples, up to the specified Min Sample Spacing. Only applies to Voxel Search."
+    ],
+    "bOnlyConnectedToHull": [
+      "bool",
+      2,
+      "When performing Voxel Search, only look for negative space that is connected out to the convex hull. This removes inaccessable internal negative space from consideration. Only applies to Voxel Search."
+    ],
+    "TargetNumSamples": [
+      "int",
+      2,
+      "Approximate number of spheres to consider when covering negative space"
+    ],
+    "MinSampleSpacing": [
+      "float",
+      2,
+      "Minimum desired spacing between spheres; if > 0, will attempt not to place sphere centers closer than this"
+    ],
+    "NegativeSpaceTolerance": [
+      "float",
+      2,
+      "Amount of space to leave between convex hulls and protected negative space"
+    ],
+    "MinRadius": [
+      "float",
+      2,
+      "Spheres smaller than this are not included in the negative space"
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGenerateClusterConvexHullsFromChildrenHullsDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGenerateClusterConvexHullsFromChildrenHullsDataflowNode"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "UNiagaraDataInterfaceDataChannelRead",
+  "inherits": "UNiagaraDataInterfaceRWBase",
+  "properties": {
+    "Channel": [
+      "UNiagaraDataChannelAsset",
+      2,
+      "The data channel to access and read from."
+    ],
+    "bReadCurrentFrame": [
+      "bool",
+      2,
+      "True if this reader will read the current frame's data. If false, we read the previous frame.\nReading the current frame introduces a tick order dependency but allows for zero latency reads. Any data channel elements that are generated after this reader is used are missed.\nReading the previous frame's data introduces a frame of latency but ensures we never miss any data as we have access to the whole frame."
+    ],
+    "bUpdateSourceDataEveryTick": [
+      "bool",
+      2,
+      "Whether this DI should request updated source data from the Data Channel each tick.\nSome Data Channels have multiple separate source data elements for things such as spatial subdivision.\nEach DI will request the correct one for it's owning system instance from the data channel.\nDepending on the data channel this could be an expensive search so we should avoid doing this every tick if possible."
+    ],
+    "bOverrideSpawnGroupToDataChannelIndex": [
+      "bool",
+      2,
+      "When true, Emitter.Spawn group for any spawned particles will be overridden to the index of the data channel element that generated that spawn.\nDoing this will submit all NDC spawns individually and will be less performant.\nHowever it will allow particles to access the NDC data that generated then via the SpawnGroup value.\nIt will also mean that Exec Index will be correct on a per NDC Entry level.\nWithout this settings ExecIndex will be 0...TotalSpawnCount-1. With this it will be 0...SpawnCount for each NDC item individually.\nUnless absolutely needed this is discouraged as it comes at significant performance cost when spawning and GPU emitters can currently only handle 8 individual spawns per frame.\nCalling GetNDCSpawnInfo() in the particle spawn script to get the spawning NDC Index is prefered."
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,224 @@
+{
+  "name": "UUpgradeNiagaraScriptResults",
+  "inherits": "UObject",
+  "doc": "Wrapper class for passing results back from the version upgrade python script.",
+  "properties": {
+    "bCancelledByPythonError": [
+      "bool",
+      1,
+      "Whether the converter process was cancelled due to an unrecoverable error in the python script process."
+    ],
+    "OldInputs": [
+      "TArray<TObjectPtr<UNiagaraPythonScriptModuleInput>>",
+      1,
+      ""
+    ],
+    "NewInputs": [
+      "TArray<TObjectPtr<UNiagaraPythonScriptModuleInput>>",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetOldInput",
+      "return": "UNiagaraPythonScriptModuleInput",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ResetToDefault",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetBoolInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetColorInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetEnumInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetFloatInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetIntInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetLinkedInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetNewInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "UNiagaraPythonScriptModuleInput"
+        }
+      ]
+    },
+    {
+      "name": "SetQuatInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SetVec2Input",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetVec3Input",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetVec4Input",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "Value",
+          "type": "FVector4"
+        }
+      ]
+    }
+  ]
+}

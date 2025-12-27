@@ -1,0 +1,227 @@
+{
+  "name": "UPhysicsHandleComponent",
+  "inherits": "UActorComponent",
+  "doc": "Utility object for moving physics objects around.",
+  "properties": {
+    "bSoftAngularConstraint": [
+      "bool"
+    ],
+    "bSoftLinearConstraint": [
+      "bool"
+    ],
+    "bInterpolateTarget": [
+      "bool"
+    ],
+    "LinearDamping": [
+      "float32",
+      "Linear damping of the handle spring."
+    ],
+    "LinearStiffness": [
+      "float32",
+      "Linear stiffness of the handle spring"
+    ],
+    "AngularDamping": [
+      "float32",
+      "Angular damping of the handle spring"
+    ],
+    "AngularStiffness": [
+      "float32",
+      "Angular stiffness of the handle spring"
+    ],
+    "InterpolationSpeed": [
+      "float32",
+      "How quickly we interpolate the physics target transform"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetGrabbedComponent",
+      "return": "UPrimitiveComponent",
+      "const": true,
+      "doc": "Returns the currently grabbed component, or null if nothing is grabbed.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTargetLocationAndRotation",
+      "return": "void",
+      "const": true,
+      "doc": "Get the current location and rotation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "TargetRotation",
+          "type": "FRotator&"
+        }
+      ]
+    },
+    {
+      "name": "GrabComponentAtLocation",
+      "return": "void",
+      "doc": "Grab the specified component at a given location. Does NOT constraint rotation which means the handle will pivot about GrabLocation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "InBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "GrabLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "GrabComponentAtLocationWithRotation",
+      "return": "void",
+      "doc": "Grab the specified component at a given location and rotation. Constrains rotation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "InBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "ReleaseComponent",
+      "return": "void",
+      "doc": "Release the currently held component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAngularDamping",
+      "return": "void",
+      "doc": "Set angular damping",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAngularDamping",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularStiffness",
+      "return": "void",
+      "doc": "Set angular stiffness",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAngularStiffness",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetInterpolationSpeed",
+      "return": "void",
+      "doc": "Set interpolation speed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewInterpolationSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearDamping",
+      "return": "void",
+      "doc": "Set linear damping",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLinearDamping",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearStiffness",
+      "return": "void",
+      "doc": "Set linear stiffness",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLinearStiffness",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTargetLocation",
+      "return": "void",
+      "doc": "Set the target location",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetTargetLocationAndRotation",
+      "return": "void",
+      "doc": "Set target location and rotation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetTargetRotation",
+      "return": "void",
+      "doc": "Set the target rotation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        }
+      ]
+    }
+  ]
+}

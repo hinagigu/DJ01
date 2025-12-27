@@ -1,0 +1,430 @@
+{
+  "name": "__FQuat4f",
+  "properties": {
+    "Identity": [
+      "const FQuat4f"
+    ]
+  },
+  "methods": [
+    {
+      "name": "MakeFromEuler",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Euler",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "FindBetween",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Vector1",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Vector2",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "FindBetweenVectors",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Vector1",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Vector2",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "FindBetweenNormals",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Normal1",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Normal2",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "FastLerp",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "A",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "B",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "FastBilerp",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "P00",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "P10",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "P01",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "P11",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "FracX",
+          "type": "float32"
+        },
+        {
+          "name": "FracY",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Slerp_NotNormalized",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Slerp",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Slerp",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Slerp",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Error",
+      "return": "float32",
+      "args": [
+        {
+          "name": "Q1",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Q2",
+          "type": "FQuat4f"
+        }
+      ]
+    },
+    {
+      "name": "ErrorAutoNormalize",
+      "return": "float32",
+      "args": [
+        {
+          "name": "A",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "B",
+          "type": "FQuat4f"
+        }
+      ]
+    },
+    {
+      "name": "SlerpFullPath_NotNormalized",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Slerp",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SlerpFullPath",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Slerp",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Squad",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Tang1",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Tang2",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SquadFullPath",
+      "return": "FQuat4f",
+      "args": [
+        {
+          "name": "Quat1",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Tang1",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Quat2",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Tang2",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CalcTangents",
+      "return": "void",
+      "args": [
+        {
+          "name": "PrevP",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "P",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "NextP",
+          "type": "FQuat4f"
+        },
+        {
+          "name": "Tension",
+          "type": "float32"
+        },
+        {
+          "name": "OutTan",
+          "type": "FQuat4f&"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromAxes",
+      "return": "FQuat4f",
+      "meta": null,
+      "args": [
+        {
+          "name": "Forward",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Right",
+          "type": "FVector3f"
+        },
+        {
+          "name": "Up",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromX",
+      "return": "FQuat4f",
+      "meta": null,
+      "args": [
+        {
+          "name": "XAxis",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromXY",
+      "return": "FQuat4f",
+      "meta": null,
+      "args": [
+        {
+          "name": "XAxis",
+          "type": "FVector3f"
+        },
+        {
+          "name": "YAxis",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromXZ",
+      "return": "FQuat4f",
+      "meta": null,
+      "args": [
+        {
+          "name": "XAxis",
+          "type": "FVector3f"
+        },
+        {
+          "name": "ZAxis",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromY",
+      "return": "FQuat4f",
+      "meta": null,
+      "args": [
+        {
+          "name": "YAxis",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromYX",
+      "return": "FQuat4f",
+      "meta": null,
+      "args": [
+        {
+          "name": "YAxis",
+          "type": "FVector3f"
+        },
+        {
+          "name": "XAxis",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromYZ",
+      "return": "FQuat4f",
+      "meta": null,
+      "args": [
+        {
+          "name": "YAxis",
+          "type": "FVector3f"
+        },
+        {
+          "name": "ZAxis",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromZ",
+      "return": "FQuat4f",
+      "meta": null,
+      "args": [
+        {
+          "name": "ZAxis",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromZX",
+      "return": "FQuat4f",
+      "meta": null,
+      "args": [
+        {
+          "name": "ZAxis",
+          "type": "FVector3f"
+        },
+        {
+          "name": "XAxis",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "MakeFromZY",
+      "return": "FQuat4f",
+      "meta": null,
+      "args": [
+        {
+          "name": "ZAxis",
+          "type": "FVector3f"
+        },
+        {
+          "name": "YAxis",
+          "type": "FVector3f"
+        }
+      ]
+    }
+  ]
+}

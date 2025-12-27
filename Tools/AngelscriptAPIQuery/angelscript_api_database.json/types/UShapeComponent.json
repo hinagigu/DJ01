@@ -1,0 +1,43 @@
+{
+  "name": "UShapeComponent",
+  "inherits": "UPrimitiveComponent",
+  "doc": "ShapeComponent is a PrimitiveComponent that is represented by a simple geometrical shape (sphere, capsule, box, etc).",
+  "properties": {
+    "ShapeColor": [
+      "FColor",
+      "Color used to draw the shape."
+    ],
+    "AreaClassOverride": [
+      "TSubclassOf<UNavAreaBase>",
+      2,
+      "Navigation area type override, null / none = no change to nav mesh.\nbDynamicObstacle must be true and bUseSystemDefaultAreaClass false to use this."
+    ],
+    "bDynamicObstacle": [
+      "bool",
+      "If set, shape will be exported for navigation as dynamic modifier instead of using regular collision data"
+    ],
+    "bUseSystemDefaultObstacleAreaClass": [
+      "bool",
+      "Uses FNavigationSystem::GetDefaultObstacleArea() by default instead of AreaClassOverride, bDynamicObstacle must be true to use this."
+    ],
+    "LineThickness": [
+      "float32",
+      "Used to control the line thickness when rendering"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetLineThickness",
+      "return": "void",
+      "doc": "Set the LineThickness",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Thickness",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

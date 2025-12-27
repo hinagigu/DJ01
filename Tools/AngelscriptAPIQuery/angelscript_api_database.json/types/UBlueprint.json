@@ -1,0 +1,68 @@
+{
+  "name": "UBlueprint",
+  "inherits": "UBlueprintCore",
+  "doc": "Blueprints are special assets that provide an intuitive, node-based interface that can be used to create new types of Actors\nand script level events; giving designers and gameplay programmers the tools to quickly create and iterate gameplay from\nwithin Unreal Editor without ever needing to write a line of code.",
+  "properties": {
+    "ShouldCookPropertyGuidsValue": [
+      "EShouldCookBlueprintPropertyGuids",
+      2,
+      "Whether to include the property GUIDs for the generated class in a cooked build.\n@note This option may slightly increase memory usage in a cooked build, but can avoid needing to add CoreRedirect data for Blueprint classes stored within SaveGame archives."
+    ],
+    "CompileMode": [
+      "EBlueprintCompileMode",
+      2,
+      "The mode that will be used when compiling this class."
+    ],
+    "BlueprintDisplayName": [
+      "FString",
+      2,
+      "Overrides the BP's display name in the editor UI"
+    ],
+    "BlueprintDescription": [
+      "FString",
+      2,
+      "Shows up in the content browser tooltip when the blueprint is hovered"
+    ],
+    "BlueprintNamespace": [
+      "FString",
+      2,
+      "The namespace of this blueprint (if set, the Blueprint will be treated differently for the context menu)"
+    ],
+    "BlueprintCategory": [
+      "FString",
+      2,
+      "The category of the Blueprint, used to organize this Blueprint class when displayed in palette windows"
+    ],
+    "HideCategories": [
+      "TArray<FString>",
+      2,
+      "Additional HideCategories. These are added to HideCategories from parent."
+    ],
+    "ThumbnailInfo": [
+      "UThumbnailInfo",
+      2,
+      "Information for thumbnail rendering"
+    ],
+    "bRunConstructionScriptOnDrag": [
+      "bool",
+      "whether or not you want to continuously rerun the construction script for an actor as you drag it in the editor, or only when the drag operation is complete"
+    ],
+    "bRunConstructionScriptInSequencer": [
+      "bool",
+      "whether or not you want to continuously rerun the construction script for an actor in sequencer"
+    ],
+    "bGenerateConstClass": [
+      "bool",
+      "Whether or not this blueprint's class is a const class or not.  Should set CLASS_Const in the KismetCompiler."
+    ],
+    "bGenerateAbstractClass": [
+      "bool",
+      "Whether or not this blueprint's class is a abstract class or not.  Should set CLASS_Abstract in the KismetCompiler."
+    ],
+    "bDeprecate": [
+      "bool",
+      "Deprecates the Blueprint, marking the generated class with the CLASS_Deprecated flag"
+    ]
+  },
+  "methods": []
+}

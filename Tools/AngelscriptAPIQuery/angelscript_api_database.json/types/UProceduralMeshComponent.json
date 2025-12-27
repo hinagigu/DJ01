@@ -1,0 +1,207 @@
+{
+  "name": "UProceduralMeshComponent",
+  "inherits": "UMeshComponent",
+  "doc": "Component that allows you to specify custom triangle mesh geometry\nBeware! This feature is experimental and may be substantially changed in future releases.",
+  "properties": {
+    "bUseComplexAsSimpleCollision": [
+      "bool",
+      "Controls whether the complex (Per poly) geometry should be treated as 'simple' collision.\nShould be set to false if this component is going to be given simple collision and simulated."
+    ],
+    "bUseAsyncCooking": [
+      "bool",
+      "Controls whether the physics cooking should be done off the game thread. This should be used when collision geometry doesn't have to be immediately up to date (For example streaming in far away objects)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddCollisionConvexMesh",
+      "return": "void",
+      "doc": "Add simple collision convex to this component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ConvexVerts",
+          "type": "TArray<FVector>"
+        }
+      ]
+    },
+    {
+      "name": "ClearAllMeshSections",
+      "return": "void",
+      "doc": "Clear all mesh sections and reset to empty state",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearCollisionConvexMeshes",
+      "return": "void",
+      "doc": "Remove collision meshes from this component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearMeshSection",
+      "return": "void",
+      "doc": "Clear a section of the procedural mesh. Other sections do not change index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "CreateMeshSection_LinearColor",
+      "return": "void",
+      "doc": "Create/replace a section for this procedural mesh component.\n@param  SectionIndex            Index of the section to create or replace.\n@param  Vertices                        Vertex buffer of all vertex positions to use for this mesh section.\n@param  Triangles                       Index buffer indicating which vertices make up each triangle. Length must be a multiple of 3.\n@param  Normals                         Optional array of normal vectors for each vertex. If supplied, must be same length as Vertices array.\n@param  UV0                                     Optional array of texture co-ordinates for each vertex. If supplied, must be same length as Vertices array.\n@param  VertexColors            Optional array of colors for each vertex. If supplied, must be same length as Vertices array.\n@param  Tangents                        Optional array of tangent vector for each vertex. If supplied, must be same length as Vertices array.\n@param  bCreateCollision        Indicates whether collision should be created for this section. This adds significant cost.\n@param  bSRGBConversion         Whether to do sRGB conversion when converting FLinearColor to FColor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "Vertices",
+          "type": "TArray<FVector>"
+        },
+        {
+          "name": "Triangles",
+          "type": "TArray<int>"
+        },
+        {
+          "name": "Normals",
+          "type": "TArray<FVector>"
+        },
+        {
+          "name": "UV0",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "UV1",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "UV2",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "UV3",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "VertexColors",
+          "type": "TArray<FLinearColor>"
+        },
+        {
+          "name": "Tangents",
+          "type": "TArray<FProcMeshTangent>"
+        },
+        {
+          "name": "bCreateCollision",
+          "type": "bool"
+        },
+        {
+          "name": "bSRGBConversion",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetNumSections",
+      "return": "int",
+      "const": true,
+      "doc": "Returns number of sections currently created for this component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsMeshSectionVisible",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether a particular section is currently visible",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetMeshSectionVisible",
+      "return": "void",
+      "doc": "Control visibility of a particular section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "bNewVisibility",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UpdateMeshSection_LinearColor",
+      "return": "void",
+      "doc": "Updates a section of this procedural mesh component. This is faster than CreateMeshSection, but does not let you change topology. Collision info is also updated.\n@param  Vertices                        Vertex buffer of all vertex positions to use for this mesh section.\n@param  Normals                         Optional array of normal vectors for each vertex. If supplied, must be same length as Vertices array.\n@param  UV0                                     Optional array of texture co-ordinates for each vertex. If supplied, must be same length as Vertices array.\n@param  VertexColors            Optional array of colors for each vertex. If supplied, must be same length as Vertices array.\n@param  Tangents                        Optional array of tangent vector for each vertex. If supplied, must be same length as Vertices array.\n@param  bSRGBConversion         Whether to do sRGB conversion when converting FLinearColor to FColor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "Vertices",
+          "type": "TArray<FVector>"
+        },
+        {
+          "name": "Normals",
+          "type": "TArray<FVector>"
+        },
+        {
+          "name": "UV0",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "UV1",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "UV2",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "UV3",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "VertexColors",
+          "type": "TArray<FLinearColor>"
+        },
+        {
+          "name": "Tangents",
+          "type": "TArray<FProcMeshTangent>"
+        },
+        {
+          "name": "bSRGBConversion",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

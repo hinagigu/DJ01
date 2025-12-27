@@ -12,7 +12,7 @@ class UPlayer;
 class APlayerController;
 struct FComponentRequestHandle;
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FInputMappingContextAndPriority
 {
 	GENERATED_BODY()

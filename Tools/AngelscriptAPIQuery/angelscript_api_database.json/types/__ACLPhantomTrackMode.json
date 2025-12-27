@@ -1,0 +1,23 @@
+{
+  "name": "__ACLPhantomTrackMode",
+  "isEnum": true,
+  "doc": "An enum to control how to handle UE phantom tracks.\nA phantom tracks are present in an animation sequence but aren't mapped to skeleton bones.\nAs such, they cannot be queried by the engine except manually through DecompressBone.\nIt should generally be safe to Strip them but we default to Ignore.\nRe-importing the animation sequence should clean up any such stale data.",
+  "properties": {
+    "Ignore": [
+      "ACLPhantomTrackMode",
+      "Ignore phantom tracks and compress them anyway (same as UE codecs)."
+    ],
+    "Strip": [
+      "ACLPhantomTrackMode",
+      "Strip the phantom track to save memory by collapsing them to the identity transform while maintaining the track ordering."
+    ],
+    "Warn": [
+      "ACLPhantomTrackMode",
+      "We ignore the phantom tracks and output a warning to the log."
+    ],
+    "ACLPhantomTrackMode_MAX": [
+      "ACLPhantomTrackMode"
+    ]
+  },
+  "methods": []
+}

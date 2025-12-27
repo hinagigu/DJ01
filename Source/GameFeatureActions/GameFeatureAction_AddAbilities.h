@@ -53,10 +53,10 @@ struct FDJ01AttributeSetGrant
 };
 
 /**
- * FGameFeatureAbilitiesEntry
- * GameFeature 中添加 Abilities 的配置条目
- */
-USTRUCT()
+* FGameFeatureAbilitiesEntry
+* GameFeature 中添加 Abilities 的配置条目
+*/
+USTRUCT(BlueprintType)
 struct FGameFeatureAbilitiesEntry
 {
 	GENERATED_BODY()

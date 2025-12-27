@@ -1,0 +1,113 @@
+{
+  "name": "FNiagaraVariableMetaData",
+  "isStruct": true,
+  "properties": {
+    "Description": [
+      "FText",
+      2,
+      ""
+    ],
+    "CategoryName": [
+      "FText",
+      2,
+      ""
+    ],
+    "DisplayUnit": [
+      "EUnit",
+      2,
+      "The unit to display next to input fields for this parameter - note that this is only a visual indicator and does not change any of the calculations."
+    ],
+    "bAdvancedDisplay": [
+      "bool",
+      2,
+      "Declares that this input is advanced and should only be visible if expanded inputs have been expanded."
+    ],
+    "bDisplayInOverviewStack": [
+      "bool",
+      2,
+      "Declares that this parameter's value will be shown in the overview node if it's set to a local value."
+    ],
+    "InlineParameterSortPriority": [
+      "int",
+      2,
+      "Affects the sort order for parameters shown inline in the overview. Use a smaller number to push it to the top. Defaults to zero."
+    ],
+    "bOverrideColor": [
+      "bool",
+      2,
+      "The color used to display a parameter in the overview. If no color is specified, the type color is used."
+    ],
+    "InlineParameterColorOverride": [
+      "FLinearColor",
+      2,
+      "The color used to display a parameter in the overview. If no color is specified, the type color is used."
+    ],
+    "InlineParameterEnumOverrides": [
+      "TArray<FNiagaraEnumParameterMetaData>",
+      2,
+      "The index of the entry maps to the index of an enum value. Useful for overriding how an enum parameter is displayed in the overview."
+    ],
+    "bEnableBoolOverride": [
+      "bool",
+      2,
+      "Useful to override inline bool visualization in the overview."
+    ],
+    "InlineParameterBoolOverride": [
+      "FNiagaraBoolParameterMetaData",
+      2,
+      "Useful to override inline bool visualization in the overview."
+    ],
+    "EditorSortPriority": [
+      "int",
+      2,
+      "Affects the sort order in the editor stacks. Use a smaller number to push it to the top. Defaults to zero."
+    ],
+    "bInlineEditConditionToggle": [
+      "bool",
+      2,
+      "Declares the associated input is used as an inline edit condition toggle, so it should be hidden and edited as a\n      checkbox inline with the input which was designated as its edit condition."
+    ],
+    "EditCondition": [
+      "FNiagaraInputConditionMetadata",
+      2,
+      "Declares the associated input should be conditionally editable based on the value of another input."
+    ],
+    "VisibleCondition": [
+      "FNiagaraInputConditionMetadata",
+      2,
+      "Declares the associated input should be conditionally visible based on the value of another input."
+    ],
+    "PropertyMetaData": [
+      "TMap<FName,FString>",
+      2,
+      "Property Metadata"
+    ],
+    "ParentAttribute": [
+      "FName",
+      2,
+      "If set, this attribute is visually displayed as a child under the given parent attribute. Currently, only static switches are supported as parent attributes!"
+    ],
+    "AlternateAliases": [
+      "TArray<FName>",
+      2,
+      "List of alternate/previous names for this variable. Note that this is not normally needed if you rename through the UX. However, if you delete and then add a different variable, intending for it to match, you will likely want to add the prior name here.\n\nYou may need to restart and reload assets after making this change to have it take effect on already loaded assets."
+    ],
+    "WidgetCustomization": [
+      "FNiagaraInputParameterCustomization",
+      2,
+      "Changes how the input is displayed."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraVariableMetaData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraVariableMetaData"
+        }
+      ]
+    }
+  ]
+}

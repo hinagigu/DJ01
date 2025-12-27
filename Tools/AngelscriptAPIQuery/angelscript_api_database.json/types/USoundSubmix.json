@@ -1,0 +1,264 @@
+{
+  "name": "USoundSubmix",
+  "inherits": "USoundSubmixWithParentBase",
+  "doc": "Sound Submix class meant for applying an effect to the downmixed sum of multiple audio sources.",
+  "properties": {
+    "SubmixEffectChain": [
+      "TArray<TObjectPtr<USoundEffectSubmixPreset>>"
+    ],
+    "AmbisonicsPluginSettings": [
+      "USoundfieldEncodingSettingsBase",
+      "Optional settings used by plugins which support ambisonics file playback."
+    ],
+    "EnvelopeFollowerAttackTime": [
+      "int",
+      "The attack time in milliseconds for the envelope follower. Delegate callbacks can be registered to get the envelope value of sounds played with this submix."
+    ],
+    "EnvelopeFollowerReleaseTime": [
+      "int",
+      "The release time in milliseconds for the envelope follower. Delegate callbacks can be registered to get the envelope value of sounds played with this submix."
+    ],
+    "OutputVolumeModulation": [
+      "FSoundModulationDestinationSettings",
+      "The output volume of the submix in Decibels. Applied after submix effects and analysis are performed."
+    ],
+    "WetLevelModulation": [
+      "FSoundModulationDestinationSettings",
+      "The wet level of the submixin Decibels. Applied after submix effects and analysis are performed."
+    ],
+    "DryLevelModulation": [
+      "FSoundModulationDestinationSettings",
+      "The dry level of the submix in Decibels. Applied before submix effects and analysis are performed."
+    ],
+    "AudioLinkSettings": [
+      "UAudioLinkSettingsAbstract",
+      "Optional Audio Link Settings Object"
+    ],
+    "OnSubmixRecordedFileDone": [
+      "FOnSubmixRecordedFileDone",
+      "Blueprint delegate for when a recorded file is finished exporting."
+    ],
+    "bMuteWhenBackgrounded": [
+      "bool",
+      "Mute this submix when the application is muted or in the background. Used to prevent submix effect tails from continuing when tabbing out of application or if application is muted."
+    ],
+    "bSendToAudioLink": [
+      "bool",
+      "Whether to send this Submix to AudioLink (when AudioLink is Enabled)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddEnvelopeFollowerDelegate",
+      "return": "void",
+      "doc": "Adds an envelope follower delegate to the submix when envelope following is enabled on this submix.\n@param  OnSubmixEnvelopeBP      Event to fire when new envelope data is available.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OnSubmixEnvelopeBP",
+          "default": "FOnSubmixEnvelopeBP ( )",
+          "type": "FOnSubmixEnvelopeBP"
+        }
+      ]
+    },
+    {
+      "name": "AddSpectralAnalysisDelegate",
+      "return": "void",
+      "doc": "Adds a spectral analysis delegate to receive notifications when this submix has spectrum analysis enabled.\n@param  InBandsettings                                  The frequency bands to analyze and their envelope-following settings.\n@param  OnSubmixSpectralAnalysisBP          Event to fire when new spectral data is available.\n@param  UpdateRate                                              How often to retrieve the data from the spectral analyzer and broadcast the event. Max is 30 times per second.\n@param  InterpMethod                    Method to used for band peak calculation.\n@param  SpectrumType                    Metric to use when returning spectrum values.\n@param  DecibelNoiseFloor               Decibel Noise Floor to consider as silence when using a Decibel Spectrum Type.\n@param  bDoNormalize                    If true, output band values will be normalized between zero and one.\n@param  bDoAutoRange                    If true, output band values will have their ranges automatically adjusted to the minimum and maximum values in the audio. Output band values will be normalized between zero and one.\n@param  AutoRangeAttackTime             The time (in seconds) it takes for the range to expand to 90% of a larger range.\n@param  AutoRangeReleaseTime            The time (in seconds) it takes for the range to shrink to 90% of a smaller range.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBandSettings",
+          "type": "TArray<FSoundSubmixSpectralAnalysisBandSettings>"
+        },
+        {
+          "name": "OnSubmixSpectralAnalysisBP",
+          "default": "FOnSubmixSpectralAnalysisBP ( )",
+          "type": "FOnSubmixSpectralAnalysisBP"
+        },
+        {
+          "name": "UpdateRate",
+          "default": "10.000000",
+          "type": "float32"
+        },
+        {
+          "name": "DecibelNoiseFloor",
+          "default": "- 40.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bDoNormalize",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bDoAutoRange",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "AutoRangeAttackTime",
+          "default": "0.100000",
+          "type": "float32"
+        },
+        {
+          "name": "AutoRangeReleaseTime",
+          "default": "60.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSpectralAnalysisDelegate",
+      "return": "void",
+      "doc": "Remove a spectral analysis delegate.\n@param  OnSubmixSpectralAnalysisBP          The event delegate to remove.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OnSubmixSpectralAnalysisBP",
+          "default": "FOnSubmixSpectralAnalysisBP ( )",
+          "type": "FOnSubmixSpectralAnalysisBP"
+        }
+      ]
+    },
+    {
+      "name": "SetSubmixDryLevel",
+      "return": "void",
+      "doc": "Sets the output volume of the submix in linear gain. This dynamic level acts as a multiplier on the DryLevel property of this submix.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDryLevel",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSubmixOutputVolume",
+      "return": "void",
+      "doc": "Sets the output volume of the submix in linear gain. This dynamic volume acts as a multiplier on the OutputVolume property of this submix.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOutputVolume",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSubmixWetLevel",
+      "return": "void",
+      "doc": "Sets the output volume of the submix in linear gain. This dynamic level acts as a multiplier on the WetLevel property of this submix.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWetLevel",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "StartEnvelopeFollowing",
+      "return": "void",
+      "doc": "Start envelope following the submix output. Register with OnSubmixEnvelope to receive envelope follower data in BP.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StartRecordingOutput",
+      "return": "void",
+      "doc": "Start recording the audio from this submix.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExpectedDuration",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "StartSpectralAnalysis",
+      "return": "void",
+      "doc": "Start spectrum analysis of the audio output.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FFTSize",
+          "default": "EFFTSize :: DefaultSize",
+          "type": "EFFTSize"
+        },
+        {
+          "name": "InterpolationMethod",
+          "default": "EFFTPeakInterpolationMethod :: Linear",
+          "type": "EFFTPeakInterpolationMethod"
+        },
+        {
+          "name": "WindowType",
+          "default": "EFFTWindowType :: Hann",
+          "type": "EFFTWindowType"
+        },
+        {
+          "name": "HopSize",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "SpectrumType",
+          "default": "EAudioSpectrumType :: MagnitudeSpectrum",
+          "type": "EAudioSpectrumType"
+        }
+      ]
+    },
+    {
+      "name": "StopEnvelopeFollowing",
+      "return": "void",
+      "doc": "Start envelope following the submix output. Register with OnSubmixEnvelope to receive envelope follower data in BP.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopRecordingOutput",
+      "return": "void",
+      "doc": "Finish recording the audio from this submix and export it as a wav file or a USoundWave.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExportType",
+          "type": "EAudioRecordingExportType"
+        },
+        {
+          "name": "Name",
+          "type": "FString"
+        },
+        {
+          "name": "Path",
+          "type": "FString"
+        },
+        {
+          "name": "ExistingSoundWaveToOverwrite",
+          "default": "nullptr",
+          "type": "USoundWave"
+        }
+      ]
+    },
+    {
+      "name": "StopSpectralAnalysis",
+      "return": "void",
+      "doc": "Stop spectrum analysis of the audio output.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

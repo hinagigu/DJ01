@@ -1,0 +1,88 @@
+{
+  "name": "UGameplayTagsSettings",
+  "inherits": "UGameplayTagsList",
+  "doc": "Class for importing GameplayTags directly from a config file.\nFGameplayTagsEditorModule::StartupModule adds this class to the Project Settings menu to be edited.\nEditing this in Project Settings will output changes to Config/DefaultGameplayTags.ini.\n\nPrimary advantages of this approach are:\n-Adding new tags doesn't require checking out external and editing file (CSV or xls) then reimporting.\n-New tags are mergeable since .ini are text and non exclusive checkout.\n\nTo do:\n-Better support could be added for adding new tags. We could match existing tags and autocomplete subtags as\nthe user types (e.g, autocomplete 'Damage.Physical' as the user is adding a 'Damage.Physical.Slash' tag).",
+  "properties": {
+    "ImportTagsFromConfig": [
+      "bool",
+      2,
+      "If true, will import tags from ini files in the config/tags folder"
+    ],
+    "WarnOnInvalidTags": [
+      "bool",
+      2,
+      "If true, will give load warnings when reading in saved tag references that are not in the dictionary"
+    ],
+    "ClearInvalidTags": [
+      "bool",
+      2,
+      "If true, will clear any invalid tags when reading in saved tag references that are not in the dictionary"
+    ],
+    "AllowEditorTagUnloading": [
+      "bool",
+      2,
+      "If true, will allow unloading of tags in the editor when plugins are removed"
+    ],
+    "AllowGameTagUnloading": [
+      "bool",
+      2,
+      "If true, will allow unloading of tags in a non-editor gebuild when plugins are removed, this is potentially unsafe and affects requests to unload during play in editor"
+    ],
+    "FastReplication": [
+      "bool",
+      2,
+      "If true, will replicate gameplay tags by index instead of name. For this to work, tags must be identical on client and server"
+    ],
+    "InvalidTagCharacters": [
+      "FString",
+      2,
+      "These characters cannot be used in gameplay tags, in addition to special ones like newline"
+    ],
+    "CategoryRemapping": [
+      "TArray<FGameplayTagCategoryRemap>",
+      2,
+      "Category remapping. This allows base engine tag category meta data to remap to multiple project-specific categories."
+    ],
+    "GameplayTagTableList": [
+      "TArray<FSoftObjectPath>",
+      2,
+      "List of data tables to load tags from"
+    ],
+    "GameplayTagRedirects": [
+      "TArray<FGameplayTagRedirect>",
+      2,
+      "List of active tag redirects"
+    ],
+    "CommonlyReplicatedTags": [
+      "TArray<FName>",
+      2,
+      "List of most frequently replicated tags"
+    ],
+    "NumBitsForContainerSize": [
+      "int",
+      2,
+      "Numbers of bits to use for replicating container size, set this based on how large your containers tend to be"
+    ],
+    "NetIndexFirstBitSegment": [
+      "int",
+      2,
+      "The length in bits of the first segment when net serializing tags. We will serialize NetIndexFirstBitSegment + 1 bit to indicate \"more\", which is slower to replicate"
+    ],
+    "RestrictedConfigFiles": [
+      "TArray<FRestrictedConfigInfo>",
+      2,
+      "A list of .ini files used to store restricted gameplay tags."
+    ],
+    "RestrictedTagList": [
+      "FString",
+      2,
+      "Restricted Gameplay Tags.\n\nRestricted tags are intended to be top level tags that are important for your data hierarchy and modified by very few people."
+    ],
+    "NewTagSource": [
+      "FString",
+      2,
+      "Add a new gameplay tag config file for saving plugin or game-specific tags."
+    ]
+  },
+  "methods": []
+}

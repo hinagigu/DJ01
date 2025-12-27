@@ -1,0 +1,29 @@
+{
+  "name": "FPositionHistory",
+  "isStruct": true,
+  "doc": "An easing type defining how to ease float values.\nThe FPositionHistory is a container to record position changes\nover time. This is used to calculate velocity of a bone, for example.\nThe FPositionArray also tracks the last index used to allow for\nreuse of entries (instead of appending to the array all the time).",
+  "properties": {
+    "Positions": [
+      "TArray<FVector>",
+      2,
+      "The recorded positions"
+    ],
+    "Range": [
+      "float32",
+      2,
+      "The range for this particular history"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPositionHistory&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPositionHistory"
+        }
+      ]
+    }
+  ]
+}

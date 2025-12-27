@@ -1,0 +1,44 @@
+{
+  "name": "FRigVMGraphParameterDescription",
+  "isStruct": true,
+  "doc": "The parameter description is used to convey information\nabout unique parameters within a Graph. Multiple Parameter\nNodes can share the same parameter description.",
+  "properties": {
+    "Name": [
+      "FName",
+      1,
+      "The name of the parameter"
+    ],
+    "bIsInput": [
+      "bool",
+      1,
+      "True if the parameter is an input"
+    ],
+    "CPPType": [
+      "FString",
+      1,
+      "The C++ data type of the parameter"
+    ],
+    "CPPTypeObject": [
+      "UObject",
+      1,
+      "The Struct of the C++ data type of the parameter (or nullptr)"
+    ],
+    "DefaultValue": [
+      "FString",
+      1,
+      "The default value of the parameter"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigVMGraphParameterDescription&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigVMGraphParameterDescription"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "name": "FLiveLinkLightFrameData",
+  "isStruct": true,
+  "doc": "Dynamic data for light.",
+  "properties": {
+    "Temperature": [
+      "float32",
+      "Color temperature in Kelvin of the blackbody illuminant"
+    ],
+    "Intensity": [
+      "float32",
+      "Total energy that the light emits in lux."
+    ],
+    "LightColor": [
+      "FColor",
+      "Filter color of the light."
+    ],
+    "InnerConeAngle": [
+      "float32",
+      "Inner cone angle in degrees for a Spotlight."
+    ],
+    "OuterConeAngle": [
+      "float32",
+      "Outer cone angle in degrees for a Spotlight."
+    ],
+    "AttenuationRadius": [
+      "float32",
+      "Light visible influence. Works for Pointlight and Spotlight."
+    ],
+    "SourceRadius": [
+      "float32",
+      "Radius of light source shape. Works for Pointlight and Spotlight."
+    ],
+    "SoftSourceRadius": [
+      "float32",
+      "Soft radius of light source shape. Works for Pointlight and Spotlight."
+    ],
+    "SourceLength": [
+      "float32",
+      "Length of light source shape. Works for Pointlight and Spotlight."
+    ],
+    "Transform": [
+      "FTransform",
+      "Transform of the frame"
+    ],
+    "MetaData": [
+      "FLiveLinkMetaData",
+      "Frame's metadata."
+    ],
+    "PropertyValues": [
+      "TArray<float32>",
+      "Values of the properties defined in the static structure. Use FLiveLinkBaseStaticData.FindPropertyValue to evaluate."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLiveLinkLightFrameData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLiveLinkLightFrameData"
+        }
+      ]
+    }
+  ]
+}

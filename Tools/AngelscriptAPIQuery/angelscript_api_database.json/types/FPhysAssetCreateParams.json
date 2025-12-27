@@ -1,0 +1,89 @@
+{
+  "name": "FPhysAssetCreateParams",
+  "isStruct": true,
+  "doc": "Parameters for PhysicsAsset creation",
+  "properties": {
+    "MinBoneSize": [
+      "float32",
+      2,
+      "Bones that are shorter than this value will be ignored for body creation"
+    ],
+    "MinWeldSize": [
+      "float32",
+      2,
+      "Bones that are smaller than this value will be merged together for body creation"
+    ],
+    "GeomType": [
+      "EPhysAssetFitGeomType",
+      2,
+      "The geometry type that should be used when creating bodies"
+    ],
+    "VertWeight": [
+      "EPhysAssetFitVertWeight",
+      2,
+      "How vertices are mapped to bones when approximating them with bodies"
+    ],
+    "bAutoOrientToBone": [
+      "bool",
+      2,
+      "Whether to automatically orient the created bodies to their corresponding bones"
+    ],
+    "bCreateConstraints": [
+      "bool",
+      2,
+      "Whether to create constraints between adjacent created bodies"
+    ],
+    "bWalkPastSmall": [
+      "bool",
+      2,
+      "Whether to skip small bones entirely (rather than merge them with adjacent bones)"
+    ],
+    "bBodyForAll": [
+      "bool",
+      2,
+      "Forces creation of a body for each bone"
+    ],
+    "bDisableCollisionsByDefault": [
+      "bool",
+      2,
+      "Whether to disable collision of body with other bodies on creation"
+    ],
+    "AngularConstraintMode": [
+      "EAngularConstraintMotion",
+      2,
+      "The type of angular constraint to create between bodies"
+    ],
+    "HullCount": [
+      "int",
+      2,
+      "When creating multiple convex hulls, the maximum number that will be created."
+    ],
+    "MaxHullVerts": [
+      "int",
+      2,
+      "When creating convex hulls, the maximum verts that should be created"
+    ],
+    "LevelSetResolution": [
+      "int",
+      2,
+      "When creating level sets, the grid resolution to use"
+    ],
+    "LatticeResolution": [
+      "int",
+      2,
+      "When creating skinned level sets, the embedding grid resolution to use"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPhysAssetCreateParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPhysAssetCreateParams"
+        }
+      ]
+    }
+  ]
+}

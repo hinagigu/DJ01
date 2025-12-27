@@ -1,0 +1,71 @@
+{
+  "name": "UCommonDateTimeTextBlock",
+  "inherits": "UCommonTextBlock",
+  "properties": {
+    "CustomTimespanFormat": [
+      "FText",
+      2,
+      "* Supplies a custom timespan format to use if desired\n* Supported arguments include {Days}, {Hours}, {Minutes}, and {Seconds}"
+    ],
+    "bCustomTimespanLeadingZeros": [
+      "bool",
+      2,
+      "* If the custom timespan should use a leading zero for values, ie \"02\""
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDateTime",
+      "return": "FDateTime",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCountDownCompletionText",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCompletionText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetDateTimeValue",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDateTime",
+          "type": "FDateTime"
+        },
+        {
+          "name": "bShowAsCountdown",
+          "type": "bool"
+        },
+        {
+          "name": "InRefreshDelay",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTimespanValue",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTimespan",
+          "type": "FTimespan"
+        }
+      ]
+    }
+  ]
+}

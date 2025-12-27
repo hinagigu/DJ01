@@ -1,0 +1,45 @@
+{
+  "name": "UBoundsCopyComponent",
+  "inherits": "UActorComponent",
+  "doc": "Component used to copy the bounds of another Actor.",
+  "properties": {
+    "BoundsSourceActor": [
+      "TSoftObjectPtr<AActor>",
+      2,
+      "Actor to copy the bounds from to set up the transform."
+    ],
+    "bUseCollidingComponentsForSourceBounds": [
+      "bool",
+      2,
+      "If true, the source actor's bounds will include its colliding components bounds."
+    ],
+    "bKeepOwnBoundsScale": [
+      "bool",
+      2,
+      "If true, the actor's scale will be changed so that after adjustment, its own bounds match the source bounds."
+    ],
+    "bUseCollidingComponentsForOwnBounds": [
+      "bool",
+      2,
+      "If true, the actor's own bounds will include its colliding components bounds."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetRotation",
+      "return": "void",
+      "doc": "Copy the rotation from BoundsSourceActor to this component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetTransformToBounds",
+      "return": "void",
+      "doc": "Set this component transform to include the BoundsSourceActor bounds",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

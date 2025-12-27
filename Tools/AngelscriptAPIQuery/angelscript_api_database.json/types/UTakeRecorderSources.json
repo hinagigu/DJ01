@@ -1,0 +1,61 @@
+{
+  "name": "UTakeRecorderSources",
+  "inherits": "UObject",
+  "doc": "A list of sources to record for any given take. Stored as meta-data on ULevelSequence through ULevelSequence::FindMetaData<UTakeRecorderSources>",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddSource",
+      "return": "UTakeRecorderSource",
+      "doc": "Add a new source to this source list of the templated type\n\n@param InSourceType    The class type of the source to add\n@return An instance of the specified source type",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSourceType",
+          "type": "TSubclassOf<UTakeRecorderSource>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetSourcesCopy",
+      "return": "TArray<UTakeRecorderSource>",
+      "const": true,
+      "doc": "Retrieves a copy of the list of sources that are being recorded. This is intended for Blueprint usages which cannot\nuse TArrayView.\nDO NOT MODIFY THIS ARRAY, modifications will be lost.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveSource",
+      "return": "void",
+      "doc": "Remove the specified source from this list\n\n@param InSource        The source to remove",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSource",
+          "type": "UTakeRecorderSource"
+        }
+      ]
+    },
+    {
+      "name": "StartRecordingSource",
+      "return": "void",
+      "doc": "Calls the recording initialization flows on each of the specified sources.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSources",
+          "type": "TArray<UTakeRecorderSource>"
+        },
+        {
+          "name": "CurrentFrameTime",
+          "type": "FQualifiedFrameTime"
+        }
+      ]
+    }
+  ]
+}

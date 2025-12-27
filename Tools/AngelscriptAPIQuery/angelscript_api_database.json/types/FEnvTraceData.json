@@ -1,0 +1,102 @@
+{
+  "name": "FEnvTraceData",
+  "isStruct": true,
+  "properties": {
+    "NavigationFilter": [
+      "TSubclassOf<UNavigationQueryFilter>",
+      2,
+      "navigation filter for tracing"
+    ],
+    "ProjectDown": [
+      "float32",
+      2,
+      "search height: below point"
+    ],
+    "ProjectUp": [
+      "float32",
+      2,
+      "search height: above point"
+    ],
+    "ExtentX": [
+      "float32",
+      2,
+      "shape parameter for trace"
+    ],
+    "ExtentY": [
+      "float32",
+      2,
+      "shape parameter for trace"
+    ],
+    "ExtentZ": [
+      "float32",
+      2,
+      "shape parameter for trace"
+    ],
+    "PostProjectionVerticalOffset": [
+      "float32",
+      2,
+      "this value will be added to resulting location's Z axis. Can be useful when\n    projecting points to navigation since navmesh is just an approximation of level\n    geometry and items may end up being under collide-able geometry which would\n    for example falsify visibility tests."
+    ],
+    "TraceChannel": [
+      "ETraceTypeQuery",
+      2,
+      "geometry trace channel"
+    ],
+    "SerializedChannel": [
+      "ECollisionChannel",
+      2,
+      "geometry trace channel for serialization purposes"
+    ],
+    "TraceProfileName": [
+      "FName",
+      2,
+      "geometry trace profile"
+    ],
+    "TraceShape": [
+      "EEnvTraceShape",
+      2,
+      "shape used for geometry tracing"
+    ],
+    "TraceMode": [
+      "EEnvQueryTrace",
+      2,
+      "shape used for geometry tracing"
+    ],
+    "bTraceComplex": [
+      "bool",
+      "if set, trace will run on complex collisions"
+    ],
+    "bOnlyBlockingHits": [
+      "bool",
+      "if set, trace will look only for blocking hits"
+    ],
+    "bCanTraceOnNavMesh": [
+      "bool",
+      "if set, editor will allow picking navmesh trace"
+    ],
+    "bCanTraceOnGeometry": [
+      "bool",
+      "if set, editor will allow picking geometry trace"
+    ],
+    "bCanDisableTrace": [
+      "bool",
+      "if set, editor will allow"
+    ],
+    "bCanProjectDown": [
+      "bool",
+      "if set, editor show height up/down properties for projection"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FEnvTraceData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FEnvTraceData"
+        }
+      ]
+    }
+  ]
+}

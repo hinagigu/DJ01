@@ -1,0 +1,71 @@
+{
+  "name": "UAnimStateTransitionNode",
+  "inherits": "UAnimStateNodeBase",
+  "properties": {
+    "PriorityOrder": [
+      "int",
+      2,
+      "The priority order of this transition. If multiple transitions out of a state go\ntrue at the same time, the one with the smallest priority order will take precedent"
+    ],
+    "CrossfadeDuration": [
+      "float32",
+      2,
+      "The duration to cross-fade for"
+    ],
+    "BlendMode": [
+      "EAlphaBlendOption",
+      2,
+      ""
+    ],
+    "CustomBlendCurve": [
+      "UCurveFloat",
+      2,
+      ""
+    ],
+    "BlendProfile": [
+      "UBlendProfile",
+      2,
+      "The blend profile to use to evaluate this transition per-bone"
+    ],
+    "bAutomaticRuleBasedOnSequencePlayerInState": [
+      "bool",
+      2,
+      "Try setting the rule automatically based on most relevant asset player node's remaining time and the Automatic Rule Trigger Time of the transition, ignoring the internal time"
+    ],
+    "AutomaticRuleTriggerTime": [
+      "float32",
+      2,
+      "When should the automatic transition rule trigger relative to the time remaining on the relevant asset player:\n < 0 means trigger the transition 'Crossfade Duration' seconds before the end of the asset player, so a standard blend would finish just as the asset player ends\n>= 0 means trigger the transition 'Automatic Rule Trigger Time' seconds before the end of the asset player"
+    ],
+    "SyncGroupNameToRequireValidMarkersRule": [
+      "FName",
+      2,
+      "If SyncGroupName is specified, Transition will only be taken if the SyncGroup has valid markers (other transition rules still apply in addition to that)."
+    ],
+    "LogicType": [
+      "ETransitionLogicType",
+      "What transition logic to use"
+    ],
+    "TransitionStart": [
+      "FAnimNotifyEvent",
+      2,
+      ""
+    ],
+    "TransitionEnd": [
+      "FAnimNotifyEvent",
+      2,
+      ""
+    ],
+    "TransitionInterrupt": [
+      "FAnimNotifyEvent",
+      2,
+      ""
+    ],
+    "Bidirectional": [
+      "bool",
+      2,
+      "This transition can go both directions"
+    ]
+  },
+  "methods": []
+}

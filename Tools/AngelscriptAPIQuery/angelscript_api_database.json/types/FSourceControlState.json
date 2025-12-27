@@ -1,0 +1,114 @@
+{
+  "name": "FSourceControlState",
+  "isStruct": true,
+  "doc": "Snapshot of source control state of a file\n@see        USourceControlHelpers::QueryFileState()",
+  "properties": {
+    "Filename": [
+      "FString",
+      1,
+      "Get the local filename that this state represents"
+    ],
+    "bIsValid": [
+      "bool",
+      1,
+      "Indicates whether this source control state has valid information (true) or not (false)"
+    ],
+    "bIsUnknown": [
+      "bool",
+      1,
+      "Determine if we know anything about the source control state of this file"
+    ],
+    "bCanCheckIn": [
+      "bool",
+      1,
+      "Determine if this file can be checked in."
+    ],
+    "bCanCheckOut": [
+      "bool",
+      1,
+      "Determine if this file can be checked out"
+    ],
+    "bIsCheckedOut": [
+      "bool",
+      1,
+      "Determine if this file is checked out"
+    ],
+    "bIsCurrent": [
+      "bool",
+      1,
+      "Determine if this file is up-to-date with the version in source control"
+    ],
+    "bIsSourceControlled": [
+      "bool",
+      1,
+      "Determine if this file is under source control"
+    ],
+    "bIsAdded": [
+      "bool",
+      1,
+      "Determine if this file is marked for add\n@note        if already checked in then not considered mid add"
+    ],
+    "bIsDeleted": [
+      "bool",
+      1,
+      "Determine if this file is marked for delete"
+    ],
+    "bIsIgnored": [
+      "bool",
+      1,
+      "Determine if this file is ignored by source control"
+    ],
+    "bCanEdit": [
+      "bool",
+      1,
+      "Determine if source control allows this file to be edited"
+    ],
+    "bCanDelete": [
+      "bool",
+      1,
+      "Determine if source control allows this file to be deleted."
+    ],
+    "bIsModified": [
+      "bool",
+      1,
+      "Determine if this file is modified compared to the version in source control."
+    ],
+    "bCanAdd": [
+      "bool",
+      1,
+      "Determine if this file can be added to source control (i.e. is part of the directory\nstructure currently under source control)"
+    ],
+    "bIsConflicted": [
+      "bool",
+      1,
+      "Determine if this file is in a conflicted state"
+    ],
+    "bCanRevert": [
+      "bool",
+      1,
+      "Determine if this file can be reverted, i.e. discard changes and the file will no longer be checked-out."
+    ],
+    "bIsCheckedOutOther": [
+      "bool",
+      1,
+      "Determine if this file is checked out by someone else"
+    ],
+    "CheckedOutOther": [
+      "FString",
+      1,
+      "Get name of other user who this file already checked out or \"\" if no other user has it checked out"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSourceControlState&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSourceControlState"
+        }
+      ]
+    }
+  ]
+}

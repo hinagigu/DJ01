@@ -1,0 +1,47 @@
+{
+  "name": "__UControlRigBlueprintFactory",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateControlRigFromSkeletalMeshOrSkeleton",
+      "return": "UControlRigBlueprint",
+      "doc": "Create a new control rig asset within the contents space of the project\nbased on a skeletal mesh or skeleton object.\n@param InSelectedObject The SkeletalMesh / Skeleton object to base the control rig asset on\n@param bModularRig If true the rig will be created as a modular rig",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSelectedObject",
+          "type": "UObject"
+        },
+        {
+          "name": "bModularRig",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreateNewControlRigAsset",
+      "return": "UControlRigBlueprint",
+      "doc": "Create a new control rig asset within the contents space of the project.\n@param InDesiredPackagePath The package path to use for the control rig asset\n@param bModularRig If true the rig will be created as a modular rig",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDesiredPackagePath",
+          "type": "FString"
+        },
+        {
+          "name": "bModularRig",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,452 @@
+{
+  "name": "UCanvas",
+  "inherits": "UObject",
+  "doc": "A drawing canvas.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "Deproject",
+      "return": "void",
+      "doc": "Performs a deprojection of a screen space coordinate using the projection matrix set up for the Canvas.\n\n@param ScreenPosition                        Screen space position to deproject to the World.\n@param WorldOrigin                           Vector which is the world position of the screen space position.\n@param WorldDirection                        Vector which can be used in a trace to determine what is \"behind\" the screen space position. Useful for object picking.",
+      "ufunction": true,
+      "unrealname": "K2_Deproject",
+      "meta": null,
+      "args": [
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "WorldOrigin",
+          "type": "FVector&"
+        },
+        {
+          "name": "WorldDirection",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "DrawBorder",
+      "return": "void",
+      "doc": "Draws a 3x3 grid border with tiled frame and tiled interior on the Canvas.\n\n@param BorderTexture                         Texture to use for border.\n@param BackgroundTexture                     Texture to use for border background.\n@param LeftBorderTexture                     Texture to use for the tiling left border.\n@param RightBorderTexture            Texture to use for the tiling right border.\n@param TopBorderTexture                      Texture to use for the tiling top border.\n@param BottomBorderTexture           Texture to use for the tiling bottom border.\n@param ScreenPosition                        Screen space position to render the texture.\n@param ScreenSize                            Screen space size to render the texture.\n@param CoordinatePosition            Normalized UV starting coordinate to use when rendering the border texture.\n@param CoordinateSize                        Normalized UV size coordinate to use when rendering the border texture.\n@param RenderColor                           Color to tint the border.\n@param BorderScale                           Scale of the border.\n@param BackgroundScale                       Scale of the background.\n@param Rotation                                      Rotation, in degrees, to render the texture.\n@param PivotPoint                            Normalized pivot point to use when rotating the texture.\n@param CornerSize                            Frame corner size in percent of frame texture (should be < 0.5f).",
+      "ufunction": true,
+      "unrealname": "K2_DrawBorder",
+      "meta": null,
+      "args": [
+        {
+          "name": "BorderTexture",
+          "type": "UTexture"
+        },
+        {
+          "name": "BackgroundTexture",
+          "type": "UTexture"
+        },
+        {
+          "name": "LeftBorderTexture",
+          "type": "UTexture"
+        },
+        {
+          "name": "RightBorderTexture",
+          "type": "UTexture"
+        },
+        {
+          "name": "TopBorderTexture",
+          "type": "UTexture"
+        },
+        {
+          "name": "BottomBorderTexture",
+          "type": "UTexture"
+        },
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "ScreenSize",
+          "type": "FVector2D"
+        },
+        {
+          "name": "CoordinatePosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "CoordinateSize",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "RenderColor",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "BorderScale",
+          "default": "FVector2D ( 0.100000 , 0.100000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "BackgroundScale",
+          "default": "FVector2D ( 0.100000 , 0.100000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Rotation",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PivotPoint",
+          "default": "FVector2D ( 0.500000 , 0.500000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "CornerSize",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "DrawBox",
+      "return": "void",
+      "doc": "Draws an unfilled box on the Canvas.\n\n@param ScreenPosition                        Screen space position to render the text.\n@param ScreenSize                            Screen space size to render the texture.\n@param Thickness                                     How many pixels thick the box lines should be.",
+      "ufunction": true,
+      "unrealname": "K2_DrawBox",
+      "meta": null,
+      "args": [
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "ScreenSize",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Thickness",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "RenderColor",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "DrawLine",
+      "return": "void",
+      "doc": "Draws a line on the Canvas.\n\n@param ScreenPositionA               Starting position of the line in screen space.\n@param ScreenPositionB               Ending position of the line in screen space.\n@param Thickness                             How many pixels thick this line should be.\n@param RenderColor                   Color to render the line.",
+      "ufunction": true,
+      "unrealname": "K2_DrawLine",
+      "meta": null,
+      "args": [
+        {
+          "name": "ScreenPositionA",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "ScreenPositionB",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Thickness",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "RenderColor",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "DrawMaterial",
+      "return": "void",
+      "doc": "Draws a material on the Canvas.\n\n@param RenderMaterial                        Material to use when rendering. Remember that only the emissive channel is able to be rendered as no lighting is performed when rendering to the Canvas.\n@param ScreenPosition                        Screen space position to render the texture.\n@param ScreenSize                            Screen space size to render the texture.\n@param CoordinatePosition            Normalized UV starting coordinate to use when rendering the texture.\n@param CoordinateSize                        Normalized UV size coordinate to use when rendering the texture.\n@param Rotation                                      Rotation, in degrees, to render the texture.\n@param PivotPoint                            Normalized pivot point to use when rotating the texture.",
+      "ufunction": true,
+      "unrealname": "K2_DrawMaterial",
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderMaterial",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "ScreenSize",
+          "type": "FVector2D"
+        },
+        {
+          "name": "CoordinatePosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "CoordinateSize",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Rotation",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PivotPoint",
+          "default": "FVector2D ( 0.500000 , 0.500000 )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "DrawMaterialTriangles",
+      "return": "void",
+      "doc": "Draws a set of triangles on the Canvas.\n\n@param RenderMaterial                        Material to use when rendering. Remember that only the emissive channel is able to be rendered as no lighting is performed when rendering to the Canvas.\n@param Triangles                                     Triangles to render.",
+      "ufunction": true,
+      "unrealname": "K2_DrawMaterialTriangle",
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderMaterial",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "Triangles",
+          "type": "TArray<FCanvasUVTri>"
+        }
+      ]
+    },
+    {
+      "name": "DrawPolygon",
+      "return": "void",
+      "doc": "Draws a polygon on the Canvas.\n\n@param RenderTexture                         Texture to use when rendering the triangles. If no texture is set, then the default white texture is used.\n@param ScreenPosition                        Screen space position to render the text.\n@param Radius                                        How large in pixels this polygon should be.\n@param NumberOfSides                         How many sides this polygon should have. This should be above or equal to three.\n@param RenderColor                           Color to tint the polygon.",
+      "ufunction": true,
+      "unrealname": "K2_DrawPolygon",
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderTexture",
+          "type": "UTexture"
+        },
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Radius",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "NumberOfSides",
+          "default": "3",
+          "type": "int"
+        },
+        {
+          "name": "RenderColor",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "DrawText",
+      "return": "void",
+      "doc": "Draws text on the Canvas.\n\n@param RenderFont                            Font to use when rendering the text. If this is null, then a default engine font is used.\n@param RenderText                            Text to render on the Canvas.\n@param ScreenPosition                        Screen space position to render the text.\n@param RenderColor                           Color to render the text.\n@param Kerning                                       Horizontal spacing adjustment to modify the spacing between each letter.\n@param ShadowColor                           Color to render the shadow of the text.\n@param ShadowOffset                          Pixel offset relative to the screen space position to render the shadow of the text.\n@param bCentreX                                      If true, then interpret the screen space position X coordinate as the center of the rendered text.\n@param bCentreY                                      If true, then interpret the screen space position Y coordinate as the center of the rendered text.\n@param bOutlined                                     If true, then the text should be rendered with an outline.\n@param OutlineColor                          Color to render the outline for the text.",
+      "ufunction": true,
+      "unrealname": "K2_DrawText",
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderFont",
+          "type": "UFont"
+        },
+        {
+          "name": "RenderText",
+          "type": "FString"
+        },
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Scale",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "RenderColor",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Kerning",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "ShadowColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 0.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "ShadowOffset",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bCentreX",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bCentreY",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bOutlined",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "OutlineColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 0.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "DrawTexture",
+      "return": "void",
+      "doc": "Draws a texture on the Canvas.\n\n@param RenderTexture                         Texture to use when rendering. If no texture is set then this will use the default white texture.\n@param ScreenPosition                        Screen space position to render the texture.\n@param ScreenSize                            Screen space size to render the texture.\n@param CoordinatePosition            Normalized UV starting coordinate to use when rendering the texture.\n@param CoordinateSize                        Normalized UV size coordinate to use when rendering the texture.\n@param RenderColor                           Color to use when rendering the texture.\n@param BlendMode                                     Blending mode to use when rendering the texture.\n@param Rotation                                      Rotation, in degrees, to render the texture.\n@param PivotPoint                            Normalized pivot point to use when rotating the texture.",
+      "ufunction": true,
+      "unrealname": "K2_DrawTexture",
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderTexture",
+          "type": "UTexture"
+        },
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "ScreenSize",
+          "type": "FVector2D"
+        },
+        {
+          "name": "CoordinatePosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "CoordinateSize",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "RenderColor",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "BlendMode",
+          "default": "EBlendMode :: BLEND_Translucent",
+          "type": "EBlendMode"
+        },
+        {
+          "name": "Rotation",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PivotPoint",
+          "default": "FVector2D ( 0.500000 , 0.500000 )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "DrawTriangles",
+      "return": "void",
+      "doc": "Draws a set of triangles on the Canvas.\n\n@param RenderTexture                         Texture to use when rendering the triangles. If no texture is set, then the default white texture is used.\n@param Triangles                                     Triangles to render.",
+      "ufunction": true,
+      "unrealname": "K2_DrawTriangle",
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderTexture",
+          "type": "UTexture"
+        },
+        {
+          "name": "Triangles",
+          "type": "TArray<FCanvasUVTri>"
+        }
+      ]
+    },
+    {
+      "name": "Project",
+      "return": "FVector",
+      "doc": "Performs a projection of a world space coordinates using the projection matrix set up for the Canvas.\n\n@param WorldLocation                         World space location to project onto the Canvas rendering plane.\n@return                                                      Returns a vector where X, Y defines a screen space position representing the world space location.",
+      "ufunction": true,
+      "unrealname": "K2_Project",
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "WrappedTextSize",
+      "return": "FVector2D",
+      "doc": "Returns the wrapped text size in screen space coordinates.\n\n@param RenderFont                            Font to use when determining the size of the text. If this is null, then a default engine font is used.\n@param RenderText                            Text to determine the size of.\n@return                                                      Returns the screen space size of the text.",
+      "ufunction": true,
+      "unrealname": "K2_StrLen",
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderFont",
+          "type": "UFont"
+        },
+        {
+          "name": "RenderText",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ClippedTextSize",
+      "return": "FVector2D",
+      "doc": "Returns the clipped text size in screen space coordinates.\n\n@param RenderFont                            Font to use when determining the size of the text. If this is null, then a default engine font is used.\n@param RenderText                            Text to determine the size of.\n@param Scale                                         Scale of the font to use when determining the size of the text.\n@return                                                      Returns the screen space size of the text.",
+      "ufunction": true,
+      "unrealname": "K2_TextSize",
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderFont",
+          "type": "UFont"
+        },
+        {
+          "name": "RenderText",
+          "type": "FString"
+        },
+        {
+          "name": "Scale",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        }
+      ]
+    }
+  ]
+}

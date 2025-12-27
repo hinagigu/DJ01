@@ -1,0 +1,40 @@
+{
+  "name": "FRigUnit_FilterItemsByMetadataTags",
+  "isStruct": true,
+  "doc": "Filters an item array by a list of tags",
+  "properties": {
+    "Items": [
+      "TArray<FRigElementKey>",
+      "The items to filter"
+    ],
+    "Tags": [
+      "TArray<FName>",
+      "The tags to find"
+    ],
+    "NameSpace": [
+      "ERigMetaDataNameSpace",
+      "Defines in which namespace the metadata will be looked up"
+    ],
+    "Inclusive": [
+      "bool",
+      "If set to true only items with ALL of tags will be returned,\nif set to false items with ANY of the tags will be removed"
+    ],
+    "Result": [
+      "TArray<FRigElementKey>",
+      1,
+      "The results of the filter"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_FilterItemsByMetadataTags&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_FilterItemsByMetadataTags"
+        }
+      ]
+    }
+  ]
+}

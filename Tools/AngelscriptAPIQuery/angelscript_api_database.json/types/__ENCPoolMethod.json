@@ -1,0 +1,30 @@
+{
+  "name": "__ENCPoolMethod",
+  "isEnum": true,
+  "properties": {
+    "None": [
+      "ENCPoolMethod",
+      "The component will be created fresh and not allocated from the pool."
+    ],
+    "AutoRelease": [
+      "ENCPoolMethod",
+      "The component is allocated from the pool and will be automatically released back to it.\nUser need not handle this any more that other NCs but interaction with the NC after the tick it's spawned in are unsafe.\nThis method is useful for one-shot fx that you don't need to keep a reference to and can fire and forget."
+    ],
+    "ManualRelease": [
+      "ENCPoolMethod",
+      "NC is allocated from the pool but will NOT be automatically released back to it. User has ownership of the NC and must call ReleaseToPool when finished with it otherwise the NC will leak.\nInteraction with the NC after it has been released are unsafe.\nThis method is useful for persistent FX that you need to modify parameters upon etc over it's lifetime."
+    ],
+    "ManualRelease_OnComplete": [
+      "ENCPoolMethod",
+      "Special entry allowing manual release NCs to be manually released but wait until completion to be returned to the pool."
+    ],
+    "FreeInPool": [
+      "ENCPoolMethod",
+      "Special entry that marks a NC as having been returned to the pool. All NCs currently in the pool are marked this way."
+    ],
+    "ENCPoolMethod_MAX": [
+      "ENCPoolMethod"
+    ]
+  },
+  "methods": []
+}

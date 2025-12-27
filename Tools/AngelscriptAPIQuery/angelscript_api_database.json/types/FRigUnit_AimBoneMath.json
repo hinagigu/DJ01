@@ -1,0 +1,44 @@
+{
+  "name": "FRigUnit_AimBoneMath",
+  "isStruct": true,
+  "doc": "Outputs an aligned transform of a primary and secondary axis of an input transform to a world target.\nNote: This node operates in world space!",
+  "properties": {
+    "InputTransform": [
+      "FTransform",
+      "The transform (in global space) before the aim was applied (optional)"
+    ],
+    "Primary": [
+      "FRigUnit_AimItem_Target",
+      "The primary target for the aim"
+    ],
+    "Secondary": [
+      "FRigUnit_AimItem_Target",
+      "The secondary target for the aim - also referred to as PoleVector / UpVector"
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the change - how much the change should be applied"
+    ],
+    "Result": [
+      "FTransform",
+      1,
+      "The resulting transform"
+    ],
+    "DebugSettings": [
+      "FRigUnit_AimBone_DebugSettings",
+      "The debug setting for the node"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_AimBoneMath&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_AimBoneMath"
+        }
+      ]
+    }
+  ]
+}

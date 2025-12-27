@@ -1,0 +1,43 @@
+{
+  "name": "FLevelEditorPlayNetworkEmulationSettings",
+  "isStruct": true,
+  "properties": {
+    "bIsNetworkEmulationEnabled": [
+      "bool",
+      2,
+      "When true will apply the emulation settings when launching the game"
+    ],
+    "EmulationTarget": [
+      "NetworkEmulationTarget",
+      2,
+      ""
+    ],
+    "CurrentProfile": [
+      "FString",
+      2,
+      "The profile name of the settings currently applied"
+    ],
+    "OutPackets": [
+      "FNetworkEmulationPacketSettings",
+      2,
+      "Settings that add latency and packet loss to all outgoing packets"
+    ],
+    "InPackets": [
+      "FNetworkEmulationPacketSettings",
+      2,
+      "Settings that add latency and packet loss to all incoming packets"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLevelEditorPlayNetworkEmulationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLevelEditorPlayNetworkEmulationSettings"
+        }
+      ]
+    }
+  ]
+}

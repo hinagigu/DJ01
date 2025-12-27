@@ -1,0 +1,18 @@
+{
+  "name": "UEnvQueryTest_GameplayTags",
+  "inherits": "UEnvQueryTest",
+  "doc": "EnvQueryTest_GameplayTags attempts to cast items to IGameplayTagAssetInterface and test their tags with TagQueryToMatch.\nThe behavior of IGameplayTagAssetInterface-less items is configured by bRejectIncompatibleItems.",
+  "properties": {
+    "TagQueryToMatch": [
+      "FGameplayTagQuery",
+      2,
+      ""
+    ],
+    "bRejectIncompatibleItems": [
+      "bool",
+      2,
+      "This controls how to treat actors that do not implement IGameplayTagAssetInterface.\nWhen set to True, actors that do not implement the interface will be ignored, meaning\nthey will not be scored and will not be considered when filtering.\nWhen set to False, actors that do not implement the interface will be included in\nfilter and score operations with a zero score."
+    ]
+  },
+  "methods": []
+}

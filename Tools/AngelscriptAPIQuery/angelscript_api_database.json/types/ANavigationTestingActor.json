@@ -1,0 +1,143 @@
+{
+  "name": "ANavigationTestingActor",
+  "inherits": "AActor",
+  "properties": {
+    "InvokerComponent": [
+      "UNavigationInvokerComponent",
+      2,
+      ""
+    ],
+    "NavAgentProps": [
+      "FNavAgentProperties",
+      2,
+      "@todo document"
+    ],
+    "QueryingExtent": [
+      "FVector",
+      2,
+      ""
+    ],
+    "ProjectedLocation": [
+      "FVector",
+      1,
+      ""
+    ],
+    "CostLimitFactor": [
+      "float32",
+      2,
+      "this multiplier is used to compute a max node cost allowed to the open list\n    (cost limit = CostLimitFactor*InitialHeuristicEstimate)"
+    ],
+    "MinimumCostLimit": [
+      "float32",
+      2,
+      "minimum cost limit clamping value (in cost units)\n    used to allow large deviation in short paths"
+    ],
+    "RadiusUsedToValidateNavData": [
+      "float32",
+      2,
+      "NavData must be ready for all tiles within radius. When using 0, NavData must be ready at the actor location."
+    ],
+    "CostDisplayMode": [
+      "ENavCostDisplay",
+      2,
+      "determines which cost will be shown"
+    ],
+    "TextCanvasOffset": [
+      "FVector2D",
+      2,
+      "text canvas offset to apply"
+    ],
+    "PathfindingTime": [
+      "float32",
+      1,
+      "Time in micro seconds"
+    ],
+    "PathCost": [
+      "float",
+      1,
+      ""
+    ],
+    "PathfindingSteps": [
+      "int",
+      1,
+      ""
+    ],
+    "OtherActor": [
+      "ANavigationTestingActor",
+      2,
+      ""
+    ],
+    "FilterClass": [
+      "TSubclassOf<UNavigationQueryFilter>",
+      2,
+      "\"None\" will result in default filter being used"
+    ],
+    "ShowStepIndex": [
+      "int",
+      2,
+      "Show debug steps up to this index. Use -1 to disable."
+    ],
+    "OffsetFromCornersDistance": [
+      "float32",
+      2,
+      ""
+    ],
+    "bActAsNavigationInvoker": [
+      "bool"
+    ],
+    "bProjectedLocationValid": [
+      "bool"
+    ],
+    "bSearchStart": [
+      "bool",
+      "if set, start the search from this actor, else start the search from the other actor"
+    ],
+    "bBacktracking": [
+      "bool",
+      "Instead of regular pathfinding from source to target location do\n    a 'backwards' search that searches from the source, but as if the allowed\n    movement direction was coming from the target. Meaningful only for paths\n    containing one-direction nav links."
+    ],
+    "bUseHierarchicalPathfinding": [
+      "bool"
+    ],
+    "bGatherDetailedInfo": [
+      "bool",
+      "if set, all steps of A* algorithm will be accessible for debugging"
+    ],
+    "bRequireNavigableEndLocation": [
+      "bool",
+      "if set, require the end location to be close to the navigation data. The tolerance is controlled by QueryingExtent"
+    ],
+    "bDrawDistanceToWall": [
+      "bool"
+    ],
+    "bDrawIfNavDataIsReadyInRadius": [
+      "bool",
+      "If set, a cylinder is drawn to indicate if the navigation data is ready (has been generated) for the given radius (green when ready, red otherwise)."
+    ],
+    "bShowNodePool": [
+      "bool",
+      "show polys from open (orange) and closed (yellow) sets"
+    ],
+    "bShowBestPath": [
+      "bool",
+      "show current best path"
+    ],
+    "bShowDiffWithPreviousStep": [
+      "bool",
+      "show which nodes were modified in current A* step"
+    ],
+    "bShouldBeVisibleInGame": [
+      "bool"
+    ],
+    "bPathExist": [
+      "bool"
+    ],
+    "bPathIsPartial": [
+      "bool"
+    ],
+    "bPathSearchOutOfNodes": [
+      "bool"
+    ]
+  },
+  "methods": []
+}

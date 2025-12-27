@@ -1,0 +1,43 @@
+{
+  "name": "UFractureRecomputeNormalsSettings",
+  "inherits": "UFractureToolSettings",
+  "doc": "Settings for visualizing and recomputing normals and tangents",
+  "properties": {
+    "bShowNormals": [
+      "bool",
+      2,
+      "Whether to display normal vectors"
+    ],
+    "bShowTangents": [
+      "bool",
+      2,
+      "Whether to display tangent and bitangent vectors"
+    ],
+    "Length": [
+      "float32",
+      2,
+      "Length of display normal and tangent vectors"
+    ],
+    "bOnlyTangents": [
+      "bool",
+      2,
+      "Whether to only recompute tangents, and leave normals as they were"
+    ],
+    "bRecomputeSharpEdges": [
+      "bool",
+      2,
+      "If true, update where edges are 'sharp' by comparing adjacent triangle face normals vs the Sharp Edge Angle Threshold."
+    ],
+    "SharpEdgeAngleThreshold": [
+      "float32",
+      2,
+      "Threshold on angle of change in face normals across an edge, above which we create a sharp edge if bRecomputeSharpEdges is true"
+    ],
+    "bOnlyInternalSurfaces": [
+      "bool",
+      2,
+      "Whether to only change internal surface normals / tangents"
+    ]
+  },
+  "methods": []
+}

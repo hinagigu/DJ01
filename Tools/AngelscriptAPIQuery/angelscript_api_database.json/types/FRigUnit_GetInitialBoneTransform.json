@@ -1,0 +1,32 @@
+{
+  "name": "FRigUnit_GetInitialBoneTransform",
+  "isStruct": true,
+  "doc": "GetInitialBoneTransform is used to retrieve a single transform from a hierarchy.",
+  "properties": {
+    "Bone": [
+      "FName",
+      "The name of the Bone to retrieve the transform for."
+    ],
+    "Space": [
+      "ERigVMTransformSpace",
+      "Defines if the bone's transform should be retrieved\nin local or global space."
+    ],
+    "Transform": [
+      "FTransform",
+      1,
+      "The current transform of the given bone - or identity in case it wasn't found."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_GetInitialBoneTransform&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_GetInitialBoneTransform"
+        }
+      ]
+    }
+  ]
+}

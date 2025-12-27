@@ -1,0 +1,107 @@
+{
+  "name": "__TypedElementSelectionSet",
+  "properties": {},
+  "methods": [
+    {
+      "name": "DeselectElementsFromList",
+      "return": "bool",
+      "doc": "Attempt to deselect the given elements.\n@return True if the selection was changed, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionSet",
+          "type": "UTypedElementSelectionSet"
+        },
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "SelectionOptions",
+          "type": "FTypedElementSelectionOptions"
+        }
+      ]
+    },
+    {
+      "name": "GetNormalizedElementList",
+      "return": "FScriptTypedElementListProxy",
+      "doc": "Get a normalized version of the given element list that can be used to perform operations like gizmo manipulation, deletion, copying, etc.\nThis will do things like expand out groups, and resolve any parent<->child elements so that duplication operations aren't performed on both the parent and the child.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionSet",
+          "type": "UTypedElementSelectionSet"
+        },
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "NormalizationOptions",
+          "type": "FTypedElementSelectionNormalizationOptions"
+        }
+      ]
+    },
+    {
+      "name": "GetNormalizedSelection",
+      "return": "FScriptTypedElementListProxy",
+      "doc": "Get a normalized version of this selection set that can be used to perform operations like gizmo manipulation, deletion, copying, etc.\nThis will do things like expand out groups, and resolve any parent<->child elements so that duplication operations aren't performed on both the parent and the child.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionSet",
+          "type": "UTypedElementSelectionSet"
+        },
+        {
+          "name": "NormalizationOptions",
+          "type": "FTypedElementSelectionNormalizationOptions"
+        }
+      ]
+    },
+    {
+      "name": "SelectElementsFromList",
+      "return": "bool",
+      "doc": "Attempt to select the given elements.\n@return True if the selection was changed, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionSet",
+          "type": "UTypedElementSelectionSet"
+        },
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "SelectionOptions",
+          "type": "FTypedElementSelectionOptions"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectionFromList",
+      "return": "bool",
+      "doc": "Attempt to make the selection the given elements.\n@note Equivalent to calling ClearSelection then SelectElements, but happens in a single batch.\n@return True if the selection was changed, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionSet",
+          "type": "UTypedElementSelectionSet"
+        },
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "SelectionOptions",
+          "type": "FTypedElementSelectionOptions"
+        }
+      ]
+    }
+  ]
+}

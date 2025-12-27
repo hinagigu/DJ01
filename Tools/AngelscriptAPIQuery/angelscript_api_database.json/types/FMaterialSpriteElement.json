@@ -1,0 +1,42 @@
+{
+  "name": "FMaterialSpriteElement",
+  "isStruct": true,
+  "properties": {
+    "Material": [
+      "UMaterialInterface",
+      "The material that the sprite is rendered with."
+    ],
+    "DistanceToOpacityCurve": [
+      "UCurveFloat",
+      "A curve that maps distance on the X axis to the sprite opacity on the Y axis."
+    ],
+    "BaseSizeX": [
+      "float32",
+      "The base width of the sprite, multiplied with the DistanceToSizeCurve."
+    ],
+    "BaseSizeY": [
+      "float32",
+      "The base height of the sprite, multiplied with the DistanceToSizeCurve."
+    ],
+    "DistanceToSizeCurve": [
+      "UCurveFloat",
+      "A curve that maps distance on the X axis to the sprite size on the Y axis."
+    ],
+    "bSizeIsInScreenSpace": [
+      "bool",
+      "Whether the size is defined in screen-space or world-space."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMaterialSpriteElement&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMaterialSpriteElement"
+        }
+      ]
+    }
+  ]
+}

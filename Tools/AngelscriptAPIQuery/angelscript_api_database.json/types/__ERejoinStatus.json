@@ -1,0 +1,31 @@
+{
+  "name": "__ERejoinStatus",
+  "isEnum": true,
+  "doc": "Possible states that a rejoin check can be in at any given time",
+  "properties": {
+    "NoMatchToRejoin": [
+      "ERejoinStatus",
+      "There is no match to rejoin.  The user is already in a match or there is no match in progress for the user."
+    ],
+    "RejoinAvailable": [
+      "ERejoinStatus",
+      "There is a rejoin available for the user"
+    ],
+    "UpdatingStatus": [
+      "ERejoinStatus",
+      "We are currently updating the status of rejoin"
+    ],
+    "NeedsRecheck": [
+      "ERejoinStatus",
+      "We need to recheck the state before allowing any further progress through the UI (e.g right after login or right after leaving a match without it ending normally)."
+    ],
+    "NoMatchToRejoin_MatchEnded": [
+      "ERejoinStatus",
+      "Match ended normally, no check required (only set when returning from a match)"
+    ],
+    "ERejoinStatus_MAX": [
+      "ERejoinStatus"
+    ]
+  },
+  "methods": []
+}

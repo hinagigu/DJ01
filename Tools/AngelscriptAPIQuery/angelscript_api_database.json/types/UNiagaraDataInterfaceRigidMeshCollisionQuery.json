@@ -1,0 +1,58 @@
+{
+  "name": "UNiagaraDataInterfaceRigidMeshCollisionQuery",
+  "inherits": "UNiagaraDataInterface",
+  "doc": "Data Interface used to collide against static meshes - whether it is the mesh distance field or a physics asset's collision primitive",
+  "properties": {
+    "ActorTags": [
+      "TArray<FName>",
+      2,
+      "Set of tags used to match against actors when searching for RigidBody providers.  Empty tags will be ignored, and only a single\n              tag is required for an actor to be matched."
+    ],
+    "ComponentTags": [
+      "TArray<FName>",
+      2,
+      "Set of tags used to match against components when searching for RigidBody providers.  Empty tags will be ignored, and only a\n              single tag is required for a component to be matched."
+    ],
+    "SourceActors": [
+      "TArray<TSoftObjectPtr<AActor>>",
+      2,
+      "Hardcoded references to actors that will be used as RigidBody providers."
+    ],
+    "OnlyUseMoveable": [
+      "bool",
+      2,
+      "If enabled only actors that are considered moveable will be searched for RigidBodies."
+    ],
+    "UseComplexCollisions": [
+      "bool",
+      2,
+      "If enabled, complex collisions will be searched for."
+    ],
+    "bFilterByObjectType": [
+      "bool",
+      2,
+      "If enabled, FindActors will use filtering based on ObjectType instead of Channel."
+    ],
+    "GlobalSearchAllowed": [
+      "bool",
+      2,
+      ""
+    ],
+    "GlobalSearchForced": [
+      "bool",
+      2,
+      ""
+    ],
+    "GlobalSearchFallback_Unscripted": [
+      "bool",
+      2,
+      ""
+    ],
+    "MaxNumPrimitives": [
+      "int",
+      2,
+      "Maximum number of RigidBody represented by this DataInterface."
+    ]
+  },
+  "methods": []
+}

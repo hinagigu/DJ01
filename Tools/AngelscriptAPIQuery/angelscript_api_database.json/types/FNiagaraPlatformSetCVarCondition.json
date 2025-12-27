@@ -1,0 +1,75 @@
+{
+  "name": "FNiagaraPlatformSetCVarCondition",
+  "isStruct": true,
+  "doc": "Imposes a condition that a CVar must contain a set value or range of values for a platform set to be enabled.",
+  "properties": {
+    "CVarName": [
+      "FName",
+      2,
+      "The name of the CVar we're testing the value of."
+    ],
+    "PassResponse": [
+      "ENiagaraCVarConditionResponse",
+      2,
+      "If this CVar condition passes, how should this affect the state of the Platform Set?"
+    ],
+    "FailResponse": [
+      "ENiagaraCVarConditionResponse",
+      2,
+      "If this CVar condition fails, how should this affect the state of the Platform Set?"
+    ],
+    "Value": [
+      "bool",
+      2,
+      "The value this CVar must contain for this platform set to be enabled."
+    ],
+    "MinInt": [
+      "int",
+      2,
+      "If the value of the CVar is less than this minimum then the PlatformSet will not be enabled."
+    ],
+    "MaxInt": [
+      "int",
+      2,
+      "If the value of the CVar is greater than this maximum then the PlatformSet will not be enabled."
+    ],
+    "MinFloat": [
+      "float32",
+      2,
+      "If the value of the CVar is less than this minimum then the PlatformSet will not be enabled."
+    ],
+    "MaxFloat": [
+      "float32",
+      2,
+      "If the value of the CVar is greater than this maximum then the PlatformSet will not be enabled."
+    ],
+    "bUseMinInt": [
+      "bool",
+      "True if we should apply the minimum restriction for int CVars."
+    ],
+    "bUseMaxInt": [
+      "bool",
+      "True if we should apply the maximum restriction for int CVars."
+    ],
+    "bUseMinFloat": [
+      "bool",
+      "True if we should apply the minimum restriction for float CVars."
+    ],
+    "bUseMaxFloat": [
+      "bool",
+      "True if we should apply the maximum restriction for float CVars."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraPlatformSetCVarCondition&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraPlatformSetCVarCondition"
+        }
+      ]
+    }
+  ]
+}

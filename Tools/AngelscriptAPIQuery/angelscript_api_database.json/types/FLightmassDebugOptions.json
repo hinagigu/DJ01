@@ -1,0 +1,85 @@
+{
+  "name": "FLightmassDebugOptions",
+  "isStruct": true,
+  "doc": "Debug options for Lightmass",
+  "properties": {
+    "CoplanarTolerance": [
+      "float32",
+      2,
+      "The tolerance level used when gathering BSP surfaces."
+    ],
+    "ExecutionTimeDivisor": [
+      "float32",
+      2,
+      "The amount of time that will be count as full red when bColorByExecutionTime is enabled"
+    ],
+    "bDebugMode": [
+      "bool",
+      "If false, UnrealLightmass.exe is launched automatically (default)\nIf true, it must be launched manually (e.g. through a debugger) with the -debug command line parameter."
+    ],
+    "bStatsEnabled": [
+      "bool",
+      "If true, all participating Lightmass agents will report back detailed stats to the log."
+    ],
+    "bGatherBSPSurfacesAcrossComponents": [
+      "bool",
+      "If true, BSP surfaces split across model components are joined into 1 mapping"
+    ],
+    "bUseImmediateImport": [
+      "bool",
+      "If true, Lightmass will import mappings immediately as they complete.\nIt will not process them, however."
+    ],
+    "bImmediateProcessMappings": [
+      "bool",
+      "If true, Lightmass will process appropriate mappings as they are imported.\nNOTE: Requires ImmediateMode be enabled to actually work."
+    ],
+    "bSortMappings": [
+      "bool",
+      "If true, Lightmass will sort mappings by texel cost."
+    ],
+    "bDumpBinaryFiles": [
+      "bool",
+      "If true, the generate coefficients will be dumped to binary files."
+    ],
+    "bDebugMaterials": [
+      "bool",
+      "If true, Lightmass will write out BMPs for each generated material property\nsample to <GAME>\\ScreenShots\\Materials."
+    ],
+    "bPadMappings": [
+      "bool",
+      "If true, Lightmass will pad the calculated mappings to reduce/eliminate seams."
+    ],
+    "bDebugPaddings": [
+      "bool",
+      "If true, will fill padding of mappings with a color rather than the sampled edges.\nMeans nothing if bPadMappings is not enabled..."
+    ],
+    "bOnlyCalcDebugTexelMappings": [
+      "bool",
+      "If true, only the mapping containing a debug texel will be calculated, all others\nwill be set to white"
+    ],
+    "bUseRandomColors": [
+      "bool",
+      "If true, color lightmaps a random color"
+    ],
+    "bColorBordersGreen": [
+      "bool",
+      "If true, a green border will be placed around the edges of mappings"
+    ],
+    "bColorByExecutionTime": [
+      "bool",
+      "If true, Lightmass will overwrite lightmap data with a shade of red relating to\nhow long it took to calculate the mapping (Red = Time / ExecutionTimeDivisor)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLightmassDebugOptions&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLightmassDebugOptions"
+        }
+      ]
+    }
+  ]
+}

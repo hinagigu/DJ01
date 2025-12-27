@@ -1,0 +1,40 @@
+{
+  "name": "FRigUnit_RemoveMetadata",
+  "isStruct": true,
+  "doc": "Removes an existing metadata filed from an item",
+  "properties": {
+    "Item": [
+      "FRigElementKey",
+      "The item to remove the metadata from"
+    ],
+    "Name": [
+      "FName",
+      "The name of the metadata to remove"
+    ],
+    "NameSpace": [
+      "ERigMetaDataNameSpace",
+      "Defines in which namespace the metadata will be looked up"
+    ],
+    "Removed": [
+      "bool",
+      1,
+      "True if the metadata has been removed"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_RemoveMetadata&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_RemoveMetadata"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "FFoliageVertexColorChannelMask",
+  "isStruct": true,
+  "properties": {
+    "MaskThreshold": [
+      "float32",
+      2,
+      "Specifies the threshold value above which the static mesh vertex color value must be, in order for foliage instances to be placed in a specific area"
+    ],
+    "UseMask": [
+      "bool",
+      "When checked, foliage will be masked from this mesh using this color channel"
+    ],
+    "InvertMask": [
+      "bool",
+      "When unchecked, foliage instances will be placed only when the vertex color in the specified channel(s) is above the threshold amount.\nWhen checked, the vertex color must be less than the threshold amount"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FFoliageVertexColorChannelMask&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FFoliageVertexColorChannelMask"
+        }
+      ]
+    }
+  ]
+}

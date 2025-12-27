@@ -1,0 +1,23 @@
+{
+  "name": "__EDetectionTechnique",
+  "isEnum": true,
+  "doc": "Detection method used for placing a notify / marker in the track",
+  "properties": {
+    "PassThroughReferenceBone": [
+      "EDetectionTechnique",
+      "Create anim event when foot bone passes through a given reference bone.\n\nNote that the translation vector of the reference bone will be used as the normal vector for the detection plane\nused to determine if the foot bone has crossed the reference bone."
+    ],
+    "FootBoneReachesGround": [
+      "EDetectionTechnique",
+      "Create anim event when foot bone reaches the ground level within a given threshold.\n\nNote that this will only be true if the foot bone position goes from NOT being within the threshold to being\nWITHIN the ground threshold."
+    ],
+    "FootBoneSpeed": [
+      "EDetectionTechnique",
+      "Create anim event when foot bone translation speed is below a given threshold and nearly zero.\n\nNote that the foot bone translation speed is normalize therefore when a footstep occurs\nthe speed will be very close to zero."
+    ],
+    "EDetectionTechnique_MAX": [
+      "EDetectionTechnique"
+    ]
+  },
+  "methods": []
+}

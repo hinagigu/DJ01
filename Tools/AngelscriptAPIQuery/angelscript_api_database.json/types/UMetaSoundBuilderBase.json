@@ -1,0 +1,910 @@
+{
+  "name": "UMetaSoundBuilderBase",
+  "inherits": "UObject",
+  "doc": "Base implementation of MetaSound builder",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddGraphInputNode",
+      "return": "FMetaSoundBuilderNodeOutputHandle",
+      "doc": "Adds a graph input node with the given name, DataType, and sets the graph input to default value.\nReturns the new input node's output handle if it was successfully created, or an invalid handle if it failed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        },
+        {
+          "name": "DataType",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "FMetasoundFrontendLiteral"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        },
+        {
+          "name": "bIsConstructorInput",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddGraphOutputNode",
+      "return": "FMetaSoundBuilderNodeInputHandle",
+      "doc": "Adds a graph output node with the given name, DataType, and sets output node's input to default value.\nReturns the new output node's input handle if it was successfully created, or an invalid handle if it failed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        },
+        {
+          "name": "DataType",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "FMetasoundFrontendLiteral"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        },
+        {
+          "name": "bIsConstructorOutput",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddInterface",
+      "return": "void",
+      "doc": "Adds an interface registered with the given name to the graph, adding associated input and output nodes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterfaceName",
+          "type": "FName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "AddNodeByClassName",
+      "return": "FMetaSoundNodeHandle",
+      "doc": "Adds node referencing the highest native class version of the given class name to the document.\nReturns a node handle to the created node if successful, or an invalid handle if it failed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClassName",
+          "type": "FMetasoundFrontendClassName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        },
+        {
+          "name": "MajorVersion",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ConnectNodeInputsToMatchingGraphInterfaceInputs",
+      "return": "TArray<FMetaSoundBuilderNodeOutputHandle>",
+      "doc": "Connects a given node's inputs to all graph inputs for shared interfaces implemented on both the node's referenced class and the builder's MetaSound graph. Returns outputs of connected input nodes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConnectNodeInputToGraphInput",
+      "return": "void",
+      "doc": "Connects a given node input to the graph input with the given name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GraphInputName",
+          "type": "FName"
+        },
+        {
+          "name": "NodeInputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConnectNodeOutputsToMatchingGraphInterfaceOutputs",
+      "return": "TArray<FMetaSoundBuilderNodeInputHandle>",
+      "doc": "Connects a given node's outputs to all graph outputs for shared interfaces implemented on both the node's referenced class and the builder's MetaSound graph. Returns inputs of connected output nodes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConnectNodeOutputToGraphOutput",
+      "return": "void",
+      "doc": "Connects a given node output to the graph output with the given name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GraphOutputName",
+          "type": "FName"
+        },
+        {
+          "name": "NodeOutputHandle",
+          "type": "FMetaSoundBuilderNodeOutputHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConnectNodes",
+      "return": "void",
+      "doc": "Connects node output to a node input. Does *NOT* provide loop detection for performance reasons.  Loop detection is checked on class registration when built or played.\nReturns succeeded if connection made, failed if connection already exists with input, the data types do not match, or the connection is not supported due to access type\nincompatibility (ex. constructor input to non-constructor input).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeOutputHandle",
+          "type": "FMetaSoundBuilderNodeOutputHandle"
+        },
+        {
+          "name": "NodeInputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConnectNodesByInterfaceBindings",
+      "return": "void",
+      "doc": "Connects two nodes using defined MetaSound Interface Bindings registered with the MetaSound Interface registry.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FromNodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "ToNodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "ContainsNode",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether node exists.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FMetaSoundNodeHandle"
+        }
+      ]
+    },
+    {
+      "name": "ContainsNodeInput",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether node input exists.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Input",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        }
+      ]
+    },
+    {
+      "name": "ContainsNodeOutput",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether node output exists.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Output",
+          "type": "FMetaSoundBuilderNodeOutputHandle"
+        }
+      ]
+    },
+    {
+      "name": "ConvertFromPreset",
+      "return": "void",
+      "doc": "Converts this preset to a fully accessible MetaSound; sets result to succeeded if it was converted successfully and failed if it was not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "DisconnectNodeInput",
+      "return": "void",
+      "doc": "Removes connection to a given node input. Returns success if connection was removed, failed if not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeInputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "DisconnectNodeOutput",
+      "return": "void",
+      "doc": "Removes all connections from a given node output. Returns success if all connections were removed, failed if not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeOutputHandle",
+          "type": "FMetaSoundBuilderNodeOutputHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "DisconnectNodes",
+      "return": "void",
+      "doc": "Disconnects node output to a node input. Returns success if connection was removed, failed if not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeOutputHandle",
+          "type": "FMetaSoundBuilderNodeOutputHandle"
+        },
+        {
+          "name": "NodeInputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "DisconnectNodesByInterfaceBindings",
+      "return": "void",
+      "doc": "Disconnects two nodes using defined MetaSound Interface Bindings registered with the MetaSound Interface registry. Returns success if\nall connections were found and removed, failed if any connections were not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FromNodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "ToNodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindGraphInputNode",
+      "return": "FMetaSoundNodeHandle",
+      "doc": "Returns graph input node by the given name if it exists, or an invalid handle if not found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindGraphOutputNode",
+      "return": "FMetaSoundNodeHandle",
+      "doc": "Returns graph output node by the given name if it exists, or an invalid handle if not found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutputName",
+          "type": "FName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindInterfaceInputNodes",
+      "return": "TArray<FMetaSoundNodeHandle>",
+      "doc": "Returns input nodes associated with a given interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterfaceName",
+          "type": "FName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindInterfaceOutputNodes",
+      "return": "TArray<FMetaSoundNodeHandle>",
+      "doc": "Returns output nodes associated with a given interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterfaceName",
+          "type": "FName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindNodeClassVersion",
+      "return": "FMetasoundFrontendVersion",
+      "doc": "Returns output's parent node if the input is valid, otherwise returns invalid node handle.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindNodeInputByName",
+      "return": "FMetaSoundBuilderNodeInputHandle",
+      "doc": "Returns node input by the given name if it exists, or an invalid handle if not found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "InputName",
+          "type": "FName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindNodeInputParent",
+      "return": "FMetaSoundNodeHandle",
+      "doc": "Returns input's parent node if the input is valid, otherwise returns invalid node handle.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindNodeInputs",
+      "return": "TArray<FMetaSoundBuilderNodeInputHandle>",
+      "doc": "Returns all node inputs.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindNodeInputsByDataType",
+      "return": "TArray<FMetaSoundBuilderNodeInputHandle>",
+      "doc": "Returns node inputs by the given DataType (ex. \"Audio\", \"Trigger\", \"String\", \"Bool\", \"Float\", \"Int32\", etc.).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        },
+        {
+          "name": "DataType",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FindNodeOutputByName",
+      "return": "FMetaSoundBuilderNodeOutputHandle",
+      "doc": "Returns node output by the given name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "OutputName",
+          "type": "FName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindNodeOutputParent",
+      "return": "FMetaSoundNodeHandle",
+      "doc": "Returns output's parent node if the input is valid, otherwise returns invalid node handle.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutputHandle",
+          "type": "FMetaSoundBuilderNodeOutputHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindNodeOutputs",
+      "return": "TArray<FMetaSoundBuilderNodeOutputHandle>",
+      "doc": "Returns all node outputs.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "FindNodeOutputsByDataType",
+      "return": "TArray<FMetaSoundBuilderNodeOutputHandle>",
+      "doc": "Returns node outputs by the given DataType (ex. \"Audio\", \"Trigger\", \"String\", \"Bool\", \"Float\", \"Int32\", etc.).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        },
+        {
+          "name": "DataType",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeInputClassDefault",
+      "return": "FMetasoundFrontendLiteral",
+      "doc": "Returns node input's class literal value if set, otherwise fails and returns default literal.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeInputData",
+      "return": "void",
+      "doc": "Returns node input's data if valid (including things like name and datatype).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        },
+        {
+          "name": "Name",
+          "type": "FName&"
+        },
+        {
+          "name": "DataType",
+          "type": "FName&"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeInputDefault",
+      "return": "FMetasoundFrontendLiteral",
+      "doc": "Returns node input's literal value if set on graph, otherwise fails and returns default literal.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeInputIsConstructorPin",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the given node input is a constructor pin",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeOutputData",
+      "return": "void",
+      "doc": "Returns node output's data if valid (including things like name and datatype).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutputHandle",
+          "type": "FMetaSoundBuilderNodeOutputHandle"
+        },
+        {
+          "name": "Name",
+          "type": "FName&"
+        },
+        {
+          "name": "DataType",
+          "type": "FName&"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "GetNodeOutputIsConstructorPin",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the given node output is a constructor pin",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutputHandle",
+          "type": "FMetaSoundBuilderNodeOutputHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetReferencedPresetAsset",
+      "return": "UObject",
+      "const": true,
+      "doc": "Return the asset referenced by this preset builder. Returns nullptr if the builder is not a preset.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InterfaceIsDeclared",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns if a given interface is declared.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterfaceName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsPreset",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether this is a preset.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "NodeInputIsConnected",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns if a given node input has connections.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        }
+      ]
+    },
+    {
+      "name": "NodeOutputIsConnected",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns if a given node output is connected.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutputHandle",
+          "type": "FMetaSoundBuilderNodeOutputHandle"
+        }
+      ]
+    },
+    {
+      "name": "NodesAreConnected",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns if a given node output and node input are connected.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutputHandle",
+          "type": "FMetaSoundBuilderNodeOutputHandle"
+        },
+        {
+          "name": "InputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        }
+      ]
+    },
+    {
+      "name": "RemoveGraphInput",
+      "return": "void",
+      "doc": "Removes graph input if it exists; sets result to succeeded if it was removed and failed if it was not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "RemoveGraphOutput",
+      "return": "void",
+      "doc": "Removes graph output if it exists; sets result to succeeded if it was removed and failed if it was not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "RemoveInterface",
+      "return": "void",
+      "doc": "Removes the interface with the given name from the builder's MetaSound. Removes any graph inputs\nand outputs associated with the given interface and their respective connections (if any).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterfaceName",
+          "type": "FName"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "RemoveNode",
+      "return": "void",
+      "doc": "Removes node and any associated connections from the builder's MetaSound.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeHandle",
+          "type": "FMetaSoundNodeHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "RemoveNodeInputDefault",
+      "return": "void",
+      "doc": "Removes node input literal default if set, reverting the value to be whatever the node class defaults the value to.\nReturns success if value was removed, false if not removed (i.e. wasn't set to begin with).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "SetGraphInputDefault",
+      "return": "void",
+      "doc": "Sets the input node's default value, overriding the default provided by the referenced graph if the graph is a preset.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FName"
+        },
+        {
+          "name": "Literal",
+          "type": "FMetasoundFrontendLiteral"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeInputDefault",
+      "return": "void",
+      "doc": "Sets the node's input default value (used if no connection to the given node input is present)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeInputHandle",
+          "type": "FMetaSoundBuilderNodeInputHandle"
+        },
+        {
+          "name": "Literal",
+          "type": "FMetasoundFrontendLiteral"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    }
+  ]
+}

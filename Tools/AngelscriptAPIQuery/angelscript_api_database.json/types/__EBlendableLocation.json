@@ -1,0 +1,51 @@
+{
+  "name": "__EBlendableLocation",
+  "isEnum": true,
+  "doc": "Where to place a post process material in the post processing chain.",
+  "properties": {
+    "BL_SceneColorBeforeDOF": [
+      "EBlendableLocation",
+      "Post process material location to modify the scene color, between translucency distortion and DOF.\nAlways run at rendering resolution.\nInputs and output always in linear color space.\n\nInput0:former pass scene color, excluding AfterDOF translucency\nInput1:AfterDOF translucency."
+    ],
+    "BL_SceneColorAfterDOF": [
+      "EBlendableLocation",
+      "Post process material location to modify the scene color, between DOF and AfterDOF translucency.\nAlways run at rendering resolution.\nInputs and output always in linear color space.\n\nInput0:former pass scene color, excluding AfterDOF translucency\nInput1:AfterDOF translucency."
+    ],
+    "BL_TranslucencyAfterDOF": [
+      "EBlendableLocation",
+      "Post process material location to modify the AfterDOF translucency, before composition into the scene color.\nAlways run at rendering resolution.\nInputs and output always in linear color space.\n\nInput0:scene color without translucency, after DOF,\nInput1:AfterDOF translucency."
+    ],
+    "BL_SSRInput": [
+      "EBlendableLocation",
+      "Post process material location to compose a backplate into SSR, between TSR/TAA and next frame's SSR.\nRuns at display resolution with TSR or TAAU, rendering resolution otherwise.\nInputs and output always in linear color space.\n\nInput0:TAA/TSR output,"
+    ],
+    "BL_SceneColorBeforeBloom": [
+      "EBlendableLocation",
+      "Post process material location to modify the scene color, before bloom.\nRuns at display resolution with TSR or TAAU, rendering resolution otherwise.\nInputs and output always in linear color space.\n\nInput0:former pass scene color,"
+    ],
+    "BL_ReplacingTonemapper": [
+      "EBlendableLocation",
+      "Post process material replacing the tone mapper, to modify the scene color.\nRuns at display resolution with TSR or TAAU, rendering resolution otherwise.\nInputs are always linear color space.\n\nInput0:former pass scene color,\nInput1:AfterDOF translucency."
+    ],
+    "BL_SceneColorAfterTonemapping": [
+      "EBlendableLocation",
+      "Post process material location to modify the scene color, after tone mapper.\nRuns at display resolution with TSR or TAAU, rendering resolution otherwise.\nInputs and output in different color spaces, based rendering settings for instance (sRGB/Rec709, HDR or even Linear Color).\n\nInput0:former pass scene color,\nInput1:AfterDOF translucency."
+    ],
+    "BL_MAX": [
+      "EBlendableLocation"
+    ],
+    "BL_BeforeTranslucency": [
+      "EBlendableLocation",
+      "Post process material location to modify the scene color, between translucency distortion and DOF.\nAlways run at rendering resolution.\nInputs and output always in linear color space.\n\nInput0:former pass scene color, excluding AfterDOF translucency\nInput1:AfterDOF translucency."
+    ],
+    "BL_BeforeTonemapping": [
+      "EBlendableLocation",
+      "Post process material location to modify the scene color, between DOF and AfterDOF translucency.\nAlways run at rendering resolution.\nInputs and output always in linear color space.\n\nInput0:former pass scene color, excluding AfterDOF translucency\nInput1:AfterDOF translucency."
+    ],
+    "BL_AfterTonemapping": [
+      "EBlendableLocation",
+      "Post process material location to modify the scene color, after tone mapper.\nRuns at display resolution with TSR or TAAU, rendering resolution otherwise.\nInputs and output in different color spaces, based rendering settings for instance (sRGB/Rec709, HDR or even Linear Color).\n\nInput0:former pass scene color,\nInput1:AfterDOF translucency."
+    ]
+  },
+  "methods": []
+}

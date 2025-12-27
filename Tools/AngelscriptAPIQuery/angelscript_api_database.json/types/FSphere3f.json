@@ -1,0 +1,89 @@
+{
+  "name": "FSphere3f",
+  "isStruct": true,
+  "properties": {
+    "W": [
+      "float32"
+    ],
+    "Center": [
+      "FVector3f"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAdd",
+      "return": "FSphere3f",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSphere3f"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FSphere3f&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSphere3f"
+        }
+      ]
+    },
+    {
+      "name": "Equals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Sphere",
+          "type": "FSphere3f"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsInside",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSphere3f"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Intersects",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSphere3f"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetVolume",
+      "return": "float32",
+      "const": true,
+      "args": []
+    }
+  ]
+}

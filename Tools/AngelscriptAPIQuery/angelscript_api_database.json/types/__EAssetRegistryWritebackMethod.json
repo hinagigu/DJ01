@@ -1,0 +1,23 @@
+{
+  "name": "__EAssetRegistryWritebackMethod",
+  "isEnum": true,
+  "doc": "The list of possible registry writebacks. During staging, iostore can\noptionally write back data that is only available during the staging process\nso that asset registry tools can associate this data with their respective\nassets.\n\nNote that this is used in UnrealPak and thus can't use StaticEnum<>, so if you\nadd any types here, be sure to add the parsing of the strings to IoStoreUtilities.cpp.",
+  "properties": {
+    "Disabled": [
+      "EAssetRegistryWritebackMethod",
+      "Do not write-back staging metadata to the asset registry"
+    ],
+    "OriginalFile": [
+      "EAssetRegistryWritebackMethod",
+      "The development asset registry from the source cooked directory will be re-used."
+    ],
+    "AdjacentFile": [
+      "EAssetRegistryWritebackMethod",
+      "A duplicate asset registry will be created with the metadata added to it, adjacent to the cooked development asset registry."
+    ],
+    "EAssetRegistryWritebackMethod_MAX": [
+      "EAssetRegistryWritebackMethod"
+    ]
+  },
+  "methods": []
+}

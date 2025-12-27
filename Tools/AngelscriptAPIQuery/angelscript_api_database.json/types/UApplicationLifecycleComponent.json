@@ -1,0 +1,44 @@
+{
+  "name": "UApplicationLifecycleComponent",
+  "inherits": "UActorComponent",
+  "doc": "Component to handle receiving notifications from the OS about application state (activated, suspended, termination, etc).",
+  "properties": {
+    "ApplicationWillDeactivateDelegate": [
+      "FApplicationLifetimeDelegate__ApplicationLifecycleComponent",
+      "This is called when the application is about to be deactivated (e.g., due to a phone call or SMS or the sleep button).\nThe game should be paused if possible, etc..."
+    ],
+    "ApplicationHasReactivatedDelegate": [
+      "FApplicationLifetimeDelegate__ApplicationLifecycleComponent",
+      "Called when the application has been reactivated (reverse any processing done in the Deactivate delegate)"
+    ],
+    "ApplicationWillEnterBackgroundDelegate": [
+      "FApplicationLifetimeDelegate__ApplicationLifecycleComponent",
+      "This is called when the application is being backgrounded (e.g., due to switching\nto another app or closing it via the home button)\nThe game should release shared resources, save state, etc..., since it can be\nterminated from the background state without any further warning."
+    ],
+    "ApplicationHasEnteredForegroundDelegate": [
+      "FApplicationLifetimeDelegate__ApplicationLifecycleComponent",
+      "Called when the application is returning to the foreground (reverse any processing done in the EnterBackground delegate)"
+    ],
+    "ApplicationWillTerminateDelegate": [
+      "FApplicationLifetimeDelegate__ApplicationLifecycleComponent",
+      "This *may* be called when the application is getting terminated by the OS.\nThere is no guarantee that this will ever be called on a mobile device,\nsave state when ApplicationWillEnterBackgroundDelegate is called instead."
+    ],
+    "ApplicationShouldUnloadResourcesDelegate": [
+      "FApplicationLifetimeDelegate__ApplicationLifecycleComponent",
+      "Called when the OS is running low on resources and asks the application to free up any cached resources, drop graphics quality etc."
+    ],
+    "ApplicationReceivedStartupArgumentsDelegate": [
+      "FApplicationStartupArgumentsDelegate__ApplicationLifecycleComponent",
+      "Called with arguments passed to the application on statup, perhaps meta data passed on by another application which launched this one."
+    ],
+    "OnTemperatureChangeDelegate": [
+      "FOnTemperatureChangeDelegate__ApplicationLifecycleComponent",
+      "Called when temperature level has changed, and receives the severity"
+    ],
+    "OnLowPowerModeDelegate": [
+      "FOnLowPowerModeDelegate__ApplicationLifecycleComponent",
+      "Called when we are in low power mode"
+    ]
+  },
+  "methods": []
+}

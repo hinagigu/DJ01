@@ -1,0 +1,40 @@
+{
+  "name": "__UGLTFExporter",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ExportToGLTF",
+      "return": "bool",
+      "doc": "Export the specified object to a glTF file (.gltf or .glb)\n\n@param Object          The object to export (supported types are UMaterialInterface, UStaticMesh, USkeletalMesh, UWorld, UAnimSequence, ULevelSequence, ULevelVariantSets). Will default to the currently active world if null.\n@param FilePath        The filename on disk to save as. Associated textures and binary files will be saved in the same folder, unless file extension is .glb - which results in a self-contained binary file.\n@param Options         The various options to use during export. Will default to the project's user-specific editor settings if null.\n@param SelectedActors  The set of actors to export, only applicable if the object to export is a UWorld. An empty set results in the export of all actors.\n@param OutMessages     The resulting log messages from the export.\n\n@return true if the object was successfully exported",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "FilePath",
+          "type": "FString"
+        },
+        {
+          "name": "Options",
+          "type": "const UGLTFExportOptions"
+        },
+        {
+          "name": "SelectedActors",
+          "type": "TSet<AActor>"
+        },
+        {
+          "name": "OutMessages",
+          "type": "FGLTFExportMessages&"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

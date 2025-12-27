@@ -1,0 +1,119 @@
+{
+  "name": "UClusterUnionComponent",
+  "inherits": "UPrimitiveComponent",
+  "doc": "This does the bulk of the work exposing a physics cluster union to the game thread.\nThis component needs to be a primitive component primarily because of how physics\nproxies need to be registered with the solver with an association with a primitive component.\nThis component can be used as part of AClusterUnionActor or on its own as its list of\nclustered components/actors can be specified dynamically at runtime and/or statically\non asset creation.\n\nThe cluster union component needs to not only maintain a game thread representation of what's happening on the\nphysics thread but it also needs to make sure this data gets replicated to every client. A general model of how\nthe data flow happens is as follows:\n\n [Server GT Command] -> [Server PT Command] -> [Server Modifies PT Data] -> [Server Sync PT Data back to GT Data].\n\nThis enables GT control over what happens to the cluster union BUT ALSO maintains a physics-first approach\nto the cluster union where a physics event can possibly cause the cluster union to break.\n\nThe GT data is replicated from the server to the clients either via the FClusterUnionReplicatedData on the cluster union component\nor per-child component data is replicated via the UClusterUnionReplicatedProxyComponent. Generally, the same flow is\nreplicated on the client. The only exception is for replicating the X/R/V/W properties on the cluster union particle which does\na GT -> PT data sync. There's no particula reason this happens...it just mirrors the single particle physics proxy here.",
+  "properties": {
+    "OnComponentAddedEvent": [
+      "FOnClusterUnionAddedComponent"
+    ],
+    "OnComponentRemovedEvent": [
+      "FOnClusterUnionRemovedComponent"
+    ],
+    "OnComponentBoundsChangedEvent": [
+      "FOnClusterUnionBoundsChanged"
+    ],
+    "ClusteredComponentsReferences": [
+      "TArray<FComponentReference>",
+      2,
+      "These are the statically clustered components. These should\nbe specified in the editor and never change."
+    ],
+    "GravityGroupIndexOverride": [
+      "int",
+      2,
+      "If set to a value not equal to -1, will manually set the cluster union's gravity group\ninstead of automatically inheriting it from its children particles."
+    ],
+    "bEnableDamageFromCollision": [
+      "bool",
+      "Whether or not collisions against this geometry collection will apply strain which could cause the geometry collection to fracture."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddComponentToCluster",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InComponent",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "BoneIds",
+          "type": "TArray<int>"
+        },
+        {
+          "name": "bRebuildGeometry",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetActors",
+      "return": "TArray<AActor>",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPrimitiveComponents",
+      "return": "TArray<UPrimitiveComponent>",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveComponentBonesFromCluster",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InComponent",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "BoneIds",
+          "type": "TArray<int>"
+        }
+      ]
+    },
+    {
+      "name": "RemoveComponentFromCluster",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InComponent",
+          "type": "UPrimitiveComponent"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableDamageFromCollision",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIsAnchored",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsAnchored",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

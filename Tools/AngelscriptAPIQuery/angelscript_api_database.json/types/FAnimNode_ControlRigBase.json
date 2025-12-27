@@ -1,0 +1,64 @@
+{
+  "name": "FAnimNode_ControlRigBase",
+  "isStruct": true,
+  "doc": "Animation node that allows animation ControlRig output to be used in an animation graph",
+  "properties": {
+    "Source": [
+      "FPoseLink",
+      2,
+      ""
+    ],
+    "bResetInputPoseToInitial": [
+      "bool",
+      2,
+      "If this is checked the rig's pose needs to be reset to its initial\nprior to evaluating the rig."
+    ],
+    "bTransferInputPose": [
+      "bool",
+      2,
+      "If this is checked the bone pose coming from the AnimBP will be\ntransferred into the Control Rig."
+    ],
+    "bTransferInputCurves": [
+      "bool",
+      2,
+      "If this is checked the curves coming from the AnimBP will be\ntransferred into the Control Rig."
+    ],
+    "bTransferPoseInGlobalSpace": [
+      "bool",
+      2,
+      "Transferring the pose in global space guarantees a global pose match,\nwhile transferring in local space ensures a match of the local transforms.\nIn general transforms only differ if the hierarchy topology differs\nbetween the Control Rig and the skeleton used in the AnimBP.\nNote: Turning this off can potentially improve performance."
+    ],
+    "InputBonesToTransfer": [
+      "TArray<FBoneReference>",
+      2,
+      "An inclusive list of bones to transfer as part\nof the input pose transfer phase.\nIf this list is empty all bones will be transferred."
+    ],
+    "OutputBonesToTransfer": [
+      "TArray<FBoneReference>",
+      2,
+      "An inclusive list of bones to transfer as part\nof the output pose transfer phase.\nIf this list is empty all bones will be transferred."
+    ],
+    "AssetUserData": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      ""
+    ],
+    "EventQueue": [
+      "TArray<FControlRigAnimNodeEventName>",
+      2,
+      "The customized event queue to run"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_ControlRigBase&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_ControlRigBase"
+        }
+      ]
+    }
+  ]
+}

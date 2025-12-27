@@ -1,0 +1,51 @@
+{
+  "name": "FAssetManagerSearchRules",
+  "isStruct": true,
+  "doc": "Rules for how to scan the asset registry for assets matching path and type descriptions",
+  "properties": {
+    "AssetScanPaths": [
+      "TArray<FString>",
+      "List of top-level directories and specific assets to search, must be paths starting with /, directories should not have a trailing /"
+    ],
+    "IncludePatterns": [
+      "TArray<FString>",
+      "Optional list of include wildcard patterns using * that will get matched against full package path. If there are any at least one of these must match"
+    ],
+    "ExcludePatterns": [
+      "TArray<FString>",
+      "Optional list of exclude wildcard patterns that can use *, if any of these match it will be excluded"
+    ],
+    "AssetBaseClass": [
+      "UClass",
+      "Assets must inherit from this class, for blueprints this should be the instance base class"
+    ],
+    "bHasBlueprintClasses": [
+      "bool",
+      "True if scanning for blueprints, false for all other assets"
+    ],
+    "bForceSynchronousScan": [
+      "bool",
+      "True if this should force a synchronous scan of the disk even if an async scan is in progress"
+    ],
+    "bSkipVirtualPathExpansion": [
+      "bool",
+      "True if AssetScanPaths are real paths that do not need expansion"
+    ],
+    "bSkipManagerIncludeCheck": [
+      "bool",
+      "True if this test should skip the ShouldIncludeInAssetSearch function on AssetManager"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAssetManagerSearchRules&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAssetManagerSearchRules"
+        }
+      ]
+    }
+  ]
+}

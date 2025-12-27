@@ -1,0 +1,121 @@
+{
+  "name": "UEditorValidatorBase",
+  "inherits": "UObject",
+  "doc": "* The EditorValidatorBase is a class which verifies that an asset meets a specific ruleset.\n* It should be used when checking engine-level classes, as UObject::IsDataValid requires\n* overriding the base class. You can create project-specific version of the validator base,\n* with custom logging and enabled logic.\n*\n* C++ and Blueprint validators will be gathered on editor start, while python validators need\n* to register themselves",
+  "properties": {
+    "bIsEnabled": [
+      "bool",
+      6,
+      ""
+    ],
+    "bOnlyPrintCustomMessage": [
+      "bool",
+      6,
+      "Whether we should also print out the source validator when printing validation errors."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AssetFails",
+      "return": "void",
+      "doc": "Marks the validation as failed and adds an error message.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAsset",
+          "type": "const UObject"
+        },
+        {
+          "name": "InMessage",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "AssetPasses",
+      "return": "void",
+      "doc": "Marks the validation as successful. Failure to call this will report the validator as not having checked the asset.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAsset",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssetWarning",
+      "return": "void",
+      "doc": "Adds a message to this validation but doesn't mark it as failed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAsset",
+          "type": "const UObject"
+        },
+        {
+          "name": "InMessage",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "GetValidationResult",
+      "return": "EDataValidationResult",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CanValidate",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "doc": "Override this to determine whether or not you can use this validator given this usecase",
+      "event": true,
+      "unrealname": "K2_CanValidate",
+      "meta": null,
+      "args": [
+        {
+          "name": "InUsecase",
+          "type": "EDataValidationUsecase"
+        }
+      ]
+    },
+    {
+      "name": "CanValidateAsset",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "doc": "Override this to determine whether or not you can validate a given asset with this validator",
+      "event": true,
+      "unrealname": "K2_CanValidateAsset",
+      "meta": null,
+      "args": [
+        {
+          "name": "InAsset",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "ValidateLoadedAsset",
+      "return": "EDataValidationResult",
+      "callable": false,
+      "doc": "Override this in blueprint to validate assets",
+      "event": true,
+      "unrealname": "K2_ValidateLoadedAsset",
+      "meta": null,
+      "args": [
+        {
+          "name": "InAsset",
+          "type": "UObject"
+        }
+      ]
+    }
+  ]
+}

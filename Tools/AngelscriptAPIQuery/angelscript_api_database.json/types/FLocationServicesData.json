@@ -1,0 +1,41 @@
+{
+  "name": "FLocationServicesData",
+  "isStruct": true,
+  "doc": "Struct to hold relevant location data retrieved from the mobile implementation's Location Service",
+  "properties": {
+    "Timestamp": [
+      "float32",
+      "Timestamp from when this location data was taken (UTC time in milliseconds since 1 January 1970)"
+    ],
+    "Longitude": [
+      "float32"
+    ],
+    "Latitude": [
+      "float32"
+    ],
+    "HorizontalAccuracy": [
+      "float32",
+      "Estimated horizontal (Android: overall) accuracy of the result, in meters"
+    ],
+    "VerticalAccuracy": [
+      "float32",
+      "Estimated accuracy of the result, in meters (iOS only)"
+    ],
+    "Altitude": [
+      "float32",
+      "In meters, if provided with the result"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLocationServicesData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLocationServicesData"
+        }
+      ]
+    }
+  ]
+}

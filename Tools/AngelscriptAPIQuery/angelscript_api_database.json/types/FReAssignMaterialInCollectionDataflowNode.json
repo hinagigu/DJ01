@@ -1,0 +1,49 @@
+{
+  "name": "FReAssignMaterialInCollectionDataflowNode",
+  "isStruct": true,
+  "doc": "Reassign existing material(s) to Outside/Inside faces",
+  "properties": {
+    "Materials": [
+      "TArray<TObjectPtr<UMaterial>>",
+      2,
+      "Materials array storing the materials"
+    ],
+    "OutsideMaterialIdx": [
+      "int",
+      2,
+      "Index of the material in the Materials array to assign to the outside faces from the face selection"
+    ],
+    "InsideMaterialIdx": [
+      "int",
+      2,
+      "Index of the material in the Materials array to assign to the inside faces from the face selection"
+    ],
+    "bAssignOutsideMaterial": [
+      "bool",
+      2,
+      "If true, the selected material from the Materials array will be assigned to the outside faces from the face selection"
+    ],
+    "bAssignInsideMaterial": [
+      "bool",
+      2,
+      "If true, the selected material from the Materials array will be assigned to the inside faces from the face selection"
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FReAssignMaterialInCollectionDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FReAssignMaterialInCollectionDataflowNode"
+        }
+      ]
+    }
+  ]
+}

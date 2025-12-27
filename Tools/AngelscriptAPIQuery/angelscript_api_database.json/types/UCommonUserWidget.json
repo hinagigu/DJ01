@@ -1,0 +1,55 @@
+{
+  "name": "UCommonUserWidget",
+  "inherits": "UUserWidget",
+  "properties": {
+    "bDisplayInActionBar": [
+      "bool",
+      "True to generally display this widget's actions in the action bar, assuming it has actions."
+    ],
+    "bConsumePointerInput": [
+      "bool",
+      "Set this to true if you don't want any pointer (mouse and touch) input to bubble past this widget"
+    ]
+  },
+  "methods": [
+    {
+      "name": "RegisterScrollRecipientExternal",
+      "return": "void",
+      "doc": "Add a widget to the list of widgets to get scroll events for this input root node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnalogScrollRecipient",
+          "type": "const UWidget"
+        }
+      ]
+    },
+    {
+      "name": "SetConsumePointerInput",
+      "return": "void",
+      "doc": "Sets whether or not this widget will consume ALL pointer input that reaches it",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInConsumePointerInput",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterScrollRecipientExternal",
+      "return": "void",
+      "doc": "Remove a widget from the list of widgets to get scroll events for this input root node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnalogScrollRecipient",
+          "type": "const UWidget"
+        }
+      ]
+    }
+  ]
+}

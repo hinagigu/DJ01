@@ -1,0 +1,32 @@
+{
+  "name": "UMonoWaveTableSynthPreset",
+  "inherits": "UObject",
+  "doc": "UStruct Mono Wave Table Synth Preset",
+  "properties": {
+    "PresetName": [
+      "FString",
+      "Name the preset"
+    ],
+    "LockKeyframesToGrid": [
+      "int",
+      "How many evenly-spaced keyframes to use when LockKeyframesToGrid is true"
+    ],
+    "WaveTableResolution": [
+      "int",
+      "How many samples will be taken of the curve from time = [0.0, 1.0]"
+    ],
+    "WaveTable": [
+      "TArray<FRuntimeFloatCurve>",
+      "Wave Table Editor"
+    ],
+    "bLockKeyframesToGridBool": [
+      "bool",
+      "Lock wavetables to evenly spaced keyframes that can be edited vertically only (will re-sample)"
+    ],
+    "bNormalizeWaveTables": [
+      "bool",
+      "Normalize the WaveTable data? False will allow clipping, True will normalize the tables when sent to the synth for rendering"
+    ]
+  },
+  "methods": []
+}

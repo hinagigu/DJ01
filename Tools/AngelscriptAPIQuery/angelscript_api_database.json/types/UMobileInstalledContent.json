@@ -1,0 +1,40 @@
+{
+  "name": "UMobileInstalledContent",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetDiskFreeSpace",
+      "return": "float32",
+      "doc": "Get the disk free space in megabytes where content is installed",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInstalledContentSize",
+      "return": "float32",
+      "doc": "Get the installed content size in megabytes",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Mount",
+      "return": "bool",
+      "doc": "Mount installed content\n@param       PakOrder : Content pak priority\n@param       MountPoint : Path to mount the pak at",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PakOrder",
+          "type": "int"
+        },
+        {
+          "name": "MountPoint",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

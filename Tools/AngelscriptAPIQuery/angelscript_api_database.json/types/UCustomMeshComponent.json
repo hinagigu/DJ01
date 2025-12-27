@@ -1,0 +1,42 @@
+{
+  "name": "UCustomMeshComponent",
+  "inherits": "UMeshComponent",
+  "doc": "Component that allows you to specify custom triangle mesh geometry",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddCustomMeshTriangles",
+      "return": "void",
+      "doc": "Add to the geometry to use on this triangle mesh.  This may cause an allocation.  Use SetCustomMeshTriangles() instead when possible to reduce allocations.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Triangles",
+          "type": "TArray<FCustomMeshTriangle>"
+        }
+      ]
+    },
+    {
+      "name": "ClearCustomMeshTriangles",
+      "return": "void",
+      "doc": "Removes all geometry from this triangle mesh.  Does not deallocate memory, allowing new geometry to reuse the existing allocation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCustomMeshTriangles",
+      "return": "bool",
+      "doc": "Set the geometry to use on this triangle mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Triangles",
+          "type": "TArray<FCustomMeshTriangle>"
+        }
+      ]
+    }
+  ]
+}

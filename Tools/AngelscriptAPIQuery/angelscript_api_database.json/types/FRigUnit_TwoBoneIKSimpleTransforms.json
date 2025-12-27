@@ -1,0 +1,67 @@
+{
+  "name": "FRigUnit_TwoBoneIKSimpleTransforms",
+  "isStruct": true,
+  "doc": "Solves the two bone IK given transforms\nNote: This node operates in world space!",
+  "properties": {
+    "Root": [
+      "FTransform",
+      "The transform of the root of the triangle"
+    ],
+    "PoleVector": [
+      "FVector",
+      "The position of the pole of the triangle"
+    ],
+    "Effector": [
+      "FTransform",
+      "The transform of the effector"
+    ],
+    "PrimaryAxis": [
+      "FVector",
+      "The major axis being aligned - along the bone"
+    ],
+    "SecondaryAxis": [
+      "FVector",
+      "The minor axis being aligned - towards the polevector"
+    ],
+    "SecondaryAxisWeight": [
+      "float32",
+      "Determines how much the secondary axis roll is being applied"
+    ],
+    "bEnableStretch": [
+      "bool",
+      "If set to true the stretch feature of the solver will be enabled"
+    ],
+    "StretchStartRatio": [
+      "float32",
+      "The ratio where the stretch starts"
+    ],
+    "StretchMaximumRatio": [
+      "float32",
+      "The maximum allowed stretch ratio"
+    ],
+    "BoneALength": [
+      "float32",
+      "The length of the first bone.\nIf set to 0.0 it will be determined by the hierarchy"
+    ],
+    "BoneBLength": [
+      "float32",
+      "The length of the second  bone.\nIf set to 0.0 it will be determined by the hierarchy"
+    ],
+    "Elbow": [
+      "FTransform",
+      "The resulting elbow transform"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_TwoBoneIKSimpleTransforms&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_TwoBoneIKSimpleTransforms"
+        }
+      ]
+    }
+  ]
+}

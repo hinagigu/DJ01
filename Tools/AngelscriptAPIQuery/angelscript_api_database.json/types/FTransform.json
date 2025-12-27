@@ -1,0 +1,590 @@
+{
+  "name": "FTransform",
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTransform&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "Inverse",
+      "return": "FTransform",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Blend",
+      "return": "void",
+      "args": [
+        {
+          "name": "Atom1",
+          "type": "FTransform"
+        },
+        {
+          "name": "Atom2",
+          "type": "FTransform"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "BlendWith",
+      "return": "void",
+      "args": [
+        {
+          "name": "OtherAtom",
+          "type": "FTransform"
+        },
+        {
+          "name": "Alpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "opMul",
+      "return": "FTransform",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "opMul",
+      "return": "FTransform",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "opMulAssign",
+      "return": "void",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "opMulAssign",
+      "return": "void",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "ScaleTranslation",
+      "return": "void",
+      "args": [
+        {
+          "name": "InScale3D",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ScaleTranslation",
+      "return": "void",
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "RemoveScaling",
+      "return": "void",
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetToRelativeTransform",
+      "return": "void",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "Accumulate",
+      "return": "void",
+      "doc": "Accumulates another transform with this one\nRotation is accumulated multiplicatively (Rotation = SourceAtom.Rotation * Rotation)\nTranslation is accumulated additively (Translation += SourceAtom.Translation)\nScale3D is accumulated multiplicatively (Scale3D *= SourceAtom.Scale3D)\n@param SourceAtom The other transform to accumulate into this one",
+      "args": [
+        {
+          "name": "SourceAtom",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "GetMaximumAxisScale",
+      "return": "float32",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetMinimumAxisScale",
+      "return": "float32",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetRelativeTransform",
+      "return": "FTransform",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "GetRelativeTransformReverse",
+      "return": "FTransform",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "TransformPosition",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "TransformPositionNoScale",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "InverseTransformPosition",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "InverseTransformPositionNoScale",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "TransformVector",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "TransformVectorNoScale",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "InverseTransformVector",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "InverseTransformVectorNoScale",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "TransformRotation",
+      "return": "FQuat",
+      "const": true,
+      "args": [
+        {
+          "name": "Q",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "InverseTransformRotation",
+      "return": "FQuat",
+      "const": true,
+      "args": [
+        {
+          "name": "Q",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SubtractTranslations",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "B",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "NormalizeRotation",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "IsRotationNormalized",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "TranslationEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransform"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "EqualsNoScale",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransform"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Equals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransform"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "GetLocation",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ContainsNaN",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetDeterminant",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Rotator",
+      "return": "FRotator",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetTranslation",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetScale3D",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetRotation",
+      "return": "FQuat",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToMatrixWithScale",
+      "return": "FMatrix",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToMatrixNoScale",
+      "return": "FMatrix",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToInverseMatrixWithScale",
+      "return": "FMatrix",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetLocation",
+      "return": "void",
+      "args": [
+        {
+          "name": "Origin",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetTranslation",
+      "return": "void",
+      "args": [
+        {
+          "name": "Origin",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "AddToTranslation",
+      "return": "void",
+      "args": [
+        {
+          "name": "Origin",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ConcatenateRotation",
+      "return": "void",
+      "doc": "Concatenates another rotation to this transformation\n@param DeltaRotation The rotation to concatenate in the following fashion: Rotation = Rotation * DeltaRotation",
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SetRotation",
+      "return": "void",
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SetScale3D",
+      "return": "void",
+      "args": [
+        {
+          "name": "NewScale3D",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetTranslationAndScale3D",
+      "return": "void",
+      "args": [
+        {
+          "name": "NewTranslation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewScale3D",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "InitFromString",
+      "return": "bool",
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Blend",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Atom1",
+          "type": "FTransform"
+        },
+        {
+          "name": "Atom2",
+          "type": "FTransform"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "BlendWith",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherAtom",
+          "type": "FTransform"
+        },
+        {
+          "name": "Alpha",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "InverseTransformRotation",
+      "return": "FRotator",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "R",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        }
+      ],
+      "isProperty": false
+    },
+    {
+      "name": "TransformRotation",
+      "return": "FRotator",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "R",
+          "type": "FRotator"
+        }
+      ]
+    }
+  ]
+}

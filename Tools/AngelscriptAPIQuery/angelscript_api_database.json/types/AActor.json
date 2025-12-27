@@ -1,0 +1,2875 @@
+{
+  "name": "AActor",
+  "inherits": "UObject",
+  "doc": "Actor is the base class for an Object that can be placed or spawned in a level.\nActors may contain a collection of ActorComponents, which can be used to control how actors move, how they are rendered, etc.\nThe other main function of an Actor is the replication of properties and function calls across the network during play.\n\n\nActor initialization has multiple steps, here's the order of important virtual functions that get called:\n- UObject::PostLoad: For actors statically placed in a level, the normal UObject PostLoad gets called both in the editor and during gameplay.\n                     This is not called for newly spawned actors.\n- UActorComponent::OnComponentCreated: When an actor is spawned in the editor or during gameplay, this gets called for any native components.\n                                       For blueprint-created components, this gets called during construction for that component.\n                                       This is not called for components loaded from a level.\n- AActor::PreRegisterAllComponents: For statically placed actors and spawned actors that have native root components, this gets called now.\n                                    For blueprint actors without a native root component, these registration functions get called later during construction.\n- UActorComponent::RegisterComponent: All components are registered in editor and at runtime, this creates their physical/visual representation.\n                                      These calls may be distributed over multiple frames, but are always after PreRegisterAllComponents.\n                                      This may also get called later on after an UnregisterComponent call removes it from the world.\n- AActor::PostRegisterAllComponents: Called for all actors both in the editor and in gameplay, this is the last function that is called in all cases.\n- AActor::PostActorCreated: When an actor is created in the editor or during gameplay, this gets called right before construction.\n                            This is not called for components loaded from a level.\n- AActor::UserConstructionScript: Called for blueprints that implement a construction script.\n- AActor::OnConstruction: Called at the end of ExecuteConstruction, which calls the blueprint construction script.\n                          This is called after all blueprint-created components are fully created and registered.\n                          This is only called during gameplay for spawned actors, and may get rerun in the editor when changing blueprints.\n- AActor::PreInitializeComponents: Called before InitializeComponent is called on the actor's components.\n                                   This is only called during gameplay and in certain editor preview windows.\n- UActorComponent::Activate: This will be called only if the component has bAutoActivate set.\n                             It will also got called later on if a component is manually activated.\n- UActorComponent::InitializeComponent: This will be called only if the component has bWantsInitializeComponentSet.\n                                        This only happens once per gameplay session.\n- AActor::PostInitializeComponents: Called after the actor's components have been initialized, only during gameplay and some editor previews.\n- AActor::BeginPlay: Called when the level starts ticking, only during actual gameplay.\n                     This normally happens right after PostInitializeComponents but can be delayed for networked or child actors.\n\n@see https://docs.unrealengine.com/Programming/UnrealArchitecture/Actors\n@see https://docs.unrealengine.com/Programming/UnrealArchitecture/Actors/ActorLifecycle\n@see UActorComponent",
+  "properties": {
+    "PrimaryActorTick": [
+      "FActorTickFunction",
+      2,
+      "Primary Actor tick function, which calls TickActor().\nTick functions can be configured to control whether ticking is enabled, at what time during a frame the update occurs, and to set up tick dependencies.\n@see https://docs.unrealengine.com/API/Runtime/Engine/Engine/FTickFunction\n@see AddTickPrerequisiteActor(), AddTickPrerequisiteComponent()"
+    ],
+    "UpdateOverlapsMethodDuringLevelStreaming": [
+      "EActorUpdateOverlapsMethod",
+      2,
+      "Condition for calling UpdateOverlaps() to initialize overlap state when loaded in during level streaming.\nIf set to 'UseConfigDefault', the default specified in ini (displayed in 'DefaultUpdateOverlapsMethodDuringLevelStreaming') will be used.\nIf overlaps are not initialized, this actor and attached components will not have an initial state of what objects are touching it,\nand overlap events may only come in once one of those objects update overlaps themselves (for example when moving).\nHowever if an object touching it *does* initialize state, both objects will know about their touching state with each other.\nThis can be a potentially large performance savings during level loading and streaming, and is safe if the object and others initially\noverlapping it do not need the overlap state because they will not trigger overlap notifications.\n\nNote that if 'bGenerateOverlapEventsDuringLevelStreaming' is true, overlaps are always updated in this case, but that flag\ndetermines whether the Begin/End overlap events are triggered.\n\n@see bGenerateOverlapEventsDuringLevelStreaming, DefaultUpdateOverlapsMethodDuringLevelStreaming, GetUpdateOverlapsMethodDuringLevelStreaming()"
+    ],
+    "InitialLifeSpan": [
+      "float32",
+      "How long this Actor lives before dying, 0=forever. Note this is the INITIAL value and should not be modified once play has begun."
+    ],
+    "CustomTimeDilation": [
+      "float32",
+      1,
+      "Allow each actor to run at a different time speed. The DeltaTime for a frame is multiplied by the global TimeDilation (in WorldSettings) and this CustomTimeDilation for this actor's tick."
+    ],
+    "RuntimeGrid": [
+      "FName",
+      2,
+      "Determine in which partition grid this actor will be placed in the partition (if the world is partitioned).\nIf None, the decision will be left to the partition."
+    ],
+    "ReplicatedMovement": [
+      "FRepMovement",
+      2,
+      "Used for replication of our RootComponent's position and velocity"
+    ],
+    "SpawnCollisionHandlingMethod": [
+      "ESpawnActorCollisionHandlingMethod",
+      "Controls how to handle spawning this actor in a situation where it's colliding with something else. \"Default\" means AlwaysSpawn here."
+    ],
+    "AutoReceiveInput": [
+      "EAutoReceiveInput",
+      2,
+      "Automatically registers this actor to receive input from a player."
+    ],
+    "InputPriority": [
+      "int",
+      2,
+      "The priority of this input component when pushed in to the stack."
+    ],
+    "NetCullDistanceSquared": [
+      "float32",
+      "Square of the max distance from the client's viewpoint that this actor is relevant and will be replicated."
+    ],
+    "NetUpdateFrequency": [
+      "float32",
+      "How often (per second) this actor will be considered for replication, used to determine NetUpdateTime"
+    ],
+    "MinNetUpdateFrequency": [
+      "float32",
+      "Used to determine what rate to throttle down to when replicated properties are changing infrequently"
+    ],
+    "NetPriority": [
+      "float32",
+      "Priority for this actor when checking for replication in a low bandwidth or saturated situation, higher priority means it is more likely to replicate"
+    ],
+    "PivotOffset": [
+      "FVector",
+      "Local space pivot offset for the actor, only used in the editor"
+    ],
+    "HLODLayer": [
+      "UHLODLayer",
+      2,
+      "The UHLODLayer in which this actor should be included."
+    ],
+    "Layers": [
+      "TArray<FName>",
+      2,
+      "Layers the actor belongs to.  This is outside of the editoronly data to allow hiding of LD-specified layers at runtime for profiling."
+    ],
+    "ActorGuid": [
+      "FGuid",
+      1,
+      "The GUID for this actor; this guid will be the same for actors from instanced streaming levels.\n@see         ActorInstanceGuid, FActorInstanceGuidMapper\n@note        Don't use VisibleAnywhere here to avoid getting the CPF_Edit flag and get this property reset when resetting to defaults.\n                     See FActorDetails::AddActorCategory and EditorUtilities::CopySingleProperty for details."
+    ],
+    "ActorInstanceGuid": [
+      "FGuid",
+      1,
+      "The instance GUID for this actor; this guid will be unique for actors from instanced streaming levels.\n@see         ActorGuid\n@note        This is not guaranteed to be valid during PostLoad, but safe to access from RegisterAllComponents."
+    ],
+    "ContentBundleGuid": [
+      "FGuid",
+      1,
+      "The GUID for this actor's content bundle."
+    ],
+    "DataLayerAssets": [
+      "TArray<TSoftObjectPtr<UDataLayerAsset>>",
+      2,
+      ""
+    ],
+    "SpriteScale": [
+      "float32",
+      "The scale to apply to any billboard components in editor builds (happens in any WITH_EDITOR build, including non-cooked games)."
+    ],
+    "Tags": [
+      "TArray<FName>",
+      "Array of tags that can be used for grouping and categorizing."
+    ],
+    "OnTakeAnyDamage": [
+      "FTakeAnyDamageSignature",
+      "Called when the actor is damaged in any way."
+    ],
+    "OnTakePointDamage": [
+      "FTakePointDamageSignature",
+      "Called when the actor is damaged by point damage."
+    ],
+    "OnTakeRadialDamage": [
+      "FTakeRadialDamageSignature",
+      "Called when the actor is damaged by radial damage."
+    ],
+    "OnActorBeginOverlap": [
+      "FActorBeginOverlapSignature",
+      "Called when another actor begins to overlap this actor, for example a player walking into a trigger.\nFor events when objects have a blocking collision, for example a player hitting a wall, see 'Hit' events.\n@note Components on both this and the other Actor must have bGenerateOverlapEvents set to true to generate overlap events."
+    ],
+    "OnActorEndOverlap": [
+      "FActorEndOverlapSignature",
+      "Called when another actor stops overlapping this actor.\n@note Components on both this and the other Actor must have bGenerateOverlapEvents set to true to generate overlap events."
+    ],
+    "OnBeginCursorOver": [
+      "FActorBeginCursorOverSignature",
+      "Called when the mouse cursor is moved over this actor if mouse over events are enabled in the player controller."
+    ],
+    "OnEndCursorOver": [
+      "FActorEndCursorOverSignature",
+      "Called when the mouse cursor is moved off this actor if mouse over events are enabled in the player controller."
+    ],
+    "OnClicked": [
+      "FActorOnClickedSignature",
+      "Called when the left mouse button is clicked while the mouse is over this actor and click events are enabled in the player controller."
+    ],
+    "OnReleased": [
+      "FActorOnReleasedSignature",
+      "Called when the left mouse button is released while the mouse is over this actor and click events are enabled in the player controller."
+    ],
+    "OnInputTouchBegin": [
+      "FActorOnInputTouchBeginSignature",
+      "Called when a touch input is received over this actor when touch events are enabled in the player controller."
+    ],
+    "OnInputTouchEnd": [
+      "FActorOnInputTouchEndSignature",
+      "Called when a touch input is received over this component when touch events are enabled in the player controller."
+    ],
+    "OnInputTouchEnter": [
+      "FActorBeginTouchOverSignature",
+      "Called when a finger is moved over this actor when touch over events are enabled in the player controller."
+    ],
+    "OnInputTouchLeave": [
+      "FActorEndTouchOverSignature",
+      "Called when a finger is moved off this actor when touch over events are enabled in the player controller."
+    ],
+    "OnActorHit": [
+      "FActorHitSignature",
+      "Called when this Actor hits (or is hit by) something solid. This could happen due to things like Character movement, using Set Location with 'sweep' enabled, or physics simulation.\nFor events when objects overlap (e.g. walking into a trigger) see the 'Overlap' event.\n@note For collisions during physics simulation to generate hit events, 'Simulation Generates Hit Events' must be enabled."
+    ],
+    "OnDestroyed": [
+      "FActorDestroyedSignature",
+      "Event triggered when the actor has been explicitly destroyed."
+    ],
+    "OnEndPlay": [
+      "FActorEndPlaySignature",
+      "Event triggered when the actor is being deleted or removed from a level."
+    ],
+    "bAutoDestroyWhenFinished": [
+      "bool",
+      "If true then destroy self when \"finished\", meaning all relevant components report that they are done and no timelines or timers are in flight."
+    ],
+    "bOnlyRelevantToOwner": [
+      "bool",
+      "If true, this actor is only relevant to its owner. If this flag is changed during play, all non-owner channels would need to be explicitly closed."
+    ],
+    "bAlwaysRelevant": [
+      "bool",
+      "Always relevant for network (overrides bOnlyRelevantToOwner)."
+    ],
+    "bReplicateMovement": [
+      "bool",
+      "If true, replicate movement/location related properties.\nActor must also be set to replicate.\n@see SetReplicates()\n@see https://docs.unrealengine.com/InteractiveExperiences/Networking/Actors"
+    ],
+    "bCallPreReplication": [
+      "bool"
+    ],
+    "bCallPreReplicationForReplay": [
+      "bool"
+    ],
+    "bHidden": [
+      "bool",
+      "Allows us to only see this Actor in the Editor, and not in the actual game.\n@see SetActorHiddenInGame()"
+    ],
+    "bIsMainWorldOnly": [
+      "bool",
+      "If checked, this Actor will only get loaded in a main world (persistent level), it will not be loaded through Level Instances."
+    ],
+    "bNetLoadOnClient": [
+      "bool",
+      "This actor will be loaded on network clients during map load"
+    ],
+    "bNetUseOwnerRelevancy": [
+      "bool",
+      "If actor has valid Owner, call Owner's IsNetRelevantFor and GetNetPriority"
+    ],
+    "bRelevantForLevelBounds": [
+      "bool",
+      "If true, this actor's component's bounds will be included in the level's\nbounding box unless the Actor's class has overridden IsLevelBoundsRelevant"
+    ],
+    "bReplayRewindable": [
+      "bool",
+      "If true, this actor will only be destroyed during scrubbing if the replay is set to a time before the actor existed.\nOtherwise, RewindForReplay will be called if we detect the actor needs to be reset.\nNote, this Actor must not be destroyed by gamecode, and RollbackViaDeletion may not be used."
+    ],
+    "bAllowTickBeforeBeginPlay": [
+      "bool",
+      "Whether we allow this Actor to tick before it receives the BeginPlay event.\nNormally we don't tick actors until after BeginPlay; this setting allows this behavior to be overridden.\nThis Actor must be able to tick for this setting to be relevant."
+    ],
+    "bCanBeDamaged": [
+      "bool",
+      "Whether this actor can take damage. Must be true for damage events (e.g. ReceiveDamage()) to be called.\n@see https://www.unrealengine.com/blog/damage-in-ue4\n@see TakeDamage(), ReceiveDamage()"
+    ],
+    "bBlockInput": [
+      "bool",
+      "If true, all input on the stack below this actor will not be considered"
+    ],
+    "bFindCameraComponentWhenViewTarget": [
+      "bool",
+      "If true, this actor should search for an owned camera component to view through when used as a view target."
+    ],
+    "bGenerateOverlapEventsDuringLevelStreaming": [
+      "bool",
+      "If true, this actor will generate overlap Begin/End events when spawned as part of level streaming, which includes initial level load.\nYou might enable this is in the case where a streaming level loads around an actor and you want Begin/End overlap events to trigger.\n@see UpdateOverlapsMethodDuringLevelStreaming"
+    ],
+    "bIgnoresOriginShifting": [
+      "bool",
+      "Whether this actor should not be affected by world origin shifting."
+    ],
+    "bEnableAutoLODGeneration": [
+      "bool",
+      "Whether this actor should be considered or not during HLOD generation."
+    ],
+    "bIsEditorOnlyActor": [
+      "bool",
+      "Whether this actor is editor-only. Use with care, as if this actor is referenced by anything else that reference will be NULL in cooked builds"
+    ],
+    "bReplicates": [
+      "bool",
+      "If true, this actor will replicate to remote machines\n@see SetReplicates()"
+    ],
+    "bCanBeInCluster": [
+      "bool",
+      "If true, this actor can be put inside of a GC Cluster to improve Garbage Collection performance"
+    ],
+    "bReplicateUsingRegisteredSubObjectList": [
+      "bool",
+      "When true the replication system will only replicate the registered subobjects and the replicated actor components list\nWhen false the replication system will instead call the virtual ReplicateSubobjects() function where the subobjects and actor components need to be manually replicated."
+    ],
+    "bAsyncPhysicsTickEnabled": [
+      "bool",
+      "Whether to use use the async physics tick with this actor."
+    ],
+    "NetDormancy": [
+      "ENetDormancy",
+      "Dormancy setting for actor to take itself off of the replication list without being destroyed on clients."
+    ],
+    "Instigator": [
+      "APawn",
+      "Pawn responsible for damage and other gameplay events caused by this actor."
+    ],
+    "RootComponent": [
+      "USceneComponent",
+      "The component that defines the transform (location, rotation, scale) of this Actor in the world, all other components must be attached to this one somehow"
+    ],
+    "bOptimizeBPComponentData": [
+      "bool",
+      "Whether to cook additional data to speed up spawn events at runtime for any Blueprint classes based on this Actor. This option may slightly increase memory usage in a cooked build."
+    ],
+    "bIsSpatiallyLoaded": [
+      "bool",
+      "Determine if this actor is spatially loaded when placed in a partitioned world.\n     If true, this actor will be loaded when in the range of any streaming sources and if (1) in no data layers, or (2) one or more of its data layers are enabled.\n     If false, this actor will be loaded if (1) in no data layers, or (2) one or more of its data layers are enabled."
+    ]
+  },
+  "methods": [
+    {
+      "name": "IsActorInitialized",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "HasActorBegunPlay",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsHidden",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetActorNameOrLabel",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetGameInstance",
+      "return": "UGameInstance",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetComponentsByClass",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "OutComponents",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "GetComponentsByClass",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "UClass"
+        },
+        {
+          "name": "OutComponents",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "GetActorInstigator",
+      "return": "APawn",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetActorInstigatorController",
+      "return": "AController",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ActorHasTag",
+      "return": "bool",
+      "const": true,
+      "doc": "See if this actor's Tags array contains the supplied name tag",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tag",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "AddTickPrerequisiteActor",
+      "return": "void",
+      "doc": "Make this actor tick after PrerequisiteActor. This only applies to this actor's tick function; dependencies for owned components must be set up separately if desired.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PrerequisiteActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "AddTickPrerequisiteComponent",
+      "return": "void",
+      "doc": "Make this actor tick after PrerequisiteComponent. This only applies to this actor's tick function; dependencies for owned components must be set up separately if desired.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PrerequisiteComponent",
+          "type": "UActorComponent"
+        }
+      ]
+    },
+    {
+      "name": "CanTriggerResimulation",
+      "return": "bool",
+      "const": true,
+      "doc": "Can this body trigger a resimulation when Physics Prediction is enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CreateInputComponent",
+      "return": "void",
+      "doc": "Creates an input component from the input component passed in\n@param InputComponentToCreate The UInputComponent to create.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputComponentToCreate",
+          "type": "TSubclassOf<UInputComponent>"
+        }
+      ]
+    },
+    {
+      "name": "DetachRootComponentFromParent",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bMaintainWorldPosition",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DisableInput",
+      "return": "void",
+      "doc": "Removes this actor from the stack of input being handled by a PlayerController.\n@param PlayerController The PlayerController whose input events we no longer want to receive. If null, this actor will stop receiving input from all PlayerControllers.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerController",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "EnableInput",
+      "return": "void",
+      "doc": "Pushes this actor on to the stack of input being handled by a PlayerController.\n@param PlayerController The PlayerController whose input events we want to receive.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerController",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "FindComponentByTag",
+      "return": "UActorComponent",
+      "const": true,
+      "doc": "Searches components array and returns first encountered component with a given tag.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "TSubclassOf<UActorComponent>"
+        },
+        {
+          "name": "Tag",
+          "type": "FName"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "FlushNetDormancy",
+      "return": "void",
+      "doc": "Forces dormant actor to replicate but doesn't change NetDormancy state (i.e., they will go dormant again if left dormant)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ForceNetUpdate",
+      "return": "void",
+      "doc": "Force actor to be updated to clients/demo net drivers",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorBounds",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the bounding box of all components that make up this Actor (excluding ChildActorComponents).\n@param       bOnlyCollidingComponents        If true, will only return the bounding box for components with collision enabled.\n@param       Origin                                          Set to the center of the actor in world space\n@param       BoxExtent                                       Set to half the actor's size in 3d space\n@param       bIncludeFromChildActors         If true then recurse in to ChildActor components",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bOnlyCollidingComponents",
+          "type": "bool"
+        },
+        {
+          "name": "Origin",
+          "type": "FVector&"
+        },
+        {
+          "name": "BoxExtent",
+          "type": "FVector&"
+        },
+        {
+          "name": "bIncludeFromChildActors",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetActorEnableCollision",
+      "return": "bool",
+      "const": true,
+      "doc": "Get current state of collision for the whole actor",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorEyesViewPoint",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the point of view of the actor.\nNote that this doesn't mean the camera, but the 'eyes' of the actor.\nFor example, for a Pawn, this would define the eye height location,\nand view rotation (which is different from the pawn rotation which has a zeroed pitch component).\nA camera first person view will typically use this view point. Most traces (weapon, AI) will be done from this view point.\n\n@param       OutLocation - location of view point\n@param       OutRotation - view rotation of actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "OutRotation",
+          "type": "FRotator&"
+        }
+      ]
+    },
+    {
+      "name": "GetActorForwardVector",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the forward (X) vector (length 1.0) from this Actor, in world space.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorLabel",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns this actor's current label.  Actor labels are only available in development builds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bCreateIfNone",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetActorRelativeScale3D",
+      "return": "FVector",
+      "const": true,
+      "doc": "Return the actor's relative scale 3d",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorRightVector",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the right (Y) vector (length 1.0) from this Actor, in world space.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorScale3D",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns the Actor's world-space scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorTickInterval",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the tick interval of this actor's primary tick function",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorTimeDilation",
+      "return": "float32",
+      "const": true,
+      "doc": "Get ActorTimeDilation - this can be used for input control or speed control for slomo.\nWe don't want to scale input globally because input can be used for UI, which do not care for TimeDilation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorUpVector",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the up (Z) vector (length 1.0) from this Actor, in world space.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAllChildActors",
+      "return": "void",
+      "const": true,
+      "doc": "Returns a list of all actors spawned by our Child Actor Components, including children of children.\nThis does not return the contents of the Children array",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ChildActors",
+          "type": "TArray<AActor>&"
+        },
+        {
+          "name": "bIncludeDescendants",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetAttachedActors",
+      "return": "void",
+      "const": true,
+      "doc": "Find all Actors which are attached directly to a component in this actor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutActors",
+          "type": "TArray<AActor>&"
+        },
+        {
+          "name": "bResetArray",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bRecursivelyIncludeAttachedActors",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetAttachParentActor",
+      "return": "AActor",
+      "const": true,
+      "doc": "Walk up the attachment chain from RootComponent until we encounter a different actor, and return it. If we are not attached to a component in a different actor, returns nullptr",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAttachParentSocketName",
+      "return": "FName",
+      "const": true,
+      "doc": "Walk up the attachment chain from RootComponent until we encounter a different actor, and return the socket name in the component. If we are not attached to a component in a different actor, returns NAME_None",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetComponentByClass",
+      "return": "UActorComponent",
+      "const": true,
+      "doc": "Searches components array and returns first encountered component of the specified class",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "TSubclassOf<UActorComponent>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetComponentsByInterface",
+      "return": "TArray<UActorComponent>",
+      "const": true,
+      "doc": "Gets all the components that implements the given interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Interface",
+          "type": "TSubclassOf<UInterface>"
+        }
+      ]
+    },
+    {
+      "name": "GetComponentsByTag",
+      "return": "TArray<UActorComponent>",
+      "const": true,
+      "doc": "Gets all the components that inherit from the given class with a given tag.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "TSubclassOf<UActorComponent>"
+        },
+        {
+          "name": "Tag",
+          "type": "FName"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetDefaultActorLabel",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns this actor's default label (does not include any numeric suffix).  Actor labels are only available in development builds.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDistanceTo",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the distance from this Actor to OtherActor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherActor",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetDotProductTo",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the dot product from this Actor to OtherActor. Returns -2.0 on failure. Returns 0.0 for coincidental actors.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherActor",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetFolderPath",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns this actor's folder path. Actor folder paths are only available in development builds.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGameTimeSinceCreation",
+      "return": "float32",
+      "const": true,
+      "doc": "The number of seconds (in game time) since this Actor was created, relative to Get Game Time In Seconds.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHorizontalDistanceTo",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the distance from this Actor to OtherActor, ignoring Z.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherActor",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetHorizontalDotProductTo",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the dot product from this Actor to OtherActor, ignoring Z. Returns -2.0 on failure. Returns 0.0 for coincidental actors.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherActor",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetInstigator",
+      "return": "APawn",
+      "const": true,
+      "protected": true,
+      "doc": "Returns the instigator for this actor, or nullptr if there is none.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInstigatorController",
+      "return": "AController",
+      "const": true,
+      "protected": true,
+      "doc": "Returns the instigator's controller for this actor, or nullptr if there is none.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLevel",
+      "return": "ULevel",
+      "const": true,
+      "doc": "Return the ULevel that this Actor is part of.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLevelTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Return the FTransform of the level this actor is a part of.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLifeSpan",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the remaining lifespan of this actor. If zero is returned the actor lives forever.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLocalRole",
+      "return": "ENetRole",
+      "const": true,
+      "doc": "Returns how much control the local machine has over this actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOverlappingActors",
+      "return": "void",
+      "const": true,
+      "doc": "Returns list of actors this actor is overlapping (any component overlapping any component). Does not return itself.\n@param OverlappingActors             [out] Returned list of overlapping actors\n@param ClassFilter                   [optional] If set, only returns actors of this class or subclasses",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OverlappingActors",
+          "type": "TArray<AActor>&"
+        },
+        {
+          "name": "ClassFilter",
+          "default": "nullptr",
+          "type": "TSubclassOf<AActor>"
+        }
+      ]
+    },
+    {
+      "name": "GetOverlappingComponents",
+      "return": "void",
+      "const": true,
+      "doc": "Returns list of components this actor is overlapping.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OverlappingComponents",
+          "type": "TArray<UPrimitiveComponent>&"
+        }
+      ]
+    },
+    {
+      "name": "GetOwner",
+      "return": "AActor",
+      "const": true,
+      "doc": "Get the owner of this Actor, used primarily for network replication.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetParentActor",
+      "return": "AActor",
+      "const": true,
+      "doc": "If this Actor was created by a Child Actor Component returns the Actor that owns that Child Actor Component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetParentComponent",
+      "return": "UChildActorComponent",
+      "const": true,
+      "doc": "If this Actor was created by a Child Actor Component returns that Child Actor Component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPhysicsReplicationMode",
+      "return": "EPhysicsReplicationMode",
+      "doc": "Get the physics replication mode of this body, via EPhysicsReplicationMode",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRayTracingGroupId",
+      "return": "int",
+      "const": true,
+      "doc": "Return the RayTracingGroupId for this actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRemoteRole",
+      "return": "ENetRole",
+      "const": true,
+      "doc": "Returns how much control the remote machine has over this actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetResimulationThreshold",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the error threshold in centimeters before this object should enforce a resimulation to trigger.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSquaredDistanceTo",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the squared distance from this Actor to OtherActor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherActor",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetSquaredHorizontalDistanceTo",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the squared distance from this Actor to OtherActor, ignoring Z.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherActor",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetTickableWhenPaused",
+      "return": "bool",
+      "doc": "Gets whether this actor can tick when paused.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Get the actor-to-world transform.\n@return The transform that transforms from actor space to world space.",
+      "ufunction": true,
+      "unrealname": "GetTransform",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVelocity",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns velocity (in cm/s (Unreal Units/second) of the rootcomponent if it is either using physics or has an associated MovementComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVerticalDistanceTo",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the distance from this Actor to OtherActor, ignoring XY.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherActor",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "HasAuthority",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether this actor has network authority",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsActorBeingDestroyed",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this actor is currently being destroyed, some gameplay events may be unsafe",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsActorTickEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether this actor has tick enabled or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsChildActor",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether this Actor was spawned by a child actor component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsEditable",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this actor is allowed to be displayed, selected and manipulated by the editor.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsHiddenEd",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this actor is hidden in the editor viewports, also checking temporary flags.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsHiddenEdAtStartup",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the actor is hidden upon editor startup/by default, false if it is not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsOverlappingActor",
+      "return": "bool",
+      "const": true,
+      "doc": "Check whether any component of this Actor is overlapping any component of another Actor.\n@param Other The other Actor to test against\n@return Whether any component of this Actor is overlapping any component of another Actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Other",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "IsSelectable",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this actor can EVER be selected in a level in the editor.  Can be overridden by specific actors to make them unselectable.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsTemporarilyHiddenInEditor",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether or not this actor was explicitly hidden in the editor for the duration of the current editor session\n@param bIncludeParent - Whether to recurse up child actor hierarchy or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIncludeParent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddActorLocalOffset",
+      "return": "void",
+      "doc": "Adds a delta to the location of this component in its local reference frame.\n@param DelatLocation         The change in location in local space.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.\n                         Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n                         Setting the location without teleporting will not update the location of simulated child/attached components.",
+      "ufunction": true,
+      "unrealname": "K2_AddActorLocalOffset",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddActorLocalRotation",
+      "return": "void",
+      "doc": "Adds a delta to the rotation of this component in its local reference frame\n@param DeltaRotation         The change in rotation in local space.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.\n                         Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n                         Setting the rotation without teleporting will not update the rotation of simulated child/attached components.",
+      "ufunction": true,
+      "unrealname": "K2_AddActorLocalRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddActorLocalTransform",
+      "return": "void",
+      "doc": "Adds a delta to the transform of this component in its local reference frame\n@param NewTransform          The change in transform in local space.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.\n                         Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n                         Setting the transform without teleporting will not update the transform of simulated child/attached components.",
+      "ufunction": true,
+      "unrealname": "K2_AddActorLocalTransform",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddActorWorldOffset",
+      "return": "void",
+      "doc": "Adds a delta to the location of this actor in world space.\n\n@param DeltaLocation         The change in location.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.\n                         Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n                         Setting the location without teleporting will not update the location of simulated child/attached components.\n@param SweepHitResult        The hit result from the move if swept.",
+      "ufunction": true,
+      "unrealname": "K2_AddActorWorldOffset",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddActorWorldRotation",
+      "return": "void",
+      "doc": "Adds a delta to the rotation of this actor in world space.\n\n@param DeltaRotation         The change in rotation.\n@param bSweep                        Whether to sweep to the target rotation (not currently supported for rotation).\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.\n                         Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n                         Setting the rotation without teleporting will not update the rotation of simulated child/attached components.\n@param SweepHitResult        The hit result from the move if swept.",
+      "ufunction": true,
+      "unrealname": "K2_AddActorWorldRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddActorWorldTransform",
+      "return": "void",
+      "doc": "Adds a delta to the transform of this actor in world space. Ignores scale and sets it to (1,1,1).",
+      "ufunction": true,
+      "unrealname": "K2_AddActorWorldTransform",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddActorWorldTransformKeepScale",
+      "return": "void",
+      "doc": "Adds a delta to the transform of this actor in world space. Scale is unchanged.",
+      "ufunction": true,
+      "unrealname": "K2_AddActorWorldTransformKeepScale",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AttachRootComponentTo",
+      "return": "void",
+      "ufunction": true,
+      "unrealname": "K2_AttachRootComponentTo",
+      "meta": null,
+      "args": [
+        {
+          "name": "InParent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "InSocketName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "AttachLocationType",
+          "default": "EAttachLocation :: KeepRelativeOffset",
+          "type": "EAttachLocation"
+        },
+        {
+          "name": "bWeldSimulatedBodies",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AttachRootComponentToActor",
+      "return": "void",
+      "ufunction": true,
+      "unrealname": "K2_AttachRootComponentToActor",
+      "meta": null,
+      "args": [
+        {
+          "name": "InParentActor",
+          "type": "AActor"
+        },
+        {
+          "name": "InSocketName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "AttachLocationType",
+          "default": "EAttachLocation :: KeepRelativeOffset",
+          "type": "EAttachLocation"
+        },
+        {
+          "name": "bWeldSimulatedBodies",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AttachToActor",
+      "return": "bool",
+      "doc": "Attaches the RootComponent of this Actor to the supplied actor, optionally at a named socket.\n@param ParentActor                           Actor to attach this actor's RootComponent to\n@param SocketName                            Socket name to attach to, if any\n@param LocationRule                          How to handle translation when attaching.\n@param RotationRule                          How to handle rotation when attaching.\n@param ScaleRule                                     How to handle scale when attaching.\n@param bWeldSimulatedBodies          Whether to weld together simulated physics bodies.This transfers the shapes in the welded object into the parent (if simulated), which can result in permanent changes that persist even after subsequently detaching.\n@return                                                      Whether the attachment was successful or not",
+      "ufunction": true,
+      "unrealname": "K2_AttachToActor",
+      "meta": null,
+      "args": [
+        {
+          "name": "ParentActor",
+          "type": "AActor"
+        },
+        {
+          "name": "SocketName",
+          "type": "FName"
+        },
+        {
+          "name": "LocationRule",
+          "type": "EAttachmentRule"
+        },
+        {
+          "name": "RotationRule",
+          "type": "EAttachmentRule"
+        },
+        {
+          "name": "ScaleRule",
+          "type": "EAttachmentRule"
+        },
+        {
+          "name": "bWeldSimulatedBodies",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AttachToComponent",
+      "return": "bool",
+      "doc": "Attaches the RootComponent of this Actor to the supplied component, optionally at a named socket. It is not valid to call this on components that are not Registered.\n@param Parent                                        Parent to attach to.\n@param SocketName                            Optional socket to attach to on the parent.\n@param LocationRule                          How to handle translation when attaching.\n@param RotationRule                          How to handle rotation when attaching.\n@param ScaleRule                                     How to handle scale when attaching.\n@param bWeldSimulatedBodies          Whether to weld together simulated physics bodies. This transfers the shapes in the welded object into the parent (if simulated), which can result in permanent changes that persist even after subsequently detaching.\n@return                                                      Whether the attachment was successful or not",
+      "ufunction": true,
+      "unrealname": "K2_AttachToComponent",
+      "meta": null,
+      "args": [
+        {
+          "name": "Parent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "SocketName",
+          "type": "FName"
+        },
+        {
+          "name": "LocationRule",
+          "type": "EAttachmentRule"
+        },
+        {
+          "name": "RotationRule",
+          "type": "EAttachmentRule"
+        },
+        {
+          "name": "ScaleRule",
+          "type": "EAttachmentRule"
+        },
+        {
+          "name": "bWeldSimulatedBodies",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DestroyActor",
+      "return": "void",
+      "doc": "Destroy the actor",
+      "ufunction": true,
+      "unrealname": "K2_DestroyActor",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DetachFromActor",
+      "return": "void",
+      "doc": "Detaches the RootComponent of this Actor from any SceneComponent it is currently attached to.\n@param  LocationRule                         How to handle translation when detaching.\n@param  RotationRule                         How to handle rotation when detaching.\n@param  ScaleRule                            How to handle scale when detaching.",
+      "ufunction": true,
+      "unrealname": "K2_DetachFromActor",
+      "meta": null,
+      "args": [
+        {
+          "name": "LocationRule",
+          "default": "EDetachmentRule :: KeepRelative",
+          "type": "EDetachmentRule"
+        },
+        {
+          "name": "RotationRule",
+          "default": "EDetachmentRule :: KeepRelative",
+          "type": "EDetachmentRule"
+        },
+        {
+          "name": "ScaleRule",
+          "default": "EDetachmentRule :: KeepRelative",
+          "type": "EDetachmentRule"
+        }
+      ]
+    },
+    {
+      "name": "GetActorLocation",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns the location of the RootComponent of this Actor",
+      "ufunction": true,
+      "unrealname": "K2_GetActorLocation",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorRotation",
+      "return": "FRotator",
+      "const": true,
+      "doc": "Returns rotation of the RootComponent of this Actor.",
+      "ufunction": true,
+      "unrealname": "K2_GetActorRotation",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetComponentsByClass",
+      "return": "TArray<UActorComponent>",
+      "const": true,
+      "doc": "Gets all the components that inherit from the given class.\nCurrently returns an array of UActorComponent which must be cast to the correct type.\nThis intended to only be used by blueprints. Use GetComponents() in C++.",
+      "ufunction": true,
+      "unrealname": "K2_GetComponentsByClass",
+      "meta": null,
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "TSubclassOf<UActorComponent>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetRootComponent",
+      "return": "USceneComponent",
+      "const": true,
+      "doc": "Returns the RootComponent of this Actor",
+      "ufunction": true,
+      "unrealname": "K2_GetRootComponent",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnBecomeViewTarget",
+      "return": "void",
+      "callable": false,
+      "doc": "Event called when this Actor becomes the view target for the given PlayerController.",
+      "event": true,
+      "unrealname": "K2_OnBecomeViewTarget",
+      "meta": null,
+      "args": [
+        {
+          "name": "PC",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "OnEndViewTarget",
+      "return": "void",
+      "callable": false,
+      "doc": "Event called when this Actor is no longer the view target for the given PlayerController.",
+      "event": true,
+      "unrealname": "K2_OnEndViewTarget",
+      "meta": null,
+      "args": [
+        {
+          "name": "PC",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "OnReset",
+      "return": "void",
+      "callable": false,
+      "doc": "Event called when this Actor is reset to its initial state - used when restarting level without reloading.",
+      "event": true,
+      "unrealname": "K2_OnReset",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetActorLocation",
+      "return": "bool",
+      "doc": "Move the Actor to the specified location.\n@param NewLocation   The new location to move the Actor to.\n@param bSweep                Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                             Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport             Whether we teleport the physics state (if physics collision is enabled for this object).\n                                             If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                             If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                             If CCD is on and not teleporting, this will affect objects along the entire swept volume.\n                     Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n                     Setting the location without teleporting will not update the location of simulated child/attached components.\n@param SweepHitResult        The hit result from the move if swept.\n@return      Whether the location was successfully set (if not swept), or whether movement occurred at all (if swept).",
+      "ufunction": true,
+      "unrealname": "K2_SetActorLocation",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorLocationAndRotation",
+      "return": "bool",
+      "doc": "Move the actor instantly to the specified location and rotation.\n\n@param NewLocation           The new location to teleport the Actor to.\n@param NewRotation           The new rotation for the Actor.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.\n                         Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n                         Setting the location without teleporting will not update the location of simulated child/attached components.\n@param SweepHitResult        The hit result from the move if swept.\n@return      Whether the rotation was successfully set.",
+      "ufunction": true,
+      "unrealname": "K2_SetActorLocationAndRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorRelativeLocation",
+      "return": "void",
+      "doc": "Set the actor's RootComponent to the specified relative location.\n@param NewRelativeLocation   New relative location of the actor's root component\n@param bSweep                                Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                             Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                             Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                             If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                             If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                             If CCD is on and not teleporting, this will affect objects along the entire swept volume.\n                             Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n                             Setting the location without teleporting will not update the location of simulated child/attached components.",
+      "ufunction": true,
+      "unrealname": "K2_SetActorRelativeLocation",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRelativeLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorRelativeRotation",
+      "return": "void",
+      "doc": "Set the actor's RootComponent to the specified relative rotation\n@param NewRelativeRotation   New relative rotation of the actor's root component\n@param bSweep                                Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                             Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                             Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                             If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                             If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                             If CCD is on and not teleporting, this will affect objects along the entire swept volume.\n                             Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n                             Setting the rotation without teleporting will not update the rotation of simulated child/attached components.",
+      "ufunction": true,
+      "unrealname": "K2_SetActorRelativeRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRelativeRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorRelativeTransform",
+      "return": "void",
+      "doc": "Set the actor's RootComponent to the specified relative transform\n@param NewRelativeTransform          New relative transform of the actor's root component\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.\n                         Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n                         Setting the transform without teleporting will not update the transform of simulated child/attached components.",
+      "ufunction": true,
+      "unrealname": "K2_SetActorRelativeTransform",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRelativeTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorRotation",
+      "return": "bool",
+      "doc": "Set the Actor's rotation instantly to the specified rotation.\n\n@param       NewRotation     The new rotation for the Actor.\n@param       bTeleportPhysics Whether we teleport the physics state (if physics collision is enabled for this object).\n                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n         Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n         Setting the rotation without teleporting will not update the rotation of simulated child/attached components.\n@return      Whether the rotation was successfully set.",
+      "ufunction": true,
+      "unrealname": "K2_SetActorRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bTeleportPhysics",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorTransform",
+      "return": "bool",
+      "doc": "Set the Actors transform to the specified one.\n@param NewTransform          The new transform.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.\n                         Note that when teleporting, any child/attached components will be teleported too, maintaining their current offset even if they are being simulated.\n                         Setting the transform without teleporting will not update the transform of simulated child/attached components.",
+      "ufunction": true,
+      "unrealname": "K2_SetActorTransform",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Teleport",
+      "return": "bool",
+      "doc": "Teleport this actor to a new location. If the actor doesn't fit exactly at the location specified, tries to slightly move it out of walls and such.\n\n@param DestLocation The target destination point\n@param DestRotation The target rotation at the destination\n@return true if the actor has been successfully moved, or false if it couldn't fit.",
+      "ufunction": true,
+      "unrealname": "K2_TeleportTo",
+      "meta": null,
+      "args": [
+        {
+          "name": "DestLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "DestRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "MakeNoise",
+      "return": "void",
+      "protected": true,
+      "doc": "Trigger a noise caused by a given Pawn, at a given location.\nNote that the NoiseInstigator Pawn MUST have a PawnNoiseEmitterComponent for the noise to be detected by a PawnSensingComponent.\nSenders of MakeNoise should have an Instigator if they are not pawns, or pass a NoiseInstigator.\n\n@param Loudness The relative loudness of this noise. Usual range is 0 (no noise) to 1 (full volume). If MaxRange is used, this scales the max range, otherwise it affects the hearing range specified by the sensor.\n@param NoiseInstigator Pawn responsible for this noise.  Uses the actor's Instigator if NoiseInstigator is null\n@param NoiseLocation Position of noise source.  If zero vector, use the actor's location.\n@param MaxRange Max range at which the sound may be heard. A value of 0 indicates no max range (though perception may have its own range). Loudness scales the range. (Note: not supported for legacy PawnSensingComponent, only for AIPerception)\n@param Tag Identifier for the noise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Loudness",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "NoiseInstigator",
+          "default": "nullptr",
+          "type": "APawn"
+        },
+        {
+          "name": "NoiseLocation",
+          "default": "FVector ( )",
+          "type": "FVector"
+        },
+        {
+          "name": "MaxRange",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "Tag",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "PrestreamTextures",
+      "return": "void",
+      "doc": "Calls PrestreamTextures() for all the actor's meshcomponents.\n@param Seconds - Number of seconds to force all mip-levels to be resident\n@param bEnableStreaming      - Whether to start (true) or stop (false) streaming\n@param CinematicTextureGroups - Bitfield indicating which texture groups that use extra high-resolution mips",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Seconds",
+          "type": "float32"
+        },
+        {
+          "name": "bEnableStreaming",
+          "type": "bool"
+        },
+        {
+          "name": "CinematicTextureGroups",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ActorBeginCursorOver",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor has the mouse moved over it with the clickable interface.",
+      "event": true,
+      "unrealname": "ReceiveActorBeginCursorOver",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ActorBeginOverlap",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor overlaps another actor, for example a player walking into a trigger.\nFor events when objects have a blocking collision, for example a player hitting a wall, see 'Hit' events.\n@note Components on both this and the other Actor must have bGenerateOverlapEvents set to true to generate overlap events.",
+      "event": true,
+      "unrealname": "ReceiveActorBeginOverlap",
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "ActorEndCursorOver",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor has the mouse moved off of it with the clickable interface.",
+      "event": true,
+      "unrealname": "ReceiveActorEndCursorOver",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ActorEndOverlap",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when an actor no longer overlaps another actor, and they have separated.\n@note Components on both this and the other Actor must have bGenerateOverlapEvents set to true to generate overlap events.",
+      "event": true,
+      "unrealname": "ReceiveActorEndOverlap",
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "ActorOnClicked",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor is clicked by the mouse when using the clickable interface.",
+      "event": true,
+      "unrealname": "ReceiveActorOnClicked",
+      "meta": null,
+      "args": [
+        {
+          "name": "ButtonPressed",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "ActorOnInputTouchBegin",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor is touched when click events are enabled.",
+      "event": true,
+      "unrealname": "ReceiveActorOnInputTouchBegin",
+      "meta": null,
+      "args": [
+        {
+          "name": "FingerIndex",
+          "type": "ETouchIndex"
+        }
+      ]
+    },
+    {
+      "name": "ActorOnInputTouchEnd",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor is under the finger when untouched when click events are enabled.",
+      "event": true,
+      "unrealname": "ReceiveActorOnInputTouchEnd",
+      "meta": null,
+      "args": [
+        {
+          "name": "FingerIndex",
+          "type": "ETouchIndex"
+        }
+      ]
+    },
+    {
+      "name": "ActorOnInputTouchEnter",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor has a finger moved over it with the clickable interface.",
+      "event": true,
+      "unrealname": "ReceiveActorOnInputTouchEnter",
+      "meta": null,
+      "args": [
+        {
+          "name": "FingerIndex",
+          "type": "ETouchIndex"
+        }
+      ]
+    },
+    {
+      "name": "ActorOnInputTouchLeave",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor has a finger moved off of it with the clickable interface.",
+      "event": true,
+      "unrealname": "ReceiveActorOnInputTouchLeave",
+      "meta": null,
+      "args": [
+        {
+          "name": "FingerIndex",
+          "type": "ETouchIndex"
+        }
+      ]
+    },
+    {
+      "name": "ActorOnReleased",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor is under the mouse when left mouse button is released while using the clickable interface.",
+      "event": true,
+      "unrealname": "ReceiveActorOnReleased",
+      "meta": null,
+      "args": [
+        {
+          "name": "ButtonReleased",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "AnyDamage",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor takes ANY damage",
+      "event": true,
+      "unrealname": "ReceiveAnyDamage",
+      "meta": null,
+      "args": [
+        {
+          "name": "Damage",
+          "type": "float"
+        },
+        {
+          "name": "DamageType",
+          "type": "const UDamageType"
+        },
+        {
+          "name": "InstigatedBy",
+          "type": "AController"
+        },
+        {
+          "name": "DamageCauser",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "AsyncPhysicsTick",
+      "return": "void",
+      "callable": false,
+      "doc": "Event called every physics tick if bAsyncPhysicsTickEnabled is true",
+      "event": true,
+      "unrealname": "ReceiveAsyncPhysicsTick",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaSeconds",
+          "type": "float"
+        },
+        {
+          "name": "SimSeconds",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "BeginPlay",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when play begins for this actor.",
+      "event": true,
+      "unrealname": "ReceiveBeginPlay",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Destroyed",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when the actor has been explicitly destroyed.",
+      "event": true,
+      "unrealname": "ReceiveDestroyed",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EndPlay",
+      "return": "void",
+      "callable": false,
+      "doc": "Event to notify blueprints this actor is being deleted or removed from a level.",
+      "event": true,
+      "unrealname": "ReceiveEndPlay",
+      "meta": null,
+      "args": [
+        {
+          "name": "EndPlayReason",
+          "type": "EEndPlayReason"
+        }
+      ]
+    },
+    {
+      "name": "Hit",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor bumps into a blocking object, or blocks another actor that bumps into it.\nThis could happen due to things like Character movement, using Set Location with 'sweep' enabled, or physics simulation.\nFor events when objects overlap (e.g. walking into a trigger) see the 'Overlap' event.\n\n@note For collisions during physics simulation to generate hit events, 'Simulation Generates Hit Events' must be enabled.\n@note When receiving a hit from another object's movement (bSelfMoved is false), the directions of 'Hit.Normal' and 'Hit.ImpactNormal'\nwill be adjusted to indicate force from the other object against this object.\n@note NormalImpulse will be filled in for physics-simulating bodies, but will be zero for swept-component blocking collisions.",
+      "event": true,
+      "unrealname": "ReceiveHit",
+      "meta": null,
+      "args": [
+        {
+          "name": "MyComp",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "Other",
+          "type": "AActor"
+        },
+        {
+          "name": "OtherComp",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "bSelfMoved",
+          "type": "bool"
+        },
+        {
+          "name": "HitLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "HitNormal",
+          "type": "FVector"
+        },
+        {
+          "name": "NormalImpulse",
+          "type": "FVector"
+        },
+        {
+          "name": "Hit",
+          "type": "FHitResult"
+        }
+      ]
+    },
+    {
+      "name": "PointDamage",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor takes POINT damage",
+      "event": true,
+      "unrealname": "ReceivePointDamage",
+      "meta": null,
+      "args": [
+        {
+          "name": "Damage",
+          "type": "float"
+        },
+        {
+          "name": "DamageType",
+          "type": "const UDamageType"
+        },
+        {
+          "name": "HitLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "HitNormal",
+          "type": "FVector"
+        },
+        {
+          "name": "HitComponent",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "ShotFromDirection",
+          "type": "FVector"
+        },
+        {
+          "name": "InstigatedBy",
+          "type": "AController"
+        },
+        {
+          "name": "DamageCauser",
+          "type": "AActor"
+        },
+        {
+          "name": "HitInfo",
+          "type": "FHitResult"
+        }
+      ]
+    },
+    {
+      "name": "RadialDamage",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when this actor takes RADIAL damage",
+      "event": true,
+      "unrealname": "ReceiveRadialDamage",
+      "meta": null,
+      "args": [
+        {
+          "name": "DamageReceived",
+          "type": "float"
+        },
+        {
+          "name": "DamageType",
+          "type": "const UDamageType"
+        },
+        {
+          "name": "Origin",
+          "type": "FVector"
+        },
+        {
+          "name": "HitInfo",
+          "type": "FHitResult"
+        },
+        {
+          "name": "InstigatedBy",
+          "type": "AController"
+        },
+        {
+          "name": "DamageCauser",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "Tick",
+      "return": "void",
+      "callable": false,
+      "doc": "Event called every frame, if ticking is enabled",
+      "event": true,
+      "unrealname": "ReceiveTick",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaSeconds",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "RemoveTickPrerequisiteActor",
+      "return": "void",
+      "doc": "Remove tick dependency on PrerequisiteActor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PrerequisiteActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "RemoveTickPrerequisiteComponent",
+      "return": "void",
+      "doc": "Remove tick dependency on PrerequisiteComponent.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PrerequisiteComponent",
+          "type": "UActorComponent"
+        }
+      ]
+    },
+    {
+      "name": "SetActorEnableCollision",
+      "return": "void",
+      "doc": "Allows enabling/disabling collision for the whole actor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewActorEnableCollision",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorHiddenInGame",
+      "return": "void",
+      "doc": "Sets the actor to be hidden in the game\n@param  bNewHidden      Whether or not to hide the actor and all its components",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewHidden",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorLabel",
+      "return": "void",
+      "doc": "Assigns a new label to this actor.  Actor labels are only available in development builds.\n@param       NewActorLabel   The new label string to assign to the actor.  If empty, the actor will have a default label.\n@param       bMarkDirty              If true the actor's package will be marked dirty for saving.  Otherwise it will not be.  You should pass false for this parameter if dirtying is not allowed (like during loads)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewActorLabel",
+          "type": "FString"
+        },
+        {
+          "name": "bMarkDirty",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorRelativeScale3D",
+      "return": "void",
+      "doc": "Set the actor's RootComponent to the specified relative scale 3d\n@param NewRelativeScale      New scale to set the actor's RootComponent to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRelativeScale",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetActorScale3D",
+      "return": "void",
+      "doc": "Set the Actor's world-space scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewScale3D",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetActorTickEnabled",
+      "return": "void",
+      "doc": "Set this actor's tick functions to be enabled or disabled. Only has an effect if the function is registered\nThis only modifies the tick function on actor itself\n@param       bEnabled        Whether it should be enabled or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorTickInterval",
+      "return": "void",
+      "doc": "Sets the tick interval of this actor's primary tick function. Will not enable a disabled tick function. Takes effect on next tick.\n@param TickInterval  The rate at which this actor should be ticking",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TickInterval",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAutoDestroyWhenFinished",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bVal",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetFolderPath",
+      "return": "void",
+      "doc": "Assigns a new folder to this actor. Actor folder paths are only available in development builds.\n@param       NewFolderPath           The new folder to assign to the actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewFolderPath",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetIsTemporarilyHiddenInEditor",
+      "return": "void",
+      "doc": "Explicitly sets whether or not this actor is hidden in the editor for the duration of the current editor session\n@param bIsHidden     True if the actor is hidden",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsHidden",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLifeSpan",
+      "return": "void",
+      "doc": "Set the lifespan of this actor. When it expires the object will be destroyed. If requested lifespan is 0, the timer is cleared and the actor will not be destroyed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLifespan",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetNetDormancy",
+      "return": "void",
+      "doc": "Puts actor in dormant networking state",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewDormancy",
+          "type": "ENetDormancy"
+        }
+      ]
+    },
+    {
+      "name": "SetOwner",
+      "return": "void",
+      "doc": "Set the owner of this Actor, used primarily for network replication.\n@param NewOwner      The Actor who takes over ownership of this Actor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewOwner",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetPhysicsReplicationMode",
+      "return": "void",
+      "doc": "Set the physics replication mode of this body, via EPhysicsReplicationMode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ReplicationMode",
+          "type": "EPhysicsReplicationMode"
+        }
+      ]
+    },
+    {
+      "name": "SetRayTracingGroupId",
+      "return": "void",
+      "doc": "Specify a RayTracingGroupId for this actors. Components with invalid RayTracingGroupId will inherit the actors.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InRaytracingGroupId",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetReplicateMovement",
+      "return": "void",
+      "doc": "Set whether this actor's movement replicates to network clients.\n@param bInReplicateMovement Whether this Actor's movement replicates to clients.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInReplicateMovement",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetReplicates",
+      "return": "void",
+      "doc": "Set whether this actor replicates to network clients. When this actor is spawned on the server it will be sent to clients as well.\nProperties flagged for replication will update on clients if they change on the server.\nInternally changes the RemoteRole property and handles the cases where the actor needs to be added to the network actor list.\n@param bInReplicates Whether this Actor replicates to network clients.\n@see https://docs.unrealengine.com/InteractiveExperiences/Networking/Actors",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInReplicates",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTickableWhenPaused",
+      "return": "void",
+      "doc": "Sets whether this actor can tick when paused.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bTickableWhenPaused",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTickGroup",
+      "return": "void",
+      "doc": "Sets the ticking group for this actor.\n@param NewTickGroup the new value to assign",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTickGroup",
+          "type": "ETickingGroup"
+        }
+      ]
+    },
+    {
+      "name": "TearOff",
+      "return": "void",
+      "doc": "Networking - Server - TearOff this actor to stop replication to clients. Will set bTearOff to true.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ConstructionScript",
+      "return": "void",
+      "callable": false,
+      "doc": "Construction script, the place to spawn components and do other setup.\n@note Name used in CreateBlueprint function",
+      "event": true,
+      "unrealname": "UserConstructionScript",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "WasRecentlyRendered",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this actor has been rendered \"recently\", with a tolerance in seconds to define what \"recent\" means.\ne.g.: If a tolerance of 0.1 is used, this function will return true only if the actor was rendered in the last 0.1 seconds of game time.\n\n@param Tolerance  How many seconds ago the actor last render time can be and still count as having been \"recently\" rendered.\n@return Whether this actor was recently rendered.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "0.200000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddActorLocalOffset",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "AddActorLocalRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "AddActorLocalRotation",
+      "return": "void",
+      "unrealname": "AddActorLocalRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FQuat"
+        }
+      ],
+      "isProperty": false
+    },
+    {
+      "name": "AddActorLocalTransform",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "AddActorWorldOffset",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "AddActorWorldRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "AddActorWorldRotation",
+      "return": "void",
+      "unrealname": "AddActorWorldRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "AddActorWorldTransform",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "AttachToActor",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "ParentActor",
+          "type": "AActor"
+        },
+        {
+          "name": "SocketName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "AttachmentRule",
+          "default": "EAttachmentRule :: SnapToTarget",
+          "type": "EAttachmentRule"
+        }
+      ]
+    },
+    {
+      "name": "AttachToComponent",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Parent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "SocketName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "AttachmentRule",
+          "default": "EAttachmentRule :: SnapToTarget",
+          "type": "EAttachmentRule"
+        }
+      ]
+    },
+    {
+      "name": "GetActorQuat",
+      "return": "FQuat",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorRelativeLocation",
+      "return": "FVector",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorRelativeRotation",
+      "return": "FRotator",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorRelativeTransform",
+      "return": "FTransform",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RerunConstructionScripts",
+      "return": "void",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetActorLocation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetActorLocationAndRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bTeleport",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorLocationAndRotation",
+      "return": "void",
+      "unrealname": "SetActorLocationAndRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRotation",
+          "type": "FQuat"
+        },
+        {
+          "name": "bTeleport",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorQuat",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SetActorRelativeLocation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRelativeLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetActorRelativeRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRelativeRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetActorRelativeRotation",
+      "return": "void",
+      "unrealname": "SetActorRelativeRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRelativeRotation",
+          "type": "FQuat"
+        }
+      ],
+      "isProperty": false
+    },
+    {
+      "name": "SetActorRelativeTransform",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRelativeTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "SetActorRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetActorRotation",
+      "return": "void",
+      "unrealname": "SetActorRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FQuat"
+        }
+      ],
+      "isProperty": false
+    },
+    {
+      "name": "SetActorTransform",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "SetbRunConstructionScriptOnDrag",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreateComponent",
+      "return": "UActorComponent",
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "TSubclassOf<UActorComponent>"
+        },
+        {
+          "name": "WithName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetComponent",
+      "return": "UActorComponent",
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "TSubclassOf<UActorComponent>"
+        },
+        {
+          "name": "WithName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetOrCreateComponent",
+      "return": "UActorComponent",
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "TSubclassOf<UActorComponent>"
+        },
+        {
+          "name": "WithName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetAllComponents",
+      "return": "void",
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "UClass"
+        },
+        {
+          "name": "OutComponents",
+          "type": "TArray<UActorComponent>&"
+        }
+      ]
+    }
+  ]
+}

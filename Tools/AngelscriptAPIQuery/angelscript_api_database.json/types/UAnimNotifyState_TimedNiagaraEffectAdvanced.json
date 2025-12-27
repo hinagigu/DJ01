@@ -1,0 +1,42 @@
+{
+  "name": "UAnimNotifyState_TimedNiagaraEffectAdvanced",
+  "inherits": "UAnimNotifyState_TimedNiagaraEffect",
+  "doc": "Same as Timed Niagara Effect but also provides some more advanced abilities at an additional cost.",
+  "properties": {
+    "bEnableNormalizedNotifyProgress": [
+      "bool",
+      2,
+      "This send a 0-1 value of the normalized progress to the FX Component to the float User Parameter."
+    ],
+    "bApplyRateScaleToProgress": [
+      "bool",
+      "Should we apply the animation rate scale when calculating the elasped time."
+    ],
+    "NotifyProgressUserParameter": [
+      "FName",
+      2,
+      "The name of your niagara user variable you would like to send the normalized notify progress to."
+    ],
+    "AnimCurves": [
+      "TArray<FCurveParameterPair>",
+      2,
+      "Array of fnames to map Anim Curve names to Niagara Parameters."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetNotifyProgress",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns a 0 to 1 value for the progress of this component along the notify.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshComp",
+          "type": "UMeshComponent"
+        }
+      ]
+    }
+  ]
+}

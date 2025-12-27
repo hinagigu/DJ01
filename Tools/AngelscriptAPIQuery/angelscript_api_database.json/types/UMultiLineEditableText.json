@@ -1,0 +1,170 @@
+{
+  "name": "UMultiLineEditableText",
+  "inherits": "UTextLayoutWidget",
+  "doc": "Editable text box widget",
+  "properties": {
+    "SelectAllTextWhenFocused": [
+      "bool",
+      "Whether to select all text when the user clicks to give focus on the widget"
+    ],
+    "ClearTextSelectionOnFocusLoss": [
+      "bool",
+      2,
+      "Whether to clear text selection when focus is lost"
+    ],
+    "RevertTextOnEscape": [
+      "bool",
+      "Whether to allow the user to back out of changes when they press the escape key"
+    ],
+    "ClearKeyboardFocusOnCommit": [
+      "bool",
+      "Whether to clear keyboard focus when pressing enter to commit changes"
+    ],
+    "AllowContextMenu": [
+      "bool",
+      2,
+      "Whether the context menu can be opened"
+    ],
+    "VirtualKeyboardOptions": [
+      "FVirtualKeyboardOptions",
+      2,
+      "Additional options for the virtual keyboard"
+    ],
+    "VirtualKeyboardDismissAction": [
+      "EVirtualKeyboardDismissAction",
+      2,
+      "What action should be taken when the virtual keyboard is dismissed?"
+    ],
+    "OnTextChanged": [
+      "FOnMultiLineEditableTextChangedEvent__MultiLineEditableText",
+      "Called whenever the text is changed programmatically or interactively by the user"
+    ],
+    "OnTextCommitted": [
+      "FOnMultiLineEditableTextCommittedEvent__MultiLineEditableText",
+      "Called whenever the text is committed.  This happens when the user presses enter or the text box loses focus."
+    ],
+    "bIsReadOnly": [
+      "bool",
+      "Sets the Text as Readonly to prevent it from being modified interactively by the user"
+    ],
+    "WidgetStyle": [
+      "FTextBlockStyle",
+      "The style"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetFont",
+      "return": "FSlateFontInfo",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHintText",
+      "return": "FText",
+      "const": true,
+      "doc": "Returns the Hint text that appears when there is no text in the text box",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetText",
+      "return": "FText",
+      "const": true,
+      "doc": "Gets the widget text\n@return The widget text",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetFont",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFontInfo",
+          "type": "FSlateFontInfo"
+        }
+      ]
+    },
+    {
+      "name": "SetFontMaterial",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetFontOutlineMaterial",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetHintText",
+      "return": "void",
+      "doc": "Sets the Hint text that appears when there is no text in the text box\n@param InHintText The text that appears when there is no text in the text box",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHintText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetIsReadOnly",
+      "return": "void",
+      "doc": "Sets the Text as Readonly to prevent it from being modified interactively by the user",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bReadOnly",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetText",
+      "return": "void",
+      "doc": "Directly sets the widget text.\n@param InText The text to assign to the widget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetWidgetStyle",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWidgetStyle",
+          "type": "FTextBlockStyle"
+        }
+      ]
+    }
+  ]
+}

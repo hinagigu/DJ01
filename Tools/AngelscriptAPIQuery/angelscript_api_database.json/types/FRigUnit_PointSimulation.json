@@ -1,0 +1,84 @@
+{
+  "name": "FRigUnit_PointSimulation",
+  "isStruct": true,
+  "doc": "Performs point based simulation\nNote: Disabled for now.",
+  "properties": {
+    "Points": [
+      "TArray<FRigVMSimPoint>",
+      "The points to simulate"
+    ],
+    "Links": [
+      "TArray<FCRSimLinearSpring>",
+      "The links to connect the points with"
+    ],
+    "Forces": [
+      "TArray<FCRSimPointForce>",
+      "The forces to apply"
+    ],
+    "CollisionVolumes": [
+      "TArray<FCRSimSoftCollision>",
+      "The collision volumes to define"
+    ],
+    "SimulatedStepsPerSecond": [
+      "float32",
+      1,
+      "The frame rate of the simulation"
+    ],
+    "IntegratorType": [
+      "ERigVMSimPointIntegrateType",
+      1,
+      "The type of integrator to use"
+    ],
+    "VerletBlend": [
+      "float32",
+      "The amount of blending to apply per second ( only for verlet integrations )"
+    ],
+    "BoneTargets": [
+      "TArray<FRigUnit_PointSimulation_BoneTarget>",
+      1,
+      "The bones to map to the simulated points."
+    ],
+    "bLimitLocalPosition": [
+      "bool",
+      "If set to true bones are placed within the original distance of\nthe previous local transform. This can be used to avoid stretch."
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      1,
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "PrimaryAimAxis": [
+      "FVector",
+      "The primary axis to use for the aim"
+    ],
+    "SecondaryAimAxis": [
+      "FVector",
+      "The secondary axis to use for the aim"
+    ],
+    "DebugSettings": [
+      "FRigUnit_PointSimulation_DebugSettings",
+      "Debug draw settings for this simulation"
+    ],
+    "Bezier": [
+      "FRigVMFourPointBezier",
+      1,
+      "If the simulation has at least four points they will be stored in here."
+    ],
+    "ExecuteContext": [
+      "FRigVMExecuteContext",
+      "* This property is used to chain multiple mutable nodes together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_PointSimulation&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_PointSimulation"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# FRigVMFunction_MathVectorAdd
+
+Returns the sum of the two values
+
+## 属性
+
+### A
+- **类型**: `FVector`
+
+### B
+- **类型**: `FVector`
+
+### Result
+- **类型**: `FVector`
+
+## 方法
+
+### opAssign
+```angelscript
+FRigVMFunction_MathVectorAdd& opAssign(FRigVMFunction_MathVectorAdd Other)
+```
+

@@ -1,0 +1,31 @@
+{
+  "name": "FExponentialHeightFogData",
+  "isStruct": true,
+  "doc": "Data for an individual fog line integral.\nThis is the data which is not shared between fogs when multiple fogs are set up on a single UExponentialHeightFogComponent",
+  "properties": {
+    "FogDensity": [
+      "float32",
+      "Global density factor for this fog."
+    ],
+    "FogHeightFalloff": [
+      "float32",
+      "Height density factor, controls how the density increases as height decreases.\nSmaller values make the visible transition larger."
+    ],
+    "FogHeightOffset": [
+      "float32",
+      "Height offset, relative to the actor position Z."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FExponentialHeightFogData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FExponentialHeightFogData"
+        }
+      ]
+    }
+  ]
+}

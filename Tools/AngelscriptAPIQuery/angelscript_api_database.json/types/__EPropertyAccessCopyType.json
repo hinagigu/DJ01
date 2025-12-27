@@ -1,0 +1,102 @@
+{
+  "name": "__EPropertyAccessCopyType",
+  "isEnum": true,
+  "properties": {
+    "None": [
+      "EPropertyAccessCopyType",
+      "No copying"
+    ],
+    "Plain": [
+      "EPropertyAccessCopyType",
+      "For plain old data types, we do a simple memcpy."
+    ],
+    "Complex": [
+      "EPropertyAccessCopyType",
+      "For more complex data types, we need to call the properties copy function"
+    ],
+    "Bool": [
+      "EPropertyAccessCopyType",
+      "Read and write properties using bool property helpers, as source/dest could be bitfield or boolean"
+    ],
+    "Struct": [
+      "EPropertyAccessCopyType",
+      "Use struct copy operation, as this needs to correctly handle CPP struct ops"
+    ],
+    "Object": [
+      "EPropertyAccessCopyType",
+      "Read and write properties using object property helpers, as source/dest could be regular/weak/soft etc."
+    ],
+    "Name": [
+      "EPropertyAccessCopyType",
+      "FName needs special case because its size changes between editor/compiler and runtime."
+    ],
+    "Array": [
+      "EPropertyAccessCopyType",
+      "Array needs special handling for fixed size arrays"
+    ],
+    "PromoteBoolToByte": [
+      "EPropertyAccessCopyType",
+      "Promote the type during the copy\nBool promotions"
+    ],
+    "PromoteBoolToInt32": [
+      "EPropertyAccessCopyType"
+    ],
+    "PromoteBoolToInt64": [
+      "EPropertyAccessCopyType"
+    ],
+    "PromoteBoolToFloat": [
+      "EPropertyAccessCopyType"
+    ],
+    "PromoteBoolToDouble": [
+      "EPropertyAccessCopyType"
+    ],
+    "PromoteByteToInt32": [
+      "EPropertyAccessCopyType",
+      "Byte promotions"
+    ],
+    "PromoteByteToInt64": [
+      "EPropertyAccessCopyType"
+    ],
+    "PromoteByteToFloat": [
+      "EPropertyAccessCopyType"
+    ],
+    "PromoteByteToDouble": [
+      "EPropertyAccessCopyType"
+    ],
+    "PromoteInt32ToInt64": [
+      "EPropertyAccessCopyType",
+      "Int32 promotions"
+    ],
+    "PromoteInt32ToFloat": [
+      "EPropertyAccessCopyType"
+    ],
+    "PromoteInt32ToDouble": [
+      "EPropertyAccessCopyType",
+      "This is strictly sketchy because of potential data loss, but it is usually OK in the general case"
+    ],
+    "PromoteFloatToDouble": [
+      "EPropertyAccessCopyType",
+      "Float promotions                LWC_TODO: Float/double should become synonyms?"
+    ],
+    "DemoteDoubleToFloat": [
+      "EPropertyAccessCopyType"
+    ],
+    "PromoteArrayFloatToDouble": [
+      "EPropertyAccessCopyType",
+      "LWC_TODO: This should not ship!"
+    ],
+    "DemoteArrayDoubleToFloat": [
+      "EPropertyAccessCopyType"
+    ],
+    "PromoteMapValueFloatToDouble": [
+      "EPropertyAccessCopyType"
+    ],
+    "DemoteMapValueDoubleToFloat": [
+      "EPropertyAccessCopyType"
+    ],
+    "EPropertyAccessCopyType_MAX": [
+      "EPropertyAccessCopyType"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,172 @@
+{
+  "name": "UCheatManager",
+  "inherits": "UObject",
+  "doc": "Cheat Manager is a central blueprint to implement test and debug code and actions that are not to ship with the game.\nAs the Cheat Manager is not instanced in shipping builds, it is for debugging purposes only",
+  "properties": {
+    "DebugCameraControllerClass": [
+      "TSubclassOf<ADebugCameraController>",
+      "Debug camera - used to have independent camera without stopping gameplay"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ChangeSize",
+      "return": "void",
+      "doc": "Scale the player's size to be F * default size.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "F",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "DamageTarget",
+      "return": "void",
+      "doc": "Damage the actor you're looking at (sourced from the player).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DamageAmount",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "DestroyTarget",
+      "return": "void",
+      "doc": "Destroy the actor you're looking at.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DisableDebugCamera",
+      "return": "void",
+      "doc": "Switch controller from debug camera back to normal controller",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EnableDebugCamera",
+      "return": "void",
+      "doc": "Switch controller to debug camera without locking gameplay and with locking local player controller input",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Fly",
+      "return": "void",
+      "doc": "Pawn can fly.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FreezeFrame",
+      "return": "void",
+      "doc": "Pause the game for Delay seconds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Delay",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerController",
+      "return": "APlayerController",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Ghost",
+      "return": "void",
+      "doc": "Pawn no longer collides with the world, and can fly",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "God",
+      "return": "void",
+      "doc": "Invulnerability cheat.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PlayersOnly",
+      "return": "void",
+      "doc": "Freeze everything in the level except for players.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EndPlay",
+      "return": "void",
+      "callable": false,
+      "doc": "This is the End Play event for the CheatManager",
+      "event": true,
+      "unrealname": "ReceiveEndPlay",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InitCheatManager",
+      "return": "void",
+      "callable": false,
+      "doc": "BP implementable event for when CheatManager is created to allow any needed initialization.",
+      "event": true,
+      "unrealname": "ReceiveInitCheatManager",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerToggleAILogging",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Slomo",
+      "return": "void",
+      "doc": "Modify time dilation to change apparent speed of passage of time. e.g. \"Slomo 0.1\" makes everything move very slowly, while \"Slomo 10\" makes everything move very fast.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTimeDilation",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "Teleport",
+      "return": "void",
+      "doc": "Teleport to surface player is looking at.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Walk",
+      "return": "void",
+      "doc": "Return to walking movement mode from Fly or Ghost cheat.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

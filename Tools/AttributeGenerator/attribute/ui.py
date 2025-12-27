@@ -5,6 +5,7 @@
 """
 
 import csv
+import json
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 from datetime import datetime
@@ -15,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from config import (
-    ATTRIBUTES_CONFIG, ATTRIBUTES_HEADER, ATTRIBUTES_SOURCE,
+    ATTRIBUTES_CONFIG, ATTRIBUTES_BEHAVIORS, ATTRIBUTES_HEADER, ATTRIBUTES_SOURCE,
     ATTRIBUTE_TYPES, ATTRIBUTE_CATEGORIES, ATTRIBUTES_CSV_FIELDS
 )
 from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar, InlineEditorMixin
@@ -558,15 +559,34 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
     # ========== 数据操作 ==========
     
     def load_data(self):
+        """加载数据 - 支持新旧两种格式"""
         self.attributes.clear()
+        
         if ATTRIBUTES_CONFIG.exists():
             with open(ATTRIBUTES_CONFIG, 'r', encoding='utf-8') as f:
                 reader = csv.DictReader(f)
                 for row in reader:
                     self.attributes.append(AttributeData.from_dict(row))
+        
+        # 尝试加载行为配置 JSON（新格式）
+        if ATTRIBUTES_BEHAVIORS.exists():
+            try:
+                with open(ATTRIBUTES_BEHAVIORS, 'r', encoding='utf-8') as f:
+                    behavior_data = json.load(f)
+                    behaviors = behavior_data.get('Behaviors', {})
+                    
+                    # 为每个属性应用行为配置
+                    for attr in self.attributes:
+                        key = attr.get_behavior_key()
+                        if key in behaviors:
+                            attr.apply_behavior_dict(behaviors[key])
+            except (json.JSONDecodeError, IOError) as e:
+                print(f"警告: 加载行为配置失败: {e}")
+        
         self._refresh_set_list()
     
     def save_config(self):
+        """保存配置 - 分别写入 CSV 和 JSON"""
         try:
             # 先同步当前编辑中的属性到内存
             # 优先使用当前选中的索引，其次使用 _last_selected_idx
@@ -583,13 +603,31 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
             elif self._last_selected_idx is not None and self._last_selected_idx < len(self.attributes):
                 self._save_attribute_silent(self._last_selected_idx)
             
+            # 确保目录存在
             ATTRIBUTES_CONFIG.parent.mkdir(parents=True, exist_ok=True)
+            
+            # 1. 保存 CSV（基础信息，不含 BehaviorConfig）
             with open(ATTRIBUTES_CONFIG, 'w', encoding='utf-8', newline='') as f:
                 writer = csv.DictWriter(f, fieldnames=ATTRIBUTES_CSV_FIELDS)
                 writer.writeheader()
                 for attr in self.attributes:
                     writer.writerow(attr.to_csv_dict())
-            self.app.show_status("属性配置已保存")
+            
+            # 2. 保存 JSON（行为配置，只保存非默认值）
+            behaviors = {}
+            for attr in self.attributes:
+                if attr.has_non_default_behavior():
+                    behaviors[attr.get_behavior_key()] = attr.to_behavior_dict()
+            
+            behavior_data = {
+                "Version": "1.0",
+                "Behaviors": behaviors
+            }
+            
+            with open(ATTRIBUTES_BEHAVIORS, 'w', encoding='utf-8') as f:
+                json.dump(behavior_data, f, ensure_ascii=False, indent=2)
+            
+            self.app.show_status("属性配置已保存（CSV + JSON）")
         except Exception as e:
             messagebox.showerror("保存失败", str(e))
     

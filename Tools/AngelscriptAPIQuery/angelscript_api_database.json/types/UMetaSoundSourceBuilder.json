@@ -1,0 +1,95 @@
+{
+  "name": "UMetaSoundSourceBuilder",
+  "inherits": "UMetaSoundBuilderBase",
+  "doc": "Builder in charge of building a MetaSound Source",
+  "properties": {},
+  "methods": [
+    {
+      "name": "Audition",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AudioComponent",
+          "type": "UAudioComponent"
+        },
+        {
+          "name": "OnCreateGenerator",
+          "default": "FOnCreateAuditionGeneratorHandleDelegate ( )",
+          "type": "FOnCreateAuditionGeneratorHandleDelegate"
+        },
+        {
+          "name": "bLiveUpdatesEnabled",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetLiveUpdatesEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether or not live updates are both globally enabled (via cvar) and are enabled on this builder's last built sound, which may or may not still be playing.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBlockRateOverride",
+      "return": "void",
+      "doc": "Sets the MetaSound's BlockRate override",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BlockRate",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFormat",
+      "return": "void",
+      "doc": "Sets the output audio format of the source",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutputFormat",
+          "type": "EMetaSoundOutputAudioFormat"
+        },
+        {
+          "name": "OutResult",
+          "type": "EMetaSoundBuilderResult&"
+        }
+      ]
+    },
+    {
+      "name": "SetQuality",
+      "return": "void",
+      "doc": "Sets the MetaSound's Quality level",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Quality",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetSampleRateOverride",
+      "return": "void",
+      "doc": "Sets the MetaSound's SampleRate override",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SampleRate",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

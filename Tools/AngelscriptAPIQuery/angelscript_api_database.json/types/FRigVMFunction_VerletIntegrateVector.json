@@ -1,0 +1,53 @@
+{
+  "name": "FRigVMFunction_VerletIntegrateVector",
+  "isStruct": true,
+  "doc": "Simulates a single position over time using Verlet integration. It is recommended to use SpringInterp instead as it\nis more accurate and stable, and has more meaningful parameters.",
+  "properties": {
+    "Target": [
+      "FVector"
+    ],
+    "Strength": [
+      "float32",
+      "The strength of the verlet spring"
+    ],
+    "Damp": [
+      "float32",
+      "The amount of damping to apply ( 0.0 to 1.0, but usually really low like 0.005 )"
+    ],
+    "Blend": [
+      "float32",
+      "The amount of blending to apply per second"
+    ],
+    "Force": [
+      "FVector",
+      "The force feeding into the solver. Can be used for gravity."
+    ],
+    "Position": [
+      "FVector",
+      1,
+      ""
+    ],
+    "Velocity": [
+      "FVector",
+      1,
+      ""
+    ],
+    "Acceleration": [
+      "FVector",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigVMFunction_VerletIntegrateVector&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigVMFunction_VerletIntegrateVector"
+        }
+      ]
+    }
+  ]
+}

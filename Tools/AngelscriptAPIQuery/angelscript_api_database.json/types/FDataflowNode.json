@@ -1,0 +1,24 @@
+{
+  "name": "FDataflowNode",
+  "isStruct": true,
+  "doc": "FNode\n             Base class for node based evaluation within the Dataflow graph.\n\nNote : Do NOT create mutable variables in the classes derived from FDataflowNode. The state\n       is stored on the FContext. The Evaluate is const to allow support for multithreaded\n       evaluation.",
+  "properties": {
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDataflowNode"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "name": "__AndroidFileServerBP",
+  "properties": {},
+  "methods": [
+    {
+      "name": "IsFileServerRunning",
+      "return": "EAFSActiveType",
+      "doc": "Check if Android FileServer is running",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StartFileServer",
+      "return": "bool",
+      "doc": "Request startup of Android FileServer",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bUSB",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bNetwork",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "Port",
+          "default": "57099",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "StopFileServer",
+      "return": "bool",
+      "doc": "Request termination of Android FileServer",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bUSB",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bNetwork",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "name": "UCubeGridToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "properties": {
+    "GridFrameOrigin": [
+      "FVector",
+      2,
+      ""
+    ],
+    "GridFrameOrientation": [
+      "FRotator",
+      2,
+      ""
+    ],
+    "bShowGizmo": [
+      "bool",
+      2,
+      ""
+    ],
+    "GridPower": [
+      "uint8",
+      2,
+      "Determines cube grid scale. Can also be adjusted with hotkeys. This changes Current\n       Block Size to match the current Base Block Size and Grid Power (differently depending\n       on the Power of Two setting)."
+    ],
+    "CurrentBlockSize": [
+      "float",
+      2,
+      "Sets the size of a block at the current grid power. This changes Base Block Size\nsuch that the given value is achieved at the the current value of Grid Power."
+    ],
+    "BlocksPerStep": [
+      "int",
+      2,
+      "How many blocks each push/pull invocation will do at a time."
+    ],
+    "bPowerOfTwoBlockSizes": [
+      "bool",
+      2,
+      "When true, block sizes change by powers of two as Grid Power is changed. When false, block\nsizes change by twos and fives, much like the default editor grid snapping options (for\ninstance, sizes might increase from 10 to 50 to 100 to 500).\nNote that toggling this option will reset Grid Power and Current Block Size to default values."
+    ],
+    "BlockBaseSize": [
+      "float",
+      2,
+      "Smallest block size to use in the grid, i.e. the block size at Grid Power 0. This\n       changes Current Block Size according to current value of Grid Power."
+    ],
+    "bCrosswiseDiagonal": [
+      "bool",
+      2,
+      "When pushing/pulling in a way where the diagonal matters, setting this to true\n       makes the diagonal generally try to lie flat across the face rather than at\n       an incline."
+    ],
+    "bKeepSideGroups": [
+      "bool",
+      2,
+      "When performing multiple push/pulls with the same selection, attempt to keep the\n       same group IDs on the sides of the new geometry (ie multiple E/Q presses will not\n       result in different group topology around the sides compared to a single Ctrl+drag)."
+    ],
+    "bShowSelectionMeasurements": [
+      "bool",
+      2,
+      "When true, displays dimensions of the given selection in the viewport."
+    ],
+    "bHitUnrelatedGeometry": [
+      "bool",
+      2,
+      "When raycasting to find a selected grid face, this determines whether geometry\n       in the scene that is not part of the edited mesh is hit."
+    ],
+    "bHitGridGroundPlaneIfCloser": [
+      "bool",
+      2,
+      "When the grid ground plane is above some geometry, whether we should hit that\n       plane or pass through to the other geometry."
+    ],
+    "FaceSelectionMode": [
+      "ECubeGridToolFaceSelectionMode",
+      2,
+      "How the selected face is determined."
+    ]
+  },
+  "methods": []
+}

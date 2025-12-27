@@ -1,0 +1,34 @@
+{
+  "name": "FInputDeviceRay",
+  "isStruct": true,
+  "doc": "FInputDeviceRay represents a 3D ray created based on an input device.\nIf the device is a 2D input device like a mouse, then the ray may\nhave an associated 2D screen position.",
+  "properties": {
+    "WorldRay": [
+      "FRay",
+      1,
+      "3D ray in 3D scene, in world coordinates"
+    ],
+    "bHas2D": [
+      "bool",
+      1,
+      "If true, WorldRay has 2D device position coordinates"
+    ],
+    "ScreenPosition": [
+      "FVector2D",
+      1,
+      "2D device position coordinates associated with the ray"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInputDeviceRay&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInputDeviceRay"
+        }
+      ]
+    }
+  ]
+}

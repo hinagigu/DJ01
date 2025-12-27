@@ -1,0 +1,29 @@
+{
+  "name": "FTemplateSequenceBindingOverrideData",
+  "isStruct": true,
+  "doc": "Template sequence binding override data\n\nThis is similar to FMovieSceneBindingOverrideData, but works only for a template sequence's root object,\nso we don't need it to store the object binding ID.",
+  "properties": {
+    "Object": [
+      "TWeakObjectPtr<UObject>",
+      2,
+      "Specifies the object binding to override."
+    ],
+    "bOverridesDefault": [
+      "bool",
+      2,
+      "Specifies whether the default assignment should remain bound (false) or if this should completely override the default binding (true)."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTemplateSequenceBindingOverrideData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTemplateSequenceBindingOverrideData"
+        }
+      ]
+    }
+  ]
+}

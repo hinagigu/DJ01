@@ -1,0 +1,133 @@
+{
+  "name": "AGameMode",
+  "inherits": "AGameModeBase",
+  "doc": "GameMode is a subclass of GameModeBase that behaves like a multiplayer match-based game.\nIt has default behavior for picking spawn points and match state.\nIf you want a simpler base, inherit from GameModeBase instead.",
+  "properties": {
+    "NumBots": [
+      "int",
+      1,
+      "number of non-human players (AI controlled but participating as a player)."
+    ],
+    "MinRespawnDelay": [
+      "float32",
+      "Minimum time before player can respawn after dying."
+    ],
+    "NumTravellingPlayers": [
+      "int",
+      1,
+      "Number of players that are still traveling from a previous map"
+    ],
+    "InactivePlayerStateLifeSpan": [
+      "float32",
+      2,
+      "Time a playerstate will stick around in an inactive state after a player logout"
+    ],
+    "MaxInactivePlayers": [
+      "int",
+      2,
+      "The maximum number of inactive players before we kick the oldest ones out"
+    ],
+    "bDelayedStart": [
+      "bool",
+      "Whether the game should immediately start when the first player logs in. Affects the default behavior of ReadyToStartMatch"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AbortMatch",
+      "return": "void",
+      "doc": "Report that a match has failed due to unrecoverable error",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EndMatch",
+      "return": "void",
+      "doc": "Transition from InProgress to WaitingPostMatch. You can call this manually, will also get called if ReadyToEndMatch returns true",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMatchState",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns the current match state, this is an accessor to protect the state machine flow",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsMatchInProgress",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the match state is InProgress or other gameplay state",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnSetMatchState",
+      "return": "void",
+      "callable": false,
+      "doc": "Implementable event to respond to match state changes",
+      "event": true,
+      "unrealname": "K2_OnSetMatchState",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewState",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ReadyToEndMatch",
+      "return": "bool",
+      "callable": false,
+      "doc": "Returns true if ready to End Match. Games should override this",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReadyToStartMatch",
+      "return": "bool",
+      "callable": false,
+      "doc": "Returns true if ready to Start Match. Games should override this",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RestartGame",
+      "return": "void",
+      "doc": "Restart the game, by default travel to the current map",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Say",
+      "return": "void",
+      "doc": "Exec command to broadcast a string to all players",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Msg",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "StartMatch",
+      "return": "void",
+      "doc": "Transition from WaitingToStart to InProgress. You can call this manually, will also get called if ReadyToStartMatch returns true",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

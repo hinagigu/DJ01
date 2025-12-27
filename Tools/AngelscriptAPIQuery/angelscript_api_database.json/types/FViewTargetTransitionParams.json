@@ -1,0 +1,35 @@
+{
+  "name": "FViewTargetTransitionParams",
+  "isStruct": true,
+  "doc": "A set of parameters to describe how to transition between view targets.",
+  "properties": {
+    "BlendTime": [
+      "float32",
+      "Total duration of blend to pending view target. 0 means no blending."
+    ],
+    "BlendFunction": [
+      "EViewTargetBlendFunction",
+      "Function to apply to the blend parameter."
+    ],
+    "BlendExp": [
+      "float32",
+      "Exponent, used by certain blend functions to control the shape of the curve."
+    ],
+    "bLockOutgoing": [
+      "bool",
+      "If true, lock outgoing viewtarget to last frame's camera POV for the remainder of the blend.\nThis is useful if you plan to teleport the old viewtarget, but don't want to affect the blend."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FViewTargetTransitionParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FViewTargetTransitionParams"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "UInterchangeGenericMaterialPipeline",
+  "inherits": "UInterchangePipelineBase",
+  "properties": {
+    "PipelineDisplayName": [
+      "FString",
+      "The name of the pipeline that will be display in the import dialog."
+    ],
+    "bImportMaterials": [
+      "bool",
+      "If enabled, imports the material assets found in the sources."
+    ],
+    "SearchLocation": [
+      "EInterchangeMaterialSearchLocation",
+      "Specify where we should search for existing materials when importing."
+    ],
+    "AssetName": [
+      "FString",
+      "If set, and there is only one asset and one source, the imported asset will be given this name."
+    ],
+    "MaterialImport": [
+      "EInterchangeMaterialImportOption",
+      "Determines what kind of material assets should be created for the imported materials."
+    ],
+    "bIdentifyDuplicateMaterials": [
+      "bool",
+      "If set, reference materials along with respective material instances are created."
+    ],
+    "bCreateMaterialInstanceForParent": [
+      "bool",
+      "If set, additional material instances are created for reference/parent materials."
+    ],
+    "ParentMaterial": [
+      "FSoftObjectPath",
+      "Optional material used as the parent when importing materials as instances. If no parent material is specified, one will be automatically selected during the import process."
+    ],
+    "TexturePipeline": [
+      "UInterchangeGenericTexturePipeline"
+    ]
+  },
+  "methods": []
+}

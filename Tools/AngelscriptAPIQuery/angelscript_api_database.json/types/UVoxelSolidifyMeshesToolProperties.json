@@ -1,0 +1,33 @@
+{
+  "name": "UVoxelSolidifyMeshesToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Properties of the solidify operation",
+  "properties": {
+    "WindingThreshold": [
+      "float",
+      2,
+      "Winding number threshold to determine what is consider inside the mesh"
+    ],
+    "ExtendBounds": [
+      "float",
+      2,
+      "How far we allow bounds of solid surface to go beyond the bounds of the original input surface before clamping / cutting the surface off"
+    ],
+    "SurfaceSearchSteps": [
+      "int",
+      2,
+      "How many binary search steps to take when placing vertices on the surface"
+    ],
+    "bSolidAtBoundaries": [
+      "bool",
+      2,
+      "Whether to fill at the border of the bounding box, if the surface extends beyond the voxel boundaries"
+    ],
+    "ThickenShells": [
+      "float",
+      2,
+      "Thicken open-boundary surfaces (extrude them inwards) to ensure they are captured in the VoxWrap output. Units are in world space."
+    ]
+  },
+  "methods": []
+}

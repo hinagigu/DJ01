@@ -1,0 +1,91 @@
+{
+  "name": "UDJ01LoadingScreenWidget",
+  "inherits": "UUserWidget",
+  "doc": "UDJ01LoadingScreenWidget\n\nBase class for loading screen widgets.\nYou can create a Blueprint based on this class and customize the appearance.",
+  "properties": {
+    "CurrentProgress": [
+      "float32",
+      1,
+      ""
+    ],
+    "CurrentTipText": [
+      "FText",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "OnLoadingScreenHidden",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when the loading screen is about to be hidden",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnLoadingScreenShown",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when the loading screen is shown",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnProgressUpdated",
+      "return": "void",
+      "callable": false,
+      "doc": "Override in Blueprint to update progress bar",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Progress",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "OnTipTextUpdated",
+      "return": "void",
+      "callable": false,
+      "doc": "Override in Blueprint to update tip text",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TipText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetLoadingProgress",
+      "return": "void",
+      "doc": "Updates the loading progress (0.0 to 1.0)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Progress",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLoadingTipText",
+      "return": "void",
+      "doc": "Updates the loading tip/message text",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TipText",
+          "type": "FText"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1051 @@
+{
+  "name": "__UMovieSceneSequenceExtensions",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddMarkedFrameToSequence",
+      "return": "int",
+      "doc": "* Add a given user marked frame.\n* A unique label will be generated if the marked frame label is empty\n*\n* @InMarkedFrame The given user marked frame to add\n* @return The index to the newly added marked frame",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InMarkedFrame",
+          "type": "FMovieSceneMarkedFrame"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "AddPossessable",
+      "return": "FMovieSceneBindingProxy",
+      "doc": "Add a new binding to this sequence that will possess the specified object\n\n@param Sequence        The sequence to add a possessable to\n@param ObjectToPossess The object that this sequence should possess when evaluating\n@return A unique identifier for the new binding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "ObjectToPossess",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "AddRootFolderToSequence",
+      "return": "UMovieSceneFolder",
+      "doc": "Add a root folder to the given sequence\n\n@param Sequence                      The sequence to add a folder to\n@param NewFolderName         The name to give the added folder\n@return The newly created folder",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "NewFolderName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AddSpawnableFromClass",
+      "return": "FMovieSceneBindingProxy",
+      "doc": "Add a new binding to this sequence that will spawn the specified object\n\n@param Sequence        The sequence to add to\n@param ClassToSpawn    A class or blueprint type to spawn for this binding\n@return A unique identifier for the new binding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "ClassToSpawn",
+          "type": "UClass"
+        }
+      ]
+    },
+    {
+      "name": "AddSpawnableFromInstance",
+      "return": "FMovieSceneBindingProxy",
+      "doc": "Add a new binding to this sequence that will spawn the specified object\n\n@param Sequence        The sequence to add to\n@param ObjectToSpawn   An object instance to use as a template for spawning\n@return A unique identifier for the new binding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "ObjectToSpawn",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "AddTrack",
+      "return": "UMovieSceneTrack",
+      "doc": "Add a new track of the specified type\n\n@param Sequence        The sequence to use\n@param TrackType     A UMovieSceneTrack class type to create\n@return The newly created track, if successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "TrackType",
+          "type": "TSubclassOf<UMovieSceneTrack>"
+        }
+      ],
+      "outputTypeIndex": 1
+    },
+    {
+      "name": "AreMarkedFramesLocked",
+      "return": "bool",
+      "doc": "* Are marked frames locked\n*\n* @return Whether the movie scene marked frames are locked",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "DeleteMarkedFrame",
+      "return": "void",
+      "doc": "* Delete the user marked frame by index.\n*\n* @DeleteIndex The index to the user marked frame to delete",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "DeleteIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "DeleteMarkedFrames",
+      "return": "void",
+      "doc": "* Delete all user marked frames",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "FindBindingById",
+      "return": "FMovieSceneBindingProxy",
+      "doc": "Attempt to locate a binding in this sequence by its Id\n\n@param Sequence        The sequence within which to find the binding\n@param BindingId       The binding Id to look up\n@return A unique identifier for the binding, or invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "BindingId",
+          "type": "FGuid"
+        }
+      ]
+    },
+    {
+      "name": "FindBindingByName",
+      "return": "FMovieSceneBindingProxy",
+      "doc": "Attempt to locate a binding in this sequence by its name\n\n@param Sequence        The sequence within which to find the binding\n@param Name            The display name of the binding to look up\n@return A unique identifier for the binding, or invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "Name",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "FindMarkedFrameByFrameNumberInSequence",
+      "return": "int",
+      "doc": "* Find the user marked frame by frame number\n*\n* @InFrameNumber The frame number of the user marked frame to find",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InFrameNumber",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "FindMarkedFrameByLabel",
+      "return": "int",
+      "doc": "* Find the user marked frame by label\n*\n* @InLabel The label to the user marked frame to find",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InLabel",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "FindNextMarkedFrameInSequence",
+      "return": "int",
+      "doc": "* Find the next/previous user marked frame from the given frame number\n*\n* @InFrameNumber The frame number to find the next/previous user marked frame from\n* @bForward Find forward from the given frame number.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InFrameNumber",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "bForward",
+          "type": "bool"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "FindTracksByExactType",
+      "return": "TArray<UMovieSceneTrack>",
+      "doc": "Find all tracks of the specified type, not allowing sub-classed types\n\n@param Sequence        The sequence to use\n@param TrackType     A UMovieSceneTrack class type specifying the exact types of track to return\n@return An array containing any tracks that are exactly the same as the type specified",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "TrackType",
+          "type": "TSubclassOf<UMovieSceneTrack>"
+        }
+      ],
+      "outputTypeIndex": 1
+    },
+    {
+      "name": "FindTracksByType",
+      "return": "TArray<UMovieSceneTrack>",
+      "doc": "Find all tracks of the specified type\n\n@param Sequence        The sequence to use\n@param TrackType     A UMovieSceneTrack class type specifying which types of track to return\n@return An array containing any tracks that match the type specified",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "TrackType",
+          "type": "TSubclassOf<UMovieSceneTrack>"
+        }
+      ],
+      "outputTypeIndex": 1
+    },
+    {
+      "name": "GetBindingID",
+      "return": "FMovieSceneObjectBindingID",
+      "doc": "Get the binding ID for a binding within a sequence.\n@note: The resulting binding is only valid when applied to properties within the same sequence as this binding. Use GetPortableBindingID for bindings which live in different sub-sequences.\n\n@param Binding The binding proxy to generate the binding id from\n@return The binding's id",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "GetBindings",
+      "return": "TArray<FMovieSceneBindingProxy>",
+      "doc": "Get all the bindings in this sequence\n\n@param Sequence        The sequence to get bindings for\n@return An array of unique identifiers for all the bindings in this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetClockSource",
+      "return": "EUpdateClockSource",
+      "doc": "Get the clock source for this sequence\n\n@param Sequence The sequence within which to get the clock source\n@return The clock source for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetDisplayRate",
+      "return": "FFrameRate",
+      "doc": "Gets this sequence's display rate\n\n@param Sequence        The sequence to use\n@return The display rate that this sequence is displayed as",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetEvaluationType",
+      "return": "EMovieSceneEvaluationType",
+      "doc": "Get the evaluation type for this sequence\n\n@param Sequence The sequence within which to get the evaluation type\n@return The evaluation type for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetMarkedFramesFromSequence",
+      "return": "TArray<FMovieSceneMarkedFrame>",
+      "doc": "* Get the marked frames for this sequence\n*\n* @return Return the user marked frames",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetMovieScene",
+      "return": "UMovieScene",
+      "doc": "Get this sequence's movie scene data\n\n@param Sequence        The sequence to use\n@return This sequence's movie scene data object",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetPlaybackEnd",
+      "return": "int",
+      "doc": "Get playback end of this sequence in display rate resolution\n\n@param Sequence        The sequence within which to get the playback end\n@return Playback end of this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetPlaybackEndSeconds",
+      "return": "float32",
+      "doc": "Get playback end of this sequence in seconds\n\n@param Sequence        The sequence within which to get the playback end\n@return Playback end of this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetPlaybackRange",
+      "return": "FSequencerScriptingRange",
+      "doc": "Get playback range of this sequence in display rate resolution\n\n@param Sequence        The sequence within which to get the playback range\n@return Playback range of this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetPlaybackStart",
+      "return": "int",
+      "doc": "Get playback start of this sequence in display rate resolution\n\n@param Sequence        The sequence within which to get the playback start\n@return Playback start of this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetPlaybackStartSeconds",
+      "return": "float32",
+      "doc": "Get playback start of this sequence in seconds\n\n@param Sequence        The sequence within which to get the playback start\n@return Playback start of this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetPortableBindingID",
+      "return": "FMovieSceneObjectBindingID",
+      "doc": "Get a portable binding ID for a binding that resides in a different sequence to the one where this binding will be resolved.\n@note: This function must be used over GetBindingID when the target binding resides in different shots or sub-sequences.\n@note: Only unique instances of sequences within a root sequences are supported\n\n@param RootSequence The root sequence that contains both the destination sequence (that will resolve the binding ID) and the target sequence that contains the actual binding\n@param DestinationSequence The sequence that will own or resolve the resulting binding ID. For example, if the binding ID will be applied to a camera cut section pass the sequence that contains the camera cut track to this parameter.\n@param Binding The target binding to create the ID from\n@return The binding's id",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RootSequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "DestinationSequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "GetPossessables",
+      "return": "TArray<FMovieSceneBindingProxy>",
+      "doc": "Get all the possessables in this sequence\n\n@param Sequence        The sequence to get possessables for\n@return Possessables in this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetRootFoldersInSequence",
+      "return": "TArray<UMovieSceneFolder>",
+      "doc": "Get the root folders in the provided sequence\n\n@param Sequence      The sequence to retrieve folders from\n@return The folders contained within the given sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetSpawnables",
+      "return": "TArray<FMovieSceneBindingProxy>",
+      "doc": "Get all the spawnables in this sequence\n\n@param Sequence        The sequence to get spawnables for\n@return Spawnables in this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetTickResolution",
+      "return": "FFrameRate",
+      "doc": "Gets this sequence's tick resolution\n\n@param Sequence        The sequence to use\n@return The tick resolution of the sequence, defining the smallest unit of time representable on this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetTracks",
+      "return": "TArray<UMovieSceneTrack>",
+      "doc": "Get all tracks\n\n@param Sequence        The sequence to use\n@return An array containing all tracks in this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetViewRangeEnd",
+      "return": "float",
+      "doc": "Get the sequence view range end in seconds\n\n@param Sequence The sequence within which to get the view range end\n@return The view range end time in seconds for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetViewRangeStart",
+      "return": "float",
+      "doc": "Get the sequence view range start in seconds\n\n@param Sequence The sequence within which to get the view range start\n@return The view range start time in seconds for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetWorkRangeEnd",
+      "return": "float",
+      "doc": "Get the sequence work range end in seconds\n\n@param Sequence The sequence within which to get the work range end\n@return The work range end time in seconds for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetWorkRangeStart",
+      "return": "float",
+      "doc": "Get the sequence work range start in seconds\n\n@param Sequence The sequence within which to get the work range start\n@return The work range start time in seconds for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "IsPlaybackRangeLocked",
+      "return": "bool",
+      "doc": "* Is playback ranged locked\n*\n* @return Whether the movie scene playback range is locked",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "IsReadOnly",
+      "return": "bool",
+      "doc": "* Is read only\n*\n* @return Whether the movie scene is read only or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "LocateBoundObjects",
+      "return": "TArray<UObject>",
+      "doc": "Locate all the objects that correspond to the specified object ID, using the specified context\n\n@param Sequence   The sequence to locate bound objects for\n@param InBinding  The object binding\n@param Context    Optional context to use to find the required object\n@return An array of all bound objects",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "Context",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "MakeRange",
+      "return": "FSequencerScriptingRange",
+      "doc": "Make a new range for this sequence in its display rate\n\n@param Sequence        The sequence within which to find the binding\n@param StartFrame      The frame at which to start the range\n@param Duration        The length of the range\n@return Specified sequencer range",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "StartFrame",
+          "type": "int"
+        },
+        {
+          "name": "Duration",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "MakeRangeSeconds",
+      "return": "FSequencerScriptingRange",
+      "doc": "Make a new range for this sequence in seconds\n\n@param Sequence        The sequence within which to find the binding\n@param StartTime       The time in seconds at which to start the range\n@param Duration        The length of the range in seconds\n@return Specified sequencer range",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "StartTime",
+          "type": "float32"
+        },
+        {
+          "name": "Duration",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RemoveRootFolderFromSequence",
+      "return": "void",
+      "doc": "Remove a root folder from the given sequence. Will throw an exception if the specified folder is not valid or not a root folder.\n\n@param Sequence                      The sequence That the folder belongs to\n@param Folder                        The folder to remove",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "Folder",
+          "type": "UMovieSceneFolder"
+        }
+      ]
+    },
+    {
+      "name": "RemoveTrack",
+      "return": "bool",
+      "doc": "Removes a track\n\n@param Sequence        The sequence to use\n@param Track           The track to remove\n@return Whether the track was successfully removed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "Track",
+          "type": "UMovieSceneTrack"
+        }
+      ]
+    },
+    {
+      "name": "ResolveBindingID",
+      "return": "FMovieSceneBindingProxy",
+      "doc": "Make a binding for the given binding ID\n\n@param RootSequence  The root sequence that contains the sequence\n@param ObjectBindingID The object binding id that has the guid and the sequence id\n@return The new binding proxy",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RootSequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InObjectBindingID",
+          "type": "FMovieSceneObjectBindingID"
+        }
+      ]
+    },
+    {
+      "name": "SetClockSource",
+      "return": "void",
+      "doc": "Set the clock source for this sequence\n\n@param Sequence The sequence within which to set the clock source\n@param InClockSource The clock source to set for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InClockSource",
+          "type": "EUpdateClockSource"
+        }
+      ]
+    },
+    {
+      "name": "SetDisplayRate",
+      "return": "void",
+      "doc": "Sets this sequence's display rate\n\n@param Sequence        The sequence to use\n@param DisplayRate The display rate that this sequence is displayed as",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "DisplayRate",
+          "type": "FFrameRate"
+        }
+      ]
+    },
+    {
+      "name": "SetEvaluationType",
+      "return": "void",
+      "doc": "Set the evaluation type for this sequence\n\n@param Sequence The sequence within which to set the evaluation type\n@param InEvaluationType The evaluation type to set for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InEvaluationType",
+          "type": "EMovieSceneEvaluationType"
+        }
+      ]
+    },
+    {
+      "name": "SetMarkedFrameInSequence",
+      "return": "void",
+      "doc": "* Sets the frame number for the given marked frame index. Does not maintain sort. Call SortMarkedFrames\n*\n* @InMarkIndex The given user marked frame index to edit\n* @InFrameNumber The frame number to set",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InMarkIndex",
+          "type": "int"
+        },
+        {
+          "name": "InFrameNumber",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetMarkedFramesLocked",
+      "return": "void",
+      "doc": "* Set marked frames locked\n*\n* @bInLocked Whether the movie scene marked frames should be locked",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "bInLocked",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackEnd",
+      "return": "void",
+      "doc": "Set playback end of this sequence\n\n@param Sequence        The sequence within which to set the playback end\n@param EndFrame        The desired end frame for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "EndFrame",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackEndSeconds",
+      "return": "void",
+      "doc": "Set playback end of this sequence in seconds\n\n@param Sequence        The sequence within which to set the playback end\n@param EndTime         The desired end time in seconds for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "EndTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackRangeLocked",
+      "return": "void",
+      "doc": "* Set playback range locked\n*\n* @bInLocked Whether the movie scene playback range should be locked",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "bInLocked",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackStart",
+      "return": "void",
+      "doc": "Set playback start of this sequence\n\n@param Sequence        The sequence within which to set the playback start\n@param StartFrame      The desired start frame for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "StartFrame",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackStartSeconds",
+      "return": "void",
+      "doc": "Set playback start of this sequence in seconds\n\n@param Sequence        The sequence within which to set the playback start\n@param StartTime       The desired start time in seconds for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "StartTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetReadOnly",
+      "return": "void",
+      "doc": "* Set read only\n*\n* @bInReadOnly Whether the movie scene should be read only or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "bInReadOnly",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTickResolution",
+      "return": "void",
+      "doc": "Sets this sequence's tick resolution and migrates frame times\n\n@param Sequence        The sequence to use\n@param TickResolution The tick resolution of the sequence, defining the smallest unit of time representable on this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "TickResolution",
+          "type": "FFrameRate"
+        }
+      ]
+    },
+    {
+      "name": "SetTickResolutionDirectly",
+      "return": "void",
+      "doc": "Sets this sequence's tick resolution directly without migrating frame times\n\n@param Sequence        The sequence to use\n@param TickResolution The tick resolution of the sequence, defining the smallest unit of time representable on this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "TickResolution",
+          "type": "FFrameRate"
+        }
+      ]
+    },
+    {
+      "name": "SetViewRangeEnd",
+      "return": "void",
+      "doc": "Set the sequence view range end in seconds\n\n@param Sequence The sequence within which to set the view range end\n@param StartTimeInSeconds The desired view range end time in seconds for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "EndTimeInSeconds",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetViewRangeStart",
+      "return": "void",
+      "doc": "Set the sequence view range start in seconds\n\n@param Sequence The sequence within which to set the view range start\n@param StartTimeInSeconds The desired view range start time in seconds for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "StartTimeInSeconds",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetWorkRangeEnd",
+      "return": "void",
+      "doc": "Set the sequence work range end in seconds\n\n@param Sequence The sequence within which to set the work range end\n@param StartTimeInSeconds The desired work range end time in seconds for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "EndTimeInSeconds",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetWorkRangeStart",
+      "return": "void",
+      "doc": "Set the sequence work range start in seconds\n\n@param Sequence The sequence within which to set the work range start\n@param StartTimeInSeconds The desired work range start time in seconds for this sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "StartTimeInSeconds",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SortMarkedFrames",
+      "return": "void",
+      "doc": "* Sort the marked frames in chronological order",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "UMovieSceneSequence"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

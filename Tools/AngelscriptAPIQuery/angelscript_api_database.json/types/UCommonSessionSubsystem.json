@@ -1,0 +1,117 @@
+{
+  "name": "UCommonSessionSubsystem",
+  "inherits": "UGameInstanceSubsystem",
+  "doc": "Game subsystem that handles requests for hosting and joining online games.\nOne subsystem is created for each game instance and can be accessed from blueprints or C++ code.\nIf a game-specific subclass exists, this base subsystem will not be created.",
+  "properties": {
+    "K2_OnUserRequestedSessionEvent": [
+      "FCommonSessionOnUserRequestedSession_Dynamic",
+      "Event broadcast when a local user has accepted an invite"
+    ],
+    "K2_OnJoinSessionCompleteEvent": [
+      "FCommonSessionOnJoinSessionComplete_Dynamic",
+      "Event broadcast when a JoinSession call has completed"
+    ],
+    "K2_OnCreateSessionCompleteEvent": [
+      "FCommonSessionOnCreateSessionComplete_Dynamic",
+      "Event broadcast when a CreateSession call has completed"
+    ],
+    "K2_OnSessionInformationChangedEvent": [
+      "FCommonSessionOnSessionInformationChanged_Dynamic",
+      "Event broadcast when the presentable session information has changed"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CleanUpSessions",
+      "return": "void",
+      "doc": "Clean up any active sessions, called from cases like returning to the main menu",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CreateOnlineHostSessionRequest",
+      "return": "UCommonSession_HostSessionRequest",
+      "doc": "Creates a host session request with default options for online games, this can be modified after creation",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CreateOnlineSearchSessionRequest",
+      "return": "UCommonSession_SearchSessionRequest",
+      "doc": "Creates a session search object with default options to look for default online games, this can be modified after creation",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FindSessions",
+      "return": "void",
+      "doc": "Queries online system for the list of joinable sessions matching the search request",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SearchingPlayer",
+          "type": "APlayerController"
+        },
+        {
+          "name": "Request",
+          "type": "UCommonSession_SearchSessionRequest"
+        }
+      ]
+    },
+    {
+      "name": "HostSession",
+      "return": "void",
+      "doc": "Creates a new online game using the session request information, if successful this will start a hard map transfer",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HostingPlayer",
+          "type": "APlayerController"
+        },
+        {
+          "name": "Request",
+          "type": "UCommonSession_HostSessionRequest"
+        }
+      ]
+    },
+    {
+      "name": "JoinSession",
+      "return": "void",
+      "doc": "Starts process to join an existing session, if successful this will connect to the specified server",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "JoiningPlayer",
+          "type": "APlayerController"
+        },
+        {
+          "name": "Request",
+          "type": "UCommonSession_SearchResult"
+        }
+      ]
+    },
+    {
+      "name": "QuickPlaySession",
+      "return": "void",
+      "doc": "Starts a process to look for existing sessions or create a new one if no viable sessions are found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "JoiningOrHostingPlayer",
+          "type": "APlayerController"
+        },
+        {
+          "name": "Request",
+          "type": "UCommonSession_HostSessionRequest"
+        }
+      ]
+    }
+  ]
+}

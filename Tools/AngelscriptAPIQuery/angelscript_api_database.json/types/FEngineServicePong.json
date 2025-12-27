@@ -1,0 +1,54 @@
+{
+  "name": "FEngineServicePong",
+  "isStruct": true,
+  "doc": "Implements a message for responding to a request to discover engine instances on the network.",
+  "properties": {
+    "CurrentLevel": [
+      "FString",
+      2,
+      "Holds the name of the currently loaded level, if any."
+    ],
+    "EngineVersion": [
+      "int",
+      2,
+      "Holds the engine version."
+    ],
+    "HasBegunPlay": [
+      "bool",
+      2,
+      "Holds a flag indicating whether game play has begun."
+    ],
+    "InstanceId": [
+      "FGuid",
+      2,
+      "Holds the instance identifier."
+    ],
+    "InstanceType": [
+      "FString",
+      2,
+      "Holds the type of the engine instance."
+    ],
+    "SessionId": [
+      "FGuid",
+      2,
+      "Holds the identifier of the session that the application belongs to."
+    ],
+    "WorldTimeSeconds": [
+      "float32",
+      2,
+      "Holds the time in seconds since the world was loaded."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FEngineServicePong&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FEngineServicePong"
+        }
+      ]
+    }
+  ]
+}

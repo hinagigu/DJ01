@@ -1,0 +1,62 @@
+{
+  "name": "UActorRecording",
+  "inherits": "USequenceRecordingBase",
+  "properties": {
+    "ActorSettings": [
+      "FActorRecordingSettings",
+      2,
+      ""
+    ],
+    "bActive": [
+      "bool",
+      2,
+      "Whether this actor is active and to be recorded when the 'Record' button is pressed."
+    ],
+    "bCreateLevelSequence": [
+      "bool",
+      2,
+      "Whether to create a level sequence for this actor recording"
+    ],
+    "TargetLevelSequence": [
+      "ULevelSequence",
+      2,
+      "The level sequence to record into"
+    ],
+    "TargetName": [
+      "FText",
+      2,
+      "Optional target name to record to. If not specified, the actor label will be used"
+    ],
+    "TakeNumber": [
+      "uint",
+      2,
+      "Specify the take number for the new recording"
+    ],
+    "bSpecifyTargetAnimation": [
+      "bool",
+      2,
+      "Whether we should specify the target animation or auto-create it"
+    ],
+    "TargetAnimation": [
+      "UAnimSequence",
+      2,
+      "The target animation we want to record to"
+    ],
+    "AnimationSettings": [
+      "FAnimationRecordingSettings",
+      2,
+      "The settings to apply to this actor's animation"
+    ],
+    "bRecordToPossessable": [
+      "bool",
+      2,
+      "Whether to record to 'possessable' (i.e. level-owned) or 'spawnable' (i.e. sequence-owned) actors. Defaults to the global setting."
+    ],
+    "ActorToRecord": [
+      "TSoftObjectPtr<AActor>",
+      2,
+      "The actor we want to record"
+    ]
+  },
+  "methods": []
+}

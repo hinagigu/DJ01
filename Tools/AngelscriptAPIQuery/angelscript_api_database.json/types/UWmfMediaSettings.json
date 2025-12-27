@@ -1,0 +1,28 @@
+{
+  "name": "UWmfMediaSettings",
+  "inherits": "UObject",
+  "doc": "Settings for the WmfMedia plug-in.",
+  "properties": {
+    "AllowNonStandardCodecs": [
+      "bool",
+      2,
+      "Whether to allow the loading of media that uses non-standard codecs (default = off).\n\nBy default, the player will attempt to detect audio and video codecs that\nare not supported by the operating system out of the box, but may require\nthe user to install additional codec packs. Enable this option to skip\nthis check and allow the usage of non-standard codecs."
+    ],
+    "LowLatency": [
+      "bool",
+      2,
+      "Enable low latency processing in the Windows media pipeline (default = off).\n\nWhen this setting is enabled, the media data is generated with the lowest\npossible delay. This might be desirable for certain real-time applications,\nbut it can negatively affect audio and video quality.\n\n@note This setting is only supported on Windows 8 or newer"
+    ],
+    "NativeAudioOut": [
+      "bool",
+      2,
+      "Play audio tracks via the operating system's native sound mixer (default = off)."
+    ],
+    "HardwareAcceleratedVideoDecoding": [
+      "bool",
+      2,
+      "Use hardware accelerated video acceleration (GPU) when possible otherwise fallback to software implementation (CPU), Windows and DX11 only."
+    ]
+  },
+  "methods": []
+}

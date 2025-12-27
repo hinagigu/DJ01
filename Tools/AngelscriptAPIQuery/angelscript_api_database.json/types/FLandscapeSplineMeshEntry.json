@@ -1,0 +1,56 @@
+{
+  "name": "FLandscapeSplineMeshEntry",
+  "isStruct": true,
+  "properties": {
+    "Mesh": [
+      "UStaticMesh",
+      2,
+      "Mesh to use on the spline"
+    ],
+    "MaterialOverrides": [
+      "TArray<TObjectPtr<UMaterialInterface>>",
+      2,
+      "Overrides mesh's materials"
+    ],
+    "CenterAdjust": [
+      "FVector2D",
+      2,
+      "Tweak to center the mesh correctly on the spline"
+    ],
+    "Scale": [
+      "FVector",
+      2,
+      "Scale of the spline mesh, (Z=Forwards)"
+    ],
+    "ForwardAxis": [
+      "ESplineMeshAxis",
+      2,
+      "Chooses the forward axis for the spline mesh orientation"
+    ],
+    "UpAxis": [
+      "ESplineMeshAxis",
+      2,
+      "Chooses the up axis for the spline mesh orientation"
+    ],
+    "bCenterH": [
+      "bool",
+      "Whether to automatically center the mesh horizontally on the spline"
+    ],
+    "bScaleToWidth": [
+      "bool",
+      "Whether to scale the mesh to fit the width of the spline"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLandscapeSplineMeshEntry&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLandscapeSplineMeshEntry"
+        }
+      ]
+    }
+  ]
+}

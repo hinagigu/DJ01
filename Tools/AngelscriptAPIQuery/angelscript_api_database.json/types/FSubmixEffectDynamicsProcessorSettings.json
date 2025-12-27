@@ -1,0 +1,98 @@
+{
+  "name": "FSubmixEffectDynamicsProcessorSettings",
+  "isStruct": true,
+  "doc": "Submix dynamics processor settings",
+  "properties": {
+    "DynamicsProcessorType": [
+      "ESubmixEffectDynamicsProcessorType",
+      "Type of processor to apply"
+    ],
+    "PeakMode": [
+      "ESubmixEffectDynamicsPeakMode",
+      "Mode of peak detection used on input key signal"
+    ],
+    "LinkMode": [
+      "ESubmixEffectDynamicsChannelLinkMode",
+      "Mode of peak detection if key signal is multi-channel"
+    ],
+    "InputGainDb": [
+      "float32",
+      "The input gain of the dynamics processor"
+    ],
+    "ThresholdDb": [
+      "float32",
+      "The threshold at which to perform a dynamics processing operation"
+    ],
+    "Ratio": [
+      "float32",
+      "The dynamics processor ratio used for compression/expansion"
+    ],
+    "KneeBandwidthDb": [
+      "float32",
+      "The knee bandwidth of the processor to use"
+    ],
+    "LookAheadMsec": [
+      "float32",
+      "The amount of time to look ahead of the current audio (Allows for transients to be included in dynamics processing)"
+    ],
+    "AttackTimeMsec": [
+      "float32",
+      "The amount of time to ramp into any dynamics processing effect"
+    ],
+    "ReleaseTimeMsec": [
+      "float32",
+      "The amount of time to release the dynamics processing effect"
+    ],
+    "KeySource": [
+      "ESubmixEffectDynamicsKeySource"
+    ],
+    "ExternalAudioBus": [
+      "UAudioBus",
+      "If set, uses output of provided audio bus as modulator of input signal for dynamics processor (Uses input signal as default modulator)"
+    ],
+    "ExternalSubmix": [
+      "USoundSubmix",
+      "If set, uses output of provided submix as modulator of input signal for dynamics processor (Uses input signal as default modulator)"
+    ],
+    "KeyGainDb": [
+      "float32",
+      "Gain to apply to key signal if key source not set to default (input)."
+    ],
+    "OutputGainDb": [
+      "float32",
+      "The output gain of the dynamics processor"
+    ],
+    "KeyHighshelf": [
+      "FSubmixEffectDynamicProcessorFilterSettings",
+      "High Shelf filter settings for key signal (external signal if supplied or input signal if not)"
+    ],
+    "KeyLowshelf": [
+      "FSubmixEffectDynamicProcessorFilterSettings",
+      "Low Shelf filter settings for key signal (external signal if supplied or input signal if not)"
+    ],
+    "bAnalogMode": [
+      "bool",
+      "Toggles treating the attack and release envelopes as analog-style vs digital-style (Analog will respond a bit more naturally/slower)"
+    ],
+    "bBypass": [
+      "bool",
+      "Whether or not to bypass effect"
+    ],
+    "bKeyAudition": [
+      "bool",
+      "Audition the key modulation signal, bypassing enveloping and processing the input signal."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSubmixEffectDynamicsProcessorSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSubmixEffectDynamicsProcessorSettings"
+        }
+      ]
+    }
+  ]
+}

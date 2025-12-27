@@ -1,0 +1,100 @@
+{
+  "name": "FSkeletalMeshLODInfo",
+  "isStruct": true,
+  "doc": "Struct containing information for a particular LOD level, such as materials and info for when to use it.",
+  "properties": {
+    "ScreenSize": [
+      "FPerPlatformFloat",
+      2,
+      "ScreenSize to display this LOD.\nThe screen size is based around the projected diameter of the bounding\nsphere of the model. i.e. 0.5 means half the screen's maximum dimension."
+    ],
+    "LODHysteresis": [
+      "float32",
+      2,
+      "Used to avoid 'flickering' when on LOD boundary. Only taken into account when moving from complex->simple."
+    ],
+    "BuildSettings": [
+      "FSkeletalMeshBuildSettings",
+      2,
+      "build settings to apply when building render data."
+    ],
+    "ReductionSettings": [
+      "FSkeletalMeshOptimizationSettings",
+      2,
+      "Reduction settings to apply when building render data."
+    ],
+    "BonesToRemove": [
+      "TArray<FBoneReference>",
+      2,
+      "Bones which should be removed from the skeleton for the LOD level"
+    ],
+    "BonesToPrioritize": [
+      "TArray<FBoneReference>",
+      2,
+      "Bones which should be prioritized for the quality, this will be weighted toward keeping source data. Use WeightOfPrioritization to control the value."
+    ],
+    "SectionsToPrioritize": [
+      "TArray<FSectionReference>",
+      2,
+      "Sections which should be prioritized for the quality, this will be weighted toward keeping source data. Use WeightOfPrioritization to control the value."
+    ],
+    "WeightOfPrioritization": [
+      "float32",
+      2,
+      "How much to consideration to give BonesToPrioritize and SectionsToPrioritize.  The weight is an additional vertex simplification penalty where 0 means nothing."
+    ],
+    "BakePose": [
+      "UAnimSequence",
+      2,
+      "Pose which should be used to reskin vertex influences for which the bones will be removed in this LOD level, uses ref-pose by default"
+    ],
+    "BakePoseOverride": [
+      "UAnimSequence",
+      2,
+      "This is used when you are sharing the LOD settings, but you'd like to override the BasePose. This precedes prior to BakePose"
+    ],
+    "SkinCacheUsage": [
+      "ESkinCacheUsage",
+      2,
+      "How this LOD uses the skin cache feature. Auto will defer to the default project global option. If Support Ray Tracing is enabled on the mesh, will imply Enabled"
+    ],
+    "MorphTargetPositionErrorTolerance": [
+      "float32",
+      2,
+      "The Morph target position error tolerance in microns. Larger values result in better compression and lower memory footprint, but also lower quality."
+    ],
+    "VertexAttributes": [
+      "TArray<FSkeletalMeshVertexAttributeInfo>",
+      2,
+      "List of vertex attributes to include for rendering and what type they should be"
+    ],
+    "bAllowCPUAccess": [
+      "bool",
+      "Keeps this LODs data on the CPU so it can be used for things such as sampling in FX."
+    ],
+    "bBuildHalfEdgeBuffers": [
+      "bool",
+      "If true, we will cache/cook half edge data that provides vertex connectivity information across material sections, which\nmay be useful for other systems like Mesh Deformer."
+    ],
+    "bAllowMeshDeformer": [
+      "bool",
+      "Whether a Mesh Deformer applied to the mesh asset or Skinned Mesh Component should be used on this LOD or not"
+    ],
+    "bSupportUniformlyDistributedSampling": [
+      "bool",
+      "Mesh supports uniformly distributed sampling in constant time.\nMemory cost is 8 bytes per triangle.\nExample usage is uniform spawning of particles."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSkeletalMeshLODInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSkeletalMeshLODInfo"
+        }
+      ]
+    }
+  ]
+}

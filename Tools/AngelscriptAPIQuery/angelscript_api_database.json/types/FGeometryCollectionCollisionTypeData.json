@@ -1,0 +1,48 @@
+{
+  "name": "FGeometryCollectionCollisionTypeData",
+  "isStruct": true,
+  "properties": {
+    "CollisionType": [
+      "ECollisionTypeEnum",
+      2,
+      "*  CollisionType defines how to initialize the rigid collision structures."
+    ],
+    "ImplicitType": [
+      "EImplicitTypeEnum",
+      2,
+      "*  CollisionType defines how to initialize the rigid collision structures."
+    ],
+    "LevelSet": [
+      "FGeometryCollectionLevelSetData",
+      2,
+      "*  LevelSet Resolution data for rasterization."
+    ],
+    "CollisionParticles": [
+      "FGeometryCollectionCollisionParticleData",
+      2,
+      "*  Collision Particle data for surface samples during Particle-LevelSet collisions."
+    ],
+    "CollisionObjectReductionPercentage": [
+      "float32",
+      2,
+      "*  Uniform scale on the collision body. (def: 0)"
+    ],
+    "CollisionMarginFraction": [
+      "float32",
+      2,
+      "A collision margin is a fraction of size used by some boxes and convex shapes to improve collision detection results.\nThe core geometry of shapes that support a margin are reduced in size by the margin, and the margin\nis added back on during collision detection. The net result is a shape of the same size but with rounded corners."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGeometryCollectionCollisionTypeData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGeometryCollectionCollisionTypeData"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,534 @@
+{
+  "name": "UParticleSystemComponent",
+  "inherits": "UFXSystemComponent",
+  "doc": "A particle emitter.",
+  "properties": {
+    "LODMethod": [
+      "ParticleSystemLODMethod",
+      "The method of LOD level determination to utilize for this particle system"
+    ],
+    "InstanceParameters": [
+      "TArray<FParticleSysParam>",
+      "Array holding name instance parameters for this ParticleSystemComponent.\nParameters can be used in Cascade using DistributionFloat/VectorParticleParameters."
+    ],
+    "OnParticleSpawn": [
+      "FParticleSpawnSignature"
+    ],
+    "OnParticleBurst": [
+      "FParticleBurstSignature"
+    ],
+    "OnParticleDeath": [
+      "FParticleDeathSignature"
+    ],
+    "OnParticleCollide": [
+      "FParticleCollisionSignature"
+    ],
+    "SecondsBeforeInactive": [
+      "float32",
+      "Number of seconds of emitter not being rendered that need to pass before it\nno longer gets ticked/ becomes inactive."
+    ],
+    "CustomTimeDilation": [
+      "float32",
+      "Scales DeltaTime in UParticleSystemComponent::Tick(...)"
+    ],
+    "AutoAttachParent": [
+      "TWeakObjectPtr<USceneComponent>",
+      "Component we automatically attach to when activated, if bAutoManageAttachment is true.\nIf null during registration, we assign the existing AttachParent and defer attachment until we activate.\n@see bAutoManageAttachment"
+    ],
+    "AutoAttachSocketName": [
+      "FName",
+      "Socket we automatically attach to on the AutoAttachParent, if bAutoManageAttachment is true.\nIf no auto attach socket name is set during registration, the current attach socket will be\nassigned to AutoAttachSocketName and used when activated.\n@see bAutoManageAttachment"
+    ],
+    "AutoAttachLocationRule": [
+      "EAttachmentRule",
+      "Options for how we handle our location when we attach to the AutoAttachParent, if bAutoManageAttachment is true.\n@see bAutoManageAttachment, EAttachmentRule"
+    ],
+    "AutoAttachRotationRule": [
+      "EAttachmentRule",
+      "Options for how we handle our rotation when we attach to the AutoAttachParent, if bAutoManageAttachment is true.\n@see bAutoManageAttachment, EAttachmentRule"
+    ],
+    "AutoAttachScaleRule": [
+      "EAttachmentRule",
+      "Options for how we handle our scale when we attach to the AutoAttachParent, if bAutoManageAttachment is true.\n@see bAutoManageAttachment, EAttachmentRule"
+    ],
+    "OnSystemFinished": [
+      "FOnSystemFinished",
+      "Called when the particle system is done"
+    ],
+    "Template": [
+      "UParticleSystem"
+    ],
+    "bResetOnDetach": [
+      "bool"
+    ],
+    "bAllowRecycling": [
+      "bool",
+      "If true, this Particle System will be available for recycling after it has completed. Auto-destroyed systems cannot be recycled.\nSome systems (currently particle trail effects) can recycle components to avoid respawning them to play new effects.\nThis is only an optimization and does not change particle system behavior, aside from not triggering normal component initialization events more than once."
+    ],
+    "bAutoManageAttachment": [
+      "bool",
+      "True if we should automatically attach to AutoAttachParent when activated, and detach from our parent when completed.\nThis overrides any current attachment that may be present at the time of activation (deferring initial attachment until activation, if AutoAttachParent is null).\nWhen enabled, detachment occurs regardless of whether AutoAttachParent is assigned, and the relative transform from the time of activation is restored.\nThis also disables attachment on dedicated servers, where we don't actually activate even if bAutoActivate is true.\n@see AutoAttachParent, AutoAttachSocketName, AutoAttachLocationType"
+    ],
+    "bAutoAttachWeldSimulatedBodies": [
+      "bool",
+      "Option for how we handle bWeldSimulatedBodies when we attach to the AutoAttachParent, if bAutoManageAttachment is true.\n@see bAutoManageAttachment"
+    ],
+    "bOverrideLODMethod": [
+      "bool",
+      "indicates that the component's LODMethod overrides the Template's"
+    ]
+  },
+  "methods": [
+    {
+      "name": "BeginTrails",
+      "return": "void",
+      "doc": "Begins all trail emitters in this component.\n\n@param        InFirstSocketName       The name of the first socket for the trail.\n@param        InSecondSocketName      The name of the second socket for the trail.\n@param        InWidthMode                     How the width value is applied to the trail.\n@param        InWidth                         The width of the trail.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFirstSocketName",
+          "type": "FName"
+        },
+        {
+          "name": "InSecondSocketName",
+          "type": "FName"
+        },
+        {
+          "name": "InWidthMode",
+          "type": "ETrailWidthMode"
+        },
+        {
+          "name": "InWidth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CreateNamedDynamicMaterialInstance",
+      "return": "UMaterialInstanceDynamic",
+      "doc": "Creates a Dynamic Material Instance for the specified named material override, optionally from the supplied material.\n@param Name - The slot name of the material to replace.  If invalid, the material is unchanged and NULL is returned.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "SourceMaterial",
+          "default": "nullptr",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "EndTrails",
+      "return": "void",
+      "doc": "Ends all trail emitters in this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GenerateParticleEvent",
+      "return": "void",
+      "doc": "Record a kismet event.\n\n@param  InEventName                             The name of the event that fired.\n@param  InEmitterTime                   The emitter time when the event fired.\n@param  InLocation                              The location of the particle when the event fired.\n@param  InVelocity                              The velocity of the particle when the event fired.\n@param  InNormal                                Normal vector of the collision in coordinate system of the returner. Zero=none.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InEventName",
+          "type": "FName"
+        },
+        {
+          "name": "InEmitterTime",
+          "type": "float32"
+        },
+        {
+          "name": "InLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "InDirection",
+          "type": "FVector"
+        },
+        {
+          "name": "InVelocity",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "GetBeamEndPoint",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the beam end point\n\n@param  EmitterIndex            The index of the emitter to get the value of\n\n@return true            EmitterIndex is valid and End point is set - OutEndPoint is valid\n                false           EmitterIndex invalid or End point is not set - OutEndPoint is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutEndPoint",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetBeamSourcePoint",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the beam source point\n\n@param  EmitterIndex            The index of the emitter to get\n@param  SourceIndex                     Which beam within the emitter to get\n@param  OutSourcePoint          Value of source point\n\n@return true            EmitterIndex and SourceIndex are valid - OutSourcePoint is valid\n                false           EmitterIndex or SourceIndex is invalid - OutSourcePoint is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "SourceIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutSourcePoint",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetBeamSourceStrength",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the beam source strength\n\n@param  EmitterIndex            The index of the emitter to get\n@param  SourceIndex                     Which beam within the emitter to get\n@param  OutSourceStrength               Value of source tangent\n\n@return true            EmitterIndex and SourceIndex are valid - OutSourceStrength is valid\n                false           EmitterIndex or SourceIndex is invalid - OutSourceStrength is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "SourceIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutSourceStrength",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetBeamSourceTangent",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the beam source tangent\n\n@param  EmitterIndex            The index of the emitter to get\n@param  SourceIndex                     Which beam within the emitter to get\n@param  OutTangentPoint         Value of source tangent\n\n@return true            EmitterIndex and SourceIndex are valid - OutTangentPoint is valid\n                false           EmitterIndex or SourceIndex is invalid - OutTangentPoint is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "SourceIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutTangentPoint",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetBeamTargetPoint",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the beam target point\n\n@param  EmitterIndex            The index of the emitter to get\n@param  TargetIndex                     Which beam within the emitter to get\n@param  OutTargetPoint          Value of target point\n\n@return true            EmitterIndex and TargetIndex are valid - OutTargetPoint is valid\n                false           EmitterIndex or TargetIndex is invalid - OutTargetPoint is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "TargetIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutTargetPoint",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetBeamTargetStrength",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the beam target strength\n\n@param  EmitterIndex            The index of the emitter to get\n@param  TargetIndex                     Which beam within the emitter to get\n@param  OutTargetStrength       Value of target tangent\n\n@return true            EmitterIndex and TargetIndex are valid - OutTargetStrength is valid\n                false           EmitterIndex or TargetIndex is invalid - OutTargetStrength is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "TargetIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutTargetStrength",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetBeamTargetTangent",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the beam target tangent\n\n@param  EmitterIndex            The index of the emitter to get\n@param  TargetIndex                     Which beam within the emitter to get\n@param  OutTangentPoint         Value of target tangent\n\n@return true            EmitterIndex and TargetIndex are valid - OutTangentPoint is valid\n                false           EmitterIndex or TargetIndex is invalid - OutTangentPoint is invalid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "TargetIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutTangentPoint",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetNamedMaterial",
+      "return": "UMaterialInterface",
+      "const": true,
+      "doc": "Returns a named material. If this named material is not found, returns NULL.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetNumActiveParticles",
+      "return": "int",
+      "const": true,
+      "doc": "Get the current number of active particles in this system",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBeamEndPoint",
+      "return": "void",
+      "doc": "Set the beam end point\n\n@param  EmitterIndex            The index of the emitter to set it on\n@param  NewEndPoint                     The value to set it to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewEndPoint",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetBeamSourcePoint",
+      "return": "void",
+      "doc": "Set the beam source point\n\n@param  EmitterIndex            The index of the emitter to set it on\n@param  NewSourcePoint          The value to set it to\n@param  SourceIndex                     Which beam within the emitter to set it on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewSourcePoint",
+          "type": "FVector"
+        },
+        {
+          "name": "SourceIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetBeamSourceStrength",
+      "return": "void",
+      "doc": "Set the beam source strength\n\n@param  EmitterIndex            The index of the emitter to set it on\n@param  NewSourceStrength       The value to set it to\n@param  SourceIndex                     Which beam within the emitter to set it on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewSourceStrength",
+          "type": "float32"
+        },
+        {
+          "name": "SourceIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetBeamSourceTangent",
+      "return": "void",
+      "doc": "Set the beam source tangent\n\n@param  EmitterIndex            The index of the emitter to set it on\n@param  NewTangentPoint         The value to set it to\n@param  SourceIndex                     Which beam within the emitter to set it on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewTangentPoint",
+          "type": "FVector"
+        },
+        {
+          "name": "SourceIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetBeamTargetPoint",
+      "return": "void",
+      "doc": "Set the beam target point\n\n@param  EmitterIndex            The index of the emitter to set it on\n@param  NewTargetPoint          The value to set it to\n@param  TargetIndex                     Which beam within the emitter to set it on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewTargetPoint",
+          "type": "FVector"
+        },
+        {
+          "name": "TargetIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetBeamTargetStrength",
+      "return": "void",
+      "doc": "Set the beam target strength\n\n@param  EmitterIndex            The index of the emitter to set it on\n@param  NewTargetStrength       The value to set it to\n@param  TargetIndex                     Which beam within the emitter to set it on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewTargetStrength",
+          "type": "float32"
+        },
+        {
+          "name": "TargetIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetBeamTargetTangent",
+      "return": "void",
+      "doc": "Set the beam target tangent\n\n@param  EmitterIndex            The index of the emitter to set it on\n@param  NewTangentPoint         The value to set it to\n@param  TargetIndex                     Which beam within the emitter to set it on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewTangentPoint",
+          "type": "FVector"
+        },
+        {
+          "name": "TargetIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialParameter",
+      "return": "void",
+      "doc": "Set a named material instance parameter on this ParticleSystemComponent.\nUpdates the parameter if it already exists, or creates a new entry if not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Param",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetTemplate",
+      "return": "void",
+      "doc": "Change the ParticleSystem used by this ParticleSystemComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTemplate",
+          "type": "UParticleSystem"
+        }
+      ]
+    },
+    {
+      "name": "SetTrailSourceData",
+      "return": "void",
+      "doc": "Sets the defining data for all trails in this component.\n\n@param        InFirstSocketName       The name of the first socket for the trail.\n@param        InSecondSocketName      The name of the second socket for the trail.\n@param        InWidthMode                     How the width value is applied to the trail.\n@param        InWidth                         The width of the trail.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFirstSocketName",
+          "type": "FName"
+        },
+        {
+          "name": "InSecondSocketName",
+          "type": "FName"
+        },
+        {
+          "name": "InWidthMode",
+          "type": "ETrailWidthMode"
+        },
+        {
+          "name": "InWidth",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

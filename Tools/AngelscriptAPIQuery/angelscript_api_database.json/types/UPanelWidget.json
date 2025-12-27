@@ -1,0 +1,124 @@
+{
+  "name": "UPanelWidget",
+  "inherits": "UWidget",
+  "doc": "The base class for all UMG panel widgets.  Panel widgets layout a collection of child widgets.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddChild",
+      "return": "UPanelSlot",
+      "doc": "Adds a new child widget to the container.  Returns the base slot type,\nrequires casting to turn it into the type specific to the container.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Content",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "ClearChildren",
+      "return": "void",
+      "doc": "Remove all child widgets from the panel widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAllChildren",
+      "return": "TArray<UWidget>",
+      "const": true,
+      "doc": "Gets all widgets in the container",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetChildAt",
+      "return": "UWidget",
+      "const": true,
+      "doc": "Gets the widget at an index.\n@param Index The index of the widget.\n@return The widget at the given index, or nothing if there is no widget there.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetChildIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the index of a specific child widget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Content",
+          "type": "const UWidget"
+        }
+      ]
+    },
+    {
+      "name": "GetChildrenCount",
+      "return": "int",
+      "const": true,
+      "doc": "Gets number of child widgets in the container.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasAnyChildren",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if there are any child widgets in the panel",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasChild",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if panel contains this widget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Content",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "RemoveChild",
+      "return": "bool",
+      "doc": "Removes a specific widget from the container.\n@return true if the widget was found and removed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Content",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "RemoveChildAt",
+      "return": "bool",
+      "doc": "Removes a child by it's index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

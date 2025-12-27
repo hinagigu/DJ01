@@ -1,0 +1,104 @@
+{
+  "name": "FCreateMeshObjectParams",
+  "isStruct": true,
+  "doc": "FCreateMeshObjectParams is a collection of input data intended to be passed to\nUModelingObjectsCreationAPI::CreateMeshObject(). Not all data necessarily needs\nto be specified, this will depend on the particular implementation. The comments\nbelow are representative of how this data structure is used in the Tools and\nAPI implementation(s) provided with Unreal Engine, but end-user implementors\ncould abuse these fields as necessary.\n\nThe definition of a \"mesh object\" is implementation-specific.",
+  "properties": {
+    "SourceComponent": [
+      "UPrimitiveComponent",
+      2,
+      "A Source Component the new mesh is based on, if such a Component exists"
+    ],
+    "TypeHint": [
+      "ECreateObjectTypeHint",
+      2,
+      "A suggested type for the newly-created Mesh (possibly ignored)"
+    ],
+    "TypeHintClass": [
+      "UClass",
+      2,
+      "A suggested UClass type for the newly-created Object (possibly ignored)"
+    ],
+    "TypeHintExtended": [
+      "int",
+      2,
+      "An arbitrary integer that can be used to pass data to an API implementation"
+    ],
+    "TargetWorld": [
+      "UWorld",
+      2,
+      "The World/Level the new mesh object should be created in (if known)"
+    ],
+    "Transform": [
+      "FTransform",
+      2,
+      "The 3D local-to-world transform for the new mesh object"
+    ],
+    "BaseName": [
+      "FString",
+      2,
+      "The base name of the new mesh object"
+    ],
+    "Materials": [
+      "TArray<TObjectPtr<UMaterialInterface>>",
+      2,
+      "Materials for the new mesh object"
+    ],
+    "AssetMaterials": [
+      "TArray<TObjectPtr<UMaterialInterface>>",
+      2,
+      "Optional Materials for a newly-created Mesh Asset, if this is applicable for the created mesh object"
+    ],
+    "bEnableCollision": [
+      "bool",
+      2,
+      "Specify whether the new mesh object should have collision support/data"
+    ],
+    "CollisionMode": [
+      "ECollisionTraceFlag",
+      2,
+      "Which Collision mode to enable on the new mesh object, if supported"
+    ],
+    "bEnableRaytracingSupport": [
+      "bool",
+      2,
+      "Specify whether normals should be automatically recomputed for this new mesh object"
+    ],
+    "bGenerateLightmapUVs": [
+      "bool",
+      2,
+      "Specify whether to auto-generate Lightmap UVs (if applicable for the output mesh type)"
+    ],
+    "bEnableRecomputeNormals": [
+      "bool",
+      2,
+      "Specify whether normals should be automatically recomputed for this new mesh object"
+    ],
+    "bEnableRecomputeTangents": [
+      "bool",
+      2,
+      "Specify whether tangents should be automatically recomputed for this new mesh object"
+    ],
+    "bEnableNanite": [
+      "bool",
+      2,
+      "Specify whether Nanite should be enabled on this new mesh object"
+    ],
+    "NaniteSettings": [
+      "FMeshNaniteSettings",
+      2,
+      "Specify the Nanite Settings for this new mesh object, only used if bEnableNanite=true"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCreateMeshObjectParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCreateMeshObjectParams"
+        }
+      ]
+    }
+  ]
+}

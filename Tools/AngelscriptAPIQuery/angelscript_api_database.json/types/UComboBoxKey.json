@@ -1,0 +1,140 @@
+{
+  "name": "UComboBoxKey",
+  "inherits": "UWidget",
+  "doc": "The combobox allows you to display a list of options to the user in a dropdown menu for them to select one.\nUse OnGenerateConentWidgetEvent to return a custom built widget.",
+  "properties": {
+    "Options": [
+      "TArray<FName>",
+      2,
+      ""
+    ],
+    "WidgetStyle": [
+      "FComboBoxStyle",
+      "The combobox style."
+    ],
+    "ItemStyle": [
+      "FTableRowStyle",
+      "The item row style."
+    ],
+    "ScrollBarStyle": [
+      "FScrollBarStyle",
+      "The scroll bar style."
+    ],
+    "ForegroundColor": [
+      "FSlateColor",
+      "The foreground color to pass through the hierarchy."
+    ],
+    "ContentPadding": [
+      "FMargin"
+    ],
+    "MaxListHeight": [
+      "float32",
+      "The max height of the combobox list that opens"
+    ],
+    "bHasDownArrow": [
+      "bool",
+      "When false, the down arrow is not generated and it is up to the API consumer\nto make their own visual hint that this is a drop down."
+    ],
+    "bEnableGamepadNavigationMode": [
+      "bool",
+      "When false, directional keys will change the selection. When true, ComboBox\nmust be activated and will only capture arrow input while activated."
+    ],
+    "bIsFocusable": [
+      "bool",
+      "When true, allows the combo box to receive keyboard focus"
+    ],
+    "OnGenerateContentWidget": [
+      "FGenerateWidgetEvent__ComboBoxKey",
+      2,
+      "Called when the widget is needed for the content."
+    ],
+    "OnGenerateItemWidget": [
+      "FGenerateWidgetEvent__ComboBoxKey",
+      2,
+      "Called when the widget is needed for the item."
+    ],
+    "OnSelectionChanged": [
+      "FOnSelectionChangedEvent__ComboBoxKey",
+      "Called when a new item is selected in the combobox."
+    ],
+    "OnOpening": [
+      "FOnOpeningEvent__ComboBoxKey",
+      "Called when the combobox is opening"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddOption",
+      "return": "void",
+      "doc": "Add an element to the option list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Option",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ClearOptions",
+      "return": "void",
+      "doc": "Remove all the elements of the option list.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearSelection",
+      "return": "void",
+      "doc": "Clear the current selection.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedOption",
+      "return": "FName",
+      "const": true,
+      "doc": "Get the current selected option",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsOpen",
+      "return": "bool",
+      "const": true,
+      "doc": "Is the combobox menu opened.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveOption",
+      "return": "bool",
+      "doc": "Remove an element to the option list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Option",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectedOption",
+      "return": "void",
+      "doc": "Set the current selected option.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Option",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "name": "UCommonWidgetCarousel",
+  "inherits": "UPanelWidget",
+  "doc": "A widget switcher is like a tab control, but without tabs. At most one widget is visible at time.",
+  "properties": {
+    "OnCurrentPageIndexChanged": [
+      "FOnCurrentPageIndexChanged"
+    ]
+  },
+  "methods": [
+    {
+      "name": "BeginAutoScrolling",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ScrollInterval",
+          "default": "10.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "EndAutoScrolling",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActiveWidgetIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the slot index of the currently active widget",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMoveSpeed",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the Move Speed.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWidgetAtIndex",
+      "return": "UWidget",
+      "const": true,
+      "doc": "Get a widget at the provided index",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "NextPage",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PreviousPage",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetActiveWidget",
+      "return": "void",
+      "doc": "Activates the widget and makes it the active index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "SetActiveWidgetIndex",
+      "return": "void",
+      "doc": "Activates the widget at the specified index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetMoveSpeed",
+      "return": "void",
+      "doc": "Sets the Move Speed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMoveSpeed",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

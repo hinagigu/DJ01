@@ -1,0 +1,167 @@
+{
+  "name": "ALobbyBeaconClient",
+  "inherits": "AOnlineBeaconClient",
+  "doc": "A beacon client used for quality timings to a specified session",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ClientAckJoiningServer",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientJoinGame",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell the client to join the game",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientLoginComplete",
+      "return": "void",
+      "callable": false,
+      "doc": "Client notification result for a single login attempt\n\n@param InUniqueId id of player involved\n@param bWasSuccessful result of the login attempt",
+      "meta": null,
+      "args": [
+        {
+          "name": "InUniqueId",
+          "type": "FUniqueNetIdRepl"
+        },
+        {
+          "name": "bWasSuccessful",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientPlayerJoined",
+      "return": "void",
+      "callable": false,
+      "doc": "Client notification that another player has joined the lobby\n\n@param NewPlayerName display name of new player\n@param InUniqueId unique id of new player",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlayerName",
+          "type": "FText"
+        },
+        {
+          "name": "InUniqueId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    },
+    {
+      "name": "ClientPlayerLeft",
+      "return": "void",
+      "callable": false,
+      "doc": "Client notification that another player has left the lobby\n\n@param InUniqueId unique id of new player",
+      "meta": null,
+      "args": [
+        {
+          "name": "InUniqueId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    },
+    {
+      "name": "ClientWasKicked",
+      "return": "void",
+      "callable": false,
+      "doc": "This was client was kicked by the server\n\n@param KickReason reason the server kicked the local player",
+      "meta": null,
+      "args": [
+        {
+          "name": "KickReason",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "ServerCheat",
+      "return": "void",
+      "callable": false,
+      "doc": "Run a cheat command on the server",
+      "meta": null,
+      "args": [
+        {
+          "name": "Msg",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerDisconnectFromLobby",
+      "return": "void",
+      "callable": false,
+      "doc": "Make a graceful disconnect with the server",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerKickPlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Make a request to kick a given player\n\n@param PlayerToKick player kick request\n@param Reason reason for the kick to tell client if this succeeds",
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerToKick",
+          "type": "FUniqueNetIdRepl"
+        },
+        {
+          "name": "Reason",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "ServerLoginPlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Attempt to login a single local player with the lobby beacon\n\n@param InSessionId session id that the client is expecting to connect with\n@param InUniqueId unique id of the new player\n@param UrlString URL containing player options (name, etc)",
+      "meta": null,
+      "args": [
+        {
+          "name": "InSessionId",
+          "type": "FString"
+        },
+        {
+          "name": "InUniqueId",
+          "type": "FUniqueNetIdRepl"
+        },
+        {
+          "name": "UrlString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerNotifyJoiningServer",
+      "return": "void",
+      "callable": false,
+      "doc": "Make a graceful request to actually join the server",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerSetPartyOwner",
+      "return": "void",
+      "callable": false,
+      "doc": "Make a request to set the party owner for the given player\n\n@param InUniqueId id of the requesting player\n@param PartyOwnerUniqueId id the party owner",
+      "meta": null,
+      "args": [
+        {
+          "name": "InUniqueId",
+          "type": "FUniqueNetIdRepl"
+        },
+        {
+          "name": "InPartyOwnerId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    }
+  ]
+}

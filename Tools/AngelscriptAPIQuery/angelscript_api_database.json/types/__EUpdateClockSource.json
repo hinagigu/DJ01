@@ -1,0 +1,39 @@
+{
+  "name": "__EUpdateClockSource",
+  "isEnum": true,
+  "doc": "Enum used to define how to update to a particular time",
+  "properties": {
+    "Tick": [
+      "EUpdateClockSource",
+      "Use the default world tick delta for timing. Honors world and actor pause state, but is susceptible to accumulation errors"
+    ],
+    "Platform": [
+      "EUpdateClockSource",
+      "Use the platform clock for timing. Does not honor world or actor pause state."
+    ],
+    "Audio": [
+      "EUpdateClockSource",
+      "Use the audio clock for timing. Does not honor world or actor pause state."
+    ],
+    "RelativeTimecode": [
+      "EUpdateClockSource",
+      "Time relative to the timecode provider for timing. Does not honor world or actor pause state."
+    ],
+    "Timecode": [
+      "EUpdateClockSource",
+      "Use current timecode provider for timing. Does not honor world or actor pause state."
+    ],
+    "PlayEveryFrame": [
+      "EUpdateClockSource",
+      "Debugging Tool: Hold on each whole frame for a Sequencer.SecondsPerFrame many wall-clock seconds before advancing to the next one. Does not honor world or actor pause state or time dilation and audio will be out of sync."
+    ],
+    "Custom": [
+      "EUpdateClockSource",
+      "Custom clock source created and defined externally."
+    ],
+    "EUpdateClockSource_MAX": [
+      "EUpdateClockSource"
+    ]
+  },
+  "methods": []
+}

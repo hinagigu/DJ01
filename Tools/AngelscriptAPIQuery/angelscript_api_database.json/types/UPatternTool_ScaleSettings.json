@@ -1,0 +1,38 @@
+{
+  "name": "UPatternTool_ScaleSettings",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Settings for Per Element Scale in the Pattern Tool",
+  "properties": {
+    "bProportional": [
+      "bool",
+      2,
+      "If true, changes to Start Scale, End Scale, and Jitter are proportional along all the axes"
+    ],
+    "bInterpolate": [
+      "bool",
+      2,
+      "If true, Scale is linearly interpolated between StartScale and Scale values"
+    ],
+    "bJitter": [
+      "bool",
+      2,
+      "If true, Scale at each Pattern Element is offset by a uniformly chosen random value in the range of [-ScaleJitterRange, ScaleJitterRange]"
+    ],
+    "StartScale": [
+      "FVector",
+      2,
+      "Scale applied to all Pattern Elements, or to first Pattern Element for Interpolated scale"
+    ],
+    "EndScale": [
+      "FVector",
+      2,
+      "Scale applied to last Pattern Element for Interpolated scale"
+    ],
+    "Jitter": [
+      "FVector",
+      2,
+      "Upper bound of the range which is sampled to randomly scale each Pattern Element if Jitter is true"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,95 @@
+{
+  "name": "UTextureFactory",
+  "inherits": "UFactory",
+  "properties": {
+    "CompressionSettings": [
+      "TextureCompressionSettings",
+      2,
+      "Compression settings for the texture"
+    ],
+    "Blending": [
+      "EBlendMode",
+      2,
+      "The blend mode of the created material"
+    ],
+    "ShadingModel": [
+      "EMaterialShadingModel",
+      2,
+      "The shading model of the created material"
+    ],
+    "MipGenSettings": [
+      "TextureMipGenSettings",
+      2,
+      "The mip-map generation settings for the texture; Allows customization of the content of the mip-map chain"
+    ],
+    "LODGroup": [
+      "TextureGroup",
+      2,
+      "The group the texture belongs to"
+    ],
+    "bDoScaleMipsForAlphaCoverage": [
+      "bool",
+      2,
+      "Whether mip RGBA should be scaled to preserve the number of pixels with Value >= AlphaCoverageThresholds"
+    ],
+    "bUseNewMipFilter": [
+      "bool",
+      2,
+      "Whether to use newer & faster mip generation filter"
+    ],
+    "AlphaCoverageThresholds": [
+      "FVector4",
+      2,
+      "Channel values to compare to when preserving alpha coverage from a mask for mips"
+    ],
+    "NoAlpha": [
+      "bool",
+      "If enabled, the texture's alpha channel will be discarded during compression"
+    ],
+    "bDeferCompression": [
+      "bool",
+      "If enabled, compression is deferred until the texture is saved"
+    ],
+    "bCreateMaterial": [
+      "bool",
+      "If enabled, a material will automatically be created for the texture"
+    ],
+    "bRGBToBaseColor": [
+      "bool",
+      "If enabled, link the texture to the created material's base color"
+    ],
+    "bRGBToEmissive": [
+      "bool",
+      "If enabled, link the texture to the created material's emissive color"
+    ],
+    "bAlphaToRoughness": [
+      "bool",
+      "If enabled, link the texture's alpha to the created material's roughness"
+    ],
+    "bAlphaToEmissive": [
+      "bool",
+      "If enabled, link the texture's alpha to the created material's emissive color"
+    ],
+    "bAlphaToOpacity": [
+      "bool",
+      "If enabled, link the texture's alpha to the created material's opacity"
+    ],
+    "bAlphaToOpacityMask": [
+      "bool",
+      "If enabled, link the texture's alpha to the created material's opacity mask"
+    ],
+    "bTwoSided": [
+      "bool",
+      "If enabled, the created material will be two-sided"
+    ],
+    "bPreserveBorder": [
+      "bool",
+      "If enabled, preserve the value of border pixels when creating mip-maps"
+    ],
+    "bFlipNormalMapGreenChannel": [
+      "bool",
+      "If enabled, the texture's green channel will be inverted. This is useful for some normal maps"
+    ]
+  },
+  "methods": []
+}

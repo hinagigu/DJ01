@@ -1,0 +1,41 @@
+{
+  "name": "UContentBrowserAssetContextMenuContext",
+  "inherits": "UObject",
+  "properties": {
+    "SelectedAssets": [
+      "TArray<FAssetData>",
+      1,
+      "The currently selected assets in the content browser."
+    ],
+    "bContainsUnsupportedAssets": [
+      "bool",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "LoadSelectedObjects",
+      "return": "TArray<UObject>",
+      "const": true,
+      "doc": "Loads all the selected assets and returns an array of the objects.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LoadTags",
+          "type": "TSet<FName>"
+        }
+      ]
+    },
+    {
+      "name": "LoadSelectedObjectsIfNeeded",
+      "return": "TArray<UObject>",
+      "const": true,
+      "doc": "Loads the selected assets (if needed) which is based on AssetViewUtils::LoadAssetsIfNeeded, this exists primarily\nfor backwards compatability.  Reliance on a black box to determine 'neededness' is not recommended, this function\nwill likely be deprecated a few versions after GetSelectedObjects.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

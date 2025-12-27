@@ -1,0 +1,75 @@
+{
+  "name": "UWidgetSwitcher",
+  "inherits": "UPanelWidget",
+  "doc": "A widget switcher is like a tab control, but without tabs. At most one widget is visible at time.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetActiveWidget",
+      "return": "UWidget",
+      "const": true,
+      "doc": "Get the reference of the currently active widget",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActiveWidgetIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the slot index of the currently active widget",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumWidgets",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the number of widgets that this switcher manages.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWidgetAtIndex",
+      "return": "UWidget",
+      "const": true,
+      "doc": "Get a widget at the provided index",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetActiveWidget",
+      "return": "void",
+      "doc": "Activates the widget and makes it the active index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "SetActiveWidgetIndex",
+      "return": "void",
+      "doc": "Activates the widget at the specified index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

@@ -4,7 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
-#include "GameplayEffectTypes.h"
+#include "DJ01GameplayTagPropertyMap.h"
+
+// 包含自动生成的动画变量和映射初始化宏（必须在 .generated.h 之前）
+#include "Generated/DJ01AnimInstanceVars.h"
+
 #include "DJ01AnimInstance.generated.h"
 
 class UAbilitySystemComponent;
@@ -49,10 +53,10 @@ protected:
 	/** 
 	 * GameplayTag到蓝图变量的映射配置
 	 * 当对应的Tag添加或移除时，映射的变量会自动更新
-	 * 应使用此映射而非手动查询GameplayTag
+	 * 映射在构造函数中自动配置，由 Tag Manager 生成
 	 */
 	UPROPERTY(EditDefaultsOnly, Category = "GameplayTags")
-	FGameplayTagBlueprintPropertyMap GameplayTagPropertyMap;
+	FDJ01GameplayTagPropertyMap GameplayTagPropertyMap;
 
 	//========================================
 	// 物理状态数据 (从 CharacterMovement 读取)
@@ -75,15 +79,7 @@ protected:
 	// 在动画蓝图的 Class Defaults 中配置 Tag 映射
 	//========================================
 	
-	/** 是否在地面上 (映射自 Status.Movement.Grounded) */
-	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Status")
-	bool bIsGrounded = true;
-	
-	/** 是否在攻击中 (映射自 Status.Action.Attacking) */
-	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Status")
-	bool bIsAttacking = false;
-	
-	/** 是否被眩晕 (映射自 Status.Condition.Stunned) */
-	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Status")
-	bool bIsStunned = false;
+	// 自动生成的动画状态变量 - 由 Tag Manager 生成
+	// 在 Tag Manager 中配置 AnimVar 列来添加/修改这些变量
+	DJ01_ANIM_INSTANCE_GENERATED_VARS
 };

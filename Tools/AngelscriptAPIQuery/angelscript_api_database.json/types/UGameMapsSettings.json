@@ -1,0 +1,110 @@
+{
+  "name": "UGameMapsSettings",
+  "inherits": "UObject",
+  "properties": {
+    "EditorStartupMap": [
+      "FSoftObjectPath",
+      2,
+      "If set, this map will be loaded when the Editor starts up."
+    ],
+    "EditorTemplateMapOverrides": [
+      "TArray<FTemplateMapInfoOverride>",
+      2,
+      "Map templates that should show up in the new level dialog. This will completely override the default maps chosen by the default editor"
+    ],
+    "LocalMapOptions": [
+      "FString",
+      2,
+      "The default options that will be appended to a map being loaded."
+    ],
+    "TransitionMap": [
+      "FSoftObjectPath",
+      2,
+      "The map loaded when transition from one map to another."
+    ],
+    "bUseSplitscreen": [
+      "bool",
+      2,
+      "Whether the screen should be split or not when multiple local players are present"
+    ],
+    "TwoPlayerSplitscreenLayout": [
+      "ETwoPlayerSplitScreenType",
+      2,
+      "The viewport layout to use if the screen should be split and there are two local players"
+    ],
+    "ThreePlayerSplitscreenLayout": [
+      "EThreePlayerSplitScreenType",
+      2,
+      "The viewport layout to use if the screen should be split and there are three local players"
+    ],
+    "FourPlayerSplitscreenLayout": [
+      "EFourPlayerSplitScreenType",
+      2,
+      "The viewport layout to use if the screen should be split and there are three local players"
+    ],
+    "bOffsetPlayerGamepadIds": [
+      "bool",
+      2,
+      "If enabled, this will make so that gamepads start being assigned to the second controller ID in local multiplayer games.\nIn PIE sessions with multiple windows, this has the same effect as enabling \"Route 1st Gamepad to 2nd Client\""
+    ],
+    "GameInstanceClass": [
+      "FSoftClassPath",
+      2,
+      "The class to use when instantiating the transient GameInstance class"
+    ],
+    "GameDefaultMap": [
+      "FSoftObjectPath",
+      2,
+      "The map that will be loaded by default when no other map is loaded."
+    ],
+    "ServerDefaultMap": [
+      "FSoftObjectPath",
+      2,
+      "The map that will be loaded by default when no other map is loaded (DEDICATED SERVER)."
+    ],
+    "GlobalDefaultGameMode": [
+      "FSoftClassPath",
+      2,
+      "GameMode to use if not specified in any other way. (e.g. per-map DefaultGameMode or on the URL)."
+    ],
+    "GlobalDefaultServerGameMode": [
+      "FSoftClassPath",
+      2,
+      "GameMode to use if not specified in any other way. (e.g. per-map DefaultGameMode or on the URL) (DEDICATED SERVERS)\nIf not set, the GlobalDefaultGameMode value will be used."
+    ],
+    "GameModeMapPrefixes": [
+      "TArray<FGameModeName>",
+      2,
+      "Overrides the GameMode to use when loading a map that starts with a specific prefix"
+    ],
+    "GameModeClassAliases": [
+      "TArray<FGameModeName>",
+      2,
+      "List of GameModes to load when game= is specified in the URL (e.g. \"DM\" could be an alias for \"MyProject.MyGameModeMP_DM\")"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetSkipAssigningGamepadToPlayer1",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetSkipAssigningGamepadToPlayer1",
+      "return": "void",
+      "doc": "Modify \"Skip Assigning Gamepad to Player 1\" GameMapsSettings option\n@param bSkipFirstPlayer              If set connected game pads will only be assigned to the second and subsequent players\n@note This value is saved to local config when changed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSkipFirstPlayer",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

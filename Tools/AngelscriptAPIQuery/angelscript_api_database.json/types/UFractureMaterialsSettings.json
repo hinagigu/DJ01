@@ -1,0 +1,33 @@
+{
+  "name": "UFractureMaterialsSettings",
+  "inherits": "UFractureToolSettings",
+  "doc": "Settings related to setting materials on a Geometry Collection *",
+  "properties": {
+    "Materials": [
+      "TArray<TObjectPtr<UMaterialInterface>>",
+      2,
+      "Materials on the selected Geometry Collection's underlying asset (the Rest Collection)."
+    ],
+    "bOnlySelectedComponents": [
+      "bool",
+      2,
+      "Whether 'Use Asset Materials On Components' should only update the selected components, or update all components using this asset"
+    ],
+    "AssignMaterial": [
+      "FString",
+      2,
+      "Material to assign to selected faces"
+    ],
+    "ToFaces": [
+      "EMaterialAssignmentTargets",
+      2,
+      "Which subset of faces to update materials assignments on, for the selected geometry"
+    ],
+    "bOnlySelectedBones": [
+      "bool",
+      2,
+      "Whether to only assign materials for faces in the selected bones, or the whole geometry collection"
+    ]
+  },
+  "methods": []
+}

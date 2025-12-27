@@ -1,0 +1,866 @@
+{
+  "name": "__Widget",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CancelDragDrop",
+      "return": "void",
+      "doc": "Cancels any current drag drop operation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CaptureMouse",
+      "return": "FEventReply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Reply",
+          "type": "FEventReply&"
+        },
+        {
+          "name": "CapturingWidget",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "ClearUserFocus",
+      "return": "FEventReply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Reply",
+          "type": "FEventReply&"
+        },
+        {
+          "name": "bInAllUsers",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DetectDrag",
+      "return": "FEventReply",
+      "doc": "Ask Slate to detect if a user starts dragging in this widget later.  Slate internally tracks the movement\nand if it surpasses the drag threshold, Slate will send an OnDragDetected event to the widget.\n\n@param WidgetDetectingDrag  Detect dragging in this widget\n@param DragKey                      This button should be pressed to detect the drag",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Reply",
+          "type": "FEventReply&"
+        },
+        {
+          "name": "WidgetDetectingDrag",
+          "type": "UWidget"
+        },
+        {
+          "name": "DragKey",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "DetectDragIfPressed",
+      "return": "FEventReply",
+      "doc": "Given the pointer event, emit the DetectDrag reply if the provided key was pressed.\nIf the DragKey is a touch key, that will also automatically work.\n@param PointerEvent  The pointer device event coming in.\n@param WidgetDetectingDrag  Detect dragging in this widget.\n@param DragKey                      This button should be pressed to detect the drag, won't emit the DetectDrag FEventReply unless this is pressed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PointerEvent",
+          "type": "FPointerEvent"
+        },
+        {
+          "name": "WidgetDetectingDrag",
+          "type": "UWidget"
+        },
+        {
+          "name": "DragKey",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "DismissAllMenus",
+      "return": "void",
+      "doc": "Closes any popup menu",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DrawBox",
+      "return": "void",
+      "doc": "Draws a box",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FPaintContext&"
+        },
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Size",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Brush",
+          "type": "USlateBrushAsset"
+        },
+        {
+          "name": "Tint",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "DrawLine",
+      "return": "void",
+      "doc": "Draws a line.\n\n@param PositionA             Starting position of the line in local space.\n@param PositionB             Ending position of the line in local space.\n@param Tint                  Color to render the line.\n@param bAntialias    Whether the line should be antialiased.\n@param Thickness             How many pixels thick this line should be.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FPaintContext&"
+        },
+        {
+          "name": "PositionA",
+          "type": "FVector2D"
+        },
+        {
+          "name": "PositionB",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Tint",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bAntiAlias",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "Thickness",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "DrawLines",
+      "return": "void",
+      "doc": "Draws several line segments.\n\n@param Points                Line pairs, each line needs to be 2 separate points in the array.\n@param Tint                  Color to render the line.\n@param bAntialias    Whether the line should be antialiased.\n@param Thickness             How many pixels thick this line should be.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FPaintContext&"
+        },
+        {
+          "name": "Points",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "Tint",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bAntiAlias",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "Thickness",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "DrawSpline",
+      "return": "void",
+      "doc": "Draws a hermite spline.\n\n@param Start                 Starting position of the spline in local space.\n@param StartDir              The direction of the spline from the start point.\n@param End                   Ending position of the spline in local space.\n@param EndDir                The direction of the spline to the end point.\n@param Tint                  Color to render the spline.\n@param Thickness             How many pixels thick this spline should be.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FPaintContext&"
+        },
+        {
+          "name": "Start",
+          "type": "FVector2D"
+        },
+        {
+          "name": "StartDir",
+          "type": "FVector2D"
+        },
+        {
+          "name": "End",
+          "type": "FVector2D"
+        },
+        {
+          "name": "EndDir",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Tint",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Thickness",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "DrawTextFormatted",
+      "return": "void",
+      "doc": "Draws text.\n\n@param Text                  The string to draw.\n@param Position              The starting position where the text is drawn in local space.\n@param Tint                  Color to render the line.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FPaintContext&"
+        },
+        {
+          "name": "Text",
+          "type": "FText"
+        },
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Font",
+          "type": "UFont"
+        },
+        {
+          "name": "FontSize",
+          "default": "16.000000",
+          "type": "float32"
+        },
+        {
+          "name": "FontTypeFace",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "Tint",
+          "default": "FLinearColor ( 1.000000 , 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "EndDragDrop",
+      "return": "FEventReply",
+      "doc": "An event should return FReply::Handled().EndDragDrop() to request that the current drag/drop operation be terminated.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Reply",
+          "type": "FEventReply&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllWidgetsOfClass",
+      "return": "void",
+      "doc": "Find all widgets of a certain class.\n@param FoundWidgets The widgets that were found matching the filter.\n@param WidgetClass The widget class to filter by.\n@param TopLevelOnly Only the widgets that are direct children of the viewport will be returned.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FoundWidgets",
+          "type": "TArray<UUserWidget>&"
+        },
+        {
+          "name": "WidgetClass",
+          "type": "TSubclassOf<UUserWidget>"
+        },
+        {
+          "name": "TopLevelOnly",
+          "default": "true",
+          "type": "bool"
+        }
+      ],
+      "outputTypeIndex": 1
+    },
+    {
+      "name": "GetAllWidgetsWithInterface",
+      "return": "void",
+      "doc": "Find all widgets in the world with the specified interface.\nThis is a slow operation, use with caution e.g. do not use every frame.\n@param Interface The interface to find. Must be specified or result array will be empty.\n@param FoundWidgets Output array of widgets that implement the specified interface.\n@param TopLevelOnly Only the widgets that are direct children of the viewport will be returned.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FoundWidgets",
+          "type": "TArray<UUserWidget>&"
+        },
+        {
+          "name": "Interface",
+          "type": "TSubclassOf<UInterface>"
+        },
+        {
+          "name": "TopLevelOnly",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetBrushResource",
+      "return": "UObject",
+      "doc": "Gets the resource object on a brush.  This could be a UTexture2D or a UMaterialInterface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush"
+        }
+      ]
+    },
+    {
+      "name": "GetBrushResourceAsMaterial",
+      "return": "UMaterialInterface",
+      "doc": "Gets the brush resource as a material.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush"
+        }
+      ]
+    },
+    {
+      "name": "GetBrushResourceAsTexture2D",
+      "return": "UTexture2D",
+      "doc": "Gets the brush resource as a texture 2D.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush"
+        }
+      ]
+    },
+    {
+      "name": "GetDragDroppingContent",
+      "return": "UDragDropOperation",
+      "doc": "Returns the drag and drop operation that is currently occurring if any, otherwise nothing.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDynamicMaterial",
+      "return": "UMaterialInstanceDynamic",
+      "doc": "Gets the material that allows changes to parameters at runtime.  The brush must already have a material assigned to it,\nif it does it will automatically be converted to a MID.\n\n@return A material that supports dynamic input from the game.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        }
+      ]
+    },
+    {
+      "name": "GetInputEventFromCharacterEvent",
+      "return": "FInputEvent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Event",
+          "type": "FCharacterEvent"
+        }
+      ]
+    },
+    {
+      "name": "GetInputEventFromKeyEvent",
+      "return": "FInputEvent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Event",
+          "type": "FKeyEvent"
+        }
+      ]
+    },
+    {
+      "name": "GetInputEventFromNavigationEvent",
+      "return": "FInputEvent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Event",
+          "type": "FNavigationEvent"
+        }
+      ]
+    },
+    {
+      "name": "GetInputEventFromPointerEvent",
+      "return": "FInputEvent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Event",
+          "type": "FPointerEvent"
+        }
+      ]
+    },
+    {
+      "name": "GetKeyEventFromAnalogInputEvent",
+      "return": "FKeyEvent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Event",
+          "type": "FAnalogInputEvent"
+        }
+      ]
+    },
+    {
+      "name": "GetSafeZonePadding",
+      "return": "void",
+      "doc": "Gets the amount of padding that needs to be added when accounting for the safe zone on TVs.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SafePadding",
+          "type": "FVector4&"
+        },
+        {
+          "name": "SafePaddingScale",
+          "type": "FVector2D&"
+        },
+        {
+          "name": "SpillOverPadding",
+          "type": "FVector4&"
+        }
+      ]
+    },
+    {
+      "name": "Handled",
+      "return": "FEventReply",
+      "doc": "The event reply to use when you choose to handle an event.  This will prevent the event\nfrom continuing to bubble up / down the widget hierarchy.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDragDropping",
+      "return": "bool",
+      "doc": "Returns true if a drag/drop event is occurring that a widget can handle.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LockMouse",
+      "return": "FEventReply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Reply",
+          "type": "FEventReply&"
+        },
+        {
+          "name": "CapturingWidget",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "MakeBrushFromAsset",
+      "return": "FSlateBrush",
+      "doc": "Creates a Slate Brush from a Slate Brush Asset\n\n@return A new slate brush using the asset's brush.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BrushAsset",
+          "type": "USlateBrushAsset"
+        }
+      ]
+    },
+    {
+      "name": "MakeBrushFromMaterial",
+      "return": "FSlateBrush",
+      "doc": "Creates a Slate Brush from a Material.  Materials don't have an implicit size, so providing a widget and height\nis required to hint slate with how large the image wants to be by default.\n\n@return A new slate brush using the material.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "Width",
+          "default": "32",
+          "type": "int"
+        },
+        {
+          "name": "Height",
+          "default": "32",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "MakeBrushFromTexture",
+      "return": "FSlateBrush",
+      "doc": "Creates a Slate Brush from a Texture2D\n\n@param Width  When less than or equal to zero, the Width of the brush will default to the Width of the Texture\n@param Height  When less than or equal to zero, the Height of the brush will default to the Height of the Texture\n\n@return A new slate brush using the texture.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Texture",
+          "type": "UTexture2D"
+        },
+        {
+          "name": "Width",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "Height",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "NoResourceBrush",
+      "return": "FSlateBrush",
+      "doc": "Creates a Slate Brush that wont draw anything, the \"Null Brush\".\n\n@return A new slate brush that wont draw anything.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReleaseMouseCapture",
+      "return": "FEventReply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Reply",
+          "type": "FEventReply&"
+        }
+      ]
+    },
+    {
+      "name": "RestorePreviousWindowTitleBarState",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBrushResourceToMaterial",
+      "return": "void",
+      "doc": "Sets the resource on a brush to be a Material.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        },
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushResourceToTexture",
+      "return": "void",
+      "doc": "Sets the resource on a brush to be a UTexture2D.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Brush",
+          "type": "FSlateBrush&"
+        },
+        {
+          "name": "Texture",
+          "type": "UTexture2D"
+        }
+      ]
+    },
+    {
+      "name": "SetColorVisionDeficiencyType",
+      "return": "void",
+      "doc": "Apply color deficiency correction settings to the game window\n@param Type The type of color deficiency correction to apply.\n@param Severity Intensity of the color deficiency correction effect, from 0 to 1.\n@param CorrectDeficiency Shifts the color spectrum to the visible range based on the current deficiency type.\n@param ShowCorrectionWithDeficiency If you're correcting the color deficiency, you can use this to visualize what the correction looks like with the deficiency.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Type",
+          "type": "EColorVisionDeficiency"
+        },
+        {
+          "name": "Severity",
+          "type": "float32"
+        },
+        {
+          "name": "CorrectDeficiency",
+          "type": "bool"
+        },
+        {
+          "name": "ShowCorrectionWithDeficiency",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetFocusToGameViewport",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetHardwareCursor",
+      "return": "bool",
+      "doc": "Loads or sets a hardware cursor from the content directory in the game.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CursorShape",
+          "type": "EMouseCursor"
+        },
+        {
+          "name": "CursorName",
+          "type": "FName"
+        },
+        {
+          "name": "HotSpot",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetInputMode_GameAndUIEx",
+      "return": "void",
+      "doc": "Setup an input mode that allows only the UI to respond to user input, and if the UI doesn't handle it player input / player controller gets a chance.\n\nNote: This means that any bound Input events in the widget will be called.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerController",
+          "type": "APlayerController"
+        },
+        {
+          "name": "InWidgetToFocus",
+          "default": "nullptr",
+          "type": "UWidget"
+        },
+        {
+          "name": "InMouseLockMode",
+          "default": "EMouseLockMode :: DoNotLock",
+          "type": "EMouseLockMode"
+        },
+        {
+          "name": "bHideCursorDuringCapture",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bFlushInput",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetInputMode_GameOnly",
+      "return": "void",
+      "doc": "Setup an input mode that allows only player input / player controller to respond to user input.\n\nNote: Any bound Input Events in this widget will be called.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerController",
+          "type": "APlayerController"
+        },
+        {
+          "name": "bFlushInput",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetInputMode_UIOnlyEx",
+      "return": "void",
+      "doc": "Setup an input mode that allows only the UI to respond to user input.\n\nNote: This means that any bound Input Events in the widget will not be called!",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerController",
+          "type": "APlayerController"
+        },
+        {
+          "name": "InWidgetToFocus",
+          "default": "nullptr",
+          "type": "UWidget"
+        },
+        {
+          "name": "InMouseLockMode",
+          "default": "EMouseLockMode :: DoNotLock",
+          "type": "EMouseLockMode"
+        },
+        {
+          "name": "bFlushInput",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMousePosition",
+      "return": "FEventReply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Reply",
+          "type": "FEventReply&"
+        },
+        {
+          "name": "NewMousePosition",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetUserFocus",
+      "return": "FEventReply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Reply",
+          "type": "FEventReply&"
+        },
+        {
+          "name": "FocusWidget",
+          "type": "UWidget"
+        },
+        {
+          "name": "bInAllUsers",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWindowTitleBarCloseButtonActive",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bActive",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWindowTitleBarOnCloseClickedDelegate",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Delegate",
+          "default": "FOnGameWindowCloseButtonClickedDelegate__WidgetBlueprintLibrary ( )",
+          "type": "FOnGameWindowCloseButtonClickedDelegate__WidgetBlueprintLibrary"
+        }
+      ]
+    },
+    {
+      "name": "SetWindowTitleBarState",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TitleBarContent",
+          "type": "UWidget"
+        },
+        {
+          "name": "Mode",
+          "type": "EWindowTitleBarMode"
+        },
+        {
+          "name": "bTitleBarDragEnabled",
+          "type": "bool"
+        },
+        {
+          "name": "bWindowButtonsVisible",
+          "type": "bool"
+        },
+        {
+          "name": "bTitleBarVisible",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Unhandled",
+      "return": "FEventReply",
+      "doc": "The event reply to use when you choose not to handle an event.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UnlockMouse",
+      "return": "FEventReply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Reply",
+          "type": "FEventReply&"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "name": "FPBIKBoneSetting",
+  "isStruct": true,
+  "properties": {
+    "Bone": [
+      "FName",
+      2,
+      "The Bone that these settings will be applied to."
+    ],
+    "RotationStiffness": [
+      "float32",
+      2,
+      "Range is 0 to 1 (Default is 0). At higher values, the bone will resist rotating (forcing other bones to compensate)."
+    ],
+    "PositionStiffness": [
+      "float32",
+      2,
+      "Range is 0 to 1 (Default is 0). At higher values, the bone will resist translational motion (forcing other bones to compensate)."
+    ],
+    "X": [
+      "EPBIKLimitType",
+      2,
+      "Limit the rotation angle of the bone on the X axis.\nFree: can rotate freely in this axis.\nLimited: rotation is clamped between the min/max angles relative to the Skeletal Mesh reference pose.\nLocked: no rotation is allowed in this axis (will remain at reference pose angle)."
+    ],
+    "MinX": [
+      "float32",
+      2,
+      "Range is -180 to 0 (Default is 0). Degrees of rotation in the negative X direction to allow when joint is in \"Limited\" mode."
+    ],
+    "MaxX": [
+      "float32",
+      2,
+      "Range is 0 to 180 (Default is 0). Degrees of rotation in the positive X direction to allow when joint is in \"Limited\" mode."
+    ],
+    "Y": [
+      "EPBIKLimitType",
+      2,
+      "Limit the rotation angle of the bone on the Y axis.\nFree: can rotate freely in this axis.\nLimited: rotation is clamped between the min/max angles relative to the Skeletal Mesh reference pose.\nLocked: no rotation is allowed in this axis (will remain at input pose angle)."
+    ],
+    "MinY": [
+      "float32",
+      2,
+      "Range is -180 to 0 (Default is 0). Degrees of rotation in the negative Y direction to allow when joint is in \"Limited\" mode."
+    ],
+    "MaxY": [
+      "float32",
+      2,
+      "Range is 0 to 180 (Default is 0). Degrees of rotation in the positive Y direction to allow when joint is in \"Limited\" mode."
+    ],
+    "Z": [
+      "EPBIKLimitType",
+      2,
+      "Limit the rotation angle of the bone on the Z axis.\nFree: can rotate freely in this axis.\nLimited: rotation is clamped between the min/max angles relative to the Skeletal Mesh reference pose.\nLocked: no rotation is allowed in this axis (will remain at input pose angle)."
+    ],
+    "MinZ": [
+      "float32",
+      2,
+      "Range is -180 to 0 (Default is 0). Degrees of rotation in the negative Z direction to allow when joint is in \"Limited\" mode."
+    ],
+    "MaxZ": [
+      "float32",
+      2,
+      "Range is 0 to 180 (Default is 0). Degrees of rotation in the positive Z direction to allow when joint is in \"Limited\" mode."
+    ],
+    "bUsePreferredAngles": [
+      "bool",
+      2,
+      "When true, this bone will \"prefer\" to rotate in the direction specified by the Preferred Angles when the chain it belongs to is compressed.\nPreferred Angles should be the first method used to fix bones that bend in the wrong direction (rather than limits).\nThe resulting angles can be visualized on their own by temporarily setting the Solver iterations to 0 and moving the effectors."
+    ],
+    "PreferredAngles": [
+      "FVector",
+      2,
+      "The local Euler angles (in degrees) used to rotate this bone when the chain it belongs to is squashed.\nThis happens by moving the effector at the tip of the chain towards the root of the chain.\nThis can be used to coerce knees and elbows to bend in the anatomically \"correct\" direction without resorting to limits (which may require more iterations to converge)."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPBIKBoneSetting&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPBIKBoneSetting"
+        }
+      ]
+    }
+  ]
+}

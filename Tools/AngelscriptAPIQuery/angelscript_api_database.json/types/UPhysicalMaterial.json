@@ -1,0 +1,81 @@
+{
+  "name": "UPhysicalMaterial",
+  "inherits": "UObject",
+  "doc": "Physical materials are used to define the response of a physical object when interacting dynamically with the world.",
+  "properties": {
+    "Friction": [
+      "float32",
+      "Friction value of surface, controls how easily things can slide on this surface (0 is frictionless, higher values increase the amount of friction)"
+    ],
+    "StaticFriction": [
+      "float32",
+      "Static Friction value of surface, controls how easily things can slide on this surface (0 is frictionless, higher values increase the amount of friction)"
+    ],
+    "FrictionCombineMode": [
+      "EFrictionCombineMode",
+      "Friction combine mode, controls how friction is computed for multiple materials."
+    ],
+    "bOverrideFrictionCombineMode": [
+      "bool",
+      "If set we will use the FrictionCombineMode of this material, instead of the FrictionCombineMode found in the project settings."
+    ],
+    "Restitution": [
+      "float32",
+      "Restitution or 'bounciness' of this surface, between 0 (no bounce) and 1 (outgoing velocity is same as incoming)."
+    ],
+    "RestitutionCombineMode": [
+      "EFrictionCombineMode",
+      "Restitution combine mode, controls how restitution is computed for multiple materials."
+    ],
+    "bOverrideRestitutionCombineMode": [
+      "bool",
+      "If set we will use the RestitutionCombineMode of this material, instead of the RestitutionCombineMode found in the project settings."
+    ],
+    "Density": [
+      "float32",
+      "Used with the shape of the object to calculate its mass properties. The higher the number, the heavier the object. g per cubic cm."
+    ],
+    "SleepLinearVelocityThreshold": [
+      "float32",
+      "How low the linear velocity can be before solver puts body to sleep."
+    ],
+    "SleepAngularVelocityThreshold": [
+      "float32",
+      "How low the angular velocity can be before solver puts body to sleep."
+    ],
+    "SleepCounterThreshold": [
+      "int",
+      "How many ticks we can be under thresholds for before solver puts body to sleep."
+    ],
+    "RaiseMassToPower": [
+      "float32",
+      "Used to adjust the way that mass increases as objects get larger. This is applied to the mass as calculated based on a 'solid' object.\nIn actuality, larger objects do not tend to be solid, and become more like 'shells' (e.g. a car is not a solid piece of metal).\nValues are clamped to 1 or less."
+    ],
+    "SurfaceType": [
+      "EPhysicalSurface",
+      "To edit surface type for your project, use ProjectSettings/Physics/PhysicalSurface section"
+    ],
+    "Strength": [
+      "FPhysicalMaterialStrength"
+    ],
+    "DamageModifier": [
+      "FPhysicalMaterialDamageModifier"
+    ],
+    "SoftCollisionMode": [
+      "EPhysicalMaterialSoftCollisionMode",
+      2,
+      "For enable soft collision shell thickness mode"
+    ],
+    "SoftCollisionThickness": [
+      "float32",
+      2,
+      "Thickness of the layer just inside the collision shape in which contact is considered \"soft\".\n              The units depend on SoftCollisionMode"
+    ],
+    "BaseFrictionImpulse": [
+      "float32",
+      2,
+      "A friction (positional) impulse of at least this magnitude may be applied,\n              regardless the normal force. This is analogous to adding only the lateral part of a\n              \"stickiness\" to a material"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,159 @@
+{
+  "name": "UGameFrameworkComponentManager",
+  "inherits": "UGameInstanceSubsystem",
+  "doc": "GameFrameworkComponentManager\n\nA manager to handle putting components on actors as they come and go.\nPut in a request to instantiate components of a given class on actors of a given class and they will automatically be made for them as the actors are spawned.\nSubmit delegate handlers to listen for actors of a given class. Those handlers will automatically run when actors of a given class or registered as receivers or game events are sent.\nActors must opt-in to this behavior by calling AddReceiver/RemoveReceiver for themselves when they are ready to receive the components and when they want to remove them.\nAny actors that are in memory when a request is made will automatically get the components, and any in memory when a request is removed will lose the components immediately.\nRequests are reference counted, so if multiple requests are made for the same actor class and component class, only one component will be added and that component wont be removed until all requests are removed.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddReceiver",
+      "return": "void",
+      "doc": "Adds an actor as a receiver for components. If it passes the actorclass filter on requests it will get the components.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Receiver",
+          "type": "AActor"
+        },
+        {
+          "name": "bAddOnlyInGameWorlds",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RegisterAndCallForActorInitState",
+      "return": "bool",
+      "doc": "Registers blueprint delegate for feature state change notifications on a specific actor and may call it immediately\n\n@param Actor                         The actor to listen for state changes to, if you don't have a specific actor call the Class version instead\n@param FeatureName           If not empty, only listen to state changes for the specified feature\n@param RequiredState         If specified, only activate if the init state of the feature is equal to or later than this\n@param Delegate                      Native delegate to call\n@param bCallImmediately      If true and the actor feature is already in the specified state, call delegate immediately after registering\n@return true if delegate was registered",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "FeatureName",
+          "type": "FName"
+        },
+        {
+          "name": "RequiredState",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Delegate",
+          "default": "FActorInitStateChangedBPDelegate ( )",
+          "type": "FActorInitStateChangedBPDelegate"
+        },
+        {
+          "name": "bCallImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RegisterAndCallForClassInitState",
+      "return": "bool",
+      "doc": "Registers blueprint delegate for feature state change notifications on a class of actors and may call it immediately\n\n@param ActorClass            Name of an actor class to listen for changes to\n@param FeatureName           If not empty, only listen to state changes for the specified feature\n@param RequiredState         If specified, only activate if the init state of the feature is equal to or later than this\n@param Delegate                      Native delegate to call\n@param bCallImmediately      If true and the actor feature is already in the specified state, call delegate immediately after registering\n@return true if delegate was registered",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorClass",
+          "type": "TSoftClassPtr<AActor>"
+        },
+        {
+          "name": "FeatureName",
+          "type": "FName"
+        },
+        {
+          "name": "RequiredState",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Delegate",
+          "default": "FActorInitStateChangedBPDelegate ( )",
+          "type": "FActorInitStateChangedBPDelegate"
+        },
+        {
+          "name": "bCallImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveReceiver",
+      "return": "void",
+      "doc": "Removes an actor as a receiver for components.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Receiver",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SendExtensionEvent",
+      "return": "void",
+      "doc": "Sends an arbitrary extension event that can be listened for by other systems",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Receiver",
+          "type": "AActor"
+        },
+        {
+          "name": "EventName",
+          "type": "FName"
+        },
+        {
+          "name": "bOnlyInGameWorlds",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterActorInitStateDelegate",
+      "return": "bool",
+      "doc": "Removes a registered delegate bound to a specific actor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "DelegateToRemove",
+          "default": "FActorInitStateChangedBPDelegate ( )",
+          "type": "FActorInitStateChangedBPDelegate"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterClassInitStateDelegate",
+      "return": "bool",
+      "doc": "Removes a registered delegate bound to a class",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorClass",
+          "type": "TSoftClassPtr<AActor>"
+        },
+        {
+          "name": "DelegateToRemove",
+          "default": "FActorInitStateChangedBPDelegate ( )",
+          "type": "FActorInitStateChangedBPDelegate"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "FRigUnit_GetSpaceTransform",
+  "isStruct": true,
+  "doc": "GetSpaceTransform is used to retrieve a single transform from a hierarchy.",
+  "properties": {
+    "Space": [
+      "FName",
+      "The name of the Space to retrieve the transform for."
+    ],
+    "SpaceType": [
+      "ERigVMTransformSpace",
+      "Defines if the Space's transform should be retrieved\nin local or global space."
+    ],
+    "Transform": [
+      "FTransform",
+      1,
+      "The current transform of the given bone - or identity in case it wasn't found."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_GetSpaceTransform&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_GetSpaceTransform"
+        }
+      ]
+    }
+  ]
+}

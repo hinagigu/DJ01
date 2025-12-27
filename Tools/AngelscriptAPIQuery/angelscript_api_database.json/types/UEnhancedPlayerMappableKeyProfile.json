@@ -1,0 +1,193 @@
+{
+  "name": "UEnhancedPlayerMappableKeyProfile",
+  "inherits": "UObject",
+  "doc": "Represents one \"Profile\" that a user can have for their player mappable keys",
+  "properties": {
+    "ProfileIdentifier": [
+      "FGameplayTag",
+      "The ID of this profile. This can be used by each Key Mapping to filter down which profile is required for it be equipped."
+    ],
+    "OwningUserId": [
+      "FPlatformUserId",
+      1,
+      "The platform user id of the owning Local Player of this profile."
+    ],
+    "PlayerMappedKeys": [
+      "TMap<FName,FKeyMappingRow>",
+      "A map of \"Mapping Row Name\" to all key mappings associated with it.\nNote: Dirty mappings will be serialized from UEnhancedInputUserSettings::Serialize"
+    ],
+    "DisplayName": [
+      "FText",
+      "The localized display name of this profile"
+    ]
+  },
+  "methods": [
+    {
+      "name": "DoesMappingPassQueryOptions",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the given player key mapping passes the query filter provided.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerMapping",
+          "type": "FPlayerKeyMapping"
+        },
+        {
+          "name": "Options",
+          "type": "FPlayerMappableKeyQueryOptions"
+        }
+      ]
+    },
+    {
+      "name": "DumpProfileToLog",
+      "return": "void",
+      "const": true,
+      "doc": "A helper function to print out all the current profile settings to the log.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMappedKeysInRow",
+      "return": "int",
+      "const": true,
+      "doc": "OUT",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingName",
+          "type": "FName"
+        },
+        {
+          "name": "OutKeys",
+          "type": "TArray<FKey>&"
+        }
+      ]
+    },
+    {
+      "name": "GetMappingNamesForKey",
+      "return": "int",
+      "const": true,
+      "doc": "OUT",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKey",
+          "type": "FKey"
+        },
+        {
+          "name": "OutMappingNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerMappingRows",
+      "return": "TMap<FName,FKeyMappingRow>",
+      "const": true,
+      "doc": "Get all known key mappings for this profile.\n\nThis returns a map of \"Mapping Name\" -> Player Mappings to that name",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetProfileDisplayName",
+      "return": "FText",
+      "const": true,
+      "doc": "Get the localized display name for this profile",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetProfileIdentifer",
+      "return": "FGameplayTag",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FindKeyMapping",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "unrealname": "K2_FindKeyMapping",
+      "meta": null,
+      "args": [
+        {
+          "name": "OutKeyMapping",
+          "type": "FPlayerKeyMapping&"
+        },
+        {
+          "name": "InArgs",
+          "type": "FMapPlayerKeyArgs"
+        }
+      ]
+    },
+    {
+      "name": "QueryPlayerMappedKeys",
+      "return": "int",
+      "const": true,
+      "doc": "OUT",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Options",
+          "type": "FPlayerMappableKeyQueryOptions"
+        },
+        {
+          "name": "OutKeys",
+          "type": "TArray<FKey>&"
+        }
+      ]
+    },
+    {
+      "name": "ResetMappingToDefault",
+      "return": "void",
+      "doc": "Resets every player key mapping to this mapping back to it's default value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMappingName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ResetToDefault",
+      "return": "void",
+      "doc": "Resets all the key mappings in this profile to their default value from their Input Mapping Context.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetDisplayName",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewDisplayName",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns a string that can be used to debug the current key mappings.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

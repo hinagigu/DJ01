@@ -1,0 +1,31 @@
+{
+  "name": "__ETriggerEventsSupported",
+  "isEnum": true,
+  "doc": "Represents what ETriggerEvent types can be triggered off of a give UInputTrigger.\nUsed to determine if a warning should be placed on a exec pin that would never get called\non a K2Node_EnhancedInputAction node",
+  "properties": {
+    "None": [
+      "ETriggerEventsSupported",
+      "This trigger supports no trigger events."
+    ],
+    "Instant": [
+      "ETriggerEventsSupported",
+      "This trigger supports just the Triggered event type. This include ETriggerEvent::Triggered"
+    ],
+    "Uninterruptible": [
+      "ETriggerEventsSupported",
+      "This trigger cannot be canceled, once it is started it cannot be stopped from being triggered\nThis includes the ETriggerEvents of Started, Ongoing, and Triggered"
+    ],
+    "Ongoing": [
+      "ETriggerEventsSupported",
+      "This represents a trigger than can be held down and have a duration, and be canceled. This includes\nthe ETriggerEvents of Started, Ongoing, Canceled, and Triggered."
+    ],
+    "All": [
+      "ETriggerEventsSupported",
+      "This trigger supports all trigger events"
+    ],
+    "ETriggerEventsSupported_MAX": [
+      "ETriggerEventsSupported"
+    ]
+  },
+  "methods": []
+}

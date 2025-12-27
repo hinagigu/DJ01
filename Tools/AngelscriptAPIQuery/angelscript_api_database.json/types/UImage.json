@@ -1,0 +1,195 @@
+{
+  "name": "UImage",
+  "inherits": "UWidget",
+  "doc": "The image widget allows you to display a Slate Brush, or texture or material in the UI.\n\n* No Children",
+  "properties": {
+    "bFlipForRightToLeftFlowDirection": [
+      "bool",
+      "Flips the image if the localization's flow direction is RightToLeft"
+    ],
+    "OnMouseButtonDownEvent": [
+      "FOnPointerEvent__Widget",
+      2,
+      ""
+    ],
+    "Brush": [
+      "FSlateBrush",
+      "Image to draw"
+    ],
+    "ColorAndOpacity": [
+      "FLinearColor",
+      "Color and opacity"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDynamicMaterial",
+      "return": "UMaterialInstanceDynamic",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBrush",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBrush",
+          "type": "FSlateBrush"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushFromAsset",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Asset",
+          "type": "USlateBrushAsset"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushFromMaterial",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushFromSoftMaterial",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoftMaterial",
+          "type": "TSoftObjectPtr<UMaterialInterface>"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushFromSoftTexture",
+      "return": "void",
+      "doc": "Sets the Brush to the specified Soft Texture.\n\n  @param SoftTexture Soft Texture to use to set on Brush.\n      @param bMatchSize If true, image will change its size to texture size. If false, texture will be stretched to image size.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoftTexture",
+          "type": "TSoftObjectPtr<UTexture2D>"
+        },
+        {
+          "name": "bMatchSize",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushFromTexture",
+      "return": "void",
+      "doc": "Sets the Brush to the specified Texture.\n\n  @param Texture Texture to use to set on Brush.\n      @param bMatchSize If true, image will change its size to texture size. If false, texture will be stretched to image size.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Texture",
+          "type": "UTexture2D"
+        },
+        {
+          "name": "bMatchSize",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushFromTextureDynamic",
+      "return": "void",
+      "doc": "Sets the Brush to the specified Dynamic Texture.\n\n  @param Texture Dynamic Texture to use to set on Brush.\n      @param bMatchSize If true, image will change its size to texture size. If false, texture will be stretched to image size.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Texture",
+          "type": "UTexture2DDynamic"
+        },
+        {
+          "name": "bMatchSize",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushResourceObject",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ResourceObject",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SetBrushTintColor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TintColor",
+          "type": "FSlateColor"
+        }
+      ]
+    },
+    {
+      "name": "SetColorAndOpacity",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InColorAndOpacity",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetDesiredSizeOverride",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DesiredSize",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetOpacity",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOpacity",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

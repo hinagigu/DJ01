@@ -1,0 +1,41 @@
+{
+  "name": "UConstantQAnalyzer",
+  "inherits": "UAudioAnalyzer",
+  "doc": "UConstantQAnalyzer\n\nUConstantQAnalyzer calculates the temporal evolution of constant q transform for a given\naudio bus in real-time. ConstantQ is available for individual channels or the overall audio bus.",
+  "properties": {
+    "Settings": [
+      "UConstantQSettings",
+      "The settings for the audio analyzer."
+    ],
+    "OnConstantQResults": [
+      "FOnConstantQResults",
+      "Delegate to receive all Spectrum results, per-channel, since last delegate call. If bDownmixToMono setting is true, results will be in channel index 0."
+    ],
+    "OnLatestConstantQResults": [
+      "FOnLatestConstantQResults",
+      "Delegate to receive the latest per-channel Spectrum results. If bDownmixToMono setting is true, results will be in channel index 0."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCenterFrequencies",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutCenterFrequencies",
+          "type": "TArray<float32>&"
+        }
+      ]
+    },
+    {
+      "name": "GetNumCenterFrequencies",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

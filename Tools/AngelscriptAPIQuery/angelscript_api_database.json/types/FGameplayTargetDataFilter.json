@@ -1,0 +1,31 @@
+{
+  "name": "FGameplayTargetDataFilter",
+  "isStruct": true,
+  "doc": "Simple actor target filter, games can subclass this",
+  "properties": {
+    "RequiredActorClass": [
+      "TSubclassOf<AActor>",
+      "Subclass actors must be to pass the filter."
+    ],
+    "SelfFilter": [
+      "ETargetDataFilterSelf",
+      "Filter based on whether or not this actor is \"self.\""
+    ],
+    "bReverseFilter": [
+      "bool",
+      "Reverses the meaning of the filter, so it will exclude all actors that pass."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayTargetDataFilter&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayTargetDataFilter"
+        }
+      ]
+    }
+  ]
+}

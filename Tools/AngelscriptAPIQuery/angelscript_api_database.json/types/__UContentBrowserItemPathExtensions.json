@@ -1,0 +1,94 @@
+{
+  "name": "__UContentBrowserItemPathExtensions",
+  "properties": {},
+  "methods": [
+    {
+      "name": "BreakContentBrowserItemPath",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemPath",
+          "type": "FContentBrowserItemPath"
+        },
+        {
+          "name": "VirtualPath",
+          "type": "FName&"
+        },
+        {
+          "name": "InternalPath",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "GetInternalPath",
+      "return": "FName",
+      "doc": "Returns internal path if there is one (eg,. \"/PluginA/MyFile\").",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemPath",
+          "type": "FContentBrowserItemPath"
+        }
+      ]
+    },
+    {
+      "name": "GetVirtualPath",
+      "return": "FName",
+      "doc": "Returns virtual path as FName (eg, \"/All/Plugins/PluginA/MyFile\").",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemPath",
+          "type": "FContentBrowserItemPath"
+        }
+      ]
+    },
+    {
+      "name": "MakeContentBrowserItemPath",
+      "return": "FContentBrowserItemPath",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPath",
+          "type": "FName"
+        },
+        {
+          "name": "InPathType",
+          "type": "EContentBrowserPathType"
+        }
+      ]
+    },
+    {
+      "name": "SetPath",
+      "return": "void",
+      "doc": "Set the path being stored",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemPath",
+          "type": "FContentBrowserItemPath&"
+        },
+        {
+          "name": "InPath",
+          "type": "FName"
+        },
+        {
+          "name": "InPathType",
+          "type": "EContentBrowserPathType"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

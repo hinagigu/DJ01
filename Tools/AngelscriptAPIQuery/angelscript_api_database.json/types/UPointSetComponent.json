@@ -1,0 +1,7 @@
+{
+  "name": "UPointSetComponent",
+  "inherits": "UMeshComponent",
+  "doc": "UPointSetComponent is a Component that draws a set of points, as small squares.\nPer-point Color and (view-space) Size is supported. Normals are not supported.\n\nPoints are inserted with an externally-defined ID, internally this is done via\na TSparseArray. This class allocates a contiguous TArray large enugh to hold the\nlargest ID. Using ReservePoints() may be beneficial for huge arrays.\n\nThe points are drawn as two triangles (ie a square) orthogonal to the view direction.\nThe actual point size is calculated in the shader, and so a custom material must be used.",
+  "properties": {},
+  "methods": []
+}

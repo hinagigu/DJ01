@@ -1,0 +1,1320 @@
+{
+  "name": "AFunctionalTest",
+  "inherits": "AActor",
+  "properties": {
+    "TestLabel": [
+      "FString",
+      1,
+      ""
+    ],
+    "Author": [
+      "FString",
+      "The owner is the group or person responsible for the test. Generally you should use a group name\nlike 'Editor' or 'Rendering'. When a test fails it may not be obvious who should investigate\nso this provides a associate responsible groups with tests."
+    ],
+    "Description": [
+      "FString",
+      "A description of the test, like what is this test trying to determine."
+    ],
+    "LogErrorHandling": [
+      "EFunctionalTestLogHandling",
+      "Determines how LogErrors are handled during this test."
+    ],
+    "LogWarningHandling": [
+      "EFunctionalTestLogHandling",
+      "Determines how LogWarnings are handled during this test."
+    ],
+    "ObservationPoint": [
+      "AActor",
+      "Allows you to specify another actor to view the test from.  Usually this is a camera you place\nin the map to observe the test.  Not useful when running on a build farm, but provides a handy\nway to observe the test from a different location than you place the functional test actor."
+    ],
+    "RandomNumbersStream": [
+      "FRandomStream",
+      "A random number stream that you can use during testing.  This number stream will be consistent\nevery time the test is run."
+    ],
+    "Result": [
+      "EFunctionalTestResult",
+      1,
+      ""
+    ],
+    "PreparationTimeLimit": [
+      "float32",
+      "The Test's time limit for preparation, this is the time it has to return true when checking IsReady(). '0' means no limit."
+    ],
+    "TimesUpMessage": [
+      "FText"
+    ],
+    "TimesUpResult": [
+      "EFunctionalTestResult",
+      2,
+      "If test is limited by time this is the result that will be returned when time runs out"
+    ],
+    "OnTestPrepare": [
+      "FFunctionalTestEventSignature",
+      "Called when the test is ready to prepare"
+    ],
+    "OnTestStart": [
+      "FFunctionalTestEventSignature",
+      "Called when the test is started"
+    ],
+    "OnTestFinished": [
+      "FFunctionalTestEventSignature",
+      "Called when the test is finished. Use it to clean up"
+    ],
+    "TotalTime": [
+      "float32",
+      1,
+      ""
+    ],
+    "bIsEnabled": [
+      "bool",
+      "Allows a test to be disabled.  If a test is disabled, it will not appear in the set of\nrunnable tests (after saving the map)."
+    ],
+    "bShouldDelayGarbageCollection": [
+      "bool",
+      "Allows for garbage collection to be delayed. If delayed, garbage collection will be triggered at the end of a test run"
+    ],
+    "TimeLimit": [
+      "float32",
+      "Test's time limit. '0' means no limit"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddError",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AddInfo",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AddRerun",
+      "return": "void",
+      "doc": "Causes the test to be rerun for a specific named reason.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Reason",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "AddWarning",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Bool",
+      "return": "bool",
+      "doc": "Assert that two bools are equal\n@param What   A name to use in the message if the assert fails (What: expected {Actual} to be Equal To {Expected} for context '')",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "bool"
+        },
+        {
+          "name": "Expected",
+          "type": "bool"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Box2D",
+      "return": "bool",
+      "doc": "Assert that two two-component boxes are (memberwise) equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FBox2D"
+        },
+        {
+          "name": "Expected",
+          "type": "FBox2D"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float32"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Double",
+      "return": "bool",
+      "doc": "Assert that two double are equal within tolerance between two doubles.\n@param What  A name to use in the message if the assert fails (What: expected {Actual} to be Equal To {Expected} within Tolerance for context '')",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "float"
+        },
+        {
+          "name": "Expected",
+          "type": "float"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Float",
+      "return": "bool",
+      "doc": "Assert that two floats are equal within tolerance between two floats.\n@param What  A name to use in the message if the assert fails (What: expected {Actual} to be Equal To {Expected} within Tolerance for context '')",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "float32"
+        },
+        {
+          "name": "Expected",
+          "type": "float32"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float32"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Int",
+      "return": "bool",
+      "doc": "Assert that two ints are equal\n@param What   A name to use in the message if the assert fails (What: expected {Actual} to be Equal To {Expected} for context '')",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "int"
+        },
+        {
+          "name": "Expected",
+          "type": "int"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Matrix",
+      "return": "bool",
+      "doc": "Assert that two 4x4 matrices are (memberwise) equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FMatrix"
+        },
+        {
+          "name": "Expected",
+          "type": "FMatrix"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float32"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Name",
+      "return": "bool",
+      "doc": "Assert that two FNames are equal\n@param What   A name to use in the message if the assert fails (What: expected {Actual} to be Equal To {Expected} for context '')",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FName"
+        },
+        {
+          "name": "Expected",
+          "type": "FName"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Object",
+      "return": "bool",
+      "doc": "Assert that two Objects are equal\n@param What   A name to use in the message if the assert fails (What: expected {Actual} to be Equal To {Expected} for context '')",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "UObject"
+        },
+        {
+          "name": "Expected",
+          "type": "UObject"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Plane",
+      "return": "bool",
+      "doc": "Assert that two planes are (memberwise) equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FPlane"
+        },
+        {
+          "name": "Expected",
+          "type": "FPlane"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float32"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Quat",
+      "return": "bool",
+      "doc": "Assert that two quats are (memberwise) equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FQuat"
+        },
+        {
+          "name": "Expected",
+          "type": "FQuat"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float32"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Rotator",
+      "return": "bool",
+      "doc": "Assert that the component angles of two rotators are all equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FRotator"
+        },
+        {
+          "name": "Expected",
+          "type": "FRotator"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float32"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_RotatorOrientation",
+      "return": "bool",
+      "doc": "Assert that the orientation of two rotators is the same within a small tolerance. Robust to quaternion singularities where angles can differ despite having an identical orientation.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FRotator"
+        },
+        {
+          "name": "Expected",
+          "type": "FRotator"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float32"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_String",
+      "return": "bool",
+      "doc": "Assert that two Strings are equal.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FString"
+        },
+        {
+          "name": "Expected",
+          "type": "FString"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_TraceQueryResults",
+      "return": "bool",
+      "doc": "Assert that two TraceQueryResults are equal.\n@param What   A name to use in the message if the assert fails (\"Expected 'What' not to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "const UTraceQueryTestResults"
+        },
+        {
+          "name": "Expected",
+          "type": "const UTraceQueryTestResults"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Transform",
+      "return": "bool",
+      "doc": "Assert that two transforms are (components memberwise - translation, rotation, scale) equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FTransform"
+        },
+        {
+          "name": "Expected",
+          "type": "FTransform"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float32"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Vector",
+      "return": "bool",
+      "doc": "Assert that two vectors are (memberwise) equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FVector"
+        },
+        {
+          "name": "Expected",
+          "type": "FVector"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float32"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Vector2D",
+      "return": "bool",
+      "doc": "Assert that two two-component vectors are (memberwise) equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Expected",
+          "type": "FVector2D"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float32"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertEqual_Vector4",
+      "return": "bool",
+      "doc": "Assert that two four-component vectors are (memberwise) equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FVector4"
+        },
+        {
+          "name": "Expected",
+          "type": "FVector4"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.000100",
+          "type": "float32"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertFalse",
+      "return": "bool",
+      "doc": "Assert that a boolean value is false.\n@param Message       The message to display if the assert fails (\"Assertion Failed: 'Message' for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Condition",
+          "type": "bool"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertIsValid",
+      "return": "bool",
+      "doc": "Assert that a UObject is valid\n@param Message       The message to display if the object is invalid (\"Invalid object: 'Message' for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotEqual_Box2D",
+      "return": "bool",
+      "doc": "Assert that two two-component boxes are (memberwise) not equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' not to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FBox2D"
+        },
+        {
+          "name": "NotExpected",
+          "type": "FBox2D"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotEqual_Matrix",
+      "return": "bool",
+      "doc": "Assert that two 4x4 matrices are (memberwise) not equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' not to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FMatrix"
+        },
+        {
+          "name": "NotExpected",
+          "type": "FMatrix"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotEqual_Plane",
+      "return": "bool",
+      "doc": "Assert that two planes are (memberwise) not equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' not to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FPlane"
+        },
+        {
+          "name": "NotExpected",
+          "type": "FPlane"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotEqual_Quat",
+      "return": "bool",
+      "doc": "Assert that two quats are (memberwise) not equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' not to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FQuat"
+        },
+        {
+          "name": "NotExpected",
+          "type": "FQuat"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotEqual_Rotator",
+      "return": "bool",
+      "doc": "Assert that the component angles of two rotators are all not equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' not to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FRotator"
+        },
+        {
+          "name": "NotExpected",
+          "type": "FRotator"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotEqual_String",
+      "return": "bool",
+      "doc": "Assert that two Strings are not equal.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' not to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FString"
+        },
+        {
+          "name": "NotExpected",
+          "type": "FString"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotEqual_Transform",
+      "return": "bool",
+      "doc": "Assert that two transforms are (components memberwise - translation, rotation, scale) not equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' not to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FTransform"
+        },
+        {
+          "name": "NotExpected",
+          "type": "FTransform"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotEqual_Vector",
+      "return": "bool",
+      "doc": "Assert that two vectors are (memberwise) not equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' not to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FVector"
+        },
+        {
+          "name": "NotExpected",
+          "type": "FVector"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotEqual_Vector2D",
+      "return": "bool",
+      "doc": "Assert that two two-component vectors are (memberwise) not equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' not to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FVector2D"
+        },
+        {
+          "name": "NotExpected",
+          "type": "FVector2D"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertNotEqual_Vector4",
+      "return": "bool",
+      "doc": "Assert that two four-component vectors are (memberwise) not equal within a small tolerance.\n@param What  A name to use in the message if the assert fails (\"Expected 'What' not to be {Expected} but it was {Actual} for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FVector4"
+        },
+        {
+          "name": "NotExpected",
+          "type": "FVector4"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertTrue",
+      "return": "bool",
+      "doc": "Assert that a boolean value is true.\n@param Message       The message to display if the assert fails (\"Assertion Failed: 'Message' for context ''\")",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Condition",
+          "type": "bool"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertValue_DateTime",
+      "return": "bool",
+      "doc": "Assert on a relationship between two DateTimes.\n@param What  A name to use in the message if the assert fails (What: expected {Actual} to be <ShouldBe> {Expected} for context '')",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "FDateTime"
+        },
+        {
+          "name": "ShouldBe",
+          "type": "EComparisonMethod"
+        },
+        {
+          "name": "Expected",
+          "type": "FDateTime"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertValue_Double",
+      "return": "bool",
+      "doc": "Assert on a relationship between two doubles.\n@param What  A name to use in the message if the assert fails (What: expected {Actual} to be <ShouldBe> {Expected} for context '')",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "float"
+        },
+        {
+          "name": "ShouldBe",
+          "type": "EComparisonMethod"
+        },
+        {
+          "name": "Expected",
+          "type": "float"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertValue_Float",
+      "return": "bool",
+      "doc": "Assert on a relationship between two floats.\n@param What  A name to use in the message if the assert fails (What: expected {Actual} to be <ShouldBe> {Expected} for context '')",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "float32"
+        },
+        {
+          "name": "ShouldBe",
+          "type": "EComparisonMethod"
+        },
+        {
+          "name": "Expected",
+          "type": "float32"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "AssertValue_Int",
+      "return": "bool",
+      "doc": "Assert on a relationship between two integers.\n@param What  A name to use in the message if the assert fails (What: expected {Actual} to be <ShouldBe> {Expected} for context '')",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actual",
+          "type": "int"
+        },
+        {
+          "name": "ShouldBe",
+          "type": "EComparisonMethod"
+        },
+        {
+          "name": "Expected",
+          "type": "int"
+        },
+        {
+          "name": "What",
+          "type": "FString"
+        },
+        {
+          "name": "ContextObject",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "DebugGatherRelevantActors",
+      "return": "TArray<AActor>",
+      "const": true,
+      "callable": false,
+      "doc": "Used by debug drawing to gather actors this test is using and point at them on the level to better understand test's setup",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FinishTest",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TestResult",
+          "type": "EFunctionalTestResult"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentRerunReason",
+      "return": "FName",
+      "const": true,
+      "doc": "Returns the current re-run reason if we're in a named re-run.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsEnabled",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsReady",
+      "return": "bool",
+      "callable": false,
+      "doc": "IsReady() is called once per frame after a test is run, until it returns true.  You should use this function to\ndelay Start being called on the test until preconditions are met.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsRunning",
+      "return": "bool",
+      "const": true,
+      "doc": "AActor interface end",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LogMessage",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "OnAdditionalTestFinishedMessageRequest",
+      "return": "FString",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TestResult",
+          "type": "EFunctionalTestResult"
+        }
+      ]
+    },
+    {
+      "name": "OnWantsReRunCheck",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "doc": "retrieves information whether test wants to have another run just after finishing",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PrepareTest",
+      "return": "void",
+      "callable": false,
+      "doc": "Prepare Test is fired once the test starts up, before the test IsReady() and thus before Start Test is called.\nSo if there's some initial conditions or setup that you might need for your IsReady() check, you might want\nto do that here.",
+      "event": true,
+      "unrealname": "ReceivePrepareTest",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StartTest",
+      "return": "void",
+      "callable": false,
+      "doc": "Called once the IsReady() check for the test returns true.  After that happens the test has Officially started,\nand it will begin receiving Ticks in the blueprint.",
+      "event": true,
+      "unrealname": "ReceiveStartTest",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RegisterAutoDestroyActor",
+      "return": "void",
+      "doc": "Actors registered this way will be automatically destroyed (by limiting their lifespan)\n    on test finish",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorToAutoDestroy",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetConsoleVariable",
+      "return": "void",
+      "doc": "Sets the CVar from the given input. Variable gets reset after the test.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetConsoleVariableFromBoolean",
+      "return": "void",
+      "doc": "Sets the CVar from the given input. Variable gets reset after the test.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetConsoleVariableFromFloat",
+      "return": "void",
+      "doc": "Sets the CVar from the given input. Variable gets reset after the test.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetConsoleVariableFromInteger",
+      "return": "void",
+      "doc": "Sets the CVar from the given input. Variable gets reset after the test.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetTimeLimit",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTimeLimit",
+          "type": "float32"
+        },
+        {
+          "name": "ResultWhenTimeRunsOut",
+          "type": "EFunctionalTestResult"
+        }
+      ]
+    }
+  ]
+}

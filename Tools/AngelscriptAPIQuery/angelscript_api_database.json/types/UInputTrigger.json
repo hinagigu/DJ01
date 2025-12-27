@@ -1,0 +1,69 @@
+{
+  "name": "UInputTrigger",
+  "inherits": "UObject",
+  "doc": "Base class for building triggers.\nTransitions to Triggered state once the input meets or exceeds the actuation threshold.",
+  "properties": {
+    "ActuationThreshold": [
+      "float32",
+      "Point at which this trigger fires"
+    ],
+    "bShouldAlwaysTick": [
+      "bool",
+      1,
+      "Decides whether this trigger ticks every frame or not.\n       * This WILL affect performance and should only be used in specific custom triggers."
+    ],
+    "LastValue": [
+      "FInputActionValue",
+      1,
+      "Value passed to UpdateState on the previous tick. This will be updated automatically after the trigger is updated."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetTriggerType",
+      "return": "ETriggerType",
+      "const": true,
+      "doc": "Changes the way this trigger affects an action with multiple triggers:\n        All implicit triggers must be triggering to trigger the action.\n        If there are any explicit triggers at least one must be triggering to trigger the action.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsActuated",
+      "return": "bool",
+      "const": true,
+      "doc": "* Is the value passed in sufficiently large to be of interest to the trigger.\n* This is a helper function that implements the most obvious (>=) interpretation of the actuation threshold.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ForValue",
+          "type": "FInputActionValue"
+        }
+      ]
+    },
+    {
+      "name": "UpdateState",
+      "return": "ETriggerState",
+      "doc": "This function checks if the requisite conditions have been met for the trigger to fire.\n Returns Trigger State None              - No trigger conditions have been met. Trigger is inactive.\n                 Trigger State Ongoing   - Some trigger conditions have been met. Trigger is processing but not yet active.\n                 Trigger State Triggered - All trigger conditions have been met to fire. Trigger is active.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerInput",
+          "type": "const UEnhancedPlayerInput"
+        },
+        {
+          "name": "ModifiedValue",
+          "type": "FInputActionValue"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float"
+        }
+      ]
+    }
+  ]
+}

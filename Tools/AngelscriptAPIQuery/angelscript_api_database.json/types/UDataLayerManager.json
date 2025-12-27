@@ -1,0 +1,113 @@
+{
+  "name": "UDataLayerManager",
+  "inherits": "UObject",
+  "properties": {
+    "OnDataLayerInstanceRuntimeStateChanged": [
+      "FOnDataLayerInstanceRuntimeStateChanged"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDataLayerInstanceEffectiveRuntimeState",
+      "return": "EDataLayerRuntimeState",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDataLayerInstance",
+          "type": "const UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "GetDataLayerInstanceFromAsset",
+      "return": "const UDataLayerInstance",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDataLayerAsset",
+          "type": "const UDataLayerAsset"
+        }
+      ]
+    },
+    {
+      "name": "GetDataLayerInstanceFromName",
+      "return": "const UDataLayerInstance",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDataLayerInstanceName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetDataLayerInstanceRuntimeState",
+      "return": "EDataLayerRuntimeState",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDataLayerInstance",
+          "type": "const UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "GetDataLayerInstances",
+      "return": "TArray<UDataLayerInstance>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetDataLayerInstanceRuntimeState",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDataLayerInstance",
+          "type": "const UDataLayerInstance"
+        },
+        {
+          "name": "InState",
+          "type": "EDataLayerRuntimeState"
+        },
+        {
+          "name": "bInIsRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetDataLayerRuntimeState",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDataLayerAsset",
+          "type": "const UDataLayerAsset"
+        },
+        {
+          "name": "InState",
+          "type": "EDataLayerRuntimeState"
+        },
+        {
+          "name": "bInIsRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

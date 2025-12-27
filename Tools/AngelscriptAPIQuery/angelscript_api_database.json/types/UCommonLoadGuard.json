@@ -1,0 +1,87 @@
+{
+  "name": "UCommonLoadGuard",
+  "inherits": "UContentWidget",
+  "doc": "The Load Guard behaves similarly to a Border, but with the ability to hide its primary content and display a loading spinner\nand optional message while needed content is loaded or otherwise prepared.\n\nUse GuardAndLoadAsset to automatically display the loading state until the asset is loaded (then the content widget will be displayed).\nFor other applications (ex: waiting for an async backend call to complete), you can manually set the loading state of the guard.",
+  "properties": {
+    "bShowLoading": [
+      "bool",
+      2,
+      ""
+    ],
+    "LoadingBackgroundBrush": [
+      "FSlateBrush",
+      2,
+      "The background brush to display while loading the content"
+    ],
+    "ThrobberAlignment": [
+      "EHorizontalAlignment",
+      2,
+      "The horizontal alignment of the loading throbber & message"
+    ],
+    "ThrobberPadding": [
+      "FMargin",
+      2,
+      "The horizontal alignment of the loading throbber & message"
+    ],
+    "TextStyle": [
+      "TSubclassOf<UCommonTextStyle>",
+      2,
+      "Style to apply to the loading message"
+    ],
+    "BP_OnLoadingStateChanged": [
+      "FOnLoadGuardStateChangedDynamic"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GuardAndLoadAsset",
+      "return": "void",
+      "ufunction": true,
+      "unrealname": "BP_GuardAndLoadAsset",
+      "meta": null,
+      "args": [
+        {
+          "name": "InLazyAsset",
+          "type": "TSoftObjectPtr<UObject>"
+        },
+        {
+          "name": "OnAssetLoaded",
+          "default": "FOnAssetLoaded__CommonLoadGuard ( )",
+          "type": "FOnAssetLoaded__CommonLoadGuard"
+        }
+      ]
+    },
+    {
+      "name": "IsLoading",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetIsLoading",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsLoading",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLoadingText",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLoadingText",
+          "type": "FText"
+        }
+      ]
+    }
+  ]
+}

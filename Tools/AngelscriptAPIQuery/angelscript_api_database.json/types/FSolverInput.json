@@ -1,0 +1,63 @@
+{
+  "name": "FSolverInput",
+  "isStruct": true,
+  "properties": {
+    "LinearMotionStrength": [
+      "float32",
+      2,
+      "* This value is applied to the target information for effectors, which influence back to\n* Joint's motion that are affected by the end effector\n* The reason min/max is used when we apply the depth through the chain that are affected"
+    ],
+    "MinLinearMotionStrength": [
+      "float32",
+      2,
+      ""
+    ],
+    "AngularMotionStrength": [
+      "float32",
+      2,
+      "* This value is applied to the target information for effectors, which influence back to\n* Joint's motion that are affected by the end effector\n* The reason min/max is used when we apply the depth through the chain that are affected"
+    ],
+    "MinAngularMotionStrength": [
+      "float32",
+      2,
+      ""
+    ],
+    "DefaultTargetClamp": [
+      "float32",
+      2,
+      "This is a scale value (range from 0-0.7) that is used to stablize the target vector. If less, it's more stable, but it can reduce speed of converge."
+    ],
+    "Precision": [
+      "float32",
+      2,
+      "The precision to use for the solver"
+    ],
+    "Damping": [
+      "float32",
+      2,
+      "The precision to use for the fabrik solver"
+    ],
+    "MaxIterations": [
+      "int",
+      2,
+      "The maximum number of iterations. Values between 4 and 16 are common."
+    ],
+    "bUseJacobianTranspose": [
+      "bool",
+      2,
+      "Cheaper solution than default Jacobian Pseudo Inverse Damped Least Square"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSolverInput&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSolverInput"
+        }
+      ]
+    }
+  ]
+}

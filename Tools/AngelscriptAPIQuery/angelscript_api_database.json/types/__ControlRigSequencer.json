@@ -1,0 +1,2509 @@
+{
+  "name": "__ControlRigSequencer",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddConstraint",
+      "return": "UTickableConstraint",
+      "doc": "Add a constraint possibly adding to sequencer also if one is open.\n@param World The active world\n@param InType Type of constraint to create\n@param InChild The handle to the transormable to be constrainted\n@param InParent The handle to the parent of the constraint\n@param bMaintainOffset Whether to maintain offset between child and parent when setting the constraint\n@return Returns the constraint if created all nullptr if not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "InType",
+          "type": "ETransformConstraintType"
+        },
+        {
+          "name": "InChild",
+          "type": "UTransformableHandle"
+        },
+        {
+          "name": "InParent",
+          "type": "UTransformableHandle"
+        },
+        {
+          "name": "bMaintainOffset",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "BakeConstraint",
+      "return": "bool",
+      "doc": "Bake the constraint to keys based on the passed in frames. This will use the open sequencer to bake. See ConstraintsScriptingLibrary to get the list of available constraints\n@param World The active world\n@param Constraint The Constraint to bake. After baking it will be keyed to be inactive of the range of frames that are baked\n@param Frames The frames to bake, if the array is empty it will use the active time ranges of the constraint to determine where it should bake\n@param TimeUnit Unit for all frame and time values, either in display rate or tick resolution\n@return Returns True if successful, False otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "Constraint",
+          "type": "UTickableConstraint"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "BakeConstraints",
+      "return": "bool",
+      "doc": "Bake the constraint to keys based on the passed in settings. This will use the open sequencer to bake. See ConstraintsScriptingLibrary to get the list of available constraints\n@param World The active world\n@param InConstraints The Constraints tobake.  After baking they will be keyed to be inactive of the range of frames that are baked\n@param InSettings Settings to use for baking\n@return Returns True if successful, False otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "InConstraints",
+          "type": "TArray<UTickableConstraint>&"
+        },
+        {
+          "name": "InSettings",
+          "type": "FBakingAnimationKeySettings"
+        }
+      ]
+    },
+    {
+      "name": "BakeControlRigSpace",
+      "return": "bool",
+      "doc": "Bake specified Control Rig Controls to a specified Space based upon the current settings\n@param InSequence Sequence to bake\n@param InControlRig ControlRig to bake\n@param InControlNames The name of the Controls to bake\n@param InSettings  The settings for the bake, e.g, how long to bake, to key reduce etc.\n@param TimeUnit Unit for the start and end times in the InSettings parameter.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "InControlNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigSpacePickerBakeSettings"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "BakeToControlRig",
+      "return": "bool",
+      "doc": "Bake the current animation in the binding to a Control Rig track\n@param World The active world\n@param LevelSequence The LevelSequence we are baking\n@param ControlRigClass The class of the Control Rig\n@param ExportOptions Export options for creating an animation sequence\n@param bKeyReduce If true do key reduction based upon Tolerance, if false don't\n@param Tolerance If reducing keys, tolerance about which keys will be removed, smaller tolerance, more keys usually.\n@param Binding The binding upon which to bake\n@param bResetControls If true will reset all controls to initial value on every frame\n@return returns True if successful, False otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRigClass",
+          "type": "UClass"
+        },
+        {
+          "name": "ExportOptions",
+          "type": "UAnimSeqExportOption"
+        },
+        {
+          "name": "bReduceKeys",
+          "type": "bool"
+        },
+        {
+          "name": "Tolerance",
+          "type": "float32"
+        },
+        {
+          "name": "Binding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "bResetControls",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "BlendValuesOnSelected",
+      "return": "bool",
+      "doc": "Peform specified blend operation based upon selected keys in the curve editor or selected control rig controls\n@param LevelSequence The LevelSequence that's loaded in the editor\n@param EAnimToolBlendOperation The operation to perform\n@param BlendValue The blend value to use, range from -1(blend to previous) to 1(blend to next)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "BlendOperation",
+          "type": "EAnimToolBlendOperation"
+        },
+        {
+          "name": "BlendValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CollapseControlRigAnimLayers",
+      "return": "bool",
+      "doc": "* Collapse and bake all sections and layers on a control rig track to just one section.\n*\n* @param InSequence Sequence that has track to collapse\n* @param InTrack Track for layers to collapse\n* @param bKeyReduce If true do key reduction based upon Tolerance, if false don't\n* @param Tolerance If reducing keys, tolerance about which keys will be removed, smaller tolerance, more keys usually.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "InTrack",
+          "type": "UMovieSceneControlRigParameterTrack"
+        },
+        {
+          "name": "bKeyReduce",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.001000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CollapseControlRigAnimLayersWithSettings",
+      "return": "bool",
+      "doc": "* Collapse and bake all sections and layers on a control rig track to just one section using passed in settings.\n*\n* @param InSequence Sequence that has track to collapse\n* @param InTrack Track for layers to collapse\n* @param InSettings Settings that determine how to collapse",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "InTrack",
+          "type": "UMovieSceneControlRigParameterTrack"
+        },
+        {
+          "name": "InSettings",
+          "type": "FBakingAnimationKeySettings"
+        }
+      ]
+    },
+    {
+      "name": "Compensate",
+      "return": "bool",
+      "doc": "Compensate constraint at the specfied time\n@param InConstraint The constraint to compensate\n@param InTime Time to compensate\n@param TimeUnit Unit for the InTime, either in display rate or tick resolution\n@return Returns true if it can compensate",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InConstraint",
+          "type": "UTickableConstraint"
+        },
+        {
+          "name": "InTime",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "CompensateAll",
+      "return": "bool",
+      "doc": "Compensate constraint at all keys\n@param InConstraint The constraint to compensate\n@return Returns true if it can compensate",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InConstraint",
+          "type": "UTickableConstraint"
+        }
+      ]
+    },
+    {
+      "name": "DeleteConstraintKey",
+      "return": "bool",
+      "doc": "Delete the Key for the Constraint at the specified time.\n@param InConstraint The constraint whose key to move\n@param ConstraintSection Section containing Cosntraint Key\n@param InTime Time to delete the constraint.\n@param TimeUnit Unit for the InTime, either in display rate or tick resolution\n@return Will return false if function fails,  for example if there is no key at this time it will fail.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Constraint",
+          "type": "UTickableConstraint"
+        },
+        {
+          "name": "ConstraintSection",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "InTime",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "DeleteControlRigSpace",
+      "return": "bool",
+      "doc": "Delete the Control Rig Space Key for the Control at the specified time. This will delete any attached Control Rig keys at this time and will perform any needed compensation to the new space.\n\n@param InSequence Sequence to set the space\n@param InControlRig ControlRig with the Control\n@param InControlName The name of the Control\n@param InTime Time to delete the space.\n@param TimeUnit Unit for the InTime, either in display rate or tick resolution\n@return Will return false if function fails,  for example if there is no key at this time it will fail.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "InControlName",
+          "type": "FName"
+        },
+        {
+          "name": "InTime",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "ExportFBXFromControlRigSection",
+      "return": "bool",
+      "doc": "Exports an FBX from the given control rig section.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "Section",
+          "type": "const UMovieSceneControlRigParameterSection"
+        },
+        {
+          "name": "ExportFBXControlRigSettings",
+          "type": "const UMovieSceneUserExportFBXControlRigSettings"
+        }
+      ]
+    },
+    {
+      "name": "FindOrCreateControlRigComponentTrack",
+      "return": "TArray<UMovieSceneTrack>",
+      "doc": "Find or create a Control Rig Component\n@param World The world used to spawn into temporarily if binding is a spawnable\n@param LevelSequence The LevelSequence to find or create\n@param InBinding The binding (actor or component binding) to find or create the Control Rig tracks\n@return returns Find array of component Control Rigs that were found or created",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    },
+    {
+      "name": "FindOrCreateControlRigTrack",
+      "return": "UMovieSceneTrack",
+      "doc": "Find or create a Control Rig track of a specific class based upon the binding\n@param World The world used to spawn into temporarily if binding is a spawnable\n@param LevelSequence The LevelSequence to find or create\n@param ControlRigClass The class of the Control Rig\n@param InBinding The binding (actor or component binding) to find or create the Control Rig track\n@return returns Return the found or created track",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRigClass",
+          "type": "const UClass"
+        },
+        {
+          "name": "InBinding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "bIsLayeredControlRig",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetActorWorldTransform",
+      "return": "FTransform",
+      "doc": "Get Actors World Transform at a specific time\n@param LevelSequence Active Sequence to get transform for\n@param Actor The actor\n@param Frame Time to get the transform\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns World Transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetActorWorldTransforms",
+      "return": "TArray<FTransform>",
+      "doc": "Get Actors World Transforms at specific times\n@param LevelSequence Active Sequence to get transform for\n@param Actor The actor\n@param Frames Times to get the transform\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns World Transforms",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetConstraintKeys",
+      "return": "bool",
+      "doc": "Get the constraint keys for the specified constraint\n@param InConstraint The constraint to get\n@param ConstraintSection Section containing Cosntraint Key\n@param OutBools Array of whether or not it's active at the specified times\n@param OutFrames The Times for the keys\n@param TimeUnit Unit for the time params, either in display rate or tick resolution\n@return Returns true if we got the keys from this constraint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InConstraint",
+          "type": "UTickableConstraint"
+        },
+        {
+          "name": "ConstraintSection",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "OutBools",
+          "type": "TArray<bool>&"
+        },
+        {
+          "name": "OutFrames",
+          "type": "TArray<FFrameNumber>&"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetConstraintsForHandle",
+      "return": "TArray<UTickableConstraint>",
+      "doc": "Get all constraints for this object, which is described by a transformable handle\n@param InChild The handle to look for constraints controlling it\n@return Returns array of Constraints this handle is constrained to.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorld",
+          "type": "UWorld"
+        },
+        {
+          "name": "InChild",
+          "type": "const UTransformableHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetControlRigPriorityOrder",
+      "return": "int",
+      "doc": "Get Control Rig prirority order",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSection",
+          "type": "UMovieSceneTrack"
+        }
+      ]
+    },
+    {
+      "name": "GetControlRigs",
+      "return": "TArray<FControlRigSequencerBindingProxy>",
+      "doc": "Get all of the control rigs and their bindings in the level sequence\n@param LevelSequence The movie scene sequence to look for Control Rigs\n@return returns list of Control Rigs in the level sequence.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetControlRigWorldTransform",
+      "return": "FTransform",
+      "doc": "Get ControlRig Control's World Transform at a specific time\n@param LevelSequence Active Sequence to get transform for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control\n@param Frame Time to get the transform\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns World Transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetControlRigWorldTransforms",
+      "return": "TArray<FTransform>",
+      "doc": "Get ControlRig Control's World Transforms at specific times\n@param LevelSequence Active Sequence to get transform for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control\n@param Frames Times to get the transform\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns World Transforms",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetControlsMask",
+      "return": "bool",
+      "doc": "Get the controls mask for the given ControlName",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSection",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetDefaultParentKey",
+      "return": "FRigElementKey",
+      "doc": "* Get the default parent key, can be used a parent space.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFKControlRigApplyMode",
+      "return": "EControlRigFKRigExecuteMode",
+      "doc": "Get FKControlRig Apply Mode.\n@param InControlRig Rig to test\n@return The EControlRigFKRigExecuteMode mode it is in, either Replace,Additive or Direct",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigBool",
+      "return": "bool",
+      "doc": "Get ControlRig Control's bool value at a specific time\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a bool control\n@param Frame Time to get the value\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Value at that time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigBools",
+      "return": "TArray<bool>",
+      "doc": "Get ControlRig Control's bool values at specific times\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a bool control\n@param Frames Times to get the values\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Values at those times",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigEulerTransform",
+      "return": "FEulerTransform",
+      "doc": "Get ControlRig Control's EulerTransform value at a specific time\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a EulerTransfom control\n@param Frame Time to get the value\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Value at that time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigEulerTransforms",
+      "return": "TArray<FEulerTransform>",
+      "doc": "Get ControlRig Control's EulerTransform values at specific times\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a EulerTransform control\n@param Frames Times to get the values\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Values at those times",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigFloat",
+      "return": "float32",
+      "doc": "Get ControlRig Control's float value at a specific time\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a float control\n@param Frame Time to get the value\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Value at that time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigFloats",
+      "return": "TArray<float32>",
+      "doc": "Get ControlRig Control's float values at specific times\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a float control\n@param Frames Times to get the values\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Values at those times",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigInt",
+      "return": "int",
+      "doc": "Get ControlRig Control's integer value at a specific time\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a integer control\n@param Frame Time to get the value\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Value at that time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigInts",
+      "return": "TArray<int>",
+      "doc": "Get ControlRig Control's integer values at specific times\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a intteger control\n@param Frames Times to get the values\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Values at those times",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigPosition",
+      "return": "FVector",
+      "doc": "Get ControlRig Control's Position value at a specific time\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Position control\n@param Frame Time to get the value\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Value at that time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigPositions",
+      "return": "TArray<FVector>",
+      "doc": "Get ControlRig Control's Position values at specific times\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Position control\n@param Frames Times to get the values\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Values at those times",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigRotator",
+      "return": "FRotator",
+      "doc": "Get ControlRig Control's Rotator value at a specific time\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Rotator control\n@param Frame Time to get the value\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Value at that time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigRotators",
+      "return": "TArray<FRotator>",
+      "doc": "Get ControlRig Control's Rotator values at specific times\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Rotator control\n@param Frames Times to get the values\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Values at those times",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigScale",
+      "return": "FVector",
+      "doc": "Get ControlRig Control's Scale value at a specific time\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Scale control\n@param Frame Time to get the value\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Value at that time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigScales",
+      "return": "TArray<FVector>",
+      "doc": "Get ControlRig Control's Scale values at specific times\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Scale control\n@param Frames Times to get the values\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Values at those times",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigTransform",
+      "return": "FTransform",
+      "doc": "Get ControlRig Control's Transform value at a specific time\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Transform control\n@param Frame Time to get the value\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Value at that time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigTransformNoScale",
+      "return": "FTransformNoScale",
+      "doc": "Get ControlRig Control's TransformNoScale value at a specific time\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a TransformNoScale control\n@param Frame Time to get the value\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Value at that time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigTransformNoScales",
+      "return": "TArray<FTransformNoScale>",
+      "doc": "Get ControlRig Control's TransformNoScale values at specific times\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a TransformNoScale control\n@param Frames Times to get the values\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Values at those times",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigTransforms",
+      "return": "TArray<FTransform>",
+      "doc": "Get ControlRig Control's Transform values at specific times\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Transform control\n@param Frames Times to get the values\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Values at those times",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigVector2D",
+      "return": "FVector2D",
+      "doc": "Get ControlRig Control's Vector2D value at a specific time\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Vector2D control\n@param Frame Time to get the value\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Value at that time",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalControlRigVector2Ds",
+      "return": "TArray<FVector2D>",
+      "doc": "Get ControlRig Control's Vector2D values at specific times\n@param LevelSequence Active Sequence to get value for\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Vector2D control\n@param Frames Times to get the values\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@return Returns Values at those times",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetSkeletalMeshComponentWorldTransform",
+      "return": "FTransform",
+      "doc": "Get SkeletalMeshComponent World Transform at a specific time\n@param LevelSequence Active Sequence to get transform for\n@param SkeletalMeshComponent The SkeletalMeshComponent\n@param Frame Time to get the transform\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param ReferenceName Optional name of the referencer\n@return Returns World Transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "SkeletalMeshComponent",
+          "type": "USkeletalMeshComponent"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "ReferenceName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetSkeletalMeshComponentWorldTransforms",
+      "return": "TArray<FTransform>",
+      "doc": "Get SkeletalMeshComponents World Transforms at specific times\n@param LevelSequence Active Sequence to get transform for\n@param SkeletalMeshComponent The SkeletalMeshComponent\n@param Frames Times to get the transform\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param ReferenceName Optional name of the referencer\n@return Returns World Transforms",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "SkeletalMeshComponent",
+          "type": "USkeletalMeshComponent"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "ReferenceName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetVisibleControlRigs",
+      "return": "TArray<UControlRig>",
+      "doc": "Get all of the visible control rigs in the level\n@return returns list of visible Control Rigs",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWorldSpaceReferenceKey",
+      "return": "FRigElementKey",
+      "doc": "* Get the default world space key, can be used a world space.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HideAllControls",
+      "return": "void",
+      "doc": "Hides all of the controls for the given section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSection",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "ImportFBXToControlRigTrack",
+      "return": "bool",
+      "doc": "* Import FBX onto a control rig with the specified track and section\n*\n* @param InWorld World to import to\n* @param InSequence Sequence to import\n* @param InTrack Track to import onto\n* @param InSection Section to import onto, may be null in which case we use the track's section to key\n* @param SelectedControlRigNames  List of selected control rig names. Will use them if  ImportFBXControlRigSettings->bImportOntoSelectedControls is true\n* @param ImportFBXControlRigSettings Settings to control import.\n* @param InImportFileName Path to fbx file to create",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "InSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "InTrack",
+          "type": "UMovieSceneControlRigParameterTrack"
+        },
+        {
+          "name": "InSection",
+          "type": "UMovieSceneControlRigParameterSection"
+        },
+        {
+          "name": "SelectedControlRigNames",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "ImportFBXControlRigSettings",
+          "type": "UMovieSceneUserImportFBXControlRigSettings"
+        },
+        {
+          "name": "ImportFilename",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsFKControlRig",
+      "return": "bool",
+      "doc": "Whether or not the control rig is an FK Control Rig.\n@param InControlRig Rig to test to see if FK Control Rig",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        }
+      ]
+    },
+    {
+      "name": "IsLayeredControlRig",
+      "return": "bool",
+      "doc": "Whether or not the control rig is an Layered Control Rig.\n@param InControlRig Rig to test to see if Layered Control Rig",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        }
+      ]
+    },
+    {
+      "name": "LoadAnimSequenceIntoControlRigSection",
+      "return": "bool",
+      "doc": "Load anim sequence into this control rig section\n@param MovieSceneSection The MovieSceneSectionto load into\n@param AnimSequence The Sequence to load\n@param MovieScene The MovieScene getting loaded into\n@param SkelMeshComponent The Skeletal Mesh component getting loaded into.\n@param InStartFrame Frame to insert the animation\n@param TimeUnit Unit for all frame and time values, either in display rate or tick resolution\n@param bKeyReduce If true do key reduction based upon Tolerance, if false don't\n@param Tolerance If reducing keys, tolerance about which keys will be removed, smaller tolerance, more keys usually.\n@param Interpolation The key interpolation type to set the keys, defaults to EMovieSceneKeyInterpolation::SmartAuto\n@param bResetControls If true will reset all controls to initial value on every frame\n@return returns True if successful, False otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MovieSceneSection",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "AnimSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "SkelMeshComp",
+          "type": "USkeletalMeshComponent"
+        },
+        {
+          "name": "InStartFrame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bKeyReduce",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "Tolerance",
+          "default": "0.001000",
+          "type": "float32"
+        },
+        {
+          "name": "Interpolation",
+          "default": "EMovieSceneKeyInterpolation :: SmartAuto",
+          "type": "EMovieSceneKeyInterpolation"
+        },
+        {
+          "name": "bResetControls",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MoveConstraintKey",
+      "return": "bool",
+      "doc": "Move the constraint active key in the current open Sequencer\n@param InConstraint The constraint whose key to move\n@param ConstraintSection Section containing Cosntraint Key\n@param InTime Original time of the constraint key\n@param InNewTime New time for the constraint key\n@param TimeUnit Unit for the time params, either in display rate or tick resolution\n@return Will return false if function fails, for example if there is no key at this time it will fail, or if the new time is invalid it could fail also",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Constraint",
+          "type": "UTickableConstraint"
+        },
+        {
+          "name": "ConstraintSection",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "InTime",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "InNewTime",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "MoveControlRigSpace",
+      "return": "bool",
+      "doc": "Move the Control Rig Space Key for the Control at the specified time to the new time. This will also move any Control Rig keys at this space switch boundary.\n\n@param InSequence Sequence to set the space\n@param InControlRig ControlRig with the Control\n@param InControlName The name of the Control\n@param InTime Original time of the space key\n@param InNewTime New time for the space key\n@param TimeUnit Unit for the time params, either in display rate or tick resolution\n@return Will return false if function fails, for example if there is no key at this time it will fail, or if the new time is invalid it could fail also",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "InControlName",
+          "type": "FName"
+        },
+        {
+          "name": "InTime",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "InNewTime",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "RenameControlRigControlChannels",
+      "return": "bool",
+      "doc": "Rename the Control Rig Channels in Sequencer to the specified new control names, which should be present on the Control Rig\n@param InSequence Sequence to rename controls\n@param InControlRig ControlRig to rename controls\n@param InOldControlNames The name of the old Control Rig Control Channels to change. Will be replaced by the corresponding name in the InNewControlNames array\n@param InNewControlNames  The name of the new Control Rig Channels\n@return Return true if the function succeeds, false if it doesn't which can happen if the name arrays don't match in size or any of the new Control Names aren't valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "InOldControlNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "InNewControlNames",
+          "type": "TArray<FName>"
+        }
+      ]
+    },
+    {
+      "name": "SetConstraintActiveKey",
+      "return": "bool",
+      "doc": "Set the constraint active key in the current open Sequencer\n@param InConstraint The constraint to set the key\n@param bActive Whether or not it's active\n@param FrameTime Time to set the value\n@param TimeUnit Unit for the time params, either in display rate or tick resolution\n@return Returns true if we set the constraint to be the passed in value, false if not. We may not do so if the value is the same.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InConstraint",
+          "type": "UTickableConstraint"
+        },
+        {
+          "name": "bActive",
+          "type": "bool"
+        },
+        {
+          "name": "InFrame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetControlRigApplyMode",
+      "return": "bool",
+      "doc": "Set the FK Control Rig to apply mode\n@param InControlRig Rig to set\n@param InApplyMode Set the EControlRigFKRigExecuteMode mode (Replace,Addtiive or Direct)\n@return returns True if the mode was set, may not be set if the Control Rig doesn't support these modes currently only FKControlRig's do.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "InApplyMode",
+          "type": "EControlRigFKRigExecuteMode"
+        }
+      ]
+    },
+    {
+      "name": "SetControlRigLayeredMode",
+      "return": "bool",
+      "doc": "* Convert the control rig track into absolute or layered rig\n*\n* @param InTrack Control rig track to convert\n* @param bSetIsLayered Convert to layered rig if true, or absolute if false",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTrack",
+          "type": "UMovieSceneControlRigParameterTrack"
+        },
+        {
+          "name": "bSetIsLayered",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlRigPriorityOrder",
+      "return": "void",
+      "doc": "Set Control Rig priority order",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSection",
+          "type": "UMovieSceneTrack"
+        },
+        {
+          "name": "PriorityOrder",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetControlRigSpace",
+      "return": "bool",
+      "doc": "* Set the a key for the Control Rig Space for the Control at the specified time. If space is the same as the current no key witll be set.\n*\n* @param InSequence Sequence to set the space\n* @param InControlRig ControlRig with the Control\n* @param InControlName The name of the Control\n* @param InSpaceKey  The new space for the Control\n* @param InTime Time to change the space.\n* @param TimeUnit Unit for the InTime, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "InControlName",
+          "type": "FName"
+        },
+        {
+          "name": "InSpaceKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTime",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetControlRigWorldTransform",
+      "return": "void",
+      "doc": "Set ControlRig Control's World Transform at a specific time\n@param LevelSequence Active Sequence to set transforms for. Must be loaded in Level Editor.\n@param ControlRig The ControlRig\n@param ControlName Name of the Control\n@param Frame Time to set the transform\n@param WorldTransform World Transform to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param bSetKey Whether or not to set a key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "WorldTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bSetKey",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControlRigWorldTransforms",
+      "return": "void",
+      "doc": "Set ControlRig Control's World Transforms at a specific times.\n@param LevelSequence Active Sequence to set transforms for. Must be loaded in Level Editor.\n@param ControlRig The ControlRig\n@param ControlName Name of the Control\n@param Frames Times to set the transform\n@param WorldTransform World Transform to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "WorldTransforms",
+          "type": "TArray<FTransform>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetControlsMask",
+      "return": "void",
+      "doc": "Set the controls mask for the given ControlNames",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSection",
+          "type": "UMovieSceneSection"
+        },
+        {
+          "name": "ControlNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "bVisible",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigBool",
+      "return": "void",
+      "doc": "Set ControlRig Control's bool value at specific time\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a bool control\n@param Frame Time to set the value\n@param Value The value to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param bSetKey If True set a key, if not just set the value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "Value",
+          "type": "bool"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bSetKey",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigBools",
+      "return": "void",
+      "doc": "Set ControlRig Control's bool values at specific times\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a bool control\n@param Frames Times to set the values\n@param Values The values to set at those times\n@param TimeUnit Unit for frame values, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<bool>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigEulerTransform",
+      "return": "void",
+      "doc": "Set ControlRig Control's EulerTransform value at specific time\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a EulerTransform control\n@param Frame Time to set the value\n@param Value The value to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param bSetKey If True set a key, if not just set the value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "Value",
+          "type": "FEulerTransform"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bSetKey",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigEulerTransforms",
+      "return": "void",
+      "doc": "Set ControlRig Control's EulerTransform values at specific times\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a EulerTransform control\n@param Frames Times to set the values\n@param Values The values to set at those times\n@param TimeUnit Unit for frame values, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<FEulerTransform>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigFloat",
+      "return": "void",
+      "doc": "Set ControlRig Control's float value at specific time\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a float control\n@param Frame Time to set the value\n@param Value The value to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param bSetKey If True set a key, if not just set the value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bSetKey",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigFloats",
+      "return": "void",
+      "doc": "Set ControlRig Control's float values at specific times\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a float control\n@param Frames Times to set the values\n@param Values The values to set at those times\n@param TimeUnit Unit for frame values, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<float32>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigInt",
+      "return": "void",
+      "doc": "Set ControlRig Control's int value at specific time\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a int control\n@param Frame Time to set the value\n@param Value The value to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param bSetKey If True set a key, if not just set the value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "Value",
+          "type": "int"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bSetKey",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigInts",
+      "return": "void",
+      "doc": "Set ControlRig Control's int values at specific times\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a int control\n@param Frames Times to set the values\n@param Values The values to set at those times\n@param TimeUnit Unit for frame values, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<int>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigPosition",
+      "return": "void",
+      "doc": "Set ControlRig Control's Position value at specific time\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Position control\n@param Frame Time to set the value\n@param Value The value to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param bSetKey If True set a key, if not just set the value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "Value",
+          "type": "FVector"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bSetKey",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigPositions",
+      "return": "void",
+      "doc": "Set ControlRig Control's Position values at specific times\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Position control\n@param Frames Times to set the values\n@param Values The values to set at those times\n@param TimeUnit Unit for frame values, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<FVector>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigRotator",
+      "return": "void",
+      "doc": "Set ControlRig Control's Rotator value at specific time\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Rotator control\n@param Frame Time to set the value\n@param Value The value to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param bSetKey If True set a key, if not just set the value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "Value",
+          "type": "FRotator"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bSetKey",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigRotators",
+      "return": "void",
+      "doc": "Set ControlRig Control's Rotator values at specific times\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Rotator control\n@param Frames Times to set the values\n@param Values The values to set at those times\n@param TimeUnit Unit for frame values, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<FRotator>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigScale",
+      "return": "void",
+      "doc": "Set ControlRig Control's Scale value at specific time\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Scale control\n@param Frame Time to set the value\n@param Value The value to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param bSetKey If True set a key, if not just set the value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "Value",
+          "type": "FVector"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bSetKey",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigScales",
+      "return": "void",
+      "doc": "Set ControlRig Control's Scale values at specific times\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Scale control\n@param Frames Times to set the values\n@param Values The values to set at those times\n@param TimeUnit Unit for frame values, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<FVector>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigTransform",
+      "return": "void",
+      "doc": "Set ControlRig Control's Transform value at specific time\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Transform control\n@param Frame Time to set the value\n@param Value The value to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param bSetKey If True set a key, if not just set the value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "Value",
+          "type": "FTransform"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bSetKey",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigTransformNoScale",
+      "return": "void",
+      "doc": "Set ControlRig Control's TransformNoScale value at specific time\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a TransformNoScale control\n@param Frame Time to set the value\n@param Value The value to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param bSetKey If True set a key, if not just set the value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "Value",
+          "type": "FTransformNoScale"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bSetKey",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigTransformNoScales",
+      "return": "void",
+      "doc": "Set ControlRig Control's TransformNoScale values at specific times\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a TransformNoScale control\n@param Frames Times to set the values\n@param Values The values to set at those times\n@param TimeUnit Unit for frame values, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<FTransformNoScale>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigTransforms",
+      "return": "void",
+      "doc": "Set ControlRig Control's Transform values at specific times\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Transform control\n@param Frames Times to set the values\n@param Values The values to set at those times\n@param TimeUnit Unit for frame values, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<FTransform>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigVector2D",
+      "return": "void",
+      "doc": "Set ControlRig Control's Vector2D value at specific time\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Vector2D control\n@param Frame Time to set the value\n@param Value The value to set\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param bSetKey If True set a key, if not just set the value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "Value",
+          "type": "FVector2D"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        },
+        {
+          "name": "bSetKey",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalControlRigVector2Ds",
+      "return": "void",
+      "doc": "Set ControlRig Control's Vector2D values at specific times\n@param LevelSequence Active Sequence to set value on\n@param ControlRig The ControlRig\n@param ControlName Name of the Control, should be a Vector2D control\n@param Frames Times to set the values\n@param Values The values to set at those times\n@param TimeUnit Unit for frame values, either in display rate or tick resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        },
+        {
+          "name": "Frames",
+          "type": "TArray<FFrameNumber>"
+        },
+        {
+          "name": "Values",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "ShowAllControls",
+      "return": "void",
+      "doc": "Shows all of the controls for the given section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSection",
+          "type": "UMovieSceneSection"
+        }
+      ]
+    },
+    {
+      "name": "SnapControlRig",
+      "return": "bool",
+      "doc": "Peform a Snap operation to snap the children to the parent.\n@param LevelSequence Active Sequence to snap\n@param StartFrame Beginning of the snap\n@param EndFrame End of the snap\n@param ChildrenToSnap The children objects that snap and get keys set onto. They need to live in an active Sequencer in the level editor\n@param ParentToSnap The parent object to snap relative to. If animated, it needs to live in an active Sequencer in the level editor\n@param SnapSettings Settings to use\n@param TimeUnit Unit for frame values, either in display rate or tick resolution\n@param Returns True if successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "StartFrame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "EndFrame",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "ChildrenToSnap",
+          "type": "FControlRigSnapperSelection"
+        },
+        {
+          "name": "ParentToSnap",
+          "type": "FControlRigSnapperSelection"
+        },
+        {
+          "name": "SnapSettings",
+          "type": "const UControlRigSnapSettings"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "TweenControlRig",
+      "return": "bool",
+      "doc": "Peform a Tween operation on the current active sequencer time(must be visible).\n@param LevelSequence The LevelSequence that's loaded in the editor\n@param ControlRig The Control Rig to tween.\n@param TweenValue The tween value to use, range from -1(blend to previous) to 1(blend to next)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "TweenValue",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

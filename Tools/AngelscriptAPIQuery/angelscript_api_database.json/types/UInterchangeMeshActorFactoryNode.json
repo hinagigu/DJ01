@@ -1,0 +1,123 @@
+{
+  "name": "UInterchangeMeshActorFactoryNode",
+  "inherits": "UInterchangeActorFactoryNode",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetCustomAnimationAssetUidToPlay",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the animation asset set for this scene node to play.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomGeometricTransform",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the geometric offset. Any mesh attached to this scene node will be offset using this transform.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FTransform&"
+        }
+      ]
+    },
+    {
+      "name": "GetSlotMaterialDependencies",
+      "return": "void",
+      "const": true,
+      "doc": "Retrieve the correspondence table between slot names and assigned materials for this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutMaterialDependencies",
+          "type": "TMap<FString,FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetSlotMaterialDependencyUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Retrieve the Material dependency for the specified slot of this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "OutMaterialDependency",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSlotMaterialDependencyUid",
+      "return": "bool",
+      "doc": "Remove the Material dependency associated with the specified slot name from this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomAnimationAssetUidToPlay",
+      "return": "bool",
+      "doc": "Set the animation asset for this scene node to play. (This is only relevant for SkeletalMeshActors: scene nodes that are instantiating skeletal meshes.)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomGeometricTransform",
+      "return": "bool",
+      "doc": "Set the geometric offset. Any mesh attached to this scene node will be offset using this transform.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "SetSlotMaterialDependencyUid",
+      "return": "bool",
+      "doc": "Add a Material dependency to the specified slot of this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "MaterialDependencyUid",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

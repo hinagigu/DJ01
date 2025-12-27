@@ -1,0 +1,825 @@
+{
+  "name": "__Rendering",
+  "properties": {},
+  "methods": [
+    {
+      "name": "BeginDrawCanvasToRenderTarget",
+      "return": "void",
+      "doc": "Returns a Canvas object that can be used to draw to the specified render target.\nCanvas has functions like DrawMaterial with size parameters that can be used to draw to a specific area of a render target.\nBe sure to call EndDrawCanvasToRenderTarget to complete the rendering!",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "Canvas",
+          "type": "UCanvas&"
+        },
+        {
+          "name": "Size",
+          "type": "FVector2D&"
+        },
+        {
+          "name": "Context",
+          "type": "FDrawToRenderTargetContext&"
+        }
+      ]
+    },
+    {
+      "name": "BreakSkinWeightInfo",
+      "return": "void",
+      "doc": "Break FSkelMeshSkinWeightInfo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWeight",
+          "type": "FSkelMeshSkinWeightInfo"
+        },
+        {
+          "name": "Bone0",
+          "type": "int&"
+        },
+        {
+          "name": "Weight0",
+          "type": "uint8&"
+        },
+        {
+          "name": "Bone1",
+          "type": "int&"
+        },
+        {
+          "name": "Weight1",
+          "type": "uint8&"
+        },
+        {
+          "name": "Bone2",
+          "type": "int&"
+        },
+        {
+          "name": "Weight2",
+          "type": "uint8&"
+        },
+        {
+          "name": "Bone3",
+          "type": "int&"
+        },
+        {
+          "name": "Weight3",
+          "type": "uint8&"
+        }
+      ]
+    },
+    {
+      "name": "CalculateProjectionMatrix",
+      "return": "FMatrix",
+      "doc": "Calculates the projection matrix using this view info's aspect ratio (regardless of bConstrainAspectRatio)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MinimalViewInfo",
+          "type": "FMinimalViewInfo"
+        }
+      ]
+    },
+    {
+      "name": "ClearRenderTarget2D",
+      "return": "void",
+      "doc": "Clears the specified render target with the given ClearColor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "ClearColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 0.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "ConvertRenderTargetToTexture2DArrayEditorOnly",
+      "return": "void",
+      "doc": "Copies the contents of a UTextureRenderTarget2DArray to a UTexture2DArray\nOnly works in the editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderTarget",
+          "type": "UTextureRenderTarget2DArray"
+        },
+        {
+          "name": "Texture",
+          "type": "UTexture2DArray"
+        }
+      ]
+    },
+    {
+      "name": "ConvertRenderTargetToTexture2DEditorOnly",
+      "return": "void",
+      "doc": "Copies the contents of a UTextureRenderTarget2D to a UTexture2D\nOnly works in the editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "Texture",
+          "type": "UTexture2D"
+        }
+      ]
+    },
+    {
+      "name": "ConvertRenderTargetToTextureCubeEditorOnly",
+      "return": "void",
+      "doc": "Copies the contents of a UTextureRenderTargetCube to a UTextureCube\nOnly works in the editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderTarget",
+          "type": "UTextureRenderTargetCube"
+        },
+        {
+          "name": "Texture",
+          "type": "UTextureCube"
+        }
+      ]
+    },
+    {
+      "name": "ConvertRenderTargetToTextureVolumeEditorOnly",
+      "return": "void",
+      "doc": "Copies the contents of a UTextureRenderTargetVolume to a UVolumeTexture\nOnly works in the editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderTarget",
+          "type": "UTextureRenderTargetVolume"
+        },
+        {
+          "name": "Texture",
+          "type": "UVolumeTexture"
+        }
+      ]
+    },
+    {
+      "name": "CreateRenderTarget2D",
+      "return": "UTextureRenderTarget2D",
+      "doc": "Creates a new render target and initializes it to the specified dimensions",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Width",
+          "default": "256",
+          "type": "int"
+        },
+        {
+          "name": "Height",
+          "default": "256",
+          "type": "int"
+        },
+        {
+          "name": "Format",
+          "default": "ETextureRenderTargetFormat :: RTF_RGBA16f",
+          "type": "ETextureRenderTargetFormat"
+        },
+        {
+          "name": "ClearColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 0.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bAutoGenerateMipMaps",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSupportUAVs",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreateRenderTarget2DArray",
+      "return": "UTextureRenderTarget2DArray",
+      "doc": "Creates a new render target array and initializes it to the specified dimensions",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Width",
+          "default": "256",
+          "type": "int"
+        },
+        {
+          "name": "Height",
+          "default": "256",
+          "type": "int"
+        },
+        {
+          "name": "Slices",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "Format",
+          "default": "ETextureRenderTargetFormat :: RTF_RGBA16f",
+          "type": "ETextureRenderTargetFormat"
+        },
+        {
+          "name": "ClearColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 0.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bAutoGenerateMipMaps",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSupportUAVs",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreateRenderTargetVolume",
+      "return": "UTextureRenderTargetVolume",
+      "doc": "Creates a new volume render target and initializes it to the specified dimensions",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Width",
+          "default": "16",
+          "type": "int"
+        },
+        {
+          "name": "Height",
+          "default": "16",
+          "type": "int"
+        },
+        {
+          "name": "Depth",
+          "default": "16",
+          "type": "int"
+        },
+        {
+          "name": "Format",
+          "default": "ETextureRenderTargetFormat :: RTF_RGBA16f",
+          "type": "ETextureRenderTargetFormat"
+        },
+        {
+          "name": "ClearColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 0.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bAutoGenerateMipMaps",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSupportUAVs",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DrawMaterialToRenderTarget",
+      "return": "void",
+      "doc": "Renders a quad with the material applied to the specified render target.\nThis sets the render target even if it is already set, which is an expensive operation.\nUse BeginDrawCanvasToRenderTarget / EndDrawCanvasToRenderTarget instead if rendering multiple primitives to the same render target.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "EnablePathTracing",
+      "return": "void",
+      "doc": "Enables or disables the path tracer for the current Game Viewport.\nThis command is equivalent to setting ShowFlag.PathTracing, but is accessible even from shipping builds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnablePathTracer",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "EndDrawCanvasToRenderTarget",
+      "return": "void",
+      "doc": "Must be paired with a BeginDrawCanvasToRenderTarget to complete rendering to a render target.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FDrawToRenderTargetContext"
+        }
+      ]
+    },
+    {
+      "name": "ExportRenderTarget",
+      "return": "void",
+      "doc": "Exports a render target as a HDR or PNG image onto the disk (depending on the format of the render target)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "FilePath",
+          "type": "FString"
+        },
+        {
+          "name": "FileName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ExportTexture2D",
+      "return": "void",
+      "doc": "Exports a Texture2D as a HDR image onto the disk.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Texture",
+          "type": "UTexture2D"
+        },
+        {
+          "name": "FilePath",
+          "type": "FString"
+        },
+        {
+          "name": "FileName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ImportBufferAsTexture2D",
+      "return": "UTexture2D",
+      "doc": "Imports a texture from a buffer and creates Texture2D from it.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Buffer",
+          "type": "TArray<uint8>"
+        }
+      ]
+    },
+    {
+      "name": "ImportFileAsTexture2D",
+      "return": "UTexture2D",
+      "doc": "Imports a texture file from disk and creates Texture2D from it.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Filename",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "MakeSkinWeightInfo",
+      "return": "FSkelMeshSkinWeightInfo",
+      "doc": "Create FSkelMeshSkinWeightInfo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Bone0",
+          "type": "int"
+        },
+        {
+          "name": "Weight0",
+          "type": "uint8"
+        },
+        {
+          "name": "Bone1",
+          "type": "int"
+        },
+        {
+          "name": "Weight1",
+          "type": "uint8"
+        },
+        {
+          "name": "Bone2",
+          "type": "int"
+        },
+        {
+          "name": "Weight2",
+          "type": "uint8"
+        },
+        {
+          "name": "Bone3",
+          "type": "int"
+        },
+        {
+          "name": "Weight3",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "ReadRenderTarget",
+      "return": "bool",
+      "doc": "Incredibly inefficient and slow operation! Reads entire render target as sRGB color and returns a linear array of sRGB colors.\nLDR render targets are assumed to be in sRGB space. HDR ones are assumed to be in linear space.\nResult whether the operation succeeded.  If successful, OutSamples will an entry per pixel, where each is 8-bit per channel [0,255] BGRA in sRGB space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "OutSamples",
+          "type": "TArray<FColor>&"
+        },
+        {
+          "name": "bNormalize",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReadRenderTargetPixel",
+      "return": "FColor",
+      "doc": "Incredibly inefficient and slow operation! Read a value as sRGB color from a render target using integer pixel coordinates.\nLDR render targets are assumed to be in sRGB space. HDR ones are assumed to be in linear space.\nResult is 8-bit per channel [0,255] BGRA in sRGB space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Y",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReadRenderTargetRaw",
+      "return": "bool",
+      "doc": "Incredibly inefficient and slow operation! Read entire texture as-is from a render target.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "OutLinearSamples",
+          "type": "TArray<FLinearColor>&"
+        },
+        {
+          "name": "bNormalize",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReadRenderTargetRawPixel",
+      "return": "FLinearColor",
+      "doc": "Incredibly inefficient and slow operation! Read a value as-is from a render target using integer pixel coordinates.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Y",
+          "type": "int"
+        },
+        {
+          "name": "bNormalize",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReadRenderTargetRawPixelArea",
+      "return": "TArray<FLinearColor>",
+      "doc": "Incredibly inefficient and slow operation! Read an area of values as-is from a render target using a rectangle defined by integer pixel coordinates.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "MinX",
+          "type": "int"
+        },
+        {
+          "name": "MinY",
+          "type": "int"
+        },
+        {
+          "name": "MaxX",
+          "type": "int"
+        },
+        {
+          "name": "MaxY",
+          "type": "int"
+        },
+        {
+          "name": "bNormalize",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReadRenderTargetRawUV",
+      "return": "FLinearColor",
+      "doc": "Incredibly inefficient and slow operation! Read a value as-is from a render target using UV [0,1]x[0,1] coordinates.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "U",
+          "type": "float32"
+        },
+        {
+          "name": "V",
+          "type": "float32"
+        },
+        {
+          "name": "bNormalize",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReadRenderTargetRawUVArea",
+      "return": "TArray<FLinearColor>",
+      "doc": "Incredibly inefficient and slow operation! Read an area of values as-is from a render target using a rectangle defined by UV [0,1]x[0,1] coordinates.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "Area",
+          "type": "FBox2D"
+        },
+        {
+          "name": "bNormalize",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReadRenderTargetUV",
+      "return": "FColor",
+      "doc": "Incredibly inefficient and slow operation! Read a value as sRGB color from a render target using UV [0,1]x[0,1] coordinates.\nLDR render targets are assumed to be in sRGB space. HDR ones are assumed to be in linear space.\nResult is 8-bit per channel [0,255] BGRA in sRGB space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "U",
+          "type": "float32"
+        },
+        {
+          "name": "V",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RefreshPathTracingOutput",
+      "return": "void",
+      "doc": "Forces the path tracer to restart sample accumulation.\nThis can be used to force the path tracer to compute a new frame in situations where it can not detect a change in the scene automatically.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReleaseRenderTarget2D",
+      "return": "void",
+      "doc": "Manually releases GPU resources of a render target. This is useful for blueprint creating a lot of render target that would\nnormally be released too late by the garbage collector that can be problematic on platforms that have tight GPU memory constrains.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        }
+      ]
+    },
+    {
+      "name": "RenderTargetCreateStaticTexture2DArrayEditorOnly",
+      "return": "UTexture2DArray",
+      "doc": "Creates a new Static Texture 2D Array from a Render Target 2D Array.\nOnly works in the editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderTarget",
+          "type": "UTextureRenderTarget2DArray"
+        },
+        {
+          "name": "Name",
+          "default": "\"Texture\"",
+          "type": "FString"
+        },
+        {
+          "name": "CompressionSettings",
+          "default": "TextureCompressionSettings :: TC_Default",
+          "type": "TextureCompressionSettings"
+        },
+        {
+          "name": "MipSettings",
+          "default": "TextureMipGenSettings :: TMGS_FromTextureGroup",
+          "type": "TextureMipGenSettings"
+        }
+      ]
+    },
+    {
+      "name": "RenderTargetCreateStaticTexture2DEditorOnly",
+      "return": "UTexture2D",
+      "doc": "Creates a new Static Texture from a Render Target 2D.\nOnly works in the editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "Name",
+          "default": "\"Texture\"",
+          "type": "FString"
+        },
+        {
+          "name": "CompressionSettings",
+          "default": "TextureCompressionSettings :: TC_Default",
+          "type": "TextureCompressionSettings"
+        },
+        {
+          "name": "MipSettings",
+          "default": "TextureMipGenSettings :: TMGS_FromTextureGroup",
+          "type": "TextureMipGenSettings"
+        }
+      ]
+    },
+    {
+      "name": "RenderTargetCreateStaticTextureCubeEditorOnly",
+      "return": "UTextureCube",
+      "doc": "Creates a new Static Texture Cube from a Render Target Cube.\nOnly works in the editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderTarget",
+          "type": "UTextureRenderTargetCube"
+        },
+        {
+          "name": "Name",
+          "default": "\"Texture\"",
+          "type": "FString"
+        },
+        {
+          "name": "CompressionSettings",
+          "default": "TextureCompressionSettings :: TC_Default",
+          "type": "TextureCompressionSettings"
+        },
+        {
+          "name": "MipSettings",
+          "default": "TextureMipGenSettings :: TMGS_FromTextureGroup",
+          "type": "TextureMipGenSettings"
+        }
+      ]
+    },
+    {
+      "name": "RenderTargetCreateStaticVolumeTextureEditorOnly",
+      "return": "UVolumeTexture",
+      "doc": "Creates a new Static Volume Texture from a Render Target Volume.\nOnly works in the editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RenderTarget",
+          "type": "UTextureRenderTargetVolume"
+        },
+        {
+          "name": "Name",
+          "default": "\"Texture\"",
+          "type": "FString"
+        },
+        {
+          "name": "CompressionSettings",
+          "default": "TextureCompressionSettings :: TC_Default",
+          "type": "TextureCompressionSettings"
+        },
+        {
+          "name": "MipSettings",
+          "default": "TextureMipGenSettings :: TMGS_FromTextureGroup",
+          "type": "TextureMipGenSettings"
+        }
+      ]
+    },
+    {
+      "name": "ResizeRenderTarget2D",
+      "return": "void",
+      "doc": "Changes the resolution of a render target. This is useful for when you need to resize the game viewport or change the in-game resolution during runtime\nand thus need to update the sizes of all the render targets in the game accordingly.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        },
+        {
+          "name": "Width",
+          "default": "256",
+          "type": "int"
+        },
+        {
+          "name": "Height",
+          "default": "256",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetCastInsetShadowForAllAttachments",
+      "return": "void",
+      "doc": "Set the inset shadow casting state of the given component and all its child attachments.\n    Also choose if all attachments should be grouped for the inset shadow rendering. If enabled, one depth target will be shared for all attachments.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PrimitiveComponent",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "bCastInsetShadow",
+          "type": "bool"
+        },
+        {
+          "name": "bLightAttachmentsAsGroup",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

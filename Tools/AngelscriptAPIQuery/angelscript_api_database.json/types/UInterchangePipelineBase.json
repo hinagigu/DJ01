@@ -1,0 +1,150 @@
+{
+  "name": "UInterchangePipelineBase",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "DoesPropertyStatesExist",
+      "return": "bool",
+      "const": true,
+      "doc": "Return true if the property has valid states, or false if no states were set for the property.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PropertyPath",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FindOrAddPropertyStates",
+      "return": "FInterchangePipelinePropertyStates&",
+      "doc": "Return a mutable property states reference. Add the property states if it doesn't exist.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PropertyPath",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ScriptedExecuteExportPipeline",
+      "return": "void",
+      "doc": "Non-virtual helper that allows Blueprint to implement an event-based function.\nThe Interchange manager calls this function, not the virtual one that is called by the default implementation.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseNodeContainer",
+          "type": "UInterchangeBaseNodeContainer"
+        }
+      ]
+    },
+    {
+      "name": "ScriptedExecutePipeline",
+      "return": "void",
+      "doc": "ScriptedExecutePipeline, is call after the translation and before we parse the graph to call the factory.\nThis is where factory node should be created by the pipeline.\nEach factory node represent an unreal asset create that will be create by an interchange factory.\n@note - the FTaskPipeline is calling this function not the virtual one that is call by the default implementation.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseNodeContainer",
+          "type": "UInterchangeBaseNodeContainer"
+        },
+        {
+          "name": "SourceDatas",
+          "type": "TArray<UInterchangeSourceData>"
+        },
+        {
+          "name": "ContentBasePath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ScriptedExecutePostFactoryPipeline",
+      "return": "void",
+      "doc": "ScriptedExecutePostFactoryPipeline is called after the factory creates an Unreal asset, but before it calls PostEditChange.\n@note - The FTaskPreCompletion task calls this function, not the virtual one that is called by the default implementation.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseNodeContainer",
+          "type": "const UInterchangeBaseNodeContainer"
+        },
+        {
+          "name": "FactoryNodeKey",
+          "type": "FString"
+        },
+        {
+          "name": "CreatedAsset",
+          "type": "UObject"
+        },
+        {
+          "name": "bIsAReimport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ScriptedExecutePostImportPipeline",
+      "return": "void",
+      "doc": "ScriptedExecutePostImportPipeline is called after an asset is completely imported, after PostEditChange has already been called.\nThis can be useful if you need build data for one asset to finish setting up another asset.\n@example - A PhysicsAsset needs skeletal mesh render data to be built properly.\n@note - the FTaskPostImport calls this function not the virtual one that is call by the default implementation.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseNodeContainer",
+          "type": "const UInterchangeBaseNodeContainer"
+        },
+        {
+          "name": "FactoryNodeKey",
+          "type": "FString"
+        },
+        {
+          "name": "CreatedAsset",
+          "type": "UObject"
+        },
+        {
+          "name": "bIsAReimport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ScriptedGetPipelineDisplayName",
+      "return": "FString",
+      "const": true,
+      "doc": "This function is call when we want to list pipeline in the import dialog. If not override the default behavior of this function will search if\nthe pipeline have a FString UPROPERTY named \"PipelineDisplayName\" and return the property value. If there is no FString UPROPERTY call \"PipelineDisplayName\" it will\nreturn the name of the pipeline asset (UObject::GetName).\n\nWhen creating a pipeline (c++, python or blueprint) you can simply add a UPROPERTY name \"PipelineDisplayName\" to your pipeline, you do not need to override the function.\nUse the same category has your other options and put it on the top.\nThe meta tag StandAlonePipelineProperty will hide your PROPERTY if your pipeline is a sub object of another pipeline when showing the import dialog.\nThe meta tag PipelineInternalEditionData make sure the property will be show only when we edit the pipeline object (hidden when showing the import dialog).\n\n\nUPROPERTY(EditAnywhere, BlueprintReadWrite, Category = \"Textures\", meta = (StandAlonePipelineProperty = \"True\", PipelineInternalEditionData = \"True\"))\nFString PipelineDisplayName;",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ScriptedSetReimportSourceIndex",
+      "return": "void",
+      "doc": "Non-virtual helper that allows Blueprint to implement an event-based function.\nthe Interchange framework calls this function, not the virtual one that is called by the default implementation.",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ReimportObjectClass",
+          "type": "UClass"
+        },
+        {
+          "name": "SourceFileIndex",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

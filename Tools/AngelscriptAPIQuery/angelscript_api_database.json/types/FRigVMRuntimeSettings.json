@@ -1,0 +1,28 @@
+{
+  "name": "FRigVMRuntimeSettings",
+  "isStruct": true,
+  "properties": {
+    "MaximumArraySize": [
+      "int",
+      2,
+      "The largest allowed size for arrays within the RigVM.\nAccessing or creating larger arrays will cause runtime errors in the rig."
+    ],
+    "bEnableProfiling": [
+      "bool",
+      2,
+      "When enabled records the timing of each instruction / node\non each node and within the execution stack window.\nKeep in mind when looking at nodes in a function the duration\nrepresents the accumulated duration of all invocations\nof the function currently running.\n\nNote: This can only be used when in Debug Mode. Click the \"Release\" button\nin the top toolbar to switch to Debug mode."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigVMRuntimeSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigVMRuntimeSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "FMouseInputDeviceState",
+  "isStruct": true,
+  "doc": "Current State of a physical Mouse device at a point in time.",
+  "properties": {
+    "Left": [
+      "FDeviceButtonState",
+      1,
+      "State of the left mouse button"
+    ],
+    "Middle": [
+      "FDeviceButtonState",
+      1,
+      "State of the middle mouse button"
+    ],
+    "Right": [
+      "FDeviceButtonState",
+      1,
+      "State of the right mouse button"
+    ],
+    "WheelDelta": [
+      "float32",
+      1,
+      "Change in 'ticks' of the mouse wheel since last state event"
+    ],
+    "Position2D": [
+      "FVector2D",
+      1,
+      "Current 2D position of the mouse, in application-defined coordinate system"
+    ],
+    "Delta2D": [
+      "FVector2D",
+      1,
+      "Change in 2D mouse position from last state event"
+    ],
+    "WorldRay": [
+      "FRay",
+      1,
+      "Ray into current 3D scene at current 2D mouse position"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMouseInputDeviceState&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMouseInputDeviceState"
+        }
+      ]
+    }
+  ]
+}

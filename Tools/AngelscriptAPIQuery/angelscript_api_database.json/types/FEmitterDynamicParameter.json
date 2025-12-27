@@ -1,0 +1,41 @@
+{
+  "name": "FEmitterDynamicParameter",
+  "isStruct": true,
+  "doc": "Helper structure for displaying the parameter.",
+  "properties": {
+    "ValueMethod": [
+      "EEmitterDynamicParameterValue",
+      2,
+      "Where to get the parameter value from."
+    ],
+    "ParamValue": [
+      "FRawDistributionFloat",
+      2,
+      "The distriubtion for the parameter value."
+    ],
+    "bUseEmitterTime": [
+      "bool",
+      "If true, use the EmitterTime to retrieve the value, otherwise use Particle RelativeTime."
+    ],
+    "bSpawnTimeOnly": [
+      "bool",
+      "If true, only set the value at spawn time of the particle, otherwise update each frame."
+    ],
+    "bScaleVelocityByParamValue": [
+      "bool",
+      "If true, scale the velocity value selected in ValueMethod by the evaluated ParamValue."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FEmitterDynamicParameter&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FEmitterDynamicParameter"
+        }
+      ]
+    }
+  ]
+}

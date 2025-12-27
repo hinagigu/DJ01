@@ -1,0 +1,43 @@
+{
+  "name": "UParticleModuleAttractorParticle",
+  "inherits": "UParticleModuleAttractorBase",
+  "properties": {
+    "EmitterName": [
+      "FName",
+      2,
+      "The source emitter for attractors"
+    ],
+    "Range": [
+      "FRawDistributionFloat",
+      2,
+      "The radial range of the attraction around the source particle.\nParticle-life relative."
+    ],
+    "Strength": [
+      "FRawDistributionFloat",
+      2,
+      "The strength of the attraction (negative values repel).\nParticle-life relative if StrengthByDistance is false."
+    ],
+    "SelectionMethod": [
+      "EAttractorParticleSelectionMethod",
+      2,
+      "The method to use when selecting an attractor target particle from the emitter.\nOne of the following:\nRandom          - Randomly select a particle from the source emitter.\nSequential  - Select a particle using a sequential order."
+    ],
+    "bStrengthByDistance": [
+      "bool",
+      "The strength curve is a function of distance or of time."
+    ],
+    "bAffectBaseVelocity": [
+      "bool",
+      "If true, the velocity adjustment will be applied to the base velocity."
+    ],
+    "bRenewSource": [
+      "bool",
+      "Whether the particle should grab a new particle if it's source expires."
+    ],
+    "bInheritSourceVel": [
+      "bool",
+      "Whether the particle should inherit the source veloctiy if it expires."
+    ]
+  },
+  "methods": []
+}

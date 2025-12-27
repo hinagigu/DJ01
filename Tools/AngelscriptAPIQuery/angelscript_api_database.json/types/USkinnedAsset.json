@@ -1,0 +1,47 @@
+{
+  "name": "USkinnedAsset",
+  "inherits": "UStreamableRenderAsset",
+  "properties": {},
+  "methods": [
+    {
+      "name": "FindSocket",
+      "return": "USkeletalMeshSocket",
+      "const": true,
+      "doc": "Find a socket object in this SkeletalMesh by name.\nEntering NAME_None will return NULL. If there are multiple sockets with the same name, will return the first one.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSocketName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FindSocketInfo",
+      "return": "USkeletalMeshSocket",
+      "const": true,
+      "doc": "Find a socket object and associated info in this SkeletalMesh by name.\nEntering NAME_None will return NULL. If there are multiple sockets with the same name, will return the first one.\nAlso returns the index for the socket allowing for future fast access via GetSocketByIndex()\nAlso returns the socket transform and the bone index (if any)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSocketName",
+          "type": "FName"
+        },
+        {
+          "name": "OutTransform",
+          "type": "FTransform&"
+        },
+        {
+          "name": "OutBoneIndex",
+          "type": "int&"
+        },
+        {
+          "name": "OutIndex",
+          "type": "int&"
+        }
+      ]
+    }
+  ]
+}

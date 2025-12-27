@@ -1,0 +1,144 @@
+{
+  "name": "UCommonTextBlock",
+  "inherits": "UTextBlock",
+  "doc": "Text block with automatic scrolling for FX / large texts, also supports a larger set of default styling, & custom mobile scaling.",
+  "properties": {
+    "ScrollStyle": [
+      "TSubclassOf<UCommonTextScrollStyle>",
+      "References the scroll style asset to use, no reference disables scrolling"
+    ],
+    "bIsScrollingEnabled": [
+      "bool",
+      "If scrolling is enabled/disabled initially, this can be updated in blueprint"
+    ],
+    "bAutoCollapseWithEmptyText": [
+      "bool",
+      "True to automatically collapse this text block when set to display an empty string. Conversely, will be SelfHitTestInvisible when showing a non-empty string."
+    ],
+    "Style": [
+      "TSubclassOf<UCommonTextStyle>",
+      "References the text style to use"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetMargin",
+      "return": "FMargin",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMobileFontSizeMultiplier",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResetScrollState",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetApplyLineHeightToBottomLine",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InApplyLineHeightToBottomLine",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLineHeightPercentage",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLineHeightPercentage",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMargin",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMargin",
+          "type": "FMargin"
+        }
+      ]
+    },
+    {
+      "name": "SetMobileFontSizeMultiplier",
+      "return": "void",
+      "doc": "Sets the new value and then applies the FontSizeMultiplier",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMobileFontSizeMultiplier",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetScrollingEnabled",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsScrollingEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStyle",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStyle",
+          "type": "TSubclassOf<UCommonTextStyle>"
+        }
+      ]
+    },
+    {
+      "name": "SetTextCase",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bUseAllCaps",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWrapTextWidth",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWrapTextAt",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

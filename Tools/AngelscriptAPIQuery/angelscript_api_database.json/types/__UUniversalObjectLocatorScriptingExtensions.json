@@ -1,0 +1,121 @@
+{
+  "name": "__UUniversalObjectLocatorScriptingExtensions",
+  "properties": {},
+  "methods": [
+    {
+      "name": "IsEmpty",
+      "return": "bool",
+      "doc": "Check whether the specified locator is empty; not equivalent to Resolve() != None.\nAn empty locator will never resolve to a valid object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Locator",
+          "type": "FUniversalObjectLocator"
+        }
+      ]
+    },
+    {
+      "name": "MakeUniversalObjectLocator",
+      "return": "FUniversalObjectLocator",
+      "doc": "Construct a new universal object locator",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "Context",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SyncFind",
+      "return": "UObject",
+      "doc": "Attempt to resolve the object locator by finding the object. If it is not currently loaded or created,\n\n@param Context    (Optional) Context object to use for resolving the object. This should usually be the object that owns or created the locator.\n@return The resolve object pointer, or null if it was not found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Locator",
+          "type": "FUniversalObjectLocator"
+        },
+        {
+          "name": "Context",
+          "default": "nullptr",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SyncLoad",
+      "return": "UObject",
+      "doc": "Attempt to resolve the object locator by finding or loading the object.\n\n@param Context    (Optional) Context object to use for resolving the object. This should usually be the object that owns or created the locator.\n@return The resolve object pointer, or null if it was not found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Locator",
+          "type": "FUniversalObjectLocator"
+        },
+        {
+          "name": "Context",
+          "default": "nullptr",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SyncUnload",
+      "return": "void",
+      "doc": "Attempt to resolve the object locator by unloading the object if possible.\n\n@param Context    (Optional) Context object to use for resolving the object. This should usually be the object that owns or created the locator.\n@return The resolve object pointer, or null if it was not found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Locator",
+          "type": "FUniversalObjectLocator"
+        },
+        {
+          "name": "Context",
+          "default": "nullptr",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "doc": "Convert the specified locator to its string representation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Locator",
+          "type": "FUniversalObjectLocator"
+        }
+      ]
+    },
+    {
+      "name": "UniversalObjectLocatorFromString",
+      "return": "FUniversalObjectLocator",
+      "doc": "Construct a new universal object locator from a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

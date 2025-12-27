@@ -1,0 +1,93 @@
+{
+  "name": "ULoudnessNRT",
+  "inherits": "UAudioSynesthesiaNRT",
+  "doc": "ULoudnessNRT\n\nULoudnessNRT calculates the temporal evolution of perceptual loudness for a given\nsound. Loudness is available for individual channels or the overall sound asset. Normalized\nloudness values convert the range to 0.0 to 1.0 where 0.0 is the noise floor and 1.0 is the\nmaximum loudness of the particular sound.",
+  "properties": {
+    "Settings": [
+      "ULoudnessNRTSettings",
+      "The settings for the audio analyzer."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetChannelLoudnessAtTime",
+      "return": "void",
+      "const": true,
+      "doc": "Get a specific channel loudness of the analyzed sound at a given time.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "InChannel",
+          "type": "int"
+        },
+        {
+          "name": "OutLoudness",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetLoudnessAtTime",
+      "return": "void",
+      "const": true,
+      "doc": "Get the overall loudness of the analyzed sound at a given time.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "OutLoudness",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetNormalizedChannelLoudnessAtTime",
+      "return": "void",
+      "const": true,
+      "doc": "Get a specific channel normalized loudness of the analyzed sound at a given time. Normalized\nloudness is always between 0.0 to 1.0. 0.0 refers to the noise floor while 1.0 refers to the\nmaximum loudness in the sound.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "InChannel",
+          "type": "int"
+        },
+        {
+          "name": "OutLoudness",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetNormalizedLoudnessAtTime",
+      "return": "void",
+      "const": true,
+      "doc": "Get the normalized overall loudness of the analyzed sound at a given time. Normalized loudness\nis always between 0.0 to 1.0. 0.0 refers to the noise floor while 1.0 refers to the maximum\nloudness in the sound.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "OutLoudness",
+          "type": "float32&"
+        }
+      ]
+    }
+  ]
+}

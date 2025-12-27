@@ -1,0 +1,122 @@
+{
+  "name": "AGameplayAbilityWorldReticle",
+  "inherits": "AActor",
+  "doc": "Reticles allow targeting to be visualized. Tasks can spawn these. Artists/designers can create BPs for these.",
+  "properties": {
+    "Parameters": [
+      "FWorldReticleParameters"
+    ],
+    "bFaceOwnerFlat": [
+      "bool",
+      "Makes the reticle's default owner-facing behavior operate in 2D (flat) instead of 3D (pitched). Defaults to true."
+    ],
+    "bSnapToTargetedActor": [
+      "bool",
+      "If the target is an actor snap to it's location"
+    ],
+    "bIsTargetValid": [
+      "bool",
+      1,
+      "This indicates whether or not the targeting actor considers the current target to be valid. Defaults to true."
+    ],
+    "bIsTargetAnActor": [
+      "bool",
+      1,
+      "This indicates whether or not the targeting reticle is pointed at an actor. Defaults to false."
+    ],
+    "PrimaryPC": [
+      "APlayerController",
+      1,
+      "This is used in the process of determining whether we should replicate to a specific client."
+    ],
+    "TargetingActor": [
+      "AGameplayAbilityTargetActor",
+      1,
+      "In the future, we may want to grab things like sockets off of this."
+    ]
+  },
+  "methods": [
+    {
+      "name": "FaceTowardSource",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bFaceIn2D",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "OnParametersInitialized",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnTargetingAnActor",
+      "return": "void",
+      "callable": false,
+      "doc": "Called whenever bIsTargetAnActor changes value.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "OnValidTargetChanged",
+      "return": "void",
+      "callable": false,
+      "doc": "Called whenever bIsTargetValid changes value.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetReticleMaterialParamFloat",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParamName",
+          "type": "FName"
+        },
+        {
+          "name": "value",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetReticleMaterialParamVector",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParamName",
+          "type": "FName"
+        },
+        {
+          "name": "value",
+          "type": "FVector"
+        }
+      ]
+    }
+  ]
+}

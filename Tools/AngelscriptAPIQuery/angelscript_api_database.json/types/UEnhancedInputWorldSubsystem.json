@@ -1,0 +1,34 @@
+{
+  "name": "UEnhancedInputWorldSubsystem",
+  "inherits": "UWorldSubsystem",
+  "doc": "Per world input subsystem that allows you to bind input delegates to actors without an owning Player Controller.\nThis should be used when an actor needs to receive input delegates but will never have an owning Player Controller.\nFor example, you can add input delegates to unlock a door when the user has a certain set of keys pressed.\nBe sure to enable input on the actor, or else the input delegates won't fire!\n\nNote: if you do have an actor with an owning Player Controller use the local player input subsystem instead.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddActorInputComponent",
+      "return": "void",
+      "doc": "Adds this Actor's input component onto the stack to be processed by this subsystem's tick function",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActorInputComponent",
+      "return": "bool",
+      "doc": "Removes this Actor's input component from the stack to be processed by this subsystem's tick function",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "ULevelEditorContextMenuContext",
+  "inherits": "UObject",
+  "properties": {
+    "ContextType": [
+      "ELevelEditorMenuContext",
+      1,
+      ""
+    ],
+    "CurrentSelection": [
+      "const UTypedElementSelectionSet",
+      1,
+      ""
+    ],
+    "CursorWorldLocation": [
+      "FVector",
+      1,
+      ""
+    ],
+    "SelectedComponents": [
+      "TArray<TObjectPtr<UActorComponent>>",
+      1,
+      ""
+    ],
+    "HitProxyActor": [
+      "TWeakObjectPtr<AActor>",
+      1,
+      "If the ContextType is Viewport this property can be set to the HitProxy actor that triggered the ContextMenu."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetHitProxyElement",
+      "return": "FScriptTypedElementHandle",
+      "ufunction": true,
+      "unrealname": "GetScriptHitProxyElement",
+      "meta": null,
+      "args": []
+    }
+  ]
+}

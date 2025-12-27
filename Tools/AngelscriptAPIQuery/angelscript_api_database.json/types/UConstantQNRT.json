@@ -1,0 +1,57 @@
+{
+  "name": "UConstantQNRT",
+  "inherits": "UAudioSynesthesiaNRT",
+  "doc": "UConstantQNRT\n\nUConstantQNRT calculates the temporal evolution of constant q transform for a given\nsound. ConstantQ is available for individual channels or the overall sound asset.",
+  "properties": {
+    "Settings": [
+      "UConstantQNRTSettings",
+      "The settings for the audio analyzer."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetChannelConstantQAtTime",
+      "return": "void",
+      "const": true,
+      "doc": "Get a specific channel cqt of the analyzed sound at a given time.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "InChannel",
+          "type": "int"
+        },
+        {
+          "name": "OutConstantQ",
+          "type": "TArray<float32>&"
+        }
+      ]
+    },
+    {
+      "name": "GetNormalizedChannelConstantQAtTime",
+      "return": "void",
+      "const": true,
+      "doc": "Get a specific channel cqt of the analyzed sound at a given time.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "InChannel",
+          "type": "int"
+        },
+        {
+          "name": "OutConstantQ",
+          "type": "TArray<float32>&"
+        }
+      ]
+    }
+  ]
+}

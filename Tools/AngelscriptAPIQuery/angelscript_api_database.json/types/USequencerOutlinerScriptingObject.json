@@ -1,0 +1,57 @@
+{
+  "name": "USequencerOutlinerScriptingObject",
+  "inherits": "UObject",
+  "properties": {
+    "OnSelectionChanged": [
+      "FSequencerOutlinerSelectionChanged"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetChildren",
+      "return": "TArray<FSequencerViewModelScriptingStruct>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FSequencerViewModelScriptingStruct"
+        },
+        {
+          "name": "TypeName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetRootNode",
+      "return": "FSequencerViewModelScriptingStruct",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelection",
+      "return": "TArray<FSequencerViewModelScriptingStruct>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetSelection",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSelection",
+          "type": "TArray<FSequencerViewModelScriptingStruct>"
+        }
+      ]
+    }
+  ]
+}

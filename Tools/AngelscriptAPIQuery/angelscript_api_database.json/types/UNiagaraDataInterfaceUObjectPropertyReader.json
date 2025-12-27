@@ -1,0 +1,33 @@
+{
+  "name": "UNiagaraDataInterfaceUObjectPropertyReader",
+  "inherits": "UNiagaraDataInterface",
+  "doc": "Data interface to read properties from UObjects.\nRather than having BP tick functions that push data into Niagara this data interface will instead pull them.",
+  "properties": {
+    "SourceMode": [
+      "ENDIObjectPropertyReaderSourceMode",
+      2,
+      "Determines how we should select the source object we read from."
+    ],
+    "UObjectParameterBinding": [
+      "FNiagaraUserParameterBinding",
+      2,
+      "User parameter Object binding to read properties from."
+    ],
+    "PropertyRemap": [
+      "TArray<FNiagaraUObjectPropertyReaderRemap>",
+      2,
+      ""
+    ],
+    "SourceActor": [
+      "TSoftObjectPtr<AActor>",
+      2,
+      "Optional source actor to use, if the user parameter binding is valid this will be ignored."
+    ],
+    "SourceActorComponentClass": [
+      "UClass",
+      2,
+      "When an actor is bound as the object we will also search for a component of this type to bind properties to.\nFor example, setting this to a UPointLightComponent when binding properties we will first look at the actor\nthen look for a component of UPointLightComponent and look at properties on that also.\nIf no class is specified here we look at the RootComponent instead."
+    ]
+  },
+  "methods": []
+}

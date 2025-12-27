@@ -1,0 +1,99 @@
+{
+  "name": "ADEPRECATED_PlacedEditorUtilityBase",
+  "inherits": "AActor",
+  "properties": {
+    "HelpText": [
+      "FString"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ClearActorSelectionSet",
+      "return": "void",
+      "doc": "Remove all actors from the selection set",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorReference",
+      "return": "AActor",
+      "doc": "Attempts to find the actor specified by PathToActor in the current editor world\n@param        PathToActor     The path to the actor (e.g. PersistentLevel.PlayerStart)\n@return       A reference to the actor, or none if it wasn't found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PathToActor",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetLevelViewportCameraInfo",
+      "return": "bool",
+      "doc": "Gets information about the camera position for the primary level editor viewport.  In non-editor builds, these will be zeroed\n\n@param       CameraLocation  (out) Current location of the level editing viewport camera, or zero if none found\n@param       CameraRotation  (out) Current rotation of the level editing viewport camera, or zero if none found\n@return      Whether or not we were able to get a camera for a level editing viewport",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CameraLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "CameraRotation",
+          "type": "FRotator&"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectionSet",
+      "return": "TArray<AActor>",
+      "doc": "Returns the current selection set in the editor.  Note that for non-editor builds, this will return an empty array",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SelectNothing",
+      "return": "void",
+      "doc": "Selects nothing in the editor (another way to clear the selection)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetActorSelectionState",
+      "return": "void",
+      "doc": "Set the selection state for the selected actor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "bShouldBeSelected",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLevelViewportCameraInfo",
+      "return": "void",
+      "doc": "Sets information about the camera position for the primary level editor viewport.\n\n@param        CameraLocation  Location the camera will be moved to.\n@param        CameraRotation  Rotation the camera will be set to.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CameraLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "CameraRotation",
+          "type": "FRotator"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "name": "UDJ01UserFacingExperienceDefinition",
+  "inherits": "UPrimaryDataAsset",
+  "doc": "Description of settings used to display experiences in the UI and start a new session",
+  "properties": {
+    "MapID": [
+      "FPrimaryAssetId",
+      "The specific map to load"
+    ],
+    "ExperienceID": [
+      "FPrimaryAssetId",
+      "The gameplay experience to load"
+    ],
+    "ExtraArgs": [
+      "TMap<FString,FString>",
+      "Extra arguments passed as URL options to the game"
+    ],
+    "TileTitle": [
+      "FText",
+      "Primary title in the UI"
+    ],
+    "TileSubTitle": [
+      "FText",
+      "Secondary title"
+    ],
+    "TileDescription": [
+      "FText",
+      "Full description"
+    ],
+    "TileIcon": [
+      "UTexture2D",
+      "Icon used in the UI"
+    ],
+    "LoadingScreenWidget": [
+      "TSoftClassPtr<UUserWidget>",
+      "The loading screen widget to show when loading into (or back out of) a given experience"
+    ],
+    "bIsDefaultExperience": [
+      "bool",
+      "If true, this is a default experience that should be used for quick play and given priority in the UI"
+    ],
+    "bShowInFrontEnd": [
+      "bool",
+      "If true, this will show up in the experiences list in the front-end"
+    ],
+    "bRecordReplay": [
+      "bool",
+      "If true, a replay will be recorded of the game"
+    ],
+    "MaxPlayerCount": [
+      "int",
+      "Max number of players for this session"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CreateHostingRequest",
+      "return": "UCommonSession_HostSessionRequest",
+      "const": true,
+      "doc": "Create a request object that is used to actually start a session with these settings",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

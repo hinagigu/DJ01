@@ -1,0 +1,55 @@
+{
+  "name": "FRigUnit_SplineConstraint",
+  "isStruct": true,
+  "doc": "Fits a given chain to a spline curve.\nAdditionally provides rotational control matching the features of the Distribute Rotation node.",
+  "properties": {
+    "Items": [
+      "TArray<FRigElementKey>",
+      "The items to align"
+    ],
+    "Spline": [
+      "FControlRigSpline",
+      "The curve to align to"
+    ],
+    "Alignment": [
+      "EControlRigCurveAlignment",
+      1,
+      "Specifies how to align the chain on the curve"
+    ],
+    "Minimum": [
+      "float32",
+      "The minimum U value to use on the curve"
+    ],
+    "Maximum": [
+      "float32",
+      "The maximum U value to use on the curve"
+    ],
+    "PrimaryAxis": [
+      "FVector"
+    ],
+    "SecondaryAxis": [
+      "FVector"
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      1,
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SplineConstraint&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SplineConstraint"
+        }
+      ]
+    }
+  ]
+}

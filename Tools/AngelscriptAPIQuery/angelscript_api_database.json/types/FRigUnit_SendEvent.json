@@ -1,0 +1,43 @@
+{
+  "name": "FRigUnit_SendEvent",
+  "isStruct": true,
+  "doc": "SendEvent is used to notify the engine / editor of a change that happend within the Control Rig.",
+  "properties": {
+    "Event": [
+      "ERigEvent",
+      "The event to send to the engine"
+    ],
+    "Item": [
+      "FRigElementKey",
+      "The item to send the event for"
+    ],
+    "OffsetInSeconds": [
+      "float32",
+      "The time offset to use for the send event"
+    ],
+    "bEnable": [
+      "bool",
+      "The event will be sent if this is checked"
+    ],
+    "bOnlyDuringInteraction": [
+      "bool",
+      "The event will be sent if this only during an interaction"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SendEvent&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SendEvent"
+        }
+      ]
+    }
+  ]
+}

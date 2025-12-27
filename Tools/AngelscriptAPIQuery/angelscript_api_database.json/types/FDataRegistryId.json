@@ -1,0 +1,27 @@
+{
+  "name": "FDataRegistryId",
+  "isStruct": true,
+  "doc": "Identifier for a specific DataRegistryItem, provides the user with a Tag or dropdown-based UI for selecting based on the available index info",
+  "properties": {
+    "RegistryType": [
+      "FDataRegistryType",
+      "The type of this item, used to look up the correct registry"
+    ],
+    "ItemName": [
+      "FName",
+      "The name of this object, may be a leaf gameplay tag or a raw name depending on the type"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDataRegistryId&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDataRegistryId"
+        }
+      ]
+    }
+  ]
+}

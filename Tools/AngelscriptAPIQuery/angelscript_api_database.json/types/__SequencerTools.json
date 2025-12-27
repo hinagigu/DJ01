@@ -1,0 +1,262 @@
+{
+  "name": "__SequencerTools",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ClearLinkedAnimSequences",
+      "return": "void",
+      "doc": "* Clear all linked anim sequences between this level sequence and any linked anim sequences\n*\n* @InLevelSequence LevelSequence to clean links for",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLevelSequence",
+          "type": "ULevelSequence"
+        }
+      ]
+    },
+    {
+      "name": "CreateEvent",
+      "return": "FMovieSceneEvent",
+      "doc": "Create an event from a previously created blueprint endpoint and a payload. The resulting event should be added only\nto a channel of the section that was given as a parameter.\n@param InSequence Main level sequence that holds the event track and to which the resulting event should be added.\n@param InSection Section of the event track of the main sequence.\n@param InEndpoint Previously created endpoint.\n@param InPayload Values passed as payload to event, count must match the numbers of payload variable names in @InEndpoint.\n@return The created movie event.\n@see CreateQuickBinding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InSection",
+          "type": "UMovieSceneEventSectionBase"
+        },
+        {
+          "name": "InEndpoint",
+          "type": "FSequencerQuickBindingResult"
+        },
+        {
+          "name": "InPayload",
+          "type": "TArray<FString>"
+        }
+      ]
+    },
+    {
+      "name": "CreateQuickBinding",
+      "return": "FSequencerQuickBindingResult",
+      "doc": "Create a quick binding to an actor's member method to be used in an event sequence.\n@param InActor Actor that will be bound\n@param InFunctionName Name of the method, as it is displayed in the Blueprint Editor. eg. \"Set Actor Scale 3D\"\n@param bCallInEditor Should the event be callable in editor.\n@return The created binding.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSequence",
+          "type": "UMovieSceneSequence"
+        },
+        {
+          "name": "InObject",
+          "type": "UObject"
+        },
+        {
+          "name": "InFunctionName",
+          "type": "FString"
+        },
+        {
+          "name": "bCallInEditor",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ExportAnimSequence",
+      "return": "bool",
+      "doc": "* Export Passed in Binding as an Anim Seqquence.\n*\n* @InWorld World to export\n* @InSequence Sequence to export\n* @AnimSequence The AnimSequence to save into.\n* @ExportOption The export options for the sequence.\n* @InBinding Binding to export that has a skelmesh component on it\n* @InAnimSequenceFilename File to create\n* @bCreateLink If true will create a link between the animation sequence and the level sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "Sequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "AnimSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "ExportOption",
+          "type": "UAnimSeqExportOption"
+        },
+        {
+          "name": "Binding",
+          "type": "FMovieSceneBindingProxy"
+        },
+        {
+          "name": "bCreateLink",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ExportFBXFromControlRig",
+      "return": "bool",
+      "doc": "Exports an FBX from the section to key of the control rig track of the actor with the given name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ActorWithControlRigTrack",
+          "type": "FString"
+        },
+        {
+          "name": "ExportFBXControlRigSettings",
+          "type": "const UMovieSceneUserExportFBXControlRigSettings"
+        }
+      ]
+    },
+    {
+      "name": "ExportLevelSequenceFBX",
+      "return": "bool",
+      "doc": "* Export Passed in Bindings and Tracks to FBX",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InParams",
+          "type": "FSequencerExportFBXParams"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimSequenceLinkFromLevelSequence",
+      "return": "ULevelSequenceAnimSequenceLink",
+      "doc": "* Get the links to the anim sequences if they exist on this level sequence\n*\n* @InLevelSequence LevelSequence to get links from\n* @return Returns the link object if it exists, nullptr if it doesn't",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLevelSequence",
+          "type": "ULevelSequence"
+        }
+      ]
+    },
+    {
+      "name": "GetLevelSequenceLinkFromAnimSequence",
+      "return": "UAnimSequenceLevelSequenceLink",
+      "doc": "* Get the link to the level sequence if it exists on this anim sequence\n*\n* @InAnimSequence AnimSequence to get links from\n* @return Returns the link object if it exists, nullptr if it doesn't",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAnimSequence",
+          "type": "UAnimSequence"
+        }
+      ]
+    },
+    {
+      "name": "ImportFBXToControlRig",
+      "return": "bool",
+      "doc": "* Import FBX onto a control rig with the specified track name\n*\n* @InWorld World to import to\n* @InSequence InSequence to import\n* @ActorWithControlRigTrack ActorWithControlRigTrack The name of the actor with the control rig track we are importing onto\n* @SelectedControlRigNames  List of selected control rig names. Will use them if  ImportFBXControlRigSettings->bImportOntoSelectedControls is true\n* @ImportFBXControlRigSettings Settings to control import.\n* @InImportFileName Path to fbx file to create",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "World",
+          "type": "UWorld"
+        },
+        {
+          "name": "InSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "ActorWithControlRigTrack",
+          "type": "FString"
+        },
+        {
+          "name": "SelectedControlRigNames",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "ImportFBXControlRigSettings",
+          "type": "UMovieSceneUserImportFBXControlRigSettings"
+        },
+        {
+          "name": "ImportFilename",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ImportLevelSequenceFBX",
+      "return": "bool",
+      "doc": "* Import FBX onto Passed in Bindings\n*\n* @InWorld World to import to\n* @InSequence InSequence to import\n* @InBindings InBindings to import\n* @InImportFBXSettings Settings to control import.\n* @InImportFileName Path to fbx file to import from\n* @InPlayer Player to bind to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorld",
+          "type": "UWorld"
+        },
+        {
+          "name": "InSequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "InBindings",
+          "type": "TArray<FMovieSceneBindingProxy>"
+        },
+        {
+          "name": "InImportFBXSettings",
+          "type": "UMovieSceneUserImportFBXSettings"
+        },
+        {
+          "name": "InImportFilename",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsEventEndpointValid",
+      "return": "bool",
+      "doc": "Check if an endpoint is valid and can be used to create movie scene event.\n@param InEndpoint Endpoint to check.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InEndpoint",
+          "type": "FSequencerQuickBindingResult"
+        }
+      ]
+    },
+    {
+      "name": "LinkAnimSequence",
+      "return": "bool",
+      "doc": "* Links a LevelSequence's SkeletalMesh binding to an existing anim sequence.\n*\n* @InSequence Sequence to link from\n* @AnimSequence The AnimSequence to link to.\n* @ExportOption The export options that should be used when baking the LevelSequence.\n* @InBinding Binding that has a skelmesh component on it",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sequence",
+          "type": "ULevelSequence"
+        },
+        {
+          "name": "AnimSequence",
+          "type": "UAnimSequence"
+        },
+        {
+          "name": "ExportOptions",
+          "type": "const UAnimSeqExportOption"
+        },
+        {
+          "name": "Binding",
+          "type": "FMovieSceneBindingProxy"
+        }
+      ]
+    }
+  ]
+}

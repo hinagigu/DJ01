@@ -1,0 +1,39 @@
+{
+  "name": "__EMappingQueryIssue",
+  "isEnum": true,
+  "doc": "Mapping issues arising from a QueryMapKeyIn... call",
+  "properties": {
+    "NoIssue": [
+      "EMappingQueryIssue",
+      "Mapping will not affect any existing mappings and is safe to apply."
+    ],
+    "ReservedByAction": [
+      "EMappingQueryIssue",
+      "Mapping has been reserved for the exclusive use of another action. The new mapping should be refused."
+    ],
+    "HidesExistingMapping": [
+      "EMappingQueryIssue",
+      "Mapping will cause an existing mapping to be hidden and/or need remapping."
+    ],
+    "HiddenByExistingMapping": [
+      "EMappingQueryIssue",
+      "Mapping will not be functional, due to an existing mapping blocking it."
+    ],
+    "CollisionWithMappingInSameContext": [
+      "EMappingQueryIssue",
+      "Mapping will be functional, but a collision with another mapping within this context may cause issues."
+    ],
+    "ForcesTypePromotion": [
+      "EMappingQueryIssue",
+      "Trying to bind an FKey with a less complex type than the bound action expects (e.g. Keyboard key bound to a 2D Gamepad axis. May not be desirable). Note: bool -> Axis1D promotions are never considered forced."
+    ],
+    "ForcesTypeDemotion": [
+      "EMappingQueryIssue",
+      "Trying to bind an FKey with a more complex type than the bound action supports (this could behave oddly e.g. 2D Gamepad axis bound to a 1D axis will ignore Y axis)"
+    ],
+    "EMappingQueryIssue_MAX": [
+      "EMappingQueryIssue"
+    ]
+  },
+  "methods": []
+}

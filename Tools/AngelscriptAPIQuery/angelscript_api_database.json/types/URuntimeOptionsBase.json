@@ -1,0 +1,7 @@
+{
+  "name": "URuntimeOptionsBase",
+  "inherits": "UObject",
+  "doc": "URuntimeOptionsBase: Base class designed to be subclassed in your game.\n\nSupports checking at runtime whether features are enabled/disabled, and changing\nconfiguration parameters via console cheats or startup commands.\n\nAdd new config properties to your subclasses which default to the desired normal state\nThis can be adjusted via the development-only tools (command line or cvar) or via an\noverride in the config hierarchy to adjust it as needed (e.g., via a hotfix).\n\nIn non-Shipping builds, each property will be exposed both as a console variable and as a\ncommand-line argument for easy testing during development.\n\nDebug console syntax (disabled in Shipping configurations):\n  prefix.PropertyName Value\nCommand line syntax (disabled in Shipping configurations):\n  -prefix.PropertyName=Value\nDefaultRuntimeOptions.ini syntax (note that there is no prefix for these):\n  [/Script/YourModule.YourRuntimeOptionsSubclass]\n  PropertyName=Value\n\nWhere the prefix is set by the value of OptionCommandPrefix (defaults to \"ro\" but can be overridden)\n\nYou can also change the name of the ini file that settings are gathered from in your derived\nUCLASS() declaration",
+  "properties": {},
+  "methods": []
+}

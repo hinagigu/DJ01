@@ -1,0 +1,80 @@
+{
+  "name": "UDJ01TeamSubsystem",
+  "inherits": "UWorldSubsystem",
+  "doc": "DJ01团队子系统 - 提供全局团队查询和管理功能\n保持简洁，主要提供便捷的静态查询方法",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AreObjectsFriendly",
+      "return": "bool",
+      "const": true,
+      "doc": "判断两个对象是否是友军",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectA",
+          "type": "const UObject"
+        },
+        {
+          "name": "ObjectB",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "CanObjectAttackObject",
+      "return": "bool",
+      "const": true,
+      "doc": "判断A是否可以攻击B",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Attacker",
+          "type": "const UObject"
+        },
+        {
+          "name": "Target",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "CompareTeamRelation",
+      "return": "EDJ01TeamRelation",
+      "const": true,
+      "doc": "比较两个对象的团队关系",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectA",
+          "type": "const UObject"
+        },
+        {
+          "name": "ObjectB",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "GetObjectTeamConfig",
+      "return": "bool",
+      "const": true,
+      "doc": "获取对象的团队配置",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "const UObject"
+        },
+        {
+          "name": "OutTeamConfig",
+          "type": "FDJ01TeamConfig&"
+        }
+      ]
+    }
+  ]
+}

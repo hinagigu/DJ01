@@ -1,0 +1,401 @@
+{
+  "_comment": "DJ01 DataAsset Schema - 定义所有 DataAsset 的属性结构，用于生成编辑器界面",
+  "_version": "1.0",
+  "_last_updated": "2024-12-22",
+  
+  "common_types": {
+    "FGameplayTag": {
+      "type": "string",
+      "description": "Gameplay 标签",
+      "widget": "tag_selector"
+    },
+    "TSoftClassPtr": {
+      "type": "string",
+      "description": "软类引用",
+      "widget": "class_picker",
+      "format": "/Script/ModuleName.ClassName"
+    },
+    "TSoftObjectPtr": {
+      "type": "string",
+      "description": "软资产引用",
+      "widget": "asset_picker",
+      "format": "/Game/Path/To/Asset"
+    },
+    "TSubclassOf": {
+      "type": "string",
+      "description": "类引用",
+      "widget": "class_picker"
+    },
+    "TObjectPtr": {
+      "type": "string",
+      "description": "对象引用",
+      "widget": "asset_picker"
+    }
+  },
+  
+  "structs": {
+    "FDJ01InputAction": {
+      "description": "输入动作映射到 Gameplay 标签",
+      "properties": {
+        "InputAction": {
+          "type": "TObjectPtr<UInputAction>",
+          "display_name": "输入动作",
+          "widget": "combobox",
+          "options_source": "input_actions",
+          "required": true
+        },
+        "InputTag": {
+          "type": "FGameplayTag",
+          "display_name": "输入标签",
+          "widget": "combobox",
+          "options_source": "input_tags",
+          "required": true
+        }
+      }
+    },
+    
+    "FDJ01AbilitySet_GameplayAbility": {
+      "description": "技能集中的技能配置",
+      "properties": {
+        "Ability": {
+          "type": "TSubclassOf<UDJ01GameplayAbility>",
+          "display_name": "技能类",
+          "widget": "class_picker",
+          "base_class": "DJ01GameplayAbility",
+          "required": true
+        },
+        "AbilityLevel": {
+          "type": "int32",
+          "display_name": "技能等级",
+          "widget": "spin_box",
+          "default": 1,
+          "min": 1,
+          "max": 99
+        },
+        "InputTag": {
+          "type": "FGameplayTag",
+          "display_name": "输入标签",
+          "widget": "tag_selector",
+          "categories": "InputTag"
+        }
+      }
+    },
+    
+    "FDJ01AbilitySet_GameplayEffect": {
+      "description": "技能集中的效果配置",
+      "properties": {
+        "GameplayEffect": {
+          "type": "TSubclassOf<UGameplayEffect>",
+          "display_name": "效果类",
+          "widget": "class_picker",
+          "base_class": "GameplayEffect",
+          "required": true
+        },
+        "EffectLevel": {
+          "type": "float",
+          "display_name": "效果等级",
+          "widget": "spin_box",
+          "default": 1.0,
+          "min": 0.0
+        }
+      }
+    },
+    
+    "FDJ01AbilitySet_AttributeSet": {
+      "description": "技能集中的属性集配置",
+      "properties": {
+        "AttributeSet": {
+          "type": "TSubclassOf<UAttributeSet>",
+          "display_name": "属性集类",
+          "widget": "class_picker",
+          "base_class": "AttributeSet",
+          "required": true
+        }
+      }
+    },
+    
+    "FGameFeatureAbilitiesEntry": {
+      "description": "GameFeature 技能配置条目",
+      "properties": {
+        "ActorClass": {
+          "type": "TSoftClassPtr<AActor>",
+          "display_name": "目标 Actor 类",
+          "widget": "class_picker",
+          "base_class": "Actor",
+          "required": true
+        },
+        "GrantedAbilities": {
+          "type": "array",
+          "display_name": "授予的技能",
+          "item_type": "FDJ01AbilityGrant"
+        },
+        "GrantedAttributes": {
+          "type": "array",
+          "display_name": "授予的属性集",
+          "item_type": "FDJ01AttributeSetGrant"
+        },
+        "GrantedAbilitySets": {
+          "type": "array",
+          "display_name": "授予的技能集",
+          "item_type": "TSoftObjectPtr<UDJ01AbilitySet>",
+          "widget": "asset_picker_list"
+        }
+      }
+    }
+  },
+  
+  "data_assets": {
+    "Experience": {
+      "class_name": "UDJ01ExperienceDefinition",
+      "parent_class": "UPrimaryDataAsset",
+      "asset_type": "Blueprint",
+      "display_name": "游戏体验",
+      "description": "定义一个完整的游戏体验，包括默认 Pawn、GameFeature 和 Actions",
+      "content_path": "/Game/System/Experiences",
+      "icon": "📦",
+      
+      "properties": {
+        "GameFeaturesToEnable": {
+          "type": "array",
+          "item_type": "string",
+          "display_name": "启用的 GameFeature",
+          "description": "此体验需要激活的 GameFeature 插件列表",
+          "widget": "checkbox_list",
+          "options_source": "game_features",
+          "category": "Gameplay"
+        },
+        "DefaultPawnData": {
+          "type": "TObjectPtr<UDJ01PawnData>",
+          "display_name": "默认 Pawn 数据",
+          "description": "玩家生成时使用的默认 PawnData",
+          "widget": "combobox",
+          "options_source": "pawn_data",
+          "allow_empty": false,
+          "content_path": "/Game/Characters/PawnData",
+          "category": "Gameplay",
+          "required": true
+        },
+        "Actions": {
+          "type": "array",
+          "item_type": "TObjectPtr<UGameFeatureAction>",
+          "display_name": "Actions",
+          "description": "体验加载/激活/停用/卸载时执行的 Actions",
+          "widget": "instanced_object_list",
+          "base_class": "GameFeatureAction",
+          "category": "Actions"
+        },
+        "ActionSets": {
+          "type": "array",
+          "item_type": "TObjectPtr<UDJ01ExperienceActionSet>",
+          "display_name": "Action 集合",
+          "description": "组合到此体验中的 ActionSet 列表",
+          "widget": "checkbox_list",
+          "options_source": "action_sets",
+          "content_path": "/Game/System/ActionSets",
+          "category": "Gameplay"
+        }
+      }
+    },
+    
+    "PawnData": {
+      "class_name": "UDJ01PawnData",
+      "parent_class": "UPrimaryDataAsset",
+      "asset_type": "DataAsset",
+      "display_name": "Pawn 数据",
+      "description": "定义 Pawn 的各种属性配置",
+      "content_path": "/Game/Characters/PawnData",
+      "icon": "👤",
+      
+      "properties": {
+        "PawnClass": {
+          "type": "TSubclassOf<APawn>",
+          "display_name": "Pawn 类",
+          "description": "要生成的 Pawn 类（通常继承自 ADJ01Character）",
+          "widget": "combobox",
+          "options_source": "pawn_classes",
+          "category": "Pawn",
+          "required": true,
+          "default": "/Script/DJ01.DJ01Character"
+        },
+        "AbilitySets": {
+          "type": "array",
+          "item_type": "TObjectPtr<UDJ01AbilitySet>",
+          "display_name": "技能集列表",
+          "description": "授予此 Pawn 的 AbilitySet 列表",
+          "widget": "checkbox_list",
+          "options_source": "ability_sets",
+          "content_path": "/Game/Gameplay/Abilities/AbilitySets",
+          "category": "Abilities"
+        },
+        "InputConfig": {
+          "type": "TObjectPtr<UDJ01InputConfig>",
+          "display_name": "输入配置",
+          "description": "玩家控制的 Pawn 使用的输入配置",
+          "widget": "combobox",
+          "options_source": "input_configs",
+          "allow_empty": true,
+          "content_path": "/Game/Input/InputConfig",
+          "category": "Input"
+        },
+        "DefaultCameraMode": {
+          "type": "TSubclassOf<UDJ01CameraMode>",
+          "display_name": "默认相机模式",
+          "description": "玩家控制的 Pawn 使用的默认相机模式",
+          "widget": "combobox",
+          "options_source": "camera_modes",
+          "allow_empty": true,
+          "category": "Camera"
+        }
+      }
+    },
+    
+    "InputConfig": {
+      "class_name": "UDJ01InputConfig",
+      "parent_class": "UDataAsset",
+      "asset_type": "DataAsset",
+      "display_name": "输入配置",
+      "description": "输入配置，映射输入动作到 Gameplay 标签",
+      "content_path": "/Game/Input/InputConfig",
+      "icon": "🎮",
+      
+      "properties": {
+        "NativeInputActions": {
+          "type": "array",
+          "item_type": "FDJ01InputAction",
+          "display_name": "原生输入动作",
+          "description": "需要手动绑定的输入动作列表",
+          "widget": "struct_array_editor",
+          "struct_type": "FDJ01InputAction",
+          "category": "Input"
+        },
+        "AbilityInputActions": {
+          "type": "array",
+          "item_type": "FDJ01InputAction",
+          "display_name": "技能输入动作",
+          "description": "自动绑定到技能的输入动作列表",
+          "widget": "struct_array_editor",
+          "struct_type": "FDJ01InputAction",
+          "category": "Input"
+        }
+      }
+    },
+    
+    "AbilitySet": {
+      "class_name": "UDJ01AbilitySet",
+      "parent_class": "UPrimaryDataAsset",
+      "asset_type": "DataAsset",
+      "display_name": "技能集",
+      "description": "技能、效果和属性集的集合，可以一起授予",
+      "content_path": "/Game/Gameplay/Abilities/AbilitySets",
+      "icon": "⚔️",
+      
+      "properties": {
+        "GrantedGameplayAbilities": {
+          "type": "array",
+          "item_type": "FDJ01AbilitySet_GameplayAbility",
+          "display_name": "授予的技能",
+          "description": "此技能集授予的技能列表",
+          "widget": "struct_array_editor",
+          "struct_type": "FDJ01AbilitySet_GameplayAbility",
+          "category": "Gameplay Abilities"
+        },
+        "GrantedGameplayEffects": {
+          "type": "array",
+          "item_type": "FDJ01AbilitySet_GameplayEffect",
+          "display_name": "授予的效果",
+          "description": "此技能集授予的效果列表",
+          "widget": "struct_array_editor",
+          "struct_type": "FDJ01AbilitySet_GameplayEffect",
+          "category": "Gameplay Effects"
+        },
+        "GrantedAttributes": {
+          "type": "array",
+          "item_type": "FDJ01AbilitySet_AttributeSet",
+          "display_name": "授予的属性集",
+          "description": "此技能集授予的属性集列表",
+          "widget": "struct_array_editor",
+          "struct_type": "FDJ01AbilitySet_AttributeSet",
+          "category": "Attribute Sets"
+        }
+      }
+    },
+    
+    "ActionSet": {
+      "class_name": "UDJ01ExperienceActionSet",
+      "parent_class": "UPrimaryDataAsset",
+      "asset_type": "DataAsset",
+      "display_name": "Action 集合",
+      "description": "一组可复用的 GameFeature Actions",
+      "content_path": "/Game/System/ActionSets",
+      "icon": "📋",
+      
+      "properties": {
+        "Actions": {
+          "type": "array",
+          "item_type": "TObjectPtr<UGameFeatureAction>",
+          "display_name": "Actions",
+          "description": "要执行的 GameFeature Actions 列表",
+          "widget": "instanced_object_list",
+          "base_class": "GameFeatureAction",
+          "category": "Actions to Perform"
+        },
+        "GameFeaturesToEnable": {
+          "type": "array",
+          "item_type": "string",
+          "display_name": "启用的 GameFeature",
+          "description": "此 ActionSet 需要激活的 GameFeature 插件列表",
+          "widget": "checkbox_list",
+          "options_source": "game_features",
+          "category": "Feature Dependencies"
+        }
+      }
+    }
+  },
+  
+  "game_feature_actions": {
+    "GameFeatureAction_AddAbilities": {
+      "class_name": "UGameFeatureAction_AddAbilities",
+      "display_name": "添加技能",
+      "description": "向指定 Actor 添加技能、属性集和技能集",
+      "properties": {
+        "AbilitiesList": {
+          "type": "array",
+          "item_type": "FGameFeatureAbilitiesEntry",
+          "display_name": "技能配置列表",
+          "widget": "struct_array_editor"
+        }
+      }
+    },
+    "GameFeatureAction_AddInputBinding": {
+      "class_name": "UGameFeatureAction_AddInputBinding",
+      "display_name": "添加输入绑定",
+      "description": "添加输入配置绑定"
+    },
+    "GameFeatureAction_AddInputContextMapping": {
+      "class_name": "UGameFeatureAction_AddInputContextMapping",
+      "display_name": "添加输入上下文映射",
+      "description": "添加增强输入的上下文映射"
+    },
+    "GameFeatureAction_AddWidget": {
+      "class_name": "UGameFeatureAction_AddWidget",
+      "display_name": "添加 UI 控件",
+      "description": "添加 UI 控件到指定层"
+    }
+  },
+  
+  "widget_types": {
+    "text_input": "单行文本输入",
+    "text_area": "多行文本输入",
+    "spin_box": "数值输入",
+    "checkbox": "复选框",
+    "combobox": "下拉选择（单选）",
+    "checkbox_list": "多选列表",
+    "tag_selector": "Gameplay 标签选择器",
+    "class_picker": "类选择器",
+    "asset_picker": "资产选择器",
+    "asset_picker_list": "资产列表选择器",
+    "string_list": "字符串列表",
+    "struct_array_editor": "结构体数组编辑器",
+    "instanced_object_list": "实例化对象列表"
+  }
+}

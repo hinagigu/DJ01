@@ -1,0 +1,23 @@
+{
+  "name": "UGenlockedFixedRateCustomTimeStep",
+  "inherits": "UGenlockedCustomTimeStep",
+  "doc": "Control the Engine TimeStep via a fixed frame rate.\n\nPhilosophy:\n\n  * Quantized increments but keeping up with platform time.\n\n  * FApp::GetDeltaTime\n      - Forced to a multiple of the desired FrameTime.\n\n  * FApp::GetCurrentTime\n      - Incremented in multiples of the desired FrameTime.\n      - Corresponds to platform time minus any fractional FrameTime.",
+  "properties": {
+    "FrameRate": [
+      "FFrameRate",
+      2,
+      "Desired frame rate"
+    ],
+    "bShouldBlock": [
+      "bool",
+      2,
+      "Indicates that this custom time step should block to enforce the specified frame rate. Set to false if this is enforced elsewhere."
+    ],
+    "bForceSingleFrameDeltaTime": [
+      "bool",
+      2,
+      "When true, delta time will always be 1/FrameRate, regardless of how much real time has elapsed"
+    ]
+  },
+  "methods": []
+}

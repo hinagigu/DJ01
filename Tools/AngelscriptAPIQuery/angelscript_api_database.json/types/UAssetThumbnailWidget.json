@@ -1,0 +1,76 @@
+{
+  "name": "UAssetThumbnailWidget",
+  "inherits": "UWidget",
+  "doc": "This widget can be given an asset and it will render its thumbnail. Editor-only.",
+  "properties": {
+    "AssetToShow": [
+      "FAssetData",
+      2,
+      "The asset of which to show the thumbnail."
+    ],
+    "ThumbnailSettings": [
+      "FAssetThumbnailWidgetSettings",
+      "Behaviour and style of the widget"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetResolution",
+      "return": "FIntPoint",
+      "const": true,
+      "doc": "Gets the resolution of the rendered thumbnail.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAsset",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "SetAssetByObject",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SetResolution",
+      "return": "void",
+      "doc": "Sets the resolution for the rendered thumbnail.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InResolution",
+          "type": "FIntPoint"
+        }
+      ]
+    },
+    {
+      "name": "SetThumbnailSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InThumbnailSettings",
+          "type": "FAssetThumbnailWidgetSettings"
+        }
+      ]
+    }
+  ]
+}

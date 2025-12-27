@@ -1,0 +1,82 @@
+{
+  "name": "TWeakObjectPtr",
+  "subtypes": [
+    "T"
+  ],
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "TWeakObjectPtr<T>&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TWeakObjectPtr<T>"
+        }
+      ]
+    },
+    {
+      "name": "opImplConv",
+      "return": "T",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "TWeakObjectPtr<T>"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "const T"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "TWeakObjectPtr<T>&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "Get",
+      "return": "T",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsStale",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsExplicitlyNull",
+      "return": "bool",
+      "const": true,
+      "args": []
+    }
+  ]
+}

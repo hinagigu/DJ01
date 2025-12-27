@@ -1,0 +1,34 @@
+{
+  "name": "ANiagaraActor",
+  "inherits": "AActor",
+  "properties": {
+    "NiagaraComponent": [
+      "UNiagaraComponent",
+      "Pointer to System component"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDestroyOnSystemFinish",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the system will destroy on finish",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetDestroyOnSystemFinish",
+      "return": "void",
+      "doc": "Set true for this actor to self-destruct when the Niagara system finishes, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bShouldDestroyOnSystemFinish",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

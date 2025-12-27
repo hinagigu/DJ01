@@ -1,0 +1,33 @@
+{
+  "name": "UEnvQueryGenerator_PerceivedActors",
+  "inherits": "UEnvQueryGenerator",
+  "doc": "Gathers actors perceived by context",
+  "properties": {
+    "AllowedActorClass": [
+      "TSubclassOf<AActor>",
+      2,
+      "If set will be used to filter results"
+    ],
+    "SearchRadius": [
+      "FAIDataProviderFloatValue",
+      2,
+      "Additional distance limit imposed on the items generated. Perception's range limit still applies."
+    ],
+    "ListenerContext": [
+      "TSubclassOf<UEnvQueryContext>",
+      2,
+      "The perception listener to use as a source of information"
+    ],
+    "SenseToUse": [
+      "TSubclassOf<UAISense>",
+      2,
+      "If set will be used to filter gathered results so that only actors perceived with a given sense are considered"
+    ],
+    "bIncludeKnownActors": [
+      "bool",
+      2,
+      "Indicates whether to include all actors known via perception (TRUE) or just the ones actively being perceived\nat the moment (example \"currently visible\" as opposed to \"seen and the perception stimulus haven't expired yet\").\n@see FAIStimulus.bExpired"
+    ]
+  },
+  "methods": []
+}

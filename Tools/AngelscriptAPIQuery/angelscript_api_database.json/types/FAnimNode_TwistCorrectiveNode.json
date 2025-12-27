@@ -1,0 +1,84 @@
+{
+  "name": "FAnimNode_TwistCorrectiveNode",
+  "isStruct": true,
+  "doc": "This is the node that apply corrective morphtarget for twist\nGood example is that if you twist your neck too far right or left, you're going to see odd stretch shape of neck,\nThis node can detect the angle and apply morphtarget curve\nThis isn't the twist control node for bone twist",
+  "properties": {
+    "BaseFrame": [
+      "FReferenceBoneFrame",
+      2,
+      "Base Frame of the reference for the twist node"
+    ],
+    "TwistFrame": [
+      "FReferenceBoneFrame",
+      2,
+      "Transform component to use as input"
+    ],
+    "TwistPlaneNormalAxis": [
+      "FAxis",
+      2,
+      "Normal of the Plane that we'd like to calculate angle calculation from in BaseFrame. Please note we're looking for Normal Axis"
+    ],
+    "RangeMax": [
+      "float32",
+      2,
+      "Maximum limit of the input value (mapped to RemappedMax, only used when limiting the source range)\nWe can't go more than 180 right now because this is dot product driver"
+    ],
+    "RemappedMin": [
+      "float32",
+      2,
+      "Minimum value to apply to the destination (remapped from the input range)"
+    ],
+    "RemappedMax": [
+      "float32",
+      2,
+      "Maximum value to apply to the destination (remapped from the input range)"
+    ],
+    "CurveName": [
+      "FName",
+      2,
+      ""
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_TwistCorrectiveNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_TwistCorrectiveNode"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "USubmixEffectReverbPreset",
+  "inherits": "USoundEffectSubmixPreset",
+  "properties": {
+    "Settings": [
+      "FSubmixEffectReverbSettings"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSettings",
+          "type": "FSubmixEffectReverbSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetSettingsWithReverbEffect",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InReverbEffect",
+          "type": "const UReverbEffect"
+        },
+        {
+          "name": "WetLevel",
+          "type": "float32"
+        },
+        {
+          "name": "DryLevel",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

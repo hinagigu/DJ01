@@ -1,0 +1,23 @@
+{
+  "name": "UAnimBoneCompressionCodec_ACL",
+  "inherits": "UAnimBoneCompressionCodec_ACLBase",
+  "doc": "Uses the open source Animation Compression Library with default settings suitable for general purpose animations.",
+  "properties": {
+    "OptimizationTargets": [
+      "TArray<TObjectPtr<USkeletalMesh>>",
+      2,
+      "The skeletal meshes used to estimate the skinning deformation during compression."
+    ],
+    "KeyframeStrippingProportion": [
+      "FPerPlatformFloat",
+      2,
+      "The minimum proportion of keyframes that should be stripped."
+    ],
+    "KeyframeStrippingThreshold": [
+      "FPerPlatformFloat",
+      2,
+      "The error threshold below which to strip keyframes. If a keyframe can be reconstructed with an error below the threshold, it is stripped."
+    ]
+  },
+  "methods": []
+}

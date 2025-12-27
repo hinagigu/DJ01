@@ -1,0 +1,49 @@
+{
+  "name": "FAnimNode_ApplyAdditive",
+  "isStruct": true,
+  "properties": {
+    "Base": [
+      "FPoseLink"
+    ],
+    "Additive": [
+      "FPoseLink"
+    ],
+    "Alpha": [
+      "float32"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_ApplyAdditive&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_ApplyAdditive"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "UInvalidationBox",
+  "inherits": "UContentWidget",
+  "doc": "Invalidate\n* Single Child\n* Caching / Performance",
+  "properties": {
+    "bCanCache": [
+      "bool",
+      "Should the invalidation panel cache the widgets?  Making this false makes it so the invalidation\npanel stops acting like an invalidation panel, just becomes a simple container widget."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCanCache",
+      "return": "bool",
+      "const": true,
+      "doc": "@returns true when the invalidation box cache the widgets.\nThe widgets will be updated only if they get invalidated.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCanCache",
+      "return": "void",
+      "doc": "Tell the InvalidationBox to use the invalidation process.\n@note the other internal flags can disable the option.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CanCache",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

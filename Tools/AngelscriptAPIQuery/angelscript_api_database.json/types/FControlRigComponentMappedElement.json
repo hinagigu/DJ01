@@ -1,0 +1,54 @@
+{
+  "name": "FControlRigComponentMappedElement",
+  "isStruct": true,
+  "properties": {
+    "ComponentReference": [
+      "FSoftComponentReference",
+      "The component to map to the Control Rig"
+    ],
+    "TransformIndex": [
+      "int",
+      "An optional index that can be used with components\nwith multiple transforms (for example the InstancedStaticMeshComponent)"
+    ],
+    "TransformName": [
+      "FName",
+      "An optional name that can be used with components\nthat have sockets (for example the SkeletalMeshComponent)"
+    ],
+    "ElementType": [
+      "ERigElementType",
+      "The type of element this is mapped to"
+    ],
+    "ElementName": [
+      "FName",
+      "The name of the element to map to"
+    ],
+    "Direction": [
+      "EControlRigComponentMapDirection",
+      "The direction (input / output) to be used for mapping an element"
+    ],
+    "Offset": [
+      "FTransform",
+      "The offset transform to apply"
+    ],
+    "Weight": [
+      "float32",
+      "defines how much the mapped element should be driven"
+    ],
+    "Space": [
+      "EControlRigComponentSpace",
+      "space in which the mapping happens"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FControlRigComponentMappedElement&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FControlRigComponentMappedElement"
+        }
+      ]
+    }
+  ]
+}

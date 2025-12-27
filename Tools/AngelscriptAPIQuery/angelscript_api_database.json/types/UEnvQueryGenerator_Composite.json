@@ -1,0 +1,22 @@
+{
+  "name": "UEnvQueryGenerator_Composite",
+  "inherits": "UEnvQueryGenerator",
+  "doc": "Composite generator allows using multiple generators in single query option\nAll child generators must produce exactly the same item type!",
+  "properties": {
+    "Generators": [
+      "TArray<TObjectPtr<UEnvQueryGenerator>>",
+      2,
+      ""
+    ],
+    "ForcedItemType": [
+      "TSubclassOf<UEnvQueryItemType>",
+      2,
+      ""
+    ],
+    "bAllowDifferentItemTypes": [
+      "bool",
+      "allow generators with different item types, use at own risk!\n\nWARNING:\ngenerator will use ForcedItemType for raw data, you MUST ensure proper memory layout\nchild generators will be writing to memory block through their own item types:\n- data must fit info block allocated by ForcedItemType\n- tests will read item location/properties through ForcedItemType"
+    ]
+  },
+  "methods": []
+}

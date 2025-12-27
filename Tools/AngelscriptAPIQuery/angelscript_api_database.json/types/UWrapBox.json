@@ -1,0 +1,66 @@
+{
+  "name": "UWrapBox",
+  "inherits": "UPanelWidget",
+  "doc": "Arranges widgets left-to-right or top-to-bottom dependently of the orientation.  When the widgets exceed the wrapSize it will place widgets on the next line.\n\n* Many Children\n* Flows\n* Wraps",
+  "properties": {
+    "WrapSize": [
+      "float32",
+      "When this size is exceeded, elements will start appearing on the next line."
+    ],
+    "bExplicitWrapSize": [
+      "bool",
+      "Use explicit wrap size whenever possible. It greatly simplifies layout calculations and reduces likelihood of \"wiggling UI\""
+    ],
+    "Orientation": [
+      "EOrientation",
+      "Determines if the Wrap Box should arranges the widgets left-to-right or top-to-bottom"
+    ],
+    "InnerSlotPadding": [
+      "FVector2D",
+      "The inner slot padding goes between slots sharing borders"
+    ],
+    "HorizontalAlignment": [
+      "EHorizontalAlignment",
+      "The alignment of each line of wrapped content."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddChildToWrapBox",
+      "return": "UWrapBoxSlot",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Content",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "SetHorizontalAlignment",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHorizontalAlignment",
+          "type": "EHorizontalAlignment"
+        }
+      ]
+    },
+    {
+      "name": "SetInnerSlotPadding",
+      "return": "void",
+      "doc": "Sets the inner slot padding goes between slots sharing borders",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPadding",
+          "type": "FVector2D"
+        }
+      ]
+    }
+  ]
+}

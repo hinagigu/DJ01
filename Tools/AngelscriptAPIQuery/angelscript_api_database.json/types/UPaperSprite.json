@@ -1,0 +1,116 @@
+{
+  "name": "UPaperSprite",
+  "inherits": "UObject",
+  "doc": "Sprite Asset\n\nStores the data necessary to render a single 2D sprite (from a region of a texture)\nCan also contain collision shapes for the sprite.\n\n@see UPaperSpriteComponent",
+  "properties": {
+    "OriginInSourceImageBeforeTrimming": [
+      "FVector2D",
+      2,
+      "Origin within SourceImage, prior to atlasing"
+    ],
+    "SourceImageDimensionBeforeTrimming": [
+      "FVector2D",
+      2,
+      "Dimensions of SourceImage"
+    ],
+    "bTrimmedInSourceImage": [
+      "bool",
+      2,
+      "This texture is trimmed, consider the values above"
+    ],
+    "bRotatedInSourceImage": [
+      "bool",
+      2,
+      "This texture is rotated in the atlas"
+    ],
+    "SourceTextureDimension": [
+      "FVector2D",
+      2,
+      "Dimension of the texture when this sprite was created\nUsed when the sprite is resized at some point"
+    ],
+    "SourceUV": [
+      "FVector2D",
+      2,
+      "Position within SourceTexture (in pixels)"
+    ],
+    "SourceDimension": [
+      "FVector2D",
+      2,
+      "Dimensions within SourceTexture (in pixels)"
+    ],
+    "SourceTexture": [
+      "TSoftObjectPtr<UTexture2D>",
+      2,
+      "The source texture that the sprite comes from"
+    ],
+    "AdditionalSourceTextures": [
+      "TArray<TObjectPtr<UTexture>>",
+      2,
+      "Additional source textures for other slots"
+    ],
+    "DefaultMaterial": [
+      "UMaterialInterface",
+      "The material to use on a sprite instance if not overridden (this is the default material when only one is being used, and is the translucent/masked material for Diced render geometry, slot 0)"
+    ],
+    "AlternateMaterial": [
+      "UMaterialInterface",
+      "The alternate material to use on a sprite instance if not overridden (this is only used for Diced render geometry, and will be the opaque material in that case, slot 1)"
+    ],
+    "Sockets": [
+      "TArray<FPaperSpriteSocket>",
+      2,
+      "List of sockets on this sprite"
+    ],
+    "SpriteCollisionDomain": [
+      "ESpriteCollisionMode",
+      2,
+      "Collision domain (no collision, 2D, or 3D)"
+    ],
+    "PixelsPerUnrealUnit": [
+      "float32",
+      2,
+      "The scaling factor between pixels and Unreal units (cm) (e.g., 0.64 would make a 64 pixel wide sprite take up 100 cm)"
+    ],
+    "BodySetup": [
+      "UBodySetup",
+      2,
+      "Baked physics data."
+    ],
+    "PivotMode": [
+      "ESpritePivotMode",
+      2,
+      "Pivot mode"
+    ],
+    "CustomPivotPoint": [
+      "FVector2D",
+      2,
+      "Custom pivot point (relative to the sprite rectangle)"
+    ],
+    "bSnapPivotToPixelGrid": [
+      "bool",
+      2,
+      "Should the pivot be snapped to a pixel boundary?"
+    ],
+    "CollisionGeometry": [
+      "FSpriteGeometryCollection",
+      2,
+      "Custom collision geometry polygons (in texture space)"
+    ],
+    "CollisionThickness": [
+      "float32",
+      2,
+      "The extrusion thickness of collision geometry when using a 3D collision domain"
+    ],
+    "RenderGeometry": [
+      "FSpriteGeometryCollection",
+      2,
+      "Custom render geometry polygons (in texture space)"
+    ],
+    "AtlasGroup": [
+      "UPaperSpriteAtlas",
+      2,
+      "Spritesheet group that this sprite belongs to"
+    ]
+  },
+  "methods": []
+}

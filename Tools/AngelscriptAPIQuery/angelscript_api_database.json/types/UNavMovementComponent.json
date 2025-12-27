@@ -1,0 +1,91 @@
+{
+  "name": "UNavMovementComponent",
+  "inherits": "UMovementComponent",
+  "doc": "NavMovementComponent defines base functionality for MovementComponents that move any 'agent' that may be involved in AI pathfinding.",
+  "properties": {
+    "NavAgentProps": [
+      "FNavAgentProperties",
+      "Properties that define how the component can move."
+    ],
+    "FixedPathBrakingDistance": [
+      "float32",
+      2,
+      "Braking distance override used with acceleration driven path following (bUseAccelerationForPaths)"
+    ],
+    "bUpdateNavAgentWithOwnersCollision": [
+      "bool",
+      "If set to true NavAgentProps' radius and height will be updated with Owner's collision capsule size"
+    ],
+    "bUseAccelerationForPaths": [
+      "bool",
+      "If set, pathfollowing will control character movement via acceleration values. If false, it will set velocities directly."
+    ],
+    "bUseFixedBrakingDistanceForPaths": [
+      "bool",
+      "If set, FixedPathBrakingDistance will be used for path following deceleration"
+    ]
+  },
+  "methods": [
+    {
+      "name": "IsCrouching",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if currently crouching",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsFalling",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if currently falling (not flying, in a non-fluid volume, and not on the ground)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsFlying",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if currently flying (moving through a non-fluid volume without resting on the ground)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsMovingOnGround",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if currently moving on the ground (e.g. walking or driving)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsSwimming",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if currently swimming (moving through a fluid volume)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopActiveMovement",
+      "return": "void",
+      "doc": "Stops applying further movement (usually zeros acceleration).",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopMovementKeepPathing",
+      "return": "void",
+      "doc": "Stops movement immediately (reset velocity) but keeps following current path",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

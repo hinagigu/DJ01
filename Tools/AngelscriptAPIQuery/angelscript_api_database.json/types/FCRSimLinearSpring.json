@@ -1,0 +1,38 @@
+{
+  "name": "FCRSimLinearSpring",
+  "isStruct": true,
+  "properties": {
+    "SubjectA": [
+      "int",
+      2,
+      "The first point affected by this spring"
+    ],
+    "SubjectB": [
+      "int",
+      2,
+      "The second point affected by this spring"
+    ],
+    "Coefficient": [
+      "float32",
+      2,
+      "The power of this spring"
+    ],
+    "Equilibrium": [
+      "float32",
+      2,
+      "The rest length of this spring.\nA value of lower than zero indicates that the equilibrium\nshould be based on the current distance of the two subjects."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCRSimLinearSpring&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCRSimLinearSpring"
+        }
+      ]
+    }
+  ]
+}

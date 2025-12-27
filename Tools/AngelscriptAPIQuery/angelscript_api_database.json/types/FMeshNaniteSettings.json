@@ -1,0 +1,85 @@
+{
+  "name": "FMeshNaniteSettings",
+  "isStruct": true,
+  "doc": "Settings applied when building Nanite data.",
+  "properties": {
+    "PositionPrecision": [
+      "int",
+      "Position Precision. Step size is 2^(-PositionPrecision) cm. MIN_int32 is auto."
+    ],
+    "NormalPrecision": [
+      "int",
+      "Normal Precision in bits. -1 is auto."
+    ],
+    "TangentPrecision": [
+      "int",
+      "Tangent Precision in bits. -1 is auto."
+    ],
+    "TargetMinimumResidencyInKB": [
+      "uint",
+      2,
+      "How much of the resource should always be resident (In KB). Approximate due to paging. 0: Minimum size (single page). MAX_uint32: Entire mesh."
+    ],
+    "KeepPercentTriangles": [
+      "float32",
+      "Percentage of triangles to keep from source mesh. 1.0 = no reduction, 0.0 = no triangles."
+    ],
+    "TrimRelativeError": [
+      "float32",
+      "Reduce until at least this amount of error is reached relative to size of the mesh"
+    ],
+    "FallbackTarget": [
+      "ENaniteFallbackTarget",
+      "Which heuristic to use when generating the fallback mesh."
+    ],
+    "FallbackPercentTriangles": [
+      "float32",
+      "Percentage of triangles to keep from source mesh for fallback. 1.0 = no reduction, 0.0 = no triangles."
+    ],
+    "FallbackRelativeError": [
+      "float32",
+      "Reduce until at least this amount of error is reached relative to size of the mesh"
+    ],
+    "MaxEdgeLengthFactor": [
+      "float32",
+      "Controls the maximum distance allowed between each vertex of the mesh on screen. Can be used to prevent oversimplification\nof meshes that are intended to be deformed (e.g. animation using World Position Offset, Spline Mesh Component, etc.).\nShould be left at default of 0 unless explicitly needed to fix oversimplification issues."
+    ],
+    "DisplacementUVChannel": [
+      "int",
+      "UV channel used to sample displacement maps"
+    ],
+    "DisplacementMaps": [
+      "TArray<FMeshDisplacementMap>",
+      2,
+      ""
+    ],
+    "bEnabled": [
+      "bool",
+      "If true, Nanite data will be generated."
+    ],
+    "bPreserveArea": [
+      "bool",
+      "Whether to try and maintain the same surface area at all distances. Useful for foliage that thins out otherwise."
+    ],
+    "bExplicitTangents": [
+      "bool",
+      "Whether to store explicit tangents instead of using the implicitly derived ones."
+    ],
+    "bLerpUVs": [
+      "bool",
+      "Whether to interpolate UVs when simplifying.\nShould be enabled whenever possible.\nFor real UV coordinates this allows calculating the lowest error optimal UVs for new vertices when simplifying,\nassuming the UVs are used as normal texture coordinates and will interpolate across the face of the triangles.\n\nDisable if data stored in UVs isn't valid to interpolate, for example if indexes are stored in UVs.\nLerping an index doesn't make sense and would break the shader trying to use it.\nNote: If disabled, error from UVs is no longer accounted for when Nanite selects the LOD to render because\nerror due to arbitary vertex attributes that aren't interpolatable can't be generally reasoned about."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMeshNaniteSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMeshNaniteSettings"
+        }
+      ]
+    }
+  ]
+}

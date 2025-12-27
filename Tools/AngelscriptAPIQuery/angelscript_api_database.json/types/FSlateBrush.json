@@ -1,0 +1,61 @@
+{
+  "name": "FSlateBrush",
+  "isStruct": true,
+  "doc": "A brush which contains information about how to draw a Slate element\n //, meta = (HasNativeMake = \"\"))",
+  "properties": {
+    "DrawAs": [
+      "ESlateBrushDrawType",
+      "How to draw the image"
+    ],
+    "Tiling": [
+      "ESlateBrushTileType",
+      "How to tile the image in Image mode"
+    ],
+    "Mirroring": [
+      "ESlateBrushMirrorType",
+      "How to mirror the image in Image mode.  This is normally only used for dynamic image brushes where the source texture\n          comes from a hardware device such as a web camera."
+    ],
+    "ImageType": [
+      "ESlateBrushImageType",
+      2,
+      "The type of image"
+    ],
+    "ImageSize": [
+      "FDeprecateSlateVector2D",
+      "Size of the resource in Slate Units"
+    ],
+    "Margin": [
+      "FMargin",
+      "The margin to use in Box and Border modes"
+    ],
+    "TintColor": [
+      "FSlateColor",
+      "Tinting applied to the image."
+    ],
+    "OutlineSettings": [
+      "FSlateBrushOutlineSettings",
+      "How to draw the outline.  Currently only used for RoundedBox type brushes."
+    ],
+    "ResourceObject": [
+      "UObject",
+      "The image to render for this brush, can be a UTexture or UMaterialInterface or an object implementing\nthe AtlasedTextureInterface."
+    ],
+    "ResourceName": [
+      "FName",
+      2,
+      "The name of the rendering resource to use"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSlateBrush&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSlateBrush"
+        }
+      ]
+    }
+  ]
+}

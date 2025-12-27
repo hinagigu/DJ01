@@ -1,0 +1,73 @@
+{
+  "name": "FConstraintInstance",
+  "isStruct": true,
+  "doc": "Container for a physics representation of an object.",
+  "properties": {
+    "ConstraintBone1": [
+      "FName",
+      2,
+      "Name of first bone (body) that this constraint is connecting.\nThis will be the 'child' bone in a PhysicsAsset."
+    ],
+    "ConstraintBone2": [
+      "FName",
+      2,
+      "Name of second bone (body) that this constraint is connecting.\nThis will be the 'parent' bone in a PhysicsAset."
+    ],
+    "Pos1": [
+      "FVector",
+      2,
+      "Location of constraint in Body1 reference frame (usually the \"child\" body for skeletal meshes)."
+    ],
+    "PriAxis1": [
+      "FVector",
+      2,
+      "Primary (twist) axis in Body1 reference frame."
+    ],
+    "SecAxis1": [
+      "FVector",
+      2,
+      "Secondary axis in Body1 reference frame. Orthogonal to PriAxis1."
+    ],
+    "Pos2": [
+      "FVector",
+      2,
+      "Location of constraint in Body2 reference frame (usually the \"parent\" body for skeletal meshes)."
+    ],
+    "PriAxis2": [
+      "FVector",
+      2,
+      "Primary (twist) axis in Body2 reference frame."
+    ],
+    "SecAxis2": [
+      "FVector",
+      2,
+      "Secondary axis in Body2 reference frame. Orthogonal to PriAxis2."
+    ],
+    "AngularRotationOffset": [
+      "FRotator",
+      2,
+      "Specifies the angular offset between the two frames of reference. By default limit goes from (-Angle, +Angle)\nThis allows you to bias the limit for swing1 swing2 and twist."
+    ],
+    "ProfileInstance": [
+      "FConstraintProfileProperties",
+      2,
+      "Constraint Data (properties easily swapped at runtime based on different constraint profiles)"
+    ],
+    "bScaleLinearLimits": [
+      "bool",
+      "If true, linear limits scale using the absolute min of the 3d scale of the owning component"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FConstraintInstance&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FConstraintInstance"
+        }
+      ]
+    }
+  ]
+}

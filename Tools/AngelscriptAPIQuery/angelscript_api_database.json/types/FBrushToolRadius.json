@@ -1,0 +1,34 @@
+{
+  "name": "FBrushToolRadius",
+  "isStruct": true,
+  "doc": "FBrushToolRadius is used to define the size of 3D \"brushes\" used in (eg) sculpting tools.\nThe brush size can be defined in various ways.",
+  "properties": {
+    "SizeType": [
+      "EBrushToolSizeType",
+      2,
+      "Specify the type of brush size currently in use"
+    ],
+    "AdaptiveSize": [
+      "float32",
+      2,
+      "Adaptive brush size is used to interpolate between an object-specific minimum and maximum brush size"
+    ],
+    "WorldRadius": [
+      "float32",
+      2,
+      "World brush size is a dimension in world coordinates"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FBrushToolRadius&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBrushToolRadius"
+        }
+      ]
+    }
+  ]
+}

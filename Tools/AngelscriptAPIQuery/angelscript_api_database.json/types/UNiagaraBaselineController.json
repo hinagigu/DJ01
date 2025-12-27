@@ -1,0 +1,81 @@
+{
+  "name": "UNiagaraBaselineController",
+  "inherits": "UObject",
+  "doc": "Base class for baseline controllers. These can are responsible for spawning and manipulating the FX needed for the baseline perf tests.",
+  "properties": {
+    "TestDuration": [
+      "float32",
+      "Duration to gather performance stats for the given system."
+    ],
+    "EffectType": [
+      "UNiagaraEffectType",
+      1,
+      "The effect type this controller is in use by."
+    ],
+    "Owner": [
+      "ANiagaraPerfBaselineActor",
+      1,
+      "The owning actor for this baseline controller."
+    ],
+    "System": [
+      "TSoftObjectPtr<UNiagaraSystem>",
+      "The baseline system to spawn."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetSystem",
+      "return": "UNiagaraSystem",
+      "doc": "Returns the System for this baseline. Will synchronously load the system if needed.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnBeginTest",
+      "return": "void",
+      "callable": false,
+      "doc": "Called from the stats system when we begin gathering stats for the given System asset.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnEndTest",
+      "return": "void",
+      "callable": false,
+      "doc": "Called from the stats system on completion of the test with the final stats for the given system asset.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Stats",
+          "type": "FNiagaraPerfBaselineStats"
+        }
+      ]
+    },
+    {
+      "name": "OnOwnerTick",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when the owning actor is ticked.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTime",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "OnTickTest",
+      "return": "bool",
+      "callable": false,
+      "doc": "Returns whether the baseline test is complete.",
+      "event": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

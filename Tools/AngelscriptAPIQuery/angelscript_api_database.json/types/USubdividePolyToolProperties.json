@@ -1,0 +1,58 @@
+{
+  "name": "USubdividePolyToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Properties",
+  "properties": {
+    "SubdivisionLevel": [
+      "int",
+      2,
+      "Number of iterations/levels of subdivision to perform"
+    ],
+    "SubdivisionScheme": [
+      "ESubdivisionScheme",
+      2,
+      ""
+    ],
+    "BoundaryScheme": [
+      "ESubdivisionBoundaryScheme",
+      2,
+      "How to treat mesh boundaries"
+    ],
+    "NormalComputationMethod": [
+      "ESubdivisionOutputNormals",
+      2,
+      ""
+    ],
+    "UVComputationMethod": [
+      "ESubdivisionOutputUVs",
+      2,
+      ""
+    ],
+    "bNewPolyGroups": [
+      "bool",
+      2,
+      "Assign a new PolyGroup ID to each newly created face"
+    ],
+    "bRenderGroups": [
+      "bool",
+      2,
+      "Display each PolyGroup with an auto-generated color"
+    ],
+    "bRenderCage": [
+      "bool",
+      2,
+      "Display the mesh corresponding to Subdivision Level 0"
+    ],
+    "bAddExtraCorners": [
+      "bool",
+      2,
+      "When using the group topology for subdivision, whether to add extra corners at sharp group edge bends on mesh boundaries. Note: We cannot add extra corners on non-boundary group edges, as this would create non-manifold geometry on subdivision."
+    ],
+    "ExtraCornerAngleThresholdDegrees": [
+      "float",
+      2,
+      "How acute an angle between two edges needs to be to add an extra corner there when Add Extra Corners is true."
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,190 @@
+{
+  "name": "UDynamicMeshComponent",
+  "inherits": "UBaseDynamicMeshComponent",
+  "doc": "UDynamicMeshComponent is a mesh component similar to UProceduralMeshComponent,\nexcept it bases the renderable geometry off an internal UDynamicMesh instance (which\nencapsulates a FDynamicMesh3).\n\nThere is extensive support for partial updates to render buffers, customizing colors,\ninternally decomposing the mesh into separate chunks for more efficient render updates,\nand support for attaching a 'Postprocessor' to generate a render mesh on-the-fly\nSee comment sections below for details.",
+  "properties": {
+    "CollisionType": [
+      "ECollisionTraceFlag",
+      "Type of Collision Geometry to use for this Mesh"
+    ],
+    "bUseAsyncCooking": [
+      "bool",
+      "Controls whether the physics cooking should be done off the game thread.\nThis should be used when collision geometry doesn't have to be immediately up to date (For example streaming in far away objects)"
+    ],
+    "bEnableComplexCollision": [
+      "bool",
+      "If true, current mesh will be used as Complex Collision source mesh.\nThis is independent of the CollisionType setting, ie, even if Complex collision is enabled, if this is false, then the Complex Collision mesh will be empty"
+    ],
+    "bDeferCollisionUpdates": [
+      "bool",
+      "If true, updates to the mesh will not result in immediate collision regeneration. Useful when the mesh will be modified multiple times before collision is needed."
+    ],
+    "AggGeom": [
+      "FKAggregateGeom",
+      2,
+      "Simplified collision representation for the mesh component"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ConfigureMaterialSet",
+      "return": "void",
+      "doc": "Set new list of Materials for the Mesh. Dynamic Mesh Component does not have\nSlot Names, so the size of the Material Set should be the same as the number of\ndifferent Material IDs on the mesh MaterialID attribute",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMaterialSet",
+          "type": "TArray<UMaterialInterface>"
+        }
+      ]
+    },
+    {
+      "name": "EnableComplexAsSimpleCollision",
+      "return": "void",
+      "doc": "calls SetComplexAsSimpleCollisionEnabled(true, true)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTangentsType",
+      "return": "EDynamicMeshComponentTangentsMode",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "NotifyMeshModified",
+      "return": "void",
+      "doc": "Notify the Component that it's DynamicMesh has been modified externally. This will result in all Rendering Data\nfor the Component being rebuilt on the next frame (internally the Scene Proxy is fully destroyed and rebuilt).\n\nYou must use this function if the mesh triangulation has been modified, or if polygroups or material assignments\nhave been changed, or if Normal/UV/Color topology has changed (ie new split-vertices have been introduced).\nIf only vertex attribute values (position, normals, UVs, colors) have been modified, then\nNotify Vertex Attributes Updated can be used to do a faster update.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "NotifyMeshVertexAttributesModified",
+      "return": "void",
+      "doc": "Notify the Component that vertex attribute values of it's DynamicMesh have been modified externally. This will result in\nRendering vertex buffers being updated. This update path is more efficient than doing a full Notify Mesh Updated.\n\n@warning it is invalid to call this function if (1) the mesh triangulation has also been changed, (2) triangle MaterialIDs have been changed,\nor (3) any attribute overlay (normal, color, UV) topology has been modified, ie split-vertices have been added/removed.\nBehavior of this function is undefined in these cases and may crash. If you are unsure, use Notify Mesh Updated.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bPositions",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bNormals",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bUVs",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bColors",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetComplexAsSimpleCollisionEnabled",
+      "return": "void",
+      "doc": "If bEnabled=true, sets bEnableComplexCollision=true and CollisionType=CTF_UseComplexAsSimple\nIf bEnabled=true, sets bEnableComplexCollision=false and CollisionType=CTF_UseDefault\n@param bImmediateUpdate if true, UpdateCollision(true) is called",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        },
+        {
+          "name": "bImmediateUpdate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetDeferredCollisionUpdatesEnabled",
+      "return": "void",
+      "doc": "Set value of bDeferCollisionUpdates, when enabled, collision is not automatically recomputed each time the mesh changes.\n@param bImmediateUpdate if true, UpdateCollision(true) is called if bEnabled=false, ie to force a collision rebuild",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        },
+        {
+          "name": "bImmediateUpdate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetDynamicMesh",
+      "return": "void",
+      "doc": "Replace the current UDynamicMesh with a new one, and transfer ownership of NewMesh to this Component.\nThis can be used to (eg) assign a UDynamicMesh created with NewObject in the Transient Package to this Component.\n@warning If NewMesh is owned/Outer'd to another DynamicMeshComponent, a GLEO error may occur if that Component is serialized.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMesh",
+          "type": "UDynamicMesh"
+        }
+      ]
+    },
+    {
+      "name": "SetTangentsType",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTangentsType",
+          "type": "EDynamicMeshComponentTangentsMode"
+        }
+      ]
+    },
+    {
+      "name": "UpdateCollision",
+      "return": "void",
+      "doc": "Force an update of the Collision/Physics data for this Component.\n@param bOnlyIfPending only update if a collision update is pending, ie the underlying DynamicMesh changed and bDeferCollisionUpdates is enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bOnlyIfPending",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ValidateMaterialSlots",
+      "return": "bool",
+      "doc": "Compute the maximum MaterialID on the DynamicMesh, and ensure that Material Slots match.\nPass both arguments as false to just do a check.\n@param bCreateIfMissing if true, add extra (empty) Material Slots to match max MaterialID\n@param bDeleteExtraSlots if true, extra Material Slots beyond max MaterialID are removed\n@return true if at the end of this function, Material Slot Count == Max MaterialID",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bCreateIfMissing",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bDeleteExtraSlots",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

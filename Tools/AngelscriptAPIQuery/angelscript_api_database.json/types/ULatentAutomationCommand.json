@@ -1,0 +1,115 @@
+{
+  "name": "ULatentAutomationCommand",
+  "inherits": "UObject",
+  "properties": {
+    "bAllowTimeout": [
+      "bool",
+      2,
+      ""
+    ],
+    "bAlsoRunOnClient": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCurrentTest",
+      "return": "FIntegrationTest&",
+      "doc": "Retrieves the current test. You can only call this after the command has been\npassed to T.AddLatentAutomationCommand() or after SetCurrentTest has been called.",
+      "args": []
+    },
+    {
+      "name": "SetCurrentTest",
+      "return": "void",
+      "doc": "Retrieves the client executor or null if it's not a client test. Clients only\nhave access to the client executor rather than the test itself.",
+      "args": [
+        {
+          "name": "T",
+          "type": "FIntegrationTest&"
+        }
+      ]
+    },
+    {
+      "name": "GetClientExecutor",
+      "return": "ALatentAutomationCommandClientExecutor",
+      "doc": "Use this for commands that are not added with AddLatentAutomationCommand.\nThis could be the case if a latent command is a child to another command.\n",
+      "args": []
+    },
+    {
+      "name": "After",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "AfterOnClient",
+      "return": "bool",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Before",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "BeforeOnClient",
+      "return": "bool",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Describe",
+      "return": "FString",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DescribeOnClient",
+      "return": "FString",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasAuthority",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Update",
+      "return": "bool",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UpdateOnClient",
+      "return": "bool",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

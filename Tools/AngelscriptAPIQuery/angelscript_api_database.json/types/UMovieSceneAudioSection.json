@@ -1,0 +1,161 @@
+{
+  "name": "UMovieSceneAudioSection",
+  "inherits": "UMovieSceneSection",
+  "doc": "Audio section, for use in the audio track, or by attached audio objects",
+  "properties": {
+    "StartFrameOffset": [
+      "FFrameNumber",
+      2,
+      "The offset into the beginning of the audio clip"
+    ],
+    "bLooping": [
+      "bool",
+      2,
+      "Allow looping if the section length is greater than the sound duration"
+    ],
+    "bSuppressSubtitles": [
+      "bool",
+      2,
+      ""
+    ],
+    "bOverrideAttenuation": [
+      "bool",
+      2,
+      "Should the attenuation settings on this section be used."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAttenuationSettings",
+      "return": "USoundAttenuation",
+      "const": true,
+      "doc": "@return The attenuation settings",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLooping",
+      "return": "bool",
+      "const": true,
+      "doc": "@return Whether to allow looping if the section length is greater than the sound duration",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOverrideAttenuation",
+      "return": "bool",
+      "const": true,
+      "doc": "@return Whether override settings on this section should be used",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSound",
+      "return": "USoundBase",
+      "const": true,
+      "doc": "Gets the sound for this section",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStartOffset",
+      "return": "FFrameNumber",
+      "const": true,
+      "doc": "Get the offset into the beginning of the audio clip",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSuppressSubtitles",
+      "return": "bool",
+      "const": true,
+      "doc": "@return Whether subtitles should be suppressed",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAttenuationSettings",
+      "return": "void",
+      "doc": "Set the attenuation settings for this audio section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAttenuationSettings",
+          "type": "USoundAttenuation"
+        }
+      ]
+    },
+    {
+      "name": "SetLooping",
+      "return": "void",
+      "doc": "Set whether the sound should be looped",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInLooping",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetOverrideAttenuation",
+      "return": "void",
+      "doc": "Set whether the attentuation should be overriden",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInOverrideAttenuation",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSound",
+      "return": "void",
+      "doc": "Sets this section's sound",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSound",
+          "type": "USoundBase"
+        }
+      ]
+    },
+    {
+      "name": "SetStartOffset",
+      "return": "void",
+      "doc": "Set the offset into the beginning of the audio clip",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStartOffset",
+          "type": "FFrameNumber"
+        }
+      ]
+    },
+    {
+      "name": "SetSuppressSubtitles",
+      "return": "void",
+      "doc": "Set whether subtitles should be suppressed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInSuppressSubtitles",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

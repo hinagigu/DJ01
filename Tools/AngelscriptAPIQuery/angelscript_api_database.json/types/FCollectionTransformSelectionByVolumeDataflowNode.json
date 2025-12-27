@@ -1,0 +1,44 @@
+{
+  "name": "FCollectionTransformSelectionByVolumeDataflowNode",
+  "isStruct": true,
+  "doc": "Selects pieces based on their volume",
+  "properties": {
+    "VolumeMin": [
+      "float32",
+      2,
+      "Minimum volume for the selection"
+    ],
+    "VolumeMax": [
+      "float32",
+      2,
+      "Maximum volume for the selection"
+    ],
+    "RangeSetting": [
+      "ERangeSettingEnum",
+      2,
+      "Values for the selection has to be inside or outside [Min, Max] range"
+    ],
+    "bInclusive": [
+      "bool",
+      2,
+      "If true then range includes Min and Max values"
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCollectionTransformSelectionByVolumeDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCollectionTransformSelectionByVolumeDataflowNode"
+        }
+      ]
+    }
+  ]
+}

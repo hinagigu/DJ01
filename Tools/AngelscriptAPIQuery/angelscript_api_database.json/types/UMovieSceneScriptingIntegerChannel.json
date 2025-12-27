@@ -1,0 +1,136 @@
+{
+  "name": "UMovieSceneScriptingIntegerChannel",
+  "inherits": "UMovieSceneScriptingChannel",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddKey",
+      "return": "UMovieSceneScriptingIntegerKey",
+      "doc": "Add a key to this channel. This initializes a new key and returns a reference to it.\n@param        InTime                  The frame this key should go on. Respects TimeUnit to determine if it is a display rate frame or a tick resolution frame.\n@param        NewValue                The value that this key should be created with.\n@param        SubFrame                Optional [0-1) clamped sub-frame to put this key on. Ignored if TimeUnit is set to Tick Resolution.\n@param        TimeUnit                Is the specified InTime in Display Rate frames or Tick Resolution.\n@return       The key that was created with the specified values at the specified time.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "FFrameNumber"
+        },
+        {
+          "name": "NewValue",
+          "type": "int"
+        },
+        {
+          "name": "SubFrame",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "EvaluateKeys",
+      "return": "TArray<int>",
+      "const": true,
+      "doc": "Gets baked keys in this channel.\n@return       An array of values contained by this channel.\n                      Returns baked keys in the specified range.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Range",
+          "type": "FSequencerScriptingRange"
+        },
+        {
+          "name": "FrameRate",
+          "type": "FFrameRate"
+        }
+      ]
+    },
+    {
+      "name": "GetDefault",
+      "return": "int",
+      "const": true,
+      "doc": "Get this channel's default value that will be used when no keys are present. Only a valid\nvalue when HasDefault() returns true.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetKeys",
+      "return": "TArray<UMovieSceneScriptingKey>",
+      "const": true,
+      "doc": "Gets all of the keys in this channel.\n@return       An array of UMovieSceneScriptingIntegerKey's contained by this channel.\n                      Returns all keys even if clipped by the owning section's boundaries or outside of the current sequence play range.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetKeysByIndex",
+      "return": "TArray<UMovieSceneScriptingKey>",
+      "const": true,
+      "doc": "Gets the keys in this channel specified by the specific index\n@Indices  The indices from which to get the keys from\n@return       An array of UMovieSceneScriptingKey's contained by this channel.\n                      Returns all keys specified by the indices, even if out of range.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Indices",
+          "type": "TArray<int>"
+        }
+      ]
+    },
+    {
+      "name": "GetNumKeys",
+      "return": "int",
+      "const": true,
+      "doc": "Returns number of keys in this channel.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasDefault",
+      "return": "bool",
+      "const": true,
+      "doc": "@return Does this channel have a default value set?",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveDefault",
+      "return": "void",
+      "doc": "Remove this channel's default value causing the channel to have no effect where no keys are present",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveKey",
+      "return": "void",
+      "doc": "Removes the specified key. Does nothing if the key is not specified or the key belongs to another channel.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "UMovieSceneScriptingKey"
+        }
+      ]
+    },
+    {
+      "name": "SetDefault",
+      "return": "void",
+      "doc": "Set this channel's default value that should be used when no keys are present.\nSets bHasDefaultValue to true automatically.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDefaultValue",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "FVoiceSettings",
+  "isStruct": true,
+  "properties": {
+    "ComponentToAttachTo": [
+      "USceneComponent",
+      "Optionally attach the voice source to a Scene Component to give the appearance\nthat the voice is coming from that scene component.\nIf this is not set, the voice will not be spatialized."
+    ],
+    "AttenuationSettings": [
+      "USoundAttenuation",
+      "Optional attenuation settings to attach to this player's voice.\nThis should only be used when ComponentToAttachTo is set."
+    ],
+    "SourceEffectChain": [
+      "USoundEffectSourcePresetChain",
+      "Optional audio effects to apply to this player's voice."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FVoiceSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVoiceSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "name": "__MobilePatching",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetActiveDeviceProfileName",
+      "return": "FString",
+      "doc": "Get the name of currently selected device profile name",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInstalledContent",
+      "return": "UMobileInstalledContent",
+      "doc": "Get the installed content. Will return non-null object if there is an installed content at specified directory\nUser can choose to mount installed content into the game",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstallDirectory",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetSupportedPlatformNames",
+      "return": "TArray<FString>",
+      "doc": "Get the list of supported platform names on this device. Example: Android_ETC2, Android_ASTC",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasActiveWiFiConnection",
+      "return": "bool",
+      "doc": "Whether WiFi connection is currently available",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RequestContent",
+      "return": "void",
+      "doc": "Attempt to download manifest file using specified manifest URL.\nOn success it will return an object that represents remote content. This object can be queried for additional information, like total content size, download size, etc.\nUser can choose to download and install remote content.\n@param       RemoteManifestURL : URL from where manifest file can be downloaded. (http://my-server.com/awesomecontent.manifest)\n@param       CloudURL :  URL from where content chunk data can be downloaded. (http://my-server.com/awesomecontent/clouddir)\n@param       InstallDirectory: Relative directory to where downloaded content should be installed (MyContent/AwesomeContent)\n@param       OnSucceeded: Callback on manifest download success. Will return object that represents remote content\n@param       OnFailed: Callback on manifest download fail. Will return error message text and error integer code",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RemoteManifestURL",
+          "type": "FString"
+        },
+        {
+          "name": "CloudURL",
+          "type": "FString"
+        },
+        {
+          "name": "InstallDirectory",
+          "type": "FString"
+        },
+        {
+          "name": "OnSucceeded",
+          "default": "FOnRequestContentSucceeded ( )",
+          "type": "FOnRequestContentSucceeded"
+        },
+        {
+          "name": "OnFailed",
+          "default": "FOnRequestContentFailed ( )",
+          "type": "FOnRequestContentFailed"
+        }
+      ]
+    }
+  ]
+}

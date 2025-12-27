@@ -1,0 +1,127 @@
+{
+  "name": "UInputComponent",
+  "inherits": "UActorComponent",
+  "doc": "Implement an Actor component for input bindings.\n\nAn Input Component is a transient component that enables an Actor to bind various forms of input events to delegate functions.\nInput components are processed from a stack managed by the PlayerController and processed by the PlayerInput.\nEach binding can consume the input event preventing other components on the input stack from processing the input.\n\n@see https://docs.unrealengine.com/latest/INT/Gameplay/Input/index.html",
+  "properties": {},
+  "methods": [
+    {
+      "name": "BindAction",
+      "return": "void",
+      "doc": "Bind a function to be called when a key bound to this action triggers a specific keyevent.\nSpecified function must be a UFUNCTION() and takes a single FKey as its argument.",
+      "meta": null,
+      "args": [
+        {
+          "name": "ActionName",
+          "type": "FName"
+        },
+        {
+          "name": "KeyEvent",
+          "type": "EInputEvent"
+        },
+        {
+          "name": "Delegate",
+          "default": "FInputActionHandlerDynamicSignature ( )",
+          "type": "FInputActionHandlerDynamicSignature"
+        }
+      ]
+    },
+    {
+      "name": "BindAxis",
+      "return": "void",
+      "doc": "Bind a function to be called whenever a float axis bound to the specified axis name is changed.\nSpecified function must be a UFUNCTION() and takes a single float as its argument.",
+      "meta": null,
+      "args": [
+        {
+          "name": "AxisName",
+          "type": "FName"
+        },
+        {
+          "name": "Delegate",
+          "default": "FInputAxisHandlerDynamicSignature ( )",
+          "type": "FInputAxisHandlerDynamicSignature"
+        }
+      ]
+    },
+    {
+      "name": "BindAxisKey",
+      "return": "void",
+      "doc": "Bind a function to be called whenever an axis specified by the given key changes. This bypasses any action bindings setup in project settings.\nSpecified function must be a UFUNCTION() and takes a single float as its argument.",
+      "meta": null,
+      "args": [
+        {
+          "name": "AxisKey",
+          "type": "FName"
+        },
+        {
+          "name": "Delegate",
+          "default": "FInputAxisHandlerDynamicSignature ( )",
+          "type": "FInputAxisHandlerDynamicSignature"
+        }
+      ]
+    },
+    {
+      "name": "BindChord",
+      "return": "void",
+      "doc": "Bind a specific key chord to a delegate. This bypasses any action bindings setup in project settings.\nSpecified function must be a UFUNCTION() and takes a single FKey as its argument.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Chord",
+          "type": "FInputChord"
+        },
+        {
+          "name": "KeyEvent",
+          "type": "EInputEvent"
+        },
+        {
+          "name": "Delegate",
+          "default": "FInputActionHandlerDynamicSignature ( )",
+          "type": "FInputActionHandlerDynamicSignature"
+        }
+      ]
+    },
+    {
+      "name": "BindKey",
+      "return": "void",
+      "doc": "Bind a specific key to a delegate. This bypasses any action bindings setup in project settings.\nSpecified function must be a UFUNCTION() and takes a single FKey as its argument.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        },
+        {
+          "name": "KeyEvent",
+          "type": "EInputEvent"
+        },
+        {
+          "name": "Delegate",
+          "default": "FInputActionHandlerDynamicSignature ( )",
+          "type": "FInputActionHandlerDynamicSignature"
+        },
+        {
+          "name": "bConsumeInput",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "BindVectorAxis",
+      "return": "void",
+      "doc": "Bind a function to be called whenever a vector axis specified by the given key changes.\nSpecified function must be a UFUNCTION() and takes a single FVector as its argument.\n               GB.GestureDelegate = FInputGestureUnifiedDelegate(Delegate);",
+      "meta": null,
+      "args": [
+        {
+          "name": "AxisKey",
+          "type": "FKey"
+        },
+        {
+          "name": "Delegate",
+          "default": "FInputVectorAxisHandlerDynamicSignature ( )",
+          "type": "FInputVectorAxisHandlerDynamicSignature"
+        }
+      ]
+    }
+  ]
+}

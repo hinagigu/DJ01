@@ -1,0 +1,38 @@
+{
+  "name": "FSourceEffectFilterSettings",
+  "isStruct": true,
+  "properties": {
+    "FilterCircuit": [
+      "ESourceEffectFilterCircuit",
+      "The type of filter circuit to use."
+    ],
+    "FilterType": [
+      "ESourceEffectFilterType",
+      "The type of filter to use."
+    ],
+    "CutoffFrequency": [
+      "float32",
+      "The filter cutoff frequency"
+    ],
+    "FilterQ": [
+      "float32",
+      "The filter resonance."
+    ],
+    "AudioBusModulation": [
+      "TArray<FSourceEffectFilterAudioBusModulationSettings>",
+      "Audio bus settings to use to modulate the filter frequency cutoff (auto-wah) with arbitrary audio from an audio bus"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSourceEffectFilterSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSourceEffectFilterSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "UEditorUtilityWidget",
+  "inherits": "UUserWidget",
+  "properties": {
+    "TabDisplayName": [
+      "FText",
+      "The display name for tabs spawned with this widget"
+    ],
+    "HelpText": [
+      "FString"
+    ],
+    "bAlwaysReregisterWithWindowsMenu": [
+      "bool",
+      2,
+      "Should this widget always be re-added to the windows menu once it's opened"
+    ],
+    "bAutoRunDefaultAction": [
+      "bool",
+      "Should this blueprint automatically run OnDefaultActionClicked, or should it open up a details panel to edit properties and/or offer multiple buttons"
+    ]
+  },
+  "methods": [
+    {
+      "name": "Run",
+      "return": "void",
+      "doc": "The default action called when the widget is invoked if bAutoRunDefaultAction=true (it is never called otherwise)",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

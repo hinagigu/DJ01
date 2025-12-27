@@ -1,0 +1,51 @@
+{
+  "name": "FAnimNode_RetargetPoseFromMesh",
+  "isStruct": true,
+  "properties": {
+    "SourceMeshComponent": [
+      "TWeakObjectPtr<USkeletalMeshComponent>",
+      1,
+      "The Skeletal Mesh Component to retarget animation from. Assumed to be animated and tick BEFORE this anim instance."
+    ],
+    "bUseAttachedParent": [
+      "bool",
+      "If SourceMeshComponent is not valid, and if this is true, it will look for attached parent as a source"
+    ],
+    "IKRetargeterAsset": [
+      "UIKRetargeter",
+      "Retarget asset to use. Must define a Source and Target IK Rig compatible with the SourceMeshComponent and current anim instance."
+    ],
+    "CustomRetargetProfile": [
+      "FRetargetProfile",
+      "connect a custom retarget profile to modify the retargeter's settings at runtime."
+    ],
+    "bSuppressWarnings": [
+      "bool",
+      "Toggle whether to print warnings about missing or incorrectly configured retarget configurations."
+    ],
+    "bCopyCurves": [
+      "bool",
+      "Copy curves from SouceMeshComponent. This will copy any curves the source/target Skeleton have in common."
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run.\n* For example if you have LODThreshold at 2, it will run until LOD 2 (based on 0 index) when the component LOD becomes 3, it will stop update/evaluate\n* A value of -1 forces the node to execute at all LOD levels."
+    ],
+    "LODThresholdForIK": [
+      "int",
+      "* Max LOD that IK is allowed to run.\n* For example if you have LODThresholdForIK at 2, it will skip the IK pass on LODs 3 and greater.\n* This only disables IK and does not affect the Root or FK passes.\n* A value of -1 forces the node to execute at all LOD levels."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_RetargetPoseFromMesh&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_RetargetPoseFromMesh"
+        }
+      ]
+    }
+  ]
+}

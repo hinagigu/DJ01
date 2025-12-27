@@ -1,0 +1,66 @@
+{
+  "name": "UBoxFalloff",
+  "inherits": "UFieldNodeFloat",
+  "doc": "Box scalar field that will be defined only within a box",
+  "properties": {
+    "Magnitude": [
+      "float32",
+      "Magnitude of the box falloff field"
+    ],
+    "MinRange": [
+      "float32",
+      "The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude"
+    ],
+    "MaxRange": [
+      "float32",
+      "The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude"
+    ],
+    "Default": [
+      "float32",
+      "The field value will be set to Default if the sample distance from the box is higher than the scale of the transform"
+    ],
+    "Transform": [
+      "FTransform",
+      "Translation, Rotation and Scale of the unit box"
+    ],
+    "Falloff": [
+      "EFieldFalloffType",
+      "Type of falloff function used to model the evolution of the field from the box surface to the sample position"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetBoxFalloff",
+      "return": "UBoxFalloff",
+      "doc": "Box scalar field that will be defined only within a box\n@param    Magnitude Magnitude of the box falloff field\n@param    MinRange The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude\n@param    MaxRange The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude\n@param    Default The field value will be set to Default if the sample distance from the box is higher than the scale of the transform\n@param    Transform Translation, Rotation and Scale of the unit box\n@param    Falloff Type of falloff function used to model the evolution of the field from the box surface to the sample position",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Magnitude",
+          "type": "float32"
+        },
+        {
+          "name": "MinRange",
+          "type": "float32"
+        },
+        {
+          "name": "MaxRange",
+          "type": "float32"
+        },
+        {
+          "name": "Default",
+          "type": "float32"
+        },
+        {
+          "name": "Transform",
+          "type": "FTransform"
+        },
+        {
+          "name": "Falloff",
+          "type": "EFieldFalloffType"
+        }
+      ]
+    }
+  ]
+}

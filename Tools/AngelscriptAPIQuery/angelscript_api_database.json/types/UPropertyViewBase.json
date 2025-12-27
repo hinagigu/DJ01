@@ -1,0 +1,38 @@
+{
+  "name": "UPropertyViewBase",
+  "inherits": "UWidget",
+  "doc": "Base of property view allows you to display the value of an object properties.",
+  "properties": {
+    "bAutoLoadAsset": [
+      "bool",
+      2,
+      "Load the object (if it's an asset) when the widget is created."
+    ],
+    "OnPropertyChanged": [
+      "FOnPropertyValueChanged",
+      "Sets a delegate called when the property value changes"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetObject",
+      "return": "UObject",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetObject",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewObject",
+          "type": "UObject"
+        }
+      ]
+    }
+  ]
+}

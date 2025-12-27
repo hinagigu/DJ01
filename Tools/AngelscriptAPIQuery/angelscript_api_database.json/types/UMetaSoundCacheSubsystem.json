@@ -1,0 +1,57 @@
+{
+  "name": "UMetaSoundCacheSubsystem",
+  "inherits": "UAudioEngineSubsystem",
+  "doc": "UMetaSoundCacheSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "PrecacheMetaSound",
+      "return": "void",
+      "doc": "Builds the requested number of MetaSound operators (asynchronously) and puts them in the pool for playback.\n      (If these operators are not yet available when the MetaSound attempts to play, one will be created Independent of this request.)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMetaSound",
+          "type": "UMetaSoundSource"
+        },
+        {
+          "name": "InNumInstances",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveCachedOperatorsForMetaSound",
+      "return": "void",
+      "doc": "Clear the operator pool of any operators associated with the given MetaSound",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMetaSound",
+          "type": "UMetaSoundSource"
+        }
+      ]
+    },
+    {
+      "name": "TouchOrPrecacheMetaSound",
+      "return": "void",
+      "doc": "same as PrecacheMetaSound except cached operator that already exists in the cache will be moved to the top instead of building,\n      any operators that we couldn't move to the top, will be built.\n      (i.e. if 2 operators are already cached and Num Instances is 4, it will construct 2 and move the existing 2 to the top of the cache)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMetaSound",
+          "type": "UMetaSoundSource"
+        },
+        {
+          "name": "InNumInstances",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

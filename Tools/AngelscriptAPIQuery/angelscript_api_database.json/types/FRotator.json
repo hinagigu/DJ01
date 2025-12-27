@@ -1,0 +1,303 @@
+{
+  "name": "FRotator",
+  "isStruct": true,
+  "properties": {
+    "Pitch": [
+      "float"
+    ],
+    "Yaw": [
+      "float"
+    ],
+    "Roll": [
+      "float"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRotator&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FRotator",
+      "const": true,
+      "args": [
+        {
+          "name": "R",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FRotator",
+      "args": [
+        {
+          "name": "R",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "opSub",
+      "return": "FRotator",
+      "const": true,
+      "args": [
+        {
+          "name": "R",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "opSubAssign",
+      "return": "FRotator",
+      "args": [
+        {
+          "name": "R",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "opMul",
+      "return": "FRotator",
+      "const": true,
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opMulAssign",
+      "return": "FRotator",
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "R",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "IsNearlyZero",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsZero",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Equals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "R",
+          "type": "FRotator"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "GetInverse",
+      "return": "FRotator",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Clamp",
+      "return": "FRotator",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetNormalized",
+      "return": "FRotator",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetDenormalized",
+      "return": "FRotator",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetWindingAndRemainder",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "Winding",
+          "type": "FRotator&"
+        },
+        {
+          "name": "Remainder",
+          "type": "FRotator&"
+        }
+      ]
+    },
+    {
+      "name": "GetManhattanDistance",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "Rotator",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "Normalize",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "ContainsNaN",
+      "return": "bool",
+      "args": []
+    },
+    {
+      "name": "ToColorString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "InitFromString",
+      "return": "bool",
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Vector",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Quaternion",
+      "return": "FQuat",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Euler",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "RotateVector",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "UnrotateVector",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "AngularDistance",
+      "return": "float",
+      "const": true,
+      "doc": "Get the angle in degrees between two rotators",
+      "meta": null,
+      "args": [
+        {
+          "name": "B",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "Compose",
+      "return": "FRotator",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "B",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "GetForwardVector",
+      "return": "FVector",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRightVector",
+      "return": "FVector",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUpVector",
+      "return": "FVector",
+      "const": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

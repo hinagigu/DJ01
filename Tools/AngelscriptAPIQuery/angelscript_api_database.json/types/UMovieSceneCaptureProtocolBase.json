@@ -1,0 +1,26 @@
+{
+  "name": "UMovieSceneCaptureProtocolBase",
+  "inherits": "UObject",
+  "doc": "A capture protocol responsible for dealing with captured frames using some custom method (writing out to disk, streaming, etc)\n\nA typical process for capture consits of the following process:\n    Setup -> [ Warm up -> [ Capture Frame ] ] -> Begin Finalize -> [ HasFinishedProcessing ] -> Finalize",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetState",
+      "return": "EMovieSceneCaptureProtocolState",
+      "const": true,
+      "doc": "Get the current state of this capture protocol",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsCapturing",
+      "return": "bool",
+      "const": true,
+      "doc": "Check whether we can capture a frame from this protocol",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

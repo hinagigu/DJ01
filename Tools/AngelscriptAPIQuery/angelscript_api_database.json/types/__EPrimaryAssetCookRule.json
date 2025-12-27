@@ -1,0 +1,43 @@
+{
+  "name": "__EPrimaryAssetCookRule",
+  "isEnum": true,
+  "doc": "Rule about when to cook/ship a primary asset",
+  "properties": {
+    "Unknown": [
+      "EPrimaryAssetCookRule",
+      "Nothing is known about this asset specifically. It will cook in both Development and Production if something else depends on it."
+    ],
+    "NeverCook": [
+      "EPrimaryAssetCookRule",
+      "Asset should never be cooked/shipped in any situation. An error will be generated if something depends on it."
+    ],
+    "ProductionNeverCook": [
+      "EPrimaryAssetCookRule",
+      "Asset will be cooked in development if something else depends on it, but will never be cooked in a production build."
+    ],
+    "DevelopmentCook": [
+      "EPrimaryAssetCookRule",
+      "Asset will be cooked in development if something else depends on it, but will never be cooked in a production build."
+    ],
+    "DevelopmentAlwaysProductionNeverCook": [
+      "EPrimaryAssetCookRule",
+      "Asset will always be cooked in development, but should never be cooked in a production build."
+    ],
+    "DevelopmentAlwaysCook": [
+      "EPrimaryAssetCookRule",
+      "Asset will always be cooked in development, but should never be cooked in a production build."
+    ],
+    "DevelopmentAlwaysProductionUnknownCook": [
+      "EPrimaryAssetCookRule",
+      "Asset will always be cooked in development; nothing is known about whether it should cook in Production. It will cook\nin production if something else depends on it."
+    ],
+    "AlwaysCook": [
+      "EPrimaryAssetCookRule",
+      "Asset will always be cooked, in both production and development."
+    ],
+    "EPrimaryAssetCookRule_MAX": [
+      "EPrimaryAssetCookRule"
+    ]
+  },
+  "methods": []
+}

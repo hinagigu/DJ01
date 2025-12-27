@@ -1,0 +1,92 @@
+{
+  "name": "UInterchangeSkeletalMeshLodDataNode",
+  "inherits": "UInterchangeFactoryBaseNode",
+  "doc": "ns UE",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddMeshUid",
+      "return": "bool",
+      "doc": "Add a mesh geometry used to create this LOD geometry. A mesh UID can represent either a scene node or a mesh node. If it is a scene node, the mesh factory bakes the geometry payload with the global transform of the scene node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomSkeletonUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Query the LOD skeletal mesh factory skeleton reference. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetMeshUids",
+      "return": "void",
+      "const": true,
+      "doc": "Query all mesh geometry this LOD will be made from. A mesh UID can represent either a scene node or a mesh node. If it is a scene node, the mesh factory bakes the geometry payload with the global transform of the scene node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutMeshNames",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetMeshUidsCount",
+      "return": "int",
+      "const": true,
+      "doc": "Return the number of mesh geometries this LOD will be made from. A mesh UID can represent either a scene node or a mesh node. If it is a scene node, the mesh factory bakes the geometry payload with the global transform of the scene node.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveAllMeshes",
+      "return": "bool",
+      "doc": "Remove all mesh geometry used to create this LOD geometry. A mesh UID can represent either a scene node or a mesh node. If it is a scene node, the mesh factory bakes the geometry payload with the global transform of the scene node.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveMeshUid",
+      "return": "bool",
+      "doc": "Remove a mesh geometry used to create this LOD geometry. A mesh UID can represent either a scene node or a mesh node. If it is a scene node, the mesh factory bakes the geometry payload with the global transform of the scene node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomSkeletonUid",
+      "return": "bool",
+      "doc": "Set the LOD skeletal mesh factory skeleton reference. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

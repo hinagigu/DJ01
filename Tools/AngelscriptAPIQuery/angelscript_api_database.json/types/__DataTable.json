@@ -1,0 +1,312 @@
+{
+  "name": "__DataTable",
+  "properties": {},
+  "methods": [
+    {
+      "name": "DoesDataTableRowExist",
+      "return": "bool",
+      "doc": "Returns whether or not Table contains a row named RowName",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Table",
+          "type": "const UDataTable"
+        },
+        {
+          "name": "RowName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "EvaluateCurveTableRow",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CurveTable",
+          "type": "UCurveTable"
+        },
+        {
+          "name": "RowName",
+          "type": "FName"
+        },
+        {
+          "name": "InXY",
+          "type": "float32"
+        },
+        {
+          "name": "OutResult",
+          "type": "EEvaluateCurveTableResult&"
+        },
+        {
+          "name": "OutXY",
+          "type": "float32&"
+        },
+        {
+          "name": "ContextString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ExportDataTableToCSVFile",
+      "return": "bool",
+      "doc": "Export a Data Table to CSV file.\n@param       CSVFilePath     The file path of the CSV file to write (output file is UTF-8).\n@return      True if the operation succeeds, check the log for errors if it didn't succeed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTable",
+          "type": "const UDataTable"
+        },
+        {
+          "name": "CSVFilePath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ExportDataTableToCSVString",
+      "return": "bool",
+      "doc": "Export a Data Table to CSV string.\n@param       OutCSVString Output representing the contents of a CSV file.\n@return      True if the operation succeeds, check the log for errors if it didn't succeed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTable",
+          "type": "const UDataTable"
+        },
+        {
+          "name": "OutCSVString",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "ExportDataTableToJSONFile",
+      "return": "bool",
+      "doc": "Export a Data Table to JSON file.\n@param       JSONFilePath The file path of the JSON file to write (output file is UTF-8).\n@return      True if the operation succeeds, check the log for errors if it didn't succeed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTable",
+          "type": "const UDataTable"
+        },
+        {
+          "name": "JSONFilePath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ExportDataTableToJSONString",
+      "return": "bool",
+      "doc": "Export a Data Table to JSON string.\n@param       OutJSONString Output representing the contents of a JSON file.\n@return      True if the operation succeeds, check the log for errors if it didn't succeed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTable",
+          "type": "const UDataTable"
+        },
+        {
+          "name": "OutJSONString",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "FillDataTableFromCSVFile",
+      "return": "bool",
+      "doc": "Empty and fill a Data Table from CSV file.\n@param       CSVFilePath                     The file path of the CSV file.\n@param       ImportRowStruct         Optional row struct to apply on import. If set will also force the import to run automated (no questions or dialogs).\n@return      True if the operation succeeds, check the log for errors if it didn't succeed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTable",
+          "type": "UDataTable"
+        },
+        {
+          "name": "CSVFilePath",
+          "type": "FString"
+        },
+        {
+          "name": "ImportRowStruct",
+          "default": "nullptr",
+          "type": "UScriptStruct"
+        }
+      ]
+    },
+    {
+      "name": "FillDataTableFromCSVString",
+      "return": "bool",
+      "doc": "Empty and fill a Data Table from CSV string.\n@param       CSVString                       The Data that representing the contents of a CSV file.\n@param       ImportRowStruct         Optional row struct to apply on import. If set will also force the import to run automated (no questions or dialogs).\n@return      True if the operation succeeds, check the log for errors if it didn't succeed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTable",
+          "type": "UDataTable"
+        },
+        {
+          "name": "CSVString",
+          "type": "FString"
+        },
+        {
+          "name": "ImportRowStruct",
+          "default": "nullptr",
+          "type": "UScriptStruct"
+        }
+      ]
+    },
+    {
+      "name": "FillDataTableFromJSONFile",
+      "return": "bool",
+      "doc": "Empty and fill a Data Table from JSON file.\n@param       JSONFilePath            The file path of the JSON file.\n@param       ImportRowStruct         Optional row struct to apply on import. If set will also force the import to run automated (no questions or dialogs).\n@return      True if the operation succeeds, check the log for errors if it didn't succeed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTable",
+          "type": "UDataTable"
+        },
+        {
+          "name": "JSONFilePath",
+          "type": "FString"
+        },
+        {
+          "name": "ImportRowStruct",
+          "default": "nullptr",
+          "type": "UScriptStruct"
+        }
+      ]
+    },
+    {
+      "name": "FillDataTableFromJSONString",
+      "return": "bool",
+      "doc": "Empty and fill a Data Table from JSON string.\n@param       JSONString                      The Data that representing the contents of a JSON file.\n@param       ImportRowStruct         Optional row struct to apply on import. If set will also force the import to run automated (no questions or dialogs).\n@return      True if the operation succeeds, check the log for errors if it didn't succeed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTable",
+          "type": "UDataTable"
+        },
+        {
+          "name": "JSONString",
+          "type": "FString"
+        },
+        {
+          "name": "ImportRowStruct",
+          "default": "nullptr",
+          "type": "UScriptStruct"
+        }
+      ]
+    },
+    {
+      "name": "GetDataTableColumnAsString",
+      "return": "TArray<FString>",
+      "doc": "Export from the DataTable all the row for one column. Export it as string. The row name is not included.\n@see GetDataTableColumnNames.\n@see GetDataTableColumnNameFromExportName.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTable",
+          "type": "const UDataTable"
+        },
+        {
+          "name": "PropertyName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetDataTableColumnExportNames",
+      "return": "void",
+      "doc": "Get the friendly export name of each column in this Data Table.\n@see GetDataTableColumnNameFromExportName.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Table",
+          "type": "const UDataTable"
+        },
+        {
+          "name": "OutExportColumnNames",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetDataTableColumnNameFromExportName",
+      "return": "bool",
+      "doc": "Get the raw property name of a data table column from its friendly export name.\n@return True if a column was found for the friendly name, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Table",
+          "type": "const UDataTable"
+        },
+        {
+          "name": "ColumnExportName",
+          "type": "FString"
+        },
+        {
+          "name": "OutColumnName",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "GetDataTableColumnNames",
+      "return": "void",
+      "doc": "Get the name of each column in this Data Table.\n@note These are always the raw property names (@see GetDataTableColumnAsString) rather than the friendly export name that would be used in a CSV/JSON export (@see GetDataTableColumnNameFromExportName).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Table",
+          "type": "const UDataTable"
+        },
+        {
+          "name": "OutColumnNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetDataTableRowNames",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Table",
+          "type": "const UDataTable"
+        },
+        {
+          "name": "OutRowNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetDataTableRowStruct",
+      "return": "const UScriptStruct",
+      "doc": "Get the row struct used by the given Data Table, if any",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Table",
+          "type": "const UDataTable"
+        }
+      ]
+    }
+  ]
+}

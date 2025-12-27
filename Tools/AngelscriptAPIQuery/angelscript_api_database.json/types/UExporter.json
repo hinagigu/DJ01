@@ -1,0 +1,46 @@
+{
+  "name": "UExporter",
+  "inherits": "UObject",
+  "properties": {
+    "SupportedClass": [
+      "TSubclassOf<UObject>",
+      1,
+      "Supported class of this exporter"
+    ],
+    "FormatExtension": [
+      "TArray<FString>",
+      1,
+      "File extension to use for this exporter"
+    ],
+    "FormatDescription": [
+      "TArray<FString>",
+      1,
+      "Descriptiong of the export format"
+    ],
+    "ExportTask": [
+      "UAssetExportTask",
+      1,
+      ""
+    ],
+    "bText": [
+      "bool",
+      "If true, this will export the data as text"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ScriptRunAssetExportTask",
+      "return": "bool",
+      "callable": false,
+      "doc": "Export the given object to file.  Overridden by script based exporters.\n\n@param        Task            The task to export.\n\n@return       true if overridden by script exporter.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Task",
+          "type": "UAssetExportTask"
+        }
+      ]
+    }
+  ]
+}

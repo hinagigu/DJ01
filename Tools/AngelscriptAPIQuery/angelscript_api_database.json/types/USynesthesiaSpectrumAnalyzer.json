@@ -1,0 +1,45 @@
+{
+  "name": "USynesthesiaSpectrumAnalyzer",
+  "inherits": "UAudioAnalyzer",
+  "doc": "USynesthesiaSpectrumAnalysisAnalyzer\n\nUSynesthesiaSpectrumAnalysisAnalyzer calculates the current amplitude of an\naudio bus in real-time.",
+  "properties": {
+    "Settings": [
+      "USynesthesiaSpectrumAnalysisSettings",
+      "The settings for the SynesthesiaSpectrumAnalysis audio analyzer."
+    ],
+    "OnSpectrumResults": [
+      "FOnSpectrumResults",
+      "Delegate to receive all Spectrum results, per-channel, since last delegate call. If bDownmixToMono setting is true, results will be in channel index 0."
+    ],
+    "OnLatestSpectrumResults": [
+      "FOnLatestSpectrumResults",
+      "Delegate to receive the latest per-channel Spectrum results. If bDownmixToMono setting is true, results will be in channel index 0."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCenterFrequencies",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSampleRate",
+          "type": "float32"
+        },
+        {
+          "name": "OutCenterFrequencies",
+          "type": "TArray<float32>&"
+        }
+      ]
+    },
+    {
+      "name": "GetNumCenterFrequencies",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

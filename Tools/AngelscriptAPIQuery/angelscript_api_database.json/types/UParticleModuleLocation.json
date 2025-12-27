@@ -1,0 +1,22 @@
+{
+  "name": "UParticleModuleLocation",
+  "inherits": "UParticleModuleLocationBase",
+  "properties": {
+    "StartLocation": [
+      "FRawDistributionVector",
+      2,
+      "The location the particle should be emitted.\nRelative in local space to the emitter by default.\nRelative in world space as a WorldOffset module or when the emitter's UseLocalSpace is off.\nRetrieved using the EmitterTime at the spawn of the particle."
+    ],
+    "DistributeOverNPoints": [
+      "float32",
+      2,
+      "When set to a non-zero value this will force the particles to only spawn on evenly distributed\npositions between the two points specified."
+    ],
+    "DistributeThreshold": [
+      "float32",
+      2,
+      "When DistributeOverNPoints is set to a non-zero value, this specifies the ratio of particles spawned\nthat should use the distribution.  (For example setting this to 1 will cause all the particles to\nbe distributed evenly whereas .75 would cause 1/4 of the particles to be randomly placed)."
+    ]
+  },
+  "methods": []
+}

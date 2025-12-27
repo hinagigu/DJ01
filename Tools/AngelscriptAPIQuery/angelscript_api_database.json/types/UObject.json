@@ -1,0 +1,189 @@
+{
+  "name": "UObject",
+  "doc": "Direct base class for all UE objects\n@note The full C++ class is located here: Engine\\Source\\Runtime\\CoreUObject\\Public\\UObject\\Object.h",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddToRoot",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "RemoveFromRoot",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "GetIsRooted",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsTransient",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Modify",
+      "return": "bool",
+      "args": [
+        {
+          "name": "bAlwaysMarkDirty",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTransactional",
+      "return": "void",
+      "args": [
+        {
+          "name": "bTransactional",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "IsSupportedForNetworking",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetClass",
+      "return": "UClass",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetOuter",
+      "return": "UObject",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetTypedOuter",
+      "return": "UObject",
+      "const": true,
+      "doc": "Traverses the outer chain searching for the next object of a certain type.\n@param Target class to search for.\n@return The first object in this object's Outer chain which is of the correct type.\n",
+      "args": [
+        {
+          "name": "Target",
+          "type": "TSubclassOf<UObject>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetOutermost",
+      "return": "UPackage",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetPackage",
+      "return": "UPackage",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "MarkPackageDirty",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetWorld",
+      "return": "UWorld",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetName",
+      "return": "FName",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetFullName",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "StopOuter",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "GetPathName",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "StopOuter",
+          "default": "nullptr",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "IsA",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this object is of the specified type, or a child of that type.",
+      "args": [
+        {
+          "name": "Class",
+          "type": "const UClass"
+        }
+      ]
+    },
+    {
+      "name": "SaveConfig",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "LoadConfig",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "ReloadConfig",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "CopyScriptPropertiesFrom",
+      "return": "void",
+      "args": [
+        {
+          "name": "OtherObject",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "opCast",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "Address",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    }
+  ]
+}

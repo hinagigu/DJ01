@@ -1,0 +1,57 @@
+{
+  "name": "UFractureCustomVoronoiSettings",
+  "inherits": "UFractureToolSettings",
+  "properties": {
+    "VoronoiPattern": [
+      "EVoronoiPattern",
+      2,
+      "Method to generate next group of voronoi sites"
+    ],
+    "NormalOffset": [
+      "float32",
+      2,
+      "Offset point samples in the vertex normal directions"
+    ],
+    "Variability": [
+      "float32",
+      2,
+      "Amount to randomly displace each Voronoi site (in cm)"
+    ],
+    "SitesToAdd": [
+      "int",
+      2,
+      "Number of Voronoi sites to add"
+    ],
+    "GridX": [
+      "int",
+      2,
+      "Number of sites to add to grid in X"
+    ],
+    "GridY": [
+      "int",
+      2,
+      "Number of sites to add to grid in Y"
+    ],
+    "GridZ": [
+      "int",
+      2,
+      "Number of sites to add to grid in Z"
+    ],
+    "SkipFraction": [
+      "float32",
+      2,
+      "Fraction of points to skip"
+    ],
+    "SkipMode": [
+      "EDownsamplingMode",
+      2,
+      "Strategy used for skipping points; only used if SkipFraction is greater than 0"
+    ],
+    "bStartAtActor": [
+      "bool",
+      2,
+      "Whether to use the reference mesh actor's transform when placing the Voronoi sites, or center them at the current gizmo location instead"
+    ]
+  },
+  "methods": []
+}

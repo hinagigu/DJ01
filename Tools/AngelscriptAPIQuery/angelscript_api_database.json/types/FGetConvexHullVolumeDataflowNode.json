@@ -1,0 +1,34 @@
+{
+  "name": "FGetConvexHullVolumeDataflowNode",
+  "isStruct": true,
+  "doc": "Get the sum of volumes of the convex hulls on the selected nodes",
+  "properties": {
+    "bSumChildrenForClustersWithoutHulls": [
+      "bool",
+      2,
+      "For any cluster transform that has no convex hulls, whether to fall back to the convex hulls of the cluster's children. Otherwise, the cluster will not add to the total volume sum."
+    ],
+    "bVolumeOfUnion": [
+      "bool",
+      2,
+      "Whether to take the volume of the union of selected hulls, rather than the sum of each hull volume separately. This is more expensive but more accurate when hulls overlap."
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGetConvexHullVolumeDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGetConvexHullVolumeDataflowNode"
+        }
+      ]
+    }
+  ]
+}

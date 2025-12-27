@@ -1,0 +1,37 @@
+{
+  "ActionSet": {
+    "class_name": "UDJ01ExperienceActionSet",
+    "parent_class": "UPrimaryDataAsset",
+    "asset_type": "DataAsset",
+    "display_name": "Action 集合",
+    "description": "一组可复用的 GameFeature Actions",
+    "content_path": "/Game/System/ActionSets",
+    "icon": "📋",
+    
+    "properties": {
+      "Actions": {
+        "type": "array",
+        "item_type": "UGameFeatureAction",
+        "display_name": "GameFeature Actions",
+        "description": "此 ActionSet 包含的 GameFeature Actions",
+        "widget": "instanced_array_editor",
+        "available_types": [
+          "UGameFeatureAction_AddAbilities",
+          "UGameFeatureAction_AddInputBinding",
+          "UGameFeatureAction_AddInputContextMapping",
+          "UGameFeatureAction_AddWidgets"
+        ],
+        "category": "Actions to Perform"
+      },
+      "GameFeaturesToEnable": {
+        "type": "array",
+        "item_type": "string",
+        "display_name": "启用的 GameFeature",
+        "description": "此 ActionSet 需要激活的 GameFeature 插件列表",
+        "widget": "checkbox_list",
+        "options_source": "game_features",
+        "category": "Feature Dependencies"
+      }
+    }
+  }
+}

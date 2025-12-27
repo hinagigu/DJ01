@@ -1,0 +1,79 @@
+{
+  "name": "FAnimPhysConstraintSetup",
+  "isStruct": true,
+  "doc": "Constraint setup struct, holds data required to build a physics constraint",
+  "properties": {
+    "LinearXLimitType": [
+      "AnimPhysLinearConstraintType",
+      2,
+      "Whether to limit the linear X axis"
+    ],
+    "LinearYLimitType": [
+      "AnimPhysLinearConstraintType",
+      2,
+      "Whether to limit the linear Y axis"
+    ],
+    "LinearZLimitType": [
+      "AnimPhysLinearConstraintType",
+      2,
+      "Whether to limit the linear Z axis"
+    ],
+    "LinearAxesMin": [
+      "FVector",
+      2,
+      "Minimum linear movement per-axis (Set zero here and in the max limit to lock)"
+    ],
+    "LinearAxesMax": [
+      "FVector",
+      2,
+      "Maximum linear movement per-axis (Set zero here and in the min limit to lock)"
+    ],
+    "AngularConstraintType": [
+      "AnimPhysAngularConstraintType",
+      2,
+      "Method to use when constraining angular motion"
+    ],
+    "TwistAxis": [
+      "AnimPhysTwistAxis",
+      2,
+      "Axis to consider for twist when constraining angular motion (forward axis)"
+    ],
+    "AngularTargetAxis": [
+      "AnimPhysTwistAxis",
+      2,
+      "The axis in the simulation pose to align to the Angular Target.\nThis is typically the axis pointing along the bone.\nNote: This is affected by the Angular Spring Constant."
+    ],
+    "ConeAngle": [
+      "float32",
+      2,
+      "Angle to use when constraining using a cone"
+    ],
+    "AngularLimitsMin": [
+      "FVector",
+      2,
+      ""
+    ],
+    "AngularLimitsMax": [
+      "FVector",
+      2,
+      ""
+    ],
+    "AngularTarget": [
+      "FVector",
+      2,
+      "The axis to align the angular spring constraint to in the animation pose.\nThis typically points down the bone - so values of (1.0, 0.0, 0.0) are common,\nbut you can pick other values to align the spring to a different direction.\nNote: This is affected by the Angular Spring Constant."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimPhysConstraintSetup&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimPhysConstraintSetup"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "name": "FAnimNode_IKRig",
+  "isStruct": true,
+  "properties": {
+    "Source": [
+      "FPoseLink",
+      2,
+      "The input pose to start the IK solve relative to."
+    ],
+    "RigDefinitionAsset": [
+      "UIKRigDefinition",
+      2,
+      "The IK rig to use to modify the incoming source pose."
+    ],
+    "Goals": [
+      "TArray<FIKRigGoal>",
+      "The input goal transforms used by the IK Rig solvers."
+    ],
+    "bStartFromRefPose": [
+      "bool",
+      2,
+      "optionally ignore the input pose and start from the reference pose each solve"
+    ],
+    "bEnableDebugDraw": [
+      "bool",
+      2,
+      "Toggle debug drawing of goals when node is selected."
+    ],
+    "DebugScale": [
+      "float32",
+      2,
+      "Adjust size of debug drawing."
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType",
+      "alpha value handler *"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_IKRig&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_IKRig"
+        }
+      ]
+    }
+  ]
+}

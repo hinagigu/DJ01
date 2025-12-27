@@ -1,0 +1,27 @@
+{
+  "name": "__EditorPythonScripting",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetKeepPythonScriptAlive",
+      "return": "bool",
+      "doc": "Returns the value of the bKeepPythonScriptAlive flag.\n\nIf this is false (default), it will close the editor during the next tick (when executing a Python script in the editor-environment using the UnrealEditor-Cmd commandline tool).\nIf this is true, it will not close the editor by itself, and you will have to close it manually, either by setting this value to false again, or by calling a function like unreal.SystemLibrary.quit_editor().\n\n@return The current value of the bKeepPythonScriptAlive flag.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetKeepPythonScriptAlive",
+      "return": "void",
+      "doc": "Sets the bKeepPythonScriptAlive flag.\n\nIf this is false (default), it will close the editor during the next tick (when executing a Python script in the editor-environment using the UnrealEditor-Cmd commandline tool).\nIf this is true, it will not close the editor by itself, and you will have to close it manually, either by setting this value to false again, or by calling a function like unreal.SystemLibrary.quit_editor().\n\n@param bNewKeepAlive The new value of the bKeepPythonScriptAlive flag.\n@return The result of the users decision, true=Ok, false=Cancel, or false if running in unattended mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewKeepAlive",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

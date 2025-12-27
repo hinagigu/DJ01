@@ -1,0 +1,101 @@
+{
+  "name": "FAnimNode_SpringBone",
+  "isStruct": true,
+  "doc": "Simple controller that replaces or adds to the translation/rotation of a single bone.",
+  "properties": {
+    "SpringBone": [
+      "FBoneReference",
+      2,
+      "Name of bone to control. This is the main bone chain to modify from. *"
+    ],
+    "MaxDisplacement": [
+      "float",
+      "If bLimitDisplacement is true, this indicates how long a bone can stretch beyond its length in the ref-pose."
+    ],
+    "SpringStiffness": [
+      "float",
+      2,
+      "Stiffness of spring"
+    ],
+    "SpringDamping": [
+      "float",
+      2,
+      "Damping of spring"
+    ],
+    "ErrorResetThresh": [
+      "float",
+      2,
+      "If spring stretches more than this, reset it. Useful for catching teleports etc"
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ],
+    "bLimitDisplacement": [
+      "bool",
+      "Limit the amount that a bone can stretch from its ref-pose length."
+    ],
+    "bTranslateX": [
+      "bool",
+      "If true take the spring calculation for translation in X"
+    ],
+    "bTranslateY": [
+      "bool",
+      "If true take the spring calculation for translation in Y"
+    ],
+    "bTranslateZ": [
+      "bool",
+      "If true take the spring calculation for translation in Z"
+    ],
+    "bRotateX": [
+      "bool",
+      "If true take the spring calculation for rotation in X"
+    ],
+    "bRotateY": [
+      "bool",
+      "If true take the spring calculation for rotation in Y"
+    ],
+    "bRotateZ": [
+      "bool",
+      "If true take the spring calculation for rotation in Z"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_SpringBone&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_SpringBone"
+        }
+      ]
+    }
+  ]
+}

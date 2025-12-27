@@ -1,0 +1,170 @@
+{
+  "name": "UInterchangeTexture2DFactoryNode",
+  "inherits": "UInterchangeTextureFactoryNode",
+  "doc": "ns UE::Interchange",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetCustomAddressX",
+      "return": "bool",
+      "const": true,
+      "doc": "Return false if the Attribute was not set previously.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "TextureAddress&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomAddressY",
+      "return": "bool",
+      "const": true,
+      "doc": "Return false if the Attribute was not set previously.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "TextureAddress&"
+        }
+      ]
+    },
+    {
+      "name": "GetSourceBlock",
+      "return": "bool",
+      "const": true,
+      "doc": "Get a source block from the texture.\n\n@param BlockIndex The UDIM Index of the block.\n@param OutSourceFile The source file for that block if found.\n@return True if the source file for the block was found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BlockIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutSourceFile",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetSourceBlockByCoordinates",
+      "return": "bool",
+      "const": true,
+      "doc": "Get a source block from the texture.\n\n@param X The X coordinate of the block.\n@param Y The Y coordinate of the block.\n@param OutSourceFile The source file for that block if found.\n@return True if the source file for the block was found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Y",
+          "type": "int"
+        },
+        {
+          "name": "OutSourceFile",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetSourceBlocks",
+      "return": "TMap<int,FString>",
+      "const": true,
+      "doc": "Get the source blocks for the texture.\nIf the map is empty, the texture is imported as a normal texture using the payload key.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCustomAddressX",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "TextureAddress"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomAddressY",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "TextureAddress"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSourceBlock",
+      "return": "void",
+      "doc": "Set a source block for the texture.\n\n@param BlockIndex The UDIM index of the block.\n@param InSourceFile The source file for that block.\n\nThe textures must be of the same format and use the same pixel format.\nThe first block in the map is used to determine the accepted texture format and pixel format.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BlockIndex",
+          "type": "int"
+        },
+        {
+          "name": "InSourceFile",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetSourceBlockByCoordinates",
+      "return": "void",
+      "doc": "Set a source block for the texture.\n\n@param X The X coordinate of the block.\n@param Y The Y coordinate of the block.\n@param InSourceFile The source file for that block.\n\nThe textures must be of the same format and use the same pixel format.\nThe first block in the map is used to determine the accepted texture format and pixel format.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Y",
+          "type": "int"
+        },
+        {
+          "name": "InSourceFile",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetSourceBlocks",
+      "return": "void",
+      "doc": "Set the source blocks for the texture.\nUsing this suggests to the pipeline to consider this texture as a UDIM. The pipeline can choose whether to pass these blocks to the texture factory node.\n@param InSourceBlocks The blocks and their source image that compose the whole texture.\nThe textures must be of the same format and use the same pixel format.\nThe first block in the map is used to determine the accepted texture format and pixel format.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSourceBlocks",
+          "type": "TMap<int,FString>"
+        }
+      ]
+    }
+  ]
+}

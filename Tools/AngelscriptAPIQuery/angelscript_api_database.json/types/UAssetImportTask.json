@@ -1,0 +1,82 @@
+{
+  "name": "UAssetImportTask",
+  "inherits": "UObject",
+  "doc": "Contains data for a group of assets to import",
+  "properties": {
+    "Filename": [
+      "FString",
+      1,
+      "Filename to import"
+    ],
+    "DestinationPath": [
+      "FString",
+      1,
+      "Path where asset will be imported to"
+    ],
+    "DestinationName": [
+      "FString",
+      1,
+      "Optional custom name to import as (if you are using interchange the name must be set in a pipeline and this field will be ignored)"
+    ],
+    "bReplaceExisting": [
+      "bool",
+      1,
+      "Overwrite existing assets"
+    ],
+    "bReplaceExistingSettings": [
+      "bool",
+      1,
+      "Replace existing settings when overwriting existing assets"
+    ],
+    "bAutomated": [
+      "bool",
+      1,
+      "Avoid dialogs"
+    ],
+    "bSave": [
+      "bool",
+      1,
+      "Save after importing"
+    ],
+    "bAsync": [
+      "bool",
+      1,
+      "Perform the import asynchronously for file formats where async import is available"
+    ],
+    "Factory": [
+      "UFactory",
+      1,
+      "Optional factory to use"
+    ],
+    "Options": [
+      "UObject",
+      1,
+      "Import options specific to the type of asset"
+    ],
+    "ImportedObjectPaths": [
+      "TArray<FString>",
+      1,
+      "Paths to objects created or updated after import"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetObjects",
+      "return": "TArray<UObject>",
+      "const": true,
+      "doc": "Get the list of imported objects.\nNote that if the import was asynchronous, this will block until the results are ready.\nTo test whether asynchronous results are ready or not, use IsAsyncImportComplete().",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsAsyncImportComplete",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether this asynchronous import task is complete, and the results are ready to read.\nThis will always return true in the case of a blocking import.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "name": "UCommonNumericTextBlock",
+  "inherits": "UCommonTextBlock",
+  "doc": "Numeric text block that provides interpolation, and some type support (numbers, percents, seconds, distance).",
+  "properties": {
+    "OnInterpolationStartedEvent": [
+      "FOnInterpolationStarted__CommonNumericTextBlock",
+      "Event triggered when interpolation has started."
+    ],
+    "OnInterpolationUpdatedEvent": [
+      "FOnInterpolationUpdated__CommonNumericTextBlock",
+      "Event triggered when interpolation has updated."
+    ],
+    "OnOutroEvent": [
+      "FOnOutro__CommonNumericTextBlock",
+      "Event triggered at a specified time before the interpolation completes, for \"outro\" purposes."
+    ],
+    "OnInterpolationEndedEvent": [
+      "FOnInterpolationEnded__CommonNumericTextBlock",
+      "Event triggered when interpolation has ended."
+    ],
+    "CurrentNumericValue": [
+      "float32",
+      "The current numeric value being formatted for display, potentially being interpolated from. NOTE: The displayed text is very likely not identical to this value, due to formatting."
+    ],
+    "FormattingSpecification": [
+      "FCommonNumberFormattingOptions",
+      "The specifications for how the current numeric value should be formatted in to numeral text."
+    ],
+    "EaseOutInterpolationExponent": [
+      "float32",
+      "Exponent parameter for the \"ease out\" interpolation curve. Must be > 0, but should be > 1 in order to \"ease out\"."
+    ],
+    "InterpolationUpdateInterval": [
+      "float32",
+      "The desired interval, in seconds, between interpolation updates. 0.0 implies per-frame updates. NOTE: Interpolation updates may occur further apart due to tick rates."
+    ],
+    "PostInterpolationShrinkDuration": [
+      "float32",
+      "The desired width of the formatted text may change rapidly and erratically during interpolation due to font glyph dimensions.\nTo combat this, the desired width of the text will never shrink during interpolation.\nOnce interpolation completes, the desired width will shrink over the duration specified."
+    ],
+    "PerformSizeInterpolation": [
+      "bool"
+    ],
+    "NumericType": [
+      "ECommonNumericType"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetTargetValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the value this widget will ultimately show if it is interpolating, or the current value if it is not.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InterpolateToValue",
+      "return": "void",
+      "doc": "Starts an ongoing process of interpolating the current numeric value to the specified target value.\nThe interpolation process may take the specified maximum duration or complete sooner if the minimum change rate causes the target to be reached prematurely.\nOptionally, an outro duration can be specified in order to trigger an outro event before interpolation completes.\n\nTargetValue                                  The value to be interpolated to.\nMaximumInterpolationDuration The duration, in seconds, for the interpolation to take, at most. Must be greater than 0.\nMinimumChangeRate                    The minimum change in numeric value per second. Must be greater than or equal to 0.\nOutroDuration                                The time offset, in seconds, *before* the end of the InterpolationDuration elapses, at which to trigger an outro event. Must be less than or equal to MaximumInterpolationDuration",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetValue",
+          "type": "float32"
+        },
+        {
+          "name": "MaximumInterpolationDuration",
+          "default": "3.000000",
+          "type": "float32"
+        },
+        {
+          "name": "MinimumChangeRate",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "OutroOffset",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsInterpolatingNumericValue",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCurrentValue",
+      "return": "void",
+      "doc": "Sets the current numeric value. NOTE: Cancels any ongoing interpolation!",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetNumericType",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNumericType",
+          "type": "ECommonNumericType"
+        }
+      ]
+    }
+  ]
+}

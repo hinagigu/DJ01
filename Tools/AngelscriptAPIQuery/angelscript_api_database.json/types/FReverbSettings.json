@@ -1,0 +1,39 @@
+{
+  "name": "FReverbSettings",
+  "isStruct": true,
+  "doc": "Struct encapsulating settings for reverb effects.",
+  "properties": {
+    "bApplyReverb": [
+      "bool",
+      "Whether to apply the reverb settings below."
+    ],
+    "ReverbEffect": [
+      "UReverbEffect",
+      "The reverb asset to employ."
+    ],
+    "ReverbPluginEffect": [
+      "USoundEffectSubmixPreset",
+      "This is used to apply plugin-specific settings when a Reverb Plugin is being used."
+    ],
+    "Volume": [
+      "float32",
+      "Volume level of the reverb effect."
+    ],
+    "FadeTime": [
+      "float32",
+      "Time to fade from the current reverb settings into this setting, in seconds."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FReverbSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FReverbSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "FScalableFloat",
+  "isStruct": true,
+  "doc": "Generic numerical value in the form Value * Curve[Level]",
+  "properties": {
+    "Value": [
+      "float32",
+      "Raw value, is multiplied by curve"
+    ],
+    "Curve": [
+      "FCurveTableRowHandle",
+      "Curve that is evaluated at a specific level. If found, it is multipled by Value"
+    ],
+    "RegistryType": [
+      "FDataRegistryType",
+      "Name of Data Registry containing curve to use. If set the RowName inside Curve is used as the item name"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FScalableFloat&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FScalableFloat"
+        }
+      ]
+    }
+  ]
+}

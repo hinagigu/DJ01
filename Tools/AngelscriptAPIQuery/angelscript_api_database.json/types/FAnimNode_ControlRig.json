@@ -1,0 +1,111 @@
+{
+  "name": "FAnimNode_ControlRig",
+  "isStruct": true,
+  "doc": "Animation node that allows animation ControlRig output to be used in an animation graph",
+  "properties": {
+    "ControlRigClass": [
+      "TSubclassOf<UControlRig>",
+      2,
+      "The class to use for the rig."
+    ],
+    "Alpha": [
+      "float32",
+      2,
+      "alpha value handler"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType",
+      2,
+      ""
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias",
+      2,
+      ""
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend",
+      2,
+      ""
+    ],
+    "AlphaCurveName": [
+      "FName",
+      2,
+      ""
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp",
+      2,
+      ""
+    ],
+    "LODThreshold": [
+      "int",
+      2,
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "Source": [
+      "FPoseLink",
+      2,
+      ""
+    ],
+    "bResetInputPoseToInitial": [
+      "bool",
+      2,
+      "If this is checked the rig's pose needs to be reset to its initial\nprior to evaluating the rig."
+    ],
+    "bTransferInputPose": [
+      "bool",
+      2,
+      "If this is checked the bone pose coming from the AnimBP will be\ntransferred into the Control Rig."
+    ],
+    "bTransferInputCurves": [
+      "bool",
+      2,
+      "If this is checked the curves coming from the AnimBP will be\ntransferred into the Control Rig."
+    ],
+    "bTransferPoseInGlobalSpace": [
+      "bool",
+      2,
+      "Transferring the pose in global space guarantees a global pose match,\nwhile transferring in local space ensures a match of the local transforms.\nIn general transforms only differ if the hierarchy topology differs\nbetween the Control Rig and the skeleton used in the AnimBP.\nNote: Turning this off can potentially improve performance."
+    ],
+    "InputBonesToTransfer": [
+      "TArray<FBoneReference>",
+      2,
+      "An inclusive list of bones to transfer as part\nof the input pose transfer phase.\nIf this list is empty all bones will be transferred."
+    ],
+    "OutputBonesToTransfer": [
+      "TArray<FBoneReference>",
+      2,
+      "An inclusive list of bones to transfer as part\nof the output pose transfer phase.\nIf this list is empty all bones will be transferred."
+    ],
+    "AssetUserData": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      ""
+    ],
+    "EventQueue": [
+      "TArray<FControlRigAnimNodeEventName>",
+      2,
+      "The customized event queue to run"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "bSetRefPoseFromSkeleton": [
+      "bool",
+      "Override the initial transforms with those taken from the mesh component"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_ControlRig&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_ControlRig"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "ULODSyncComponent",
+  "inherits": "UActorComponent",
+  "doc": "Implement an Actor component for LOD Sync of different components\n\nThis is a component that allows multiple different components to sync together of their LOD\n\nThis allows to find the highest LOD of all the parts, and sync to that LOD",
+  "properties": {
+    "NumLODs": [
+      "int",
+      "if -1, it's default and it will calculate the max number of LODs from all sub components\nif not, it is a number of LODs (not the max index of LODs)"
+    ],
+    "ForcedLOD": [
+      "int",
+      "if -1, it's automatically switching"
+    ],
+    "MinLOD": [
+      "int",
+      "Minimum LOD to use when syncing components"
+    ],
+    "ComponentsToSync": [
+      "TArray<FComponentSync>",
+      "Array of components whose LOD may drive or be driven by this component.\nComponents that are flagged as 'Drive' are treated as being in priority order, with the last component having highest priority. The highest priority\nvisible component will set the LOD for all other components. If no components are visible, then the highest priority non-visible component will set LOD."
+    ],
+    "CustomLODMapping": [
+      "TMap<FName,FLODMappingData>",
+      "by default, the mapping will be one to one\nbut if you want custom, add here."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetLODSyncDebugText",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns a string detailing",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "UActorActionUtility",
+  "inherits": "UEditorUtilityObject",
+  "doc": "Base class for all actor action-related utilities\nAny functions/events that are exposed on derived classes that have the correct signature will be\nincluded as menu options when right-clicking on a group of actors in the level editor.",
+  "properties": {
+    "SupportedClasses": [
+      "TArray<TSoftClassPtr<UObject>>",
+      "For simple Asset Action's you should fill out the supported class here."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetSupportedClasses",
+      "return": "TArray<TSoftClassPtr<UObject>>",
+      "const": true,
+      "doc": "Gets the statically determined supported classes, these classes are used as a first pass filter when determining\nif we can utilize this asset utility action on the asset.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

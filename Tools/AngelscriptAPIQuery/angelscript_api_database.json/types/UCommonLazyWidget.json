@@ -1,0 +1,45 @@
+{
+  "name": "UCommonLazyWidget",
+  "inherits": "UWidget",
+  "doc": "A special Image widget that can show unloaded images and takes care of the loading for you!",
+  "properties": {
+    "LoadingBackgroundBrush": [
+      "FSlateBrush",
+      2,
+      ""
+    ],
+    "OnLoadingStateChanged": [
+      "FOnLoadGuardStateChangedDynamic"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetContent",
+      "return": "UUserWidget",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLoading",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetLazyContent",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoftWidget",
+          "type": "TSoftClassPtr<UUserWidget>"
+        }
+      ]
+    }
+  ]
+}

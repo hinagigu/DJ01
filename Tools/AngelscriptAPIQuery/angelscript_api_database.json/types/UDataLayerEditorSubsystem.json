@@ -1,0 +1,747 @@
+{
+  "name": "UDataLayerEditorSubsystem",
+  "inherits": "UEditorSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddActorsToDataLayer",
+      "return": "bool",
+      "doc": "Add the actors to the DataLayer\n\n@param       Actors          The actors to add to the DataLayer\n@param       DataLayer       The DataLayer to add to\n@return                              true if at least one actor was added to the DataLayer.  false is returned if all the actors already belonged to the DataLayer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actors",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "AddActorsToDataLayers",
+      "return": "bool",
+      "doc": "Add the actors to the DataLayers\n\n@param       Actors          The actors to add to the DataLayers\n@param       DataLayers      A valid list of DataLayers.\n@return                              true if at least one actor was added to at least one DataLayer.  false is returned if all the actors already belonged to all specified DataLayers.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actors",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        }
+      ]
+    },
+    {
+      "name": "AddActorToDataLayer",
+      "return": "bool",
+      "doc": "Adds the actor to the DataLayer.\n\n@param       Actor           The actor to add to the DataLayer\n@param       DataLayer       The DataLayer to add the actor to\n@return                              true if the actor was added.  false is returned if the actor already belongs to the DataLayer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "AddActorToDataLayers",
+      "return": "bool",
+      "doc": "Adds the provided actor to the DataLayers.\n\n@param       Actor           The actor to add to the provided DataLayers\n@param       DataLayers      A valid list of DataLayers.\n@return                              true if the actor was added to at least one of the provided DataLayers.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        }
+      ]
+    },
+    {
+      "name": "AddSelectedActorsToDataLayer",
+      "return": "bool",
+      "doc": "Adds selected actors to the DataLayer.\n\n@param       DataLayer       A DataLayer.\n@return                              true if at least one actor was added.  false is returned if all selected actors already belong to the DataLayer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "AddSelectedActorsToDataLayers",
+      "return": "bool",
+      "doc": "Adds selected actors to the DataLayers.\n\n@param       DataLayers      A valid list of DataLayers.\n@return                              true if at least one actor was added.  false is returned if all selected actors already belong to the DataLayers.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        }
+      ]
+    },
+    {
+      "name": "AddToActorEditorContext",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDataLayerInstance",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "AppendActorsFromDataLayer",
+      "return": "void",
+      "const": true,
+      "doc": "Appends all the actors associated with the specified DataLayer.\n\n@param  DataLayer                       The DataLayer to find actors for.\n@param  InOutActors                     The list to append the found actors to.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        },
+        {
+          "name": "InOutActors",
+          "type": "TArray<AActor>&"
+        }
+      ]
+    },
+    {
+      "name": "AppendActorsFromDataLayers",
+      "return": "void",
+      "const": true,
+      "doc": "Appends all the actors associated with ANY of the specified DataLayers.\n\n@param  DataLayers                      The DataLayers to find actors for.\n@param  InOutActors                     The list to append the found actors to.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        },
+        {
+          "name": "InOutActors",
+          "type": "TArray<AActor>&"
+        }
+      ]
+    },
+    {
+      "name": "CreateDataLayer",
+      "return": "UDataLayerInstance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParentDataLayer",
+          "default": "nullptr",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "CreateDataLayerInstance",
+      "return": "UDataLayerInstance",
+      "doc": "Creates a UDataLayerInstance Object\n\n@param       Parameters The Data Layer Instance creation parameters\n@return      The newly created UDataLayerInstance Object",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FDataLayerCreationParameters"
+        }
+      ]
+    },
+    {
+      "name": "DeleteDataLayer",
+      "return": "void",
+      "doc": "Deletes the provided DataLayer\n\n@param DataLayerToDelete             A valid DataLayer",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayerToDelete",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "DeleteDataLayers",
+      "return": "void",
+      "doc": "Deletes all of the provided DataLayers\n\n@param DataLayersToDelete    A valid list of DataLayer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayersToDelete",
+          "type": "TArray<UDataLayerInstance>"
+        }
+      ]
+    },
+    {
+      "name": "GetActorEditorContextCurrentExternalDataLayer",
+      "return": "const UExternalDataLayerAsset",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorsFromDataLayer",
+      "return": "TArray<AActor>",
+      "const": true,
+      "doc": "Gets all the actors associated with the specified DataLayer. Analog to AppendActorsFromDataLayer but it returns rather than appends the actors.\n\n@param  DataLayer                       The DataLayer to find actors for.\n@return                                         The list to assign the found actors to.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "GetActorsFromDataLayers",
+      "return": "TArray<AActor>",
+      "const": true,
+      "doc": "Gets all the actors associated with ANY of the specified DataLayers. Analog to AppendActorsFromDataLayers but it returns rather than appends the actors.\n\n@param  DataLayers                      The DataLayers to find actors for.\n@return                                         The list to assign the found actors to.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        }
+      ]
+    },
+    {
+      "name": "GetAllDataLayers",
+      "return": "TArray<UDataLayerInstance>",
+      "doc": "Returns all Data Layers",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDataLayer",
+      "return": "UDataLayerInstance",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorDataLayer",
+          "type": "FActorDataLayer"
+        }
+      ]
+    },
+    {
+      "name": "GetDataLayerFromLabel",
+      "return": "UDataLayerInstance",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayerLabel",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetDataLayerInstance",
+      "return": "UDataLayerInstance",
+      "const": true,
+      "doc": "Gets the UDataLayerInstance associated to the DataLayerAsset\n\n@param       DataLayerAsset  The DataLayerAsset associated to the UDataLayerInstance\n@return                                      The UDataLayerInstance of the provided DataLayerAsset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayerAsset",
+          "type": "const UDataLayerAsset"
+        }
+      ]
+    },
+    {
+      "name": "GetDataLayerInstances",
+      "return": "TArray<UDataLayerInstance>",
+      "const": true,
+      "doc": "Gets the UDataLayerInstances associated to the each DataLayerAssets\n\n@param       DataLayerAssets The array of DataLayerAssets associated to UDataLayerInstances\n@return                                      The array of UDataLayerInstances corresponding to a DataLayerAsset in the DataLayerAssets array",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayerAssets",
+          "type": "TArray<UDataLayerAsset>"
+        }
+      ]
+    },
+    {
+      "name": "IsActorValidForDataLayer",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "IsActorValidForDataLayerInstances",
+      "return": "bool",
+      "doc": "Checks to see if the specified actor is in an appropriate state to interact with DataLayers\n\n@param  Actor                           The actor to validate\n@param  DataLayerInstances  The data layers used to do the validation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "DataLayerInstances",
+          "type": "TArray<UDataLayerInstance>"
+        }
+      ]
+    },
+    {
+      "name": "MakeAllDataLayersVisible",
+      "return": "void",
+      "doc": "Set the visibility of all DataLayers to true",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveActorFromAllDataLayers",
+      "return": "bool",
+      "doc": "Removes an actor from all DataLayers.\n\n@param       Actor                   The actor to modify\n@return                                      true if the actor was changed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActorFromDataLayer",
+      "return": "bool",
+      "doc": "Removes an actor from the specified DataLayer.\n\n@param       Actor                   The actor to remove from the provided DataLayer\n@param       DataLayerToRemove       The DataLayer to remove the actor from\n@return                                      true if the actor was removed from the DataLayer.  false is returned if the actor already belonged to the DataLayer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "DataLayerToRemove",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActorFromDataLayers",
+      "return": "bool",
+      "doc": "Removes the provided actor from the DataLayers.\n\n@param       Actor           The actor to remove from the provided DataLayers\n@param       DataLayers      A valid list of DataLayers.\n@return                              true if the actor was removed from at least one of the provided DataLayers.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActorsFromAllDataLayers",
+      "return": "bool",
+      "doc": "Removes an actor from all DataLayers.\n\n@param       Actor                   The actors to modify\n@return                                      true if any actor was changed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actors",
+          "type": "TArray<AActor>"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActorsFromDataLayer",
+      "return": "bool",
+      "doc": "Removes the actors from the specified DataLayer.\n\n@param       Actors                  The actors to remove from the provided DataLayer\n@param       DataLayerToRemove       The DataLayer to remove the actors from\n@return                                      true if at least one actor was removed from the DataLayer.  false is returned if all the actors already belonged to the DataLayer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actors",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActorsFromDataLayers",
+      "return": "bool",
+      "doc": "Remove the actors from the DataLayers\n\n@param       Actors          The actors to remove to the DataLayers\n@param       DataLayers      A valid list of DataLayers.\n@return                              true if at least one actor was removed from at least one DataLayer.  false is returned if none of the actors belonged to any of the specified DataLayers.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actors",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        }
+      ]
+    },
+    {
+      "name": "RemoveFromActorEditorContext",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDataLayerInstance",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSelectedActorsFromDataLayer",
+      "return": "bool",
+      "doc": "Removes the selected actors from the DataLayer.\n\n@param       DataLayer       A DataLayer.\n@return                              true if at least one actor was added.  false is returned if all selected actors already belong to the DataLayer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSelectedActorsFromDataLayers",
+      "return": "bool",
+      "doc": "Removes selected actors from the DataLayers.\n\n@param       DataLayers      A valid list of DataLayers.\n@return                              true if at least one actor was removed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        }
+      ]
+    },
+    {
+      "name": "RenameDataLayer",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        },
+        {
+          "name": "NewDataLayerLabel",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SelectActorsInDataLayer",
+      "return": "bool",
+      "doc": "Selects/de-selects actors belonging to the DataLayer.\n\n@param       DataLayer                                               A valid DataLayer.\n@param       bSelect                                                 If true actors are selected; if false, actors are deselected.\n@param       bNotify                                                 If true the Editor is notified of the selection change; if false, the Editor will not be notified.\n@param       bSelectEvenIfHidden     [optional]      If true even hidden actors will be selected; if false, hidden actors won't be selected.\n@return                                                                      true if at least one actor was selected/deselected.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        },
+        {
+          "name": "bSelect",
+          "type": "bool"
+        },
+        {
+          "name": "bNotify",
+          "type": "bool"
+        },
+        {
+          "name": "bSelectEvenIfHidden",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SelectActorsInDataLayers",
+      "return": "bool",
+      "doc": "Selects/de-selects actors belonging to the DataLayers.\n\n@param       DataLayers                                              A valid list of DataLayers.\n@param       bSelect                                                 If true actors are selected; if false, actors are deselected.\n@param       bNotify                                                 If true the Editor is notified of the selection change; if false, the Editor will not be notified\n@param       bSelectEvenIfHidden     [optional]      If true even hidden actors will be selected; if false, hidden actors won't be selected.\n@return                                                                      true if at least one actor was selected/deselected.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        },
+        {
+          "name": "bSelect",
+          "type": "bool"
+        },
+        {
+          "name": "bNotify",
+          "type": "bool"
+        },
+        {
+          "name": "bSelectEvenIfHidden",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetActorEditorContextCurrentExternalDataLayer",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InExternalDataLayerAsset",
+          "type": "const UExternalDataLayerAsset"
+        }
+      ]
+    },
+    {
+      "name": "SetDataLayerIsLoadedInEditor",
+      "return": "bool",
+      "doc": "Changes the DataLayer's IsLoadedInEditor flag to the provided state\n\n@param       DataLayer                                               The DataLayer to affect.\n@param       bIsLoadedInEditor                               The new value of the flag IsLoadedInEditor.\n                                                                                     If True, the Editor loading will consider this DataLayer to load or not an Actor part of this DataLayer.\n                                                                                     An Actor will not be loaded in the Editor if all its DataLayers are not LoadedInEditor.\n@param       bIsFromUserChange                               If this change originates from a user change or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        },
+        {
+          "name": "bIsLoadedInEditor",
+          "type": "bool"
+        },
+        {
+          "name": "bIsFromUserChange",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetDataLayersIsLoadedInEditor",
+      "return": "bool",
+      "doc": "Changes the IsLoadedInEditor flag of the DataLayers to the provided state\n\n@param       DataLayers                                              The DataLayers to affect\n@param       bIsLoadedInEditor                               The new value of the flag IsLoadedInEditor.\n                                                                                     If True, the Editor loading will consider this DataLayer to load or not an Actor part of this DataLayer.\n                                                                                     An Actor will not be loaded in the Editor if all its DataLayers are not LoadedInEditor.\n@param       bIsFromUserChange                               If this change originates from a user change or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        },
+        {
+          "name": "bIsLoadedInEditor",
+          "type": "bool"
+        },
+        {
+          "name": "bIsFromUserChange",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetDataLayersVisibility",
+      "return": "void",
+      "doc": "Changes visibility of the DataLayers to the provided state\n\n@param       DataLayers      The DataLayers to affect\n@param       bIsVisible      If true the DataLayers will be visible; if false, the DataLayers will not be visible",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        },
+        {
+          "name": "bIsVisible",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetDataLayerVisibility",
+      "return": "void",
+      "doc": "Changes the DataLayer's visibility to the provided state\n\n@param       DataLayer       The DataLayer to affect.\n@param       bIsVisible      If true the DataLayer will be visible; if false, the DataLayer will not be visible.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        },
+        {
+          "name": "bIsVisible",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetParentDataLayer",
+      "return": "bool",
+      "doc": "Sets a Parent DataLayer for a specified DataLayer\n\n @param DataLayer            The child DataLayer.\n @param ParentDataLayer      The parent DataLayer.\n\n @return     true if succeeded, false if failed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        },
+        {
+          "name": "ParentDataLayer",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "ToggleDataLayerIsLoadedInEditor",
+      "return": "bool",
+      "doc": "Toggles the DataLayer's IsLoadedInEditor flag\n\n@param       DataLayer                                               The DataLayer to affect\n@param       bIsFromUserChange                               If this change originates from a user change or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        },
+        {
+          "name": "bIsFromUserChange",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ToggleDataLayersIsLoadedInEditor",
+      "return": "bool",
+      "doc": "Toggles the IsLoadedInEditor flag of all of the DataLayers\n\n@param       DataLayers                                              The DataLayers to affect\n@param       bIsFromUserChange                               If this change originates from a user change or not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        },
+        {
+          "name": "bIsFromUserChange",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ToggleDataLayersVisibility",
+      "return": "void",
+      "doc": "Toggles the visibility of all of the DataLayers\n\n@param       DataLayers      The DataLayers to affect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayers",
+          "type": "TArray<UDataLayerInstance>"
+        }
+      ]
+    },
+    {
+      "name": "ToggleDataLayerVisibility",
+      "return": "void",
+      "doc": "Toggles the DataLayer's visibility\n\n@param DataLayer     The DataLayer to affect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataLayer",
+          "type": "UDataLayerInstance"
+        }
+      ]
+    },
+    {
+      "name": "UpdateActorVisibility",
+      "return": "bool",
+      "doc": "Updates the provided actors visibility in the viewports\n\n@param       Actor                                           Actor to update\n@param       bOutSelectionChanged [OUT]      Whether the Editors selection changed\n@param       bOutActorModified [OUT]         Whether the actor was modified\n@param       bNotifySelectionChange          If true the Editor is notified of the selection change; if false, the Editor will not be notified\n@param       bRedrawViewports                        If true the viewports will be redrawn; if false, they will not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "bOutSelectionChanged",
+          "type": "bool&"
+        },
+        {
+          "name": "bOutActorModified",
+          "type": "bool&"
+        },
+        {
+          "name": "bNotifySelectionChange",
+          "type": "bool"
+        },
+        {
+          "name": "bRedrawViewports",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UpdateAllActorsVisibility",
+      "return": "bool",
+      "doc": "Updates the visibility of all actors in the viewports\n\n@param       bNotifySelectionChange          If true the Editor is notified of the selection change; if false, the Editor will not be notified\n@param       bRedrawViewports                        If true the viewports will be redrawn; if false, they will not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNotifySelectionChange",
+          "type": "bool"
+        },
+        {
+          "name": "bRedrawViewports",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

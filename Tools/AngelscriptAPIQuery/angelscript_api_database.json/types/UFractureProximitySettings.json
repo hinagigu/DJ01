@@ -1,0 +1,68 @@
+{
+  "name": "UFractureProximitySettings",
+  "inherits": "UFractureToolSettings",
+  "doc": "Settings controlling how proximity is detected for geometry collections",
+  "properties": {
+    "Method": [
+      "EProximityMethod",
+      2,
+      "Which method to use to decide whether a given piece of geometry is in proximity with another"
+    ],
+    "DistanceThreshold": [
+      "float",
+      2,
+      "If hull-based proximity detection is enabled, amount to expand hulls when searching for overlapping neighbors"
+    ],
+    "ContactMethod": [
+      "EProximityContactMethod",
+      2,
+      "Method to use to determine the contact between two pieces, if the Contact Threshold is greater than 0"
+    ],
+    "ContactThreshold": [
+      "float",
+      2,
+      "If greater than zero, proximity will be additionally filtered by a 'contact' threshold, in cm, to exclude grazing / corner proximity"
+    ],
+    "bUseAsConnectionGraph": [
+      "bool",
+      2,
+      "Whether to automatically transform the proximity graph into a connection graph to be used for simulation"
+    ],
+    "ContactAreaMethod": [
+      "EConnectionContactMethod",
+      2,
+      "Method to use for determining contact areas that define the strength of connections for destruction simulation"
+    ],
+    "bShowProximity": [
+      "bool",
+      2,
+      "Whether to display the proximity graph edges"
+    ],
+    "bOnlyShowForSelected": [
+      "bool",
+      2,
+      "Whether to only show the proximity graph connections for selected bones"
+    ],
+    "LineThickness": [
+      "float32",
+      2,
+      "Line thickness for connections"
+    ],
+    "LineColor": [
+      "FColor",
+      2,
+      "Line color for connections"
+    ],
+    "CenterSize": [
+      "float32",
+      2,
+      "Point size for centers"
+    ],
+    "CenterColor": [
+      "FColor",
+      2,
+      "Point color for centers"
+    ]
+  },
+  "methods": []
+}

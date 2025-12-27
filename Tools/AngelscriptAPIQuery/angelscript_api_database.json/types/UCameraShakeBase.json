@@ -1,0 +1,41 @@
+{
+  "name": "UCameraShakeBase",
+  "inherits": "UObject",
+  "doc": "Base class for a camera shake. A camera shake contains a root shake \"pattern\" which is\nthe object that contains the actual logic driving how the camera is shaken. Keeping the two\nseparate makes it possible to completely change how a shake works without having to create\na completely different asset.",
+  "properties": {
+    "bSingleInstance": [
+      "bool",
+      2,
+      "If true to only allow a single instance of this shake class to play at any given time.\nSubsequent attempts to play this shake will simply restart the timer."
+    ],
+    "ShakeScale": [
+      "float32",
+      1,
+      "The overall scale to apply to the shake. Only valid when the shake is active."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetRootShakePattern",
+      "return": "UCameraShakePattern",
+      "const": true,
+      "doc": "Gets the root pattern of this camera shake",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetRootShakePattern",
+      "return": "void",
+      "doc": "Sets the root pattern of this camera shake",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPattern",
+          "type": "UCameraShakePattern"
+        }
+      ]
+    }
+  ]
+}

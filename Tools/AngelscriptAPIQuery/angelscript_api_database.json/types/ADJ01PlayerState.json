@@ -1,0 +1,111 @@
+{
+  "name": "ADJ01PlayerState",
+  "inherits": "AModularPlayerState",
+  "doc": "ADJ01PlayerState\n\n     Base player state class used by this project.\n     玩家状态类，持有玩家的 AbilitySystemComponent。\n     在Lyra架构中，ASC由PlayerState持有而非Pawn，这样可以在Pawn死亡/重生时保持技能状态。",
+  "properties": {
+    "AbilitySystemComponent": [
+      "UDJ01AbilitySystemComponent",
+      2,
+      "玩家的 AbilitySystemComponent，用于管理技能、属性和效果"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddStatTagStack",
+      "return": "void",
+      "doc": "Adds a specified number of stacks to the tag (does nothing if StackCount is below 1)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "StackCount",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetDJ01AbilitySystemComponent",
+      "return": "UDJ01AbilitySystemComponent",
+      "const": true,
+      "doc": "获取玩家的 AbilitySystemComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDJ01PlayerController",
+      "return": "ADJ01PlayerController",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSquadId",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the Squad ID of the squad the player belongs to.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStatTagStackCount",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the stack count of the specified tag (or 0 if the tag is not present)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "GetTeamId",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the Team ID of the team the player belongs to.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasStatTag",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if there is at least one stack of the specified tag",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "RemoveStatTagStack",
+      "return": "void",
+      "doc": "Removes a specified number of stacks from the tag (does nothing if StackCount is below 1)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "StackCount",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "USubmixEffectDynamicsProcessorPreset",
+  "inherits": "USoundEffectSubmixPreset",
+  "properties": {
+    "Settings": [
+      "FSubmixEffectDynamicsProcessorSettings"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ResetKey",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAudioBus",
+      "return": "void",
+      "doc": "Sets the source key input as the provided AudioBus' output.  If no object is provided, key is set\nto effect's input.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AudioBus",
+          "type": "UAudioBus"
+        }
+      ]
+    },
+    {
+      "name": "SetExternalSubmix",
+      "return": "void",
+      "doc": "Sets the source key input as the provided Submix's output.  If no object is provided, key is set\nto effect's input.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Submix",
+          "type": "USoundSubmix"
+        }
+      ]
+    },
+    {
+      "name": "SetSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Settings",
+          "type": "FSubmixEffectDynamicsProcessorSettings"
+        }
+      ]
+    }
+  ]
+}

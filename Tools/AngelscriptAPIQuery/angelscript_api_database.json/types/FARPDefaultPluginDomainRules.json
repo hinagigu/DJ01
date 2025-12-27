@@ -1,0 +1,33 @@
+{
+  "name": "FARPDefaultPluginDomainRules",
+  "isStruct": true,
+  "properties": {
+    "CanReferenceTheseDomains": [
+      "TArray<FString>",
+      2,
+      "The list of additional domains always visible from a plugin\n(EngineContent is always visible, as is content from other plugins that are explicitly referenced)"
+    ],
+    "bCanProjectAccessThesePlugins": [
+      "bool",
+      2,
+      "Can content in the ProjectContent domain access plugin content automatically (for plugins that don't match a specific rule)?"
+    ],
+    "bCanBeSeenByOtherDomainsWithoutDependency": [
+      "bool",
+      2,
+      "Can content in other domains access plugin content automatically (for plugins that don't match a specific rule)?\nNote: This rule may be deprecated in the future!"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FARPDefaultPluginDomainRules&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FARPDefaultPluginDomainRules"
+        }
+      ]
+    }
+  ]
+}

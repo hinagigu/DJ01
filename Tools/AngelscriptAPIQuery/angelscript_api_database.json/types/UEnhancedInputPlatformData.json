@@ -1,0 +1,27 @@
+{
+  "name": "UEnhancedInputPlatformData",
+  "inherits": "UObject",
+  "doc": "A base class that can be used to store platform specific data for Enhanced Input.\n\nMake a subclass of this to add some additional options for per-platform settings",
+  "properties": {
+    "MappingContextRedirects": [
+      "TMap<TObjectPtr<UInputMappingContext>,TObjectPtr<UInputMappingContext>>",
+      "Maps one Input Mapping Context to another. This can be used to replace\nspecific Input Mapping Contexts with another on a per-platform basis."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetContextRedirect",
+      "return": "const UInputMappingContext",
+      "const": true,
+      "doc": "Returns a pointer to the desired redirect mapping context. If there isn't one, then this returns InContext.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InContext",
+          "type": "UInputMappingContext"
+        }
+      ]
+    }
+  ]
+}

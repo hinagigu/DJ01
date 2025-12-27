@@ -1,0 +1,7 @@
+{
+  "name": "UPreviewMesh",
+  "inherits": "UObject",
+  "doc": "UPreviewMesh is a utility object that spawns and owns a transient mesh object in the World.\nThis can be used to show live preview geometry during modeling operations.\nCall CreateInWorld() to set it up, and Disconnect() to shut it down.\n\nCurrently implemented via an internal Actor that has a UDynamicMeshComponent root component,\nwith an AABBTree created/updated if FProperty bBuildSpatialDataStructure=true.\nThe Actor is destroyed on Disconnect().\n\nThe intention with UPreviewMesh is to provide a higher-level interface than the Component.\nIn future the internal Component may be replaced with another class (eg OctreeDynamicMeshComponent),\nor automatically swap between the two, etc.\n\nAs a result direct access to the Actor/Component, or a non-const FDynamicMesh3, is intentionally not provided.\nWrapper functions are provided (or should be added) for necessary Actor/Component parameters.\nTo edit the mesh either a copy is done, or EditMesh()/ApplyChange() must be used.\nThese functions automatically update necessary internal data structures.",
+  "properties": {},
+  "methods": []
+}

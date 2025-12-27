@@ -1,0 +1,18 @@
+{
+  "name": "UUpdateManager",
+  "inherits": "UObject",
+  "doc": "Update manager\n\nChecks the system and/or backend for the possibility of a patch and hotfix\nWill not apply a hotfix if a pending patch is available\nNotifies the game of the result of the check\n- possibly requires UI to prevent user from playing if a patch is available\n- possibly requires UI to prevent user from player if a hotfix requires a reload of existing data",
+  "properties": {
+    "LastUpdateCheck": [
+      "FDateTime",
+      2,
+      "Timestamp of last update check (0:normal, 1:availability only)"
+    ],
+    "LastCompletionResult": [
+      "EUpdateCompletionStatus",
+      2,
+      "Last update check result (0:normal, 1:availability only)"
+    ]
+  },
+  "methods": []
+}

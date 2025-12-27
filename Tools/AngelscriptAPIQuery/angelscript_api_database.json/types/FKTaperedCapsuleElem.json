@@ -1,0 +1,63 @@
+{
+  "name": "FKTaperedCapsuleElem",
+  "isStruct": true,
+  "doc": "Capsule shape used for collision. Z axis is capsule axis. Has a start and end radius that can differ.",
+  "properties": {
+    "Center": [
+      "FVector",
+      2,
+      "Position of the capsule's origin"
+    ],
+    "Rotation": [
+      "FRotator",
+      2,
+      "Rotation of the capsule"
+    ],
+    "Radius0": [
+      "float32",
+      2,
+      "Radius of the capsule start point"
+    ],
+    "Radius1": [
+      "float32",
+      2,
+      "Radius of the capsule end point"
+    ],
+    "Length": [
+      "float32",
+      2,
+      "Length of line-segment. Add Radius0 and Radius 1 to find total length."
+    ],
+    "RestOffset": [
+      "float32",
+      2,
+      "Offset used when generating contact points. This allows you to smooth out\n              the Minkowski sum by radius R. Useful for making objects slide smoothly\n              on top of irregularities"
+    ],
+    "Name": [
+      "FName",
+      2,
+      "User-defined name for this shape"
+    ],
+    "CollisionEnabled": [
+      "ECollisionEnabled",
+      2,
+      "Course per-primitive collision filtering. This allows for individual primitives to\n              be toggled in and out of sim and query collision without changing filtering details."
+    ],
+    "bContributeToMass": [
+      "bool",
+      "True if this shape should contribute to the overall mass of the body it\n              belongs to. This lets you create extra collision volumes which do not affect\n              the mass properties of an object."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FKTaperedCapsuleElem&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FKTaperedCapsuleElem"
+        }
+      ]
+    }
+  ]
+}

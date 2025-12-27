@@ -1,0 +1,134 @@
+{
+  "name": "UVariantSet",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetDisplayText",
+      "return": "FText",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumVariants",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetParent",
+      "return": "ULevelVariantSets",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetThumbnail",
+      "return": "UTexture2D",
+      "doc": "Gets the thumbnail currently used for this variant set",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVariant",
+      "return": "UVariant",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VariantIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetVariantByName",
+      "return": "UVariant",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VariantName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetDisplayText",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewDisplayText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetThumbnailFromCamera",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CameraTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "FOVDegrees",
+          "default": "50.000000",
+          "type": "float32"
+        },
+        {
+          "name": "MinZ",
+          "default": "50.000000",
+          "type": "float32"
+        },
+        {
+          "name": "Gamma",
+          "default": "2.200000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetThumbnailFromEditorViewport",
+      "return": "void",
+      "doc": "Sets the thumbnail from the active editor viewport. Doesn't do anything if the Editor is not available",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetThumbnailFromFile",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FilePath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetThumbnailFromTexture",
+      "return": "void",
+      "doc": "Sets the thumbnail to use for this variant set. Can receive nullptr to clear it",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewThumbnail",
+          "type": "UTexture2D"
+        }
+      ]
+    }
+  ]
+}

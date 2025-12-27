@@ -1,0 +1,31 @@
+{
+  "name": "FSubmixEffectDelaySettings",
+  "isStruct": true,
+  "doc": "FSubmixEffectDelaySettings\nUStruct used to define user-exposed params for use with your effect.",
+  "properties": {
+    "MaximumDelayLength": [
+      "float32",
+      "Maximum possible length for a delay, in milliseconds. Changing this at runtime will reset the effect."
+    ],
+    "InterpolationTime": [
+      "float32",
+      "Number of milliseconds over which a tap will reach it's set length and gain. Smaller values are more responsive, while larger values will make pitching less dramatic."
+    ],
+    "DelayLength": [
+      "float32",
+      "Number of milliseconds of delay.  Caps at max delay at runtime."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSubmixEffectDelaySettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSubmixEffectDelaySettings"
+        }
+      ]
+    }
+  ]
+}

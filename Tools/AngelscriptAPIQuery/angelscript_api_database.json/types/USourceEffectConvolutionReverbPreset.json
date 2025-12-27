@@ -1,0 +1,50 @@
+{
+  "name": "USourceEffectConvolutionReverbPreset",
+  "inherits": "USoundEffectSourcePreset",
+  "properties": {
+    "BlockSize": [
+      "ESubmixEffectConvolutionReverbBlockSize",
+      "Set the internal block size. This can effect latency and performance. Higher values will result in\nlower CPU costs while lower values will result higher CPU costs. Latency may be affected depending\non the interplay between audio engines buffer sizes and this effects block size. Generally, higher\nvalues result in higher latency, and lower values result in lower latency."
+    ],
+    "bEnableHardwareAcceleration": [
+      "bool",
+      "Opt into hardware acceleration of the convolution reverb (if available)"
+    ],
+    "ImpulseResponse": [
+      "UAudioImpulseResponse",
+      "The impulse response used for convolution."
+    ],
+    "Settings": [
+      "FSourceEffectConvolutionReverbSettings",
+      "ConvolutionReverbPreset Preset Settings."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetImpulseResponse",
+      "return": "void",
+      "doc": "Set the convolution reverb impulse response",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InImpulseResponse",
+          "type": "UAudioImpulseResponse"
+        }
+      ]
+    },
+    {
+      "name": "SetSettings",
+      "return": "void",
+      "doc": "Set the convolution reverb settings",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSettings",
+          "type": "FSourceEffectConvolutionReverbSettings"
+        }
+      ]
+    }
+  ]
+}

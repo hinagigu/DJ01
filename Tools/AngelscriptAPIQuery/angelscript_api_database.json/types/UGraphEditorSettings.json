@@ -1,0 +1,328 @@
+{
+  "name": "UGraphEditorSettings",
+  "inherits": "UObject",
+  "doc": "Implements settings for the graph editor.",
+  "properties": {
+    "DataPinStyle": [
+      "EBlueprintPinStyleType",
+      2,
+      "The visual styling to use for graph editor pins (in Blueprints, materials, etc...)"
+    ],
+    "PanningMouseButton": [
+      "EGraphPanningMouseButton",
+      2,
+      "Switch between using the right and middle mouse button for panning (defaults to right)"
+    ],
+    "PaddingAbovePin": [
+      "float32",
+      2,
+      "The amount of padding above a pin (defaults to 4)"
+    ],
+    "PaddingBelowPin": [
+      "float32",
+      2,
+      "The amount of padding below a pin (defaults to 4)"
+    ],
+    "PaddingRightOfInput": [
+      "float32",
+      2,
+      "The amount of horizontal padding towards the center of a node on an input pin (defaults to 10)"
+    ],
+    "PaddingLeftOfOutput": [
+      "float32",
+      2,
+      "The amount of horizontal padding towards the center of a node on an output pin (defaults to 10)"
+    ],
+    "PaddingTowardsNodeEdge": [
+      "float32",
+      2,
+      "The amount of padding towards the node edge (defaults to 10, can be negative to make pins overlap or stick out of a node"
+    ],
+    "bTreatSplinesLikePins": [
+      "bool",
+      2,
+      "If enabled, allows splines to be Alt+Clicked to break them or Ctrl+Dragged to move them as if these actions were taking place on the associated pin."
+    ],
+    "SplineHoverTolerance": [
+      "float32",
+      2,
+      "The distance threshold controlling how close the mouse has to be to the spline in order to trigger a hover response"
+    ],
+    "SplineCloseTolerance": [
+      "float32",
+      2,
+      "The additional distance around the spline to count as close, preventing other actions if the user just misses the spline when clicking"
+    ],
+    "ForwardSplineHorizontalDeltaRange": [
+      "float32",
+      2,
+      "The maximum value to clamp the absolute value of the horizontal distance between endpoints when calculating tangents (when the wire is moving forward)"
+    ],
+    "ForwardSplineVerticalDeltaRange": [
+      "float32",
+      2,
+      "The maximum value to clamp the absolute value of the vertical distance between endpoints when calculating tangents (when the wire is moving forward)"
+    ],
+    "ForwardSplineTangentFromHorizontalDelta": [
+      "FVector2D",
+      2,
+      "The amount that the horizontal delta affects the generated tangent handle of splines (when the wire is moving forward)"
+    ],
+    "ForwardSplineTangentFromVerticalDelta": [
+      "FVector2D",
+      2,
+      "The amount that the vertical delta affects the generated tangent handle of splines (when the wire is moving forward)"
+    ],
+    "BackwardSplineHorizontalDeltaRange": [
+      "float32",
+      2,
+      "The maximum value to clamp the absolute value of the horizontal distance between endpoints when calculating tangents (when the wire is moving backwards)"
+    ],
+    "BackwardSplineVerticalDeltaRange": [
+      "float32",
+      2,
+      "The maximum value to clamp the absolute value of the vertical distance between endpoints when calculating tangents (when the wire is moving backwards)"
+    ],
+    "BackwardSplineTangentFromHorizontalDelta": [
+      "FVector2D",
+      2,
+      "The amount that the horizontal delta affects the generated tangent handle of splines (when the wire is moving backwards)"
+    ],
+    "BackwardSplineTangentFromVerticalDelta": [
+      "FVector2D",
+      2,
+      "The amount that the vertical delta affects the generated tangent handle of splines (when the wire is moving backwards)"
+    ],
+    "DefaultPinTypeColor": [
+      "FLinearColor",
+      2,
+      "The default color is used only for types not specifically defined below.  Generally if it's seen, it means another type needs to be defined so that the wire in question can have an appropriate color."
+    ],
+    "ExecutionPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Execution pin type color"
+    ],
+    "BooleanPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Boolean pin type color"
+    ],
+    "BytePinTypeColor": [
+      "FLinearColor",
+      2,
+      "Byte pin type color"
+    ],
+    "ClassPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Class pin type color"
+    ],
+    "IntPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Integer pin type color"
+    ],
+    "Int64PinTypeColor": [
+      "FLinearColor",
+      2,
+      "Integer64 pin type color"
+    ],
+    "FloatPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Floating-point pin type color"
+    ],
+    "DoublePinTypeColor": [
+      "FLinearColor",
+      2,
+      "Double pin type color"
+    ],
+    "RealPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Real pin type color"
+    ],
+    "NamePinTypeColor": [
+      "FLinearColor",
+      2,
+      "Name pin type color"
+    ],
+    "SoftObjectPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Asset pin type color"
+    ],
+    "SoftClassPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Asset Class pin type color"
+    ],
+    "DelegatePinTypeColor": [
+      "FLinearColor",
+      2,
+      "Delegate pin type color"
+    ],
+    "ObjectPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Object pin type color"
+    ],
+    "InterfacePinTypeColor": [
+      "FLinearColor",
+      2,
+      "Interface pin type color"
+    ],
+    "StringPinTypeColor": [
+      "FLinearColor",
+      2,
+      "String pin type color"
+    ],
+    "TextPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Text pin type color"
+    ],
+    "StructPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Struct pin type color"
+    ],
+    "WildcardPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Wildcard pin type color"
+    ],
+    "VectorPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Vector pin type color"
+    ],
+    "RotatorPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Rotator pin type color"
+    ],
+    "TransformPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Transform pin type color"
+    ],
+    "IndexPinTypeColor": [
+      "FLinearColor",
+      2,
+      "Index pin type color"
+    ],
+    "EventNodeTitleColor": [
+      "FLinearColor",
+      2,
+      "Event node title color"
+    ],
+    "FunctionCallNodeTitleColor": [
+      "FLinearColor",
+      2,
+      "CallFunction node title color"
+    ],
+    "PureFunctionCallNodeTitleColor": [
+      "FLinearColor",
+      2,
+      "Pure function call node title color"
+    ],
+    "ParentFunctionCallNodeTitleColor": [
+      "FLinearColor",
+      2,
+      "Parent class function call node title color"
+    ],
+    "FunctionTerminatorNodeTitleColor": [
+      "FLinearColor",
+      2,
+      "Function Terminator node title color"
+    ],
+    "ExecBranchNodeTitleColor": [
+      "FLinearColor",
+      2,
+      "Exec Branch node title color"
+    ],
+    "ExecSequenceNodeTitleColor": [
+      "FLinearColor",
+      2,
+      "Exec Sequence node title color"
+    ],
+    "ResultNodeTitleColor": [
+      "FLinearColor",
+      2,
+      "Result node title color"
+    ],
+    "DefaultCommentNodeTitleColor": [
+      "FLinearColor",
+      2,
+      "Default Comment node title color"
+    ],
+    "PreviewNodeTitleColor": [
+      "FLinearColor",
+      2,
+      "Preview node title color"
+    ],
+    "DefaultDataWireThickness": [
+      "float32",
+      2,
+      "The thickness of a data wire"
+    ],
+    "DefaultExecutionWireThickness": [
+      "float32",
+      2,
+      "The thickness of an execution wire when not debugging"
+    ],
+    "TraceAttackColor": [
+      "FLinearColor",
+      2,
+      "The color to display execution wires that were just executed"
+    ],
+    "TraceAttackWireThickness": [
+      "float32",
+      2,
+      ""
+    ],
+    "TraceSustainColor": [
+      "FLinearColor",
+      2,
+      ""
+    ],
+    "TraceSustainWireThickness": [
+      "float32",
+      2,
+      ""
+    ],
+    "TraceReleaseColor": [
+      "FLinearColor",
+      2,
+      "The color to fade to for execution wires on release"
+    ],
+    "TraceReleaseWireThickness": [
+      "float32",
+      2,
+      "The thickness to drop down to during release / for unexecuted wires when debugging"
+    ],
+    "PaddingAutoCollateIncrement": [
+      "float32",
+      2,
+      "The amount of padding to add in order to auto collate multiple created nodes when using tab context menu (defaults to 20)"
+    ],
+    "bOpenCreateMenuOnBlankGraphAreas": [
+      "bool",
+      2,
+      "If a key press (default Tab) should open the create node context menu when the mouse is on top of blank areas of the graph (defaults to true)"
+    ],
+    "DefaultCommentNodeMoveMode": [
+      "ECommentBoxMode",
+      2,
+      "Whether a comment node should move any fully enclosed nodes around when it is moved"
+    ],
+    "bShowCommentBubbleWhenZoomedOut": [
+      "bool",
+      2,
+      "Whether to show a zoom-invariant comment bubble when zoomed out (making the comment node's text readable at any distance)"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,367 @@
+{
+  "name": "UListView",
+  "inherits": "UListViewBase",
+  "doc": "A virtualized list that allows up to thousands of items to be displayed.\n\nAn important distinction to keep in mind here is \"Item\" vs. \"Entry\"\nThe list itself is based on a list of n items, but only creates as many entry widgets as can fit on screen.\nFor example, a scrolling ListView of 200 items with 5 currently visible will only have created 5 entry widgets.\n\nTo make a widget usable as an entry in a ListView, it must inherit from the IUserObjectListEntry interface.",
+  "properties": {
+    "WidgetStyle": [
+      "FTableViewStyle"
+    ],
+    "ScrollBarStyle": [
+      "FScrollBarStyle"
+    ],
+    "Orientation": [
+      "EOrientation",
+      "The scroll & layout orientation of the list. ListView and TileView only.\nVertical will scroll vertically and arrange tiles into rows.\nHorizontal will scroll horizontally and arrange tiles into columns."
+    ],
+    "ConsumeMouseWheel": [
+      "EConsumeMouseWheel"
+    ],
+    "bClearSelectionOnClick": [
+      "bool"
+    ],
+    "bIsFocusable": [
+      "bool"
+    ],
+    "bReturnFocusToSelection": [
+      "bool"
+    ],
+    "BP_OnEntryInitialized": [
+      "FOnListEntryInitializedDynamic",
+      "Called when a row widget is generated for a list item"
+    ],
+    "BP_OnItemClicked": [
+      "FSimpleListItemEventDynamic"
+    ],
+    "BP_OnItemDoubleClicked": [
+      "FSimpleListItemEventDynamic"
+    ],
+    "BP_OnItemIsHoveredChanged": [
+      "FOnItemIsHoveredChangedDynamic"
+    ],
+    "BP_OnItemSelectionChanged": [
+      "FOnListItemSelectionChangedDynamic"
+    ],
+    "BP_OnItemScrolledIntoView": [
+      "FOnListItemScrolledIntoViewDynamic"
+    ],
+    "BP_OnListViewScrolled": [
+      "FOnListViewScrolledDynamic"
+    ],
+    "EntrySpacing": [
+      "float32",
+      "This deprecated property was originally BlueprintReadOnly. To satisfy the compiler requirment to have a BlueprintGetter for this property,\nit relies on the newly added UFunction GetHorizontalEntrySpacing() to act as its BlueprintGetter."
+    ],
+    "SelectionMode": [
+      "ESelectionMode"
+    ],
+    "HorizontalEntrySpacing": [
+      "float32"
+    ],
+    "VerticalEntrySpacing": [
+      "float32"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddItem",
+      "return": "void",
+      "doc": "Adds an the item to the list",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Item",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "CancelScrollIntoView",
+      "return": "void",
+      "doc": "Cancels a previous request to scroll and item into view.",
+      "ufunction": true,
+      "unrealname": "BP_CancelScrollIntoView",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearSelection",
+      "return": "void",
+      "doc": "Clear selection",
+      "ufunction": true,
+      "unrealname": "BP_ClearSelection",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumItemsSelected",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the number of items currently selected in the list",
+      "ufunction": true,
+      "unrealname": "BP_GetNumItemsSelected",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedItem",
+      "return": "UObject",
+      "const": true,
+      "doc": "Gets the first selected item, if any; recommended that you only use this for single selection lists.",
+      "ufunction": true,
+      "unrealname": "BP_GetSelectedItem",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedItems",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets a list of all the currently selected items",
+      "ufunction": true,
+      "unrealname": "BP_GetSelectedItems",
+      "meta": null,
+      "args": [
+        {
+          "name": "Items",
+          "type": "TArray<UObject>&"
+        }
+      ]
+    },
+    {
+      "name": "IsItemVisible",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets whether the entry for the given object is currently visible in the list",
+      "ufunction": true,
+      "unrealname": "BP_IsItemVisible",
+      "meta": null,
+      "args": [
+        {
+          "name": "Item",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "NavigateToItem",
+      "return": "void",
+      "doc": "Requests that the given item is navigated to, scrolling it into view if needed.",
+      "ufunction": true,
+      "unrealname": "BP_NavigateToItem",
+      "meta": null,
+      "args": [
+        {
+          "name": "Item",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "ScrollItemIntoView",
+      "return": "void",
+      "doc": "Requests that the given item is scrolled into view",
+      "ufunction": true,
+      "unrealname": "BP_ScrollItemIntoView",
+      "meta": null,
+      "args": [
+        {
+          "name": "Item",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SetItemSelection",
+      "return": "void",
+      "doc": "Sets whether the given item is selected.",
+      "ufunction": true,
+      "unrealname": "BP_SetItemSelection",
+      "meta": null,
+      "args": [
+        {
+          "name": "Item",
+          "type": "UObject"
+        },
+        {
+          "name": "bSelected",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetListItems",
+      "return": "void",
+      "doc": "Sets the array of objects to display rows for in the list",
+      "ufunction": true,
+      "unrealname": "BP_SetListItems",
+      "meta": null,
+      "args": [
+        {
+          "name": "InListItems",
+          "type": "TArray<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectedItem",
+      "return": "void",
+      "doc": "Sets the given item as the sole selected item.",
+      "ufunction": true,
+      "unrealname": "BP_SetSelectedItem",
+      "meta": null,
+      "args": [
+        {
+          "name": "Item",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "ClearListItems",
+      "return": "void",
+      "doc": "Removes all items from the list",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHorizontalEntrySpacing",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the horizontal spacing between entries.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetIndexForItem",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the index that the specified item is at. Will return the first found, or -1 for not found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Item",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "GetItemAt",
+      "return": "UObject",
+      "const": true,
+      "doc": "Returns the item at the given index",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetListItems",
+      "return": "TArray<UObject>",
+      "const": true,
+      "doc": "Gets the list of all items in the list.\nNote that each of these items only has a corresponding entry widget when visible. Use GetDisplayedEntryWidgets to get the currently displayed widgets.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumItems",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the total number of items",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVerticalEntrySpacing",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the vertical spacing between entries.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsRefreshPending",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if a refresh is pending and the list will be rebuilt on the next tick",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "NavigateToIndex",
+      "return": "void",
+      "doc": "Requests that the item at the given index navigated to, scrolling it into view if needed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveItem",
+      "return": "void",
+      "doc": "Removes an the item from the list",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Item",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "ScrollIndexIntoView",
+      "return": "void",
+      "doc": "Requests that the item at the given index is scrolled into view",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectedIndex",
+      "return": "void",
+      "doc": "Sets the item at the given index as the sole selected item.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectionMode",
+      "return": "void",
+      "doc": "Sets the new selection mode, preserving the current selection where possible.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SelectionMode",
+          "type": "ESelectionMode"
+        }
+      ]
+    }
+  ]
+}

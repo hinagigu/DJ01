@@ -1,0 +1,143 @@
+{
+  "name": "UGLTFExportOptions",
+  "inherits": "UObject",
+  "properties": {
+    "ExportUniformScale": [
+      "float32",
+      "Scale factor used for exporting all assets (0.01 by default) for conversion from centimeters (Unreal default) to meters (glTF)."
+    ],
+    "bExportPreviewMesh": [
+      "bool",
+      "If enabled, the preview mesh for a standalone animation or material asset will also be exported."
+    ],
+    "bSkipNearDefaultValues": [
+      "bool",
+      "If enabled, floating-point-based JSON properties that are nearly equal to their default value will not be exported and thus regarded as exactly default, reducing JSON size."
+    ],
+    "bIncludeCopyrightNotice": [
+      "bool",
+      "If enabled, the copyright notice from project settings will be included as metadata in the glTF asset."
+    ],
+    "bExportProxyMaterials": [
+      "bool",
+      "If enabled, materials that have a proxy defined in their user data, will be exported using that proxy instead. This setting won't affect proxy materials exported or referenced directly."
+    ],
+    "bUseImporterMaterialMapping": [
+      "bool",
+      "If enabled, materials imported with the Interchange-glTF importer will be directly mapped for the Exporter. bExport material options below will be ignored."
+    ],
+    "bExportUnlitMaterials": [
+      "bool",
+      "If enabled, materials with shading model unlit will be properly exported. Uses extension KHR_materials_unlit."
+    ],
+    "bExportClearCoatMaterials": [
+      "bool",
+      "If enabled, materials with shading model clear coat will be properly exported. Uses extension KHR_materials_clearcoat."
+    ],
+    "bExportClothMaterials": [
+      "bool",
+      "If enabled, materials with shading model cloth will be properly exported. Uses extension KHR_materials_sheen."
+    ],
+    "bExportThinTranslucentMaterials": [
+      "bool",
+      "If enabled, materials with shading model thin translucency will be exported. Export is only partial. Uses extension KHR_materials_transmission."
+    ],
+    "bExportSpecularGlossinessMaterials": [
+      "bool",
+      "If enabled, materials using the Importer's SpecularGlossiness material function will be exported. Uses extension KHR_materials_pbrSpecularGlossiness."
+    ],
+    "bExportEmissiveStrength": [
+      "bool",
+      "If enabled, allows materials to have an emissive factor that exceeds the standard range [0.0, 1.0]. Uses extension KHR_materials_emissive_strength."
+    ],
+    "BakeMaterialInputs": [
+      "EGLTFMaterialBakeMode",
+      "Bake mode determining if and how a material input is baked out to a texture. Baking is only used for non-trivial material inputs (i.e. not simple texture or constant expressions)."
+    ],
+    "DefaultMaterialBakeSize": [
+      "FGLTFMaterialBakeSize",
+      "Default size of the baked out texture (containing the material input). Can be overridden by material- and input-specific bake settings, see GLTFMaterialExportOptions."
+    ],
+    "DefaultMaterialBakeFilter": [
+      "TextureFilter",
+      "Default filtering mode used when sampling the baked out texture. Can be overridden by material- and input-specific bake settings, see GLTFMaterialExportOptions."
+    ],
+    "DefaultMaterialBakeTiling": [
+      "TextureAddress",
+      "Default addressing mode used when sampling the baked out texture. Can be overridden by material- and input-specific bake settings, see GLTFMaterialExportOptions."
+    ],
+    "DefaultInputBakeSettings": [
+      "TMap<EGLTFMaterialPropertyGroup,FGLTFOverrideMaterialBakeSettings>",
+      "Input-specific default bake settings that override the general defaults above."
+    ],
+    "DefaultLevelOfDetail": [
+      "int",
+      "Default LOD level used for exporting a mesh. Can be overridden by component or asset settings (e.g. minimum or forced LOD level)."
+    ],
+    "bExportVertexColors": [
+      "bool",
+      "If enabled, export vertex color. Not recommended due to vertex colors always being used as a base color multiplier in glTF, regardless of material. Often producing undesirable results."
+    ],
+    "bExportVertexSkinWeights": [
+      "bool",
+      "If enabled, export vertex bone weights and indices in skeletal meshes. Necessary for animation sequences."
+    ],
+    "bMakeSkinnedMeshesRoot": [
+      "bool",
+      "If enabled, make skeletal meshes into root nodes to strictly comply with the glTF specification. Final bone transforms remain the same and visual results are unaffected."
+    ],
+    "bUseMeshQuantization": [
+      "bool",
+      "If enabled, use quantization for vertex tangents and normals, reducing size. Requires extension KHR_mesh_quantization, which may result in the mesh not loading in some glTF viewers."
+    ],
+    "bExportLevelSequences": [
+      "bool",
+      "If enabled, export level sequences. Only transform tracks are currently supported. The level sequence will be played at the assigned display rate."
+    ],
+    "bExportAnimationSequences": [
+      "bool",
+      "If enabled, export single animation asset used by a skeletal mesh component. Export of vertex skin weights must be enabled."
+    ],
+    "TextureImageFormat": [
+      "EGLTFTextureImageFormat",
+      "Desired image format used for exported textures."
+    ],
+    "TextureImageQuality": [
+      "int",
+      "Level of compression used for textures exported with lossy image formats, 0 (default) or value between 1 (worst quality, best compression) and 100 (best quality, worst compression)."
+    ],
+    "bExportTextureTransforms": [
+      "bool",
+      "If enabled, export UV offset and scale/tiling used in materials. Uses extension KHR_texture_transform."
+    ],
+    "bAdjustNormalmaps": [
+      "bool",
+      "If enabled, exported normalmaps will be adjusted from Unreal to glTF convention (i.e. the green channel is flipped)."
+    ],
+    "bExportHiddenInGame": [
+      "bool",
+      "If enabled, export actors and components that are flagged as hidden in-game."
+    ],
+    "bExportLights": [
+      "bool",
+      "If enabled, export directional, point, and spot light components. Uses extension KHR_lights_punctual."
+    ],
+    "bExportCameras": [
+      "bool",
+      "If enabled, export camera components."
+    ],
+    "ExportMaterialVariants": [
+      "EGLTFMaterialVariantMode",
+      "Mode determining if and how to export material variants that change the materials property on a static or skeletal mesh component."
+    ]
+  },
+  "methods": [
+    {
+      "name": "ResetToDefault",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

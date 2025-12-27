@@ -1,0 +1,92 @@
+{
+  "name": "UAISystem",
+  "inherits": "UAISystemBase",
+  "properties": {
+    "PerceptionSystemClassName": [
+      "FSoftClassPath",
+      2,
+      "Class that will be used to spawn the perception system, can be game-specific"
+    ],
+    "HotSpotManagerClassName": [
+      "FSoftClassPath",
+      2,
+      "Class that will be used to spawn the hot spot manager, can be game-specific"
+    ],
+    "EnvQueryManagerClassName": [
+      "FSoftClassPath",
+      2,
+      "Class that will be used to spawn the env query manager, can be game-specific"
+    ],
+    "AcceptanceRadius": [
+      "float32",
+      2,
+      "Default AI movement's acceptance radius used to determine whether\nAI reached path's end"
+    ],
+    "PathfollowingRegularPathPointAcceptanceRadius": [
+      "float32",
+      2,
+      "Value used for pathfollowing's internal code to determine whether AI reached path's point.\n    @note this value is not used for path's last point. @see AcceptanceRadius"
+    ],
+    "PathfollowingNavLinkAcceptanceRadius": [
+      "float32",
+      2,
+      "Similarly to PathfollowingRegularPathPointAcceptanceRadius used by pathfollowing's internals\n    but gets applied only when next point on a path represents a begining of navigation link"
+    ],
+    "bFinishMoveOnGoalOverlap": [
+      "bool",
+      2,
+      "If true, overlapping the goal will be counted by default as finishing a move"
+    ],
+    "bAcceptPartialPaths": [
+      "bool",
+      2,
+      "Sets default value for rather move tasks accept partial paths or not"
+    ],
+    "bAllowStrafing": [
+      "bool",
+      2,
+      "Sets default value for rather move tasks allow strafing or not"
+    ],
+    "bAllowControllersAsEQSQuerier": [
+      "bool",
+      2,
+      "if enable will make EQS not complaint about using Controllers as queriers. Default behavior (false) will\n    in places automatically convert controllers to pawns, and complain if code user bypasses the conversion or uses\n    pawn-less controller"
+    ],
+    "bEnableDebuggerPlugin": [
+      "bool",
+      2,
+      "if set, GameplayDebuggerPlugin will be loaded on module's startup"
+    ],
+    "bForgetStaleActors": [
+      "bool",
+      2,
+      "If set, actors will be forgotten by the perception system when their stimulus has expired.\n    If not set, the perception system will remember the actor even if they are no longer perceived and their\n    stimuli has exceeded its max age"
+    ],
+    "bAddBlackboardSelfKey": [
+      "bool",
+      2,
+      "If set to true will result in automatically adding the SelfActor key to new Blackboard assets. It will\n    also result in making sure all the BB assets loaded do have the SelfKey entry, via PostLoad"
+    ],
+    "bClearBBEntryOnBTEQSFail": [
+      "bool",
+      2,
+      ""
+    ],
+    "bBlackboardKeyDecoratorAllowsNoneAsValue": [
+      "bool",
+      2,
+      "If enabled, blackboard based decorators will set key to 'Invalid' on creation or when selected key no longer exists (instead of using the first key of the blackboard)."
+    ],
+    "DefaultBlackboard": [
+      "TSoftObjectPtr<UBlackboardData>",
+      2,
+      "If set, new BTs will use this BB as default."
+    ],
+    "DefaultSightCollisionChannel": [
+      "ECollisionChannel",
+      2,
+      "Which collision channel to use for sight checks by default"
+    ]
+  },
+  "methods": []
+}

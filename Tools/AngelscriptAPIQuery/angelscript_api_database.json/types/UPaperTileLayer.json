@@ -1,0 +1,55 @@
+{
+  "name": "UPaperTileLayer",
+  "inherits": "UObject",
+  "doc": "This class represents a single layer in a tile map.  All layers in the map must have the size dimensions.",
+  "properties": {
+    "LayerName": [
+      "FText",
+      1,
+      "Name of the layer"
+    ],
+    "LayerWidth": [
+      "int",
+      1,
+      "Width of the layer (in tiles)"
+    ],
+    "LayerHeight": [
+      "int",
+      1,
+      "Height of the layer (in tiles)"
+    ],
+    "CollisionThicknessOverride": [
+      "float32",
+      "The override thickness of the collision for this layer (when bOverrideCollisionThickness is set)"
+    ],
+    "CollisionOffsetOverride": [
+      "float32",
+      "The override offset of the collision for this layer (when bOverrideCollisionOffset is set)\nNote: This is measured in Unreal Units (cm) from the center of the tile map component, not from the previous layer."
+    ],
+    "LayerColor": [
+      "FLinearColor",
+      "The color of this layer (multiplied with the tile map color and passed to the material as a vertex color)"
+    ],
+    "bHiddenInEditor": [
+      "bool",
+      "Is this layer currently hidden in the editor?"
+    ],
+    "bHiddenInGame": [
+      "bool",
+      "Should this layer be hidden in the game?"
+    ],
+    "bLayerCollides": [
+      "bool",
+      "Should this layer generate collision?\nNote: This only has an effect if the owning tile map has collision enabled"
+    ],
+    "bOverrideCollisionThickness": [
+      "bool",
+      "Should this layer use a custom thickness for generated collision instead of the thickness setting in the tile map?"
+    ],
+    "bOverrideCollisionOffset": [
+      "bool",
+      "Should this layer use a custom offset for generated collision instead of the layer drawing offset?"
+    ]
+  },
+  "methods": []
+}

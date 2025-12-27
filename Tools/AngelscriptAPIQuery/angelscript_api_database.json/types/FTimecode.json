@@ -1,0 +1,44 @@
+{
+  "name": "FTimecode",
+  "isStruct": true,
+  "doc": "A timecode that stores time in HH:MM:SS format with the remainder of time represented by an integer frame count.\n@note The full C++ class is located here: Engine\\Source\\Runtime\\Core\\Public\\Misc\\TimeCode.h",
+  "properties": {
+    "Hours": [
+      "int",
+      1,
+      ""
+    ],
+    "Minutes": [
+      "int",
+      1,
+      ""
+    ],
+    "Seconds": [
+      "int",
+      1,
+      ""
+    ],
+    "Frames": [
+      "int",
+      1,
+      ""
+    ],
+    "bDropFrameFormat": [
+      "bool",
+      1,
+      "If true, this Timecode represents a Drop Frame timecode used to account for fractional frame rates in NTSC play rates."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTimecode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTimecode"
+        }
+      ]
+    }
+  ]
+}

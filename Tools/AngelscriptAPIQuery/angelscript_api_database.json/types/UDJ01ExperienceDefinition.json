@@ -1,0 +1,28 @@
+{
+  "name": "UDJ01ExperienceDefinition",
+  "inherits": "UPrimaryDataAsset",
+  "doc": "Definition of an experience",
+  "properties": {
+    "GameFeaturesToEnable": [
+      "TArray<FString>",
+      2,
+      "List of Game Feature Plugins this experience wants to have active"
+    ],
+    "DefaultPawnData": [
+      "const UDJ01PawnData",
+      2,
+      "The default pawn class to spawn for players //@TODO: Make soft?"
+    ],
+    "Actions": [
+      "TArray<TObjectPtr<UGameFeatureAction>>",
+      2,
+      "List of actions to perform as this experience is loaded/activated/deactivated/unloaded"
+    ],
+    "ActionSets": [
+      "TArray<TObjectPtr<UDJ01ExperienceActionSet>>",
+      2,
+      "List of additional action sets to compose into this experience"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,49 @@
+{
+  "name": "UBoxComponent",
+  "inherits": "UShapeComponent",
+  "doc": "A box generally used for simple collision. Bounds are rendered as lines in the editor.",
+  "properties": {
+    "BoxExtent": [
+      "FVector",
+      "The extents (radii dimensions) of the box *"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetScaledBoxExtent",
+      "return": "FVector",
+      "const": true,
+      "doc": "@return the box extent, scaled by the component scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUnscaledBoxExtent",
+      "return": "FVector",
+      "const": true,
+      "doc": "@return the box extent, ignoring component scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBoxExtent",
+      "return": "void",
+      "doc": "Change the box extent size. This is the unscaled size, before component scale is applied.\n@param       InBoxExtent: new extent (radius) for the box.\n@param       bUpdateOverlaps: if true and this shape is registered and collides, updates touching array for owner actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoxExtent",
+          "type": "FVector"
+        },
+        {
+          "name": "bUpdateOverlaps",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "UAnimDataModel",
+  "inherits": "UObject",
+  "doc": "The Model represents the source data for animations. It contains both bone animation data as well as animated curves.\nThey are currently only a sub-object of a AnimSequenceBase instance. The instance derives all runtime data from the source data.",
+  "properties": {
+    "ModifiedEvent": [
+      "FAnimDataModelModifiedDynamicEvent",
+      "Dynamic delegate event allows scripting to register to any broadcasted notify."
+    ],
+    "BoneAnimationTracks": [
+      "TArray<FBoneAnimationTrack>",
+      1,
+      "All individual bone animation tracks"
+    ],
+    "PlayLength": [
+      "float32",
+      1,
+      ""
+    ],
+    "FrameRate": [
+      "FFrameRate",
+      1,
+      "Rate at which the animated data is sampled"
+    ],
+    "NumberOfFrames": [
+      "int",
+      1,
+      "Total number of sampled animated frames"
+    ],
+    "NumberOfKeys": [
+      "int",
+      1,
+      "Total number of sampled animated keys"
+    ],
+    "CurveData": [
+      "FAnimationCurveData",
+      1,
+      "Container with all animated curve data"
+    ],
+    "AnimatedBoneAttributes": [
+      "TArray<FAnimatedBoneAttribute>",
+      1,
+      "Container with all animated (bone) attribute data"
+    ]
+  },
+  "methods": []
+}

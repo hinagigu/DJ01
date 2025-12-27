@@ -1,0 +1,152 @@
+{
+  "name": "USetCollisionGeometryToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "properties": {
+    "GeometryType": [
+      "ECollisionGeometryType",
+      2,
+      "What kind of shapes to fit to the input. Note: Will be overridden by any enabled 'Auto Detect' settings, if close-fitting 'Auto Detect' shapes are found."
+    ],
+    "bAppendToExisting": [
+      "bool",
+      2,
+      "Whether to keep the existing collision shapes, and append new shapes to that set. Otherwise, existing collision will be cleared."
+    ],
+    "bUseWorldSpace": [
+      "bool",
+      2,
+      "When using multiple inputs to generate our collision, whether to use the world-space position of those input. If false, inputs will be considered as if they were all centered at the same location."
+    ],
+    "InputMode": [
+      "ESetCollisionGeometryInputMode",
+      2,
+      "What parts of the input should be separately fit with collision shapes"
+    ],
+    "bRemoveContained": [
+      "bool",
+      2,
+      "Whether to attempt to detect and remove collision shapes that are fully contained inside other collision shapes"
+    ],
+    "bEnableMaxCount": [
+      "bool",
+      2,
+      "Whether to discard all but MaxCount collision geometries with the largest volume"
+    ],
+    "MaxCount": [
+      "int",
+      2,
+      "The maximum number of collision shapes to generate. If necessary, the shapes with smallest volume will be discarded to meet this count."
+    ],
+    "MinThickness": [
+      "float32",
+      2,
+      "Generated collision shapes will be expanded if they are smaller than this in any dimension. Not supported for Level Sets or Convex Decompositions (Convex Hulls with more than one hull per mesh)."
+    ],
+    "bDetectBoxes": [
+      "bool",
+      2,
+      "Whether to override the requested Geometry Type with a box whenever a box closely fits the input shape"
+    ],
+    "bDetectSpheres": [
+      "bool",
+      2,
+      "Whether to override the requested Geometry Type with a sphere whenever a sphere closely fits the input shape"
+    ],
+    "bDetectCapsules": [
+      "bool",
+      2,
+      "Whether to override the requested Geometry Type with a capsule whenever a capsule closely fits the input shape"
+    ],
+    "bMergeCollisionShapes": [
+      "bool",
+      2,
+      "Whether to attempt to merge the generated collision shapes, when there are more than MergeAboveCount"
+    ],
+    "MergeAboveCount": [
+      "int",
+      2,
+      "Attempt to merge generated collision shapes until there are at most this many"
+    ],
+    "bUseNegativeSpaceInMerge": [
+      "bool",
+      2,
+      "Whether to protect negative space while merging the generated collision shapes, using the negative space settings"
+    ],
+    "bSimplifyHulls": [
+      "bool",
+      2,
+      "Whether to simplify the convex hull"
+    ],
+    "HullTargetFaceCount": [
+      "int",
+      2,
+      "Target number of faces in the simplified hull"
+    ],
+    "MaxHullsPerMesh": [
+      "int",
+      2,
+      "How many convex hulls can be used to approximate each mesh"
+    ],
+    "ConvexDecompositionSearchFactor": [
+      "float32",
+      2,
+      "How much to search the space of possible decompositions beyond MaxHullsPerMesh; for larger values, will do additional work to try to better approximate mesh features (but resulting hulls may overlap more)"
+    ],
+    "AddHullsErrorTolerance": [
+      "float32",
+      2,
+      "Error tolerance for adding more convex hulls, in cm.  For volumetric errors, the value will be cubed (so a value of 10 indicates a 10x10x10 volume worth of error is acceptable)."
+    ],
+    "MinPartThickness": [
+      "float32",
+      2,
+      "Minimum part thickness for convex decomposition, in cm; hulls thinner than this will be merged into adjacent hulls, if possible."
+    ],
+    "bUseNegativeSpaceInDecomposition": [
+      "bool",
+      2,
+      "Whether to guide the convex decomposition to prioritize not filling negative space of the input shape"
+    ],
+    "NegativeSpaceTolerance": [
+      "float",
+      2,
+      "Negative space closer to the input than this tolerance distance can be filled in"
+    ],
+    "NegativeSpaceMinRadius": [
+      "float",
+      2,
+      "Minimum radius of negative space to protect; tunnels with radius smaller than this could be filled in"
+    ],
+    "bIgnoreInternalNegativeSpace": [
+      "bool",
+      2,
+      "Whether to ignore negative space that is not accessible by traversing from the convex hull (via paths w/ radius of at least Negative Space Tolerance)"
+    ],
+    "HullTolerance": [
+      "float32",
+      2,
+      "If > 0, the polygon used to generate the swept hull will be simplified up to this distance tolerance, in cm"
+    ],
+    "SweepAxis": [
+      "EProjectedHullAxis",
+      2,
+      "How to choose which direction to sweep when creating a swept hull"
+    ],
+    "LevelSetResolution": [
+      "int",
+      2,
+      "Level set grid resolution along longest grid axis"
+    ],
+    "SetCollisionType": [
+      "ECollisionGeometryMode",
+      2,
+      "Set how the physics system should interpret collision shapes on the output mesh. Does not affect what collision shapes are generated by this tool."
+    ],
+    "bShowTargetMesh": [
+      "bool",
+      2,
+      "Show/Hide target mesh"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,48 @@
+{
+  "name": "UCurveLinearColorAtlas",
+  "inherits": "UTexture2D",
+  "doc": "Manages gradient LUT textures for registered actors and assigns them to the corresponding materials on the actor",
+  "properties": {
+    "TextureSize": [
+      "uint",
+      2,
+      ""
+    ],
+    "TextureHeight": [
+      "uint",
+      2,
+      ""
+    ],
+    "GradientCurves": [
+      "TArray<TObjectPtr<UCurveLinearColor>>",
+      2,
+      "Height of the lookup textures"
+    ],
+    "bSquareResolution": [
+      "bool",
+      "Set texture height equal to texture width."
+    ],
+    "bDisableAllAdjustments": [
+      "bool",
+      "Disable all color adjustments to preserve negative values in curves. Color adjustments clamp to 0 when enabled."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCurvePosition",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCurve",
+          "type": "UCurveLinearColor"
+        },
+        {
+          "name": "Position",
+          "type": "float32&"
+        }
+      ]
+    }
+  ]
+}

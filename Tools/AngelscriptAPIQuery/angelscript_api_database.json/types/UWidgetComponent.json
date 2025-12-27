@@ -1,0 +1,471 @@
+{
+  "name": "UWidgetComponent",
+  "inherits": "UMeshComponent",
+  "doc": "The widget component provides a surface in the 3D environment on which to render widgets normally rendered to the screen.\nWidgets are first rendered to a render target, then that render target is displayed in the world.\n\nMaterial Properties set by this component on whatever material overrides the default.\nSlateUI [Texture]\nBackColor [Vector]\nTintColorAndOpacity [Vector]\nOpacityFromTexture [Scalar]",
+  "properties": {
+    "Space": [
+      "EWidgetSpace",
+      2,
+      "The coordinate space in which to render the widget"
+    ],
+    "TimingPolicy": [
+      "EWidgetTimingPolicy",
+      2,
+      "How this widget should deal with timing, pausing, etc."
+    ],
+    "WidgetClass": [
+      "TSubclassOf<UUserWidget>",
+      2,
+      "The class of User Widget to create and display an instance of"
+    ],
+    "bManuallyRedraw": [
+      "bool",
+      2,
+      "Should we wait to be told to redraw to actually draw?"
+    ],
+    "bUseInvalidationInWorldSpace": [
+      "bool",
+      2,
+      "Use the invalidation system to update this widget.\nOnly valid in World space. In Screen space, the widget is updated by the viewport owners."
+    ],
+    "bDrawAtDesiredSize": [
+      "bool",
+      2,
+      "Causes the render target to automatically match the desired size.\n\nWARNING: If you change this every frame, it will be very expensive. If you need\n   that effect, you should keep the outer widget's sized locked and dynamically\n   scale or resize some inner widget."
+    ],
+    "bReceiveHardwareInput": [
+      "bool",
+      2,
+      "Register with the viewport for hardware input from the true mouse and keyboard.  These widgets\nwill more or less react like regular 2D widgets in the viewport, e.g. they can and will steal focus\nfrom the viewport.\n\nWARNING: If you are making a VR game, definitely do not change this to true.  This option should ONLY be used\nif you're making what would otherwise be a normal menu for a game, just in 3D.  If you also need the game to\nremain responsive and for the player to be able to interact with UI and move around the world (such as a keypad on a door),\nuse the WidgetInteractionComponent instead."
+    ],
+    "bWindowFocusable": [
+      "bool",
+      2,
+      "Is the virtual window created to host the widget focusable?"
+    ],
+    "bApplyGammaCorrection": [
+      "bool",
+      2,
+      "Widget components that appear in the world will be gamma corrected by the 3D renderer.\nIn some cases, widget components are blitted directly into the backbuffer, in which case gamma correction should be enabled."
+    ],
+    "OpacityFromTexture": [
+      "float32",
+      2,
+      "Sets the amount of opacity from the widget's UI texture to use when rendering the translucent or masked UI to the viewport (0.0-1.0)"
+    ],
+    "BlendMode": [
+      "EWidgetBlendMode",
+      2,
+      "The blend mode for the widget."
+    ],
+    "bIsTwoSided": [
+      "bool",
+      2,
+      "Is the component visible from behind?"
+    ],
+    "SharedLayerName": [
+      "FName",
+      2,
+      "Layer Name the widget will live on"
+    ],
+    "LayerZOrder": [
+      "int",
+      2,
+      "ZOrder the layer will be created on, note this only matters on the first time a new layer is created, subsequent additions to the same layer will use the initially defined ZOrder"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCurrentDrawSize",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Returns the \"actual\" draw size of the quad in the world",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCylinderArcAngle",
+      "return": "float32",
+      "const": true,
+      "doc": "Defines the curvature of the widget component when using EWidgetGeometryMode::Cylinder; ignored otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDrawAtDesiredSize",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDrawSize",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Returns the \"specified\" draw size of the quad in the world",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGeometryMode",
+      "return": "EWidgetGeometryMode",
+      "const": true,
+      "doc": "@see EWidgetGeometryMode, @see GetCylinderArcAngle()",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetManuallyRedraw",
+      "return": "bool",
+      "const": true,
+      "doc": "@see bManuallyRedraw",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMaterialInstance",
+      "return": "UMaterialInstanceDynamic",
+      "const": true,
+      "doc": "Returns the dynamic material instance used to render the user widget",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwnerPlayer",
+      "return": "ULocalPlayer",
+      "const": true,
+      "doc": "Gets the local player that owns this widget component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPivot",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Returns the pivot point where the UI is rendered about the origin.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRedrawTime",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRenderTarget",
+      "return": "UTextureRenderTarget2D",
+      "const": true,
+      "doc": "Returns the render target to which the user widget is rendered",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTickWhenOffscreen",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets whether the widget ticks when offscreen or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTwoSided",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets whether the widget is two-sided or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUserWidgetObject",
+      "return": "UUserWidget",
+      "const": true,
+      "doc": "Returns the user widget object displayed by this component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWidget",
+      "return": "UUserWidget",
+      "const": true,
+      "doc": "Gets the widget that is used by this Widget Component. It will be null if a Slate Widget was set using SetSlateWidget function.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWidgetSpace",
+      "return": "EWidgetSpace",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWindowFocusable",
+      "return": "bool",
+      "const": true,
+      "doc": "@see bWindowFocusable",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWindowVisiblility",
+      "return": "EWindowVisibility",
+      "const": true,
+      "doc": "Gets the visibility of the virtual window created to host the widget focusable.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsWidgetVisible",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the the Slate window is visible and that the widget is also visible, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RequestRenderUpdate",
+      "return": "void",
+      "doc": "Requests that the widget have it's render target updated, if TickMode is disabled, this will force a tick to happen to update the render target.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBackgroundColor",
+      "return": "void",
+      "doc": "Sets the background color and opacityscale for this widget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewBackgroundColor",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetCylinderArcAngle",
+      "return": "void",
+      "doc": "Defines the curvature of the widget component when using EWidgetGeometryMode::Cylinder; ignored otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCylinderArcAngle",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDrawAtDesiredSize",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInDrawAtDesiredSize",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetDrawSize",
+      "return": "void",
+      "doc": "Sets the draw size of the quad in the world",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Size",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetGeometryMode",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGeometryMode",
+          "type": "EWidgetGeometryMode"
+        }
+      ]
+    },
+    {
+      "name": "SetManuallyRedraw",
+      "return": "void",
+      "doc": "@see bManuallyRedraw",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bUseManualRedraw",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetOwnerPlayer",
+      "return": "void",
+      "doc": "Sets the local player that owns this widget component.  Setting the owning player controls\nwhich player's viewport the widget appears on in a split screen scenario.  Additionally it\nforwards the owning player to the actual UserWidget that is spawned.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LocalPlayer",
+          "type": "ULocalPlayer"
+        }
+      ]
+    },
+    {
+      "name": "SetPivot",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPivot",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetRedrawTime",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InRedrawTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTickMode",
+      "return": "void",
+      "doc": "Sets the Tick mode of the Widget Component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTickMode",
+          "type": "ETickMode"
+        }
+      ]
+    },
+    {
+      "name": "SetTickWhenOffscreen",
+      "return": "void",
+      "doc": "Sets whether the widget ticks when offscreen or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bWantTickWhenOffscreen",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTintColorAndOpacity",
+      "return": "void",
+      "doc": "Sets the tint color and opacity scale for this widget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTintColorAndOpacity",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetTwoSided",
+      "return": "void",
+      "doc": "Sets whether the widget is two-sided or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bWantTwoSided",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWidget",
+      "return": "void",
+      "doc": "Sets the widget to use directly. This function will keep track of the widget till the next time it's called\n    with either a newer widget or a nullptr",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UUserWidget"
+        }
+      ]
+    },
+    {
+      "name": "SetWidgetSpace",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewSpace",
+          "type": "EWidgetSpace"
+        }
+      ]
+    },
+    {
+      "name": "SetWindowFocusable",
+      "return": "void",
+      "doc": "@see bWindowFocusable",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInWindowFocusable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWindowVisibility",
+      "return": "void",
+      "doc": "Sets the visibility of the virtual window created to host the widget focusable.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVisibility",
+          "type": "EWindowVisibility"
+        }
+      ]
+    }
+  ]
+}

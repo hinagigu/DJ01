@@ -1,0 +1,82 @@
+{
+  "name": "UConvertToPolygonsToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "properties": {
+    "ConversionMode": [
+      "EConvertToPolygonsMode",
+      2,
+      "Strategy to use to group triangles"
+    ],
+    "AngleTolerance": [
+      "float32",
+      2,
+      "Tolerance for planarity"
+    ],
+    "bUseAverageGroupNormal": [
+      "bool",
+      2,
+      "Whether to compute Face Normal Deviation based on the overall PolyGroup's average normal, or to only consider the normals of the individual triangles"
+    ],
+    "NumPoints": [
+      "int",
+      2,
+      "Furthest-Point Sample count, approximately this number of polygroups will be generated"
+    ],
+    "bSplitExisting": [
+      "bool",
+      2,
+      "If enabled, then furthest-point sampling happens with respect to existing Polygroups, ie the existing groups are further subdivided"
+    ],
+    "bNormalWeighted": [
+      "bool",
+      2,
+      "If true, region-growing in Sampling modes will be controlled by face normals, resulting in regions with borders that are more-aligned with curvature ridges"
+    ],
+    "NormalWeighting": [
+      "float32",
+      2,
+      "This parameter modulates the effect of normal weighting during region-growing"
+    ],
+    "QuadAdjacencyWeight": [
+      "float32",
+      2,
+      "Bias for Quads that are adjacent to already-discovered Quads. Set to 0 to disable."
+    ],
+    "QuadMetricClamp": [
+      "float32",
+      2,
+      "Set to values below 1 to ignore less-likely triangle pairings"
+    ],
+    "QuadSearchRounds": [
+      "int",
+      2,
+      "Iteratively repeat quad-searching in uncertain areas, to try to slightly improve results"
+    ],
+    "bRespectUVSeams": [
+      "bool",
+      2,
+      "If true, polygroup borders will not cross existing UV seams"
+    ],
+    "bRespectHardNormals": [
+      "bool",
+      2,
+      "If true, polygroup borders will not cross existing hard normal seams"
+    ],
+    "MinGroupSize": [
+      "int",
+      2,
+      "group filtering"
+    ],
+    "bCalculateNormals": [
+      "bool",
+      2,
+      "If true, normals are recomputed per-group, with hard edges at group boundaries"
+    ],
+    "bShowGroupColors": [
+      "bool",
+      2,
+      "Display each group with a different auto-generated color"
+    ]
+  },
+  "methods": []
+}

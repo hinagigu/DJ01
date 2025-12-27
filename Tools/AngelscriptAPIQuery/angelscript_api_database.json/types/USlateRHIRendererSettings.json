@@ -1,0 +1,41 @@
+{
+  "name": "USlateRHIRendererSettings",
+  "inherits": "UDeveloperSettings",
+  "doc": "Settings used to control slate rendering",
+  "properties": {
+    "SlatePostSettings": [
+      "TMap<ESlatePostRT,FSlatePostSettings>",
+      2,
+      "Map of all slate post RT's and their settings\nNote that each post RT used in a frame will result in 1 full framebuffer copy for slate to sample from.\nIf a post RT is not used, no copy will occur & that post RT will be resized to 1x1 after 2 frames of non-use.\n\nBy default only SlatePostRT_0 is enabled. The rest must manually be enabled in settings below.\n        // Map is nice since needs no editor customization. After initial run there should be no more than 5 lookups each frame."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetMutableSlatePostSetting",
+      "return": "FSlatePostSettings&",
+      "doc": "Get settings struct for a particular post buffer index",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPostBufferBit",
+          "type": "ESlatePostRT"
+        }
+      ]
+    },
+    {
+      "name": "GetSlatePostSetting",
+      "return": "FSlatePostSettings",
+      "const": true,
+      "doc": "Get settings struct for a particular post buffer index",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPostBufferBit",
+          "type": "ESlatePostRT"
+        }
+      ]
+    }
+  ]
+}

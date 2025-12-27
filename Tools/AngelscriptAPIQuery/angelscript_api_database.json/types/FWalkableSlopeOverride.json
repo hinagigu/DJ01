@@ -1,0 +1,27 @@
+{
+  "name": "FWalkableSlopeOverride",
+  "isStruct": true,
+  "doc": "Struct allowing control over \"walkable\" normals, by allowing a restriction or relaxation of what steepness is normally walkable.",
+  "properties": {
+    "WalkableSlopeBehavior": [
+      "EWalkableSlopeBehavior",
+      "Behavior of this surface (whether we affect the walkable slope).\n@see GetWalkableSlopeBehavior(), SetWalkableSlopeBehavior()"
+    ],
+    "WalkableSlopeAngle": [
+      "float32",
+      "Override walkable slope angle (in degrees), applying the rules of the Walkable Slope Behavior.\n@see GetWalkableSlopeAngle(), SetWalkableSlopeAngle()"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FWalkableSlopeOverride&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FWalkableSlopeOverride"
+        }
+      ]
+    }
+  ]
+}

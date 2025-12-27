@@ -1,0 +1,523 @@
+{
+  "name": "__VisualLogger",
+  "properties": {},
+  "methods": [
+    {
+      "name": "EnableRecording",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LogArrow",
+      "return": "void",
+      "doc": "Logs arrow - recording for Visual Logs has to be enabled to record this data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "SegmentStart",
+          "type": "FVector"
+        },
+        {
+          "name": "SegmentEnd",
+          "type": "FVector"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "ObjectColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "CategoryName",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "bAddToMessageLog",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LogBox",
+      "return": "void",
+      "doc": "Logs box shape - recording for Visual Logs has to be enabled to record this data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "BoxShape",
+          "type": "FBox"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "ObjectColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "LogCategory",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "bAddToMessageLog",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bWireframe",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LogCapsule",
+      "return": "void",
+      "doc": "Logs capsule shape - recording for Visual Logs has to be enabled to record this data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "Base",
+          "type": "FVector"
+        },
+        {
+          "name": "HalfHeight",
+          "type": "float32"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "Rotation",
+          "type": "FQuat"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "ObjectColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "LogCategory",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "bAddToMessageLog",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bWireframe",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LogCircle",
+      "return": "void",
+      "doc": "Logs circle - recording for Visual Logs has to be enabled to record this data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "Center",
+          "type": "FVector"
+        },
+        {
+          "name": "UpAxis",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "ObjectColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Thickness",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "CategoryName",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "bAddToMessageLog",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LogCone",
+      "return": "void",
+      "doc": "Logs cone shape - recording for Visual Logs has to be enabled to record this data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "Origin",
+          "type": "FVector"
+        },
+        {
+          "name": "Direction",
+          "type": "FVector"
+        },
+        {
+          "name": "Length",
+          "type": "float32"
+        },
+        {
+          "name": "Angle",
+          "type": "float32"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "ObjectColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "LogCategory",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "bAddToMessageLog",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bWireframe",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LogCylinder",
+      "return": "void",
+      "doc": "Logs cylinder shape - recording for Visual Logs has to be enabled to record this data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "Start",
+          "type": "FVector"
+        },
+        {
+          "name": "End",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "ObjectColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "LogCategory",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "bAddToMessageLog",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bWireframe",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LogLocation",
+      "return": "void",
+      "doc": "Logs location as sphere with given radius - recording for Visual Logs has to be enabled to record this data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "ObjectColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Radius",
+          "default": "10.000000",
+          "type": "float32"
+        },
+        {
+          "name": "LogCategory",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "bAddToMessageLog",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LogOrientedBox",
+      "return": "void",
+      "doc": "Logs oriented box shape - recording for Visual Logs has to be enabled to record this data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "BoxShape",
+          "type": "FBox"
+        },
+        {
+          "name": "Transform",
+          "type": "FTransform"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "ObjectColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "LogCategory",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "bAddToMessageLog",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bWireframe",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LogSegment",
+      "return": "void",
+      "doc": "Logs segment - recording for Visual Logs has to be enabled to record this data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "SegmentStart",
+          "type": "FVector"
+        },
+        {
+          "name": "SegmentEnd",
+          "type": "FVector"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "ObjectColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Thickness",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "CategoryName",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "bAddToMessageLog",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LogSphere",
+      "return": "void",
+      "doc": "Logs sphere shape - recording for Visual Logs has to be enabled to record this data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "Center",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "ObjectColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 1.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "LogCategory",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "bAddToMessageLog",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bWireframe",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LogText",
+      "return": "void",
+      "doc": "Logs simple text string with Visual Logger - recording for Visual Logs has to be enabled to record this data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "Text",
+          "type": "FString"
+        },
+        {
+          "name": "LogCategory",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "bAddToMessageLog",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RedirectVislog",
+      "return": "void",
+      "doc": "Makes SourceOwner log to DestinationOwner's vislog",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceOwner",
+          "type": "UObject"
+        },
+        {
+          "name": "DestinationOwner",
+          "type": "UObject"
+        }
+      ]
+    }
+  ]
+}

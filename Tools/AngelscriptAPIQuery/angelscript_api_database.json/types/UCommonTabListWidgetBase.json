@@ -1,0 +1,321 @@
+{
+  "name": "UCommonTabListWidgetBase",
+  "inherits": "UCommonUserWidget",
+  "doc": "Base class for a list of selectable tabs that correspondingly activate and display an arbitrary widget in a linked switcher",
+  "properties": {
+    "OnTabSelected": [
+      "FOnTabSelected__CommonTabListWidgetBase",
+      "Broadcasts when a new tab is selected."
+    ],
+    "OnTabButtonCreation": [
+      "FOnTabButtonCreation__CommonTabListWidgetBase",
+      "Broadcasts when a new tab is created."
+    ],
+    "OnTabButtonRemoval": [
+      "FOnTabButtonRemoval__CommonTabListWidgetBase",
+      "Broadcasts when a new tab is created."
+    ],
+    "OnTabListRebuilt": [
+      "FOnTabListRebuilt__CommonTabListWidgetBase",
+      "Broadcasts when the tab list has been rebuilt (after a new tab has been inserted rather than added to the end)."
+    ],
+    "NextTabInputActionData": [
+      "FDataTableRowHandle",
+      "The input action to listen for causing the next tab to be selected"
+    ],
+    "PreviousTabInputActionData": [
+      "FDataTableRowHandle",
+      "The input action to listen for causing the previous tab to be selected"
+    ],
+    "NextTabEnhancedInputAction": [
+      "UInputAction",
+      "The input action to listen for causing the next tab to be selected"
+    ],
+    "PreviousTabEnhancedInputAction": [
+      "UInputAction",
+      "The input action to listen for causing the previous tab to be selected"
+    ],
+    "bAutoListenForInput": [
+      "bool",
+      "Whether to register to handle tab list input immediately upon construction"
+    ],
+    "bDeferRebuildingTabList": [
+      "bool",
+      2,
+      "Whether to defer until next tick rebuilding tab list when inserting new tab (rather than adding to the end).\nUseful if inserting multiple tabs in the same tick as the tab list will only be rebuilt once."
+    ]
+  },
+  "methods": [
+    {
+      "name": "DisableTabWithReason",
+      "return": "void",
+      "doc": "Disables the tab associated with the given ID with a reason",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TabNameID",
+          "type": "FName"
+        },
+        {
+          "name": "Reason",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveTab",
+      "return": "FName",
+      "const": true,
+      "doc": "@return The currently active (selected) tab",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLinkedSwitcher",
+      "return": "UCommonAnimatedSwitcher",
+      "const": true,
+      "doc": "@return The switcher that this tab list is associated with and manipulates",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedTabId",
+      "return": "FName",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTabButtonBaseByID",
+      "return": "UCommonButtonBase",
+      "const": true,
+      "doc": "Returns the tab button matching the ID, if found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TabNameID",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetTabCount",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTabIdAtIndex",
+      "return": "FName",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "HandlePostLinkedSwitcherChanged_BP",
+      "return": "void",
+      "protected": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HandlePreLinkedSwitcherChanged_BP",
+      "return": "void",
+      "protected": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HandleTabCreation",
+      "return": "void",
+      "protected": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TabNameID",
+          "type": "FName"
+        },
+        {
+          "name": "TabButton",
+          "type": "UCommonButtonBase"
+        }
+      ]
+    },
+    {
+      "name": "HandleTabRemoval",
+      "return": "void",
+      "protected": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TabNameID",
+          "type": "FName"
+        },
+        {
+          "name": "TabButton",
+          "type": "UCommonButtonBase"
+        }
+      ]
+    },
+    {
+      "name": "RegisterTab",
+      "return": "bool",
+      "doc": "INDEX_NONE",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TabNameID",
+          "type": "FName"
+        },
+        {
+          "name": "ButtonWidgetType",
+          "type": "TSubclassOf<UCommonButtonBase>"
+        },
+        {
+          "name": "ContentWidget",
+          "type": "UWidget"
+        },
+        {
+          "name": "TabIndex",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllTabs",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveTab",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TabNameID",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SelectTabByID",
+      "return": "bool",
+      "doc": "Selects the tab registered under the provided name ID\n@param TabNameID The name ID for the tab given when registered",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TabNameID",
+          "type": "FName"
+        },
+        {
+          "name": "bSuppressClickFeedback",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLinkedSwitcher",
+      "return": "void",
+      "doc": "Establishes the activatable widget switcher instance that this tab list should interact with\n@param CommonSwitcher The switcher that this tab list should be associated with and manipulate",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CommonSwitcher",
+          "type": "UCommonAnimatedSwitcher"
+        }
+      ]
+    },
+    {
+      "name": "SetListeningForInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bShouldListen",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTabEnabled",
+      "return": "void",
+      "doc": "Sets whether the tab associated with the given ID is enabled/disabled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TabNameID",
+          "type": "FName"
+        },
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTabInteractionEnabled",
+      "return": "void",
+      "doc": "Sets whether the tab associated with the given ID is interactable",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TabNameID",
+          "type": "FName"
+        },
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTabVisibility",
+      "return": "void",
+      "doc": "Sets the visibility of the tab associated with the given ID",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TabNameID",
+          "type": "FName"
+        },
+        {
+          "name": "NewVisibility",
+          "type": "ESlateVisibility"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "name": "FAnimNode_AnimDynamics",
+  "isStruct": true,
+  "properties": {
+    "LinearDampingOverride": [
+      "float32",
+      "Overridden linear damping value. The default is 0.7. Values below 0.7 won't have an effect."
+    ],
+    "AngularDampingOverride": [
+      "float32",
+      "Overridden angular damping value. The default is 0.7. Values below 0.7 won't have an effect."
+    ],
+    "RelativeSpaceBone": [
+      "FBoneReference",
+      2,
+      "When in BoneRelative sim space, the simulation will use this bone as the origin"
+    ],
+    "BoundBone": [
+      "FBoneReference",
+      2,
+      "The bone to attach the physics body to, if bChain is true this is the top of the chain"
+    ],
+    "ChainEnd": [
+      "FBoneReference",
+      2,
+      "If bChain is true this is the bottom of the chain, otherwise ignored"
+    ],
+    "PhysicsBodyDefinitions": [
+      "TArray<FAnimPhysBodyDefinition>",
+      2,
+      ""
+    ],
+    "GravityScale": [
+      "float32",
+      "Scale for gravity, higher values increase forces due to gravity"
+    ],
+    "GravityOverride": [
+      "FVector",
+      "Gravity Override Value"
+    ],
+    "LinearSpringConstant": [
+      "float32",
+      "Spring constant to use when calculating linear springs, higher values mean a stronger spring.\nYou need to enable the Linear Spring checkbox for this to have an effect."
+    ],
+    "AngularSpringConstant": [
+      "float32",
+      "Spring constant to use when calculating angular springs, higher values mean a stronger spring.\nYou need to enable the Angular Spring checkbox for this to have an effect.\nNote: Make sure to also set the Angular Target Axis and Angular Target in the Constraint Setup for this to have an effect."
+    ],
+    "WindScale": [
+      "float32",
+      2,
+      "Scale to apply to calculated wind velocities in the solver"
+    ],
+    "ComponentLinearAccScale": [
+      "FVector",
+      2,
+      "When using non-world-space sim, this controls how much of the components world-space acceleration is passed on to the local-space simulation."
+    ],
+    "ComponentLinearVelScale": [
+      "FVector",
+      2,
+      "When using non-world-space sim, this applies a 'drag' to the bodies in the local space simulation, based on the components world-space velocity."
+    ],
+    "ComponentAppliedLinearAccClamp": [
+      "FVector",
+      2,
+      "When using non-world-space sim, this is an overall clamp on acceleration derived from ComponentLinearAccScale and ComponentLinearVelScale, to ensure it is not too large."
+    ],
+    "AngularBiasOverride": [
+      "float32",
+      "Overridden angular bias value\nAngular bias is essentially a twist reduction for chain forces and defaults to a value to keep chains stability\nin check. When using single-body systems sometimes angular forces will look like they are \"catching-up\" with\nthe mesh, if that's the case override this and push it towards 1.0f until it settles correctly"
+    ],
+    "NumSolverIterationsPreUpdate": [
+      "int",
+      2,
+      "Number of update passes on the linear and angular limits before we solve the position of the bodies recommended to be four times the value of NumSolverIterationsPostUpdate"
+    ],
+    "NumSolverIterationsPostUpdate": [
+      "int",
+      2,
+      "Number of update passes on the linear and angular limits after we solve the position of the bodies, recommended to be around a quarter of NumSolverIterationsPreUpdate"
+    ],
+    "SphericalLimits": [
+      "TArray<FAnimPhysSphericalLimit>",
+      2,
+      "List of available spherical limits for this node"
+    ],
+    "ExternalForce": [
+      "FVector",
+      2,
+      "An external force to apply to all bodies in the simulation when ticked, specified in world space"
+    ],
+    "PlanarLimits": [
+      "TArray<FAnimPhysPlanarLimit>",
+      2,
+      "List of available planar limits for this node"
+    ],
+    "SimulationSpace": [
+      "AnimPhysSimSpaceType",
+      "The space used to run the simulation"
+    ],
+    "RetargetingSettings": [
+      "FRotationRetargetingInfo",
+      2,
+      "The settings for rotation retargeting"
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ],
+    "bUseSphericalLimits": [
+      "bool",
+      "Whether to evaluate spherical limits"
+    ],
+    "bUsePlanarLimit": [
+      "bool",
+      "Whether to evaluate planar limits"
+    ],
+    "bDoUpdate": [
+      "bool",
+      "If true we will perform physics update, otherwise skip - allows visualization of the initial state of the bodies"
+    ],
+    "bDoEval": [
+      "bool",
+      "If true we will perform bone transform evaluation, otherwise skip - allows visualization of the initial anim state compared to the physics sim"
+    ],
+    "bOverrideLinearDamping": [
+      "bool",
+      "If true, the override value will be used for linear damping"
+    ],
+    "bOverrideAngularBias": [
+      "bool",
+      "If true, the override value will be used for the angular bias for bodies in this node.\nAngular bias is essentially a twist reduction for chain forces and defaults to a value to keep chains stability\nin check. When using single-body systems sometimes angular forces will look like they are \"catching-up\" with\nthe mesh, if that's the case override this and push it towards 1.0f until it settles correctly"
+    ],
+    "bOverrideAngularDamping": [
+      "bool",
+      "If true, the override value will be used for angular damping"
+    ],
+    "bEnableWind": [
+      "bool",
+      "Whether or not wind is enabled for the bodies in this simulation"
+    ],
+    "bUseGravityOverride": [
+      "bool",
+      "Use gravity override value vs gravity scale"
+    ],
+    "bGravityOverrideInSimSpace": [
+      "bool",
+      "If true the gravity override value is defined in simulation space, by default it is in world space"
+    ],
+    "bLinearSpring": [
+      "bool",
+      "If true the body will attempt to spring back to its initial position"
+    ],
+    "bAngularSpring": [
+      "bool",
+      "If true the body will attempt to align itself with the specified angular target"
+    ],
+    "bChain": [
+      "bool",
+      "Set to true to use the solver to simulate a connected chain"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_AnimDynamics&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_AnimDynamics"
+        }
+      ]
+    }
+  ]
+}

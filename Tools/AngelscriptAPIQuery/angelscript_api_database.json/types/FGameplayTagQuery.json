@@ -1,0 +1,70 @@
+{
+  "name": "FGameplayTagQuery",
+  "isStruct": true,
+  "doc": "An FGameplayTagQuery is a logical query that can be run against an FGameplayTagContainer.  A query that succeeds is said to \"match\".\nQueries are logical expressions that can test the intersection properties of another tag container (all, any, or none), or the matching state of a set of sub-expressions\n(all, any, or none). This allows queries to be arbitrarily recursive and very expressive.  For instance, if you wanted to test if a given tag container contained tags\n((A && B) || (C)) && (!D), you would construct your query in the form ALL( ANY( ALL(A,B), ALL(C) ), NONE(D) )\n\nYou can expose the query structs to Blueprints and edit them with a custom editor, or you can construct them natively in code.\n\nExample of how to build a query via code:\n    FGameplayTagQuery Q;\n    Q.BuildQuery(\n            FGameplayTagQueryExpression()\n            .AllTagsMatch()\n            .AddTag(FGameplayTag::RequestGameplayTag(FName(TEXT(\"Animal.Mammal.Dog.Corgi\"))))\n            .AddTag(FGameplayTag::RequestGameplayTag(FName(TEXT(\"Plant.Tree.Spruce\"))))\n            );\n\nQueries are internally represented as a byte stream that is memory-efficient and can be evaluated quickly at runtime.\nNote: these have an extensive details and graph pin customization for editing, so there is no need to expose the internals to Blueprints.",
+  "properties": {
+    "TokenStreamVersion": [
+      "int",
+      2,
+      "Versioning for future token stream protocol changes. See EGameplayTagQueryStreamVersion."
+    ],
+    "TagDictionary": [
+      "TArray<FGameplayTag>",
+      2,
+      "List of tags referenced by this entire query. Token stream stored indices into this list."
+    ],
+    "QueryTokenStream": [
+      "TArray<uint8>",
+      2,
+      "Stream representation of the actual hierarchical query"
+    ],
+    "UserDescription": [
+      "FString",
+      2,
+      "User-provided string describing the query"
+    ],
+    "AutoDescription": [
+      "FString",
+      2,
+      "Auto-generated string describing the query"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDescription",
+      "return": "FString",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsEmpty",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Matches",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "FGameplayTagQuery&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayTagQuery"
+        }
+      ]
+    }
+  ]
+}

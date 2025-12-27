@@ -1,0 +1,17 @@
+{
+  "name": "UAudioAnalyzerNRT",
+  "inherits": "UAudioAnalyzerAssetBase",
+  "doc": "UAudioAnalyzerNRT\n\nUAudioAnalyzerNRT applies an analyzer to a sound using specific settings, stores the\nresults and exposes them via blueprints.\n\nSubclasses of UAudioAnalyzerNRT must implement GetAnalyzerNRTFactoryName() to associate\nthe UAudioAnalyzerNRT with an IAudioAnalyzerNRTFactory implementation.\n\nTo support blueprint access, subclasses can implement UFUNCTIONs to expose the data\nreturned by GetResult().",
+  "properties": {
+    "Sound": [
+      "USoundWave",
+      "The USoundWave which is analyzed."
+    ],
+    "DurationInSeconds": [
+      "float32",
+      1,
+      "The duration of the analyzed audio in seconds."
+    ]
+  },
+  "methods": []
+}

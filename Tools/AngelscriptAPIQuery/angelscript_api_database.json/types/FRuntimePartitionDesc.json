@@ -1,0 +1,39 @@
+{
+  "name": "FRuntimePartitionDesc",
+  "isStruct": true,
+  "doc": "Holds settings for a runtime partition instance.",
+  "properties": {
+    "Class": [
+      "TSubclassOf<URuntimePartition>",
+      2,
+      "Partition class"
+    ],
+    "Name": [
+      "FName",
+      2,
+      "Name for this partition, used to map actors to it through the Actor.RuntimeGrid property"
+    ],
+    "MainLayer": [
+      "URuntimePartition",
+      2,
+      "Main partition object"
+    ],
+    "HLODSetups": [
+      "TArray<FRuntimePartitionHLODSetup>",
+      2,
+      "HLOD setups used by this partition, one for each layers in the hierarchy"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRuntimePartitionDesc&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRuntimePartitionDesc"
+        }
+      ]
+    }
+  ]
+}

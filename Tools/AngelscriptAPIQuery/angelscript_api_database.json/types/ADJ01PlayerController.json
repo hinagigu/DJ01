@@ -1,0 +1,105 @@
+{
+  "name": "ADJ01PlayerController",
+  "inherits": "ACommonPlayerController",
+  "doc": "ADJ01PlayerController\n\n     The base player controller class used by this project.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetDJ01AbilitySystemComponent",
+      "return": "UDJ01AbilitySystemComponent",
+      "const": true,
+      "doc": "获取玩家的 AbilitySystemComponent (从 PlayerState 获取)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDJ01HUD",
+      "return": "ADJ01HUD",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDJ01PlayerState",
+      "return": "ADJ01PlayerState",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetIsAutoRunning",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnEndAutoRun",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "K2_OnEndAutoRun",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnStartAutoRun",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "K2_OnStartAutoRun",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerCheat",
+      "return": "void",
+      "callable": false,
+      "doc": "Run a cheat command on the server.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Msg",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerCheatAll",
+      "return": "void",
+      "callable": false,
+      "doc": "Run a cheat command on the server for all players.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Msg",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetIsAutoRunning",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "TryToRecordClientReplay",
+      "return": "bool",
+      "doc": "Call from game state logic to start recording an automatic client replay if ShouldRecordClientReplay returns true",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

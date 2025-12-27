@@ -1,0 +1,737 @@
+{
+  "name": "__VariantManager",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddActorBinding",
+      "return": "void",
+      "doc": "Binds the Actor to the Variant, internally creating a VariantObjectBinding",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        },
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "AddDependency",
+      "return": "int",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        },
+        {
+          "name": "Dependency",
+          "type": "FVariantDependency&"
+        }
+      ]
+    },
+    {
+      "name": "AddVariant",
+      "return": "void",
+      "doc": "Adds Variant to the VariantSet's list of Variants",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VariantSet",
+          "type": "UVariantSet"
+        },
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        }
+      ]
+    },
+    {
+      "name": "AddVariantSet",
+      "return": "void",
+      "doc": "Adds VariantSet to the LevelVariantSets' list of VariantSets",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelVariantSets",
+          "type": "ULevelVariantSets"
+        },
+        {
+          "name": "VariantSet",
+          "type": "UVariantSet"
+        }
+      ]
+    },
+    {
+      "name": "Apply",
+      "return": "void",
+      "doc": "Applies the recorded data from PropVal to the actor from which it was captured",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PropVal",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "CaptureProperty",
+      "return": "UPropertyValue",
+      "doc": "Finds the actor binding to Actor within Variant and tries capturing a property with PropertyPath\nReturns the captured UPropertyValue if succeeded or nullptr if it failed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        },
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "PropertyPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "CreateLevelVariantSetsActor",
+      "return": "ALevelVariantSetsActor",
+      "doc": "Creates a new ALevelVariantSetsActor in the current scene and assigns LevelVariantSetsAsset to it",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelVariantSetsAsset",
+          "type": "ULevelVariantSets"
+        }
+      ]
+    },
+    {
+      "name": "CreateLevelVariantSetsAsset",
+      "return": "ULevelVariantSets",
+      "doc": "Creates a new LevelVariantSetsAsset named AssetName (e.g. 'MyLevelVariantSets') in the content path AssetPath (e.g. '/Game')",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetName",
+          "type": "FString"
+        },
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "DeleteDependency",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetCapturableProperties",
+      "return": "TArray<FString>",
+      "doc": "Returns a property path for all the properties we can capture for an actor. Will also\nhandle receiving the actor's class instead.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorOrClass",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "GetCapturedProperties",
+      "return": "TArray<UPropertyValue>",
+      "doc": "Returns which properties have been captured for this actor in Variant",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        },
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetPropertyTypeString",
+      "return": "FString",
+      "doc": "This allows the scripting language to get the type of the C++ property its dealing with",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PropVal",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueBool",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueColor",
+      "return": "FColor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueFloat",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueInt",
+      "return": "int",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueIntPoint",
+      "return": "FIntPoint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueLinearColor",
+      "return": "FLinearColor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueObject",
+      "return": "UObject",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueQuat",
+      "return": "FQuat",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueRotator",
+      "return": "FRotator",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueString",
+      "return": "FString",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueVector",
+      "return": "FVector",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueVector2D",
+      "return": "FVector2D",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "GetValueVector4",
+      "return": "FVector4",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "Record",
+      "return": "void",
+      "doc": "Records new data for PropVal from the actor from which it was captured",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PropVal",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActorBinding",
+      "return": "void",
+      "doc": "Removes an actor binding to Actor from Variant, if it exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        },
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActorBindingByName",
+      "return": "void",
+      "doc": "Looks for an actor binding to an actor with ActorLabel within Variant and removes it, if it exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        },
+        {
+          "name": "ActorName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveCapturedProperty",
+      "return": "void",
+      "doc": "Removes a property capture from an actor binding within Variant, if it exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        },
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        }
+      ]
+    },
+    {
+      "name": "RemoveCapturedPropertyByName",
+      "return": "void",
+      "doc": "Removes property capture with PropertyPath from Actor's binding within Variant, if it exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        },
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "PropertyPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveVariant",
+      "return": "void",
+      "doc": "Removes Variant from VariantSet, if that is its parent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VariantSet",
+          "type": "UVariantSet"
+        },
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        }
+      ]
+    },
+    {
+      "name": "RemoveVariantByName",
+      "return": "void",
+      "doc": "Looks for a variant with VariantName within VariantSet and removes it, if it exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VariantSet",
+          "type": "UVariantSet"
+        },
+        {
+          "name": "VariantName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveVariantSet",
+      "return": "void",
+      "doc": "Removes VariantSet from LevelVariantSets, if that is its parent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelVariantSets",
+          "type": "ULevelVariantSets"
+        },
+        {
+          "name": "VariantSet",
+          "type": "UVariantSet"
+        }
+      ]
+    },
+    {
+      "name": "RemoveVariantSetByName",
+      "return": "void",
+      "doc": "Looks for a variant set with VariantSetName within LevelVariantSets and removes it, if it exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelVariantSets",
+          "type": "ULevelVariantSets"
+        },
+        {
+          "name": "VariantSetName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetDependency",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Variant",
+          "type": "UVariant"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "Dependency",
+          "type": "FVariantDependency&"
+        }
+      ]
+    },
+    {
+      "name": "SetValueBool",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetValueColor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "SetValueFloat",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetValueInt",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetValueIntPoint",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "FIntPoint"
+        }
+      ]
+    },
+    {
+      "name": "SetValueLinearColor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetValueObject",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SetValueQuat",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SetValueRotator",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetValueString",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetValueVector",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetValueVector2D",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetValueVector4",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Property",
+          "type": "UPropertyValue"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector4"
+        }
+      ]
+    }
+  ]
+}

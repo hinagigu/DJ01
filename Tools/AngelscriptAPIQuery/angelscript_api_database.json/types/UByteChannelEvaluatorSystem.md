@@ -1,0 +1,6 @@
+# UByteChannelEvaluatorSystem
+
+**继承自**: `UMovieSceneEntitySystem`
+
+System that is responsible for evaluating byte channels.
+

@@ -1,0 +1,107 @@
+{
+  "name": "UStaticMeshDescription",
+  "inherits": "UMeshDescriptionBase",
+  "doc": "A wrapper for MeshDescription, customized for static meshes",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateCube",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Center",
+          "type": "FVector"
+        },
+        {
+          "name": "HalfExtents",
+          "type": "FVector"
+        },
+        {
+          "name": "PolygonGroup",
+          "type": "FPolygonGroupID"
+        },
+        {
+          "name": "PolygonID_PlusX",
+          "type": "FPolygonID&"
+        },
+        {
+          "name": "PolygonID_MinusX",
+          "type": "FPolygonID&"
+        },
+        {
+          "name": "PolygonID_PlusY",
+          "type": "FPolygonID&"
+        },
+        {
+          "name": "PolygonID_MinusY",
+          "type": "FPolygonID&"
+        },
+        {
+          "name": "PolygonID_PlusZ",
+          "type": "FPolygonID&"
+        },
+        {
+          "name": "PolygonID_MinusZ",
+          "type": "FPolygonID&"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexInstanceUV",
+      "return": "FVector2D",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexInstanceID",
+          "type": "FVertexInstanceID"
+        },
+        {
+          "name": "UVIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetPolygonGroupMaterialSlotName",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonGroupID",
+          "type": "FPolygonGroupID"
+        },
+        {
+          "name": "SlotName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetVertexInstanceUV",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexInstanceID",
+          "type": "FVertexInstanceID"
+        },
+        {
+          "name": "UV",
+          "type": "FVector2D"
+        },
+        {
+          "name": "UVIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

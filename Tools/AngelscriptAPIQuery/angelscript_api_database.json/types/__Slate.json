@@ -1,0 +1,288 @@
+{
+  "name": "__Slate",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AbsoluteToLocal",
+      "return": "FVector2D",
+      "doc": "Absolute coordinates could be either desktop or window space depending on what space the root of the widget hierarchy is in.\n\n@return Transforms AbsoluteCoordinate into the local space of this Geometry.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "AbsoluteCoordinate",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "AbsoluteToViewport",
+      "return": "void",
+      "doc": "Translates absolute coordinate in desktop space of the geometry provided into local viewport coordinates.\n\n@param PixelPosition The position in the game's viewport, usable for line traces and\nother uses where you need a coordinate in the space of viewport resolution units.\n@param ViewportPosition The position in the space of other widgets in the viewport.  Like if you wanted\nto add another widget to the viewport at the same position in viewport space as this location, this is\nwhat you would use.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbsoluteDesktopCoordinate",
+          "type": "FVector2D"
+        },
+        {
+          "name": "PixelPosition",
+          "type": "FVector2D&"
+        },
+        {
+          "name": "ViewportPosition",
+          "type": "FVector2D&"
+        }
+      ]
+    },
+    {
+      "name": "EqualEqual_SlateBrush",
+      "return": "bool",
+      "doc": "Returns whether brushes A and B are identical.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FSlateBrush"
+        },
+        {
+          "name": "B",
+          "type": "FSlateBrush"
+        }
+      ]
+    },
+    {
+      "name": "GetAbsoluteSize",
+      "return": "FVector2D",
+      "doc": "Returns the size of the geometry in absolute space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalSize",
+      "return": "FVector2D",
+      "doc": "Returns the size of the geometry in local space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalTopLeft",
+      "return": "FVector2D",
+      "doc": "Returns the local top/left of the geometry in local space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        }
+      ]
+    },
+    {
+      "name": "IsUnderLocation",
+      "return": "bool",
+      "doc": "Absolute coordinates could be either desktop or window space depending on what space the root of the widget hierarchy is in.\n\n@return true if the provided location in absolute coordinates is within the bounds of this geometry.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "AbsoluteCoordinate",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "LocalToAbsolute",
+      "return": "FVector2D",
+      "doc": "Translates local coordinates into absolute coordinates\n\nAbsolute coordinates could be either desktop or window space depending on what space the root of the widget hierarchy is in.\n\n@return  Absolute coordinates",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "LocalCoordinate",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "LocalToViewport",
+      "return": "void",
+      "doc": "Translates local coordinate of the geometry provided into local viewport coordinates.\n\n@param PixelPosition The position in the game's viewport, usable for line traces and\nother uses where you need a coordinate in the space of viewport resolution units.\n@param ViewportPosition The position in the space of other widgets in the viewport.  Like if you wanted\nto add another widget to the viewport at the same position in viewport space as this location, this is\nwhat you would use.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "LocalCoordinate",
+          "type": "FVector2D"
+        },
+        {
+          "name": "PixelPosition",
+          "type": "FVector2D&"
+        },
+        {
+          "name": "ViewportPosition",
+          "type": "FVector2D&"
+        }
+      ]
+    },
+    {
+      "name": "ScreenToViewport",
+      "return": "void",
+      "doc": "Translates a screen position in pixels into the local space of the viewport widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "ViewportPosition",
+          "type": "FVector2D&"
+        }
+      ]
+    },
+    {
+      "name": "ScreenToWidgetAbsolute",
+      "return": "void",
+      "doc": "Translates a screen position in pixels into absolute application coordinates.\nIf bIncludeWindowPosition is true, then this method will also remove the game window's position (useful when in windowed mode).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "AbsoluteCoordinate",
+          "type": "FVector2D&"
+        },
+        {
+          "name": "bIncludeWindowPosition",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ScreenToWidgetLocal",
+      "return": "void",
+      "doc": "Translates a screen position in pixels into the local space of a widget with the given geometry.\nIf bIncludeWindowPosition is true, then this method will also remove the game window's position (useful when in windowed mode).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "ScreenPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "LocalCoordinate",
+          "type": "FVector2D&"
+        },
+        {
+          "name": "bIncludeWindowPosition",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "TransformScalarAbsoluteToLocal",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "AbsoluteScalar",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "TransformScalarLocalToAbsolute",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "LocalScalar",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "TransformVectorAbsoluteToLocal",
+      "return": "FVector2D",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "AbsoluteVector",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "TransformVectorLocalToAbsolute",
+      "return": "FVector2D",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Geometry",
+          "type": "FGeometry"
+        },
+        {
+          "name": "LocalVector",
+          "type": "FVector2D"
+        }
+      ]
+    }
+  ]
+}

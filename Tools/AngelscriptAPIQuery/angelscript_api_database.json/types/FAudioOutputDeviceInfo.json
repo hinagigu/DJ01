@@ -1,0 +1,57 @@
+{
+  "name": "FAudioOutputDeviceInfo",
+  "isStruct": true,
+  "doc": "Platform audio output device info, in a Blueprint-readable format",
+  "properties": {
+    "Name": [
+      "FString",
+      1,
+      "The name of the audio device"
+    ],
+    "DeviceId": [
+      "FString",
+      1,
+      "ID of the device."
+    ],
+    "NumChannels": [
+      "int",
+      1,
+      "The number of channels supported by the audio device"
+    ],
+    "SampleRate": [
+      "int",
+      1,
+      "The sample rate of the audio device"
+    ],
+    "Format": [
+      "EAudioMixerStreamDataFormatType",
+      1,
+      "The data format of the audio stream"
+    ],
+    "OutputChannelArray": [
+      "TArray<EAudioMixerChannelType>",
+      1,
+      "The output channel array of the audio device"
+    ],
+    "bIsSystemDefault": [
+      "bool",
+      "Whether or not this device is the system default"
+    ],
+    "bIsCurrentDevice": [
+      "bool",
+      "Whether or not this device is the device currently in use"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAudioOutputDeviceInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAudioOutputDeviceInfo"
+        }
+      ]
+    }
+  ]
+}

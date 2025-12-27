@@ -1,0 +1,37 @@
+{
+  "name": "UOverlay",
+  "inherits": "UPanelWidget",
+  "doc": "Allows widgets to be stacked on top of each other, uses simple flow layout for content on each layer.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddChildToOverlay",
+      "return": "UOverlaySlot",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Content",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceOverlayChildAt",
+      "return": "bool",
+      "doc": "Replace the widget at the given index it with a different widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "Content",
+          "type": "UWidget"
+        }
+      ]
+    }
+  ]
+}

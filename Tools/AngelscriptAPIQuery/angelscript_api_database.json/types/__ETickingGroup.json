@@ -1,0 +1,43 @@
+{
+  "name": "__ETickingGroup",
+  "isEnum": true,
+  "doc": "Determines which ticking group a tick function belongs to.",
+  "properties": {
+    "TG_PrePhysics": [
+      "ETickingGroup",
+      "Any item that needs to be executed before physics simulation starts."
+    ],
+    "TG_StartPhysics": [
+      "ETickingGroup",
+      "Special tick group that starts physics simulation."
+    ],
+    "TG_DuringPhysics": [
+      "ETickingGroup",
+      "Any item that can be run in parallel with our physics simulation work."
+    ],
+    "TG_EndPhysics": [
+      "ETickingGroup",
+      "Special tick group that ends physics simulation."
+    ],
+    "TG_PostPhysics": [
+      "ETickingGroup",
+      "Any item that needs rigid body and cloth simulation to be complete before being executed."
+    ],
+    "TG_PostUpdateWork": [
+      "ETickingGroup",
+      "Any item that needs the update work to be done before being ticked."
+    ],
+    "TG_LastDemotable": [
+      "ETickingGroup",
+      "Catchall for anything demoted to the end."
+    ],
+    "TG_NewlySpawned": [
+      "ETickingGroup",
+      "Special tick group that is not actually a tick group. After every tick group this is repeatedly re-run until there are no more newly spawned items to run."
+    ],
+    "TG_MAX": [
+      "ETickingGroup"
+    ]
+  },
+  "methods": []
+}

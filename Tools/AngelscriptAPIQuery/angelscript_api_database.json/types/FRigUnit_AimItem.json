@@ -1,0 +1,43 @@
+{
+  "name": "FRigUnit_AimItem",
+  "isStruct": true,
+  "doc": "Aligns the rotation of a primary and secondary axis of a bone to a global target.\nNote: This node operates in global space!",
+  "properties": {
+    "Item": [
+      "FRigElementKey",
+      "The name of the item to align"
+    ],
+    "Primary": [
+      "FRigUnit_AimItem_Target",
+      "The primary target for the aim"
+    ],
+    "Secondary": [
+      "FRigUnit_AimItem_Target",
+      "The secondary target for the aim - also referred to as PoleVector / UpVector"
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the change - how much the change should be applied"
+    ],
+    "DebugSettings": [
+      "FRigUnit_AimBone_DebugSettings",
+      "The debug setting for the node"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_AimItem&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_AimItem"
+        }
+      ]
+    }
+  ]
+}

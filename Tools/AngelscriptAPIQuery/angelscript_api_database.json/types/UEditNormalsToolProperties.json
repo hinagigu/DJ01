@@ -1,0 +1,43 @@
+{
+  "name": "UEditNormalsToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Standard properties",
+  "properties": {
+    "bRecomputeNormals": [
+      "bool",
+      2,
+      "Recompute all mesh normals"
+    ],
+    "NormalCalculationMethod": [
+      "ENormalCalculationMethod",
+      2,
+      "Choose the method for computing vertex normals"
+    ],
+    "bFixInconsistentNormals": [
+      "bool",
+      2,
+      "For meshes with inconsistent triangle orientations/normals, flip as needed to make the normals consistent"
+    ],
+    "bInvertNormals": [
+      "bool",
+      2,
+      "Invert (flip) all mesh normals and associated triangle orientations"
+    ],
+    "SplitNormalMethod": [
+      "ESplitNormalMethod",
+      2,
+      "Control whether and how the topology of the normals is recomputed, e.g. to create sharp edges where face normals change by a large amount or where face group IDs change.  Normals will always be recomputed unless SplitNormal Method is UseExistingTopology."
+    ],
+    "SharpEdgeAngleThreshold": [
+      "float32",
+      2,
+      "Threshold on angle of change in face normals across an edge, above which we create a sharp edge if bSplitNormals is true"
+    ],
+    "bAllowSharpVertices": [
+      "bool",
+      2,
+      "Assign separate normals at 'sharp' vertices, for example, at the tip of a cone"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,49 @@
+{
+  "name": "UStereoLayerShapeEquirect",
+  "inherits": "UStereoLayerShape",
+  "properties": {
+    "LeftUVRect": [
+      "FBox2D",
+      "Left source texture UVRect, specifying portion of input texture corresponding to left eye."
+    ],
+    "RightUVRect": [
+      "FBox2D",
+      "Right source texture UVRect, specifying portion of input texture corresponding to right eye."
+    ],
+    "LeftScale": [
+      "FVector2D",
+      "Left eye's texture coordinate scale after mapping to 2D."
+    ],
+    "RightScale": [
+      "FVector2D",
+      "Right eye's texture coordinate scale after mapping to 2D."
+    ],
+    "LeftBias": [
+      "FVector2D",
+      "Left eye's texture coordinate bias after mapping to 2D."
+    ],
+    "RightBias": [
+      "FVector2D",
+      "Right eye's texture coordinate bias after mapping to 2D."
+    ],
+    "Radius": [
+      "float32",
+      "Sphere radius. As of UE 5.3, equirect layers are supported only by the Oculus OpenXR runtime and only with a radius of 0 (infinite sphere)."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetEquirectProps",
+      "return": "void",
+      "doc": "Set Equirect layer properties: UVRect, Scale, and Bias\n@param       LeftScale: Scale for left eye\n@param       LeftBias: Bias for left eye\n@param       RightScale: Scale for right eye\n@param       RightBias: Bias for right eye\n@param       Radius: Sphere radius",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InScaleBiases",
+          "type": "FEquirectProps"
+        }
+      ]
+    }
+  ]
+}

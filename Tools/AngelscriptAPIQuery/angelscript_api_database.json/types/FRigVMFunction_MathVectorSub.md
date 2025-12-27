@@ -1,0 +1,22 @@
+# FRigVMFunction_MathVectorSub
+
+Returns the difference of the two values
+
+## 属性
+
+### A
+- **类型**: `FVector`
+
+### B
+- **类型**: `FVector`
+
+### Result
+- **类型**: `FVector`
+
+## 方法
+
+### opAssign
+```angelscript
+FRigVMFunction_MathVectorSub& opAssign(FRigVMFunction_MathVectorSub Other)
+```
+

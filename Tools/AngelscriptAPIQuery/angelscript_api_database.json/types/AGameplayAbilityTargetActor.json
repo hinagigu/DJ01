@@ -1,0 +1,51 @@
+{
+  "name": "AGameplayAbilityTargetActor",
+  "inherits": "AActor",
+  "doc": "TargetActors are spawned to assist with ability targeting. They are spawned by ability tasks and create/determine the outgoing targeting data passed from one task to another\n\nWARNING: These actors are spawned once per ability activation and in their default form are not very efficient\nFor most games you will need to subclass and heavily modify this actor, or you will want to implement similar functions in a game-specific actor or blueprint to avoid actor spawn costs\nThis class is not well tested by internal games, but it is a useful class to look at to learn how target replication occurs",
+  "properties": {
+    "ShouldProduceTargetDataOnServer": [
+      "bool",
+      2,
+      "The TargetData this class produces can be entirely generated on the server. We don't require the client to send us full or partial TargetData (possibly just a 'confirm')"
+    ],
+    "StartLocation": [
+      "FGameplayAbilityTargetingLocationInfo",
+      1,
+      "Describes where the targeting action starts, usually the player character or a socket on the player character. //UPROPERTY(BlueprintReadOnly, meta=(ExposeOnSpawn=true), Category=Targeting)"
+    ],
+    "PrimaryPC": [
+      "APlayerController",
+      1,
+      ""
+    ],
+    "bDestroyOnConfirmation": [
+      "bool",
+      1,
+      ""
+    ],
+    "SourceActor": [
+      "AActor",
+      1,
+      ""
+    ],
+    "ReticleParams": [
+      "FWorldReticleParameters",
+      1,
+      "Parameters for world reticle. Usage of these parameters is dependent on the reticle."
+    ],
+    "ReticleClass": [
+      "TSubclassOf<AGameplayAbilityWorldReticle>",
+      "Reticle that will appear on top of acquired targets. Reticles will be spawned/despawned as targets are acquired/lost."
+    ],
+    "Filter": [
+      "FGameplayTargetDataFilterHandle",
+      1,
+      "Using a special class for replication purposes."
+    ],
+    "bDebug": [
+      "bool",
+      "Draw the debug information (if applicable) for this targeting actor."
+    ]
+  },
+  "methods": []
+}

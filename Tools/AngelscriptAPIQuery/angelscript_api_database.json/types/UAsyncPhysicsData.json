@@ -1,0 +1,13 @@
+{
+  "name": "UAsyncPhysicsData",
+  "inherits": "UObject",
+  "doc": "The base class for async physics data. Inherit from this to create custom data for async physics tick.\nWhen no data is available (say due to massive latency or packet loss) we fall back on the default constructed data.\nThis means you should set the default values to something equivalent to no input (for example bPlayerWantsToJump should probably default to false)",
+  "properties": {
+    "ReplicationRedundancy": [
+      "int",
+      2,
+      "Determines how many times we redundantly send data to server. The higher this number the less packet loss, but more bandwidth is used"
+    ]
+  },
+  "methods": []
+}

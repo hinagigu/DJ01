@@ -1,0 +1,54 @@
+{
+  "name": "UIKRigEffectorGoal",
+  "inherits": "UObject",
+  "properties": {
+    "GoalName": [
+      "FName",
+      1,
+      "The name used to refer to this goal from outside systems.\nThis is the name to use when referring to this Goal from Blueprint, Anim Graph, Control Rig or IK Retargeter."
+    ],
+    "BoneName": [
+      "FName",
+      1,
+      "The name of the bone that this Goal is located at."
+    ],
+    "PositionAlpha": [
+      "float32",
+      "Range 0-1, default is 1. Blend between the input bone position (0.0) and the current goal position (1.0)."
+    ],
+    "RotationAlpha": [
+      "float32",
+      "Range 0-1, default is 1. Blend between the input bone rotation (0.0) and the current goal rotation (1.0)."
+    ],
+    "CurrentTransform": [
+      "FTransform",
+      "The current transform of this Goal, in the Global Space of the character."
+    ],
+    "InitialTransform": [
+      "FTransform",
+      1,
+      "The initial transform of this Goal, as defined by the initial transform of the Goal's bone in the retarget pose."
+    ],
+    "PreviewMode": [
+      "EIKRigGoalPreviewMode",
+      "Effects how this Goal transform is previewed in the IK Rig editor.\n\"Additive\" interprets the Goal transform as being relative to the input pose. Useful for previewing animations.\n\"Absolute\" pins the Goal transform to the Gizmo in the viewport."
+    ],
+    "SizeMultiplier": [
+      "float32",
+      "The size of the Goal gizmo drawing in the editor viewport."
+    ],
+    "ThicknessMultiplier": [
+      "float32",
+      "The thickness of the Goal gizmo drawing in the editor viewport."
+    ],
+    "bExposePosition": [
+      "bool",
+      "Should position data be exposed in Blueprint"
+    ],
+    "bExposeRotation": [
+      "bool",
+      "Should rotation data be exposed in Blueprint"
+    ]
+  },
+  "methods": []
+}

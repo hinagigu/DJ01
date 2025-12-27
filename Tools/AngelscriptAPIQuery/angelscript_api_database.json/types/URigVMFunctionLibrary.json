@@ -1,0 +1,71 @@
+{
+  "name": "URigVMFunctionLibrary",
+  "inherits": "URigVMGraph",
+  "doc": "The Function Library is a graph used only to store\nthe sub graphs used for functions.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "FindFunction",
+      "return": "URigVMLibraryNode",
+      "const": true,
+      "doc": "Finds a function by name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FindFunctionForNode",
+      "return": "URigVMLibraryNode",
+      "const": true,
+      "doc": "Finds a function by a node within a function (or a sub graph of that)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMNode"
+        }
+      ]
+    },
+    {
+      "name": "GetFunctions",
+      "return": "TArray<URigVMLibraryNode>",
+      "const": true,
+      "doc": "Returns all of the stored functions",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetReferencePathsForFunction",
+      "return": "TArray<FString>",
+      "doc": "Returns all references for a given function name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetReferencesForFunction",
+      "return": "TArray<TSoftObjectPtr<URigVMFunctionReferenceNode>>",
+      "doc": "Returns all references for a given function name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

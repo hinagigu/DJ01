@@ -1,0 +1,32 @@
+{
+  "name": "UAnimBlueprint",
+  "inherits": "UBlueprint",
+  "doc": "An Anim Blueprint is essentially a specialized Blueprint whose graphs control the animation of a Skeletal Mesh.\nIt can perform blending of animations, directly control the bones of the skeleton, and output a final pose\nfor a Skeletal Mesh each frame.",
+  "properties": {
+    "TargetSkeleton": [
+      "USkeleton",
+      2,
+      "This is the target skeleton asset for anim instances created from this blueprint; all animations\nreferenced by the BP should be compatible with this skeleton.  For advanced use only, it is easy\nto cause errors if this is modified without updating or replacing all referenced animations."
+    ],
+    "bUseMultiThreadedAnimationUpdate": [
+      "bool",
+      2,
+      "Allows this anim Blueprint to update its native update, blend tree, montages and asset players on\na worker thread. The compiler will attempt to pick up any issues that may occur with threaded update.\nFor updates to run in multiple threads both this flag and the project setting \"Allow Multi Threaded\nAnimation Update\" should be set."
+    ],
+    "bWarnAboutBlueprintUsage": [
+      "bool",
+      2,
+      "Selecting this option will cause the compiler to emit warnings whenever a call into Blueprint\nis made from the animation graph. This can help track down optimizations that need to be made."
+    ],
+    "DefaultBindingClass": [
+      "UClass",
+      2,
+      "The default binding type that any new nodes will use when created"
+    ],
+    "bEnableLinkedAnimLayerInstanceSharing": [
+      "bool",
+      "If true, linked animation layers will be instantiated only once per AnimClass instead of once per AnimInstance, AnimClass and AnimGroup.\n      Extra instances will be created if two or more active anim graph override the same layer Function"
+    ]
+  },
+  "methods": []
+}

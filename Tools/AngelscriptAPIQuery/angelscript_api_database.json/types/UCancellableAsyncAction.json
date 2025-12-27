@@ -1,0 +1,25 @@
+{
+  "name": "UCancellableAsyncAction",
+  "inherits": "UBlueprintAsyncActionBase",
+  "doc": "base class for asynchronous actions that can be spawned from UK2Node_AsyncAction or C++ code.\nThese actions register themselves with the game instance and need to be explicitly canceled or ended normally to go away.\nThe ExposedAsyncProxy metadata specifies the blueprint node will return this object for later canceling.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "Cancel",
+      "return": "void",
+      "doc": "Cancel an asynchronous action, this attempts to cancel any lower level processes and also prevents delegates from being fired",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsActive",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this action is still active and has not completed or been cancelled",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "AGeometryCollectionRenderLevelSetActor",
+  "inherits": "AActor",
+  "doc": "AGeometryCollectionRenderLevelSetActor\nAn actor representing the collection of data necessary to\nrender volumes.  This references a ray marching material, which\nis used internally by a post process component blendable.  This\nis a workflow that can be improved with a deeper implementation\nin the future if we decide to.  Note that behavior with multiple\nrender level set actors isn't currently supported very well,\nbut could be improved in the future",
+  "properties": {
+    "TargetVolumeTexture": [
+      "UVolumeTexture",
+      "Volume texture to fill"
+    ],
+    "RayMarchMaterial": [
+      "UMaterial",
+      "Material that performs ray marching.  Note this must have certain parameters in order\nto work correctly"
+    ],
+    "SurfaceTolerance": [
+      "float32",
+      "Surface tolerance used for rendering.  When surface reconstruction is noisy,\ntry tweaking this value"
+    ],
+    "Isovalue": [
+      "float32",
+      "Isovalue of the level set to use for surface reconstruction.  Generally you want\nthis to be zero, but it can be useful for exploring the distance values to make\nthis negative to see the interior structure of the levelset"
+    ],
+    "Enabled": [
+      "bool",
+      "Enable or disable rendering"
+    ],
+    "RenderVolumeBoundingBox": [
+      "bool",
+      "Enable or disable rendering"
+    ]
+  },
+  "methods": []
+}

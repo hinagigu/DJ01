@@ -1,0 +1,104 @@
+{
+  "name": "AAudioVolume",
+  "inherits": "AVolume",
+  "properties": {
+    "Settings": [
+      "FReverbSettings",
+      "Reverb settings to use for this volume."
+    ],
+    "AmbientZoneSettings": [
+      "FInteriorSettings",
+      "Impacts sounds that have \"Apply Ambient Volumes\" set to true in their Sound Class, based on whether the sound sources and the player are inside or outside the audio volume"
+    ],
+    "Priority": [
+      "float32",
+      "Priority of this volume. In the case of overlapping volumes, the one with the highest priority\nis chosen. The order is undefined if two or more overlapping volumes have the same priority."
+    ],
+    "bEnabled": [
+      "bool",
+      "Whether this volume is currently enabled and able to affect sounds"
+    ],
+    "SubmixSendSettings": [
+      "TArray<FAudioVolumeSubmixSendSettings>",
+      "Submix send settings to use for this volume. Allows audio to dynamically send to submixes based on source and listener locations relative to this volume."
+    ],
+    "SubmixOverrideSettings": [
+      "TArray<FAudioVolumeSubmixOverrideSettings>",
+      "Submix effect chain override settings. Will override the effect chains on the given submixes when the conditions are met."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetEnabled",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetInteriorSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewInteriorSettings",
+          "type": "FInteriorSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetPriority",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPriority",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetReverbSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewReverbSettings",
+          "type": "FReverbSettings"
+        }
+      ]
+    },
+    {
+      "name": "SetSubmixOverrideSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewSubmixOverrideSettings",
+          "type": "TArray<FAudioVolumeSubmixOverrideSettings>"
+        }
+      ]
+    },
+    {
+      "name": "SetSubmixSendSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewSubmixSendSettings",
+          "type": "TArray<FAudioVolumeSubmixSendSettings>"
+        }
+      ]
+    }
+  ]
+}

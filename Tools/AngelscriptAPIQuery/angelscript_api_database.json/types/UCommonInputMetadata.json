@@ -1,0 +1,16 @@
+{
+  "name": "UCommonInputMetadata",
+  "inherits": "UObject",
+  "doc": "Metadata CommonUI will try to acquire from Enhanced Input Mapping Contexts (IMC)\n\nYou can Inherit from this class if you have any info that may need to be parsed per platform\nby CommonUI. IMC's can be specified per platform, so each platform may have different\nCommon Input Metadata\n\nNote: We intentionally do not define any context-independant metadata. Even though some\nmetadata should be context-independant (Like NavBarPriority below). Locking it that info\nto a seperate metadata type prevents any chance of future overriding. Instead, we prefer\ninfo for all metadata to be set across all instances.",
+  "properties": {
+    "NavBarPriority": [
+      "int",
+      "Priority in nav-bar"
+    ],
+    "bIsGenericInputAction": [
+      "bool",
+      "Generic actions like accept or face button top will be subscribed to by multiple\nUI elements. These actions will not broadcast enhanced input action delegates\nsuch as \"Triggered, Ongoing, Canceled, or Completed.\" Since those delegates\nwould be fired by multiple UI elements.\n\nNon-generic input actions will fire Enhanced Input events. However they will\nnot fire CommonUI action bindings (Since those can be manually fired in BP)."
+    ]
+  },
+  "methods": []
+}

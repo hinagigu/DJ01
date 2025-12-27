@@ -1,0 +1,54 @@
+{
+  "name": "FInputActionInstance",
+  "isStruct": true,
+  "doc": "Run time queryable action instance\nGenerated from UInputAction templates above",
+  "properties": {
+    "SourceAction": [
+      "const UInputAction",
+      1,
+      "The source action that this instance is created from"
+    ],
+    "TriggerEvent": [
+      "ETriggerEvent",
+      1,
+      "Trigger state"
+    ],
+    "LastTriggeredWorldTime": [
+      "float32",
+      1,
+      "The last time that this evaluated to a Triggered State"
+    ],
+    "Triggers": [
+      "TArray<TObjectPtr<UInputTrigger>>",
+      1,
+      ""
+    ],
+    "Modifiers": [
+      "TArray<TObjectPtr<UInputModifier>>",
+      1,
+      ""
+    ],
+    "ElapsedProcessedTime": [
+      "float32",
+      1,
+      "Total trigger processing/evaluation time (How long this action has been in event Started, Ongoing, or Triggered"
+    ],
+    "ElapsedTriggeredTime": [
+      "float32",
+      1,
+      "Triggered time (How long this action has been in event Triggered only)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInputActionInstance&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInputActionInstance"
+        }
+      ]
+    }
+  ]
+}

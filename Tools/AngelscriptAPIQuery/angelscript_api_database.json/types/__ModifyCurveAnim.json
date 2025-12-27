@@ -1,0 +1,116 @@
+{
+  "name": "__ModifyCurveAnim",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ConvertToModifyCurveNode",
+      "return": "FModifyCurveAnimNodeReference",
+      "doc": "Get a modify curve node context from an anim node context",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "Result",
+          "type": "EAnimNodeReferenceConversionResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConvertToModifyCurveNodePure",
+      "return": "void",
+      "doc": "Get a modify curve context from an anim node context (pure)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "ModifyCurveNode",
+          "type": "FModifyCurveAnimNodeReference&"
+        },
+        {
+          "name": "Result",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetAlpha",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ModifyCurveNode",
+          "type": "FModifyCurveAnimNodeReference"
+        }
+      ]
+    },
+    {
+      "name": "GetApplyMode",
+      "return": "EModifyCurveApplyMode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ModifyCurveNode",
+          "type": "FModifyCurveAnimNodeReference"
+        }
+      ]
+    },
+    {
+      "name": "SetAlpha",
+      "return": "FModifyCurveAnimNodeReference",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ModifyCurveNode",
+          "type": "FModifyCurveAnimNodeReference"
+        },
+        {
+          "name": "InAlpha",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetApplyMode",
+      "return": "FModifyCurveAnimNodeReference",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ModifyCurveNode",
+          "type": "FModifyCurveAnimNodeReference"
+        },
+        {
+          "name": "InMode",
+          "type": "EModifyCurveApplyMode"
+        }
+      ]
+    },
+    {
+      "name": "SetCurveMap",
+      "return": "FModifyCurveAnimNodeReference",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ModifyCurveNode",
+          "type": "FModifyCurveAnimNodeReference"
+        },
+        {
+          "name": "InCurveMap",
+          "type": "TMap<FName,float32>"
+        }
+      ]
+    }
+  ]
+}

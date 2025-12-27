@@ -1,0 +1,76 @@
+{
+  "name": "URadialForceComponent",
+  "inherits": "USceneComponent",
+  "doc": "Used to emit a radial force or impulse that can affect physics objects and or destructible objects.",
+  "properties": {
+    "Radius": [
+      "float32",
+      "The radius to apply the force or impulse in"
+    ],
+    "Falloff": [
+      "ERadialImpulseFalloff",
+      "How the force or impulse should fall off as object are further away from the center"
+    ],
+    "ImpulseStrength": [
+      "float32",
+      "How strong the impulse should be"
+    ],
+    "ForceStrength": [
+      "float32",
+      "How strong the force should be"
+    ],
+    "DestructibleDamage": [
+      "float32",
+      "If > 0.f, will cause damage to destructible meshes as well"
+    ],
+    "ObjectTypesToAffect": [
+      "TArray<EObjectTypeQuery>",
+      2,
+      "The object types that are affected by this radial force"
+    ],
+    "bImpulseVelChange": [
+      "bool",
+      "If true, the impulse will ignore mass of objects and will always result in a fixed velocity change"
+    ],
+    "bIgnoreOwningActor": [
+      "bool",
+      "If true, do not apply force/impulse to any physics objects that are part of the Actor that owns this component."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddObjectTypeToAffect",
+      "return": "void",
+      "doc": "Add an object type for this radial force to affect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectType",
+          "type": "EObjectTypeQuery"
+        }
+      ]
+    },
+    {
+      "name": "FireImpulse",
+      "return": "void",
+      "doc": "Fire a single impulse",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveObjectTypeToAffect",
+      "return": "void",
+      "doc": "Remove an object type that is affected by this radial force",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectType",
+          "type": "EObjectTypeQuery"
+        }
+      ]
+    }
+  ]
+}

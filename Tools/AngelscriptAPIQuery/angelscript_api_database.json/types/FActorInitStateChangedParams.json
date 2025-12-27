@@ -1,0 +1,35 @@
+{
+  "name": "FActorInitStateChangedParams",
+  "isStruct": true,
+  "doc": "Parameters struct for Init State change functions",
+  "properties": {
+    "OwningActor": [
+      "AActor",
+      "The actor owning the feature that changed"
+    ],
+    "FeatureName": [
+      "FName",
+      "Name of the feature that changed"
+    ],
+    "Implementer": [
+      "UObject",
+      "The object (often a component) that implements the feature"
+    ],
+    "FeatureState": [
+      "FGameplayTag",
+      "The new state of the feature"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FActorInitStateChangedParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FActorInitStateChangedParams"
+        }
+      ]
+    }
+  ]
+}

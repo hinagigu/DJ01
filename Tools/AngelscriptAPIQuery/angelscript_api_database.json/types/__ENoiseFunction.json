@@ -1,0 +1,34 @@
+{
+  "name": "__ENoiseFunction",
+  "isEnum": true,
+  "properties": {
+    "NOISEFUNCTION_SimplexTex": [
+      "ENoiseFunction",
+      "High quality for direct use and bumps\n~77 instructions per level, 4 texture lookups\nCannot tile"
+    ],
+    "NOISEFUNCTION_GradientTex": [
+      "ENoiseFunction",
+      "High quality for direct use and bumps\nNon-tiled: ~61 instructions per level, 8 texture lookups\nTiling: ~74 instructions per level, 8 texture lookups\nEven \"non-tiled\" mode has a repeat of 128. Useful Repeat Size range <= 128\nFormerly labeled as Perlin noise"
+    ],
+    "NOISEFUNCTION_GradientTex3D": [
+      "ENoiseFunction",
+      "High quality for direct use, BAD for bumps; doesn't work on Mobile\n~16 instructions per level, 1 texture lookup\nAlways tiles with a repeat of 16, \"Tiling\" mode is not an option for Fast Gradient noise"
+    ],
+    "NOISEFUNCTION_GradientALU": [
+      "ENoiseFunction",
+      "High quality for direct use and bumps\nNon-tiled: ~80 instructions per level, no textures\nTiling: ~143 instructions per level, no textures"
+    ],
+    "NOISEFUNCTION_ValueALU": [
+      "ENoiseFunction",
+      "Low quality, but pure computation\nNon-tiled: ~53 instructions per level, no textures\nTiling: ~118 instructions per level, no textures\nFormerly mis-labeled as Gradient noise"
+    ],
+    "NOISEFUNCTION_VoronoiALU": [
+      "ENoiseFunction",
+      "Also known as Worley or Cellular noise\nQuality=1 searches 8 cells, Quality=2 searches 16 cells\nQuality=3 searches 27 cells, Quality=4 searches 32 cells\nAll are about 20 instructions per cell searched"
+    ],
+    "NOISEFUNCTION_MAX": [
+      "ENoiseFunction"
+    ]
+  },
+  "methods": []
+}

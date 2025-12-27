@@ -1,0 +1,104 @@
+{
+  "name": "UControlRig",
+  "inherits": "URigVMHost",
+  "doc": "Runs logic for mapping input data to transforms (the \"Rig\")",
+  "properties": {
+    "OnControlSelected_BP": [
+      "FOnControlSelectedBP__ControlRig"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ClearControlSelection",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CreateTransformableControlHandle",
+      "return": "UTransformableControlHandle",
+      "const": true,
+      "doc": "Creates a transformable control handle for the specified control to be used by the constraints system. Should use the UObject from\n      ConstraintsScriptingLibrary::GetManager(UWorld* InWorld)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CurrentControlSelection",
+      "return": "TArray<FName>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHierarchy",
+      "return": "URigHierarchy",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHostingActor",
+      "return": "AActor",
+      "const": true,
+      "doc": "Find the actor the rig is bound to, if any",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsControlSelected",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RequestConstruction",
+      "return": "void",
+      "doc": "Requests to perform construction during the next execution",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SelectControl",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlName",
+          "type": "FName"
+        },
+        {
+          "name": "bSelect",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SupportsBackwardsSolve",
+      "return": "bool",
+      "const": true,
+      "doc": "Contains a backwards solve event",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

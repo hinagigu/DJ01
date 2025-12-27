@@ -1,0 +1,57 @@
+{
+  "name": "FNiagaraRibbonUVSettings",
+  "isStruct": true,
+  "doc": "Defines settings for UV behavior for a UV channel on ribbons.",
+  "properties": {
+    "DistributionMode": [
+      "ENiagaraRibbonUVDistributionMode",
+      2,
+      "Specifies how ribbon UVs are distributed along the length of a ribbon."
+    ],
+    "LeadingEdgeMode": [
+      "ENiagaraRibbonUVEdgeMode",
+      2,
+      "Specifies how UVs transition into life at the leading edge of the ribbon."
+    ],
+    "TrailingEdgeMode": [
+      "ENiagaraRibbonUVEdgeMode",
+      2,
+      "Specifies how UVs transition out of life at the trailing edge of the ribbon."
+    ],
+    "TilingLength": [
+      "float32",
+      2,
+      "Specifies the length in world units to use when tiling UVs across the ribbon when using one of the tiled distribution modes."
+    ],
+    "Offset": [
+      "FVector2D",
+      2,
+      "Specifies an additional offset which is applied to the UV range"
+    ],
+    "Scale": [
+      "FVector2D",
+      2,
+      "Specifies an additional scaler which is applied to the UV range."
+    ],
+    "bEnablePerParticleUOverride": [
+      "bool",
+      "Enables overriding the U component with values read from the particles. When enabled, edge behavior and distribution are ignored."
+    ],
+    "bEnablePerParticleVRangeOverride": [
+      "bool",
+      "Enables overriding the range of the V component with values read from the particles."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraRibbonUVSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraRibbonUVSettings"
+        }
+      ]
+    }
+  ]
+}

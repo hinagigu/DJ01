@@ -1,0 +1,39 @@
+{
+  "name": "FRadialDamageParams",
+  "isStruct": true,
+  "doc": "Parameters used to compute radial damage",
+  "properties": {
+    "BaseDamage": [
+      "float32",
+      "Max damage done"
+    ],
+    "MinimumDamage": [
+      "float32",
+      "Damage will not fall below this if within range"
+    ],
+    "InnerRadius": [
+      "float32",
+      "Within InnerRadius, do max damage"
+    ],
+    "OuterRadius": [
+      "float32",
+      "Outside OuterRadius, do no damage"
+    ],
+    "DamageFalloff": [
+      "float32",
+      "Describes amount of exponential damage falloff"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRadialDamageParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRadialDamageParams"
+        }
+      ]
+    }
+  ]
+}

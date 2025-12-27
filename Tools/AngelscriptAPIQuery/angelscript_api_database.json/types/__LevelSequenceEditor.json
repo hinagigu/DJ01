@@ -1,0 +1,514 @@
+{
+  "name": "__LevelSequenceEditor",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CloseLevelSequence",
+      "return": "void",
+      "doc": "* Close",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EmptySelection",
+      "return": "void",
+      "doc": "Empties the current selection.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FocusLevelSequence",
+      "return": "void",
+      "doc": "* Focus/view the sequence associated to the given sub sequence section.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SubSection",
+          "type": "UMovieSceneSubSection"
+        }
+      ]
+    },
+    {
+      "name": "FocusParentSequence",
+      "return": "void",
+      "doc": "* Focus/view the parent sequence, popping out of the current sub sequence section.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBoundObjects",
+      "return": "TArray<UObject>",
+      "doc": "Get the object bound to the given binding ID with the current level sequence editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectBinding",
+          "type": "FMovieSceneObjectBindingID"
+        }
+      ]
+    },
+    {
+      "name": "GetChannelsWithSelectedKeys",
+      "return": "TArray<FSequencerChannelProxy>",
+      "doc": "Gets the channel with selected keys.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentLevelSequence",
+      "return": "ULevelSequence",
+      "doc": "* Get the currently opened root level sequence asset",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFocusedLevelSequence",
+      "return": "ULevelSequence",
+      "doc": "* Get the currently focused/viewed level sequence asset if there is a hierarchy of sequences.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGlobalPosition",
+      "return": "FMovieSceneSequencePlaybackParams",
+      "doc": "Get the current global playhead position",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalPosition",
+      "return": "FMovieSceneSequencePlaybackParams",
+      "doc": "Get the current local playhead position",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "GetLoopMode",
+      "return": "ESequencerLoopMode",
+      "doc": "Get loop mode (note this is a per user preference)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlaybackSpeed",
+      "return": "float32",
+      "doc": "Get playback speed of the current level sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedBindings",
+      "return": "TArray<FMovieSceneBindingProxy>",
+      "doc": "Gets the currently selected object bindings",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedChannels",
+      "return": "TArray<FSequencerChannelProxy>",
+      "doc": "Gets the currently selected channels.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedFolders",
+      "return": "TArray<UMovieSceneFolder>",
+      "doc": "Gets the currently selected folders.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedKeys",
+      "return": "TArray<int>",
+      "doc": "Gets the selected key indices with this channel",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ChannelProxy",
+          "type": "FSequencerChannelProxy"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectedSections",
+      "return": "TArray<UMovieSceneSection>",
+      "doc": "Gets the currently selected sections.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedTracks",
+      "return": "TArray<UMovieSceneTrack>",
+      "doc": "Gets the currently selected tracks.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectionRangeEnd",
+      "return": "int",
+      "doc": "Get the selection range end frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectionRangeStart",
+      "return": "int",
+      "doc": "Get the selection range start frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSubSequenceHierarchy",
+      "return": "TArray<UMovieSceneSubSection>",
+      "doc": "* Get the current sub section hierarchy from the current sequence to the section associated with the focused sequence.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTrackFilterNames",
+      "return": "TArray<FText>",
+      "doc": "Gets all the available track filter names",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsCameraCutLockedToViewport",
+      "return": "bool",
+      "doc": "Check whether the lock for the viewport to the camera cuts is enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLevelSequenceLocked",
+      "return": "bool",
+      "doc": "Check whether the current level sequence and its descendants are locked for editing.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPlaying",
+      "return": "bool",
+      "doc": "Check whether the sequence is actively playing.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsTrackFilterEnabled",
+      "return": "bool",
+      "doc": "Gets whether the specified track filter is on/off",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TrackFilterName",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "OpenLevelSequence",
+      "return": "bool",
+      "doc": "* Open a level sequence asset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequence",
+          "type": "ULevelSequence"
+        }
+      ]
+    },
+    {
+      "name": "Pause",
+      "return": "void",
+      "doc": "Pause the current level sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Play",
+      "return": "void",
+      "doc": "Play the current level sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PlayTo",
+      "return": "void",
+      "doc": "Play from the current time to the requested time in frames",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlaybackParams",
+          "type": "FMovieSceneSequencePlaybackParams"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "RefreshCurrentLevelSequence",
+      "return": "void",
+      "doc": "Refresh Sequencer UI.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SelectBindings",
+      "return": "void",
+      "doc": "Select bindings",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectBindings",
+          "type": "TArray<FMovieSceneBindingProxy>"
+        }
+      ]
+    },
+    {
+      "name": "SelectChannels",
+      "return": "void",
+      "doc": "Select channels",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Channels",
+          "type": "TArray<FSequencerChannelProxy>"
+        }
+      ]
+    },
+    {
+      "name": "SelectFolders",
+      "return": "void",
+      "doc": "Select folders",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Folders",
+          "type": "TArray<UMovieSceneFolder>"
+        }
+      ]
+    },
+    {
+      "name": "SelectKeys",
+      "return": "void",
+      "doc": "Select keys from indices",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Channel",
+          "type": "FSequencerChannelProxy"
+        },
+        {
+          "name": "Indices",
+          "type": "TArray<int>"
+        }
+      ]
+    },
+    {
+      "name": "SelectSections",
+      "return": "void",
+      "doc": "Select sections",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Sections",
+          "type": "TArray<UMovieSceneSection>"
+        }
+      ]
+    },
+    {
+      "name": "SelectTracks",
+      "return": "void",
+      "doc": "Select tracks",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tracks",
+          "type": "TArray<UMovieSceneTrack>"
+        }
+      ]
+    },
+    {
+      "name": "SetGlobalPosition",
+      "return": "void",
+      "doc": "Set global playhead position for the current level sequence. If the requested time is the same as the current time, an evaluation will be forced.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlaybackParams",
+          "type": "FMovieSceneSequencePlaybackParams"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalPosition",
+      "return": "void",
+      "doc": "Set local playhead position for the current level sequence. If the requested time is the same as the current time, an evaluation will be forced.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlaybackParams",
+          "type": "FMovieSceneSequencePlaybackParams"
+        },
+        {
+          "name": "TimeUnit",
+          "default": "EMovieSceneTimeUnit :: DisplayRate",
+          "type": "EMovieSceneTimeUnit"
+        }
+      ]
+    },
+    {
+      "name": "SetLockCameraCutToViewport",
+      "return": "void",
+      "doc": "Sets the lock for the viewport to the camera cuts.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bLock",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLockLevelSequence",
+      "return": "void",
+      "doc": "Sets the lock for the current level sequence and its descendants for editing.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bLock",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLoopMode",
+      "return": "void",
+      "doc": "Set loop mode (note this is a per user preference)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLoopMode",
+          "type": "ESequencerLoopMode"
+        }
+      ]
+    },
+    {
+      "name": "SetPlaybackSpeed",
+      "return": "void",
+      "doc": "Set playback speed of the current level sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPlaybackSpeed",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectionRangeEnd",
+      "return": "void",
+      "doc": "Set the selection range end frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewFrame",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectionRangeStart",
+      "return": "void",
+      "doc": "Set the selection range start frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewFrame",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetTrackFilterEnabled",
+      "return": "void",
+      "doc": "Sets the specified track filter to be on or off",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TrackFilterName",
+          "type": "FText"
+        },
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

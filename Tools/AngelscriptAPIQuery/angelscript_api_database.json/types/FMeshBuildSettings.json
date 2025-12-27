@@ -1,0 +1,89 @@
+{
+  "name": "FMeshBuildSettings",
+  "isStruct": true,
+  "doc": "Settings applied when building a mesh.",
+  "properties": {
+    "MinLightmapResolution": [
+      "int"
+    ],
+    "SrcLightmapIndex": [
+      "int"
+    ],
+    "DstLightmapIndex": [
+      "int"
+    ],
+    "BuildScale3D": [
+      "FVector",
+      "The local scale applied when building the mesh"
+    ],
+    "DistanceFieldResolutionScale": [
+      "float32",
+      "Scale to apply to the mesh when allocating the distance field volume texture.\nThe default scale is 1, which is assuming that the mesh will be placed unscaled in the world."
+    ],
+    "DistanceFieldReplacementMesh": [
+      "UStaticMesh"
+    ],
+    "MaxLumenMeshCards": [
+      "int",
+      "Max Lumen mesh cards to generate for this mesh.\nMore cards means that surface will have better coverage, but will result in increased runtime overhead.\nSet to 0 in order to disable mesh card generation for this mesh.\nDefault is 12."
+    ],
+    "bUseMikkTSpace": [
+      "bool",
+      "If true, degenerate triangles will be removed."
+    ],
+    "bRecomputeNormals": [
+      "bool",
+      "If true, normals in the raw mesh are ignored and recomputed."
+    ],
+    "bRecomputeTangents": [
+      "bool",
+      "If true, tangents in the raw mesh are ignored and recomputed."
+    ],
+    "bComputeWeightedNormals": [
+      "bool",
+      "If true, we will use the surface area and the corner angle of the triangle as a ratio when computing the normals."
+    ],
+    "bRemoveDegenerates": [
+      "bool",
+      "If true, degenerate triangles will be removed."
+    ],
+    "bBuildReversedIndexBuffer": [
+      "bool",
+      "Required to optimize mesh in mirrored transform. Double index buffer size."
+    ],
+    "bUseHighPrecisionTangentBasis": [
+      "bool",
+      "If true, Tangents will be stored at 16 bit vs 8 bit precision."
+    ],
+    "bUseFullPrecisionUVs": [
+      "bool",
+      "If true, UVs will be stored at full floating point precision."
+    ],
+    "bUseBackwardsCompatibleF16TruncUVs": [
+      "bool",
+      "If true, UVs will use backwards-compatible F16 conversion with truncation for legacy meshes."
+    ],
+    "bGenerateLightmapUVs": [
+      "bool"
+    ],
+    "bGenerateDistanceFieldAsIfTwoSided": [
+      "bool",
+      "Whether to generate the distance field treating every triangle hit as a front face.\nWhen enabled prevents the distance field from being discarded due to the mesh being open, but also lowers Distance Field AO quality."
+    ],
+    "bSupportFaceRemap": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMeshBuildSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMeshBuildSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1443 @@
+{
+  "name": "USceneComponent",
+  "inherits": "UActorComponent",
+  "doc": "A SceneComponent has a transform and supports attachment, but has no rendering or collision capabilities.\nUseful as a 'dummy' component in the hierarchy to offset others.\n@see [Scene Components](https://docs.unrealengine.com/latest/INT/Programming/UnrealArchitecture/Actors/Components/index.html#scenecomponents)",
+  "properties": {
+    "DetailMode": [
+      "EDetailMode",
+      "If detail mode is >= system detail mode, primitive won't be rendered."
+    ],
+    "PhysicsVolumeChangedDelegate": [
+      "FPhysicsVolumeChanged",
+      "Delegate that will be called when PhysicsVolume has been changed *"
+    ],
+    "bShouldUpdatePhysicsVolume": [
+      "bool",
+      "Whether or not the cached PhysicsVolume this component overlaps should be updated when the component is moved.\n@see GetPhysicsVolume()"
+    ],
+    "bAbsoluteLocation": [
+      "bool",
+      "If RelativeLocation should be considered relative to the world, rather than the parent"
+    ],
+    "bAbsoluteRotation": [
+      "bool",
+      "If RelativeRotation should be considered relative to the world, rather than the parent"
+    ],
+    "bAbsoluteScale": [
+      "bool",
+      "If RelativeScale3D should be considered relative to the world, rather than the parent"
+    ],
+    "bVisible": [
+      "bool",
+      "Whether to completely draw the primitive; if false, the primitive is not drawn, does not cast a shadow."
+    ],
+    "bHiddenInGame": [
+      "bool",
+      "Whether to hide the primitive in game, if the primitive is Visible."
+    ],
+    "bUseAttachParentBound": [
+      "bool",
+      "If true, this component uses its parents bounds when attached.\nThis can be a significant optimization with many components attached together."
+    ],
+    "Mobility": [
+      "EComponentMobility",
+      "How often this component is allowed to move, used to make various optimizations. Only safe to set in constructor."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetChildComponentByClass",
+      "return": "USceneComponent",
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "TSubclassOf<USceneComponent>"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "GetChildrenComponentsByClass",
+      "return": "void",
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "UClass"
+        },
+        {
+          "name": "bIncludeAllDescendants",
+          "type": "bool"
+        },
+        {
+          "name": "OutChildren",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "DetachFromParent",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bMaintainWorldPosition",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bCallModify",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DoesSocketExist",
+      "return": "bool",
+      "const": true,
+      "doc": "Return true if socket with the given name exists\n@param InSocketName Name of the socket or the bone to get the transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSocketName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetAllSocketNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Gets the names of all the sockets on the component.\n@return Get the names of all the sockets on the component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAttachParent",
+      "return": "USceneComponent",
+      "const": true,
+      "doc": "Get the SceneComponent we are attached to.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAttachSocketName",
+      "return": "FName",
+      "const": true,
+      "doc": "Get the socket we are attached to.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetChildComponent",
+      "return": "USceneComponent",
+      "const": true,
+      "doc": "Gets the attached child component at the specified location",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ChildIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetChildrenComponents",
+      "return": "void",
+      "const": true,
+      "doc": "Gets all components that are attached to this component, possibly recursively\n@param bIncludeAllDescendants Whether to include all descendants in the list of children (i.e. grandchildren, great grandchildren, etc.)\n@param Children The list of attached child components",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIncludeAllDescendants",
+          "type": "bool"
+        },
+        {
+          "name": "Children",
+          "type": "TArray<USceneComponent>&"
+        }
+      ]
+    },
+    {
+      "name": "GetComponentVelocity",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get velocity of the component: either ComponentVelocity, or the velocity of the physics body if simulating physics.\n@return Velocity of the component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetForwardVector",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the forward (X) unit direction vector from this component, in world space.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumChildrenComponents",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the number of attached children components",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetParentComponents",
+      "return": "void",
+      "const": true,
+      "doc": "Gets all attachment parent components up to and including the root component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parents",
+          "type": "TArray<USceneComponent>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPhysicsVolume",
+      "return": "APhysicsVolume",
+      "const": true,
+      "doc": "Get the PhysicsVolume overlapping this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRelativeTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Returns the transform of the component relative to its parent",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRightVector",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the right (Y) unit direction vector from this component, in world space.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetShouldUpdatePhysicsVolume",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets whether or not the cached PhysicsVolume this component overlaps should be updated when the component is moved.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSocketLocation",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get world-space socket or bone location.\n@param InSocketName Name of the socket or the bone to get the transform\n@return Socket transform in world space if socket is found. Otherwise it will return component's transform in world space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSocketName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetSocketRotation",
+      "return": "FRotator",
+      "const": true,
+      "doc": "Get world-space socket or bone  FRotator rotation.\n@param InSocketName Name of the socket or the bone to get the transform\n@return Socket transform in world space if socket if found. Otherwise it will return component's transform in world space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSocketName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetSocketTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Get world-space socket transform.\n@param InSocketName Name of the socket or the bone to get the transform\n@return Socket transform in world space if socket if found. Otherwise it will return component's transform in world space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSocketName",
+          "type": "FName"
+        },
+        {
+          "name": "TransformSpace",
+          "default": "ERelativeTransformSpace :: RTS_World",
+          "type": "ERelativeTransformSpace"
+        }
+      ]
+    },
+    {
+      "name": "GetUpVector",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the up (Z) unit direction vector from this component, in world space.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsAnySimulatingPhysics",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the specified body is currently using physics simulation",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsSimulatingPhysics",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the specified body is currently using physics simulation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsVisible",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this component is visible in the current context",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "AddLocalOffset",
+      "return": "void",
+      "doc": "Adds a delta to the location of the component in its local reference frame\n@param DeltaLocation         Change in location of the component in its local reference frame.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_AddLocalOffset",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalRotation",
+      "return": "void",
+      "doc": "Adds a delta to the rotation of the component in its local reference frame\n@param DeltaRotation         Change in rotation of the component in its local reference frame.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination (currently not supported for rotation).\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).",
+      "ufunction": true,
+      "unrealname": "K2_AddLocalRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalTransform",
+      "return": "void",
+      "doc": "Adds a delta to the transform of the component in its local reference frame. Scale is unchanged.\n@param DeltaTransform        Change in transform of the component in its local reference frame. Scale is unchanged.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_AddLocalTransform",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddRelativeLocation",
+      "return": "void",
+      "doc": "Adds a delta to the translation of the component relative to its parent\n@param DeltaLocation         Change in location of the component relative to its parent\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_AddRelativeLocation",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddRelativeRotation",
+      "return": "void",
+      "doc": "Adds a delta the rotation of the component relative to its parent\n@param DeltaRotation         Change in rotation of the component relative to is parent.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination (currently not supported for rotation).\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).",
+      "ufunction": true,
+      "unrealname": "K2_AddRelativeRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddWorldOffset",
+      "return": "void",
+      "doc": "Adds a delta to the location of the component in world space.\n@param DeltaLocation         Change in location in world space for the component.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_AddWorldOffset",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddWorldRotation",
+      "return": "void",
+      "doc": "Adds a delta to the rotation of the component in world space.\n@param DeltaRotation         Change in rotation in world space for the component.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination (currently not supported for rotation).\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_AddWorldRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddWorldTransform",
+      "return": "void",
+      "doc": "Adds a delta to the transform of the component in world space. Ignores scale and sets it to (1,1,1).\n@param DeltaTransform        Change in transform in world space for the component. Scale is ignored.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_AddWorldTransform",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddWorldTransformKeepScale",
+      "return": "void",
+      "doc": "Adds a delta to the transform of the component in world space. Scale is unchanged.\n@param DeltaTransform        Change in transform in world space for the component. Scale is ignored since we preserve the original scale.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_AddWorldTransformKeepScale",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AttachTo",
+      "return": "bool",
+      "ufunction": true,
+      "unrealname": "K2_AttachTo",
+      "meta": null,
+      "args": [
+        {
+          "name": "InParent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "InSocketName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "AttachType",
+          "default": "EAttachLocation :: KeepRelativeOffset",
+          "type": "EAttachLocation"
+        },
+        {
+          "name": "bWeldSimulatedBodies",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AttachToComponent",
+      "return": "bool",
+      "doc": "Attach this component to another scene component, optionally at a named socket. It is valid to call this on components whether or not they have been Registered.\n@param  Parent                                        Parent to attach to.\n@param  SocketName                            Optional socket to attach to on the parent.\n@param  LocationRule                          How to handle translation when attaching.\n@param  RotationRule                          How to handle rotation when attaching.\n@param  ScaleRule                                     How to handle scale when attaching.\n@param  bWeldSimulatedBodies          Whether to weld together simulated physics bodies. This transfers the shapes in the welded object into the parent (if simulated), which can result in permanent changes that persist even after subsequently detaching.\n@return True if attachment is successful (or already attached to requested parent/socket), false if attachment is rejected and there is no change in AttachParent.",
+      "ufunction": true,
+      "unrealname": "K2_AttachToComponent",
+      "meta": null,
+      "args": [
+        {
+          "name": "Parent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "SocketName",
+          "type": "FName"
+        },
+        {
+          "name": "LocationRule",
+          "type": "EAttachmentRule"
+        },
+        {
+          "name": "RotationRule",
+          "type": "EAttachmentRule"
+        },
+        {
+          "name": "ScaleRule",
+          "type": "EAttachmentRule"
+        },
+        {
+          "name": "bWeldSimulatedBodies",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DetachFromComponent",
+      "return": "void",
+      "doc": "Detach this component from whatever it is attached to. Automatically unwelds components that are welded together (see AttachToComponent), though note that some effects of welding may not be undone.\n@param LocationRule                          How to handle translations when detaching.\n@param RotationRule                          How to handle rotation when detaching.\n@param ScaleRule                                     How to handle scales when detaching.\n@param bCallModify                           If true, call Modify() on the component and the current attach parent component",
+      "ufunction": true,
+      "unrealname": "K2_DetachFromComponent",
+      "meta": null,
+      "args": [
+        {
+          "name": "LocationRule",
+          "default": "EDetachmentRule :: KeepRelative",
+          "type": "EDetachmentRule"
+        },
+        {
+          "name": "RotationRule",
+          "default": "EDetachmentRule :: KeepRelative",
+          "type": "EDetachmentRule"
+        },
+        {
+          "name": "ScaleRule",
+          "default": "EDetachmentRule :: KeepRelative",
+          "type": "EDetachmentRule"
+        },
+        {
+          "name": "bCallModify",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetWorldLocation",
+      "return": "FVector",
+      "const": true,
+      "doc": "Return location of the component, in world space",
+      "ufunction": true,
+      "unrealname": "K2_GetComponentLocation",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWorldRotation",
+      "return": "FRotator",
+      "const": true,
+      "doc": "Returns rotation of the component, in world space.",
+      "ufunction": true,
+      "unrealname": "K2_GetComponentRotation",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWorldScale",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns scale of the component, in world space.",
+      "ufunction": true,
+      "unrealname": "K2_GetComponentScale",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWorldTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Get the current component-to-world transform for this component",
+      "ufunction": true,
+      "unrealname": "K2_GetComponentToWorld",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetRelativeLocation",
+      "return": "void",
+      "doc": "Set the location of the component relative to its parent\n@param NewLocation           New location of the component relative to its parent.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_SetRelativeLocation",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetRelativeLocationAndRotation",
+      "return": "void",
+      "doc": "Set the location and rotation of the component relative to its parent\n@param NewLocation           New location of the component relative to its parent.\n@param NewRotation           New rotation of the component relative to its parent.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_SetRelativeLocationAndRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetRelativeRotation",
+      "return": "void",
+      "doc": "Set the rotation of the component relative to its parent\n@param NewRotation           New rotation of the component relative to its parent\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination (currently not supported for rotation).\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).",
+      "ufunction": true,
+      "unrealname": "K2_SetRelativeRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetRelativeTransform",
+      "return": "void",
+      "doc": "Set the transform of the component relative to its parent\n@param NewTransform          New transform of the component relative to its parent.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination (currently not supported for rotation).\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).",
+      "ufunction": true,
+      "unrealname": "K2_SetRelativeTransform",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldLocation",
+      "return": "void",
+      "doc": "Put this component at the specified location in world space. Updates relative location to achieve the final world location.\n@param NewLocation           New location in world space for the component.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_SetWorldLocation",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldLocationAndRotation",
+      "return": "void",
+      "doc": "Set the relative location and rotation of the component to put it at the supplied pose in world space.\n@param NewLocation           New location in world space for the component.\n@param NewRotation           New rotation in world space for the component.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_SetWorldLocationAndRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldRotation",
+      "return": "void",
+      "doc": "* Put this component at the specified rotation in world space. Updates relative rotation to achieve the final world rotation.\n* @param NewRotation           New rotation in world space for the component.\n* @param SweepHitResult        Hit result from any impact if sweep is true.\n* @param bSweep                        Whether we sweep to the destination (currently not supported for rotation).\n* @param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n*                                                      If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n*                                                      If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n*                                                      If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_SetWorldRotation",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldTransform",
+      "return": "void",
+      "doc": "Set the transform of the component in world space.\n@param NewTransform          New transform in world space for the component.\n@param SweepHitResult        Hit result from any impact if sweep is true.\n@param bSweep                        Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.\n                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.\n@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).\n                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).\n                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).\n                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.",
+      "ufunction": true,
+      "unrealname": "K2_SetWorldTransform",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bSweep",
+          "type": "bool"
+        },
+        {
+          "name": "SweepHitResult",
+          "type": "FHitResult&"
+        },
+        {
+          "name": "bTeleport",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ResetRelativeTransform",
+      "return": "void",
+      "doc": "Reset the transform of the component relative to its parent. Sets relative location to zero, relative rotation to no rotation, and Scale to 1.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAbsolute",
+      "return": "void",
+      "doc": "Set which parts of the relative transform should be relative to parent, and which should be relative to world",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewAbsoluteLocation",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bNewAbsoluteRotation",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bNewAbsoluteScale",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetHiddenInGame",
+      "return": "void",
+      "doc": "Changes the value of bHiddenInGame, if false this will disable Visibility during gameplay",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewHidden",
+          "type": "bool"
+        },
+        {
+          "name": "bPropagateToChildren",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMobility",
+      "return": "void",
+      "doc": "Set how often this component is allowed to move during runtime. Causes a component re-register if the component is already registered",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMobility",
+          "type": "EComponentMobility"
+        }
+      ]
+    },
+    {
+      "name": "SetRelativeScale3D",
+      "return": "void",
+      "doc": "Set the non-uniform scale of the component relative to its parent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewScale3D",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetShouldUpdatePhysicsVolume",
+      "return": "void",
+      "doc": "Sets whether or not the cached PhysicsVolume this component overlaps should be updated when the component is moved.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInShouldUpdatePhysicsVolume",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetVisibility",
+      "return": "void",
+      "doc": "Set visibility of the component, if during game use this to turn on/off",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewVisibility",
+          "type": "bool"
+        },
+        {
+          "name": "bPropagateToChildren",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldScale3D",
+      "return": "void",
+      "doc": "Set the relative scale of the component to put it at the supplied scale in world space.\n@param NewScale              New scale in world space for this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewScale",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ToggleVisibility",
+      "return": "void",
+      "doc": "Toggle visibility of the component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bPropagateToChildren",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalOffset",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalRotation",
+      "return": "void",
+      "unrealname": "AddLocalRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalTransform",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "AddRelativeLocation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "AddRelativeRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "AddRelativeRotation",
+      "return": "void",
+      "unrealname": "AddRelativeRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "AddWorldOffset",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "AddWorldRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "AddWorldRotation",
+      "return": "void",
+      "unrealname": "AddWorldRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaRotation",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "AddWorldTransform",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "AttachToComponent",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Parent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "SocketName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "AttachmentRule",
+          "default": "EAttachmentRule :: SnapToTarget",
+          "type": "EAttachmentRule"
+        }
+      ]
+    },
+    {
+      "name": "GetBounds",
+      "return": "FBoxSphereBounds",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetComponentQuat",
+      "return": "FQuat",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRelativeLocation",
+      "return": "FVector",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRelativeRotation",
+      "return": "FRotator",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRelativeScale3D",
+      "return": "FVector",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSocketQuaternion",
+      "return": "FQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "SocketName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsAttachedTo",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CheckComponent",
+          "type": "const USceneComponent"
+        }
+      ]
+    },
+    {
+      "name": "IsAttachedTo",
+      "return": "bool",
+      "const": true,
+      "unrealname": "IsAttachedTo_Actor",
+      "meta": null,
+      "args": [
+        {
+          "name": "CheckActor",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetbVisualizeComponent",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "bVisualize",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetComponentQuat",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SetRelativeLocation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetRelativeLocationAndRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetRelativeLocationAndRotation",
+      "return": "void",
+      "unrealname": "SetRelativeLocationAndRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRotation",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SetRelativeRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetRelativeRotation",
+      "return": "void",
+      "unrealname": "SetRelativeRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FQuat"
+        }
+      ],
+      "isProperty": false
+    },
+    {
+      "name": "SetRelativeTransform",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldLocation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldLocationAndRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldLocationAndRotation",
+      "return": "void",
+      "unrealname": "SetWorldLocationAndRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRotation",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldRotation",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldRotation",
+      "return": "void",
+      "unrealname": "SetWorldRotationQuat",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRotation",
+          "type": "FQuat"
+        }
+      ],
+      "isProperty": false
+    },
+    {
+      "name": "SetWorldTransform",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTransform",
+          "type": "FTransform"
+        }
+      ]
+    }
+  ]
+}

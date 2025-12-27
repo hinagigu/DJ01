@@ -1,0 +1,53 @@
+{
+  "name": "FGenerateStaticMeshLODProcess_CollisionSettings",
+  "isStruct": true,
+  "properties": {
+    "CollisionType": [
+      "EGenerateStaticMeshLODSimpleCollisionGeometryType",
+      2,
+      "Type of simple collision objects to produce"
+    ],
+    "ConvexTriangleCount": [
+      "int",
+      2,
+      "Target triangle count for each convex hull after simplification"
+    ],
+    "bPrefilterVertices": [
+      "bool",
+      2,
+      "Whether to subsample input vertices using a regular grid before computing the convex hull"
+    ],
+    "PrefilterGridResolution": [
+      "int",
+      2,
+      "Grid resolution (along the maximum-length axis) for subsampling before computing the convex hull"
+    ],
+    "bSimplifyPolygons": [
+      "bool",
+      2,
+      "Whether to simplify polygons used for swept convex hulls"
+    ],
+    "HullTolerance": [
+      "float32",
+      2,
+      "Target minumum edge length for simplified swept convex hulls"
+    ],
+    "SweepAxis": [
+      "EGenerateStaticMeshLODProjectedHullAxisMode",
+      2,
+      "Which axis to sweep along when computing swept convex hulls"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGenerateStaticMeshLODProcess_CollisionSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGenerateStaticMeshLODProcess_CollisionSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "FRigUnit_ItemHarmonics",
+  "isStruct": true,
+  "doc": "Drives an array of items through a harmonics spectrum",
+  "properties": {
+    "Targets": [
+      "TArray<FRigUnit_Harmonics_TargetItem>",
+      1,
+      "The items to drive."
+    ],
+    "WaveSpeed": [
+      "FVector"
+    ],
+    "WaveFrequency": [
+      "FVector"
+    ],
+    "WaveAmplitude": [
+      "FVector",
+      "The amplitude in degrees per axis"
+    ],
+    "WaveOffset": [
+      "FVector"
+    ],
+    "WaveNoise": [
+      "FVector"
+    ],
+    "WaveEase": [
+      "ERigVMAnimEasingType"
+    ],
+    "WaveMinimum": [
+      "float32"
+    ],
+    "WaveMaximum": [
+      "float32"
+    ],
+    "RotationOrder": [
+      "EEulerRotationOrder"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_ItemHarmonics&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_ItemHarmonics"
+        }
+      ]
+    }
+  ]
+}

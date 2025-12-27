@@ -1,0 +1,16 @@
+{
+  "name": "AOnlineBeaconClient",
+  "inherits": "AOnlineBeacon",
+  "doc": "Base class for any unique beacon connectivity, paired with an AOnlineBeaconHostObject implementation\n\nThis is the actual actor that replicates across client/server and where all RPCs occur\nOn the host, the life cycle is managed by an AOnlineBeaconHostObject\nOn the client, the life cycle is managed by the game",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ClientOnConnected",
+      "return": "void",
+      "callable": false,
+      "doc": "Called on the server side to open up the actor channel that will allow RPCs to occur\n(DO NOT OVERLOAD, implement OnConnected() instead)",
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "name": "__GameplayCue",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddGameplayCueOnActor",
+      "return": "void",
+      "doc": "Invoke the added event for a gameplay cue on the target actor. This should be paired with a RemoveGameplayCueOnActor call.\n* If the actor has an ability system, the event will fire on authority only and will be replicated.\n* If the actor does not have an ability system, the event will only be fired locally.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "AActor"
+        },
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "ExecuteGameplayCueOnActor",
+      "return": "void",
+      "doc": "Invoke a one time \"instant\" execute event for a gameplay cue on the target actor.\n* If the actor has an ability system, the event will fire on authority only and will be replicated.\n* If the actor does not have an ability system, the event will only be fired locally.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "AActor"
+        },
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "MakeGameplayCueParametersFromHitResult",
+      "return": "FGameplayCueParameters",
+      "doc": "Builds gameplay cue parameters using data from a hit result.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HitResult",
+          "type": "FHitResult"
+        }
+      ]
+    },
+    {
+      "name": "RemoveGameplayCueOnActor",
+      "return": "void",
+      "doc": "Invoke the removed event for a gameplay cue on the target actor. This should be paired with an AddGameplayCueOnActor call.\n* If the actor has an ability system, the event will fire on authority only and will be replicated.\n* If the actor does not have an ability system, the event will only be fired locally.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "AActor"
+        },
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "name": "__ULocationServices",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AreLocationServicesEnabled",
+      "return": "bool",
+      "doc": "Checks if the Location Services on the mobile device are enabled for this application\n@return - true if the mobile device has enabled the appropriate service for the app",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLastKnownLocation",
+      "return": "FLocationServicesData",
+      "doc": "Returns the last location information returned by the location service. If no location update has been made, will return\na default-value-filled struct.\n@return - the last known location from updates",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLocationServicesImpl",
+      "return": "ULocationServicesImpl",
+      "doc": "* Returns the Location Services implementation object. Intended to be used to set up the FLocationServicesData_OnLocationChanged\n* delegate in Blueprints.\n* @return - the Android or IOS impl object",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InitLocationServices",
+      "return": "bool",
+      "doc": "Called to set up the Location Service before use\n\n@param Accuracy - as seen in the enum above\n@param UpdateFrequency - in milliseconds. (Android only)\n@param MinDistance - minDistance before a location update, in meters. 0 here means \"update asap\"\n@return - true if Initialization was succesful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accuracy",
+          "type": "ELocationAccuracy"
+        },
+        {
+          "name": "UpdateFrequency",
+          "type": "float32"
+        },
+        {
+          "name": "MinDistanceFilter",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "IsLocationAccuracyAvailable",
+      "return": "bool",
+      "doc": "Checks if the supplied Accuracy is available on the current device.\n@param Accuracy - the accuracy to check\n@return - true if the mobile device can support the Accuracy, false if it will use a different accuracy",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accuracy",
+          "type": "ELocationAccuracy"
+        }
+      ]
+    },
+    {
+      "name": "StartLocationServices",
+      "return": "bool",
+      "doc": "Starts requesting location updates from the appropriate Location Service\n@return - true if startup successful",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopLocationServices",
+      "return": "bool",
+      "doc": "Stops the updates of location from the Location Service that was started with StartLocationService\n@return - true if stop is successful",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

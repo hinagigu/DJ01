@@ -1,0 +1,115 @@
+{
+  "name": "UInterchangeSkeletonFactoryNode",
+  "inherits": "UInterchangeFactoryBaseNode",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetCustomRootJointUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Return false if the attribute was not set previously.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomSkeletalMeshFactoryNodeUid",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomUseTimeZeroForBindPose",
+      "return": "bool",
+      "const": true,
+      "doc": "Query whether this skeleton should replace joint transforms with time-zero evaluation instead of bind pose.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetObjectClass",
+      "return": "UClass",
+      "const": true,
+      "doc": "Get the class this node creates.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InitializeSkeletonNode",
+      "return": "void",
+      "doc": "Initialize node data.\n@param: UniqueID - The unique ID for this node.\n@param DisplayLabel - The name of the node.\n@param InAssetClass - The class the Skeleton factory will create for this node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UniqueID",
+          "type": "FString"
+        },
+        {
+          "name": "DisplayLabel",
+          "type": "FString"
+        },
+        {
+          "name": "InAssetClass",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomRootJointUid",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomSkeletalMeshFactoryNodeUid",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomUseTimeZeroForBindPose",
+      "return": "bool",
+      "doc": "If AttributeValue is true, force this skeleton to use time-zero evaluation instead of its bind pose.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

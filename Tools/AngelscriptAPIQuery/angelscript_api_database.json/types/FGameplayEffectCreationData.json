@@ -1,0 +1,33 @@
+{
+  "name": "FGameplayEffectCreationData",
+  "isStruct": true,
+  "properties": {
+    "MenuPath": [
+      "FString",
+      2,
+      "Where to show this in the menu. Use \"|\" for sub categories. E.g, \"Status|Hard|Stun|Root\"."
+    ],
+    "BaseName": [
+      "FString",
+      2,
+      "The default BaseName of the new asset. E.g \"Damage\" -> GE_Damage or GE_HeroName_AbilityName_Damage"
+    ],
+    "ParentGameplayEffect": [
+      "TSubclassOf<UGameplayEffect>",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayEffectCreationData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayEffectCreationData"
+        }
+      ]
+    }
+  ]
+}

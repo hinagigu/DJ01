@@ -1,0 +1,41 @@
+{
+  "AbilitySet": {
+    "class_name": "UDJ01AbilitySet",
+    "parent_class": "UPrimaryDataAsset",
+    "asset_type": "DataAsset",
+    "display_name": "技能集",
+    "description": "技能、效果和属性集的集合，可以一起授予",
+    "content_path": "/Game/Gameplay/Abilities/AbilitySets",
+    "icon": "⚔️",
+    
+    "properties": {
+      "GrantedGameplayAbilities": {
+        "type": "array",
+        "item_type": "FDJ01AbilitySet_GameplayAbility",
+        "display_name": "授予的技能",
+        "description": "此技能集授予的技能列表",
+        "widget": "struct_array_editor",
+        "struct_type": "FDJ01AbilitySet_GameplayAbility",
+        "category": "Gameplay Abilities"
+      },
+      "GrantedGameplayEffects": {
+        "type": "array",
+        "item_type": "FDJ01AbilitySet_GameplayEffect",
+        "display_name": "授予的效果",
+        "description": "此技能集授予的效果列表",
+        "widget": "struct_array_editor",
+        "struct_type": "FDJ01AbilitySet_GameplayEffect",
+        "category": "Gameplay Effects"
+      },
+      "GrantedAttributes": {
+        "type": "array",
+        "item_type": "FDJ01AbilitySet_AttributeSet",
+        "display_name": "授予的属性集",
+        "description": "此技能集授予的属性集列表",
+        "widget": "struct_array_editor",
+        "struct_type": "FDJ01AbilitySet_AttributeSet",
+        "category": "Attribute Sets"
+      }
+    }
+  }
+}

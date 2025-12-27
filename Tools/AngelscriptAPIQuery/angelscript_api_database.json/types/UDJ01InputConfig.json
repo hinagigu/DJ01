@@ -1,0 +1,53 @@
+{
+  "name": "UDJ01InputConfig",
+  "inherits": "UDataAsset",
+  "doc": "UDJ01InputConfig\n\n     Non-mutable data asset that contains input configuration properties.",
+  "properties": {
+    "NativeInputActions": [
+      "TArray<FDJ01InputAction>",
+      "List of input actions used by the owner.  These input actions are mapped to a gameplay tag and must be manually bound."
+    ],
+    "AbilityInputActions": [
+      "TArray<FDJ01InputAction>",
+      "List of input actions used by the owner.  These input actions are mapped to a gameplay tag and are automatically bound to abilities with matching input tags."
+    ]
+  },
+  "methods": [
+    {
+      "name": "FindAbilityInputActionForTag",
+      "return": "const UInputAction",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "bLogNotFound",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "FindNativeInputActionForTag",
+      "return": "const UInputAction",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "bLogNotFound",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

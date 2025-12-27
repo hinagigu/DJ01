@@ -1,0 +1,34 @@
+{
+  "name": "FAutoReimportDirectoryConfig",
+  "isStruct": true,
+  "doc": "Auto reimport settings for a specific directory",
+  "properties": {
+    "SourceDirectory": [
+      "FString",
+      2,
+      "Path to a virtual package path (eg /Game/ or /MyPlugin/), or absolute paths on disk where your source content files reside."
+    ],
+    "MountPoint": [
+      "FString",
+      2,
+      "(Optional) Specify a virtual mout point (e.g. /Game/) to map this directory to on disk. Doing so allows auto-creation of assets when a source content file is created in this folder (see below)."
+    ],
+    "Wildcards": [
+      "TArray<FAutoReimportWildcard>",
+      2,
+      "(Optional) Specify a set of wildcards to include or exclude files from this auto-reimporter."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAutoReimportDirectoryConfig&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAutoReimportDirectoryConfig"
+        }
+      ]
+    }
+  ]
+}

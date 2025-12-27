@@ -1,0 +1,77 @@
+{
+  "name": "FAutomationScreenshotOptions",
+  "isStruct": true,
+  "properties": {
+    "Resolution": [
+      "FVector2D",
+      "The desired resolution of the screenshot, if none is provided, it will use the default for the\nplatform setup in the automation settings."
+    ],
+    "Delay": [
+      "float32",
+      "The delay before we take the screenshot (measured in seconds). Both this delay and the frame delay must be met before the screenshot is taken."
+    ],
+    "FrameDelay": [
+      "int",
+      "The delay before we take the screenshot (measured in number of frames). Both this frame delay and the time delay must be met before the screenshot is taken."
+    ],
+    "bOverride_OverrideTimeTo": [
+      "bool"
+    ],
+    "OverrideTimeTo": [
+      "float",
+      "Overrides World Time, Real Time to the value provided.  Sets Delta Time to 0.  Only\naffects the time being sent to the render thread and materials.  The time accumulating\non the game thread is unaffected."
+    ],
+    "bDisableNoisyRenderingFeatures": [
+      "bool",
+      "Disables Anti-Aliasing, Motion Blur, Screen Space Reflections, Eye Adaptation, Tonemapper and Contact\nShadows, because those features contribute a lot to the noise in the final rendered image.  If you're\nexplicitly looking for changes. Unchecking the option will make accessible the Disable Eye Adaptation\ncheckbox."
+    ],
+    "bDisableTonemapping": [
+      "bool",
+      "Disables Eye Adaptation and sets Tonemapper to fixed gamma curve. Should generally be on unless\ntesting tone mapping or other post-processing results."
+    ],
+    "ViewSettings": [
+      "UAutomationViewSettings",
+      "Assign custom view settings to control which rendering options we allow on while taking the\nscreenshot."
+    ],
+    "VisualizeBuffer": [
+      "FName",
+      "Allows you to screenshot a buffer other than the default final lit scene image.  Useful if you're\ntrying to build a test for a specific GBuffer, that may be harder to tell if errors are introduced\nin it."
+    ],
+    "Tolerance": [
+      "EComparisonTolerance",
+      "These are quick defaults for tolerance levels, we default to low, because generally there's some\nconstant variability in every pixel's color introduced by TxAA."
+    ],
+    "ToleranceAmount": [
+      "FComparisonToleranceAmount",
+      "For each channel and brightness levels you can control a region where the colors are found to be\nessentially the same.  Generally this is necessary as modern rendering techniques tend to introduce\nnoise constantly to hide aliasing."
+    ],
+    "MaximumLocalError": [
+      "float32",
+      "After you've accounted for color tolerance changes, you now need to control for local acceptable error.\nWhich depending on how pixels were colored on triangle edges may be a few percent of the image being\noutside the tolerance levels.  Unlike the MaximumGlobalError, the MaximumLocalError works by focusing\non a smaller subset of the image.  These chunks will have be compared to the local error, in an attempt\nto locate hot spots of change that are important, that would be ignored by the global error."
+    ],
+    "MaximumGlobalError": [
+      "float32",
+      "After you've accounted for color tolerance changes, you now need to control for total acceptable error.\nWhich depending on how pixels were colored on triangle edges may be a few percent of the image being\noutside the tolerance levels."
+    ],
+    "bIgnoreAntiAliasing": [
+      "bool",
+      "If this is true, we search neighboring pixels looking for the expected pixel as what may have happened, is\nthat the pixel shifted a little."
+    ],
+    "bIgnoreColors": [
+      "bool",
+      "If this is true, all we compare is luminance of the scene."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAutomationScreenshotOptions&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAutomationScreenshotOptions"
+        }
+      ]
+    }
+  ]
+}

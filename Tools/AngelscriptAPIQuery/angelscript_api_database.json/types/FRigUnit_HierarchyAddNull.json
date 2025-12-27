@@ -1,0 +1,44 @@
+{
+  "name": "FRigUnit_HierarchyAddNull",
+  "isStruct": true,
+  "doc": "Adds a new null to the hierarchy\nNote: This node only runs as part of the construction event.",
+  "properties": {
+    "Transform": [
+      "FTransform",
+      "* The initial transform of the new element"
+    ],
+    "Space": [
+      "ERigVMTransformSpace",
+      "Defines if the transform should be interpreted in local or global space"
+    ],
+    "Parent": [
+      "FRigElementKey",
+      "* The parent of the new element to add"
+    ],
+    "Name": [
+      "FName",
+      "* The name of the new element to add"
+    ],
+    "Item": [
+      "FRigElementKey",
+      1,
+      "* The resulting item"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_HierarchyAddNull&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_HierarchyAddNull"
+        }
+      ]
+    }
+  ]
+}

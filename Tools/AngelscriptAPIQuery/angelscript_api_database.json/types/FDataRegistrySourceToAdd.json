@@ -1,0 +1,47 @@
+{
+  "name": "FDataRegistrySourceToAdd",
+  "isStruct": true,
+  "doc": "Defines which source assets to add and conditions for adding",
+  "properties": {
+    "RegistryToAddTo": [
+      "FName",
+      2,
+      "Name of the registry to add to"
+    ],
+    "AssetPriority": [
+      "int",
+      2,
+      "Priority to use when adding to the registry.  Higher priorities are searched first"
+    ],
+    "DataTableToAdd": [
+      "TSoftObjectPtr<UDataTable>",
+      2,
+      "Link to the data table to add to the registry"
+    ],
+    "CurveTableToAdd": [
+      "TSoftObjectPtr<UCurveTable>",
+      2,
+      "Link to the curve table to add to the registry"
+    ],
+    "bClientSource": [
+      "bool",
+      "Should this component be added for clients"
+    ],
+    "bServerSource": [
+      "bool",
+      "Should this component be added on servers"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDataRegistrySourceToAdd&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDataRegistrySourceToAdd"
+        }
+      ]
+    }
+  ]
+}

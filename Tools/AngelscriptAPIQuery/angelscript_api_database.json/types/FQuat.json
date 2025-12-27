@@ -1,0 +1,435 @@
+{
+  "name": "FQuat",
+  "isStruct": true,
+  "properties": {
+    "X": [
+      "float"
+    ],
+    "Y": [
+      "float"
+    ],
+    "Z": [
+      "float"
+    ],
+    "W": [
+      "float"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FQuat&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FQuat",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "opSub",
+      "return": "FQuat",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "opSubAssign",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "Equals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsIdentity",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opMul",
+      "return": "FQuat",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "opMulAssign",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "opMul",
+      "return": "FQuat",
+      "const": true,
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opMulAssign",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opDiv",
+      "return": "FQuat",
+      "const": true,
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opDivAssign",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Normalize",
+      "return": "void",
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "GetNormalized",
+      "return": "FQuat",
+      "const": true,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsNormalized",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Size",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SizeSquared",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetAngle",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Log",
+      "return": "FQuat",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Exp",
+      "return": "FQuat",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Inverse",
+      "return": "FQuat",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "AngularDistance",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "Q",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "ContainsNaN",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "EnforceShortestArcWith",
+      "return": "void",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "ToAxisAndAngle",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "Axis",
+          "type": "FVector&"
+        },
+        {
+          "name": "Angle",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "ToAxisAndAngle",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "Axis",
+          "type": "FVector&"
+        },
+        {
+          "name": "Angle",
+          "type": "float&"
+        }
+      ]
+    },
+    {
+      "name": "opMul",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "Euler",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "RotateVector",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "UnrotateVector",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "GetAxisX",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetAxisY",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetAxisZ",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetForwardVector",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetRightVector",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetUpVector",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Vector",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetRotationAxis",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Rotator",
+      "return": "FRotator",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToSwingTwist",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "InTwistAxis",
+          "type": "FVector"
+        },
+        {
+          "name": "OutSwing",
+          "type": "FQuat&"
+        },
+        {
+          "name": "OutTwist",
+          "type": "FQuat&"
+        }
+      ]
+    },
+    {
+      "name": "GetTwistAngle",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "InTwistAxis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "InitFromString",
+      "return": "bool",
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    }
+  ]
+}

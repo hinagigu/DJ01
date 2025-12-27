@@ -1,0 +1,62 @@
+{
+  "name": "FNeuralProfileStruct",
+  "isStruct": true,
+  "doc": "struct with all the settings we want in UNeuralProfile, separate to make it easer to pass this data around in the engine.",
+  "properties": {
+    "InputFormat": [
+      "ENeuralProfileFormat",
+      "Define the expected input format, if any output from material is not this format, a custom conversion\nwill be applied for this conversion."
+    ],
+    "OutputFormat": [
+      "ENeuralProfileFormat",
+      "Define the expected output format. A conversion between the output format and the actual format will\nbe applied automatically."
+    ],
+    "RuntimeType": [
+      "ENeuralProfileRuntimeType",
+      "runtime type (support \"NNERuntimeRDGDml\" only at this moment)"
+    ],
+    "NNEModelData": [
+      "UObject",
+      "Stores the NNEModelData imported from e.g., onnx model"
+    ],
+    "InputDimension": [
+      "FIntVector4",
+      "Input dimension of the NNEModelData model"
+    ],
+    "OutputDimension": [
+      "FIntVector4",
+      "Output dimension of the NNEModelData model"
+    ],
+    "BatchSizeOverride": [
+      "int",
+      "Used to override the batch size if the batch dimension is dynamic (-1)"
+    ],
+    "TileSize": [
+      "ENeuralModelTileType",
+      2,
+      "Total tiles used. Each tile will be executed by 1 batch"
+    ],
+    "TileOverlap": [
+      "FIntPoint",
+      2,
+      "Tile border overlaps (Left|Right, Top|Bottom). The larger this value, the more tiles are required to cover the whole screen when TileSize is Auto."
+    ],
+    "TileOverlapResolveType": [
+      "ETileOverlapResolveType",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNeuralProfileStruct&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNeuralProfileStruct"
+        }
+      ]
+    }
+  ]
+}

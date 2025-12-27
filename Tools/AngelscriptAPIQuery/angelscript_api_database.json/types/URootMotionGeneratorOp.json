@@ -1,0 +1,52 @@
+{
+  "name": "URootMotionGeneratorOp",
+  "inherits": "URetargetOpBase",
+  "properties": {
+    "SourceRootBone": [
+      "FName",
+      2,
+      "The root of the source skeleton."
+    ],
+    "TargetRootBone": [
+      "FName",
+      2,
+      "The root of the target skeleton."
+    ],
+    "TargetPelvisBone": [
+      "FName",
+      2,
+      "The pelvis of the target skeleton."
+    ],
+    "RootMotionSource": [
+      "ERootMotionSource",
+      2,
+      "Where to copy the root motion from.\nCopy From Source Root: copies the motion from the source root bone, but scales it according to relative height difference.\nGenerate From Target Pelvis: uses the retargeted Pelvis motion to generate root motion.\nNOTE: Generating root motion from the Pelvis"
+    ],
+    "RootHeightSource": [
+      "ERootMotionHeightSource",
+      2,
+      "How to set the height of the root bone.\nCopy Height From Source: copies the height of the root bone on the source skeleton's root bone.\nSnap To Ground: sets the root bone height to the ground plane (Z=0)."
+    ],
+    "bPropagateToNonRetargetedChildren": [
+      "bool",
+      2,
+      "Will transform all children of the target root that are not themselves part of a retarget chain."
+    ],
+    "bMaintainOffsetFromPelvis": [
+      "bool",
+      2,
+      "Applies only when generating root motion from the Pelvis.\nMaintains the offset between the root and pelvis as recorded in the target retarget pose.\nIf false, the root bone is placed directly under the Pelvis bone."
+    ],
+    "bRotateWithPelvis": [
+      "bool",
+      2,
+      "Applies only when generating root motion from the Pelvis.\nWhen true, the applied offset will be rotated by the Pelvis.\n(NOTE: This may cause unwanted rotations, for example if Pelvis Yaw is animated.)"
+    ],
+    "GlobalOffset": [
+      "FTransform",
+      2,
+      "A manual offset to apply in global space to the root bone."
+    ]
+  },
+  "methods": []
+}

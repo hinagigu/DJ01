@@ -1,0 +1,18 @@
+{
+  "name": "FGameplayAbilityTargetDataHandle",
+  "isStruct": true,
+  "doc": "Handle for Targeting Data. This servers two main purposes:\n        -Avoid us having to copy around the full targeting data structure in Blueprints\n        -Allows us to leverage polymorphism in the target data structure\n        -Allows us to implement NetSerialize and replicate by value between clients/server\n\n        -Avoid using UObjects could be used to give us polymorphism and by reference passing in blueprints.\n        -However we would still be screwed when it came to replication\n\n        -Replication by value\n        -Pass by reference in blueprints\n        -Polymophism in TargetData structure",
+  "properties": {},
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayAbilityTargetDataHandle&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayAbilityTargetDataHandle"
+        }
+      ]
+    }
+  ]
+}

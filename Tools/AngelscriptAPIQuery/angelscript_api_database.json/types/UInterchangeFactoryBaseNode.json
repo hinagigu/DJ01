@@ -1,0 +1,201 @@
+{
+  "name": "UInterchangeFactoryBaseNode",
+  "inherits": "UInterchangeBaseNode",
+  "doc": "This struct is used to store and retrieve key-value attributes. The attributes are stored in a generic FAttributeStorage that serializes the values in a TArray64<uint8>.\nSee UE::Interchange::EAttributeTypes to know the supported template types.\nThis is an abstract class. This is the base class of the Interchange node graph format; all classes in this format should derive from this class.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddFactoryDependencyUid",
+      "return": "bool",
+      "doc": "Add one dependency to this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DependencyUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomReferenceObject",
+      "return": "bool",
+      "const": true,
+      "doc": "Return the custom ReferenceObject: the UObject this factory node has created.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FSoftObjectPath&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomSubPath",
+      "return": "bool",
+      "const": true,
+      "doc": "Return the custom sub-path under PackageBasePath where the assets will be created.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetFactoryDependencies",
+      "return": "void",
+      "const": true,
+      "doc": "Retrieve the dependencies for this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutDependencies",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetFactoryDependenciesCount",
+      "return": "int",
+      "const": true,
+      "doc": "Retrieve the number of factory dependencies for this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFactoryDependency",
+      "return": "void",
+      "const": true,
+      "doc": "Retrieve one dependency for this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "OutDependency",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetReimportStrategyFlags",
+      "return": "EReimportStrategyFlags",
+      "const": true,
+      "doc": "Return the reimport strategy flags.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveFactoryDependencyUid",
+      "return": "bool",
+      "doc": "Remove one dependency from this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DependencyUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomReferenceObject",
+      "return": "bool",
+      "doc": "Set the custom ReferenceObject: the UObject this factory node has created.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FSoftObjectPath"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomSubPath",
+      "return": "bool",
+      "doc": "Set the custom sub-path under PackageBasePath where the assets will be created.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetForceNodeReimport",
+      "return": "bool",
+      "doc": "Allow the creation of the Unreal object even if it has been previously deleted in the editor.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetReimportStrategyFlags",
+      "return": "bool",
+      "doc": "Change the reimport strategy flags.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ReimportStrategyFlags",
+          "type": "EReimportStrategyFlags"
+        }
+      ]
+    },
+    {
+      "name": "SetSkipNodeImport",
+      "return": "bool",
+      "doc": "Add the skip node attribute. Use this function to cancel the creation of the Unreal asset. See ShouldSkipNodeImport for more documentation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ShouldForceNodeReimport",
+      "return": "bool",
+      "const": true,
+      "doc": "Return whether or not an object should be created even if it has been deleted in the editor.\nReturn false by default.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ShouldSkipNodeImport",
+      "return": "bool",
+      "const": true,
+      "doc": "Return true if this node should skip the factory import process, or false otherwise.\nNodes can be in a situation where we have to skip the import process because we cannot import the associated asset for multiple reasons. For example:\n- An asset can already exist and represents a different type (UClass).\n- An asset can already exist and is being compiled.\n- An asset can already exist and is being imported by another concurrent import task (such as a user importing multiple files at the same time in the same content folder).",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UnsetForceNodeReimport",
+      "return": "bool",
+      "doc": "Disallow the creation of the Unreal object if it has been previously deleted in the editor.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UnsetSkipNodeImport",
+      "return": "bool",
+      "doc": "Remove the skip node attribute. See ShouldSkipNodeImport for more documentation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

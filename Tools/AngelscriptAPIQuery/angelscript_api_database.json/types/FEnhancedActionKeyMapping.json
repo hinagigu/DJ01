@@ -1,0 +1,45 @@
+{
+  "name": "FEnhancedActionKeyMapping",
+  "isStruct": true,
+  "doc": "Defines a mapping between a key activation and the resulting enhanced action\nAn key could be a button press, joystick axis movement, etc.\nAn enhanced action could be MoveForward, Jump, Fire, etc.",
+  "properties": {
+    "Triggers": [
+      "TArray<TObjectPtr<UInputTrigger>>",
+      "Trigger qualifiers. If any trigger qualifiers exist the mapping will not trigger unless:\nIf there are any Explicit triggers in this list at least one of them must be met.\nAll Implicit triggers in this list must be met."
+    ],
+    "Modifiers": [
+      "TArray<TObjectPtr<UInputModifier>>",
+      "Modifiers applied to the raw key value.\nThese are applied sequentially in array order.\n\nNote: Modifiers defined in individual key mappings will be applied before those defined in the Input Action asset.\nModifiers will not override any that are defined on the Input Action asset, they will be combined together during evaluation."
+    ],
+    "Action": [
+      "const UInputAction",
+      "Action to be affected by the key"
+    ],
+    "Key": [
+      "FKey",
+      "Key that affect the action."
+    ],
+    "SettingBehavior": [
+      "EPlayerMappableKeySettingBehaviors",
+      2,
+      "Defines which Player Mappable Key Setting to use for a Action Key Mapping."
+    ],
+    "PlayerMappableKeySettings": [
+      "UPlayerMappableKeySettings",
+      2,
+      "Used to expose this mapping or to opt-out of settings completely."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FEnhancedActionKeyMapping&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FEnhancedActionKeyMapping"
+        }
+      ]
+    }
+  ]
+}

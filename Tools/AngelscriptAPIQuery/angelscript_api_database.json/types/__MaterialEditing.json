@@ -1,0 +1,1047 @@
+{
+  "name": "__MaterialEditing",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ClearAllMaterialInstanceParameters",
+      "return": "void",
+      "doc": "Clears all material parameters set by this Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        }
+      ]
+    },
+    {
+      "name": "ConnectMaterialExpressions",
+      "return": "bool",
+      "doc": "Create connection between two material expressions\n@param  FromExpression          Expression to make connection from\n@param  FromOutputName          Name of output of FromExpression to make connection from. Leave empty to use first output.\n@param  ToExpression            Expression to make connection to\n@param  ToInputName                     Name of input of ToExpression to make connection to. Leave empty to use first input.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FromExpression",
+          "type": "UMaterialExpression"
+        },
+        {
+          "name": "FromOutputName",
+          "type": "FString"
+        },
+        {
+          "name": "ToExpression",
+          "type": "UMaterialExpression"
+        },
+        {
+          "name": "ToInputName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ConnectMaterialProperty",
+      "return": "bool",
+      "doc": "Connect a material expression output to one of the material property inputs (e.g. diffuse color, opacity etc)\n@param  FromExpression          Expression to make connection from\n@param  FromOutputName          Name of output of FromExpression to make connection from\n@param  Property                        Property input on material to make connection to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FromExpression",
+          "type": "UMaterialExpression"
+        },
+        {
+          "name": "FromOutputName",
+          "type": "FString"
+        },
+        {
+          "name": "Property",
+          "type": "EMaterialProperty"
+        }
+      ]
+    },
+    {
+      "name": "CreateMaterialExpression",
+      "return": "UMaterialExpression",
+      "doc": "Create a new material expression node within the supplied material\n@param  Material                        Material asset to add an expression to\n@param  ExpressionClass         Class of expression to add\n@param  NodePosX                        X position of new expression node\n@param  NodePosY                        Y position of new expression node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "ExpressionClass",
+          "type": "TSubclassOf<UMaterialExpression>"
+        },
+        {
+          "name": "NodePosX",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "NodePosY",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "CreateMaterialExpressionInFunction",
+      "return": "UMaterialExpression",
+      "doc": "Create a new material expression node within the supplied material function\n@param  MaterialFunction        Material function asset to add an expression to\n@param  ExpressionClass         Class of expression to add\n@param  NodePosX                        X position of new expression node\n@param  NodePosY                        Y position of new expression node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialFunction",
+          "type": "UMaterialFunction"
+        },
+        {
+          "name": "ExpressionClass",
+          "type": "TSubclassOf<UMaterialExpression>"
+        },
+        {
+          "name": "NodePosX",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "NodePosY",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "DeleteAllMaterialExpressions",
+      "return": "void",
+      "doc": "Delete all material expressions in the supplied material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        }
+      ]
+    },
+    {
+      "name": "DeleteAllMaterialExpressionsInFunction",
+      "return": "void",
+      "doc": "Delete all material expressions in the supplied material function",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialFunction",
+          "type": "UMaterialFunction"
+        }
+      ]
+    },
+    {
+      "name": "DeleteMaterialExpression",
+      "return": "void",
+      "doc": "Delete a specific expression from a material. Will disconnect from other expressions.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "Expression",
+          "type": "UMaterialExpression"
+        }
+      ]
+    },
+    {
+      "name": "DeleteMaterialExpressionInFunction",
+      "return": "void",
+      "doc": "Delete a specific expression from a material function. Will disconnect from other expressions.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialFunction",
+          "type": "UMaterialFunction"
+        },
+        {
+          "name": "Expression",
+          "type": "UMaterialExpression"
+        }
+      ]
+    },
+    {
+      "name": "DuplicateMaterialExpression",
+      "return": "UMaterialExpression",
+      "doc": "Duplicates the provided material expression adding it to the same material / material function, and copying parameters.\nNote: Does not duplicate transient properties (Ex: GraphNode).\n\n@param  Material                        Material asset to add an expression to\n@param  MaterialFunction        Specified if adding an expression to a MaterialFunction, used as Outer for new expression object\n@param  SourceExpression        Expression to be duplicated",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "MaterialFunction",
+          "type": "UMaterialFunction"
+        },
+        {
+          "name": "Expression",
+          "type": "UMaterialExpression"
+        }
+      ]
+    },
+    {
+      "name": "GetChildInstances",
+      "return": "void",
+      "doc": "Gets all direct child mat instances",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parent",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ChildInstances",
+          "type": "TArray<FAssetData>&"
+        }
+      ]
+    },
+    {
+      "name": "GetInputNodeOutputNameForMaterialExpression",
+      "return": "bool",
+      "doc": "Get the output name of input node connected to MaterialExpression from an active material editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialExpression",
+          "type": "UMaterialExpression"
+        },
+        {
+          "name": "InputNode",
+          "type": "UMaterialExpression"
+        },
+        {
+          "name": "OutputName",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetInputsForMaterialExpression",
+      "return": "TArray<UMaterialExpression>",
+      "doc": "Get the set of nodes acting as inputs to a node from an active material editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "MaterialExpression",
+          "type": "UMaterialExpression"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialDefaultScalarParameterValue",
+      "return": "float32",
+      "doc": "Get the default scalar (float) parameter value from a Material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialDefaultStaticSwitchParameterValue",
+      "return": "bool",
+      "doc": "Get the default static switch parameter value from a Material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialDefaultTextureParameterValue",
+      "return": "UTexture",
+      "doc": "Get the default texture parameter value from a Material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialDefaultVectorParameterValue",
+      "return": "FLinearColor",
+      "doc": "Get the default vector parameter value from a Material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialExpressionInputNames",
+      "return": "TArray<FString>",
+      "doc": "Get the array of input pin names for a material expression",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialExpression",
+          "type": "UMaterialExpression"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialExpressionInputTypes",
+      "return": "TArray<int>",
+      "doc": "Get the array of input pin types for a material expression",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialExpression",
+          "type": "UMaterialExpression"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialExpressionNodePosition",
+      "return": "void",
+      "doc": "Get the position of the MaterialExpression node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialExpression",
+          "type": "UMaterialExpression"
+        },
+        {
+          "name": "NodePosX",
+          "type": "int&"
+        },
+        {
+          "name": "NodePosY",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialInstanceRuntimeVirtualTextureParameterValue",
+      "return": "URuntimeVirtualTexture",
+      "doc": "Get the current texture parameter value from a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialInstanceScalarParameterValue",
+      "return": "float32",
+      "doc": "Get the current scalar (float) parameter value from a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialInstanceSparseVolumeTextureParameterValue",
+      "return": "USparseVolumeTexture",
+      "doc": "Get the current texture parameter value from a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialInstanceStaticSwitchParameterValue",
+      "return": "bool",
+      "doc": "Get the current static switch parameter value from a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialInstanceTextureParameterValue",
+      "return": "UTexture",
+      "doc": "Get the current texture parameter value from a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialInstanceVectorParameterValue",
+      "return": "FLinearColor",
+      "doc": "Get the current vector parameter value from a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialPropertyInputNode",
+      "return": "UMaterialExpression",
+      "doc": "Get the node providing the output for a given material property from an active material editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "Property",
+          "type": "EMaterialProperty"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialPropertyInputNodeOutputName",
+      "return": "FString",
+      "doc": "Get the node output name providing the output for a given material property from an active material editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "Property",
+          "type": "EMaterialProperty"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialSelectedNodes",
+      "return": "TSet<UObject>",
+      "doc": "Get the set of selected nodes from an active material editor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        }
+      ]
+    },
+    {
+      "name": "GetNaniteOverrideMaterial",
+      "return": "UMaterialInterface",
+      "doc": "Returns any nanite override material for the given material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "GetNumMaterialExpressions",
+      "return": "int",
+      "doc": "Returns number of material expressions in the supplied material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "const UMaterial"
+        }
+      ]
+    },
+    {
+      "name": "GetNumMaterialExpressionsInFunction",
+      "return": "int",
+      "doc": "Returns number of material expressions in the supplied material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialFunction",
+          "type": "const UMaterialFunction"
+        }
+      ]
+    },
+    {
+      "name": "GetScalarParameterNames",
+      "return": "void",
+      "doc": "Gets all scalar parameter names",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ParameterNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetScalarParameterSource",
+      "return": "bool",
+      "doc": "Returns the path of the asset where the parameter originated, as well as true/false if it was found\n@param  Material        The material or material instance you want to look up a parameter from\n@param  ParameterName           The parameter name\n@param  ParameterSource         The soft object path of the asset the parameter originates in\n@return Whether or not the parameter was found in this material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "ParameterSource",
+          "type": "FSoftObjectPath&"
+        }
+      ]
+    },
+    {
+      "name": "GetStaticSwitchParameterNames",
+      "return": "void",
+      "doc": "Gets all static switch parameter names",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ParameterNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetStaticSwitchParameterSource",
+      "return": "bool",
+      "doc": "Returns the path of the asset where the parameter originated, as well as true/false if it was found\n@param  Material        The material or material instance you want to look up a parameter from\n@param  ParameterName           The parameter name\n@param  ParameterSource         The soft object path of the asset the parameter originates in\n@return Whether or not the parameter was found in this material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "ParameterSource",
+          "type": "FSoftObjectPath&"
+        }
+      ]
+    },
+    {
+      "name": "GetStatistics",
+      "return": "FMaterialStatistics",
+      "doc": "Returns statistics about the given material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "GetTextureParameterNames",
+      "return": "void",
+      "doc": "Gets all texture parameter names",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ParameterNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetTextureParameterSource",
+      "return": "bool",
+      "doc": "Returns the path of the asset where the parameter originated, as well as true/false if it was found\n@param  Material        The material or material instance you want to look up a parameter from\n@param  ParameterName           The parameter name\n@param  ParameterSource         The soft object path of the asset the parameter originates in\n@return Whether or not the parameter was found in this material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "ParameterSource",
+          "type": "FSoftObjectPath&"
+        }
+      ]
+    },
+    {
+      "name": "GetUsedTextures",
+      "return": "TArray<UTexture>",
+      "doc": "Get the list of textures used by a material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        }
+      ]
+    },
+    {
+      "name": "GetVectorParameterNames",
+      "return": "void",
+      "doc": "Gets all vector parameter names",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ParameterNames",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetVectorParameterSource",
+      "return": "bool",
+      "doc": "Returns the path of the asset where the parameter originated, as well as true/false if it was found\n@param  Material        The material or material instance you want to look up a parameter from\n@param  ParameterName           The parameter name\n@param  ParameterSource         The soft object path of the asset the parameter originates in\n@return Whether or not the parameter was found in this material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "ParameterSource",
+          "type": "FSoftObjectPath&"
+        }
+      ]
+    },
+    {
+      "name": "HasMaterialUsage",
+      "return": "bool",
+      "doc": "Check if a particular usage is enabled for the supplied material (e.g. SkeletalMesh, ParticleSprite etc)\n@param  Material                        Material to check usage for\n@param  Usage                           Usage type to check for this material",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "Usage",
+          "type": "EMaterialUsage"
+        }
+      ]
+    },
+    {
+      "name": "LayoutMaterialExpressions",
+      "return": "void",
+      "doc": "Layouts the expressions in a grid pattern",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        }
+      ]
+    },
+    {
+      "name": "LayoutMaterialFunctionExpressions",
+      "return": "void",
+      "doc": "Layouts the expressions in a grid pattern",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialFunction",
+          "type": "UMaterialFunction"
+        }
+      ]
+    },
+    {
+      "name": "RecompileMaterial",
+      "return": "void",
+      "doc": "Trigger a recompile of a material. Must be performed after making changes to the graph to have changes reflected.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialInstanceParent",
+      "return": "void",
+      "doc": "Set the parent Material or Material Instance to use for this Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "NewParent",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialInstanceRuntimeVirtualTextureParameterValue",
+      "return": "bool",
+      "doc": "Set the texture parameter value for a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "URuntimeVirtualTexture"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialInstanceScalarParameterValue",
+      "return": "bool",
+      "doc": "Set the scalar (float) parameter value for a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialInstanceSparseVolumeTextureParameterValue",
+      "return": "bool",
+      "doc": "Set the texture parameter value for a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "USparseVolumeTexture"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialInstanceStaticSwitchParameterValue",
+      "return": "bool",
+      "doc": "Set the static switch parameter value for a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "bool"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialInstanceTextureParameterValue",
+      "return": "bool",
+      "doc": "Set the texture parameter value for a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "UTexture"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialInstanceVectorParameterValue",
+      "return": "bool",
+      "doc": "Set the vector parameter value for a Material Instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Association",
+          "default": "EMaterialParameterAssociation :: GlobalParameter",
+          "type": "EMaterialParameterAssociation"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialUsage",
+      "return": "bool",
+      "doc": "Enable a particular usage for the supplied material (e.g. SkeletalMesh, ParticleSprite etc)\n@param  Material                        Material to change usage for\n@param  Usage                           New usage type to enable for this material\n@param  bNeedsRecompile         Returned to indicate if material needs recompiling after this change",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterial"
+        },
+        {
+          "name": "Usage",
+          "type": "EMaterialUsage"
+        },
+        {
+          "name": "bNeedsRecompile",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "UpdateMaterialFunction",
+      "return": "void",
+      "doc": "Update a Material Function after edits have been made.\nWill recompile any Materials that use the supplied Material Function.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialFunction",
+          "type": "UMaterialFunctionInterface"
+        },
+        {
+          "name": "PreviewMaterial",
+          "default": "nullptr",
+          "type": "UMaterial"
+        }
+      ]
+    },
+    {
+      "name": "UpdateMaterialInstance",
+      "return": "void",
+      "doc": "Called after making modifications to a Material Instance to recompile shaders etc.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMaterialInstanceConstant"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "name": "__EditorDialog",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ShowMessage",
+      "return": "EAppReturnType",
+      "doc": "Open a modal message box dialog with the given message. If running in \"-unattended\" mode it will immediately\nreturn the value specified by DefaultValue. If not running in \"-unattended\" mode then it will block execution\nuntil the user makes a decision, at which point their decision will be returned.\n@param Title                 The title of the created dialog window\n@param Message               Text of the message to show\n@param MessageType   Specifies which buttons the dialog should have\n@param DefaultValue  If the application is Unattended, the function will log and return DefaultValue\n@param MessageCategory The category of the message (affects the icon used)\n@return The result of the users decision, or DefaultValue if running in unattended mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Title",
+          "type": "FText"
+        },
+        {
+          "name": "Message",
+          "type": "FText"
+        },
+        {
+          "name": "MessageType",
+          "type": "EAppMsgType"
+        },
+        {
+          "name": "DefaultValue",
+          "default": "Type :: No",
+          "type": "EAppReturnType"
+        },
+        {
+          "name": "MessageCategory",
+          "default": "EAppMsgCategory :: Warning",
+          "type": "EAppMsgCategory"
+        }
+      ]
+    },
+    {
+      "name": "ShowObjectDetailsView",
+      "return": "bool",
+      "doc": "Open a modal message box dialog containing a details view for inspecting / modifying a UObject.\n@param Title                 The title of the created dialog window\n@param InOutObject   Object instance of ClassOfObject which is supposed to be viewed\n@param Options               Optional settings to customize the look of the details view\n@return The result of the users decision, true=Ok, false=Cancel, or false if running in unattended mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Title",
+          "type": "FText"
+        },
+        {
+          "name": "InOutObject",
+          "type": "UObject"
+        },
+        {
+          "name": "Options",
+          "type": "FEditorDialogLibraryObjectDetailsViewOptions"
+        }
+      ]
+    },
+    {
+      "name": "ShowObjectsDetailsView",
+      "return": "bool",
+      "doc": "Open a modal message box dialog containing a details view for inspecting / modifying multiples UObjects.\n@param Title                 The title of the created dialog window\n@param InOutObjects  Array of object instances which are supposed to be viewed\n@param Options               Optional settings to customize the look of the details view\n@return The result of the users decision, true=Ok, false=Cancel, or false if running in unattended mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Title",
+          "type": "FText"
+        },
+        {
+          "name": "InOutObjects",
+          "type": "TArray<UObject>"
+        },
+        {
+          "name": "Options",
+          "type": "FEditorDialogLibraryObjectDetailsViewOptions"
+        }
+      ]
+    },
+    {
+      "name": "ShowSuppressableWarningDialog",
+      "return": "bool",
+      "doc": "Open a modal suppressable warning window, if suppressed will return the default value\n@param Title                                                  The title of the created dialog window\n@param Message                                                Text of the message to show\n@param InIniSettingName                               The name of the entry in the INI where the state of the \"Disable this warning\" check box is stored\n@param InIniSettingFileNameOverride   The name of the INI where the state of the InIniSettingName flag is stored (defaults to GEditorPerProjectIni)\n@param bDefaultValue                                  If the warning is suppressed, the function will log and return DefaultValue\n@return The result of the users decision, or DefaultValue if suppressed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Title",
+          "type": "FText"
+        },
+        {
+          "name": "Message",
+          "type": "FText"
+        },
+        {
+          "name": "InIniSettingName",
+          "type": "FString"
+        },
+        {
+          "name": "InIniSettingFileNameOverride",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bDefaultValue",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

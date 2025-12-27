@@ -1,0 +1,71 @@
+{
+  "name": "FRigUnit_SphericalPoseReader",
+  "isStruct": true,
+  "doc": "* Outputs a float value between 0-1 based off of the driver item's rotation in a specified region.",
+  "properties": {
+    "OutputParam": [
+      "float32",
+      1,
+      "The normalized output parameter; ranges from 0 (when outside yellow region) to 1 (in the green region) and smoothly blends from 0-1 in the yellow region."
+    ],
+    "DriverItem": [
+      "FRigElementKey",
+      "The bone that will drive the output parameter when rotated into the active regions of this pose reader."
+    ],
+    "DriverAxis": [
+      "FVector",
+      "The axis of the driver transform that is compared against the falloff regions. Typically the axis that is pointing at the child; usually X by convention. Default is X-axis (1,0,0)."
+    ],
+    "RotationOffset": [
+      "FVector",
+      "Rotate the entire falloff region to align with the desired area of effect."
+    ],
+    "ActiveRegionSize": [
+      "float32",
+      "The size of the active region (green) that outputs the full value (1.0). Range is 0-1. Default is 0.1."
+    ],
+    "ActiveRegionScaleFactors": [
+      "FRegionScaleFactors",
+      "The directional scaling parameters for the active region (green)."
+    ],
+    "FalloffSize": [
+      "float32",
+      "The size of the falloff region (yellow) that defines the start of the output range. A value of 1 wraps the entire sphere with falloff. Range is 0-1. Default is 0.2."
+    ],
+    "FalloffRegionScaleFactors": [
+      "FRegionScaleFactors",
+      "The directional scaling parameters for the falloff region (yellow)."
+    ],
+    "FlipWidthScaling": [
+      "bool",
+      "Flip the positive / negative directions of the width scale factors."
+    ],
+    "FlipHeightScaling": [
+      "bool",
+      "Flip the positive / negative directions of the height scale factors."
+    ],
+    "OptionalParentItem": [
+      "FRigElementKey",
+      "An optional parent to use as a stable frame of reference for the active regions (defaults to DriverItem's parent if unset)."
+    ],
+    "Debug": [
+      "FSphericalPoseReaderDebugSettings"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SphericalPoseReader&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SphericalPoseReader"
+        }
+      ]
+    }
+  ]
+}

@@ -15,6 +15,9 @@
 UDJ01AnimInstance::UDJ01AnimInstance(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	// 自动初始化 GameplayTag 到变量的映射
+	// 由 Tag Manager 自动生成，无需手动配置
+	DJ01_ANIM_INSTANCE_INIT_TAG_MAPPINGS()
 }
 
 void UDJ01AnimInstance::InitializeWithAbilitySystem(UAbilitySystemComponent* ASC)
@@ -22,6 +25,9 @@ void UDJ01AnimInstance::InitializeWithAbilitySystem(UAbilitySystemComponent* ASC
 	check(ASC);
 
 	GameplayTagPropertyMap.Initialize(this, ASC);
+	
+	UE_LOG(LogTemp, Log, TEXT("DJ01AnimInstance: Initialized %d tag-to-property mappings"), 
+		GameplayTagPropertyMap.GetMappingCount());
 }
 
 #if WITH_EDITOR

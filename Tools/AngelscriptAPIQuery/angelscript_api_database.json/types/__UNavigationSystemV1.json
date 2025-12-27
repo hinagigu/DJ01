@@ -1,0 +1,280 @@
+{
+  "name": "__UNavigationSystemV1",
+  "properties": {},
+  "methods": [
+    {
+      "name": "FindPathToActorSynchronously",
+      "return": "UNavigationPath",
+      "doc": "Finds path instantly, in a FindPath Synchronously. Main advantage over FindPathToLocationSynchronously is that\n    the resulting path will automatically get updated if goal actor moves more than TetherDistance away from last path node\n    @param PathfindingContext could be one of following: NavigationData (like Navmesh actor), Pawn or Controller. This parameter determines parameters of specific pathfinding query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PathStart",
+          "type": "FVector"
+        },
+        {
+          "name": "GoalActor",
+          "type": "AActor"
+        },
+        {
+          "name": "TetherDistance",
+          "default": "50.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PathfindingContext",
+          "default": "nullptr",
+          "type": "AActor"
+        },
+        {
+          "name": "FilterClass",
+          "default": "nullptr",
+          "type": "TSubclassOf<UNavigationQueryFilter>"
+        }
+      ]
+    },
+    {
+      "name": "FindPathToLocationSynchronously",
+      "return": "UNavigationPath",
+      "doc": "Finds path instantly, in a FindPath Synchronously.\n    @param PathfindingContext could be one of following: NavigationData (like Navmesh actor), Pawn or Controller. This parameter determines parameters of specific pathfinding query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PathStart",
+          "type": "FVector"
+        },
+        {
+          "name": "PathEnd",
+          "type": "FVector"
+        },
+        {
+          "name": "PathfindingContext",
+          "default": "nullptr",
+          "type": "AActor"
+        },
+        {
+          "name": "FilterClass",
+          "default": "nullptr",
+          "type": "TSubclassOf<UNavigationQueryFilter>"
+        }
+      ]
+    },
+    {
+      "name": "GetNavigationSystem",
+      "return": "UNavigationSystemV1",
+      "doc": "Blueprint functions",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPathCost",
+      "return": "ENavigationQueryResult",
+      "doc": "Potentially expensive. Use with caution. Consider using UPathFollowingComponent::GetRemainingPathCost instead",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PathStart",
+          "type": "FVector"
+        },
+        {
+          "name": "PathEnd",
+          "type": "FVector"
+        },
+        {
+          "name": "PathCost",
+          "type": "float&"
+        },
+        {
+          "name": "NavData",
+          "default": "nullptr",
+          "type": "ANavigationData"
+        },
+        {
+          "name": "FilterClass",
+          "default": "nullptr",
+          "type": "TSubclassOf<UNavigationQueryFilter>"
+        }
+      ]
+    },
+    {
+      "name": "GetPathLength",
+      "return": "ENavigationQueryResult",
+      "doc": "Potentially expensive. Use with caution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PathStart",
+          "type": "FVector"
+        },
+        {
+          "name": "PathEnd",
+          "type": "FVector"
+        },
+        {
+          "name": "PathLength",
+          "type": "float&"
+        },
+        {
+          "name": "NavData",
+          "default": "nullptr",
+          "type": "ANavigationData"
+        },
+        {
+          "name": "FilterClass",
+          "default": "nullptr",
+          "type": "TSubclassOf<UNavigationQueryFilter>"
+        }
+      ]
+    },
+    {
+      "name": "IsNavigationBeingBuilt",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsNavigationBeingBuiltOrLocked",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRandomLocationInNavigableRadius",
+      "return": "bool",
+      "doc": "Generates a random location in navigable space within given radius of Origin.\n    @return Return Value represents if the call was successful",
+      "ufunction": true,
+      "unrealname": "K2_GetRandomLocationInNavigableRadius",
+      "meta": null,
+      "args": [
+        {
+          "name": "Origin",
+          "type": "FVector"
+        },
+        {
+          "name": "RandomLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "NavData",
+          "default": "nullptr",
+          "type": "ANavigationData"
+        },
+        {
+          "name": "FilterClass",
+          "default": "nullptr",
+          "type": "TSubclassOf<UNavigationQueryFilter>"
+        }
+      ]
+    },
+    {
+      "name": "GetRandomReachablePointInRadius",
+      "return": "bool",
+      "doc": "Generates a random location reachable from given Origin location.\n    @return Return Value represents if the call was successful",
+      "ufunction": true,
+      "unrealname": "K2_GetRandomReachablePointInRadius",
+      "meta": null,
+      "args": [
+        {
+          "name": "Origin",
+          "type": "FVector"
+        },
+        {
+          "name": "RandomLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "NavData",
+          "default": "nullptr",
+          "type": "ANavigationData"
+        },
+        {
+          "name": "FilterClass",
+          "default": "nullptr",
+          "type": "TSubclassOf<UNavigationQueryFilter>"
+        }
+      ]
+    },
+    {
+      "name": "ProjectPointToNavigation",
+      "return": "bool",
+      "doc": "Project a point onto the NavigationData",
+      "ufunction": true,
+      "unrealname": "K2_ProjectPointToNavigation",
+      "meta": null,
+      "args": [
+        {
+          "name": "Point",
+          "type": "FVector"
+        },
+        {
+          "name": "ProjectedLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "NavData",
+          "type": "ANavigationData"
+        },
+        {
+          "name": "FilterClass",
+          "type": "TSubclassOf<UNavigationQueryFilter>"
+        },
+        {
+          "name": "QueryExtent",
+          "default": "FVector ( )",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "NavigationRaycast",
+      "return": "bool",
+      "doc": "Performs navigation raycast on NavigationData appropriate for given Querier.\n    @param Querier if not passed default navigation data will be used\n    @param HitLocation if line was obstructed this will be set to hit location. Otherwise it contains SegmentEnd\n    @return true if line from RayStart to RayEnd was obstructed. Also, true when no navigation data present",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RayStart",
+          "type": "FVector"
+        },
+        {
+          "name": "RayEnd",
+          "type": "FVector"
+        },
+        {
+          "name": "HitLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "FilterClass",
+          "default": "nullptr",
+          "type": "TSubclassOf<UNavigationQueryFilter>"
+        },
+        {
+          "name": "Querier",
+          "default": "nullptr",
+          "type": "AController"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

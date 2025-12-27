@@ -1,0 +1,39 @@
+{
+  "name": "FGameplayAbilitySpecDef",
+  "isStruct": true,
+  "doc": "This is data that can be used to create an FGameplayAbilitySpec. Has some data that is only relevant when granted by a GameplayEffect",
+  "properties": {
+    "Ability": [
+      "TSubclassOf<UGameplayAbility>",
+      2,
+      "What ability to grant"
+    ],
+    "LevelScalableFloat": [
+      "FScalableFloat",
+      2,
+      "What level to grant this ability at"
+    ],
+    "InputID": [
+      "int",
+      2,
+      "Input ID to bind this ability to"
+    ],
+    "RemovalPolicy": [
+      "EGameplayEffectGrantedAbilityRemovePolicy",
+      2,
+      "What will remove this ability later"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayAbilitySpecDef&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayAbilitySpecDef"
+        }
+      ]
+    }
+  ]
+}

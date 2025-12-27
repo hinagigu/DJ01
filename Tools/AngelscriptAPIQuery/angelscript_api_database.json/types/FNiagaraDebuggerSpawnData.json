@@ -1,0 +1,68 @@
+{
+  "name": "FNiagaraDebuggerSpawnData",
+  "isStruct": true,
+  "properties": {
+    "SystemsToSpawn": [
+      "TArray<TSoftObjectPtr<UNiagaraSystem>>",
+      2,
+      "List of all the systems we want to spawn."
+    ],
+    "bSpawnAllAtOnce": [
+      "bool",
+      2,
+      ""
+    ],
+    "TimeBetweenSpawns": [
+      "float32",
+      2,
+      "The time delay we should use between spawning if we have a list to spawn."
+    ],
+    "bKillBeforeSpawn": [
+      "bool",
+      2,
+      "Should we kill systems we spawn before we spawn another."
+    ],
+    "bWorldLocation": [
+      "bool",
+      2,
+      "When true the location is a world location, when false it's relative to the player and is in camera space."
+    ],
+    "Location": [
+      "FVector",
+      2,
+      "The location we should use to spawn the system at, either world or local to the player depending on WorldLocation flag."
+    ],
+    "bAttachToPlayer": [
+      "bool",
+      2,
+      "Should we attach to the player controlled by the camera or not"
+    ],
+    "bAutoActivate": [
+      "bool",
+      2,
+      "Should we auto activate or not"
+    ],
+    "bAutoDestroy": [
+      "bool",
+      2,
+      "Should we auto destroy when complete or not"
+    ],
+    "bDoPreCullCheck": [
+      "bool",
+      2,
+      "Should we perform the pre cull check or not"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraDebuggerSpawnData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraDebuggerSpawnData"
+        }
+      ]
+    }
+  ]
+}

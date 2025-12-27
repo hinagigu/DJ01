@@ -1,0 +1,79 @@
+{
+  "name": "UUniformGridPanel",
+  "inherits": "UPanelWidget",
+  "doc": "A panel that evenly divides up available space between all of its children.",
+  "properties": {
+    "SlotPadding": [
+      "FMargin",
+      "Padding given to each slot"
+    ],
+    "MinDesiredSlotWidth": [
+      "float32",
+      "The minimum desired width of the slots"
+    ],
+    "MinDesiredSlotHeight": [
+      "float32",
+      "The minimum desired height of the slots"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddChildToUniformGrid",
+      "return": "UUniformGridSlot",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Content",
+          "type": "UWidget"
+        },
+        {
+          "name": "InRow",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "InColumn",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetMinDesiredSlotHeight",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMinDesiredSlotHeight",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMinDesiredSlotWidth",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMinDesiredSlotWidth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSlotPadding",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSlotPadding",
+          "type": "FMargin"
+        }
+      ]
+    }
+  ]
+}

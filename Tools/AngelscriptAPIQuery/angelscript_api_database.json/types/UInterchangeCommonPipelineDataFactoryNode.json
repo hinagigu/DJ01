@@ -1,0 +1,70 @@
+{
+  "name": "UInterchangeCommonPipelineDataFactoryNode",
+  "inherits": "UInterchangeFactoryBaseNode",
+  "doc": "This factory node is where pipelines can set global data that can be used by factories.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetBakeMeshes",
+      "return": "bool",
+      "const": true,
+      "doc": "Return the value of the Bake Meshes setting set by the pipelines.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomGlobalOffsetTransform",
+      "return": "bool",
+      "const": true,
+      "doc": "Return the global offset transform set by the pipelines.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FTransform&"
+        }
+      ]
+    },
+    {
+      "name": "SetBakeMeshes",
+      "return": "bool",
+      "doc": "Pipelines can set this Bake Meshes setting. Factories use this to identify whether they should apply global transforms to static meshes and skeletal meshes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeContainer",
+          "type": "const UInterchangeBaseNodeContainer"
+        },
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomGlobalOffsetTransform",
+      "return": "bool",
+      "doc": "Pipelines can set a global transform. Factories will use this global offset when importing assets.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NodeContainer",
+          "type": "const UInterchangeBaseNodeContainer"
+        },
+        {
+          "name": "AttributeValue",
+          "type": "FTransform"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,588 @@
+{
+  "name": "__Automation",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddExpectedLogError",
+      "return": "void",
+      "doc": "Mute the report of log error and warning matching a pattern during an automated test. Treat the pattern as regex by default.\n@param ExpectedPatternString Expects a Regex pattern.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExpectedPatternString",
+          "type": "FString"
+        },
+        {
+          "name": "Occurrences",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "ExactMatch",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "IsRegex",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddExpectedLogMessage",
+      "return": "void",
+      "doc": "Expect a specific log message to match a pattern during an automated test regardless of its verbosity. Treat the pattern as regex by default.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExpectedPatternString",
+          "type": "FString"
+        },
+        {
+          "name": "Occurrences",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "ExactMatch",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "IsRegex",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddExpectedPlainLogError",
+      "return": "void",
+      "doc": "Mute the report of log error and warning matching a plain string during an automated test",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExpectedString",
+          "type": "FString"
+        },
+        {
+          "name": "Occurrences",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "ExactMatch",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddExpectedPlainLogMessage",
+      "return": "void",
+      "doc": "Expect a specific log message to match a plain string during an automated test regardless of its verbosity",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExpectedString",
+          "type": "FString"
+        },
+        {
+          "name": "Occurrences",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "ExactMatch",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddTestError",
+      "return": "void",
+      "doc": "Add error to currently running automated test.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLogItem",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AddTestInfo",
+      "return": "void",
+      "doc": "Add info to currently running automated test.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLogItem",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AddTestTelemetryData",
+      "return": "void",
+      "doc": "Add Telemetry data to currently running automated test.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataPoint",
+          "type": "FString"
+        },
+        {
+          "name": "Measurement",
+          "type": "float32"
+        },
+        {
+          "name": "Context",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AddTestWarning",
+      "return": "void",
+      "doc": "Add warning to currently running automated test.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLogItem",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AreAutomatedTestsRunning",
+      "return": "bool",
+      "doc": "Lets you know if any automated tests are running, or are about to run and the automation system is spinning up tests.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "AutomationWaitForLoading",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "LatentInfo",
+          "type": "FLatentActionInfo"
+        },
+        {
+          "name": "Options",
+          "type": "FAutomationWaitForLoadingOptions"
+        }
+      ]
+    },
+    {
+      "name": "CompareImageAgainstReference",
+      "return": "bool",
+      "doc": "request image comparison.\n@param ImageFilePath  Absolute path to the image location. All 8bit RGBA channels supported formats by the engine are accepted.\n@param ComparisonName Optional name for the comparison, by default the basename of ImageFilePath is used\n@return                               True if comparison was successfully enqueued",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ImageFilePath",
+          "type": "FString"
+        },
+        {
+          "name": "ComparisonName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "ComparisonTolerance",
+          "default": "EComparisonTolerance :: Low",
+          "type": "EComparisonTolerance"
+        },
+        {
+          "name": "ComparisonNotes",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "WorldContextObject",
+          "default": "nullptr",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "DisableStatGroup",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "GroupName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "EnableStatGroup",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "GroupName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FinishLoadingBeforeScreenshot",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDefaultScreenshotOptionsForGameplay",
+      "return": "FAutomationScreenshotOptions",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "EComparisonTolerance :: Low",
+          "type": "EComparisonTolerance"
+        },
+        {
+          "name": "Delay",
+          "default": "0.200000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetDefaultScreenshotOptionsForRendering",
+      "return": "FAutomationScreenshotOptions",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "EComparisonTolerance :: Low",
+          "type": "EComparisonTolerance"
+        },
+        {
+          "name": "Delay",
+          "default": "0.200000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetStatCallCount",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StatName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetStatExcAverage",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StatName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetStatExcMax",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StatName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetStatIncAverage",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StatName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetStatIncMax",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StatName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetEditorViewportViewMode",
+      "return": "void",
+      "doc": "Sets all viewports of the first found level editor to have the given ViewMode (Lit/Unlit/etc.) *",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "EViewModeIndex"
+        }
+      ]
+    },
+    {
+      "name": "SetEditorViewportVisualizeBuffer",
+      "return": "void",
+      "doc": "Sets all viewports of the first found level editor to have the VisualizeBuffer ViewMode and also display a given buffer (BaseColor/Metallic/Roughness/etc.) *",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BufferName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetScalabilityQualityLevelRelativeToMax",
+      "return": "void",
+      "doc": "Sets all other settings based on an overall value\n@param Value 0:Cinematic, 1:Epic...etc.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "Value",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetScalabilityQualityToEpic",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SetScalabilityQualityToLow",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SetTestTelemetryStorage",
+      "return": "void",
+      "doc": "Set Telemetry data storage name of currently running automated test.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StorageName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "TakeAutomationScreenshot",
+      "return": "void",
+      "doc": "Takes a screenshot of the game's viewport.  Does not capture any UI.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "LatentInfo",
+          "type": "FLatentActionInfo"
+        },
+        {
+          "name": "Name",
+          "type": "FString"
+        },
+        {
+          "name": "Notes",
+          "type": "FString"
+        },
+        {
+          "name": "Options",
+          "type": "FAutomationScreenshotOptions"
+        }
+      ]
+    },
+    {
+      "name": "TakeAutomationScreenshotAtCamera",
+      "return": "void",
+      "doc": "Takes a screenshot of the game's viewport, from a particular camera actors POV.  Does not capture any UI.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "LatentInfo",
+          "type": "FLatentActionInfo"
+        },
+        {
+          "name": "Camera",
+          "type": "ACameraActor"
+        },
+        {
+          "name": "NameOverride",
+          "type": "FString"
+        },
+        {
+          "name": "Notes",
+          "type": "FString"
+        },
+        {
+          "name": "Options",
+          "type": "FAutomationScreenshotOptions"
+        }
+      ]
+    },
+    {
+      "name": "TakeAutomationScreenshotOfUI",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "LatentInfo",
+          "type": "FLatentActionInfo"
+        },
+        {
+          "name": "Name",
+          "type": "FString"
+        },
+        {
+          "name": "Options",
+          "type": "FAutomationScreenshotOptions"
+        }
+      ]
+    },
+    {
+      "name": "TakeHighResScreenshot",
+      "return": "UAutomationEditorTask",
+      "doc": "take high res screenshot in editor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ResX",
+          "type": "int"
+        },
+        {
+          "name": "ResY",
+          "type": "int"
+        },
+        {
+          "name": "Filename",
+          "type": "FString"
+        },
+        {
+          "name": "Camera",
+          "default": "nullptr",
+          "type": "ACameraActor"
+        },
+        {
+          "name": "bMaskEnabled",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bCaptureHDR",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "ComparisonTolerance",
+          "default": "EComparisonTolerance :: Low",
+          "type": "EComparisonTolerance"
+        },
+        {
+          "name": "ComparisonNotes",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "Delay",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bForceGameView",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "name": "UBehaviorTreeComponent",
+  "inherits": "UBrainComponent",
+  "properties": {
+    "DefaultBehaviorTreeAsset": [
+      "UBehaviorTree",
+      "data asset defining the tree"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddCooldownTagDuration",
+      "return": "void",
+      "doc": "add to the cooldown tag's duration",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CooldownTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "CooldownDuration",
+          "type": "float32"
+        },
+        {
+          "name": "bAddToExistingDuration",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetTagCooldownEndTime",
+      "return": "float",
+      "const": true,
+      "doc": "@return the cooldown tag end time, 0.0f if CooldownTag is not found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CooldownTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "SetDynamicSubtree",
+      "return": "void",
+      "doc": "assign subtree to RunBehaviorDynamic task specified by tag.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InjectTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "BehaviorAsset",
+          "type": "UBehaviorTree"
+        }
+      ]
+    }
+  ]
+}

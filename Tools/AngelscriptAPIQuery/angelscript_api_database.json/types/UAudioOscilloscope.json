@@ -1,0 +1,73 @@
+{
+  "name": "UAudioOscilloscope",
+  "inherits": "UWidget",
+  "doc": "An oscilloscope UMG widget.\n\nSupports displaying waveforms from incoming audio samples.",
+  "properties": {
+    "OscilloscopeStyle": [
+      "FAudioOscilloscopePanelStyle",
+      "The oscilloscope panel style"
+    ],
+    "AudioBus": [
+      "UAudioBus",
+      "The audio bus used to obtain audio samples for the oscilloscope"
+    ],
+    "TimeWindowMs": [
+      "float32",
+      "The time window in milliseconds."
+    ],
+    "AnalysisPeriodMs": [
+      "float32",
+      "The analysis period in milliseconds."
+    ],
+    "bShowTimeGrid": [
+      "bool",
+      "Show/Hide the time grid."
+    ],
+    "TimeGridLabelsUnit": [
+      "EXAxisLabelsUnit",
+      "Define the time grid labels unit."
+    ],
+    "bShowAmplitudeGrid": [
+      "bool",
+      "Show/Hide the amplitude grid."
+    ],
+    "bShowAmplitudeLabels": [
+      "bool",
+      "Show/Hide the amplitude labels."
+    ],
+    "AmplitudeGridLabelsUnit": [
+      "EYAxisLabelsUnit",
+      "Define the amplitude grid labels unit."
+    ],
+    "bShowTriggerThresholdLine": [
+      "bool",
+      "Show/Hide the trigger threshold line."
+    ],
+    "TriggerThreshold": [
+      "float32",
+      "The trigger threshold position in the Y axis."
+    ],
+    "PanelLayoutType": [
+      "EAudioPanelLayoutType",
+      "Show/Hide advanced panel layout."
+    ]
+  },
+  "methods": [
+    {
+      "name": "StartProcessing",
+      "return": "void",
+      "doc": "Starts the oscilloscope processing.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopProcessing",
+      "return": "void",
+      "doc": "Stops the oscilloscope processing.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

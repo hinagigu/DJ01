@@ -1,0 +1,48 @@
+{
+  "name": "FGenerateStaticMeshLODProcessSettings",
+  "isStruct": true,
+  "properties": {
+    "MeshGenerator": [
+      "EGenerateStaticMeshLODProcess_MeshGeneratorModes",
+      2,
+      "Method used to generate the initial mesh for AutoLOD processing"
+    ],
+    "SolidifyVoxelResolution": [
+      "int",
+      2,
+      "Target number of voxels along the maximum dimension for Solidify operation"
+    ],
+    "WindingThreshold": [
+      "float32",
+      2,
+      "Winding number threshold to determine what is considered inside the mesh during Solidify"
+    ],
+    "ClosureDistance": [
+      "float32",
+      2,
+      "Offset distance in the Morpohological Closure operation"
+    ],
+    "bPrefilterVertices": [
+      "bool",
+      2,
+      "Whether to subsample input vertices using a regular grid before computing the convex hull"
+    ],
+    "PrefilterGridResolution": [
+      "int",
+      2,
+      "Grid resolution (along the maximum-length axis) for subsampling before computing the convex hull"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGenerateStaticMeshLODProcessSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGenerateStaticMeshLODProcessSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "name": "__Material",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateDynamicMaterialInstance",
+      "return": "UMaterialInstanceDynamic",
+      "doc": "Creates a Dynamic Material Instance which you can modify during gameplay.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parent",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "OptionalName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "CreationFlags",
+          "default": "EMIDCreationFlags :: None",
+          "type": "EMIDCreationFlags"
+        }
+      ]
+    },
+    {
+      "name": "GetScalarParameterValue",
+      "return": "float32",
+      "doc": "Gets a scalar parameter value from the material collection instance. Logs if ParameterName is invalid.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Collection",
+          "type": "UMaterialParameterCollection"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetVectorParameterValue",
+      "return": "FLinearColor",
+      "doc": "Gets a vector parameter value from the material collection instance. Logs if ParameterName is invalid.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Collection",
+          "type": "UMaterialParameterCollection"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetScalarParameterValue",
+      "return": "void",
+      "doc": "Sets a scalar parameter value on the material collection instance. Logs if ParameterName is invalid.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Collection",
+          "type": "UMaterialParameterCollection"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "ParameterValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetVectorParameterValue",
+      "return": "void",
+      "doc": "Sets a vector parameter value on the material collection instance. Logs if ParameterName is invalid.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Collection",
+          "type": "UMaterialParameterCollection"
+        },
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "ParameterValue",
+          "type": "FLinearColor"
+        }
+      ]
+    }
+  ]
+}

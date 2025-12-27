@@ -1,0 +1,899 @@
+{
+  "name": "ACharacter",
+  "inherits": "APawn",
+  "doc": "Characters are Pawns that have a mesh, collision, and built-in movement logic.\nThey are responsible for all physical interaction between the player or AI and the world, and also implement basic networking and input models.\nThey are designed for a vertically-oriented player representation that can walk, jump, fly, and swim through the world using CharacterMovementComponent.\n\n@see APawn, UCharacterMovementComponent\n@see https://docs.unrealengine.com/latest/INT/Gameplay/Framework/Pawn/Character/",
+  "properties": {
+    "Mesh": [
+      "USkeletalMeshComponent",
+      "The main skeletal mesh associated with this Character (optional sub-object)."
+    ],
+    "CharacterMovement": [
+      "UCharacterMovementComponent",
+      "Movement component used for movement logic in various movement modes (walking, falling, etc), containing relevant settings and functions to control movement."
+    ],
+    "CapsuleComponent": [
+      "UCapsuleComponent",
+      "The CapsuleComponent being used for movement collision (by CharacterMovement). Always treated as being vertically aligned in simple collision check functions."
+    ],
+    "CrouchedEyeHeight": [
+      "float32",
+      "Default crouched eye height"
+    ],
+    "JumpKeyHoldTime": [
+      "float32",
+      1,
+      "Jump key Held Time.\nThis is the time that the player has held the jump key, in seconds."
+    ],
+    "JumpForceTimeRemaining": [
+      "float32",
+      1,
+      "Amount of jump force time remaining, if JumpMaxHoldTime > 0."
+    ],
+    "ProxyJumpForceStartedTime": [
+      "float32",
+      1,
+      "Track last time a jump force started for a proxy."
+    ],
+    "JumpMaxHoldTime": [
+      "float32",
+      "The max time the jump key can be held.\nNote that if StopJumping() is not called before the max jump hold time is reached,\nthen the character will carry on receiving vertical velocity. Therefore it is usually\nbest to call StopJumping() when jump input has ceased (such as a button up event)."
+    ],
+    "JumpMaxCount": [
+      "int",
+      "The max number of jumps the character can perform.\nNote that if JumpMaxHoldTime is non zero and StopJumping is not called, the player\nmay be able to perform and unlimited number of jumps. Therefore it is usually\nbest to call StopJumping() when jump input has ceased (such as a button up event)."
+    ],
+    "JumpCurrentCount": [
+      "int",
+      1,
+      "Tracks the current number of jumps performed.\nThis is incremented in CheckJumpInput, used in CanJump_Implementation, and reset in OnMovementModeChanged.\nWhen providing overrides for these methods, it's recommended to either manually\nincrement / reset this value, or call the Super:: method."
+    ],
+    "JumpCurrentCountPreJump": [
+      "int",
+      1,
+      "Represents the current number of jumps performed before CheckJumpInput modifies JumpCurrentCount.\nThis is set in CheckJumpInput and is used in SetMoveFor and PrepMoveFor instead of JumpCurrentCount\nsince CheckJumpInput can modify JumpCurrentCount.\nWhen providing overrides for these methods, it's recommended to either manually\nset this value, or call the Super:: method."
+    ],
+    "OnReachedJumpApex": [
+      "FCharacterReachedApexSignature",
+      "Broadcast when Character's jump reaches its apex. Needs CharacterMovement->bNotifyApex = true"
+    ],
+    "LandedDelegate": [
+      "FLandedSignature",
+      "Called upon landing when falling, to perform actions based on the Hit result.\nNote that movement mode is still \"Falling\" during this event. Current Velocity value is the velocity at the time of landing.\nConsider OnMovementModeChanged() as well, as that can be used once the movement mode changes to the new mode (most likely Walking).\n\n@param Hit Result describing the landing that resulted in a valid landing spot.\n@see OnMovementModeChanged()"
+    ],
+    "MovementModeChangedDelegate": [
+      "FMovementModeChangedSignature",
+      "Multicast delegate for MovementMode changing."
+    ],
+    "OnCharacterMovementUpdated": [
+      "FCharacterMovementUpdatedSignature",
+      "Event triggered at the end of a CharacterMovementComponent movement update.\nThis is the preferred event to use rather than the Tick event when performing custom updates to CharacterMovement properties based on the current state.\nThis is mainly due to the nature of network updates, where client corrections in position from the server can cause multiple iterations of a movement update,\nwhich allows this event to update as well, while a Tick event would not.\n\n@param       DeltaSeconds            Delta time in seconds for this update\n@param       InitialLocation         Location at the start of the update. May be different than the current location if movement occurred.\n@param       InitialVelocity         Velocity at the start of the update. May be different than the current velocity."
+    ],
+    "bIsCrouched": [
+      "bool",
+      "Set by character movement to specify that this Character is currently crouched."
+    ],
+    "bPressedJump": [
+      "bool",
+      "When true, player wants to jump"
+    ],
+    "bWasJumping": [
+      "bool",
+      "Tracks whether or not the character was already jumping last frame."
+    ]
+  },
+  "methods": [
+    {
+      "name": "CacheInitialMeshOffset",
+      "return": "void",
+      "doc": "Cache mesh offset from capsule. This is used as the target for network smoothing interpolation, when the mesh is offset with lagged smoothing.\nThis is automatically called during initialization; call this at runtime if you intend to change the default mesh offset from the capsule.\n@see GetBaseTranslationOffset(), GetBaseRotationOffset()",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshRelativeLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "MeshRelativeRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "CanCrouch",
+      "return": "bool",
+      "const": true,
+      "doc": "@return true if this character is currently able to crouch (and is not currently crouched)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CanJump",
+      "return": "bool",
+      "const": true,
+      "doc": "Check if the character can jump in the current state.\n\nThe default implementation may be overridden or extended by implementing the custom CanJump event in Blueprints.\n\n@Return Whether the character can jump in the current state.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CanJumpInternal",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "doc": "Customizable event to check if the character can jump in the current state.\nDefault implementation returns true if the character is on the ground and not crouching,\nhas a valid CharacterMovementComponent and CanEverJump() returns true.\nDefault implementation also allows for 'hold to jump higher' functionality:\nAs well as returning true when on the ground, it also returns true when GetMaxJumpTime is more\nthan zero and IsJumping returns true.\n\n\n@Return Whether the character can jump in the current state.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientAckGoodMove",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeStamp",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClientAdjustPosition",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeStamp",
+          "type": "float32"
+        },
+        {
+          "name": "NewLoc",
+          "type": "FVector"
+        },
+        {
+          "name": "NewVel",
+          "type": "FVector"
+        },
+        {
+          "name": "NewBase",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "NewBaseBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "bHasBase",
+          "type": "bool"
+        },
+        {
+          "name": "bBaseRelativePosition",
+          "type": "bool"
+        },
+        {
+          "name": "ServerMovementMode",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "ClientAdjustRootMotionPosition",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeStamp",
+          "type": "float32"
+        },
+        {
+          "name": "ServerMontageTrackPosition",
+          "type": "float32"
+        },
+        {
+          "name": "ServerLoc",
+          "type": "FVector"
+        },
+        {
+          "name": "ServerRotation",
+          "type": "FVector"
+        },
+        {
+          "name": "ServerVelZ",
+          "type": "float32"
+        },
+        {
+          "name": "ServerBase",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "ServerBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "bHasBase",
+          "type": "bool"
+        },
+        {
+          "name": "bBaseRelativePosition",
+          "type": "bool"
+        },
+        {
+          "name": "ServerMovementMode",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "ClientCheatFly",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientCheatGhost",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientCheatWalk",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientVeryShortAdjustPosition",
+      "return": "void",
+      "callable": false,
+      "doc": "Bandwidth saving version, when velocity is zeroed",
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeStamp",
+          "type": "float32"
+        },
+        {
+          "name": "NewLoc",
+          "type": "FVector"
+        },
+        {
+          "name": "NewBase",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "NewBaseBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "bHasBase",
+          "type": "bool"
+        },
+        {
+          "name": "bBaseRelativePosition",
+          "type": "bool"
+        },
+        {
+          "name": "ServerMovementMode",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "Crouch",
+      "return": "void",
+      "doc": "Request the character to start crouching. The request is processed on the next update of the CharacterMovementComponent.\n@see OnStartCrouch\n@see IsCrouched\n@see CharacterMovement->WantsToCrouch",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bClientSimulation",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimRootMotionTranslationScale",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns current value of AnimRootMotionScale",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBaseRotationOffset",
+      "return": "FRotator",
+      "const": true,
+      "doc": "Get the saved rotation offset of mesh. This is how much extra rotation is applied from the capsule rotation.",
+      "ufunction": true,
+      "unrealname": "GetBaseRotationOffsetRotator",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBaseTranslationOffset",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the saved translation offset of mesh. This is how much extra offset is applied from the center of the capsule.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentMontage",
+      "return": "UAnimMontage",
+      "const": true,
+      "doc": "Return current playing Montage *",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasAnyRootMotion",
+      "return": "bool",
+      "const": true,
+      "doc": "True if we are playing root motion from any source right now (anim root motion, root motion source)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsJumpProvidingForce",
+      "return": "bool",
+      "const": true,
+      "doc": "True if jump is actively providing a force, such as when the jump key is held and the time it has been held is less than JumpMaxHoldTime.\n@see CharacterMovement->IsFalling",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPlayingNetworkedRootMotionMontage",
+      "return": "bool",
+      "const": true,
+      "doc": "True if we are playing Root Motion right now, through a Montage with RootMotionMode == ERootMotionMode::RootMotionFromMontagesOnly.\nThis means code path for networked root motion is enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPlayingRootMotion",
+      "return": "bool",
+      "const": true,
+      "doc": "True if we are playing Anim root motion right now",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Jump",
+      "return": "void",
+      "doc": "Make the character jump on the next update.\nIf you want your character to jump according to the time that the jump key is held,\nthen you can set JumpMaxHoldTime to some non-zero value. Make sure in this case to\ncall StopJumping() when you want the jump's z-velocity to stop being applied (such\nas on a button up event), otherwise the character will carry on receiving the\nvelocity until JumpKeyHoldTime reaches JumpMaxHoldTime.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnEndCrouch",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when Character stops crouching.\n@param       HalfHeightAdjust                difference between default collision half-height, and actual crouched capsule half-height.\n@param       ScaledHalfHeightAdjust  difference after component scale is taken in to account.",
+      "event": true,
+      "unrealname": "K2_OnEndCrouch",
+      "meta": null,
+      "args": [
+        {
+          "name": "HalfHeightAdjust",
+          "type": "float"
+        },
+        {
+          "name": "ScaledHalfHeightAdjust",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "OnMovementModeChanged",
+      "return": "void",
+      "callable": false,
+      "doc": "Called from CharacterMovementComponent to notify the character that the movement mode has changed.\n@param       PrevMovementMode        Movement mode before the change\n@param       NewMovementMode         New movement mode\n@param       PrevCustomMode          Custom mode before the change (applicable if PrevMovementMode is Custom)\n@param       NewCustomMode           New custom mode (applicable if NewMovementMode is Custom)",
+      "event": true,
+      "unrealname": "K2_OnMovementModeChanged",
+      "meta": null,
+      "args": [
+        {
+          "name": "PrevMovementMode",
+          "type": "EMovementMode"
+        },
+        {
+          "name": "NewMovementMode",
+          "type": "EMovementMode"
+        },
+        {
+          "name": "PrevCustomMode",
+          "type": "uint8"
+        },
+        {
+          "name": "NewCustomMode",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "OnStartCrouch",
+      "return": "void",
+      "callable": false,
+      "doc": "Event when Character crouches.\n@param       HalfHeightAdjust                difference between default collision half-height, and actual crouched capsule half-height.\n@param       ScaledHalfHeightAdjust  difference after component scale is taken in to account.",
+      "event": true,
+      "unrealname": "K2_OnStartCrouch",
+      "meta": null,
+      "args": [
+        {
+          "name": "HalfHeightAdjust",
+          "type": "float"
+        },
+        {
+          "name": "ScaledHalfHeightAdjust",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "UpdateCustomMovement",
+      "return": "void",
+      "callable": false,
+      "doc": "Event for implementing custom character movement mode. Called by CharacterMovement if MovementMode is set to Custom.\n@note C++ code should override UCharacterMovementComponent::PhysCustom() instead.\n@see UCharacterMovementComponent::PhysCustom()",
+      "event": true,
+      "unrealname": "K2_UpdateCustomMovement",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTime",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "LaunchCharacter",
+      "return": "void",
+      "doc": "Set a pending launch velocity on the Character. This velocity will be processed on the next CharacterMovementComponent tick,\nand will set it to the \"falling\" state. Triggers the OnLaunched event.\n@PARAM LaunchVelocity is the velocity to impart to the Character\n@PARAM bXYOverride if true replace the XY part of the Character's velocity instead of adding to it.\n@PARAM bZOverride if true replace the Z component of the Character's velocity instead of adding to it.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LaunchVelocity",
+          "type": "FVector"
+        },
+        {
+          "name": "bXYOverride",
+          "type": "bool"
+        },
+        {
+          "name": "bZOverride",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "OnJumped",
+      "return": "void",
+      "callable": false,
+      "doc": "Event fired when the character has just started jumping",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnLanded",
+      "return": "void",
+      "callable": false,
+      "doc": "Called upon landing when falling, to perform actions based on the Hit result.\nNote that movement mode is still \"Falling\" during this event. Current Velocity value is the velocity at the time of landing.\nConsider OnMovementModeChanged() as well, as that can be used once the movement mode changes to the new mode (most likely Walking).\n\n@param Hit Result describing the landing that resulted in a valid landing spot.\n@see OnMovementModeChanged()",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Hit",
+          "type": "FHitResult"
+        }
+      ]
+    },
+    {
+      "name": "OnLaunched",
+      "return": "void",
+      "callable": false,
+      "doc": "Let blueprint know that we were launched",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LaunchVelocity",
+          "type": "FVector"
+        },
+        {
+          "name": "bXYOverride",
+          "type": "bool"
+        },
+        {
+          "name": "bZOverride",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "OnWalkingOffLedge",
+      "return": "void",
+      "callable": false,
+      "doc": "Event fired when the Character is walking off a surface and is about to fall because CharacterMovement->CurrentFloor became unwalkable.\nIf CharacterMovement->MovementMode does not change during this event then the character will automatically start falling afterwards.\n@note Z velocity is zero during walking movement, and will be here as well. Another velocity can be computed here if desired and will be used when starting to fall.\n\n@param  PreviousFloorImpactNormal Normal of the previous walkable floor.\n@param  PreviousFloorContactNormal Normal of the contact with the previous walkable floor.\n@param  PreviousLocation     Previous character location before movement off the ledge.\n@param  TimeTick     Time delta of movement update resulting in moving off the ledge.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PreviousFloorImpactNormal",
+          "type": "FVector"
+        },
+        {
+          "name": "PreviousFloorContactNormal",
+          "type": "FVector"
+        },
+        {
+          "name": "PreviousLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "TimeDelta",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "PlayAnimMontage",
+      "return": "float32",
+      "doc": "Play Animation Montage on the character mesh. Returns the length of the animation montage in seconds, or 0.f if failed to play. *",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimMontage",
+          "type": "UAnimMontage"
+        },
+        {
+          "name": "InPlayRate",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "StartSectionName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RootMotionDebugClientPrintOnScreen",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerMove",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeStamp",
+          "type": "float32"
+        },
+        {
+          "name": "InAccel",
+          "type": "FVector"
+        },
+        {
+          "name": "ClientLoc",
+          "type": "FVector"
+        },
+        {
+          "name": "CompressedMoveFlags",
+          "type": "uint8"
+        },
+        {
+          "name": "ClientRoll",
+          "type": "uint8"
+        },
+        {
+          "name": "View",
+          "type": "uint"
+        },
+        {
+          "name": "ClientMovementBase",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "ClientBaseBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "ClientMovementMode",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "ServerMoveDual",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeStamp0",
+          "type": "float32"
+        },
+        {
+          "name": "InAccel0",
+          "type": "FVector"
+        },
+        {
+          "name": "PendingFlags",
+          "type": "uint8"
+        },
+        {
+          "name": "View0",
+          "type": "uint"
+        },
+        {
+          "name": "TimeStamp",
+          "type": "float32"
+        },
+        {
+          "name": "InAccel",
+          "type": "FVector"
+        },
+        {
+          "name": "ClientLoc",
+          "type": "FVector"
+        },
+        {
+          "name": "NewFlags",
+          "type": "uint8"
+        },
+        {
+          "name": "ClientRoll",
+          "type": "uint8"
+        },
+        {
+          "name": "View",
+          "type": "uint"
+        },
+        {
+          "name": "ClientMovementBase",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "ClientBaseBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "ClientMovementMode",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "ServerMoveDualHybridRootMotion",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeStamp0",
+          "type": "float32"
+        },
+        {
+          "name": "InAccel0",
+          "type": "FVector"
+        },
+        {
+          "name": "PendingFlags",
+          "type": "uint8"
+        },
+        {
+          "name": "View0",
+          "type": "uint"
+        },
+        {
+          "name": "TimeStamp",
+          "type": "float32"
+        },
+        {
+          "name": "InAccel",
+          "type": "FVector"
+        },
+        {
+          "name": "ClientLoc",
+          "type": "FVector"
+        },
+        {
+          "name": "NewFlags",
+          "type": "uint8"
+        },
+        {
+          "name": "ClientRoll",
+          "type": "uint8"
+        },
+        {
+          "name": "View",
+          "type": "uint"
+        },
+        {
+          "name": "ClientMovementBase",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "ClientBaseBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "ClientMovementMode",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "ServerMoveDualNoBase",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeStamp0",
+          "type": "float32"
+        },
+        {
+          "name": "InAccel0",
+          "type": "FVector"
+        },
+        {
+          "name": "PendingFlags",
+          "type": "uint8"
+        },
+        {
+          "name": "View0",
+          "type": "uint"
+        },
+        {
+          "name": "TimeStamp",
+          "type": "float32"
+        },
+        {
+          "name": "InAccel",
+          "type": "FVector"
+        },
+        {
+          "name": "ClientLoc",
+          "type": "FVector"
+        },
+        {
+          "name": "NewFlags",
+          "type": "uint8"
+        },
+        {
+          "name": "ClientRoll",
+          "type": "uint8"
+        },
+        {
+          "name": "View",
+          "type": "uint"
+        },
+        {
+          "name": "ClientMovementMode",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "ServerMoveNoBase",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeStamp",
+          "type": "float32"
+        },
+        {
+          "name": "InAccel",
+          "type": "FVector"
+        },
+        {
+          "name": "ClientLoc",
+          "type": "FVector"
+        },
+        {
+          "name": "CompressedMoveFlags",
+          "type": "uint8"
+        },
+        {
+          "name": "ClientRoll",
+          "type": "uint8"
+        },
+        {
+          "name": "View",
+          "type": "uint"
+        },
+        {
+          "name": "ClientMovementMode",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "ServerMoveOld",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "OldTimeStamp",
+          "type": "float32"
+        },
+        {
+          "name": "OldAccel",
+          "type": "FVector"
+        },
+        {
+          "name": "OldMoveFlags",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "StopAnimMontage",
+      "return": "void",
+      "doc": "Stop Animation Montage. If nullptr, it will stop what's currently active. The Blend Out Time is taken from the montage asset that is being stopped. *",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimMontage",
+          "default": "nullptr",
+          "type": "UAnimMontage"
+        }
+      ]
+    },
+    {
+      "name": "StopJumping",
+      "return": "void",
+      "doc": "Stop the character from jumping on the next update.\nCall this from an input event (such as a button 'up' event) to cease applying\njump Z-velocity. If this is not called, then jump z-velocity will be applied\nuntil JumpMaxHoldTime is reached.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UnCrouch",
+      "return": "void",
+      "doc": "Request the character to stop crouching. The request is processed on the next update of the CharacterMovementComponent.\n@see OnEndCrouch\n@see IsCrouched\n@see CharacterMovement->WantsToCrouch",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bClientSimulation",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

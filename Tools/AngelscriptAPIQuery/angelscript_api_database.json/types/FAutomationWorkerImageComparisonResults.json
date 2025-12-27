@@ -1,0 +1,79 @@
+{
+  "name": "FAutomationWorkerImageComparisonResults",
+  "isStruct": true,
+  "doc": "Implements a message that is sent in containing a screen shot run during performance test.",
+  "properties": {
+    "UniqueId": [
+      "FGuid",
+      2,
+      "The unique id for the comparison."
+    ],
+    "ScreenshotPath": [
+      "FString",
+      2,
+      "The path of the screenshot."
+    ],
+    "bNew": [
+      "bool",
+      2,
+      "Was this a new image we've never seen before and have no ground truth for?"
+    ],
+    "bSimilar": [
+      "bool",
+      2,
+      "Were the images similar?  If they're not you should log an error."
+    ],
+    "MaxLocalDifference": [
+      "float",
+      2,
+      ""
+    ],
+    "GlobalDifference": [
+      "float",
+      2,
+      ""
+    ],
+    "ErrorMessage": [
+      "FString",
+      2,
+      ""
+    ],
+    "IncomingFilePath": [
+      "FString",
+      2,
+      ""
+    ],
+    "ReportComparisonFilePath": [
+      "FString",
+      2,
+      ""
+    ],
+    "ReportApprovedFilePath": [
+      "FString",
+      2,
+      ""
+    ],
+    "ReportIncomingFilePath": [
+      "FString",
+      2,
+      ""
+    ],
+    "InstanceId": [
+      "FGuid",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAutomationWorkerImageComparisonResults&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAutomationWorkerImageComparisonResults"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "FInteriorSettings",
+  "isStruct": true,
+  "doc": "Struct encapsulating settings for interior areas.",
+  "properties": {
+    "ExteriorVolume": [
+      "float32",
+      "The desired volume of sounds outside the volume when the player is inside the volume"
+    ],
+    "ExteriorTime": [
+      "float32",
+      "The time over which to interpolate from the current volume to the desired volume of sounds outside the volume when the player enters the volume"
+    ],
+    "ExteriorLPF": [
+      "float32",
+      "The desired LPF frequency cutoff in hertz of sounds outside the volume when the player is inside the volume"
+    ],
+    "ExteriorLPFTime": [
+      "float32",
+      "The time over which to interpolate from the current LPF to the desired LPF of sounds outside the volume when the player enters the volume"
+    ],
+    "InteriorVolume": [
+      "float32",
+      "The desired volume of sounds inside the volume when the player is outside the volume"
+    ],
+    "InteriorTime": [
+      "float32",
+      "The time over which to interpolate from the current volume to the desired volume of sounds inside the volume when the player exits the volume"
+    ],
+    "InteriorLPF": [
+      "float32",
+      "The desired LPF frequency cutoff in hertz of sounds inside the volume when the player is outside the volume"
+    ],
+    "InteriorLPFTime": [
+      "float32",
+      "The time over which to interpolate from the current LPF to the desired LPF of sounds inside the volume when the player exits the volume"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInteriorSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInteriorSettings"
+        }
+      ]
+    }
+  ]
+}

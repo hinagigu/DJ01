@@ -1,0 +1,23 @@
+{
+  "name": "UDataRegistrySettings",
+  "inherits": "UDeveloperSettings",
+  "doc": "Settings for the Data Registry subsystem, these settings are used to scan for registry assets and set runtime access rules",
+  "properties": {
+    "DirectoriesToScan": [
+      "TArray<FDirectoryPath>",
+      2,
+      "List of directories to scan for data registry assets"
+    ],
+    "bInitializeAllLoadedRegistries": [
+      "bool",
+      2,
+      "If false, only registry assets inside DirectoriesToScan will be initialized. If true, it will also initialize any in-memory DataRegistry assets outside the scan paths"
+    ],
+    "bIgnoreMissingCookedAssetRegistryData": [
+      "bool",
+      2,
+      "If true, cooked builds will ignore errors with missing AssetRegistry data for specific registered assets like DataTables as it may have been stripped out"
+    ]
+  },
+  "methods": []
+}

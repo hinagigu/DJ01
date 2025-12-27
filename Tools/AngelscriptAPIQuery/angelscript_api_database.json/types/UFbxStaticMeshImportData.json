@@ -1,0 +1,49 @@
+{
+  "name": "UFbxStaticMeshImportData",
+  "inherits": "UFbxMeshImportData",
+  "properties": {
+    "StaticMeshLODGroup": [
+      "FName",
+      "The LODGroup to associate with this mesh when it is imported"
+    ],
+    "VertexColorImportOption": [
+      "EVertexColorImportOption",
+      "Specify how vertex colors should be imported"
+    ],
+    "VertexOverrideColor": [
+      "FColor",
+      "Specify override color in the case that VertexColorImportOption is set to Override"
+    ],
+    "DistanceFieldResolutionScale": [
+      "float32",
+      "Scale to apply to the mesh when allocating the distance field volume texture.\nThe default scale is 1, which is assuming that the mesh will be placed unscaled in the world."
+    ],
+    "bRemoveDegenerates": [
+      "bool",
+      "Disabling this option will keep degenerate triangles found.  In general you should leave this option on."
+    ],
+    "bBuildReversedIndexBuffer": [
+      "bool"
+    ],
+    "bBuildNanite": [
+      "bool",
+      "If enabled, allows to render objects with Nanite"
+    ],
+    "bGenerateLightmapUVs": [
+      "bool"
+    ],
+    "bOneConvexHullPerUCX": [
+      "bool",
+      "If checked, one convex hull per UCX_ prefixed collision mesh will be generated instead of decomposing into multiple hulls"
+    ],
+    "bAutoGenerateCollision": [
+      "bool",
+      "If checked, collision will automatically be generated (ignored if custom collision is imported or used)."
+    ],
+    "bCombineMeshes": [
+      "bool",
+      "If enabled, combines all meshes into a single mesh"
+    ]
+  },
+  "methods": []
+}

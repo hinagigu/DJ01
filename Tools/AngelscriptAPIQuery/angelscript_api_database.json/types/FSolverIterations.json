@@ -1,0 +1,43 @@
+{
+  "name": "FSolverIterations",
+  "isStruct": true,
+  "doc": "Solver settings for use by the Legacy RigidBody AnimNode (RBAN) solver.\nThse settings are no longer used by default and will eventually be deprecated and then removed.\n\n@note These settings have no effect when the Physics Asset is used in a world simulation (ragdoll).",
+  "properties": {
+    "SolverIterations": [
+      "int",
+      "The recommended number of solver iterations. Increase this if collision and joints are fighting, or joint chains are stretching."
+    ],
+    "JointIterations": [
+      "int",
+      "The recommended number of joint sub-iterations. Increasing this can help with chains of long-thin bodies."
+    ],
+    "CollisionIterations": [
+      "int",
+      "The recommended number of collision sub-iterations. Increasing this can help with collision jitter."
+    ],
+    "SolverPushOutIterations": [
+      "int",
+      "Increase this if bodies remain penetrating"
+    ],
+    "JointPushOutIterations": [
+      "int",
+      "The recommended number of joint sub-push-out iterations."
+    ],
+    "CollisionPushOutIterations": [
+      "int",
+      "The recommended number of joint sub-push-out iterations. Increasing this can help with collision penetration problems."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSolverIterations&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSolverIterations"
+        }
+      ]
+    }
+  ]
+}

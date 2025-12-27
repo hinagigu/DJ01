@@ -1,0 +1,29 @@
+{
+  "name": "FMediaSourceCacheSettings",
+  "isStruct": true,
+  "doc": "Cache settings to pass to the player.",
+  "properties": {
+    "bOverride": [
+      "bool",
+      2,
+      "Override the default cache settings.\nCurrently only the ImgMedia player supports these settings."
+    ],
+    "TimeToLookAhead": [
+      "float32",
+      2,
+      "The cache will fill up with frames that are up to this time from the current time.\nE.g. if this is 0.2, and we are at time index 5 seconds,\nthen we will fill the cache with frames between 5 seconds and 5.2 seconds."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMediaSourceCacheSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMediaSourceCacheSettings"
+        }
+      ]
+    }
+  ]
+}

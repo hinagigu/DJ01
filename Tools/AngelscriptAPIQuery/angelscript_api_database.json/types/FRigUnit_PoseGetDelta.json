@@ -1,0 +1,62 @@
+{
+  "name": "FRigUnit_PoseGetDelta",
+  "isStruct": true,
+  "doc": "Compares two pose caches and compares their values.",
+  "properties": {
+    "PoseA": [
+      "FRigPose"
+    ],
+    "PoseB": [
+      "FRigPose"
+    ],
+    "PositionThreshold": [
+      "float32",
+      "The delta threshold for a translation / position difference. 0.0 disables position differences."
+    ],
+    "RotationThreshold": [
+      "float32",
+      "The delta threshold for a rotation difference (in degrees). 0.0 disables rotation differences."
+    ],
+    "ScaleThreshold": [
+      "float32",
+      "The delta threshold for a scale difference. 0.0 disables scale differences."
+    ],
+    "CurveThreshold": [
+      "float32",
+      "The delta threshold for curve value difference. 0.0 disables curve differences."
+    ],
+    "ElementType": [
+      "ERigElementType"
+    ],
+    "Space": [
+      "ERigVMTransformSpace",
+      "Defines in which space transform deltas should be computed"
+    ],
+    "ItemsToCompare": [
+      "FRigElementKeyCollection",
+      "An optional list of items to compare"
+    ],
+    "PosesAreEqual": [
+      "bool",
+      1,
+      ""
+    ],
+    "ItemsWithDelta": [
+      "FRigElementKeyCollection",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_PoseGetDelta&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_PoseGetDelta"
+        }
+      ]
+    }
+  ]
+}

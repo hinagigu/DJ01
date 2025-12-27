@@ -1,0 +1,42 @@
+{
+  "name": "FRigUnit_GetControlVector",
+  "isStruct": true,
+  "doc": "GetControlVector is used to retrieve a single Vector from a hierarchy, can be used for Controls of type \"Position\" or \"Scale\".",
+  "properties": {
+    "Control": [
+      "FName",
+      "The name of the Control to retrieve the Vector for."
+    ],
+    "Space": [
+      "ERigVMTransformSpace",
+      "Defines if the Control's Vector should be retrieved\nin local or global space."
+    ],
+    "Vector": [
+      "FVector",
+      1,
+      "The current value of the control."
+    ],
+    "Minimum": [
+      "FVector",
+      1,
+      "The minimum value of the control."
+    ],
+    "Maximum": [
+      "FVector",
+      1,
+      "The maximum value of the control."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_GetControlVector&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_GetControlVector"
+        }
+      ]
+    }
+  ]
+}

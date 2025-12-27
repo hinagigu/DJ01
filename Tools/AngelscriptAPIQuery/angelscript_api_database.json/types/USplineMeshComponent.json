@@ -1,0 +1,490 @@
+{
+  "name": "USplineMeshComponent",
+  "inherits": "UStaticMeshComponent",
+  "doc": "A Spline Mesh Component is a derivation of a Static Mesh Component which can be deformed using a spline. Only a start and end position (and tangent) can be specified.\n@see https://docs.unrealengine.com/latest/INT/Resources/ContentExamples/Blueprint_Splines",
+  "properties": {
+    "SplineParams": [
+      "FSplineMeshParams",
+      2,
+      "Spline that is used to deform mesh"
+    ],
+    "SplineBoundaryMin": [
+      "float32",
+      2,
+      "Minimum coordinate along the spline forward axis which corresponds to start of spline. If set to 0.0, will use bounding box to determine bounds"
+    ],
+    "SplineBoundaryMax": [
+      "float32",
+      2,
+      "Maximum coordinate along the spline forward axis which corresponds to end of spline. If set to 0.0, will use bounding box to determine bounds"
+    ],
+    "bAllowSplineEditingPerInstance": [
+      "bool",
+      "If true, spline mesh properties - StartPos, EndPos, StartTangent and EndTangent- may be edited per instance in the level viewport. Otherwise, the spline mesh should be initialized in the construction script."
+    ],
+    "bSmoothInterpRollScale": [
+      "bool",
+      "If true, will use smooth interpolation (ease in/out) for Scale, Roll, and Offset along this section of spline. If false, uses linear"
+    ],
+    "bNeverNeedsCookedCollisionData": [
+      "bool",
+      "TODO Chaos this is to opt out of CreatePhysicsMeshes for certain meshes\nBetter long term mesh is to not call CreatePhysicsMeshes until it is known there is a mesh instance that needs it."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetBoundaryMax",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the boundary max",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBoundaryMin",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the boundary min",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEndOffset",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Get the end offset",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEndPosition",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the end position of spline in local space",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEndRoll",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the end roll, in radians",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEndScale",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Get the end scaling",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEndTangent",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the end tangent vector of spline in local space",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetForwardAxis",
+      "return": "ESplineMeshAxis",
+      "const": true,
+      "doc": "Get the forward axis",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSplineUpDir",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the spline up direction",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStartOffset",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Get the start offset",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStartPosition",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the start position of spline in local space",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStartRoll",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the start roll, in radians",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStartScale",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Get the start scaling",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStartTangent",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the start tangent vector of spline in local space",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetBoundaryMax",
+      "return": "void",
+      "doc": "Set the boundary max",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoundaryMax",
+          "type": "float32"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetBoundaryMin",
+      "return": "void",
+      "doc": "Set the boundary min",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoundaryMin",
+          "type": "float32"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEndOffset",
+      "return": "void",
+      "doc": "Set the end offset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EndOffset",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEndPosition",
+      "return": "void",
+      "doc": "Set the end position of spline in local space",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EndPos",
+          "type": "FVector"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEndRoll",
+      "return": "void",
+      "doc": "Set the end roll, in radians",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EndRoll",
+          "type": "float32"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEndRollDegrees",
+      "return": "void",
+      "doc": "Set the end roll in degrees",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EndRollDegrees",
+          "type": "float32"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEndScale",
+      "return": "void",
+      "doc": "Set the end scaling",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EndScale",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEndTangent",
+      "return": "void",
+      "doc": "Set the end tangent vector of spline in local space",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EndTangent",
+          "type": "FVector"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetForwardAxis",
+      "return": "void",
+      "doc": "Set the forward axis",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InForwardAxis",
+          "type": "ESplineMeshAxis"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSplineUpDir",
+      "return": "void",
+      "doc": "Set the spline up direction",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSplineUpDir",
+          "type": "FVector"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStartAndEnd",
+      "return": "void",
+      "doc": "Set the start and end, position and tangent, all in local space",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartPos",
+          "type": "FVector"
+        },
+        {
+          "name": "StartTangent",
+          "type": "FVector"
+        },
+        {
+          "name": "EndPos",
+          "type": "FVector"
+        },
+        {
+          "name": "EndTangent",
+          "type": "FVector"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStartOffset",
+      "return": "void",
+      "doc": "Set the start offset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartOffset",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStartPosition",
+      "return": "void",
+      "doc": "Set the start position of spline in local space",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartPos",
+          "type": "FVector"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStartRoll",
+      "return": "void",
+      "doc": "Set the start roll, in radians",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartRoll",
+          "type": "float32"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStartRollDegrees",
+      "return": "void",
+      "doc": "Set the start roll in degrees",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartRollDegrees",
+          "type": "float32"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStartScale",
+      "return": "void",
+      "doc": "Set the start scaling",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartScale",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStartTangent",
+      "return": "void",
+      "doc": "Set the start tangent vector of spline in local space",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StartTangent",
+          "type": "FVector"
+        },
+        {
+          "name": "bUpdateMesh",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UpdateMesh",
+      "return": "void",
+      "doc": "Update the collision and render state on the spline mesh following changes to its geometry",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

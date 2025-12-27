@@ -1,0 +1,44 @@
+{
+  "name": "FMappableConfigPair",
+  "isStruct": true,
+  "doc": "A container to organize potentially unloaded player mappable configs to their CommonUI input type",
+  "properties": {
+    "Config": [
+      "TSoftObjectPtr<UPlayerMappableInputConfig>",
+      2,
+      ""
+    ],
+    "Type": [
+      "ECommonInputType",
+      2,
+      "The type of config that this is. Useful for filtering out configs by the current input device\nfor things like the settings screen, or if you only want to apply this config when a certain\ninput type is being used."
+    ],
+    "DependentPlatformTraits": [
+      "FGameplayTagContainer",
+      2,
+      "Container of platform traits that must be set in order for this input to be activated.\n\nIf the platform does not have one of the traits specified it can still be registered, but cannot\nbe activated."
+    ],
+    "ExcludedPlatformTraits": [
+      "FGameplayTagContainer",
+      2,
+      "If the current platform has any of these traits, then this config will not be actived."
+    ],
+    "bShouldActivateAutomatically": [
+      "bool",
+      2,
+      "If true, then this input config will be activated when it's associated Game Feature is activated.\nThis is normally the desirable behavior"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMappableConfigPair&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMappableConfigPair"
+        }
+      ]
+    }
+  ]
+}

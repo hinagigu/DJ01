@@ -1,0 +1,49 @@
+{
+  "name": "__NiagaraSimCache",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CaptureNiagaraSimCacheImmediate",
+      "return": "bool",
+      "doc": "Captures the simulations current frame data into the SimCache.\nThis happens immediately so you may need to be careful with tick order of the component you are capturing from.\nThe return can be invalid if the component can not be captured for some reason (i.e. not active).\nWhen AdvanceSimulation is true we will manually advance the simulation one frame using the provided AdvanceDeltaTime before capturing.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SimCache",
+          "type": "UNiagaraSimCache"
+        },
+        {
+          "name": "CreateParameters",
+          "type": "FNiagaraSimCacheCreateParameters"
+        },
+        {
+          "name": "NiagaraComponent",
+          "type": "UNiagaraComponent"
+        },
+        {
+          "name": "OutSimCache",
+          "type": "UNiagaraSimCache&"
+        },
+        {
+          "name": "bAdvanceSimulation",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "AdvanceDeltaTime",
+          "default": "0.016660",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CreateNiagaraSimCache",
+      "return": "UNiagaraSimCache",
+      "doc": "Captures the simulation cache object that can be captured into using the various API calls.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

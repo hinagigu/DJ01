@@ -1,0 +1,120 @@
+{
+  "name": "FMaterialInstanceBasePropertyOverrides",
+  "isStruct": true,
+  "doc": "Properties from the base material that can be overridden in material instances.",
+  "properties": {
+    "BlendMode": [
+      "EBlendMode",
+      2,
+      "The blend mode"
+    ],
+    "ShadingModel": [
+      "EMaterialShadingModel",
+      2,
+      "The shading model"
+    ],
+    "OpacityMaskClipValue": [
+      "float32",
+      2,
+      "If BlendMode is BLEND_Masked, the surface is not rendered where OpacityMask < OpacityMaskClipValue."
+    ],
+    "DisplacementScaling": [
+      "FDisplacementScaling",
+      2,
+      ""
+    ],
+    "MaxWorldPositionOffsetDisplacement": [
+      "float32",
+      2,
+      "The maximum World Position Offset distance. Zero means no maximum."
+    ],
+    "bOverride_OpacityMaskClipValue": [
+      "bool",
+      "Enables override of the opacity mask clip value."
+    ],
+    "bOverride_BlendMode": [
+      "bool",
+      "Enables override of the blend mode."
+    ],
+    "bOverride_ShadingModel": [
+      "bool",
+      "Enables override of the shading model."
+    ],
+    "bOverride_DitheredLODTransition": [
+      "bool",
+      "Enables override of the dithered LOD transition property."
+    ],
+    "bOverride_CastDynamicShadowAsMasked": [
+      "bool",
+      "Enables override of whether to shadow using masked opacity on translucent materials."
+    ],
+    "bOverride_TwoSided": [
+      "bool",
+      "Enables override of the two sided property."
+    ],
+    "bOverride_bIsThinSurface": [
+      "bool",
+      "Enables override of the IsThinSurface property."
+    ],
+    "bOverride_OutputTranslucentVelocity": [
+      "bool",
+      "Enables override of the output velocity property."
+    ],
+    "bOverride_bHasPixelAnimation": [
+      "bool",
+      "Enables override of the has pixel animation property."
+    ],
+    "bOverride_bEnableTessellation": [
+      "bool",
+      "Enables override of the enable tessellation property."
+    ],
+    "bOverride_DisplacementScaling": [
+      "bool",
+      "Enables override of the displacement magnitude and center property."
+    ],
+    "bOverride_MaxWorldPositionOffsetDisplacement": [
+      "bool",
+      "Enables override of the max world position offset property."
+    ],
+    "TwoSided": [
+      "bool",
+      "Indicates that the material should be rendered without backface culling and the normal should be flipped for backfaces."
+    ],
+    "bIsThinSurface": [
+      "bool",
+      "Indicates that the material should be rendered as."
+    ],
+    "DitheredLODTransition": [
+      "bool",
+      "Whether the material should support a dithered LOD transition when used with the foliage system."
+    ],
+    "bCastDynamicShadowAsMasked": [
+      "bool",
+      "Whether the material should cast shadows as masked even though it has a translucent blend mode."
+    ],
+    "bOutputTranslucentVelocity": [
+      "bool",
+      "Whether the material should output velocity even though it has a translucent blend mode."
+    ],
+    "bHasPixelAnimation": [
+      "bool",
+      "Whether the opaque material has any pixel animations happening, that isn't included in the geometric velocities.\nThis allows to disable renderer's heuristics that assumes animation is fully described with motion vector, such as TSR's anti-flickering heuristic."
+    ],
+    "bEnableTessellation": [
+      "bool",
+      "Whether or not tessellation is enabled. Required for displacement to work."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMaterialInstanceBasePropertyOverrides&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMaterialInstanceBasePropertyOverrides"
+        }
+      ]
+    }
+  ]
+}

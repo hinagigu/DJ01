@@ -1,0 +1,29 @@
+{
+  "name": "FChunkDependency",
+  "isStruct": true,
+  "doc": "A single dependency, read from ini file",
+  "properties": {
+    "ChunkID": [
+      "int",
+      2,
+      "The child chunk"
+    ],
+    "ParentChunkID": [
+      "int",
+      2,
+      "Parent chunk, anything in both Parent and Child is only placed into Parent"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FChunkDependency&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FChunkDependency"
+        }
+      ]
+    }
+  ]
+}

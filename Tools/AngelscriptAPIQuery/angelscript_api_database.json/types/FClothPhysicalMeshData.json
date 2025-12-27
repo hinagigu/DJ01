@@ -1,0 +1,59 @@
+{
+  "name": "FClothPhysicalMeshData",
+  "isStruct": true,
+  "doc": "Spatial simulation data for a mesh.",
+  "properties": {
+    "Vertices": [
+      "TArray<FVector3f>",
+      2,
+      "Positions of each simulation vertex"
+    ],
+    "Normals": [
+      "TArray<FVector3f>",
+      2,
+      "Normal at each vertex"
+    ],
+    "VertexColors": [
+      "TArray<FColor>",
+      2,
+      "Color at each vertex"
+    ],
+    "Indices": [
+      "TArray<uint>",
+      2,
+      "Indices of the simulation mesh triangles"
+    ],
+    "InverseMasses": [
+      "TArray<float32>",
+      2,
+      "Inverse mass for each vertex in the physical mesh"
+    ],
+    "SelfCollisionVertexSet": [
+      "TSet<int>",
+      2,
+      "Valid indices to use for self collisions (reduced set of Indices)"
+    ],
+    "MaxBoneWeights": [
+      "int",
+      2,
+      "Maximum number of bone weights of any vetex"
+    ],
+    "NumFixedVerts": [
+      "int",
+      2,
+      "Number of fixed verts in the simulation mesh (fixed verts are just skinned and do not simulate)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FClothPhysicalMeshData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FClothPhysicalMeshData"
+        }
+      ]
+    }
+  ]
+}

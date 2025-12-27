@@ -1,0 +1,7 @@
+{
+  "name": "UGameplayMessageSubsystem",
+  "inherits": "UGameInstanceSubsystem",
+  "doc": "This system allows event raisers and listeners to register for messages without\nhaving to know about each other directly, though they must agree on the format\nof the message (as a USTRUCT() type).\n\n\nYou can get to the message router from the game instance:\n   UGameInstance::GetSubsystem<UGameplayMessageSubsystem>(GameInstance)\nor directly from anything that has a route to a world:\n   UGameplayMessageSubsystem::Get(WorldContextObject)\n\nNote that call order when there are multiple listeners for the same channel is\nnot guaranteed and can change over time!",
+  "properties": {},
+  "methods": []
+}

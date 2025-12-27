@@ -1,0 +1,26 @@
+{
+  "name": "USourceEffectMotionFilterPreset",
+  "inherits": "USoundEffectSourcePreset",
+  "doc": "USourceEffectMotionFilterPreset\nThis code exposes your preset settings and effect class to the editor.\nAnd allows for a handle to setting/updating effect settings dynamically.",
+  "properties": {
+    "Settings": [
+      "FSourceEffectMotionFilterSettings",
+      "The copy of the settings struct. Can't be written to in BP, but can be read.\nNote that the value read in BP is the serialized settings, will not reflect dynamic changes made in BP."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetSettings",
+      "return": "void",
+      "doc": "Change settings of your effect from blueprints. Will broadcast changes to active instances.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSettings",
+          "type": "FSourceEffectMotionFilterSettings"
+        }
+      ]
+    }
+  ]
+}

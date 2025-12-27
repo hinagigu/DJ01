@@ -1,0 +1,47 @@
+{
+  "name": "UAnimNotifyState_TimedNiagaraEffect",
+  "inherits": "UAnimNotifyState",
+  "doc": "Timed Niagara Effect Notify\nAllows a looping Niagara effect to be played in an animation that will activate\nat the beginning of the notify and deactivate at the end.",
+  "properties": {
+    "Template": [
+      "UNiagaraSystem",
+      "The niagara system to spawn for the notify state"
+    ],
+    "SocketName": [
+      "FName",
+      "The socket or bone to attach the system to"
+    ],
+    "LocationOffset": [
+      "FVector",
+      "Offset from the socket or bone to place the Niagara system"
+    ],
+    "RotationOffset": [
+      "FRotator",
+      "Rotation offset from the socket or bone for the Niagara system"
+    ],
+    "bApplyRateScaleAsTimeDilation": [
+      "bool",
+      "Should we set the animation rate scale as time dilation on the spawn effect?"
+    ],
+    "bDestroyAtEnd": [
+      "bool",
+      "Whether the Niagara system should be immediately destroyed at the end of the notify state or be allowed to finish"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetSpawnedEffect",
+      "return": "UFXSystemComponent",
+      "const": true,
+      "doc": "Return FXSystemComponent created from SpawnEffect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshComp",
+          "type": "UMeshComponent"
+        }
+      ]
+    }
+  ]
+}

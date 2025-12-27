@@ -1,0 +1,1120 @@
+{
+  "name": "UNiagaraComponent",
+  "inherits": "UFXSystemComponent",
+  "doc": "UNiagaraComponent is the primitive component for a Niagara System.\n@see ANiagaraActor\n@see UNiagaraSystem",
+  "properties": {
+    "TemplateParameterOverrides": [
+      "TMap<FNiagaraVariableBase,FNiagaraVariant>",
+      2,
+      ""
+    ],
+    "InstanceParameterOverrides": [
+      "TMap<FNiagaraVariableBase,FNiagaraVariant>",
+      2,
+      ""
+    ],
+    "WarmupTickCount": [
+      "int",
+      2,
+      "Number of ticks to process for warmup of the system. Total warmup time is WarmupTickCount * WarmupTickDelta."
+    ],
+    "WarmupTickDelta": [
+      "float32",
+      2,
+      "Delta time used when ticking the system in warmup mode."
+    ],
+    "OnSystemFinished": [
+      "FOnNiagaraSystemFinished",
+      "Called when the particle system is done"
+    ],
+    "AutoAttachParent": [
+      "TWeakObjectPtr<USceneComponent>",
+      "Component we automatically attach to when activated, if bAutoManageAttachment is true.\nIf null during registration, we assign the existing AttachParent and defer attachment until we activate.\n@see bAutoManageAttachment"
+    ],
+    "AutoAttachSocketName": [
+      "FName",
+      "Socket we automatically attach to on the AutoAttachParent, if bAutoManageAttachment is true.\n@see bAutoManageAttachment"
+    ],
+    "AutoAttachLocationRule": [
+      "EAttachmentRule",
+      "Options for how we handle our location when we attach to the AutoAttachParent, if bAutoManageAttachment is true.\n@see bAutoManageAttachment, EAttachmentRule"
+    ],
+    "AutoAttachRotationRule": [
+      "EAttachmentRule",
+      "Options for how we handle our rotation when we attach to the AutoAttachParent, if bAutoManageAttachment is true.\n@see bAutoManageAttachment, EAttachmentRule"
+    ],
+    "AutoAttachScaleRule": [
+      "EAttachmentRule",
+      "Options for how we handle our scale when we attach to the AutoAttachParent, if bAutoManageAttachment is true.\n@see bAutoManageAttachment, EAttachmentRule"
+    ],
+    "bAllowScalability": [
+      "bool",
+      "Controls whether we allow scalability culling for this component. If enabled, this component's FX may be culled due to things such as distance, visibility, instance counts and performance."
+    ],
+    "bForceSolo": [
+      "bool",
+      "When true, this component's system will be force to update via a slower \"solo\" path rather than the more optimal batched path with other instances of the same system."
+    ],
+    "bEnableGpuComputeDebug": [
+      "bool",
+      "When true the GPU simulation debug display will enabled, allowing information used during simulation to be visualized."
+    ],
+    "bOverrideWarmupSettings": [
+      "bool",
+      "When true then this instance will override the system's warmup settings."
+    ],
+    "bAutoManageAttachment": [
+      "bool",
+      "True if we should automatically attach to AutoAttachParent when activated, and detach from our parent when completed.\nThis overrides any current attachment that may be present at the time of activation (deferring initial attachment until activation, if AutoAttachParent is null).\nWhen enabled, detachment occurs regardless of whether AutoAttachParent is assigned, and the relative transform from the time of activation is restored.\nThis also disables attachment on dedicated servers, where we don't actually activate even if bAutoActivate is true.\n@see AutoAttachParent, AutoAttachSocketName, AutoAttachLocationType"
+    ],
+    "bAutoAttachWeldSimulatedBodies": [
+      "bool",
+      "Option for how we handle bWeldSimulatedBodies when we attach to the AutoAttachParent, if bAutoManageAttachment is true.\n@see bAutoManageAttachment"
+    ],
+    "bWaitForCompilationOnActivate": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AdvanceSimulation",
+      "return": "void",
+      "doc": "Advances this system's simulation by the specified number of ticks and delta time.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TickCount",
+          "type": "int"
+        },
+        {
+          "name": "TickDeltaSeconds",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AdvanceSimulationByTime",
+      "return": "void",
+      "doc": "Advances this system's simulation by the specified time in seconds and delta time. Advancement is done in whole ticks of TickDeltaSeconds so actual simulated time will be the nearest lower multiple of TickDeltaSeconds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SimulateTime",
+          "type": "float32"
+        },
+        {
+          "name": "TickDeltaSeconds",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClearEmitterFixedBounds",
+      "return": "void",
+      "doc": "Clear any previously set fixed bounds for the emitter instance.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ClearSimCache",
+      "return": "void",
+      "doc": "Clear any active simulation cache.\nWhen clearing a simulation cache that has been running you may wish to reset or continue, this option is only\nvalid when using a full simulation cache.  A renderer only cache will always reset as we can not continue the\nsimulation due to missing simulation data.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bResetSystem",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClearSystemFixedBounds",
+      "return": "void",
+      "doc": "Clear any previously set fixed bounds for the system instance.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAgeUpdateMode",
+      "return": "ENiagaraAgeUpdateMode",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAllowScalability",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAsset",
+      "return": "UNiagaraSystem",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCustomTimeDilation",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDataInterface",
+      "return": "UNiagaraDataInterface",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetDesiredAge",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the desired age of the System instance.  This is only relevant when using the DesiredAge age update mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEmitterFixedBounds",
+      "return": "FBox",
+      "const": true,
+      "doc": "Gets the fixed bounds for an emitter instance.\nThis will return the user set fixed bounds if set, or the emitters fixed bounds if set.\nNote: The returned box may be invalid if no fixed bounds exist",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetForceLocalPlayerEffect",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetForceSolo",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLockDesiredAgeDeltaTimeToSeekDelta",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets whether or not the delta time used to tick the system instance when using desired age is locked to the seek delta.  When true, the system instance\n      will only be ticked when the desired age has changed by more than the seek delta.  When false the system instance will be ticked by the change in desired\n      age when not seeking.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMaxSimTime",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the maximum CPU time in seconds we will simulate to the desired age, when we go beyond this limit ticks will be processed in the next frame.\nThis is only relevant when using the DesiredAge age update mode.\nNote: The componet will not be visibile if we have ticks to process and SetCanRenderWhileSeeking is set to true",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOcclusionQueryMode",
+      "return": "ENiagaraOcclusionQueryMode",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPreviewLODDistance",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPreviewLODDistanceEnabled",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRandomSeedOffset",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSeekDelta",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the delta value which is used when seeking from the current age, to the desired age.  This is only relevant\n      when using the DesiredAge age update mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSimCache",
+      "return": "UNiagaraSimCache",
+      "const": true,
+      "doc": "Get the active simulation cache, will return null if we do not have an active one.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSystemFixedBounds",
+      "return": "FBox",
+      "const": true,
+      "doc": "Gets the fixed bounds for the system instance.\nThis will return the user set fixed bounds if set, or the systems fixed bounds if set.\nNote: The returned box may be invalid if no fixed bounds exist",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTickBehavior",
+      "return": "ENiagaraTickBehavior",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InitForPerformanceBaseline",
+      "return": "void",
+      "doc": "Initializes this component for capturing a performance baseline.\nThis will do things such as disabling distance culling and setting a LODDistance of 0 to ensure the effect is at it's maximum cost.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPaused",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReinitializeSystem",
+      "return": "void",
+      "doc": "Called on when an external object wishes to force this System to reinitialize itself from the System data.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResetSystem",
+      "return": "void",
+      "doc": "Resets the System to it's initial pre-simulated state.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SeekToDesiredAge",
+      "return": "void",
+      "doc": "Sets the desired age of the System instance and designates that this change is a seek.  When seeking to a desired age the\n          The component can optionally prevent rendering.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDesiredAge",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAgeUpdateMode",
+      "return": "void",
+      "doc": "Sets the age update mode for the System instance.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAgeUpdateMode",
+          "type": "ENiagaraAgeUpdateMode"
+        }
+      ]
+    },
+    {
+      "name": "SetAllowScalability",
+      "return": "void",
+      "doc": "Set whether this component is allowed to perform scalability checks and potentially be culled etc. Occasionally it is useful to disable this for specific components. E.g. Effects on the local player.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAllow",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAsset",
+      "return": "void",
+      "doc": "Switch which asset the component is using.\nThis requires Niagara to wait for concurrent execution and the override parameter store to be synchronized with the new asset.\nBy default existing parameters are reset when we call SetAsset, modify bResetExistingOverrideParameters to leave existing parameter data as is.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAsset",
+          "type": "UNiagaraSystem"
+        },
+        {
+          "name": "bResetExistingOverrideParameters",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAutoDestroy",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInAutoDestroy",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCanRenderWhileSeeking",
+      "return": "void",
+      "doc": "Sets whether or not the system can render while seeking.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInCanRenderWhileSeeking",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomTimeDilation",
+      "return": "void",
+      "doc": "Sets the custom time dilation value for the component.\nNote: This is only available on components that are in solo mode currently.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Dilation",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDesiredAge",
+      "return": "void",
+      "doc": "Sets the desired age of the System instance.  This is only relevant when using the DesiredAge age update mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDesiredAge",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetEmitterFixedBounds",
+      "return": "void",
+      "doc": "Sets the fixed bounds for an emitter instance, this overrides all other bounds.\nThe box is expected to be in local space not world space.\nA default uninitialized box will clear the fixed bounds and revert back to emitter fixed / dynamic bounds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterName",
+          "type": "FName"
+        },
+        {
+          "name": "LocalBounds",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "SetForceLocalPlayerEffect",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsPlayerEffect",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetForceSolo",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInForceSolo",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetGpuComputeDebug",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnableDebug",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLockDesiredAgeDeltaTimeToSeekDelta",
+      "return": "void",
+      "doc": "Sets whether or not the delta time used to tick the system instance when using desired age is locked to the seek delta.  When true, the system instance\n      will only be ticked when the desired age has changed by more than the seek delta.  When false the system instance will be ticked by the change in desired\n      age when not seeking.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bLock",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMaxSimTime",
+      "return": "void",
+      "doc": "Sets the maximum CPU time in seconds we will simulate to the desired age, when we go beyond this limit ticks will be processed in the next frame.\nThis is only relevant when using the DesiredAge age update mode.\nNote: The componet will not be visibile if we have ticks to process and SetCanRenderWhileSeeking is set to true",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMaxTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariableActor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariableBool",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariableFloat",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariableInt",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariableLinearColor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariableMatrix",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "FMatrix"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariableObject",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "Object",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariablePosition",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariableQuat",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariableVec2",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariableVec3",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetNiagaraVariableVec4",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FString"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector4"
+        }
+      ]
+    },
+    {
+      "name": "SetOcclusionQueryMode",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Mode",
+          "type": "ENiagaraOcclusionQueryMode"
+        }
+      ]
+    },
+    {
+      "name": "SetPaused",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInPaused",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPreviewLODDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnablePreviewLODDistance",
+          "type": "bool"
+        },
+        {
+          "name": "PreviewLODDistance",
+          "type": "float32"
+        },
+        {
+          "name": "PreviewMaxDistance",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRandomSeedOffset",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRandomSeedOffset",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderingEnabled",
+      "return": "void",
+      "doc": "Sets whether or not rendering is enabled for this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInRenderingEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSeekDelta",
+      "return": "void",
+      "doc": "Sets the delta value which is used when seeking from the current age, to the desired age.  This is only relevant\n      when using the DesiredAge age update mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSeekDelta",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSimCache",
+      "return": "void",
+      "doc": "Sets the simulation cache to use for the component.\nA null SimCache parameter will clear the active simulation cache.\nWhen clearing a simulation cache that has been running you may wish to reset or continue, this option is only\nvalid when using a full simulation cache.  A renderer only cache will always reset as we can not continue the\nsimulation due to missing simulation data.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SimCache",
+          "type": "UNiagaraSimCache"
+        },
+        {
+          "name": "bResetSystem",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSystemFixedBounds",
+      "return": "void",
+      "doc": "Sets the fixed bounds for the system instance, this overrides all other bounds.\nThe box is expected to be in local space not world space.\nA default uninitialized box will clear the fixed bounds and revert back to system fixed / dynamic bounds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LocalBounds",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "SetTickBehavior",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTickBehavior",
+          "type": "ENiagaraTickBehavior"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableActor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableBool",
+      "return": "void",
+      "doc": "Sets a Niagara bool parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableFloat",
+      "return": "void",
+      "doc": "Sets a Niagara float parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableInt",
+      "return": "void",
+      "doc": "Sets a Niagara int parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableLinearColor",
+      "return": "void",
+      "doc": "Sets a Niagara FLinearColor parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableMaterial",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "Object",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableMatrix",
+      "return": "void",
+      "doc": "Sets a Niagara matrix parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FMatrix"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableObject",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "Object",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SetVariablePosition",
+      "return": "void",
+      "doc": "Sets a Niagara Position parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableQuat",
+      "return": "void",
+      "doc": "Sets a Niagara quaternion parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableStaticMesh",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableTexture",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "Texture",
+          "type": "UTexture"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableTextureRenderTarget",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "TextureRenderTarget",
+          "type": "UTextureRenderTarget"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableVec2",
+      "return": "void",
+      "doc": "Sets a Niagara Vector2 parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableVec3",
+      "return": "void",
+      "doc": "Sets a Niagara Vector3 parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetVariableVec4",
+      "return": "void",
+      "doc": "Sets a Niagara Vector4 parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector4"
+        }
+      ]
+    }
+  ]
+}

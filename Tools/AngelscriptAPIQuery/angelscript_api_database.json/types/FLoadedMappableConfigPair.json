@@ -1,0 +1,34 @@
+{
+  "name": "FLoadedMappableConfigPair",
+  "isStruct": true,
+  "doc": "A container to organize loaded player mappable configs to their CommonUI input type",
+  "properties": {
+    "Config": [
+      "const UPlayerMappableInputConfig",
+      1,
+      "The player mappable input config that should be applied to the Enhanced Input subsystem"
+    ],
+    "Type": [
+      "ECommonInputType",
+      1,
+      "The type of device that this mapping config should be applied to"
+    ],
+    "bIsActive": [
+      "bool",
+      1,
+      "If this config is currently active. A config is marked as active when it's owning GFA is active"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLoadedMappableConfigPair&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLoadedMappableConfigPair"
+        }
+      ]
+    }
+  ]
+}

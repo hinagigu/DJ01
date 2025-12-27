@@ -1,0 +1,92 @@
+{
+  "name": "FScriptTraceDelegate",
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FScriptTraceDelegate&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FScriptTraceDelegate"
+        }
+      ]
+    },
+    {
+      "name": "IsBound",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetUObject",
+      "return": "UObject",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetFunctionName",
+      "return": "FName",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Clear",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "BindUFunction",
+      "return": "void",
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "FunctionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "Execute",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "TraceHandle",
+          "type": "uint64"
+        },
+        {
+          "name": "OutHits",
+          "type": "const TArray<FHitResult>&in"
+        },
+        {
+          "name": "UserData",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "ExecuteIfBound",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "TraceHandle",
+          "type": "uint64"
+        },
+        {
+          "name": "OutHits",
+          "type": "const TArray<FHitResult>&in"
+        },
+        {
+          "name": "UserData",
+          "type": "uint"
+        }
+      ]
+    }
+  ]
+}

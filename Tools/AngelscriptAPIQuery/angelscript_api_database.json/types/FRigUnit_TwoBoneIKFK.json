@@ -1,0 +1,59 @@
+{
+  "name": "FRigUnit_TwoBoneIKFK",
+  "isStruct": true,
+  "properties": {
+    "StartJoint": [
+      "FName"
+    ],
+    "EndJoint": [
+      "FName"
+    ],
+    "PoleTarget": [
+      "FVector",
+      "# Transform to use as the pole target(specifies the plane of solution)"
+    ],
+    "Spin": [
+      "float32",
+      "Float: Spin(Default : 0.0) # Amount of twist to apply to the solution plane(Additive after application of Pole Target motion)"
+    ],
+    "EndEffector": [
+      "FTransform",
+      "# Transform to use as the end effector of the IK system"
+    ],
+    "IKBlend": [
+      "float32",
+      "Float : IKBlend(Default : 0.0)             # Blend between 0.0 (FK) and 1.0 (IK)solutions"
+    ],
+    "StartJointFKTransform": [
+      "FTransform",
+      2,
+      "Transform : Start Joint FK Transform         # Transform for the Start Joint when in FK mode\nTransform: Mid Joint FK Transform           # Transform for the Mid Joint when in FK mode\nTransform : End Joint FK Transform          # Transform for the End Joint when in FK mode"
+    ],
+    "MidJointFKTransform": [
+      "FTransform",
+      2,
+      ""
+    ],
+    "EndJointFKTransform": [
+      "FTransform",
+      2,
+      ""
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_TwoBoneIKFK&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_TwoBoneIKFK"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "FTransform3d",
+  "isStruct": true,
+  "doc": "Transform composed of Quat/Translation/Scale.\n@note This is implemented in either TransformVectorized.h or TransformNonVectorized.h depending on the platform.",
+  "properties": {
+    "Rotation": [
+      "FQuat4d",
+      2,
+      "Rotation of this transformation, as a quaternion."
+    ],
+    "Translation": [
+      "FVector3d",
+      2,
+      "Translation of this transformation, as a vector."
+    ],
+    "Scale3D": [
+      "FVector3d",
+      2,
+      "3D scale (always applied in local space) as a vector."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTransform3d&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransform3d"
+        }
+      ]
+    }
+  ]
+}

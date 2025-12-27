@@ -1,0 +1,34 @@
+{
+  "name": "FRepMovement",
+  "isStruct": true,
+  "doc": "Replicated movement data of our RootComponent.\nStruct used for efficient replication as velocity and location are generally replicated together (this saves a repindex)\nand velocity.Z is commonly zero (most position replications are for walking pawns).",
+  "properties": {
+    "LocationQuantizationLevel": [
+      "EVectorQuantization",
+      2,
+      "Allows tuning the compression level for the replicated location vector. You should only need to change this from the default if you see visual artifacts."
+    ],
+    "VelocityQuantizationLevel": [
+      "EVectorQuantization",
+      2,
+      "Allows tuning the compression level for the replicated velocity vectors. You should only need to change this from the default if you see visual artifacts."
+    ],
+    "RotationQuantizationLevel": [
+      "ERotatorQuantization",
+      2,
+      "Allows tuning the compression level for replicated rotation. You should only need to change this from the default if you see visual artifacts."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRepMovement&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRepMovement"
+        }
+      ]
+    }
+  ]
+}

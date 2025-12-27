@@ -1,0 +1,79 @@
+{
+  "name": "__ELifetimeCondition",
+  "isEnum": true,
+  "doc": "Secondary condition to check before considering the replication of a lifetime property.",
+  "properties": {
+    "COND_None": [
+      "ELifetimeCondition"
+    ],
+    "COND_InitialOnly": [
+      "ELifetimeCondition",
+      "This property has no condition, and will send anytime it changes"
+    ],
+    "COND_OwnerOnly": [
+      "ELifetimeCondition",
+      "This property will only attempt to send on the initial bunch"
+    ],
+    "COND_SkipOwner": [
+      "ELifetimeCondition",
+      "This property will only send to the actor's owner"
+    ],
+    "COND_SimulatedOnly": [
+      "ELifetimeCondition",
+      "This property send to every connection EXCEPT the owner"
+    ],
+    "COND_AutonomousOnly": [
+      "ELifetimeCondition",
+      "This property will only send to simulated actors"
+    ],
+    "COND_SimulatedOrPhysics": [
+      "ELifetimeCondition",
+      "This property will only send to autonomous actors"
+    ],
+    "COND_InitialOrOwner": [
+      "ELifetimeCondition",
+      "This property will send to simulated OR bRepPhysics actors"
+    ],
+    "COND_Custom": [
+      "ELifetimeCondition",
+      "This property will send on the initial packet, or to the actors owner"
+    ],
+    "COND_ReplayOrOwner": [
+      "ELifetimeCondition",
+      "This property has no particular condition, but wants the ability to toggle on/off via SetCustomIsActiveOverride"
+    ],
+    "COND_ReplayOnly": [
+      "ELifetimeCondition",
+      "This property will only send to the replay connection, or to the actors owner"
+    ],
+    "COND_SimulatedOnlyNoReplay": [
+      "ELifetimeCondition",
+      "This property will only send to the replay connection"
+    ],
+    "COND_SimulatedOrPhysicsNoReplay": [
+      "ELifetimeCondition",
+      "This property will send to actors only, but not to replay connections"
+    ],
+    "COND_SkipReplay": [
+      "ELifetimeCondition",
+      "This property will send to simulated Or bRepPhysics actors, but not to replay connections"
+    ],
+    "COND_Dynamic": [
+      "ELifetimeCondition",
+      "This property will not send to the replay connection"
+    ],
+    "COND_Never": [
+      "ELifetimeCondition",
+      "This property wants to override the condition at runtime. Defaults to always replicate until you override it to a new condition."
+    ],
+    "COND_NetGroup": [
+      "ELifetimeCondition",
+      "This property will never be replicated"
+    ],
+    "COND_MAX": [
+      "ELifetimeCondition",
+      "This subobject will replicate to connections that are part of the same group the subobject is registered to. Not usable on properties."
+    ]
+  },
+  "methods": []
+}

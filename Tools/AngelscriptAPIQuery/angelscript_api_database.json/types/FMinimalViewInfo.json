@@ -1,0 +1,93 @@
+{
+  "name": "FMinimalViewInfo",
+  "isStruct": true,
+  "properties": {
+    "Location": [
+      "FVector",
+      "Location"
+    ],
+    "Rotation": [
+      "FRotator",
+      "Rotation"
+    ],
+    "FOV": [
+      "float32",
+      "The horizontal field of view (in degrees) in perspective mode (ignored in orthographic mode)."
+    ],
+    "OrthoWidth": [
+      "float32",
+      "The desired width (in world units) of the orthographic view (ignored in Perspective mode)"
+    ],
+    "bAutoCalculateOrthoPlanes": [
+      "bool",
+      "Option for the Ortho camera to automatically calculated the near/far plane"
+    ],
+    "AutoPlaneShift": [
+      "float32",
+      "Manually adjusts the planes of this camera, maintaining the distance between them. Positive moves out to the farplane, negative towards the near plane"
+    ],
+    "bUpdateOrthoPlanes": [
+      "bool",
+      "Adjusts the near/far planes and the view origin of the current camera automatically to avoid clipping and light artefacting"
+    ],
+    "bUseCameraHeightAsViewTarget": [
+      "bool",
+      "If UpdateOrthoPlanes is enabled, this setting will use the cameras current height to compensate the distance to the general view (as a pseudo distance to view target when one isn't present)"
+    ],
+    "OrthoNearClipPlane": [
+      "float32",
+      "The near plane distance of the orthographic view (in world units)"
+    ],
+    "OrthoFarClipPlane": [
+      "float32",
+      "The far plane distance of the orthographic view (in world units)"
+    ],
+    "PerspectiveNearClipPlane": [
+      "float32",
+      "The near plane distance of the perspective view (in world units). Set to a negative value to use the default global value of GNearClippingPlane"
+    ],
+    "AspectRatio": [
+      "float32",
+      "Aspect Ratio (Width/Height)"
+    ],
+    "ProjectionMode": [
+      "ECameraProjectionMode",
+      "The type of camera"
+    ],
+    "PostProcessBlendWeight": [
+      "float32",
+      1,
+      "Indicates if PostProcessSettings should be applied."
+    ],
+    "PostProcessSettings": [
+      "FPostProcessSettings",
+      1,
+      "Post-process settings to use if PostProcessBlendWeight is non-zero."
+    ],
+    "OffCenterProjectionOffset": [
+      "FVector2D",
+      1,
+      "Off-axis / off-center projection offset as proportion of screen dimensions"
+    ],
+    "bConstrainAspectRatio": [
+      "bool",
+      "If bConstrainAspectRatio is true, black bars will be added if the destination view has a different aspect ratio than this camera requested."
+    ],
+    "bUseFieldOfViewForLOD": [
+      "bool",
+      "If true, account for the field of view angle when computing which level of detail to use for meshes."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMinimalViewInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMinimalViewInfo"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "name": "__USubobjectDataSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateNewBPComponent",
+      "return": "UClass",
+      "doc": "Creates a new Blueprint component from the specified class type\nThe user will be prompted to pick a new subclass name and a blueprint asset will be created\n\n@return The new class that was created",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "TSubclassOf<UActorComponent>"
+        },
+        {
+          "name": "NewClassPath",
+          "type": "FString"
+        },
+        {
+          "name": "NewClassName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "CreateNewCPPComponent",
+      "return": "UClass",
+      "doc": "Creates a new C++ component from the specified class type\nThe user will be prompted to pick a new subclass name and code will be recompiled\n\n@return The new class that was created",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ComponentClass",
+          "type": "TSubclassOf<UActorComponent>"
+        },
+        {
+          "name": "NewClassPath",
+          "type": "FString"
+        },
+        {
+          "name": "NewClassName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RenameSubobjectMemberVariable",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BPContext",
+          "type": "UBlueprint"
+        },
+        {
+          "name": "InHandle",
+          "type": "FSubobjectDataHandle"
+        },
+        {
+          "name": "NewName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    },
+    {
+      "name": "Get",
+      "return": "USubobjectDataSubsystem",
+      "args": []
+    }
+  ]
+}

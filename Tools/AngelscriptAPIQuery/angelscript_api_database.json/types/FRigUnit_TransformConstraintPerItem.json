@@ -1,0 +1,45 @@
+{
+  "name": "FRigUnit_TransformConstraintPerItem",
+  "isStruct": true,
+  "doc": "Constrains an item's transform to multiple items' transforms",
+  "properties": {
+    "Item": [
+      "FRigElementKey"
+    ],
+    "BaseTransformSpace": [
+      "ETransformSpaceMode"
+    ],
+    "BaseTransform": [
+      "FTransform",
+      "Transform op option. Use if ETransformSpace is BaseTransform"
+    ],
+    "BaseItem": [
+      "FRigElementKey",
+      "Transform op option. Use if ETransformSpace is BaseJoint"
+    ],
+    "Targets": [
+      "TArray<FConstraintTarget>"
+    ],
+    "bUseInitialTransforms": [
+      "bool",
+      1,
+      "If checked the initial transform will be used for the constraint data"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_TransformConstraintPerItem&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_TransformConstraintPerItem"
+        }
+      ]
+    }
+  ]
+}

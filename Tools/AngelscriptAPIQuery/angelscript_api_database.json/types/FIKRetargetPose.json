@@ -1,0 +1,28 @@
+{
+  "name": "FIKRetargetPose",
+  "isStruct": true,
+  "properties": {
+    "RootTranslationOffset": [
+      "FVector",
+      2,
+      "a translational delta in GLOBAL space, applied only to the retarget root bone"
+    ],
+    "BoneRotationOffsets": [
+      "TMap<FName,FQuat>",
+      2,
+      "these are LOCAL-space rotation deltas to be applied to a bone to modify it's retarget pose"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FIKRetargetPose&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FIKRetargetPose"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "name": "TMap",
+  "subtypes": [
+    "K",
+    "V"
+  ],
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "opIndex",
+      "return": "V&",
+      "args": [
+        {
+          "name": "Key",
+          "type": "K"
+        }
+      ]
+    },
+    {
+      "name": "opIndex",
+      "return": "V",
+      "const": true,
+      "args": [
+        {
+          "name": "Key",
+          "type": "K"
+        }
+      ]
+    },
+    {
+      "name": "Add",
+      "return": "void",
+      "args": [
+        {
+          "name": "Key",
+          "type": "K"
+        },
+        {
+          "name": "Value",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "name": "Contains",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Key",
+          "type": "K"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAndCopyValue",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Key",
+          "type": "K"
+        },
+        {
+          "name": "OutValue",
+          "type": "V&out"
+        }
+      ]
+    },
+    {
+      "name": "Remove",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Key",
+          "type": "K"
+        }
+      ]
+    },
+    {
+      "name": "Num",
+      "return": "int",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsEmpty",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "FindOrAdd",
+      "return": "V&",
+      "doc": "Find the value associated with the key. If none exists, add and return a new value using the default constructor.",
+      "args": [
+        {
+          "name": "Key",
+          "type": "K"
+        }
+      ]
+    },
+    {
+      "name": "FindOrAdd",
+      "return": "V&",
+      "doc": "Find the value associated with the key. If none exists, add and return new value set to DefaultValue.",
+      "args": [
+        {
+          "name": "Key",
+          "type": "K"
+        },
+        {
+          "name": "DefaultValue",
+          "type": "V"
+        }
+      ]
+    },
+    {
+      "name": "Find",
+      "return": "bool",
+      "const": true,
+      "doc": "Find the value associated with the key. If none exists, return false. Copies the found value to OutValue.",
+      "args": [
+        {
+          "name": "Key",
+          "type": "K"
+        },
+        {
+          "name": "OutValue",
+          "type": "V&out"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "TMap<K,V>&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TMap<K,V>"
+        }
+      ]
+    },
+    {
+      "name": "Empty",
+      "return": "void",
+      "args": [
+        {
+          "name": "Slack",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "GetKeys",
+      "return": "void",
+      "const": true,
+      "doc": "Generates a list of the keys present in the map and stores them in the given array.",
+      "args": [
+        {
+          "name": "OutKeys",
+          "type": "TArray<K>&"
+        }
+      ]
+    },
+    {
+      "name": "GetValues",
+      "return": "void",
+      "const": true,
+      "doc": "Generates a list of the values present in the map and stores them in the given array.",
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<K>&"
+        }
+      ]
+    },
+    {
+      "name": "Iterator",
+      "return": "TMapIterator<K,V>",
+      "args": []
+    },
+    {
+      "name": "Iterator",
+      "return": "TMapConstIterator<K,V>",
+      "const": true,
+      "args": []
+    }
+  ]
+}

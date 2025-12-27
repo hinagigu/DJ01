@@ -1,0 +1,189 @@
+{
+  "name": "UControlRigBlueprint",
+  "inherits": "URigVMBlueprint",
+  "properties": {
+    "ModularRigSettings": [
+      "FModularRigSettings",
+      2,
+      ""
+    ],
+    "HierarchySettings": [
+      "FRigHierarchySettings",
+      2,
+      ""
+    ],
+    "RigModuleSettings": [
+      "FRigModuleSettings",
+      2,
+      ""
+    ],
+    "ShapeLibraries": [
+      "TArray<TSoftObjectPtr<UControlRigShapeLibrary>>",
+      2,
+      ""
+    ],
+    "DrawContainer": [
+      "FRigVMDrawContainer",
+      2,
+      ""
+    ],
+    "Influences": [
+      "FRigInfluenceMapPerEvent",
+      2,
+      ""
+    ],
+    "Hierarchy": [
+      "URigHierarchy",
+      1,
+      ""
+    ],
+    "ModularRigModel": [
+      "FModularRigModel",
+      1,
+      ""
+    ],
+    "SourceHierarchyImport": [
+      "TSoftObjectPtr<UObject>",
+      2,
+      "The skeleton from import into a hierarchy"
+    ],
+    "SourceCurveImport": [
+      "TSoftObjectPtr<UObject>",
+      2,
+      "The skeleton from import into a curve"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CanTurnIntoStandaloneRig",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "unrealname": "CanTurnIntoStandaloneRig_Blueprint",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ConvertHierarchyElementsToSpawnerNodes",
+      "return": "TArray<URigVMNode>",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHierarchy",
+          "type": "URigHierarchy"
+        },
+        {
+          "name": "InKeys",
+          "type": "TArray<FRigElementKey>"
+        },
+        {
+          "name": "bRemoveElements",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreateControlRig",
+      "return": "UControlRig",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetControlRigClass",
+      "return": "UClass",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDebuggedControlRig",
+      "return": "UControlRig",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHierarchyController",
+      "return": "URigHierarchyController",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetModularRigController",
+      "return": "UModularRigController",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPreviewMesh",
+      "return": "USkeletalMesh",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRigModuleIcon",
+      "return": "UTexture2D",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsControlRigModule",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RecompileModularRig",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetPreviewMesh",
+      "return": "void",
+      "doc": "IInterface_PreviewMeshProvider interface",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PreviewMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "bMarkAsDirty",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "TurnIntoControlRigModule",
+      "return": "bool",
+      "ufunction": true,
+      "unrealname": "TurnIntoControlRigModule_Blueprint",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "TurnIntoStandaloneRig",
+      "return": "bool",
+      "ufunction": true,
+      "unrealname": "TurnIntoStandaloneRig_Blueprint",
+      "meta": null,
+      "args": []
+    }
+  ]
+}

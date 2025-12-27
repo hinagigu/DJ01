@@ -1,0 +1,39 @@
+{
+  "name": "FCompositeSection",
+  "isStruct": true,
+  "doc": "Section data for each track. Reference of data will be stored in the child class for the way they want\nAnimComposite vs AnimMontage have different requirement for the actual data reference\nThis only contains composite section information. (vertical sequences)",
+  "properties": {
+    "SectionName": [
+      "FName",
+      2,
+      "Section Name"
+    ],
+    "MetaData": [
+      "TArray<TObjectPtr<UAnimMetaData>>",
+      2,
+      "Meta data that can be saved with the asset\n\nYou can query by GetMetaData function"
+    ],
+    "SlotIndex": [
+      "int",
+      2,
+      "The slot index we are currently using within LinkedMontage"
+    ],
+    "LinkMethod": [
+      "EAnimLinkMethod",
+      2,
+      "The method we are using to calculate our times"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCompositeSection&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCompositeSection"
+        }
+      ]
+    }
+  ]
+}

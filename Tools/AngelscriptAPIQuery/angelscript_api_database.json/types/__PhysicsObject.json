@@ -1,0 +1,106 @@
+{
+  "name": "__PhysicsObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ApplyRadialImpulse",
+      "return": "void",
+      "doc": "Apply a physics radial impulse with an optional strain on a specific component\nEffect is applied within a sphere. When using linear falloff the effect will be minimum at the outer edge of the sphere and maximum at its center\n@param Component              Primitive component to apply the impulse / strain on\n@param Origin                 Positition of the origin of the radial effect in world space\n@param Radius                 Radius of the radial effect ( beyond the radius, impulse will not be applied )\n@param Strength               Strength of the impulse to apply ( Unit : (Kg * m / s) or ( m /s ) if bVelChange is true\n@param FallOff                Type of falloff to use ( constant, linear )\n@param bApplyStrain   Whether or not to apply strain on top of the impulse ( for destructible objects )\n@param Strain                 If bApplyStrain is true, Strain to apply to the physics particles ( for destructible objects )\n@param bVelChange             If true, impulse Strength parameter is interpretation as a change of velocity\n@param MinValue               When using linear falloff, this define the falloff value at the outer edge of the sphere\n@param MaxValue               When using linear falloff, this define the falloff value at the center of the sphere",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "Origin",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "Strength",
+          "type": "float32"
+        },
+        {
+          "name": "Falloff",
+          "type": "ERadialImpulseFalloff"
+        },
+        {
+          "name": "bApplyStrain",
+          "type": "bool"
+        },
+        {
+          "name": "Strain",
+          "type": "float32"
+        },
+        {
+          "name": "bVelChange",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "MinValue",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "MaxValue",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ExtractClosestPhysicsObjectResults",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Result",
+          "type": "FClosestPhysicsObjectResult"
+        },
+        {
+          "name": "OutName",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "GetClosestPhysicsObjectFromWorldLocation",
+      "return": "FClosestPhysicsObjectResult",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "WorldLocation",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "GetPhysicsObjectWorldTransform",
+      "return": "FTransform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

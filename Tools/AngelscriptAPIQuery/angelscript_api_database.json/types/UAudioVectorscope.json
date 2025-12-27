@@ -1,0 +1,53 @@
+{
+  "name": "UAudioVectorscope",
+  "inherits": "UWidget",
+  "doc": "A vectorscope UMG widget.\n\nSupports displaying waveforms in 2D (Left channel X axis, Right channel Y axis) from incoming audio samples.",
+  "properties": {
+    "VectorscopeStyle": [
+      "FAudioVectorscopePanelStyle",
+      "The vectorscope panel style"
+    ],
+    "AudioBus": [
+      "UAudioBus",
+      "The audio bus used to obtain audio samples for the vectorscope"
+    ],
+    "bShowGrid": [
+      "bool",
+      "Show/Hide the vectorscope grid."
+    ],
+    "GridDivisions": [
+      "int",
+      "The number of grid divisions."
+    ],
+    "DisplayPersistenceMs": [
+      "float32",
+      "For how long the audio samples should persist in the screen (in milliseconds)."
+    ],
+    "Scale": [
+      "float32",
+      "The scale for the displayed audio samples."
+    ],
+    "PanelLayoutType": [
+      "EAudioPanelLayoutType",
+      "Show/Hide advanced panel layout."
+    ]
+  },
+  "methods": [
+    {
+      "name": "StartProcessing",
+      "return": "void",
+      "doc": "Starts the vectorscope processing.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopProcessing",
+      "return": "void",
+      "doc": "Stops the vectorscope processing.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

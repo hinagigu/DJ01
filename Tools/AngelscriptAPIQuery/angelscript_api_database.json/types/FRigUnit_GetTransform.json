@@ -1,0 +1,36 @@
+{
+  "name": "FRigUnit_GetTransform",
+  "isStruct": true,
+  "doc": "GetTransform is used to retrieve a single transform from a hierarchy.",
+  "properties": {
+    "Item": [
+      "FRigElementKey",
+      "The item to retrieve the transform for"
+    ],
+    "Space": [
+      "ERigVMTransformSpace",
+      "Defines if the transform should be retrieved in local or global space"
+    ],
+    "bInitial": [
+      "bool",
+      "Defines if the transform should be retrieved as current (false) or initial (true).\nInitial transforms for bones and other elements in the hierarchy represent the reference pose's value."
+    ],
+    "Transform": [
+      "FTransform",
+      1,
+      "The current transform of the given item - or identity in case it wasn't found."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_GetTransform&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_GetTransform"
+        }
+      ]
+    }
+  ]
+}

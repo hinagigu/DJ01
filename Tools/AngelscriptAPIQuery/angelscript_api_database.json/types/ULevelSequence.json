@@ -1,0 +1,67 @@
+{
+  "name": "ULevelSequence",
+  "inherits": "UMovieSceneSequence",
+  "doc": "Movie scene animation for Actors.",
+  "properties": {
+    "AssetUserData": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the asset"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CopyMetaData",
+      "return": "UObject",
+      "doc": "Copy the specified meta data into this level sequence, overwriting any existing meta-data of the same type\nMeta-data may implement the ILevelSequenceMetaData interface in order to hook into default ULevelSequence functionality.\n@param InMetaData - Existing Metadata Object that you wish to copy into this Level Sequence.\n@return The newly copied instance of the Metadata that now exists on this sequence.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMetaData",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "FindMetaDataByClass",
+      "return": "UObject",
+      "const": true,
+      "doc": "Find meta-data of a particular type for this level sequence instance.\n@param InClass - Class that you wish to find the metadata object for.\n@return An instance of this class if it already exists as metadata on this Level Sequence, otherwise null.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InClass",
+          "type": "TSubclassOf<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "FindOrAddMetaDataByClass",
+      "return": "UObject",
+      "doc": "Find meta-data of a particular type for this level sequence instance, adding it if it doesn't already exist.\n@param InClass - Class that you wish to find or create the metadata object for.\n@return An instance of this class as metadata on this Level Sequence.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InClass",
+          "type": "TSubclassOf<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "RemoveMetaDataByClass",
+      "return": "void",
+      "doc": "Remove meta-data of a particular type for this level sequence instance, if it exists\n@param InClass - The class type that you wish to remove the metadata for",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InClass",
+          "type": "TSubclassOf<UObject>"
+        }
+      ]
+    }
+  ]
+}

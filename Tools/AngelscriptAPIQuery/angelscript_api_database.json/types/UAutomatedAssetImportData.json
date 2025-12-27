@@ -1,0 +1,48 @@
+{
+  "name": "UAutomatedAssetImportData",
+  "inherits": "UObject",
+  "doc": "Contains data for a group of assets to import",
+  "properties": {
+    "GroupName": [
+      "FString",
+      1,
+      "Display name of the group. This is for logging purposes only."
+    ],
+    "Filenames": [
+      "TArray<FString>",
+      1,
+      "Filenames to import"
+    ],
+    "DestinationPath": [
+      "FString",
+      1,
+      "Content path in the projects content directory where assets will be imported"
+    ],
+    "FactoryName": [
+      "FString",
+      1,
+      "Name of the factory to use when importing these assets. If not specified the factory type will be auto detected"
+    ],
+    "bReplaceExisting": [
+      "bool",
+      1,
+      "Whether or not to replace existing assets"
+    ],
+    "bSkipReadOnly": [
+      "bool",
+      1,
+      "Whether or not to skip importing over read only assets that could not be checked out"
+    ],
+    "Factory": [
+      "UFactory",
+      1,
+      "Pointer to the factory currently being used"
+    ],
+    "LevelToLoad": [
+      "FString",
+      1,
+      "Full path to level to load before importing this group (only matters if importing assets into a level)"
+    ]
+  },
+  "methods": []
+}

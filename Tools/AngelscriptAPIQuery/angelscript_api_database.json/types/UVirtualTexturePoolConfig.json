@@ -1,0 +1,28 @@
+{
+  "name": "UVirtualTexturePoolConfig",
+  "inherits": "UDeveloperSettings",
+  "doc": "Configuration for virtual texture physical pool sizes.",
+  "properties": {
+    "DefaultSizeInMegabyte": [
+      "int",
+      2,
+      "Upper size limit in megabytes for any pools not explicitly matched by a config entry in the Pools array."
+    ],
+    "bPoolAutoGrowInEditor": [
+      "bool",
+      2,
+      "Enable physical pools growing on oversubscription.\nEach physical pool will grow to the maximum size so far requested.\nThis setting applies to the editor only. To have similar behavior in a cooked build use r.VT.PoolAutoGrow."
+    ],
+    "Pools": [
+      "TArray<FVirtualTextureSpacePoolConfig>",
+      2,
+      "Serialized array of configs.\nA virtual texture physical pool iterates these from last to first and uses the first matching config that it finds."
+    ],
+    "TransientPools": [
+      "TArray<FVirtualTextureSpacePoolConfig>",
+      2,
+      "Transient array of runtime detected configs used by the PoolAutoGrow system.\nA virtual texture physical pool searches these to find a match before searching the configs in Pools.\nThese tracked configs can be copied to the serialized Pools as a good estimation of the fixed pool sizes that a cooked project needs."
+    ]
+  },
+  "methods": []
+}

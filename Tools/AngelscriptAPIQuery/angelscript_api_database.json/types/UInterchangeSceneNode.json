@@ -1,0 +1,447 @@
+{
+  "name": "UInterchangeSceneNode",
+  "inherits": "UInterchangeBaseNode",
+  "doc": "The scene node represents a transform node in the scene.\nScene nodes can have user-defined attributes. Use UInterchangeUserDefinedAttributesAPI to get and set user-defined attribute data.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddSpecializedType",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecializedType",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomAnimationAssetUidToPlay",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the Animation Asset To Play by this Scene Node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomAssetInstanceUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Get which asset, if any, a scene node is instantiating. Return false if the Attribute was not set previously.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomBindPoseGlobalTransform",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the global transform of the bind pose scene node. This value is computed from the local transforms of all parent bind poses.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseNodeContainer",
+          "type": "const UInterchangeBaseNodeContainer"
+        },
+        {
+          "name": "GlobalOffsetTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "AttributeValue",
+          "type": "FTransform&"
+        },
+        {
+          "name": "bForceRecache",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomBindPoseLocalTransform",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the local transform of the bind pose scene node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FTransform&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomGeometricTransform",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the geometric offset. Any mesh attached to this scene node will be offset using this transform.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FTransform&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomGlobalTransform",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the default scene node global transform. This value is computed from the local transforms of all parent scene nodes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseNodeContainer",
+          "type": "const UInterchangeBaseNodeContainer"
+        },
+        {
+          "name": "GlobalOffsetTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "AttributeValue",
+          "type": "FTransform&"
+        },
+        {
+          "name": "bForceRecache",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomLocalTransform",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the default scene node local transform.\nThe default transform is the local transform of the node (no bind pose, no time evaluation).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FTransform&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomTimeZeroGlobalTransform",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the global transform of the time-zero scene node. This value is computed from the local transforms of all parent time-zero scene nodes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseNodeContainer",
+          "type": "const UInterchangeBaseNodeContainer"
+        },
+        {
+          "name": "GlobalOffsetTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "AttributeValue",
+          "type": "FTransform&"
+        },
+        {
+          "name": "bForceRecache",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomTimeZeroLocalTransform",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the local transform of the time-zero scene node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FTransform&"
+        }
+      ]
+    },
+    {
+      "name": "GetMorphTargetCurveWeights",
+      "return": "void",
+      "const": true,
+      "doc": "Get MorphTargets and their weights.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutMorphTargetCurveWeights",
+          "type": "TMap<FString,float32>&"
+        }
+      ]
+    },
+    {
+      "name": "GetSlotMaterialDependencies",
+      "return": "void",
+      "const": true,
+      "doc": "Retrieve the correspondence table between slot names and assigned materials for this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutMaterialDependencies",
+          "type": "TMap<FString,FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetSlotMaterialDependencyUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Retrieve the Material dependency for a given slot of this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "OutMaterialDependency",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetSpecializedType",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "OutSpecializedType",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetSpecializedTypeCount",
+      "return": "int",
+      "const": true,
+      "doc": "Get the specialized type this scene node represents (for example, Joint or LODGroup).",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSpecializedTypes",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutSpecializedTypes",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "IsSpecializedTypeContains",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecializedType",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSlotMaterialDependencyUid",
+      "return": "bool",
+      "doc": "Remove the Material dependency associated with the given slot name from this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSpecializedType",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecializedType",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomAnimationAssetUidToPlay",
+      "return": "bool",
+      "doc": "Set the Animation Asset To Play by this Scene Node. Only relevant for SkeletalMeshActors (that is, SceneNodes that are instantiating Skeletal Meshes).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomAssetInstanceUid",
+      "return": "bool",
+      "doc": "Add an asset for this scene node to instantiate.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomBindPoseLocalTransform",
+      "return": "bool",
+      "doc": "Set the local transform of the bind pose scene node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseNodeContainer",
+          "type": "const UInterchangeBaseNodeContainer"
+        },
+        {
+          "name": "AttributeValue",
+          "type": "FTransform"
+        },
+        {
+          "name": "bResetCache",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomGeometricTransform",
+      "return": "bool",
+      "doc": "Set the geometric offset. Any mesh attached to this scene node will be offset using this transform.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomLocalTransform",
+      "return": "bool",
+      "doc": "Set the default scene node local transform.\nThe default transform is the local transform of the node (no bind pose, no time evaluation).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseNodeContainer",
+          "type": "const UInterchangeBaseNodeContainer"
+        },
+        {
+          "name": "AttributeValue",
+          "type": "FTransform"
+        },
+        {
+          "name": "bResetCache",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomTimeZeroLocalTransform",
+      "return": "bool",
+      "doc": "Set the local transform of the time-zero scene node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BaseNodeContainer",
+          "type": "const UInterchangeBaseNodeContainer"
+        },
+        {
+          "name": "AttributeValue",
+          "type": "FTransform"
+        },
+        {
+          "name": "bResetCache",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMorphTargetCurveWeight",
+      "return": "bool",
+      "doc": "Set MorphTarget with given weight.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MorphTargetName",
+          "type": "FString"
+        },
+        {
+          "name": "Weight",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSlotMaterialDependencyUid",
+      "return": "bool",
+      "doc": "Add the specified Material dependency to a specific slot name of this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SlotName",
+          "type": "FString"
+        },
+        {
+          "name": "MaterialDependencyUid",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

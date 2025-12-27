@@ -1,0 +1,261 @@
+{
+  "name": "UAssetManager",
+  "inherits": "UObject",
+  "doc": "A singleton UObject that is responsible for loading and unloading PrimaryAssets, and maintaining game-specific asset references\nGames should override this class and change the class reference",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetPrimaryAssetIdForPath",
+      "return": "FPrimaryAssetId",
+      "const": true,
+      "args": [
+        {
+          "name": "ObjectPath",
+          "type": "FSoftObjectPath"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryAssetPath",
+      "return": "FSoftObjectPath",
+      "const": true,
+      "args": [
+        {
+          "name": "PrimaryAssetId",
+          "type": "FPrimaryAssetId"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryAssetIdForData",
+      "return": "FPrimaryAssetId",
+      "const": true,
+      "args": [
+        {
+          "name": "AssetData",
+          "type": "FAssetData"
+        }
+      ]
+    },
+    {
+      "name": "UnloadPrimaryAsset",
+      "return": "int",
+      "args": [
+        {
+          "name": "AssetToUnload",
+          "type": "FPrimaryAssetId"
+        }
+      ]
+    },
+    {
+      "name": "UnloadPrimaryAssets",
+      "return": "int",
+      "args": [
+        {
+          "name": "AssetsToUnload",
+          "type": "TArray<FPrimaryAssetId>"
+        }
+      ]
+    },
+    {
+      "name": "LoadPrimaryAsset",
+      "return": "void",
+      "args": [
+        {
+          "name": "AssetToLoad",
+          "type": "FPrimaryAssetId"
+        },
+        {
+          "name": "LoadBundles",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "Priority",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "OptionalCallbackObject",
+          "default": "nullptr",
+          "type": "UObject"
+        },
+        {
+          "name": "OptionalFinishedCallbackFunctionName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "OptionalCanceledCallbackName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "LoadPrimaryAssets",
+      "return": "void",
+      "args": [
+        {
+          "name": "AssetsToLoad",
+          "type": "TArray<FPrimaryAssetId>"
+        },
+        {
+          "name": "LoadBundles",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "Priority",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "OptionalCallbackObject",
+          "default": "nullptr",
+          "type": "UObject"
+        },
+        {
+          "name": "OptionalFinishedCallbackFunctionName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "OptionalCanceledCallbackName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CallOrRegister_OnCompletedInitialScan",
+      "return": "void",
+      "doc": "Register a function to call when all types are scanned at startup, if this has already happened call immediately",
+      "meta": {
+        "DelegateBindType": "FSimpleDelegate",
+        "DelegateFunctionParam": "FunctionName",
+        "DelegateObjectParam": "Object"
+      },
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "FunctionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryAssetData",
+      "return": "bool",
+      "doc": "Gets the FAssetData for a primary asset with the specified type/name, will only work for once that have been scanned for already. Returns true if it found a valid data",
+      "meta": null,
+      "args": [
+        {
+          "name": "PrimaryAssetId",
+          "type": "FPrimaryAssetId"
+        },
+        {
+          "name": "AssetData",
+          "type": "FAssetData&"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryAssetDataList",
+      "return": "bool",
+      "doc": "Gets list of all FAssetData for a primary asset type, returns true if any were found",
+      "meta": null,
+      "args": [
+        {
+          "name": "PrimaryAssetType",
+          "type": "FPrimaryAssetType"
+        },
+        {
+          "name": "AssetDataList",
+          "type": "TArray<FAssetData>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryAssetIdForObject",
+      "return": "FPrimaryAssetId",
+      "doc": "Sees if the passed in object is a registered primary asset, if so return it. Returns invalid Identifier if not found",
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryAssetIdList",
+      "return": "bool",
+      "doc": "Gets list of all FPrimaryAssetId for a primary asset type, returns true if any were found",
+      "meta": null,
+      "args": [
+        {
+          "name": "PrimaryAssetType",
+          "type": "FPrimaryAssetType"
+        },
+        {
+          "name": "PrimaryAssetIdList",
+          "type": "TArray<FPrimaryAssetId>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryAssetObject",
+      "return": "UObject",
+      "doc": "Gets the in-memory UObject for a primary asset id, returning nullptr if it's not in memory. Will return blueprint class for blueprint assets. This works even if the asset wasn't loaded explicitly",
+      "meta": null,
+      "args": [
+        {
+          "name": "PrimaryAssetId",
+          "type": "FPrimaryAssetId"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryAssetRules",
+      "return": "FPrimaryAssetRules",
+      "doc": "Gets the management rules for a specific asset, this will merge the type and individual values",
+      "meta": null,
+      "args": [
+        {
+          "name": "PrimaryAssetId",
+          "type": "FPrimaryAssetId"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryAssetTypeInfo",
+      "return": "bool",
+      "doc": "Gets metadata for a specific asset type, returns false if not found",
+      "meta": null,
+      "args": [
+        {
+          "name": "PrimaryAssetType",
+          "type": "FPrimaryAssetType"
+        },
+        {
+          "name": "AssetTypeInfo",
+          "type": "FPrimaryAssetTypeInfo&"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryAssetTypeInfoList",
+      "return": "void",
+      "doc": "Gets list of all primary asset types infos",
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetTypeInfoList",
+          "type": "TArray<FPrimaryAssetTypeInfo>&"
+        }
+      ]
+    }
+  ]
+}

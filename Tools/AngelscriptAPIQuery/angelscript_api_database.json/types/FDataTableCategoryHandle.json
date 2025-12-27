@@ -1,0 +1,80 @@
+{
+  "name": "FDataTableCategoryHandle",
+  "isStruct": true,
+  "doc": "Handle to a particular set of rows in a table",
+  "properties": {
+    "DataTable": [
+      "const UDataTable",
+      "Pointer to table we want a row from"
+    ],
+    "ColumnName": [
+      "FName",
+      "Name of column in the table that we want"
+    ],
+    "RowContents": [
+      "FName",
+      "Contents of rows in the table that we want"
+    ]
+  },
+  "methods": [
+    {
+      "name": "IsNull",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDataTableCategoryHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetRowNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetRow",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "RowName",
+          "type": "FName"
+        },
+        {
+          "name": "OutRow",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "GetRows",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "OutArray",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "FDataTableCategoryHandle&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDataTableCategoryHandle"
+        }
+      ]
+    }
+  ]
+}

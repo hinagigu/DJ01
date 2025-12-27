@@ -1,0 +1,57 @@
+{
+  "name": "UUnrealEditorSubsystem",
+  "inherits": "UEditorSubsystem",
+  "doc": "UUnrealEditorSubsystem\nSubsystem for exposing editor functionality to scripts",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetEditorWorld",
+      "return": "UWorld",
+      "doc": "Find the World in the world editor. It can then be used as WorldContext by other libraries like GameplayStatics.\n@return      The World used by the world editor.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGameWorld",
+      "return": "UWorld",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLevelViewportCameraInfo",
+      "return": "bool",
+      "doc": "Gets information about the camera position for the primary level editor viewport.  In non-editor builds, these will be zeroed\nIn the UnrealEd module instead of Level Editor as it uses FLevelEditorViewportClient which is in this module\n\n@param       CameraLocation  (out) Current location of the level editing viewport camera, or zero if none found\n@param       CameraRotation  (out) Current rotation of the level editing viewport camera, or zero if none found\n@return      Whether or not we were able to get a camera for a level editing viewport",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CameraLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "CameraRotation",
+          "type": "FRotator&"
+        }
+      ]
+    },
+    {
+      "name": "SetLevelViewportCameraInfo",
+      "return": "void",
+      "doc": "Sets information about the camera position for the primary level editor viewport.\nIn the UnrealEd module instead of Level Editor as it uses FLevelEditorViewportClient which is in this module\n\n@param        CameraLocation  Location the camera will be moved to.\n@param        CameraRotation  Rotation the camera will be set to.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CameraLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "CameraRotation",
+          "type": "FRotator"
+        }
+      ]
+    }
+  ]
+}

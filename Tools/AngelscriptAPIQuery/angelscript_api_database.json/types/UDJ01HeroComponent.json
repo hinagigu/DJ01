@@ -1,0 +1,13 @@
+{
+  "name": "UDJ01HeroComponent",
+  "inherits": "UPawnComponent",
+  "doc": "UDJ01HeroComponent\n\n设置玩家控制的 Pawn（或模拟玩家的 Bot）的输入和相机处理的组件\n此组件依赖于 PawnExtensionComponent 来协调初始化\n\n对齐 Lyra 的 HeroComponent，提供：\n- 输入绑定管理\n- 相机模式控制\n- 与 GameFeature 系统的集成\n- 能力系统的输入处理",
+  "properties": {
+    "DefaultInputMappings": [
+      "TArray<FInputMappingContextAndPriority>",
+      2,
+      "初始化此玩家时应添加的输入映射。这些配置\n不会在设置中注册，因为它们是在运行时添加的。如果希望配置\n出现在设置中，则通过 GameFeatureAction_AddInputConfig 添加\n\n注意：只有在无法访问游戏功能插件时才应添加到此处。\n如果可以，请使用 GameFeatureAction_AddInputConfig 代替。"
+    ]
+  },
+  "methods": []
+}

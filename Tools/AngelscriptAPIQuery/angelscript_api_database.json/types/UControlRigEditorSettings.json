@@ -1,0 +1,68 @@
+{
+  "name": "UControlRigEditorSettings",
+  "inherits": "URigVMEditorSettings",
+  "doc": "Customize Control Rig Editor.",
+  "properties": {
+    "bResetControlsOnCompile": [
+      "bool",
+      2,
+      "When this is checked all controls will return to their initial\nvalue as the user hits the Compile button."
+    ],
+    "bResetControlsOnPinValueInteraction": [
+      "bool",
+      2,
+      "When this is checked all controls will return to their initial\nvalue as the user interacts with a pin value"
+    ],
+    "bResetPoseWhenTogglingEventQueue": [
+      "bool",
+      2,
+      "When this is checked all elements will be reset to their initial value\nif the user changes the event queue (for example between forward / backward solve)"
+    ],
+    "bEnableUndoForPoseInteraction": [
+      "bool",
+      2,
+      "When this is checked any hierarchy interaction within the Control Rig\nEditor will be stored on the undo stack"
+    ],
+    "bResetControlTransformsOnCompile": [
+      "bool",
+      2,
+      "When checked controls will be reset during a manual compilation\n(when pressing the Compile button)"
+    ],
+    "RigUnitPinExpansion": [
+      "TMap<FString,FControlRigSettingsPerPinBool>",
+      2,
+      "A map which remembers the expansion setting for each rig unit pin."
+    ],
+    "ConstructionEventBorderColor": [
+      "FLinearColor",
+      2,
+      "The border color of the viewport when entering \"Construction Event\" mode"
+    ],
+    "BackwardsSolveBorderColor": [
+      "FLinearColor",
+      2,
+      "The border color of the viewport when entering \"Backwards Solve\" mode"
+    ],
+    "BackwardsAndForwardsBorderColor": [
+      "FLinearColor",
+      2,
+      "The border color of the viewport when entering \"Backwards And Forwards\" mode"
+    ],
+    "bShowStackedHierarchy": [
+      "bool",
+      2,
+      "Option to toggle displaying the stacked hierarchy items.\nNote that changing this option potentially requires to re-open the editors in question."
+    ],
+    "MaxStackSize": [
+      "int",
+      2,
+      "The maximum number of stacked items in the view\nNote that changing this option potentially requires to re-open the editors in question."
+    ],
+    "bLeftMouseDragDoesMarquee": [
+      "bool",
+      2,
+      "If turned on we'll offer box / marquee selection in the control rig editor viewport."
+    ]
+  },
+  "methods": []
+}

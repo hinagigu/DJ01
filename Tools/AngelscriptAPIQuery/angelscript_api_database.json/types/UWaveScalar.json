@@ -1,0 +1,70 @@
+{
+  "name": "UWaveScalar",
+  "inherits": "UFieldNodeFloat",
+  "doc": "Set a temporal wave scalar value according to the sample distance from the field position.",
+  "properties": {
+    "Magnitude": [
+      "float32",
+      "Magnitude of the wave function"
+    ],
+    "Position": [
+      "FVector",
+      "Center position of the wave field"
+    ],
+    "Wavelength": [
+      "float32",
+      "Distance between 2 wave peaks"
+    ],
+    "Period": [
+      "float32",
+      "Time over which the wave will travel from one peak to another one. The wave velocity is proportional to wavelength/period"
+    ],
+    "Function": [
+      "EWaveFunctionType",
+      "Wave function used for the field"
+    ],
+    "Falloff": [
+      "EFieldFalloffType",
+      "Type of falloff function used if the falloff function is picked"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetWaveScalar",
+      "return": "UWaveScalar",
+      "doc": "Set a temporal wave scalar value according to the sample distance from the field position.\n@param    Magnitude Magnitude of the wave function\n@param    Position Center position of the wave field\n@param    Wavelength Distance between 2 wave peaks\n@param    Period Time over which the wave will travel from one peak to another one. The wave velocity is proportional to wavelength/period\n@param    Function Wave function used for the field\n@param    Falloff Type of falloff function used if the falloff function is picked",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Magnitude",
+          "type": "float32"
+        },
+        {
+          "name": "Position",
+          "type": "FVector"
+        },
+        {
+          "name": "Wavelength",
+          "type": "float32"
+        },
+        {
+          "name": "Period",
+          "type": "float32"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "Function",
+          "type": "EWaveFunctionType"
+        },
+        {
+          "name": "Falloff",
+          "type": "EFieldFalloffType"
+        }
+      ]
+    }
+  ]
+}

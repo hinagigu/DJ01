@@ -1,0 +1,147 @@
+{
+  "name": "FVersionedNiagaraScriptData",
+  "isStruct": true,
+  "doc": "Struct containing all of the data that can be different between different script versions.",
+  "properties": {
+    "ModuleUsageBitmask": [
+      "int",
+      2,
+      "When used as a module, what are the appropriate script types for referencing this module?"
+    ],
+    "Category": [
+      "FText",
+      2,
+      "Used to break up scripts of the same Usage type in UI display."
+    ],
+    "AssetTagDefinitionReferences": [
+      "TArray<FNiagaraAssetTagDefinitionReference>",
+      2,
+      ""
+    ],
+    "bSuggested": [
+      "bool",
+      2,
+      "If true, this script will be added to a 'Suggested' category at the top of menus during searches"
+    ],
+    "ProvidedDependencies": [
+      "TArray<FName>",
+      2,
+      "Array of Ids of dependencies provided by this module to other modules on the stack (e.g. 'ProvidesNormalizedAge')"
+    ],
+    "RequiredDependencies": [
+      "TArray<FNiagaraModuleDependency>",
+      2,
+      "Dependencies required by this module from other modules on the stack"
+    ],
+    "DeprecationRecommendation": [
+      "UNiagaraScript",
+      2,
+      "Which script to use if this is deprecated."
+    ],
+    "bUsePythonScriptConversion": [
+      "bool",
+      2,
+      "If true then a python script will be executed when changing from this script to the selected deprectation recommendation. This allows the current script to transfer its inputs to the new script."
+    ],
+    "ConversionScriptExecution": [
+      "ENiagaraPythonUpdateScriptReference",
+      2,
+      "Reference to a python script that is executed when the user updates from a previous version to this version."
+    ],
+    "PythonConversionScript": [
+      "FString",
+      2,
+      "Python script to run when converting this script to the recommended deprecation update script."
+    ],
+    "ConversionScriptAsset": [
+      "FFilePath",
+      2,
+      "Asset reference to a python script to run when converting this script to the recommended deprecation update script."
+    ],
+    "ConversionUtility": [
+      "TSubclassOf<UNiagaraConvertInPlaceUtilityBase>",
+      2,
+      "Custom logic to convert the contents of an existing script assignment to this script."
+    ],
+    "ExperimentalMessage": [
+      "FText",
+      2,
+      "The message to display when a function is marked experimental."
+    ],
+    "NoteMessage": [
+      "FText",
+      2,
+      "A message to display when adding the module to the stack. This is useful to highlight pitfalls or weird behavior of the module."
+    ],
+    "DebugDrawMessage": [
+      "FText",
+      2,
+      "A message to display on UI actions handling debug draw state."
+    ],
+    "LibraryVisibility": [
+      "ENiagaraScriptLibraryVisibility",
+      2,
+      "Defines if this script is visible to the user when searching for modules to add to an emitter."
+    ],
+    "NumericOutputTypeSelectionMode": [
+      "ENiagaraNumericOutputTypeSelectionMode",
+      2,
+      "The mode to use when deducing the type of numeric output pins from the types of the input pins."
+    ],
+    "Description": [
+      "FText",
+      2,
+      ""
+    ],
+    "Keywords": [
+      "FText",
+      2,
+      "A list of space separated keywords which can be used to find this script in editor menus."
+    ],
+    "CollapsedViewFormat": [
+      "FText",
+      2,
+      "The format for the text to display in the stack if the value is collapsed.\nThis supports formatting placeholders for the function inputs, for example \"myfunc({0}, {1})\" will be converted to \"myfunc(1.23, Particles.Position)\"."
+    ],
+    "InlineExpressionFormat": [
+      "TArray<FNiagaraInlineDynamicInputFormatToken>",
+      2,
+      ""
+    ],
+    "InlineGraphFormat": [
+      "TArray<FNiagaraInlineDynamicInputFormatToken>",
+      2,
+      ""
+    ],
+    "ScriptMetaData": [
+      "TMap<FName,FString>",
+      2,
+      "Script Metadata"
+    ],
+    "InputSections": [
+      "TArray<FNiagaraStackSection>",
+      2,
+      ""
+    ],
+    "bExperimental": [
+      "bool",
+      "Is this script experimental and less supported?"
+    ],
+    "bCanBeUsedForTypeConversions": [
+      "bool",
+      "If used as a dynamic input with exactly one input and output of different types, setting this to true will auto-insert this script to convert from one type to another when dragging and dropping parameters in the stack.\n         For example, a script with a bool as input and a float as output will be automatically inserted in the stack when dropping a bool parameter into the float input of a module in the stack."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FVersionedNiagaraScriptData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVersionedNiagaraScriptData"
+        }
+      ]
+    }
+  ]
+}

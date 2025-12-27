@@ -1,0 +1,56 @@
+{
+  "name": "UInterchangeGenericAssetsPipeline",
+  "inherits": "UInterchangePipelineBase",
+  "doc": "This pipeline is the generic option for all types of meshes. It should be called before specialized mesh pipelines like the generic static mesh or skeletal mesh pipelines.\nAll import options that are shared between mesh types should be added here.",
+  "properties": {
+    "PipelineDisplayName": [
+      "FString",
+      "The name of the pipeline that will be display in the import dialog."
+    ],
+    "ReimportStrategy": [
+      "EReimportStrategyFlags",
+      "Set the reimport strategy."
+    ],
+    "bUseSourceNameForAsset": [
+      "bool",
+      "If enabled, and the Asset Name setting is empty, and there is only one asset and one source, the imported asset is given the same name as the source data."
+    ],
+    "AssetName": [
+      "FString",
+      "If set, and there is only one asset and one source, the imported asset is given this name."
+    ],
+    "ImportOffsetTranslation": [
+      "FVector",
+      "Translation offset applied to meshes and animations."
+    ],
+    "ImportOffsetRotation": [
+      "FRotator",
+      "Rotation offset applied to meshes and animations."
+    ],
+    "ImportOffsetUniformScale": [
+      "float32",
+      "Uniform scale offset applied to meshes and animations."
+    ],
+    "CommonMeshesProperties": [
+      "UInterchangeGenericCommonMeshesProperties",
+      "COMMON_MESHES_CATEGORY Properties"
+    ],
+    "CommonSkeletalMeshesAndAnimationsProperties": [
+      "UInterchangeGenericCommonSkeletalMeshesAndAnimationsProperties",
+      "COMMON_SKELETAL_ANIMATIONS_CATEGORY"
+    ],
+    "MeshPipeline": [
+      "UInterchangeGenericMeshPipeline",
+      "MESHES_CATEGORY Properties"
+    ],
+    "AnimationPipeline": [
+      "UInterchangeGenericAnimationPipeline",
+      "ANIMATIONS_CATEGORY Properties"
+    ],
+    "MaterialPipeline": [
+      "UInterchangeGenericMaterialPipeline",
+      "MATERIALS_CATEGORY Properties"
+    ]
+  },
+  "methods": []
+}

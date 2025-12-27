@@ -1,0 +1,299 @@
+{
+  "name": "FSoundAttenuationSettings",
+  "isStruct": true,
+  "doc": "The settings for attenuating.",
+  "properties": {
+    "SpatializationAlgorithm": [
+      "ESoundSpatializationAlgorithm",
+      "What method we use to spatialize the sound."
+    ],
+    "AudioLinkSettingsOverride": [
+      "UAudioLinkSettingsAbstract",
+      "AudioLink Setting Overrides"
+    ],
+    "BinauralRadius": [
+      "float32",
+      "What min radius to use to swap to non-binaural audio when a sound starts playing."
+    ],
+    "CustomLowpassAirAbsorptionCurve": [
+      "FRuntimeFloatCurve",
+      "The normalized custom curve to use for the air absorption lowpass frequency values. Does a mapping from defined distance values (x-axis) and defined frequency values (y-axis)"
+    ],
+    "CustomHighpassAirAbsorptionCurve": [
+      "FRuntimeFloatCurve",
+      "The normalized custom curve to use for the air absorption highpass frequency values. Does a mapping from defined distance values (x-axis) and defined frequency values (y-axis)"
+    ],
+    "AbsorptionMethod": [
+      "EAirAbsorptionMethod",
+      "What method to use to map distance values to frequency absorption values."
+    ],
+    "OcclusionTraceChannel": [
+      "ECollisionChannel",
+      "Which trace channel to use for audio occlusion checks."
+    ],
+    "ReverbSendMethod": [
+      "EReverbSendMethod",
+      "What method to use to control master reverb sends"
+    ],
+    "PriorityAttenuationMethod": [
+      "EPriorityAttenuationMethod",
+      "What method to use to control priority attenuation"
+    ],
+    "NonSpatializedRadiusStart": [
+      "float32",
+      "The distance below which a sound begins to linearly interpolate towards being non-spatialized (2D). See \"Non Spatialized Radius End\" to define the end of the interpolation and the \"Non Spatialized Radius Mode\" for the mode of the interpolation. Note: this does not apply when using a 3rd party binaural plugin (audio will remain spatialized)."
+    ],
+    "NonSpatializedRadiusEnd": [
+      "float32",
+      "The distance below which a sound is fully non-spatialized (2D). See \"Non Spatialized Radius Start\" to define the start of the interpolation and the \"Non Spatialized Radius Mode\" for the mode of the interpolation."
+    ],
+    "NonSpatializedRadiusMode": [
+      "ENonSpatializedRadiusSpeakerMapMode",
+      "Defines how to interpolate a 3D sound towards a 2D sound when using the non-spatialized radius start and end properties."
+    ],
+    "StereoSpread": [
+      "float32",
+      "The world-space distance between left and right stereo channels when stereo assets are 3D spatialized."
+    ],
+    "LPFRadiusMin": [
+      "float32",
+      "The distance min range at which to apply an absorption LPF filter."
+    ],
+    "LPFRadiusMax": [
+      "float32",
+      "The max distance range at which to apply an absorption LPF filter. Absorption freq cutoff interpolates between filter frequency ranges between these distance values."
+    ],
+    "LPFFrequencyAtMin": [
+      "float32",
+      "The range of the cutoff frequency (in Hz) of the lowpass absorption filter."
+    ],
+    "LPFFrequencyAtMax": [
+      "float32",
+      "The range of the cutoff frequency (in Hz) of the lowpass absorption filter."
+    ],
+    "HPFFrequencyAtMin": [
+      "float32",
+      "The range of the cutoff frequency (in Hz) of the highpass absorption filter."
+    ],
+    "HPFFrequencyAtMax": [
+      "float32",
+      "The range of the cutoff frequency (in Hz) of the highpass absorption filter."
+    ],
+    "FocusAzimuth": [
+      "float32",
+      "Azimuth angle (in degrees) relative to the listener forward vector which defines the focus region of sounds. Sounds playing at an angle less than this will be in focus."
+    ],
+    "NonFocusAzimuth": [
+      "float32",
+      "Azimuth angle (in degrees) relative to the listener forward vector which defines the non-focus region of sounds. Sounds playing at an angle greater than this will be out of focus."
+    ],
+    "FocusDistanceScale": [
+      "float32",
+      "Amount to scale the distance calculation of sounds that are in-focus. Can be used to make in-focus sounds appear to be closer or further away than they actually are."
+    ],
+    "NonFocusDistanceScale": [
+      "float32",
+      "Amount to scale the distance calculation of sounds that are not in-focus. Can be used to make in-focus sounds appear to be closer or further away than they actually are."
+    ],
+    "FocusPriorityScale": [
+      "float32",
+      "Amount to scale the priority of sounds that are in focus. Can be used to boost the priority of sounds that are in focus."
+    ],
+    "NonFocusPriorityScale": [
+      "float32",
+      "Amount to scale the priority of sounds that are not in-focus. Can be used to reduce the priority of sounds that are not in focus."
+    ],
+    "FocusVolumeAttenuation": [
+      "float32",
+      "Amount to attenuate sounds that are in focus. Can be overridden at the sound-level."
+    ],
+    "NonFocusVolumeAttenuation": [
+      "float32",
+      "Amount to attenuate sounds that are not in focus. Can be overridden at the sound-level."
+    ],
+    "FocusAttackInterpSpeed": [
+      "float32",
+      "Scalar used to increase interpolation speed upwards to the target Focus value"
+    ],
+    "FocusReleaseInterpSpeed": [
+      "float32",
+      "Scalar used to increase interpolation speed downwards to the target Focus value"
+    ],
+    "OcclusionLowPassFilterFrequency": [
+      "float32",
+      "The low pass filter frequency (in Hz) to apply if the sound playing in this audio component is occluded. This will override the frequency set in LowPassFilterFrequency. A frequency of 0.0 is the device sample rate and will bypass the filter."
+    ],
+    "OcclusionVolumeAttenuation": [
+      "float32",
+      "The amount of volume attenuation to apply to sounds which are occluded."
+    ],
+    "OcclusionInterpolationTime": [
+      "float32",
+      "The amount of time in seconds to interpolate to the target OcclusionLowPassFilterFrequency when a sound is occluded."
+    ],
+    "ReverbWetLevelMin": [
+      "float32",
+      "The amount to send to master reverb when sound is located at a distance equal to value specified in the reverb min send distance."
+    ],
+    "ReverbWetLevelMax": [
+      "float32",
+      "The amount to send to master reverb when sound is located at a distance equal to value specified in the reverb max send distance."
+    ],
+    "ReverbDistanceMin": [
+      "float32",
+      "The min distance to send to the master reverb."
+    ],
+    "ReverbDistanceMax": [
+      "float32",
+      "The max distance to send to the master reverb."
+    ],
+    "ManualReverbSendLevel": [
+      "float32",
+      "The manual master reverb send level to use. Doesn't change as a function of distance."
+    ],
+    "PriorityAttenuationMin": [
+      "float32",
+      "Interpolated value to scale priority against when the sound is at the minimum priority attenuation distance from the closest listener."
+    ],
+    "PriorityAttenuationMax": [
+      "float32",
+      "Interpolated value to scale priority against when the sound is at the maximum priority attenuation distance from the closest listener."
+    ],
+    "PriorityAttenuationDistanceMin": [
+      "float32",
+      "The min distance to attenuate priority."
+    ],
+    "PriorityAttenuationDistanceMax": [
+      "float32",
+      "The max distance to attenuate priority."
+    ],
+    "ManualPriorityAttenuation": [
+      "float32",
+      "Static priority scalar to use (doesn't change as a function of distance)."
+    ],
+    "CustomReverbSendCurve": [
+      "FRuntimeFloatCurve",
+      "The custom reverb send curve to use for distance-based send level."
+    ],
+    "SubmixSendSettings": [
+      "TArray<FAttenuationSubmixSendSettings>",
+      "Set of submix send settings to use to send audio to submixes as a function of distance."
+    ],
+    "CustomPriorityAttenuationCurve": [
+      "FRuntimeFloatCurve",
+      "The custom curve to use for distance-based priority attenuation."
+    ],
+    "PluginSettings": [
+      "FSoundAttenuationPluginSettings",
+      "Sound attenuation plugin settings to use with sounds that play with this attenuation setting."
+    ],
+    "DistanceAlgorithm": [
+      "EAttenuationDistanceModel",
+      "The type of attenuation as a function of distance to use."
+    ],
+    "AttenuationShape": [
+      "EAttenuationShape",
+      "The shape of the non-custom attenuation method."
+    ],
+    "FalloffMode": [
+      "ENaturalSoundFalloffMode",
+      "Whether to continue attenuating, go silent, or hold last volume value when beyond falloff bounds and\n'Attenuation At Max (dB)' is set to a value greater than -60dB.\n(Only for 'Natural Sound' Distance Algorithm). */"
+    ],
+    "dBAttenuationAtMax": [
+      "float32",
+      "The attenuation volume at the falloff distance in decibels (Only for 'Natural Sound' Distance Algorithm)."
+    ],
+    "AttenuationShapeExtents": [
+      "FVector",
+      "The dimensions to use for the attenuation shape. Interpretation of the values differ per shape.\n         Sphere  - X is Sphere Radius. Y and Z are unused\n         Capsule - X is Capsule Half Height, Y is Capsule Radius, Z is unused\n         Box     - X, Y, and Z are the Box's dimensions\n         Cone    - X is Cone Radius, Y is Cone Angle, Z is Cone Falloff Angle"
+    ],
+    "ConeOffset": [
+      "float32",
+      "The distance back from the sound's origin to begin the cone when using the cone attenuation shape."
+    ],
+    "FalloffDistance": [
+      "float32",
+      "The distance over which volume attenuation occurs."
+    ],
+    "ConeSphereRadius": [
+      "float32",
+      "An optional attenuation radius (sphere) that extends from the cone origin."
+    ],
+    "ConeSphereFalloffDistance": [
+      "float32",
+      "The distance over which volume attenuation occurs for the optional sphere shape."
+    ],
+    "CustomAttenuationCurve": [
+      "FRuntimeFloatCurve",
+      "The custom volume attenuation curve to use."
+    ],
+    "bAttenuate": [
+      "bool",
+      "Allows distance-based volume attenuation."
+    ],
+    "bSpatialize": [
+      "bool",
+      "Allows the source to be 3D spatialized."
+    ],
+    "bAttenuateWithLPF": [
+      "bool",
+      "Allows simulation of air absorption by applying a filter with a cutoff frequency as a function of distance."
+    ],
+    "bEnableListenerFocus": [
+      "bool",
+      "Enable listener focus-based adjustments."
+    ],
+    "bEnableFocusInterpolation": [
+      "bool",
+      "Enables focus interpolation to smooth transition in and and of focus."
+    ],
+    "bEnableOcclusion": [
+      "bool",
+      "Enables realtime occlusion tracing."
+    ],
+    "bUseComplexCollisionForOcclusion": [
+      "bool",
+      "Enables tracing against complex collision when doing occlusion traces."
+    ],
+    "bEnableReverbSend": [
+      "bool",
+      "Enables adjusting reverb sends based on distance."
+    ],
+    "bEnablePriorityAttenuation": [
+      "bool",
+      "Enables attenuation of sound priority based off distance."
+    ],
+    "bApplyNormalizationToStereoSounds": [
+      "bool",
+      "Enables applying a -6 dB attenuation to stereo assets which are 3d spatialized. Avoids clipping when assets have spread of 0.0 due to channel summing."
+    ],
+    "bEnableLogFrequencyScaling": [
+      "bool",
+      "Enables applying a log scale to frequency values (so frequency sweeping is perceptually linear)."
+    ],
+    "bEnableSubmixSends": [
+      "bool",
+      "Enables submix sends based on distance."
+    ],
+    "bEnableSourceDataOverride": [
+      "bool",
+      "Enables overriding WaveInstance data using source data override plugin"
+    ],
+    "bEnableSendToAudioLink": [
+      "bool",
+      "Enables/Disables AudioLink on all sources using this attenuation"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSoundAttenuationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSoundAttenuationSettings"
+        }
+      ]
+    }
+  ]
+}

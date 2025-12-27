@@ -1,0 +1,204 @@
+{
+  "name": "__GooglePAD",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CancelDownload",
+      "return": "EGooglePADErrorCode",
+      "doc": "Cancel download of a set of asset packs",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPacks",
+          "type": "TArray<FString>"
+        }
+      ]
+    },
+    {
+      "name": "GetAssetPackLocation",
+      "return": "EGooglePADErrorCode",
+      "doc": "Get location handle of requested asset pack (release when done)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FString"
+        },
+        {
+          "name": "Location",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetAssetsPath",
+      "return": "FString",
+      "doc": "Get asset path from from location",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetBytesDownloaded",
+      "return": "int",
+      "doc": "Get the number of bytes downloaded from a download state",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "State",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetDownloadState",
+      "return": "EGooglePADErrorCode",
+      "doc": "Get download state handle of an asset pack (release when done)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FString"
+        },
+        {
+          "name": "State",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetDownloadStatus",
+      "return": "EGooglePADDownloadStatus",
+      "doc": "Get download status from a download state",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "State",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetShowCellularDataConfirmationStatus",
+      "return": "EGooglePADErrorCode",
+      "doc": "Get status of cellular confirmation dialog",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Status",
+          "type": "EGooglePADCellularDataConfirmStatus&"
+        }
+      ]
+    },
+    {
+      "name": "GetStorageMethod",
+      "return": "EGooglePADStorageMethod",
+      "doc": "Get storage method from location",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetTotalBytesToDownload",
+      "return": "int",
+      "doc": "Get the total number of bytes to download from a download state",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "State",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReleaseAssetPackLocation",
+      "return": "void",
+      "doc": "Release location resources",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Location",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReleaseDownloadState",
+      "return": "void",
+      "doc": "Release download state resources",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "State",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RequestDownload",
+      "return": "EGooglePADErrorCode",
+      "doc": "Request download of a set of asset packs",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPacks",
+          "type": "TArray<FString>"
+        }
+      ]
+    },
+    {
+      "name": "RequestInfo",
+      "return": "EGooglePADErrorCode",
+      "doc": "Request information about a set of asset packs",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPacks",
+          "type": "TArray<FString>"
+        }
+      ]
+    },
+    {
+      "name": "RequestRemoval",
+      "return": "EGooglePADErrorCode",
+      "doc": "Request removal of an asset pack",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ShowCellularDataConfirmation",
+      "return": "EGooglePADErrorCode",
+      "doc": "Show confirmation dialog requesting data download over cellular network",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

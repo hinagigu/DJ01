@@ -1,0 +1,708 @@
+{
+  "name": "UWidget",
+  "inherits": "UVisual",
+  "doc": "This is the base class for all wrapped Slate controls that are exposed to UObjects.",
+  "properties": {
+    "Slot": [
+      "UPanelSlot",
+      "The parent slot of the UWidget.  Allows us to easily inline edit the layout controlling this widget."
+    ],
+    "FlowDirectionPreference": [
+      "EFlowDirectionPreference",
+      "Allows you to set a new flow direction"
+    ],
+    "AccessibleBehavior": [
+      "ESlateAccessibleBehavior",
+      2,
+      "Whether or not the widget is accessible, and how to describe it. If set to custom, additional customization options will appear."
+    ],
+    "AccessibleSummaryBehavior": [
+      "ESlateAccessibleBehavior",
+      2,
+      "How to describe this widget when it's being presented through a summary of a parent widget. If set to custom, additional customization options will appear."
+    ],
+    "PixelSnapping": [
+      "EWidgetPixelSnapping",
+      "If the widget will draw snapped to the nearest pixel.  Improves clarity but might cause visibile stepping in animation"
+    ],
+    "Navigation": [
+      "UWidgetNavigation",
+      "The navigation object for this widget is optionally created if the user has configured custom\nnavigation rules for this widget in the widget designer.  Those rules determine how navigation transitions\ncan occur between widgets."
+    ],
+    "ToolTipWidget": [
+      "UWidget",
+      "Tooltip widget to show when the user hovers over the widget with the mouse"
+    ],
+    "bIsEnabled": [
+      "bool",
+      "Sets whether this widget can be modified interactively by the user"
+    ],
+    "ToolTipText": [
+      "FText",
+      "Tooltip text to show when the user hovers over the widget with the mouse"
+    ],
+    "RenderTransformPivot": [
+      "FVector2D",
+      "The render transform pivot controls the location about which transforms are applied.\nThis value is a normalized coordinate about which things like rotations will occur."
+    ],
+    "bOverride_Cursor": [
+      "bool"
+    ],
+    "bOverrideAccessibleDefaults": [
+      "bool",
+      "Override all of the default accessibility behavior and text for this widget."
+    ],
+    "bCanChildrenBeAccessible": [
+      "bool",
+      "Whether or not children of this widget can appear as distinct accessible widgets."
+    ],
+    "AccessibleText": [
+      "FText",
+      "When AccessibleBehavior is set to Custom, this is the text that will be used to describe the widget."
+    ],
+    "AccessibleSummaryText": [
+      "FText",
+      "When AccessibleSummaryBehavior is set to Custom, this is the text that will be used to describe the widget."
+    ],
+    "bIsVolatile": [
+      "bool",
+      "If true prevents the widget or its child's geometry or layout information from being cached.  If this widget\nchanges every frame, but you want it to still be in an invalidation panel you should make it as volatile\ninstead of invalidating it every frame, which would prevent the invalidation panel from actually\never caching anything."
+    ],
+    "Cursor": [
+      "EMouseCursor",
+      "The cursor to show when the mouse is over the widget"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ForceLayoutPrepass",
+      "return": "void",
+      "doc": "Forces a pre-pass.  A pre-pass caches the desired size of the widget hierarchy owned by this widget.\nOne pre-pass already happens for every widget before Tick occurs.  You only need to perform another\npre-pass if you are adding child widgets this frame and want them to immediately be visible this frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ForceVolatile",
+      "return": "void",
+      "doc": "Sets the forced volatility of the widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bForce",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetAccessibleSummaryText",
+      "return": "FText",
+      "const": true,
+      "doc": "Gets the accessible summary text from the underlying Slate accessible widget.\n@return The accessible summary text of the underlying Slate accessible widget. Returns an empty text if\naccessibility is dsabled or the underlying accessible widget is invalid.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAccessibleText",
+      "return": "FText",
+      "const": true,
+      "doc": "Gets the accessible text from the underlying Slate accessible widget\n@return The accessible text of the underlying Slate accessible widget. Returns an empty text if\naccessibility is dsabled or the underlying accessible widget is invalid.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCachedGeometry",
+      "return": "FGeometry",
+      "const": true,
+      "doc": "Gets the last geometry used to Tick the widget.  This data may not exist yet if this call happens prior to\nthe widget having been ticked/painted, or it may be out of date, or a frame behind.\n\nWe recommend not to use this data unless there's no other way to solve your problem.  Normally in Slate we\ntry and handle these issues by making a dependent widget part of the hierarchy, as to avoid frame behind\nor what are referred to as hysteresis problems, both caused by depending on geometry from the previous frame\nbeing used to advise how to layout a dependent object the current frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetClipping",
+      "return": "EWidgetClipping",
+      "const": true,
+      "doc": "Gets the clipping state of this widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDesiredSize",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Gets the widgets desired size.\nNOTE: The underlying Slate widget must exist and be valid, also at least one pre-pass must\n      have occurred before this value will be of any use.\n\n@return The widget's desired size",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGameInstance",
+      "return": "UGameInstance",
+      "const": true,
+      "doc": "Gets the game instance associated with this UI.\n@return a pointer to the owning game instance",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetIsEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets the current enabled status of the widget",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningLocalPlayer",
+      "return": "ULocalPlayer",
+      "const": true,
+      "doc": "Gets the local player associated with this UI.\n@return The owning local player.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningPlayer",
+      "return": "APlayerController",
+      "const": true,
+      "doc": "Gets the player controller associated with this UI.\n@return The player controller that owns the UI.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPaintSpaceGeometry",
+      "return": "FGeometry",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetParent",
+      "return": "UPanelWidget",
+      "const": true,
+      "doc": "Gets the parent widget",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRenderOpacity",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current visibility of the widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRenderTransformAngle",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTickSpaceGeometry",
+      "return": "FGeometry",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVisibility",
+      "return": "ESlateVisibility",
+      "const": true,
+      "doc": "Gets the current visibility of the widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasAnyUserFocus",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this widget is focused by any user.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasFocusedDescendants",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if any descendant widget is focused by any user.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasKeyboardFocus",
+      "return": "bool",
+      "const": true,
+      "doc": "Checks to see if this widget currently has the keyboard focus\n\n@return  True if this widget has keyboard focus",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasMouseCapture",
+      "return": "bool",
+      "const": true,
+      "doc": "Checks to see if this widget is the current mouse captor\n@return  True if this widget has captured the mouse",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasMouseCaptureByUser",
+      "return": "bool",
+      "const": true,
+      "doc": "Checks to see if this widget is the current mouse captor\n     @param User index to check for capture\n     @param Optional pointer index to check for capture\n     @return  True if this widget has captured the mouse with given user and pointer",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UserIndex",
+          "type": "int"
+        },
+        {
+          "name": "PointerIndex",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "HasUserFocus",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this widget is focused by a specific user.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerController",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "HasUserFocusedDescendants",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if any descendant widget is focused by a specific user.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerController",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "InvalidateLayoutAndVolatility",
+      "return": "void",
+      "doc": "Invalidates the widget from the view of a layout caching widget that may own this widget.\nwill force the owning widget to redraw and cache children on the next paint pass.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsHovered",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the widget is currently being hovered by a pointer device",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsInViewport",
+      "return": "bool",
+      "const": true,
+      "doc": "@return true if the widget was added to the viewport using AddToViewport or AddToPlayerScreen.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsRendered",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the widget is Visible, HitTestInvisible or SelfHitTestInvisible and the Render Opacity is greater than 0.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsVisible",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the widget is Visible, HitTestInvisible or SelfHitTestInvisible.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "AddFieldValueChangedDelegate",
+      "return": "void",
+      "ufunction": true,
+      "unrealname": "K2_AddFieldValueChangedDelegate",
+      "meta": null,
+      "args": [
+        {
+          "name": "FieldId",
+          "type": "FFieldNotificationId"
+        },
+        {
+          "name": "Delegate",
+          "default": "FFieldValueChangedDynamicDelegate ( )",
+          "type": "FFieldValueChangedDynamicDelegate"
+        }
+      ]
+    },
+    {
+      "name": "BroadcastFieldValueChanged",
+      "return": "void",
+      "ufunction": true,
+      "unrealname": "K2_BroadcastFieldValueChanged",
+      "meta": null,
+      "args": [
+        {
+          "name": "FieldId",
+          "type": "FFieldNotificationId"
+        }
+      ]
+    },
+    {
+      "name": "RemoveFieldValueChangedDelegate",
+      "return": "void",
+      "ufunction": true,
+      "unrealname": "K2_RemoveFieldValueChangedDelegate",
+      "meta": null,
+      "args": [
+        {
+          "name": "FieldId",
+          "type": "FFieldNotificationId"
+        },
+        {
+          "name": "Delegate",
+          "default": "FFieldValueChangedDynamicDelegate ( )",
+          "type": "FFieldValueChangedDynamicDelegate"
+        }
+      ]
+    },
+    {
+      "name": "RemoveFromParent",
+      "return": "void",
+      "doc": "Removes the widget from its parent widget.  If this widget was added to the player's screen or the viewport\nit will also be removed from those containers.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResetCursor",
+      "return": "void",
+      "doc": "Resets the cursor to use on the widget, removing any customization for it.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAllNavigationRules",
+      "return": "void",
+      "doc": "Sets the widget navigation rules for all directions. This can only be called on widgets that are in a widget tree.\n@param Rule The rule to use when navigation is taking place\n@param WidgetToFocus When using the Explicit rule, focus on this widget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Rule",
+          "type": "EUINavigationRule"
+        },
+        {
+          "name": "WidgetToFocus",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetClipping",
+      "return": "void",
+      "doc": "Sets the clipping state of this widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InClipping",
+          "type": "EWidgetClipping"
+        }
+      ]
+    },
+    {
+      "name": "SetCursor",
+      "return": "void",
+      "doc": "Sets the cursor to show over the widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCursor",
+          "type": "EMouseCursor"
+        }
+      ]
+    },
+    {
+      "name": "SetFocus",
+      "return": "void",
+      "doc": "Sets the focus to this widget for the owning user",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetIsEnabled",
+      "return": "void",
+      "doc": "Sets the current enabled status of the widget",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIsEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetKeyboardFocus",
+      "return": "void",
+      "doc": "Sets the focus to this widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetNavigationRuleBase",
+      "return": "void",
+      "doc": "Sets the widget navigation rules for a specific direction. This can only be called on widgets that are in a widget tree. This works only for non Explicit, non Custom and non CustomBoundary Rules.\n@param Direction\n@param Rule The rule to use when navigation is taking place",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Direction",
+          "type": "EUINavigation"
+        },
+        {
+          "name": "Rule",
+          "type": "EUINavigationRule"
+        }
+      ]
+    },
+    {
+      "name": "SetNavigationRuleCustom",
+      "return": "void",
+      "doc": "Sets the widget navigation rules for a specific direction. This can only be called on widgets that are in a widget tree. This works only for Custom Rule.\n@param Direction\n@param InCustomDelegate Custom Delegate that will be called",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Direction",
+          "type": "EUINavigation"
+        },
+        {
+          "name": "InCustomDelegate",
+          "default": "FCustomWidgetNavigationDelegate ( )",
+          "type": "FCustomWidgetNavigationDelegate"
+        }
+      ]
+    },
+    {
+      "name": "SetNavigationRuleCustomBoundary",
+      "return": "void",
+      "doc": "Sets the widget navigation rules for a specific direction. This can only be called on widgets that are in a widget tree. This works only for CustomBoundary Rule.\n@param Direction\n@param InCustomDelegate Custom Delegate that will be called",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Direction",
+          "type": "EUINavigation"
+        },
+        {
+          "name": "InCustomDelegate",
+          "default": "FCustomWidgetNavigationDelegate ( )",
+          "type": "FCustomWidgetNavigationDelegate"
+        }
+      ]
+    },
+    {
+      "name": "SetNavigationRuleExplicit",
+      "return": "void",
+      "doc": "Sets the widget navigation rules for a specific direction. This can only be called on widgets that are in a widget tree. This works only for Explicit Rule.\n@param Direction\n@param InWidget Focus on this widget instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Direction",
+          "type": "EUINavigation"
+        },
+        {
+          "name": "InWidget",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderOpacity",
+      "return": "void",
+      "doc": "Sets the visibility of the widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOpacity",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Scale",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderShear",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Shear",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderTransform",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTransform",
+          "type": "FWidgetTransform"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderTransformAngle",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Angle",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderTransformPivot",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pivot",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderTranslation",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Translation",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetToolTip",
+      "return": "void",
+      "doc": "Sets a custom widget as the tooltip of the widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "SetToolTipText",
+      "return": "void",
+      "doc": "Sets the tooltip text for the widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InToolTipText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetUserFocus",
+      "return": "void",
+      "doc": "Sets the focus to this widget for a specific user (if setting focus for the owning user, prefer SetFocus())",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerController",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "SetVisibility",
+      "return": "void",
+      "doc": "Sets the visibility of the widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVisibility",
+          "type": "ESlateVisibility"
+        }
+      ]
+    },
+    {
+      "name": "GetRenderTransform",
+      "return": "FWidgetTransform",
+      "meta": null,
+      "args": []
+    }
+  ]
+}

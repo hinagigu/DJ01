@@ -1,0 +1,81 @@
+{
+  "name": "UMovieSceneUserImportFBXControlRigSettings",
+  "inherits": "UObject",
+  "properties": {
+    "FindAndReplaceStrings": [
+      "TArray<FControlFindReplaceString>",
+      2,
+      "Strings In Imported Node To Find And Replace"
+    ],
+    "bStripNamespace": [
+      "bool",
+      2,
+      "Will strip any namespace from the FBX node names"
+    ],
+    "bForceFrontXAxis": [
+      "bool",
+      2,
+      "Convert the scene from FBX coordinate system to UE coordinate system with front X axis instead of -Y"
+    ],
+    "bConvertSceneUnit": [
+      "bool",
+      2,
+      "Convert the scene from FBX unit to UE unit(centimeter)"
+    ],
+    "ImportUniformScale": [
+      "float32",
+      2,
+      "Import Uniform Scale"
+    ],
+    "bImportOntoSelectedControls": [
+      "bool",
+      2,
+      "Whether or not import onto selected controls or all controls"
+    ],
+    "TimeToInsertOrReplaceAnimation": [
+      "FFrameNumber",
+      2,
+      "Time that we insert or replace the imported animation"
+    ],
+    "bInsertAnimation": [
+      "bool",
+      2,
+      "Whether or not we insert or replace, by default we insert"
+    ],
+    "bSpecifyTimeRange": [
+      "bool",
+      2,
+      "Whether to import over specific Time Range"
+    ],
+    "StartTimeRange": [
+      "FFrameNumber",
+      2,
+      "Start Time Range To Import"
+    ],
+    "EndTimeRange": [
+      "FFrameNumber",
+      2,
+      "End Time Range To Import"
+    ],
+    "ControlChannelMappings": [
+      "TArray<FControlToTransformMappings>",
+      2,
+      "Mappings for how Control Rig Control Attributes Map to the incoming Transforms"
+    ]
+  },
+  "methods": [
+    {
+      "name": "LoadControlMappingsFromPreset",
+      "return": "void",
+      "doc": "Load the default or metahuman preset into the current mappings",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bMetaHumanPreset",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

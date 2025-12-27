@@ -1,0 +1,42 @@
+{
+  "name": "FAddNewSubobjectParams",
+  "isStruct": true,
+  "doc": "Options when adding a new subobject",
+  "properties": {
+    "ParentHandle": [
+      "FSubobjectDataHandle",
+      1,
+      ""
+    ],
+    "NewClass": [
+      "UClass",
+      1,
+      "The class of the new subobject that will be added"
+    ],
+    "BlueprintContext": [
+      "UBlueprint",
+      1,
+      "Pointer to the blueprint context that this subobject is in. If this is null, it is assumed that\nthis subobject is being added to an instance."
+    ],
+    "bSkipMarkBlueprintModified": [
+      "bool",
+      "Optionally skip marking this blueprint as modified (e.g. if we're handling that externally"
+    ],
+    "bConformTransformToParent": [
+      "bool",
+      "Whether the newly created component should keep its transform, or conform it to its parent"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAddNewSubobjectParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAddNewSubobjectParams"
+        }
+      ]
+    }
+  ]
+}

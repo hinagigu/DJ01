@@ -1,0 +1,50 @@
+{
+  "name": "FRigUnit_SphereTraceWorld",
+  "isStruct": true,
+  "doc": "Sweeps a sphere against the world and return the first blocking hit using a specific channel",
+  "properties": {
+    "Start": [
+      "FVector",
+      "Start of the trace in rig / global space"
+    ],
+    "End": [
+      "FVector",
+      "End of the trace in rig / global space"
+    ],
+    "Channel": [
+      "ECollisionChannel",
+      "The 'channel' that this trace is in, used to determine which components to hit"
+    ],
+    "Radius": [
+      "float32",
+      "Radius of the sphere to use for sweeping / tracing"
+    ],
+    "bHit": [
+      "bool",
+      1,
+      "Returns true if there was a hit"
+    ],
+    "HitLocation": [
+      "FVector",
+      1,
+      "Hit location in rig / global Space"
+    ],
+    "HitNormal": [
+      "FVector",
+      1,
+      "Hit normal in rig / global Space"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SphereTraceWorld&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SphereTraceWorld"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "name": "ANiagaraPreviewGrid",
+  "inherits": "AActor",
+  "properties": {
+    "System": [
+      "UNiagaraSystem",
+      2,
+      ""
+    ],
+    "ResetMode": [
+      "ENiagaraPreviewGridResetMode",
+      2,
+      ""
+    ],
+    "PreviewAxisX": [
+      "UNiagaraPreviewAxis",
+      2,
+      "Object controlling behavior varying on the X axis."
+    ],
+    "PreviewAxisY": [
+      "UNiagaraPreviewAxis",
+      2,
+      "Object controlling behavior varying on the Y axis."
+    ],
+    "PreviewClass": [
+      "TSubclassOf<ANiagaraPreviewBase>",
+      2,
+      "Class used to for previews in this grid."
+    ],
+    "SpacingX": [
+      "float32",
+      2,
+      "The default spacing between previews in X if the axis does not override it."
+    ],
+    "SpacingY": [
+      "float32",
+      2,
+      "The default spacing between previews if the axis does not override it."
+    ]
+  },
+  "methods": [
+    {
+      "name": "ActivatePreviews",
+      "return": "void",
+      "doc": "AActor Interface End",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bReset",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DeactivatePreviews",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPreviews",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutPreviews",
+          "type": "TArray<UNiagaraComponent>&"
+        }
+      ]
+    },
+    {
+      "name": "SetPaused",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bPaused",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

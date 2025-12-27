@@ -1,0 +1,118 @@
+{
+  "name": "UBillboardComponent",
+  "inherits": "UPrimitiveComponent",
+  "doc": "A 2d texture that will be rendered always facing the camera.",
+  "properties": {
+    "ScreenSize": [
+      "float32"
+    ],
+    "U": [
+      "float32"
+    ],
+    "UL": [
+      "float32"
+    ],
+    "V": [
+      "float32"
+    ],
+    "VL": [
+      "float32"
+    ],
+    "bUseInEditorScaling": [
+      "bool",
+      "Whether to use in-editor arrow scaling (i.e. to be affected by the global arrow scale)"
+    ],
+    "Sprite": [
+      "UTexture2D"
+    ],
+    "bIsScreenSizeScaled": [
+      "bool"
+    ],
+    "OpacityMaskRefVal": [
+      "float32",
+      "The billboard is not rendered where texture opacity < OpacityMaskRefVal"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetOpacityMaskRefVal",
+      "return": "void",
+      "doc": "Changed the opacity masked used by this component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RefVal",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSprite",
+      "return": "void",
+      "doc": "Change the sprite texture used by this component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewSprite",
+          "type": "UTexture2D"
+        }
+      ]
+    },
+    {
+      "name": "SetSpriteAndUV",
+      "return": "void",
+      "doc": "Change the sprite texture and the UV's used by this component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewSprite",
+          "type": "UTexture2D"
+        },
+        {
+          "name": "NewU",
+          "type": "int"
+        },
+        {
+          "name": "NewUL",
+          "type": "int"
+        },
+        {
+          "name": "NewV",
+          "type": "int"
+        },
+        {
+          "name": "NewVL",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetUV",
+      "return": "void",
+      "doc": "Change the sprite's UVs",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewU",
+          "type": "int"
+        },
+        {
+          "name": "NewUL",
+          "type": "int"
+        },
+        {
+          "name": "NewV",
+          "type": "int"
+        },
+        {
+          "name": "NewVL",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

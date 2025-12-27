@@ -1,0 +1,34 @@
+{
+  "name": "FSkinWeightProfileInfo",
+  "isStruct": true,
+  "doc": "Structure storing user facing properties, and is used to identify profiles at the SkeletalMesh level",
+  "properties": {
+    "Name": [
+      "FName",
+      2,
+      "Name of the Skin Weight Profile"
+    ],
+    "DefaultProfile": [
+      "FPerPlatformBool",
+      2,
+      "Whether or not this Profile should be considered the Default loaded for specific LODs rather than the original Skin Weights of the Skeletal Mesh"
+    ],
+    "DefaultProfileFromLODIndex": [
+      "FPerPlatformInt",
+      2,
+      "When DefaultProfile is set any LOD below this LOD Index will override the Skin Weights of the Skeletal Mesh with the Skin Weights from this Profile"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSkinWeightProfileInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSkinWeightProfileInfo"
+        }
+      ]
+    }
+  ]
+}

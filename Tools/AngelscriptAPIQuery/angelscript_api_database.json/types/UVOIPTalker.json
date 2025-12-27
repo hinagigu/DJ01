@@ -1,0 +1,56 @@
+{
+  "name": "UVOIPTalker",
+  "inherits": "UActorComponent",
+  "properties": {
+    "Settings": [
+      "FVoiceSettings",
+      "Configurable settings for this player's voice. When set, this will update the next time the player speaks."
+    ]
+  },
+  "methods": [
+    {
+      "name": "BPOnTalkingBegin",
+      "return": "void",
+      "callable": false,
+      "doc": "Blueprint native event for when this player starts speaking.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AudioComponent",
+          "type": "UAudioComponent"
+        }
+      ]
+    },
+    {
+      "name": "BPOnTalkingEnd",
+      "return": "void",
+      "callable": false,
+      "doc": "Blueprint native event for when this player stops speaking.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVoiceLevel",
+      "return": "float32",
+      "doc": "Get the current level of how loud this player is speaking. Will return 0.0\nif player is not talking.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RegisterWithPlayerState",
+      "return": "void",
+      "doc": "This function sets up this talker with a specific player.\nIt is necessary to use this to properly control a specific player's voice\nand receive events.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OwningState",
+          "type": "APlayerState"
+        }
+      ]
+    }
+  ]
+}

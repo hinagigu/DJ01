@@ -1,0 +1,210 @@
+{
+  "name": "UCapsuleComponent",
+  "inherits": "UShapeComponent",
+  "doc": "A capsule generally used for simple collision. Bounds are rendered as lines in the editor.",
+  "properties": {
+    "CapsuleHalfHeight": [
+      "float32",
+      "Half-height, from center of capsule to the end of top or bottom hemisphere.\nThis cannot be less than CapsuleRadius."
+    ],
+    "CapsuleRadius": [
+      "float32",
+      "Radius of cap hemispheres and center cylinder.\nThis cannot be more than CapsuleHalfHeight."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetScaledCapsuleHalfHeight",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the capsule half-height scaled by the component scale. This includes both the cylinder and hemisphere cap.\n@return The capsule half-height scaled by the component scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetScaledCapsuleHalfHeight_WithoutHemisphere",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the capsule half-height minus radius (to exclude the hemisphere), scaled by the component scale.\nFrom the center of the capsule this is the vertical distance along the straight cylindrical portion to the point just before the curve of top hemisphere begins.\n@return The capsule half-height minus radius, scaled by the component scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetScaledCapsuleRadius",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the capsule radius scaled by the component scale.\n@return The capsule radius scaled by the component scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetScaledCapsuleSize",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the capsule radius and half-height scaled by the component scale. Half-height includes the hemisphere end cap.\n@param OutRadius Radius of the capsule, scaled by the component scale.\n@param OutHalfHeight Half-height of the capsule, scaled by the component scale. Includes the hemisphere end cap.\n@return The capsule radius and half-height scaled by the component scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutRadius",
+          "type": "float32&"
+        },
+        {
+          "name": "OutHalfHeight",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetScaledCapsuleSize_WithoutHemisphere",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the capsule radius and half-height scaled by the component scale. Half-height excludes the hemisphere end cap.\n@param OutRadius Radius of the capsule, ignoring component scaling.\n@param OutHalfHeightWithoutHemisphere Half-height of the capsule, scaled by the component scale. Excludes the hemisphere end cap.\n@return The capsule radius and half-height scaled by the component scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutRadius",
+          "type": "float32&"
+        },
+        {
+          "name": "OutHalfHeightWithoutHemisphere",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetShapeScale",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the scale used by this shape. This is a uniform scale that is the minimum of any non-uniform scaling.\n@return the scale used by this shape.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUnscaledCapsuleHalfHeight",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the capsule half-height, ignoring component scaling. This includes the hemisphere end cap.\n@return The capsule radius, ignoring component scaling.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUnscaledCapsuleHalfHeight_WithoutHemisphere",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the capsule half-height minus radius (to exclude the hemisphere), ignoring component scaling. This excludes the hemisphere end cap.\nFrom the center of the capsule this is the vertical distance along the straight cylindrical portion to the point just before the curve of top hemisphere begins.\n@return The capsule half-height minus radius, ignoring component scaling.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUnscaledCapsuleRadius",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the capsule radius, ignoring component scaling.\n@return the capsule radius, ignoring component scaling.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUnscaledCapsuleSize",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the capsule radius and half-height scaled by the component scale. Half-height includes the hemisphere end cap.\n@param OutRadius Radius of the capsule, scaled by the component scale.\n@param OutHalfHeight Half-height of the capsule, scaled by the component scale. Includes the hemisphere end cap.\n@return The capsule radius and half-height scaled by the component scale.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutRadius",
+          "type": "float32&"
+        },
+        {
+          "name": "OutHalfHeight",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetUnscaledCapsuleSize_WithoutHemisphere",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the capsule radius and half-height, ignoring component scaling. Half-height excludes the hemisphere end cap.\n@param OutRadius Radius of the capsule, ignoring component scaling.\n@param OutHalfHeightWithoutHemisphere Half-height of the capsule, scaled by the component scale. Excludes the hemisphere end cap.\n@return The capsule radius and half-height (excluding hemisphere end cap), ignoring component scaling.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutRadius",
+          "type": "float32&"
+        },
+        {
+          "name": "OutHalfHeightWithoutHemisphere",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "SetCapsuleHalfHeight",
+      "return": "void",
+      "doc": "Set the capsule half-height. This is the unscaled half-height, before component scale is applied.\nIf this capsule collides, updates touching array for owner actor.\n@param       HalfHeight : half-height, from capsule center to end of top or bottom hemisphere.\n@param       bUpdateOverlaps: if true and this shape is registered and collides, updates touching array for owner actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HalfHeight",
+          "type": "float32"
+        },
+        {
+          "name": "bUpdateOverlaps",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCapsuleRadius",
+      "return": "void",
+      "doc": "Set the capsule radius. This is the unscaled radius, before component scale is applied.\nIf this capsule collides, updates touching array for owner actor.\n@param       Radius : radius of end-cap hemispheres and center cylinder.\n@param       bUpdateOverlaps: if true and this shape is registered and collides, updates touching array for owner actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "bUpdateOverlaps",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCapsuleSize",
+      "return": "void",
+      "doc": "Change the capsule size. This is the unscaled size, before component scale is applied.\n@param       InRadius : radius of end-cap hemispheres and center cylinder.\n@param       InHalfHeight : half-height, from capsule center to end of top or bottom hemisphere.\n@param       bUpdateOverlaps: if true and this shape is registered and collides, updates touching array for owner actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InRadius",
+          "type": "float32"
+        },
+        {
+          "name": "InHalfHeight",
+          "type": "float32"
+        },
+        {
+          "name": "bUpdateOverlaps",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "UAnimNotify",
+  "inherits": "UObject",
+  "properties": {
+    "NotifyColor": [
+      "FColor",
+      "Color of Notify in editor"
+    ],
+    "bShouldFireInEditor": [
+      "bool",
+      "Whether this notify instance should fire in animation editors"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetDefaultTriggerWeightThreshold",
+      "return": "float32",
+      "const": true,
+      "callable": false,
+      "doc": "TriggerWeightThreshold to use when creating notifies of this type",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNotifyName",
+      "return": "FString",
+      "const": true,
+      "callable": false,
+      "doc": "Implementable event to get a custom name for the notify",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Notify",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "unrealname": "Received_Notify",
+      "meta": null,
+      "args": [
+        {
+          "name": "MeshComp",
+          "type": "USkeletalMeshComponent"
+        },
+        {
+          "name": "Animation",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "EventReference",
+          "type": "FAnimNotifyEventReference"
+        }
+      ]
+    }
+  ]
+}

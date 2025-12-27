@@ -1,0 +1,42 @@
+{
+  "name": "FGameFeatureComponentEntry",
+  "isStruct": true,
+  "doc": "Description of a component to add to a type of actor when this game feature is enabled\n(the actor class must be game feature aware, it does not happen magically)\n@TODO: Write more documentation here about how to make an actor game feature / modular gameplay aware",
+  "properties": {
+    "ActorClass": [
+      "TSoftClassPtr<AActor>",
+      2,
+      "The base actor class to add a component to"
+    ],
+    "ComponentClass": [
+      "TSoftClassPtr<UActorComponent>",
+      2,
+      "The component class to add to the specified type of actor"
+    ],
+    "AdditionFlags": [
+      "uint8",
+      2,
+      "Observe these rules when adding the component, if any"
+    ],
+    "bClientComponent": [
+      "bool",
+      "Should this component be added for clients"
+    ],
+    "bServerComponent": [
+      "bool",
+      "Should this component be added on servers"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameFeatureComponentEntry&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameFeatureComponentEntry"
+        }
+      ]
+    }
+  ]
+}

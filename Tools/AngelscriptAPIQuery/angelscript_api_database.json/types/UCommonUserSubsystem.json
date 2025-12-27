@@ -1,0 +1,301 @@
+{
+  "name": "UCommonUserSubsystem",
+  "inherits": "UGameInstanceSubsystem",
+  "doc": "Game subsystem that handles queries and changes to user identity and login status.\nOne subsystem is created for each game instance and can be accessed from blueprints or C++ code.\nIf a game-specific subclass exists, this base subsystem will not be created.",
+  "properties": {
+    "OnUserInitializeComplete": [
+      "FCommonUserOnInitializeCompleteMulticast",
+      "BP delegate called when any requested initialization request completes"
+    ],
+    "OnHandleSystemMessage": [
+      "FCommonUserHandleSystemMessageDelegate",
+      "BP delegate called when the system sends an error/warning message"
+    ],
+    "OnUserPrivilegeChanged": [
+      "FCommonUserAvailabilityChangedDelegate",
+      "BP delegate called when privilege availability changes for a user"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CancelUserInitialization",
+      "return": "bool",
+      "doc": "Attempts to cancel an in-progress initialization attempt, this may not work on all platforms but will disable callbacks",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LocalPlayerIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalPlayerInitializationState",
+      "return": "ECommonUserInitializationState",
+      "const": true,
+      "doc": "Returns the state of initializing the specified local player",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LocalPlayerIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetMaxLocalPlayers",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the maximum number of local players",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumLocalPlayers",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the current number of local players, will always be at least 1",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUserInfoForControllerId",
+      "return": "const UCommonUserInfo",
+      "const": true,
+      "doc": "Deprecated, use InputDeviceId when available",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControllerId",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetUserInfoForInputDevice",
+      "return": "const UCommonUserInfo",
+      "const": true,
+      "doc": "Returns the user info for a given input device. Can return null",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputDevice",
+          "type": "FInputDeviceId"
+        }
+      ]
+    },
+    {
+      "name": "GetUserInfoForLocalPlayerIndex",
+      "return": "const UCommonUserInfo",
+      "const": true,
+      "doc": "Returns the user info for a given local player index in game instance, 0 is always valid in a running game",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LocalPlayerIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetUserInfoForPlatformUser",
+      "return": "const UCommonUserInfo",
+      "const": true,
+      "doc": "Returns the primary user info for a given platform user index. Can return null",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlatformUser",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "GetUserInfoForPlatformUserIndex",
+      "return": "const UCommonUserInfo",
+      "const": true,
+      "doc": "Deprecated, use PlatformUserId when available",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlatformUserIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetUserInfoForUniqueNetId",
+      "return": "const UCommonUserInfo",
+      "const": true,
+      "doc": "Returns the user info for a unique net id. Can return null",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NetId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    },
+    {
+      "name": "HasTraitTag",
+      "return": "bool",
+      "const": true,
+      "doc": "Checks if a specific platform/feature tag is enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TraitTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "ListenForLoginKeyInput",
+      "return": "void",
+      "doc": "Starts the process of listening for user input for new and existing controllers and logging them.\nThis will insert a key input handler on the active GameViewportClient and is turned off by calling again with empty key arrays.\n\n@param AnyUserKeys           Listen for these keys for any user, even the default user. Set this for an initial press start screen or empty to disable\n@param NewUserKeys           Listen for these keys for a new user without a player controller. Set this for splitscreen/local multiplayer or empty to disable\n@param Params                        Params passed to TryToInitializeUser after detecting key input",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnyUserKeys",
+          "type": "TArray<FKey>"
+        },
+        {
+          "name": "NewUserKeys",
+          "type": "TArray<FKey>"
+        },
+        {
+          "name": "Params",
+          "type": "FCommonUserInitializeParams"
+        }
+      ]
+    },
+    {
+      "name": "ResetUserState",
+      "return": "void",
+      "doc": "Resets the login and initialization state when returning to the main menu after an error",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SendSystemMessage",
+      "return": "void",
+      "doc": "Send a system message via OnHandleSystemMessage",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MessageType",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "TitleText",
+          "type": "FText"
+        },
+        {
+          "name": "BodyText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetMaxLocalPlayers",
+      "return": "void",
+      "doc": "Sets the maximum number of local players, will not destroy existing ones",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMaxLocalPLayers",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ShouldWaitForStartInput",
+      "return": "bool",
+      "const": true,
+      "doc": "Checks to see if we should display a press start/input confirmation screen at startup. Games can call this or check the trait tags directly",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "TryToInitializeForLocalPlay",
+      "return": "bool",
+      "doc": "Tries to start the process of creating or updating a local player, including logging in and creating a player controller.\nWhen the process has succeeded or failed, it will broadcast the OnUserInitializeComplete delegate.\n\n@param LocalPlayerIndex      Desired index of LocalPlayer in Game Instance, 0 will be primary player and 1+ for local multiplayer\n@param PrimaryInputDevice The physical controller that should be mapped to this user, will use the default device if invalid\n@param bCanUseGuestLogin     If true, this player can be a guest without a real Unique Net Id\n\n@returns true if the process was started, false if it failed before properly starting",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LocalPlayerIndex",
+          "type": "int"
+        },
+        {
+          "name": "PrimaryInputDevice",
+          "type": "FInputDeviceId"
+        },
+        {
+          "name": "bCanUseGuestLogin",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "TryToInitializeUser",
+      "return": "bool",
+      "doc": "Starts a general user login and initialization process, using the params structure to determine what to log in to.\nWhen the process has succeeded or failed, it will broadcast the OnUserInitializeComplete delegate.\nAsyncAction_CommonUserInitialize provides several wrapper functions for using this in an Event graph.\n\n@returns true if the process was started, false if it failed before properly starting",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Params",
+          "type": "FCommonUserInitializeParams"
+        }
+      ]
+    },
+    {
+      "name": "TryToLoginForOnlinePlay",
+      "return": "bool",
+      "doc": "Starts the process of taking a locally logged in user and doing a full online login including account permission checks.\nWhen the process has succeeded or failed, it will broadcast the OnUserInitializeComplete delegate.\n\n@param LocalPlayerIndex      Index of existing LocalPlayer in Game Instance\n\n@returns true if the process was started, false if it failed before properly starting",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LocalPlayerIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "TryToLogOutUser",
+      "return": "bool",
+      "doc": "Logs a player out of any online systems, and optionally destroys the player entirely if it's not the first one",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LocalPlayerIndex",
+          "type": "int"
+        },
+        {
+          "name": "bDestroyPlayer",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

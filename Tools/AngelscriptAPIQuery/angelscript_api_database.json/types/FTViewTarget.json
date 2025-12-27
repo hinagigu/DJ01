@@ -1,0 +1,31 @@
+{
+  "name": "FTViewTarget",
+  "isStruct": true,
+  "doc": "A ViewTarget is the primary actor the camera is associated with.",
+  "properties": {
+    "Target": [
+      "AActor",
+      "Target Actor used to compute POV"
+    ],
+    "POV": [
+      "FMinimalViewInfo",
+      "Computed point of view"
+    ],
+    "PlayerState": [
+      "APlayerState",
+      "PlayerState (used to follow same player through pawn transitions, etc., when spectating)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTViewTarget&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTViewTarget"
+        }
+      ]
+    }
+  ]
+}

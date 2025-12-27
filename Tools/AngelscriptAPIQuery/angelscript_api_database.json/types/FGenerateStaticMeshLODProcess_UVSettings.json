@@ -1,0 +1,48 @@
+{
+  "name": "FGenerateStaticMeshLODProcess_UVSettings",
+  "isStruct": true,
+  "properties": {
+    "UVMethod": [
+      "EGenerateStaticMeshLODProcess_AutoUVMethod",
+      2,
+      ""
+    ],
+    "NumUVAtlasCharts": [
+      "int",
+      2,
+      "Maximum number of charts to create in UVAtlas"
+    ],
+    "NumInitialPatches": [
+      "int",
+      2,
+      "Number of initial patches mesh will be split into before computing island merging"
+    ],
+    "MergingThreshold": [
+      "float32",
+      2,
+      "Distortion/Stretching Threshold for island merging - larger values increase the allowable UV stretching"
+    ],
+    "MaxAngleDeviation": [
+      "float32",
+      2,
+      "UV islands will not be merged if their average face normals deviate by larger than this amount"
+    ],
+    "PatchBuilder": [
+      "FGenerateStaticMeshLODProcess_UVSettings_PatchBuilder",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGenerateStaticMeshLODProcess_UVSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGenerateStaticMeshLODProcess_UVSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "ACameraActor",
+  "inherits": "AActor",
+  "doc": "A CameraActor is a camera viewpoint that can be placed in a level.",
+  "properties": {
+    "AutoActivateForPlayer": [
+      "EAutoReceiveInput",
+      2,
+      "Specifies which player controller, if any, should automatically use this Camera when the controller is active."
+    ],
+    "CameraComponent": [
+      "UCameraComponent",
+      "The camera component for this camera"
+    ],
+    "SceneComponent": [
+      "USceneComponent"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAutoActivatePlayerIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Returns index of the player for whom we auto-activate, or INDEX_NONE (-1) if disabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "name": "ALandscape",
+  "inherits": "ALandscapeProxy",
+  "properties": {
+    "bAreNewLandscapeActorsSpatiallyLoaded": [
+      "bool",
+      2,
+      "Landscape actor has authority on default streaming behavior for new actors : LandscapeStreamingProxies & LandscapeSplineActors"
+    ],
+    "bCanHaveLayersContent": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "ForceLayersFullUpdate",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTargetLayerNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Retrieves the names of valid paint layers on this landscape (editor-only : returns nothing at runtime)\n@Param bInIncludeVisibilityLayer whether the visibility layer's name should be included in the list or not\n@return the list of paint layer names",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIncludeVisibilityLayer",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RenderHeightmap",
+      "return": "bool",
+      "doc": "Render the final heightmap in the requested top-down window as one -atlased- texture in the provided render target 2D\n Can be called at runtime.\n@param InWorldTransform World transform of the area where the texture should be rendered\n@param InExtents Extents of the area where the texture should be rendered (local to InWorldTransform). If size is zero, then the entire loaded landscape will be exported.\n@param OutRenderTarget Render target in which the texture will be rendered. The size/format of the render target will be respected.\n@return false in case of failure (e.g. invalid inputs, incompatible render target format...)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorldTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "InExtents",
+          "type": "FBox2D"
+        },
+        {
+          "name": "OutRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        }
+      ]
+    },
+    {
+      "name": "RenderWeightmap",
+      "return": "bool",
+      "doc": "Render the final weightmap for the requested layer, in the requested top-down window, as one -atlased- texture in the provided render target 2D\n Can be called at runtime.\n@param InWorldTransform World transform of the area where the texture should be rendered\n@param InExtents Extents of the area where the texture should be rendered (local to InWorldTransform). If size is zero, then the entire loaded landscape will be exported.\n@param InWeightmapLayerName Weightmap layer that is being requested to render\n@param OutRenderTarget Render target in which the texture will be rendered. The size/format of the render target will be respected.\n@return false in case of failure (e.g. invalid inputs, incompatible render target format...)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorldTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "InExtents",
+          "type": "FBox2D"
+        },
+        {
+          "name": "InWeightmapLayerName",
+          "type": "FName"
+        },
+        {
+          "name": "OutRenderTarget",
+          "type": "UTextureRenderTarget2D"
+        }
+      ]
+    },
+    {
+      "name": "RenderWeightmaps",
+      "return": "bool",
+      "doc": "Render the final weightmaps for the requested layers, in the requested top-down window, as one -atlased- texture in the provided render target (2D or 2DArray)\n Can be called at runtime.\n@param InWorldTransform World transform of the area where the texture should be rendered\n@param InExtents Extents of the area where the texture should be rendered (local to InWorldTransform). If size is zero, then the entire loaded landscape will be exported.\n@param InWeightmapLayerNames List of weightmap layers that are being requested to render\n@param OutRenderTarget Render target in which the texture will be rendered. The size/format of the render target will be respected.\n - If a UTextureRenderTarget2D is passed, the requested layers will be packed in the RGBA channels in order (up to the number of channels available with the render target's format).\n - If a UTextureRenderTarget2DArray is passed, the requested layers will be packed in the RGBA channels of each slice (up to the number of channels * slices available with the render target's format and number of slices).\n@return false in case of failure (e.g. invalid inputs, incompatible render target format...)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorldTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "InExtents",
+          "type": "FBox2D"
+        },
+        {
+          "name": "InWeightmapLayerNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "OutRenderTarget",
+          "type": "UTextureRenderTarget"
+        }
+      ]
+    }
+  ]
+}

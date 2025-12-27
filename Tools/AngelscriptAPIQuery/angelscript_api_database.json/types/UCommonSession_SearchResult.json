@@ -1,0 +1,97 @@
+{
+  "name": "UCommonSession_SearchResult",
+  "inherits": "UObject",
+  "doc": "A result object returned from the online system that describes a joinable game session",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetDescription",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns an internal description of the session, not meant to be human readable",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetIntSetting",
+      "return": "void",
+      "const": true,
+      "doc": "Gets an arbitrary integer setting, bFoundValue will be false if the setting does not exist",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "int&"
+        },
+        {
+          "name": "bFoundValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetMaxPublicConnections",
+      "return": "int",
+      "const": true,
+      "doc": "The maximum number of publicly available connections that could be available, including already filled connections",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumOpenPrivateConnections",
+      "return": "int",
+      "const": true,
+      "doc": "The number of private connections that are available",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumOpenPublicConnections",
+      "return": "int",
+      "const": true,
+      "doc": "The number of publicly available connections that are available",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPingInMs",
+      "return": "int",
+      "const": true,
+      "doc": "Ping to the search result, MAX_QUERY_PING is unreachable",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStringSetting",
+      "return": "void",
+      "const": true,
+      "doc": "Gets an arbitrary string setting, bFoundValue will be false if the setting does not exist",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "FString&"
+        },
+        {
+          "name": "bFoundValue",
+          "type": "bool&"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "UClusterUnionReplicatedProxyComponent",
+  "inherits": "UActorComponent",
+  "doc": "This component lets us store replicated information about how any particular UPrimitiveComponent\nshould be attached to its parent cluster union. The benefits of using a separate components are:\n\n    1) It lets us avoid adding any additional overhead into the UPrimitiveComponent.\n 2) It lets the replicated information have the same net relevancy as the actor being added to the cluster union\n    rather than having the same net relevancy as the cluster union (i.e. in the case of replicating this data in\n    an array in the ClusterUnionComponent).\n 3) It lets us pinpoint what exactly is being added/removed (vs if all this data was stored in an array) which lets\n    us be a bit more efficient in terms of modifying the cluster union.",
+  "properties": {},
+  "methods": []
+}

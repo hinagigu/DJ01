@@ -1,0 +1,43 @@
+{
+  "name": "FSwarmTaskStateMessage",
+  "isStruct": true,
+  "properties": {
+    "Guid": [
+      "FGuid",
+      2,
+      "The Task GUID used for identifying the Task"
+    ],
+    "State": [
+      "uint8",
+      2,
+      "The current state and arbitrary message"
+    ],
+    "Message": [
+      "FString",
+      2,
+      ""
+    ],
+    "ExitCode": [
+      "int",
+      2,
+      "Various stats, including run time, exit codes, etc."
+    ],
+    "RunningTime": [
+      "float",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSwarmTaskStateMessage&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSwarmTaskStateMessage"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,459 @@
+{
+  "name": "__ENetCloseResult",
+  "isEnum": true,
+  "doc": "Network Close results (can occur before NetDriver/NetConnection creation, and can be success or error)\n\nLicensees should use ENetCloseResult::Extended, and specify an ErrorContext value to FNetCloseResult, to specify custom results\n\nNOTE: If you modify this, run the enum-checking smoke test to verify you didn't forget to update anything else:\n                    System.Core.Networking.FNetCloseResult.EnumTest",
+  "properties": {
+    "NetDriverAlreadyExists": [
+      "ENetCloseResult",
+      "A relevant net driver has already been created for this service"
+    ],
+    "NetDriverCreateFailure": [
+      "ENetCloseResult",
+      "The net driver creation failed"
+    ],
+    "NetDriverListenFailure": [
+      "ENetCloseResult",
+      "The net driver failed its Listen() call"
+    ],
+    "ConnectionLost": [
+      "ENetCloseResult",
+      "A connection to the net driver has been lost"
+    ],
+    "ConnectionTimeout": [
+      "ENetCloseResult",
+      "A connection to the net driver has timed out"
+    ],
+    "FailureReceived": [
+      "ENetCloseResult",
+      "The net driver received an NMT_Failure message"
+    ],
+    "OutdatedClient": [
+      "ENetCloseResult",
+      "The client needs to upgrade their game"
+    ],
+    "OutdatedServer": [
+      "ENetCloseResult",
+      "The server needs to upgrade their game"
+    ],
+    "PendingConnectionFailure": [
+      "ENetCloseResult",
+      "There was an error during connection to the game"
+    ],
+    "NetGuidMismatch": [
+      "ENetCloseResult",
+      "NetGuid mismatch"
+    ],
+    "NetChecksumMismatch": [
+      "ENetCloseResult",
+      "Network checksum mismatch"
+    ],
+    "SecurityMalformedPacket": [
+      "ENetCloseResult",
+      "The packet didn't follow protocol"
+    ],
+    "SecurityInvalidData": [
+      "ENetCloseResult",
+      "The packet contained invalid data"
+    ],
+    "SecurityClosed": [
+      "ENetCloseResult",
+      "The connection had issues (possibly malicious) and was closed"
+    ],
+    "Unknown": [
+      "ENetCloseResult",
+      "Default state (do not move the position of this in enum)"
+    ],
+    "Success": [
+      "ENetCloseResult",
+      "Close was successful, happening under normal conditions"
+    ],
+    "Extended": [
+      "ENetCloseResult",
+      "Extended/custom ErrorContext state. To be interpreted by code"
+    ],
+    "HostClosedConnection": [
+      "ENetCloseResult",
+      "Host closed the connection"
+    ],
+    "Disconnect": [
+      "ENetCloseResult",
+      "Disconnected remotely"
+    ],
+    "Upgrade": [
+      "ENetCloseResult",
+      "Client needs to upgrade"
+    ],
+    "PreLoginFailure": [
+      "ENetCloseResult",
+      "PreLogin failed"
+    ],
+    "JoinFailure": [
+      "ENetCloseResult",
+      "Join failed"
+    ],
+    "JoinSplitFailure": [
+      "ENetCloseResult",
+      "JoinSplit failed"
+    ],
+    "AddressResolutionFailed": [
+      "ENetCloseResult",
+      "Address Rssolution Failed"
+    ],
+    "RPCDoS": [
+      "ENetCloseResult",
+      "RPC DoS Detection kicked the player"
+    ],
+    "Cleanup": [
+      "ENetCloseResult",
+      "NetConnection Cleanup was triggered"
+    ],
+    "MissingLevelPackage": [
+      "ENetCloseResult",
+      "UpdateLevelVisibility missing level package"
+    ],
+    "PacketHandlerIncomingError": [
+      "ENetCloseResult",
+      "PacketHandler Error processing incoming packet"
+    ],
+    "ZeroLastByte": [
+      "ENetCloseResult",
+      "Packet had zeros in the last byte"
+    ],
+    "ZeroSize": [
+      "ENetCloseResult",
+      "Zero size packet"
+    ],
+    "ReadHeaderFail": [
+      "ENetCloseResult",
+      "Failed to read PacketHeader"
+    ],
+    "ReadHeaderExtraFail": [
+      "ENetCloseResult",
+      "Failed to read extra PacketHeader information"
+    ],
+    "AckSequenceMismatch": [
+      "ENetCloseResult",
+      "Sequence mismatch while processing acks"
+    ],
+    "BunchBadChannelIndex": [
+      "ENetCloseResult",
+      "Bunch channel index exceeds maximum channel limit"
+    ],
+    "BunchChannelNameFail": [
+      "ENetCloseResult",
+      "Bunch channel name serialization failed"
+    ],
+    "BunchWrongChannelType": [
+      "ENetCloseResult",
+      "Bunch specified wrong channel type for an existing channel"
+    ],
+    "BunchHeaderOverflow": [
+      "ENetCloseResult",
+      "Bunch header serialization overflowed"
+    ],
+    "BunchDataOverflow": [
+      "ENetCloseResult",
+      "Bunch data serialization overflowed"
+    ],
+    "BunchServerPackageMapExports": [
+      "ENetCloseResult",
+      "Server received bHasPackageMapExports packet"
+    ],
+    "BunchPrematureControlChannel": [
+      "ENetCloseResult",
+      "Received control channel bunch before control channel was created"
+    ],
+    "BunchPrematureChannel": [
+      "ENetCloseResult",
+      "Received non-control-channel bunch when not yet ready"
+    ],
+    "BunchPrematureControlClose": [
+      "ENetCloseResult",
+      "Received control channel close before open"
+    ],
+    "UnknownChannelType": [
+      "ENetCloseResult",
+      "Unknown channel type specified"
+    ],
+    "PrematureSend": [
+      "ENetCloseResult",
+      "Attempted to send data before handshake is complete"
+    ],
+    "CorruptData": [
+      "ENetCloseResult",
+      "Server received corrupt data from the client - or there was otherwise an error during channel processing"
+    ],
+    "SocketSendFailure": [
+      "ENetCloseResult",
+      "Socket send failure"
+    ],
+    "BadChildConnectionIndex": [
+      "ENetCloseResult",
+      "Failed to find splitscreen player matching ChildConnection NetPlayerIndex"
+    ],
+    "LogLimitInstant": [
+      "ENetCloseResult",
+      "Log limiting per-second checks insta-kicked the player"
+    ],
+    "LogLimitSustained": [
+      "ENetCloseResult",
+      "Log limiting repeated threshold hits kicked the player"
+    ],
+    "EncryptionFailure": [
+      "ENetCloseResult",
+      "Encryption failure"
+    ],
+    "EncryptionTokenMissing": [
+      "ENetCloseResult",
+      "EncryptionToken is missing"
+    ],
+    "ReceivedNetGUIDBunchFail": [
+      "ENetCloseResult",
+      "ReceiveNetGUIDBunch serialization failed"
+    ],
+    "MaxReliableExceeded": [
+      "ENetCloseResult",
+      "Too many reliable bunches queued"
+    ],
+    "ReceivedNextBunchFail": [
+      "ENetCloseResult",
+      "ReceivedNextBunch serialization failed"
+    ],
+    "ReceivedNextBunchQueueFail": [
+      "ENetCloseResult",
+      "Queued ReceivedNextBunch serialization failed"
+    ],
+    "PartialInitialReliableDestroy": [
+      "ENetCloseResult",
+      "Reliable partial initial bunch attempting to destroy incomplete reliable partial bunch"
+    ],
+    "PartialMergeReliableDestroy": [
+      "ENetCloseResult",
+      "Reliable partial merge bunch attempting to destroy incomplete reliable partial bunch"
+    ],
+    "PartialInitialNonByteAligned": [
+      "ENetCloseResult",
+      "Partial initial bunch which is not byte aligned"
+    ],
+    "PartialNonByteAligned": [
+      "ENetCloseResult",
+      "Non-final partial bunch which is not byte aligned"
+    ],
+    "PartialFinalPackageMapExports": [
+      "ENetCloseResult",
+      "Final partial bunch has package map exports"
+    ],
+    "PartialTooLarge": [
+      "ENetCloseResult",
+      "Partial bunch exceeded maximum partial bunch size"
+    ],
+    "AlreadyOpen": [
+      "ENetCloseResult",
+      "Received open bunch when channel already open"
+    ],
+    "ReliableBeforeOpen": [
+      "ENetCloseResult",
+      "Received reliable bunch before channel was fully open"
+    ],
+    "ReliableBufferOverflow": [
+      "ENetCloseResult",
+      "Reliable buffer overflowed when attempting to send"
+    ],
+    "RPCReliableBufferOverflow": [
+      "ENetCloseResult",
+      "Reliable buffer overflowed when attempting to send RPC"
+    ],
+    "ControlChannelClose": [
+      "ENetCloseResult",
+      "Control channel closing"
+    ],
+    "ControlChannelEndianCheck": [
+      "ENetCloseResult",
+      "Endianness check failed"
+    ],
+    "ControlChannelPlayerChannelFail": [
+      "ENetCloseResult",
+      "The ActorChannel for the connections PlayerController failed"
+    ],
+    "ControlChannelMessageUnknown": [
+      "ENetCloseResult",
+      "Received unknown control channel message"
+    ],
+    "ControlChannelMessageFail": [
+      "ENetCloseResult",
+      "Failed to read control channel message"
+    ],
+    "ControlChannelMessagePayloadFail": [
+      "ENetCloseResult",
+      "Failed to read control channel message payload"
+    ],
+    "ControlChannelBunchOverflowed": [
+      "ENetCloseResult",
+      "Control channel send bunch overflowed"
+    ],
+    "ControlChannelQueueBunchOverflowed": [
+      "ENetCloseResult",
+      "Queued control channel send bunch overflowed"
+    ],
+    "ClientHasMustBeMappedGUIDs": [
+      "ENetCloseResult",
+      "Client tried to set bHasMustBeMappedGUIDs"
+    ],
+    "ClientSentDestructionInfo": [
+      "ENetCloseResult",
+      "Client tried to send a destruction info"
+    ],
+    "UnregisteredMustBeMappedGUID": [
+      "ENetCloseResult",
+      "Received MustBeMappedGUID that isn't registered"
+    ],
+    "ObjectReplicatorReceivedBunchFail": [
+      "ENetCloseResult",
+      "FObjectReplicator ReceivedBunch failed"
+    ],
+    "ContentBlockFail": [
+      "ENetCloseResult",
+      "Content block serialization failed"
+    ],
+    "ContentBlockHeaderRepLayoutFail": [
+      "ENetCloseResult",
+      "Content block header bOutHasRepLayout serialization failed"
+    ],
+    "ContentBlockHeaderIsActorFail": [
+      "ENetCloseResult",
+      "Content block header bIsActor serialization failed"
+    ],
+    "ContentBlockHeaderObjFail": [
+      "ENetCloseResult",
+      "Content block header object serialization failed"
+    ],
+    "ContentBlockHeaderPrematureEnd": [
+      "ENetCloseResult",
+      "Reached end of bunch prematurely, after reading content block header"
+    ],
+    "ContentBlockHeaderSubObjectActor": [
+      "ENetCloseResult",
+      "Content block header sub-object was an Actor"
+    ],
+    "ContentBlockHeaderBadParent": [
+      "ENetCloseResult",
+      "Content block header sub-object not in parent actor"
+    ],
+    "ContentBlockHeaderInvalidCreate": [
+      "ENetCloseResult",
+      "The client tried to create a sub-object"
+    ],
+    "ContentBlockHeaderStablyNamedFail": [
+      "ENetCloseResult",
+      "Content block header bStablyNamed serialization failed"
+    ],
+    "ContentBlockHeaderNoSubObjectClass": [
+      "ENetCloseResult",
+      "Content block header unable to ready sub-object class"
+    ],
+    "ContentBlockHeaderUObjectSubObject": [
+      "ENetCloseResult",
+      "Content block header sub-object was UObject base class"
+    ],
+    "ContentBlockHeaderAActorSubObject": [
+      "ENetCloseResult",
+      "Content block header sub-object was an AActor subclass"
+    ],
+    "ContentBlockHeaderFail": [
+      "ENetCloseResult",
+      "Content block header serialization failed"
+    ],
+    "ContentBlockPayloadBitsFail": [
+      "ENetCloseResult",
+      "Content block payload NumPayloadBits serialization failed"
+    ],
+    "FieldHeaderRepIndex": [
+      "ENetCloseResult",
+      "Field header RepIndex serialization failed"
+    ],
+    "FieldHeaderBadRepIndex": [
+      "ENetCloseResult",
+      "Field header RepIndex exceeds maximum index limit"
+    ],
+    "FieldHeaderPayloadBitsFail": [
+      "ENetCloseResult",
+      "Field header payload NumPayloadBits serialization failed"
+    ],
+    "FieldPayloadFail": [
+      "ENetCloseResult",
+      "Field payload serialization failed"
+    ],
+    "ReplicationChannelCountMaxedOut": [
+      "ENetCloseResult",
+      "Replication Channel Count was exceeded and channel creation failed"
+    ],
+    "BeaconControlFlowError": [
+      "ENetCloseResult",
+      "Control flow error"
+    ],
+    "BeaconUnableToParsePacket": [
+      "ENetCloseResult",
+      "Unable to parse expected packet structure"
+    ],
+    "BeaconAuthenticationFailure": [
+      "ENetCloseResult",
+      "Failed to verify user authentication"
+    ],
+    "BeaconLoginInvalidIdError": [
+      "ENetCloseResult",
+      "Login Failure, invalid ID"
+    ],
+    "BeaconLoginInvalidAuthHandlerError": [
+      "ENetCloseResult",
+      "Login Failure, unable to process authentication"
+    ],
+    "BeaconAuthError": [
+      "ENetCloseResult",
+      "Unable to authenticate for beacon, wrong PlayerId"
+    ],
+    "BeaconSpawnClientWorldPackageNameError": [
+      "ENetCloseResult",
+      "Join failure, existing ClientWorldPackageName"
+    ],
+    "BeaconSpawnExistingActorError": [
+      "ENetCloseResult",
+      "Join failure, existing beacon actor"
+    ],
+    "BeaconSpawnFailureError": [
+      "ENetCloseResult",
+      "Join failure, couldn't spawn client beacon actor"
+    ],
+    "BeaconSpawnNetGUIDAckNoActor": [
+      "ENetCloseResult",
+      "Join failure, no actor at NetGUIDAck"
+    ],
+    "BeaconSpawnNetGUIDAckNoHost": [
+      "ENetCloseResult",
+      "Join failure, no host object at NetGUIDAck"
+    ],
+    "BeaconSpawnUnexpectedError": [
+      "ENetCloseResult",
+      "Join failure, unexpected control message"
+    ],
+    "IrisProtocolMismatch": [
+      "ENetCloseResult",
+      "Protocol mismatch in Iris preventing a critical object instantiation"
+    ],
+    "IrisNetRefHandleError": [
+      "ENetCloseResult",
+      "When a specific handle caused a reading error"
+    ],
+    "FaultDisconnect": [
+      "ENetCloseResult",
+      "Net Fault Recovery failed to recover from a fault, and is triggering a disconnect"
+    ],
+    "NotRecoverable": [
+      "ENetCloseResult",
+      "Marks a PacketHandler/HandlerComponent error, that is not recoverable"
+    ],
+    "ENetCloseResult_MAX": [
+      "ENetCloseResult"
+    ]
+  },
+  "methods": []
+}

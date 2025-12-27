@@ -1,0 +1,308 @@
+{
+  "name": "UChaosClothingInteractor",
+  "inherits": "UClothingInteractor",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ResetAndTeleport",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bReset",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bTeleport",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAerodynamics",
+      "return": "void",
+      "doc": "Deprecated. This function cannot set different Low and High values for the Drag and Lift weight maps. Use SetWind instead.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DragCoefficient",
+          "default": "0.070000",
+          "type": "float32"
+        },
+        {
+          "name": "LiftCoefficient",
+          "default": "0.035000",
+          "type": "float32"
+        },
+        {
+          "name": "WindVelocity",
+          "default": "FVector ( 0.000000 , 0.000000 , 0.000000 )",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimDrive",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimDriveStiffness",
+          "default": "FVector2D ( 0.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "AnimDriveDamping",
+          "default": "FVector2D ( 0.000000 , 1.000000 )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimDriveLinear",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimDriveStiffness",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetBackstop",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCollision",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CollisionThickness",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "FrictionCoefficient",
+          "default": "0.800000",
+          "type": "float32"
+        },
+        {
+          "name": "bUseCCD",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "SelfCollisionThickness",
+          "default": "2.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDamping",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DampingCoefficient",
+          "default": "0.010000",
+          "type": "float32"
+        },
+        {
+          "name": "LocalDampingCoefficient",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetGravity",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GravityScale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bIsGravityOverridden",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "GravityOverride",
+          "default": "FVector ( 0.000000 , 0.000000 , - 981.000000 )",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetLongRangeAttachment",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TetherStiffness",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "TetherScale",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetLongRangeAttachmentLinear",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TetherStiffness",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "TetherScale",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterial",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeStiffness",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "BendingStiffness",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "AreaStiffness",
+          "default": "FVector2D ( 1.000000 , 1.000000 )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialLinear",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeStiffness",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "BendingStiffness",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "AreaStiffness",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPressure",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pressure",
+          "default": "FVector2D ( 0.000000 , 1.000000 )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetVelocityScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LinearVelocityScale",
+          "default": "FVector ( 0.750000 , 0.750000 , 0.750000 )",
+          "type": "FVector"
+        },
+        {
+          "name": "AngularVelocityScale",
+          "default": "0.750000",
+          "type": "float32"
+        },
+        {
+          "name": "FictitiousAngularScale",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetWind",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Drag",
+          "default": "FVector2D ( 0.070000 , 0.500000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Lift",
+          "default": "FVector2D ( 0.070000 , 0.500000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "AirDensity",
+          "default": "0.000001",
+          "type": "float32"
+        },
+        {
+          "name": "WindVelocity",
+          "default": "FVector ( 0.000000 , 0.000000 , 0.000000 )",
+          "type": "FVector"
+        }
+      ]
+    }
+  ]
+}

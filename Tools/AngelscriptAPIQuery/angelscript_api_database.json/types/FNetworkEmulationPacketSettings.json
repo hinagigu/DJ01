@@ -1,0 +1,33 @@
+{
+  "name": "FNetworkEmulationPacketSettings",
+  "isStruct": true,
+  "properties": {
+    "MinLatency": [
+      "int",
+      2,
+      "Minimum latency to add to packets"
+    ],
+    "MaxLatency": [
+      "int",
+      2,
+      "Maximum latency to add to packets. We use a random value between the minimum and maximum (when 0 = always the minimum value)"
+    ],
+    "PacketLossPercentage": [
+      "int",
+      2,
+      "Ratio of packets to randomly drop (0 = none, 100 = all)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNetworkEmulationPacketSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNetworkEmulationPacketSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "name": "FGatherTextFromPackagesConfiguration",
+  "isStruct": true,
+  "properties": {
+    "IsEnabled": [
+      "bool",
+      2,
+      "If enabled, text from packages will be gathered according to this configuration."
+    ],
+    "IncludePathWildcards": [
+      "TArray<FGatherTextIncludePath>",
+      2,
+      "Packages whose paths match these wildcard patterns, specified relative to the project's root, may be processed for gathering."
+    ],
+    "ExcludePathWildcards": [
+      "TArray<FGatherTextExcludePath>",
+      2,
+      "Packages whose paths match these wildcard patterns will be excluded from gathering."
+    ],
+    "FileExtensions": [
+      "TArray<FGatherTextFileExtension>",
+      2,
+      "Packages whose names match these wildcard patterns may be processed for text to gather."
+    ],
+    "Collections": [
+      "TArray<FName>",
+      2,
+      "Packages in these collections may be processed for gathering."
+    ],
+    "ExcludeClasses": [
+      "TArray<FSoftClassPath>",
+      2,
+      "Classes that should be excluded from gathering."
+    ],
+    "ShouldExcludeDerivedClasses": [
+      "bool",
+      2,
+      "Should classes derived from those in the exclude classes list also be excluded from gathering?"
+    ],
+    "ShouldGatherFromEditorOnlyData": [
+      "bool",
+      2,
+      "If enabled, data that is specified as editor-only may be processed for gathering."
+    ],
+    "SkipGatherCache": [
+      "bool",
+      2,
+      "Should we ignore the cached text in the package header and perform a full package load instead?"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGatherTextFromPackagesConfiguration&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGatherTextFromPackagesConfiguration"
+        }
+      ]
+    }
+  ]
+}

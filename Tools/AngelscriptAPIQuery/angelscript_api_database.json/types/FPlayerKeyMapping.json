@@ -1,0 +1,63 @@
+{
+  "name": "FPlayerKeyMapping",
+  "isStruct": true,
+  "doc": "Represents a single key mapping that is set by the player",
+  "properties": {
+    "MappingName": [
+      "FName",
+      1,
+      "The name of the mapping for this key"
+    ],
+    "DisplayName": [
+      "FText",
+      1,
+      "Localized display name of this mapping"
+    ],
+    "DisplayCategory": [
+      "FText",
+      1,
+      "Localized display category of this mapping"
+    ],
+    "Slot": [
+      "EPlayerMappableKeySlot",
+      1,
+      "What slot this key is mapped to"
+    ],
+    "DefaultKey": [
+      "FKey",
+      1,
+      "The default key that this mapping was set to in its input mapping context"
+    ],
+    "CurrentKey": [
+      "FKey",
+      1,
+      "The key that the player has mapped to"
+    ],
+    "HardwareDeviceId": [
+      "FHardwareDeviceIdentifier",
+      1,
+      "An optional Hardware Device specifier for this mapping"
+    ],
+    "AssociatedInputAction": [
+      "const UInputAction",
+      1,
+      "The input action associated with this player key mapping"
+    ],
+    "bIsDirty": [
+      "bool",
+      "True if this key mapping is dirty (i.e. has been changed by the player)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPlayerKeyMapping&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPlayerKeyMapping"
+        }
+      ]
+    }
+  ]
+}

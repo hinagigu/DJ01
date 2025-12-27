@@ -1,0 +1,47 @@
+{
+  "name": "UNiagaraDataInterfaceRenderTarget2D",
+  "inherits": "UNiagaraDataInterfaceRWBase",
+  "properties": {
+    "Size": [
+      "FIntPoint",
+      2,
+      ""
+    ],
+    "MipMapGeneration": [
+      "ENiagaraMipMapGeneration",
+      2,
+      "Controls if and when we generate mips for the render target."
+    ],
+    "MipMapGenerationType": [
+      "ENiagaraMipMapGenerationType",
+      2,
+      ""
+    ],
+    "OverrideRenderTargetFormat": [
+      "ETextureRenderTargetFormat",
+      2,
+      "When enabled overrides the format of the render target, otherwise uses the project default setting."
+    ],
+    "OverrideRenderTargetFilter": [
+      "TextureFilter",
+      2,
+      "When enabled overrides the filter of the render target, otherwise uses the project default setting."
+    ],
+    "RenderTargetUserParameter": [
+      "FNiagaraUserParameterBinding",
+      2,
+      "When valid the user parameter is used as the render target rather than creating one internal, note that the input render target will be adjusted by the Niagara simulation"
+    ],
+    "bInheritUserParameterSettings": [
+      "bool",
+      "When enabled texture parameters (size / etc) are taken from the user provided render target.\nIf no valid user parameter is set the system will be invalid.\nNote: The resource will be recreated if UAV access is not available, which will reset the contents."
+    ],
+    "bOverrideFormat": [
+      "bool"
+    ],
+    "bPreviewRenderTarget": [
+      "bool"
+    ]
+  },
+  "methods": []
+}

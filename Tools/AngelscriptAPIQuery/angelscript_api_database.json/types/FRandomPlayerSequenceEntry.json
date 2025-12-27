@@ -1,0 +1,48 @@
+{
+  "name": "FRandomPlayerSequenceEntry",
+  "isStruct": true,
+  "doc": "The random player node holds a list of sequences and parameter ranges which will be played continuously\nIn a random order. If shuffle mode is enabled then each entry will be played once before repeating any",
+  "properties": {
+    "Sequence": [
+      "UAnimSequenceBase",
+      "Sequence to play when this entry is picked"
+    ],
+    "ChanceToPlay": [
+      "float32",
+      "When not in shuffle mode, this is the chance this entry will play (normalized against all other sample chances)"
+    ],
+    "MinLoopCount": [
+      "int",
+      "Minimum number of times this entry will loop before ending"
+    ],
+    "MaxLoopCount": [
+      "int",
+      "Maximum number of times this entry will loop before ending"
+    ],
+    "MinPlayRate": [
+      "float32",
+      "Minimum playrate for this entry"
+    ],
+    "MaxPlayRate": [
+      "float32",
+      "Maximum playrate for this entry"
+    ],
+    "BlendIn": [
+      "FAlphaBlend",
+      2,
+      "Blending properties used when this entry is blending in ontop of another entry"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRandomPlayerSequenceEntry&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRandomPlayerSequenceEntry"
+        }
+      ]
+    }
+  ]
+}

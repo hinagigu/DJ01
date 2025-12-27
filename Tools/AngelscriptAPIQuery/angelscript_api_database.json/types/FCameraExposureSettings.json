@@ -1,0 +1,74 @@
+{
+  "name": "FCameraExposureSettings",
+  "isStruct": true,
+  "properties": {
+    "Method": [
+      "EAutoExposureMethod",
+      "Luminance computation method"
+    ],
+    "LowPercent": [
+      "float32",
+      "The eye adaptation will adapt to a value extracted from the luminance histogram of the scene color.\nThe value is defined as having x percent below this brightness. Higher values give bright spots on the screen more priority\nbut can lead to less stable results. Lower values give the medium and darker values more priority but might cause burn out of\nbright spots.\n>0, <100, good values are in the range 70 .. 80"
+    ],
+    "HighPercent": [
+      "float32",
+      "The eye adaptation will adapt to a value extracted from the luminance histogram of the scene color.\nThe value is defined as having x percent below this brightness. Higher values give bright spots on the screen more priority\nbut can lead to less stable results. Lower values give the medium and darker values more priority but might cause burn out of\nbright spots.\n>0, <100, good values are in the range 80 .. 95"
+    ],
+    "MinBrightness": [
+      "float32",
+      "A good value should be positive near 0. This is the minimum brightness the auto exposure can adapt to.\nIt should be tweaked in a dark lighting situation (too small: image appears too bright, too large: image appears too dark).\nNote: Tweaking emissive materials and lights or tweaking auto exposure can look the same. Tweaking auto exposure has global\neffect and defined the HDR range - you don't want to change that late in the project development.\nEye Adaptation is disabled if MinBrightness = MaxBrightness"
+    ],
+    "MaxBrightness": [
+      "float32",
+      "A good value should be positive (2 is a good value). This is the maximum brightness the auto exposure can adapt to.\nIt should be tweaked in a bright lighting situation (too small: image appears too bright, too large: image appears too dark).\nNote: Tweaking emissive materials and lights or tweaking auto exposure can look the same. Tweaking auto exposure has global\neffect and defined the HDR range - you don't want to change that late in the project development.\nEye Adaptation is disabled if MinBrightness = MaxBrightness"
+    ],
+    "SpeedUp": [
+      "float32",
+      "In F-stops per second, should be >0"
+    ],
+    "SpeedDown": [
+      "float32",
+      "In F-stops per second, should be >0"
+    ],
+    "Bias": [
+      "float32",
+      "Logarithmic adjustment for the exposure. Only used if a tonemapper is specified.\n0: no adjustment, -1:2x darker, -2:4x darker, 1:2x brighter, 2:4x brighter, ..."
+    ],
+    "BiasCurve": [
+      "UCurveFloat",
+      "Exposure compensation based on the scene EV100.\nUsed to calibrate the final exposure differently depending on the average scene luminance.\n0: no adjustment, -1:2x darker, -2:4x darker, 1:2x brighter, 2:4x brighter, ..."
+    ],
+    "MeterMask": [
+      "UTexture",
+      "Exposure metering mask. Bright spots on the mask will have high influence on auto-exposure metering\nand dark spots will have low influence."
+    ],
+    "HistogramLogMin": [
+      "float32",
+      "temporary exposed until we found good values, -8: 1/256, -10: 1/1024"
+    ],
+    "HistogramLogMax": [
+      "float32",
+      "temporary exposed until we found good values 4: 16, 8: 256"
+    ],
+    "CalibrationConstant": [
+      "float32",
+      "Calibration constant for 18% albedo."
+    ],
+    "ApplyPhysicalCameraExposure": [
+      "bool",
+      "Enables physical camera exposure using ShutterSpeed/ISO/Aperture."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCameraExposureSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCameraExposureSettings"
+        }
+      ]
+    }
+  ]
+}

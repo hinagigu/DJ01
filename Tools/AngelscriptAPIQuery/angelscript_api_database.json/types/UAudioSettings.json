@@ -1,0 +1,130 @@
+{
+  "name": "UAudioSettings",
+  "inherits": "UDeveloperSettings",
+  "doc": "Audio settings.",
+  "properties": {
+    "DefaultSoundClassName": [
+      "FSoftObjectPath",
+      2,
+      "The SoundClass assigned to newly created sounds"
+    ],
+    "DefaultMediaSoundClassName": [
+      "FSoftObjectPath",
+      2,
+      "The SoundClass assigned to media player assets"
+    ],
+    "DefaultSoundConcurrencyName": [
+      "FSoftObjectPath",
+      2,
+      "The SoundConcurrency assigned to newly created sounds"
+    ],
+    "DefaultBaseSoundMix": [
+      "FSoftObjectPath",
+      2,
+      "The SoundMix to use as base when no other system has specified a Base SoundMix"
+    ],
+    "VoiPSoundClass": [
+      "FSoftObjectPath",
+      2,
+      "Sound class to be used for the VOIP audio component"
+    ],
+    "MasterSubmix": [
+      "FSoftObjectPath",
+      2,
+      "The default submix through which all sounds are routed to. The root submix that outputs to audio hardware."
+    ],
+    "BaseDefaultSubmix": [
+      "FSoftObjectPath",
+      2,
+      "The default submix to use for implicit submix sends (i.e. if the base submix send is null or if a submix parent is null)"
+    ],
+    "ReverbSubmix": [
+      "FSoftObjectPath",
+      2,
+      "The submix through which all sounds set to use reverb are routed"
+    ],
+    "EQSubmix": [
+      "FSoftObjectPath",
+      2,
+      "The submix through which all sounds set to use legacy EQ system are routed"
+    ],
+    "VoiPSampleRate": [
+      "EVoiceSampleRate",
+      2,
+      "Sample rate used for voice over IP. VOIP audio is resampled to the application's sample rate on the receiver side."
+    ],
+    "DefaultAudioCompressionType": [
+      "EDefaultAudioCompressionType",
+      2,
+      "Default audio compression type to use for audio assets."
+    ],
+    "DefaultCompressionQuality": [
+      "int",
+      2,
+      "The default compression quality (e.g. for new SoundWaves)"
+    ],
+    "MaximumConcurrentStreams": [
+      "int",
+      2,
+      "How many streaming sounds can be played at the same time (if more are played they will be sorted by priority)"
+    ],
+    "GlobalMinPitchScale": [
+      "float32",
+      2,
+      "The value to use to clamp the min pitch scale"
+    ],
+    "GlobalMaxPitchScale": [
+      "float32",
+      2,
+      "The value to use to clamp the max pitch scale"
+    ],
+    "QualityLevels": [
+      "TArray<FAudioQualitySettings>",
+      2,
+      ""
+    ],
+    "NumStoppingSources": [
+      "uint",
+      2,
+      "The max number of sources to reserve for \"stopping\" sounds. A \"stopping\" sound applies a fast fade in the DSP\nrender to prevent discontinuities when stopping sources."
+    ],
+    "PanningMethod": [
+      "EPanningMethod",
+      2,
+      "The method to use when doing non-binaural or object-based panning."
+    ],
+    "MonoChannelUpmixMethod": [
+      "EMonoChannelUpmixMethod",
+      2,
+      "The upmixing method for mono sound sources. Defines how mono channels are up-mixed to stereo channels."
+    ],
+    "DialogueFilenameFormat": [
+      "FString",
+      2,
+      "The format string to use when generating the filename for contexts within dialogue waves. This must generate unique names for your project.\nAvailable format markers:\n  * {DialogueGuid} - The GUID of the dialogue wave. Guaranteed to be unique and stable against asset renames.\n  * {DialogueHash} - The hash of the dialogue wave. Not guaranteed to be unique or stable against asset renames, however may be unique enough if combined with the dialogue name.\n  * {DialogueName} - The name of the dialogue wave. Not guaranteed to be unique or stable against asset renames, however may be unique enough if combined with the dialogue hash.\n  * {ContextId}    - The ID of the context. Guaranteed to be unique within its dialogue wave. Not guaranteed to be stable against changes to the context.\n  * {ContextIndex} - The index of the context within its parent dialogue wave. Guaranteed to be unique within its dialogue wave. Not guaranteed to be stable against contexts being removed."
+    ],
+    "DebugSounds": [
+      "TArray<FSoundDebugEntry>",
+      2,
+      "Sounds only packaged in non-shipped builds for debugging."
+    ],
+    "DefaultAudioBuses": [
+      "TArray<FDefaultAudioBusSettings>",
+      2,
+      "Array of AudioBuses that are automatically initialized when the AudioEngine is initialized"
+    ],
+    "bAllowPlayWhenSilent": [
+      "bool",
+      "Allows sounds to play at 0 volume."
+    ],
+    "bDisableMasterEQ": [
+      "bool",
+      "Disables master EQ effect in the audio DSP graph."
+    ],
+    "bAllowCenterChannel3DPanning": [
+      "bool",
+      "Enables the surround sound spatialization calculations to include the center channel."
+    ]
+  },
+  "methods": []
+}

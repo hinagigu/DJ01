@@ -1,0 +1,39 @@
+{
+  "name": "FRigUnit_SetControlTransform",
+  "isStruct": true,
+  "doc": "SetControlTransform is used to perform a change in the hierarchy by setting a single control's transform.",
+  "properties": {
+    "Control": [
+      "FName",
+      "The name of the Control to set the transform for."
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the change - how much the change should be applied"
+    ],
+    "Transform": [
+      "FTransform",
+      "The transform value to set for the given Control."
+    ],
+    "Space": [
+      "ERigVMTransformSpace",
+      "Defines if the bone's transform should be set\nin local or global space."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SetControlTransform&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SetControlTransform"
+        }
+      ]
+    }
+  ]
+}

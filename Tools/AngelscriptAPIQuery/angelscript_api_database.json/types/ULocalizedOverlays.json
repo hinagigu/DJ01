@@ -1,0 +1,23 @@
+{
+  "name": "ULocalizedOverlays",
+  "inherits": "UOverlays",
+  "doc": "Implements an asset that contains a set of Basic Overlays that will be displayed in accordance with\nthe current locale, or a default set if an appropriate locale is not found",
+  "properties": {
+    "DefaultOverlays": [
+      "UBasicOverlays",
+      2,
+      "The overlays to use if no overlays are found for the current culture"
+    ],
+    "LocaleToOverlaysMap": [
+      "TMap<FString,TObjectPtr<UBasicOverlays>>",
+      2,
+      "Maps a set of cultures to specific BasicOverlays assets.\nCultures are comprised of three hyphen-separated parts:\n             A two-letter ISO 639-1 language code (e.g., \"zh\")\n             An optional four-letter ISO 15924 script code (e.g., \"Hans\")\n             An optional two-letter ISO 3166-1 country code  (e.g., \"CN\")"
+    ],
+    "AssetImportData": [
+      "UAssetImportData",
+      2,
+      "The import data used to make this overlays asset"
+    ]
+  },
+  "methods": []
+}

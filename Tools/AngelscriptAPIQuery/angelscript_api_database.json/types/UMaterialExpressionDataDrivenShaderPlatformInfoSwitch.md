@@ -1,0 +1,9 @@
+# UMaterialExpressionDataDrivenShaderPlatformInfoSwitch
+
+**继承自**: `UMaterialExpression`
+
+## 属性
+
+### DDSPIPropertyNames
+- **类型**: `TArray<FDataDrivenShaderPlatformInfoInput>`
+

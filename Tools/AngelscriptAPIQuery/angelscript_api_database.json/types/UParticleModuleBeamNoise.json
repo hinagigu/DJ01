@@ -1,0 +1,95 @@
+{
+  "name": "UParticleModuleBeamNoise",
+  "inherits": "UParticleModuleBeamBase",
+  "properties": {
+    "Frequency": [
+      "int",
+      2,
+      "The frequency of noise points."
+    ],
+    "Frequency_LowRange": [
+      "int",
+      2,
+      "If not 0, then the frequency will select a random value in the range\n        [Frequency_LowRange..Frequency]"
+    ],
+    "NoiseRange": [
+      "FRawDistributionVector",
+      2,
+      "The noise point ranges."
+    ],
+    "NoiseRangeScale": [
+      "FRawDistributionFloat",
+      2,
+      "A scale factor that will be applied to the noise range."
+    ],
+    "NoiseSpeed": [
+      "FRawDistributionVector",
+      2,
+      "The speed with which to move each noise point."
+    ],
+    "NoiseLockRadius": [
+      "float32",
+      2,
+      "Default target-point information to use if the beam method is endpoint."
+    ],
+    "NoiseLockTime": [
+      "float32",
+      2,
+      "How long the  noise points should be locked - 0.0 indicates forever."
+    ],
+    "NoiseTension": [
+      "float32",
+      2,
+      "The tension to apply to the tessellated noise line."
+    ],
+    "NoiseTangentStrength": [
+      "FRawDistributionFloat",
+      2,
+      "The strength of noise tangents, if enabled."
+    ],
+    "NoiseTessellation": [
+      "int",
+      2,
+      "The amount of tessellation between noise points."
+    ],
+    "FrequencyDistance": [
+      "float32",
+      2,
+      "The distance at which to deposit noise points.\nIf 0.0, then use the static frequency value.\nIf not, distribute noise points at the given distance, up to the static Frequency value.\nAt that point, evenly distribute them along the beam."
+    ],
+    "NoiseScale": [
+      "FRawDistributionFloat",
+      2,
+      "The scale factor to apply to noise range.\nThe lookup value is determined by dividing the number of noise points present by the\nmaximum number of noise points (Frequency)."
+    ],
+    "bLowFreq_Enabled": [
+      "bool",
+      "Is low frequency noise enabled."
+    ],
+    "bNRScaleEmitterTime": [
+      "bool",
+      "If true,  the NoiseRangeScale will be grabbed based on the emitter time.\nIf false, the NoiseRangeScale will be grabbed based on the particle time."
+    ],
+    "bSmooth": [
+      "bool",
+      "Whether the noise movement should be smooth or 'jerky'."
+    ],
+    "bOscillate": [
+      "bool",
+      "Whether the noise points should be oscillate."
+    ],
+    "bUseNoiseTangents": [
+      "bool",
+      "If true, calculate tangents at each noise point."
+    ],
+    "bTargetNoise": [
+      "bool",
+      "Whether to apply noise to the target point (or end of line in distance mode...)\nIf true, the beam could potentially 'leave' the target..."
+    ],
+    "bApplyNoiseScale": [
+      "bool",
+      "If true, apply the noise scale to the beam."
+    ]
+  },
+  "methods": []
+}

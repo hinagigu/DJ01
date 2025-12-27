@@ -1,0 +1,37 @@
+{
+  "name": "UNiagaraDataInterfaceCurveBase",
+  "inherits": "UNiagaraDataInterface",
+  "doc": "Base class for curve data interfaces which facilitates handling the curve data in a standardized way.",
+  "properties": {
+    "CurveAsset": [
+      "UCurveBase",
+      2,
+      ""
+    ],
+    "OptimizeThreshold": [
+      "float32",
+      2,
+      "Threshold used to optimize the LUT."
+    ],
+    "ExposedName": [
+      "FName",
+      2,
+      "Sets a custom name for the binding to make it easier to identify."
+    ],
+    "bUseLUT": [
+      "bool"
+    ],
+    "bExposeCurve": [
+      "bool",
+      "Generates a texture for the curve which can be exposed to material bindings."
+    ],
+    "bOptimizeLUT": [
+      "bool",
+      "Do we optimize the LUT, this saves memory but may introduce errors.  Errors can be reduced modifying the threshold."
+    ],
+    "bOverrideOptimizeThreshold": [
+      "bool"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,2734 @@
+{
+  "name": "UPrimitiveComponent",
+  "inherits": "USceneComponent",
+  "doc": "PrimitiveComponents are SceneComponents that contain or generate some sort of geometry, generally to be rendered or used as collision data.\nThere are several subclasses for the various types of geometry, but the most common by far are the ShapeComponents (Capsule, Sphere, Box), StaticMeshComponent, and SkeletalMeshComponent.\nShapeComponents generate geometry that is used for collision detection but are not rendered, while StaticMeshComponents and SkeletalMeshComponents contain pre-built geometry that is rendered, but can also be used for collision detection.",
+  "properties": {
+    "MinDrawDistance": [
+      "float32",
+      "The minimum distance at which the primitive should be rendered,\nmeasured in world space units from the center of the primitive's bounding sphere to the camera position."
+    ],
+    "LDMaxDrawDistance": [
+      "float32",
+      "Max draw distance exposed to LDs. The real max draw distance is the min (disregarding 0) of this and volumes affecting this object."
+    ],
+    "CachedMaxDrawDistance": [
+      "float32",
+      1,
+      "The distance to cull this primitive at.\nA CachedMaxDrawDistance of 0 indicates that the primitive should not be culled by distance."
+    ],
+    "IndirectLightingCacheQuality": [
+      "EIndirectLightingCacheQuality",
+      "Quality of indirect lighting for Movable primitives.  This has a large effect on Indirect Lighting Cache update time."
+    ],
+    "HLODBatchingPolicy": [
+      "EHLODBatchingPolicy",
+      "Determines how the geometry of a component will be incorporated in proxy (simplified) HLODs."
+    ],
+    "ShadowCacheInvalidationBehavior": [
+      "EShadowCacheInvalidationBehavior",
+      "Control shadow invalidation behavior, in particular with respect to Virtual Shadow Maps and material effects like World Position Offset."
+    ],
+    "CanCharacterStepUpOn": [
+      "ECanBeCharacterBase",
+      "Determine whether a Character can step up onto this component.\nThis controls whether they can try to step up on it when they bump in to it, not whether they can walk on it after landing on it.\n@see FWalkableSlopeOverride"
+    ],
+    "RayTracingGroupId": [
+      "int",
+      "Defines run-time groups of components. For example allows to assemble multiple parts of a building at runtime.\n-1 means that component doesn't belong to any group."
+    ],
+    "CustomPrimitiveData": [
+      "FCustomPrimitiveData",
+      2,
+      "Optional user defined default values for the custom primitive data of this primitive"
+    ],
+    "TranslucencySortPriority": [
+      "int",
+      "Translucent objects with a lower sort priority draw behind objects with a higher priority.\nTranslucent objects with the same priority are rendered from back-to-front based on their bounds origin.\nThis setting is also used to sort objects being drawn into a runtime virtual texture.\n\nIgnored if the object is not translucent.  The default priority is zero.\nWarning: This should never be set to a non-default value unless you know what you are doing, as it will prevent the renderer from sorting correctly.\nIt is especially problematic on dynamic gameplay effects."
+    ],
+    "RuntimeVirtualTextures": [
+      "TArray<TObjectPtr<URuntimeVirtualTexture>>",
+      "Array of runtime virtual textures into which we draw the mesh for this actor.\nThe material also needs to be set up to output to a virtual texture."
+    ],
+    "VirtualTextureLodBias": [
+      "int8",
+      2,
+      "Bias to the LOD selected for rendering to runtime virtual textures."
+    ],
+    "VirtualTextureCullMips": [
+      "int8",
+      2,
+      "Number of lower mips in the runtime virtual texture to skip for rendering this primitive.\nLarger values reduce the effective draw distance in the runtime virtual texture.\nThis culling method doesn't take into account primitive size or virtual texture size."
+    ],
+    "VirtualTextureMinCoverage": [
+      "int8",
+      2,
+      "Set the minimum pixel coverage before culling from the runtime virtual texture.\nLarger values reduce the effective draw distance in the runtime virtual texture."
+    ],
+    "VirtualTextureRenderPassType": [
+      "ERuntimeVirtualTextureMainPassType",
+      "Controls if this component draws in the main pass as well as in the virtual texture."
+    ],
+    "BodyInstance": [
+      "FBodyInstance",
+      "Physics scene information for this component, holds a single rigid body with multiple shapes."
+    ],
+    "OnComponentHit": [
+      "FComponentHitSignature",
+      "Event called when a component hits (or is hit by) something solid. This could happen due to things like Character movement, using Set Location with 'sweep' enabled, or physics simulation.\nFor events when objects overlap (e.g. walking into a trigger) see the 'Overlap' event.\n\n@note For collisions during physics simulation to generate hit events, 'Simulation Generates Hit Events' must be enabled for this component.\n@note When receiving a hit from another object's movement, the directions of 'Hit.Normal' and 'Hit.ImpactNormal'\nwill be adjusted to indicate force from the other object against this object.\n@note NormalImpulse will be filled in for physics-simulating bodies, but will be zero for swept-component blocking collisions."
+    ],
+    "OnComponentBeginOverlap": [
+      "FComponentBeginOverlapSignature",
+      "Event called when something starts to overlaps this component, for example a player walking into a trigger.\nFor events when objects have a blocking collision, for example a player hitting a wall, see 'Hit' events.\n\n@note Both this component and the other one must have GetGenerateOverlapEvents() set to true to generate overlap events.\n@note When receiving an overlap from another object's movement, the directions of 'Hit.Normal' and 'Hit.ImpactNormal'\nwill be adjusted to indicate force from the other object against this object."
+    ],
+    "OnComponentEndOverlap": [
+      "FComponentEndOverlapSignature",
+      "Event called when something stops overlapping this component\n@note Both this component and the other one must have GetGenerateOverlapEvents() set to true to generate overlap events."
+    ],
+    "OnComponentWake": [
+      "FComponentWakeSignature",
+      "Event called when the underlying physics objects is woken up"
+    ],
+    "OnComponentSleep": [
+      "FComponentSleepSignature",
+      "Event called when the underlying physics objects is put to sleep"
+    ],
+    "OnComponentPhysicsStateChanged": [
+      "FComponentPhysicsStateChanged",
+      "Event called when physics state is created or destroyed for this component"
+    ],
+    "OnBeginCursorOver": [
+      "FComponentBeginCursorOverSignature",
+      "Event called when the mouse cursor is moved over this component and mouse over events are enabled in the player controller"
+    ],
+    "OnEndCursorOver": [
+      "FComponentEndCursorOverSignature",
+      "Event called when the mouse cursor is moved off this component and mouse over events are enabled in the player controller"
+    ],
+    "OnClicked": [
+      "FComponentOnClickedSignature",
+      "Event called when the left mouse button is clicked while the mouse is over this component and click events are enabled in the player controller"
+    ],
+    "OnReleased": [
+      "FComponentOnReleasedSignature",
+      "Event called when the left mouse button is released while the mouse is over this component click events are enabled in the player controller"
+    ],
+    "OnInputTouchBegin": [
+      "FComponentOnInputTouchBeginSignature",
+      "Event called when a touch input is received over this component when touch events are enabled in the player controller"
+    ],
+    "OnInputTouchEnd": [
+      "FComponentOnInputTouchEndSignature",
+      "Event called when a touch input is released over this component when touch events are enabled in the player controller"
+    ],
+    "OnInputTouchEnter": [
+      "FComponentBeginTouchOverSignature",
+      "Event called when a finger is moved over this component when touch over events are enabled in the player controller"
+    ],
+    "OnInputTouchLeave": [
+      "FComponentEndTouchOverSignature",
+      "Event called when a finger is moved off this component when touch over events are enabled in the player controller"
+    ],
+    "RayTracingGroupCullingPriority": [
+      "ERayTracingGroupCullingPriority",
+      "Defines how quickly it should be culled. For example buildings should have a low priority, but small dressing should have a high priority."
+    ],
+    "ExcludeFromHLODLevels": [
+      "uint8",
+      2,
+      "Which specific HLOD levels this component should be excluded from"
+    ],
+    "bGenerateOverlapEvents": [
+      "bool",
+      "If true, this component will generate overlap events when it is overlapping other components (eg Begin Overlap).\nBoth components (this and the other) must have this enabled for overlap events to occur.\n\n@see [Overlap Events](https://docs.unrealengine.com/InteractiveExperiences/Physics/Collision/Overview#overlapandgenerateoverlapevents)\n@see UpdateOverlaps(), BeginComponentOverlap(), EndComponentOverlap()"
+    ],
+    "LightmapType": [
+      "ELightmapType",
+      "Controls the type of lightmap used for this component."
+    ],
+    "bEnableAutoLODGeneration": [
+      "bool",
+      "Whether to include this component in HLODs or not."
+    ],
+    "bNeverDistanceCull": [
+      "bool",
+      "When enabled this object will not be culled by distance. This is ignored if a child of a HLOD."
+    ],
+    "bAlwaysCreatePhysicsState": [
+      "bool",
+      "Indicates if we'd like to create physics state all the time (for collision and simulation).\nIf you set this to false, it still will create physics state if collision or simulation activated.\nThis can help performance if you'd like to avoid overhead of creating physics state when triggers"
+    ],
+    "bMultiBodyOverlap": [
+      "bool",
+      "If true, this component will generate individual overlaps for each overlapping physics body if it is a multi-body component. When false, this component will\ngenerate only one overlap, regardless of how many physics bodies it has and how many of them are overlapping another component/body. This flag has no\ninfluence on single body components."
+    ],
+    "bTraceComplexOnMove": [
+      "bool",
+      "If true, component sweeps with this component should trace against complex collision during movement (for example, each triangle of a mesh).\nIf false, collision will be resolved against simple collision bounds instead.\n@see MoveComponent()"
+    ],
+    "bReturnMaterialOnMove": [
+      "bool",
+      "If true, component sweeps will return the material in their hit result.\n@see MoveComponent(), FHitResult"
+    ],
+    "bAllowCullDistanceVolume": [
+      "bool",
+      "Whether to accept cull distance volumes to modify cached cull distance."
+    ],
+    "bVisibleInReflectionCaptures": [
+      "bool",
+      "If true, this component will be visible in reflection captures."
+    ],
+    "bVisibleInRealTimeSkyCaptures": [
+      "bool",
+      "If true, this component will be visible in real-time sky light reflection captures."
+    ],
+    "bVisibleInRayTracing": [
+      "bool",
+      "If true, this component will be visible in ray tracing effects. Turning this off will remove it from ray traced reflections, shadows, etc."
+    ],
+    "bRenderInMainPass": [
+      "bool",
+      "If true, this component will be rendered in the main pass (z prepass, basepass, transparency)"
+    ],
+    "bRenderInDepthPass": [
+      "bool",
+      "If true, this component will be rendered in the depth pass even if it's not rendered in the main pass"
+    ],
+    "bReceivesDecals": [
+      "bool",
+      "Whether the primitive receives decals."
+    ],
+    "bHoldout": [
+      "bool",
+      "If this is True, this primitive will render black with an alpha of 0, but all secondary effects (shadows, reflections, indirect lighting) remain. This feature required the project setting \"Enable alpha channel support in post processing\"."
+    ],
+    "bOwnerNoSee": [
+      "bool",
+      "If this is True, this component won't be visible when the view actor is the component's owner, directly or indirectly."
+    ],
+    "bOnlyOwnerSee": [
+      "bool",
+      "If this is True, this component will only be visible when the view actor is the component's owner, directly or indirectly."
+    ],
+    "bTreatAsBackgroundForOcclusion": [
+      "bool",
+      "Treat this primitive as part of the background for occlusion purposes. This can be used as an optimization to reduce the cost of rendering skyboxes, large ground planes that are part of the vista, etc."
+    ],
+    "bUseAsOccluder": [
+      "bool",
+      "Whether to render the primitive in the depth only pass.\nThis should generally be true for all objects, and let the renderer make decisions about whether to render objects in the depth only pass.\n@todo - if any rendering features rely on a complete depth only pass, this variable needs to go away."
+    ],
+    "bConsiderForActorPlacementWhenHidden": [
+      "bool",
+      "If true, this component will be considered for placement when dragging and placing items in the editor even if it is not visible, such as in the case of hidden collision meshes"
+    ],
+    "bForceMipStreaming": [
+      "bool",
+      "If true, forces mips for textures used by this component to be resident when this component's level is loaded."
+    ],
+    "CastShadow": [
+      "bool",
+      "Controls whether the primitive component should cast a shadow or not."
+    ],
+    "bEmissiveLightSource": [
+      "bool",
+      "Whether the primitive will be used as an emissive light source."
+    ],
+    "bAffectDynamicIndirectLighting": [
+      "bool",
+      "Controls whether the primitive should influence indirect lighting."
+    ],
+    "bAffectIndirectLightingWhileHidden": [
+      "bool",
+      "Controls whether the primitive should affect indirect lighting when hidden. This flag is only used if bAffectDynamicIndirectLighting is true."
+    ],
+    "bAffectDistanceFieldLighting": [
+      "bool",
+      "Controls whether the primitive should affect dynamic distance field lighting methods.  This flag is only used if CastShadow is true. *"
+    ],
+    "bCastDynamicShadow": [
+      "bool",
+      "Controls whether the primitive should cast shadows in the case of non precomputed shadowing.  This flag is only used if CastShadow is true. *"
+    ],
+    "bCastStaticShadow": [
+      "bool",
+      "Whether the object should cast a static shadow from shadow casting lights.  This flag is only used if CastShadow is true."
+    ],
+    "bCastVolumetricTranslucentShadow": [
+      "bool",
+      "Whether the object should cast a volumetric translucent shadow.\nVolumetric translucent shadows are useful for primitives with smoothly changing opacity like particles representing a volume,\nBut have artifacts when used on highly opaque surfaces."
+    ],
+    "bCastContactShadow": [
+      "bool",
+      "Whether the object should cast contact shadows.\nThis flag is only used if CastShadow is true."
+    ],
+    "bSelfShadowOnly": [
+      "bool",
+      "When enabled, the component will only cast a shadow on itself and not other components in the world.\nThis is especially useful for first person weapons, and forces bCastInsetShadow to be enabled."
+    ],
+    "bCastFarShadow": [
+      "bool",
+      "When enabled, the component will be rendering into the far shadow cascades (only for directional lights)."
+    ],
+    "bCastInsetShadow": [
+      "bool",
+      "Whether this component should create a per-object shadow that gives higher effective shadow resolution.\nUseful for cinematic character shadowing. Assumed to be enabled if bSelfShadowOnly is enabled."
+    ],
+    "bCastCinematicShadow": [
+      "bool",
+      "Whether this component should cast shadows from lights that have bCastShadowsFromCinematicObjectsOnly enabled.\nThis is useful for characters in a cinematic with special cinematic lights, where the cost of shadowmap rendering of the environment is undesired."
+    ],
+    "bCastHiddenShadow": [
+      "bool",
+      "If true, the primitive will cast shadows even if bHidden is true.\nControls whether the primitive should cast shadows when hidden.\nThis flag is only used if CastShadow is true."
+    ],
+    "bCastShadowAsTwoSided": [
+      "bool",
+      "Whether this primitive should cast dynamic shadows as if it were a two sided material."
+    ],
+    "bLightAttachmentsAsGroup": [
+      "bool",
+      "Whether to light this component and any attachments as a group.  This only has effect on the root component of an attachment tree.\nWhen enabled, attached component shadowing settings like bCastInsetShadow, bCastVolumetricTranslucentShadow, etc, will be ignored.\nThis is useful for improving performance when multiple movable components are attached together."
+    ],
+    "bExcludeFromLightAttachmentGroup": [
+      "bool",
+      "If set, then it overrides any bLightAttachmentsAsGroup set in a parent."
+    ],
+    "bReceiveMobileCSMShadows": [
+      "bool",
+      "Mobile only:\nIf disabled this component will not receive CSM shadows. (Components that do not receive CSM may have reduced shading cost)"
+    ],
+    "bSingleSampleShadowFromStationaryLights": [
+      "bool",
+      "Whether the whole component should be shadowed as one from stationary lights, which makes shadow receiving much cheaper.\nWhen enabled shadowing data comes from the volume lighting samples precomputed by Lightmass, which are very sparse.\nThis is currently only used on stationary directional lights."
+    ],
+    "bIgnoreRadialImpulse": [
+      "bool",
+      "Will ignore radial impulses applied to this component."
+    ],
+    "bIgnoreRadialForce": [
+      "bool",
+      "Will ignore radial forces applied to this component."
+    ],
+    "bApplyImpulseOnDamage": [
+      "bool",
+      "True for damage to this component to apply physics impulse, false to opt out of these impulses."
+    ],
+    "bReplicatePhysicsToAutonomousProxy": [
+      "bool",
+      "True if physics should be replicated to autonomous proxies. This should be true for\n              server-authoritative simulations, and false for client authoritative simulations."
+    ],
+    "bFillCollisionUnderneathForNavmesh": [
+      "bool",
+      "If set, navmesh will not be generated under the surface of the geometry"
+    ],
+    "bRenderCustomDepth": [
+      "bool",
+      "If true, this component will be rendered in the CustomDepth pass (usually used for outlines)"
+    ],
+    "bVisibleInSceneCaptureOnly": [
+      "bool",
+      "When true, will only be visible in Scene Capture"
+    ],
+    "bHiddenInSceneCapture": [
+      "bool",
+      "When true, will not be captured by Scene Capture"
+    ],
+    "bStaticWhenNotMoveable": [
+      "bool",
+      "When false, the underlying physics body will contain all sim data (mass, inertia tensor, etc) even if mobility is not set to Moveable"
+    ],
+    "LightingChannels": [
+      "FLightingChannels",
+      "Channels that this component should be in.  Lights with matching channels will affect the component.\nThese channels only apply to opaque materials, direct lighting, and dynamic lighting and shadowing."
+    ],
+    "CustomDepthStencilValue": [
+      "int",
+      "Optionally write this 0-255 value to the stencil buffer in CustomDepth pass (Requires project setting or r.CustomDepth == 3)"
+    ],
+    "TranslucencySortDistanceOffset": [
+      "float32",
+      "Modified sort distance offset for translucent objects in world units.\nA positive number will move the sort distance further and a negative number will move the distance closer.\n\nIgnored if the object is not translucent.\nWarning: Adjusting this value will prevent the renderer from correctly sorting based on distance.  Only modify this value if you are certain it will not cause visual artifacts."
+    ],
+    "CustomDepthStencilWriteMask": [
+      "ERendererStencilMask",
+      "Mask used for stencil buffer writes."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetBoundingBoxExtents",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetBoundsOrigin",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetBoundsExtent",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetBoundsRadius",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetbSelectable",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetbSelectable",
+      "return": "void",
+      "args": [
+        {
+          "name": "bSelectable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLightmapType",
+      "return": "void",
+      "args": [
+        {
+          "name": "Type",
+          "type": "ELightmapType"
+        }
+      ]
+    },
+    {
+      "name": "AddAngularImpulseInDegrees",
+      "return": "void",
+      "doc": "Add an angular impulse to a single rigid body. Good for one time instant burst.\n\n@param  AngularImpulse  Magnitude and direction of impulse to apply. Direction is axis of rotation.\n@param  BoneName        If a SkeletalMeshComponent, name of body to apply angular impulse to. 'None' indicates root body.\n@param  bVelChange      If true, the Strength is taken as a change in angular velocity instead of an impulse (ie. mass will have no effect).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Impulse",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bVelChange",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddAngularImpulseInRadians",
+      "return": "void",
+      "doc": "Add an angular impulse to a single rigid body. Good for one time instant burst.\n\n@param  AngularImpulse  Magnitude and direction of impulse to apply. Direction is axis of rotation.\n@param  BoneName        If a SkeletalMeshComponent, name of body to apply angular impulse to. 'None' indicates root body.\n@param  bVelChange      If true, the Strength is taken as a change in angular velocity instead of an impulse (ie. mass will have no effect).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Impulse",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bVelChange",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddForce",
+      "return": "void",
+      "doc": "Add a force to a single rigid body.\nThis is like a 'thruster'. Good for adding a burst over some (non zero) time. Should be called every frame for the duration of the force.\n\n@param  Force            Force vector to apply. Magnitude indicates strength of force.\n@param  BoneName         If a SkeletalMeshComponent, name of body to apply force to. 'None' indicates root body.\n@param  bAccelChange If true, Force is taken as a change in acceleration instead of a physical force (i.e. mass will have no effect).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Force",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bAccelChange",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddForceAtLocation",
+      "return": "void",
+      "doc": "Add a force to a single rigid body at a particular location in world space.\nThis is like a 'thruster'. Good for adding a burst over some (non zero) time. Should be called every frame for the duration of the force.\n\n@param Force            Force vector to apply. Magnitude indicates strength of force.\n@param Location         Location to apply force, in world space.\n@param BoneName         If a SkeletalMeshComponent, name of body to apply force to. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Force",
+          "type": "FVector"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "AddForceAtLocationLocal",
+      "return": "void",
+      "doc": "Add a force to a single rigid body at a particular location. Both Force and Location should be in body space.\nThis is like a 'thruster'. Good for adding a burst over some (non zero) time. Should be called every frame for the duration of the force.\n\n@param Force            Force vector to apply. Magnitude indicates strength of force.\n@param Location         Location to apply force, in component space.\n@param BoneName         If a SkeletalMeshComponent, name of body to apply force to. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Force",
+          "type": "FVector"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "AddImpulse",
+      "return": "void",
+      "doc": "Add an impulse to a single rigid body. Good for one time instant burst.\n\n@param  Impulse         Magnitude and direction of impulse to apply.\n@param  BoneName        If a SkeletalMeshComponent, name of body to apply impulse to. 'None' indicates root body.\n@param  bVelChange      If true, the Strength is taken as a change in velocity instead of an impulse (ie. mass will have no effect).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Impulse",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bVelChange",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddImpulseAtLocation",
+      "return": "void",
+      "doc": "Add an impulse to a single rigid body at a specific location.\n\n@param  Impulse         Magnitude and direction of impulse to apply.\n@param  Location        Point in world space to apply impulse at.\n@param  BoneName        If a SkeletalMeshComponent, name of bone to apply impulse to. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Impulse",
+          "type": "FVector"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "AddRadialForce",
+      "return": "void",
+      "doc": "Add a force to all bodies in this component, originating from the supplied world-space location.\n\n@param Origin           Origin of force in world space.\n@param Radius           Radius within which to apply the force.\n@param Strength         Strength of force to apply.\n@param Falloff              Allows you to control the strength of the force as a function of distance from Origin.\n@param bAccelChange If true, Strength is taken as a change in acceleration instead of a physical force (i.e. mass will have no effect).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Origin",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "Strength",
+          "type": "float32"
+        },
+        {
+          "name": "Falloff",
+          "type": "ERadialImpulseFalloff"
+        },
+        {
+          "name": "bAccelChange",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddRadialImpulse",
+      "return": "void",
+      "doc": "Add an impulse to all rigid bodies in this component, radiating out from the specified position.\n\n@param Origin                Point of origin for the radial impulse blast, in world space\n@param Radius                Size of radial impulse. Beyond this distance from Origin, there will be no affect.\n@param Strength              Maximum strength of impulse applied to body.\n@param Falloff               Allows you to control the strength of the impulse as a function of distance from Origin.\n@param bVelChange    If true, the Strength is taken as a change in velocity instead of an impulse (ie. mass will have no effect).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Origin",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "Strength",
+          "type": "float32"
+        },
+        {
+          "name": "Falloff",
+          "type": "ERadialImpulseFalloff"
+        },
+        {
+          "name": "bVelChange",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddTorqueInDegrees",
+      "return": "void",
+      "doc": "Add a torque to a single rigid body.\n@param Torque           Torque to apply. Direction is axis of rotation and magnitude is strength of torque.\n@param BoneName         If a SkeletalMeshComponent, name of body to apply torque to. 'None' indicates root body.\n@param bAccelChange If true, Torque is taken as a change in angular acceleration instead of a physical torque (i.e. mass will have no effect).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Torque",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bAccelChange",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddTorqueInRadians",
+      "return": "void",
+      "doc": "Add a torque to a single rigid body.\n@param Torque           Torque to apply. Direction is axis of rotation and magnitude is strength of torque.\n@param BoneName         If a SkeletalMeshComponent, name of body to apply torque to. 'None' indicates root body.\n@param bAccelChange If true, Torque is taken as a change in angular acceleration instead of a physical torque (i.e. mass will have no effect).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Torque",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bAccelChange",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddVelocityChangeImpulseAtLocation",
+      "return": "void",
+      "doc": "Add an impulse to a single rigid body at a specific location. The Strength is taken as a change in angular velocity instead of an impulse (ie. mass will have no effect).\n\n@param  Impulse         Magnitude and direction of impulse to apply.\n@param  Location        Point in world space to apply impulse at.\n@param  BoneName        If a SkeletalMeshComponent, name of bone to apply impulse to. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Impulse",
+          "type": "FVector"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CanCharacterStepUp",
+      "return": "bool",
+      "const": true,
+      "doc": "Return true if the given Pawn can step up onto this component.\nThis controls whether they can try to step up on it when they bump in to it, not whether they can walk on it after landing on it.\n@param Pawn the Pawn that wants to step onto this component.\n@see CanCharacterStepUpOn",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pawn",
+          "type": "APawn"
+        }
+      ]
+    },
+    {
+      "name": "ClearMoveIgnoreActors",
+      "return": "void",
+      "doc": "Clear the list of actors we ignore when moving.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearMoveIgnoreComponents",
+      "return": "void",
+      "doc": "Clear the list of components we ignore when moving.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CopyArrayOfMoveIgnoreActors",
+      "return": "TArray<AActor>",
+      "doc": "Returns the list of actors we currently ignore when moving.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CopyArrayOfMoveIgnoreComponents",
+      "return": "TArray<UPrimitiveComponent>",
+      "doc": "Returns the list of actors we currently ignore when moving.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CreateDynamicMaterialInstance",
+      "return": "UMaterialInstanceDynamic",
+      "doc": "Creates a Dynamic Material Instance for the specified element index, optionally from the supplied material.\n@param ElementIndex - The index of the skin to replace the material for.  If invalid, the material is unchanged and NULL is returned.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "SourceMaterial",
+          "default": "nullptr",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "OptionalName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularDamping",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the angular damping of this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBodyInstanceAsyncPhysicsTickHandle",
+      "return": "FBodyInstanceAsyncPhysicsTickHandle",
+      "const": true,
+      "doc": "Returns BodyInstanceAsyncPhysicsTickHandle of the component. For use in the Async Physics Tick event\n\n@param BoneName                               Used to get body associated with specific bone. NAME_None automatically gets the root most body\n@param bGetWelded                             If the component has been welded to another component and bGetWelded is true we return the single welded BodyInstance that is used in the simulation\n@param Index                                  Index used in Components with multiple body instances\n\n@return               Returns the BodyInstanceAsyncPhysicsTickHandle based on various states (does component have multiple bodies? Is the body welded to another body?)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bGetWelded",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "Index",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetCenterOfMass",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the center of mass of a single body. In the case of a welded body this will return the center of mass of the entire welded body (including its parent and children)\nObjects that are not simulated return (0,0,0) as they do not have COM\n@param BoneName                 If a SkeletalMeshComponent, name of body to get center of mass of. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetClosestPointOnCollision",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the distance and closest point to the collision surface.\nComponent must have simple collision to be queried for closest point.\n\n@param Point                          World 3D vector\n@param OutPointOnBody         Point on the surface of collision closest to Point\n@param BoneName                       If a SkeletalMeshComponent, name of body to set center of mass of. 'None' indicates root body.\n\n@return               Success if returns > 0.f, if returns 0.f, it is either not convex or inside of the point\n                              If returns < 0.f, this primitive does not have collsion",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Point",
+          "type": "FVector"
+        },
+        {
+          "name": "OutPointOnBody",
+          "type": "FVector&"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetCollisionEnabled",
+      "return": "ECollisionEnabled",
+      "const": true,
+      "doc": "Returns the form of collision for this component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCollisionObjectType",
+      "return": "ECollisionChannel",
+      "const": true,
+      "doc": "Gets the collision object type",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCollisionProfileName",
+      "return": "FName",
+      "const": true,
+      "doc": "Get the collision profile name",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCollisionResponseToChannel",
+      "return": "ECollisionResponse",
+      "const": true,
+      "doc": "Gets the response type given a specific channel",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Channel",
+          "type": "ECollisionChannel"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomPrimitiveDataIndexForScalarParameter",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the index of the scalar parameter for the custom primitive data array\n@param       ParameterName   The parameter name of the custom primitive\n@return      The index of the custom primitive, INDEX_NONE (-1) if not found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomPrimitiveDataIndexForVectorParameter",
+      "return": "int",
+      "const": true,
+      "doc": "Gets the index of the vector parameter for the custom primitive data array\n@param       ParameterName   The parameter name of the custom primitive\n@return      The index of the custom primitive, INDEX_NONE (-1) if not found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetGenerateOverlapEvents",
+      "return": "bool",
+      "const": true,
+      "doc": "If true, this component will generate overlap events when it is overlapping other components (eg Begin Overlap).\nBoth components (this and the other) must have this enabled for overlap events to occur.\n\n@see [Overlap Events](https://docs.unrealengine.com/InteractiveExperiences/Physics/Collision/Overview#overlapandgenerateoverlapevents)\n@see UpdateOverlaps(), BeginComponentOverlap(), EndComponentOverlap()",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetIgnoreBoundsForEditorFocus",
+      "return": "bool",
+      "const": true,
+      "doc": "Whether or not the bounds of this component should be considered when focusing the editor camera to an actor with this component in it.\nUseful for debug components which need a bounds for rendering but don't contribute to the visible part of the mesh in a meaningful way",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInertiaTensor",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns the inertia tensor of this component in kg cm^2. The inertia tensor is in local component space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearDamping",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the linear damping of this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMass",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the mass of this component in kg.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMassScale",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the mass scale used to calculate the mass of a single physics body",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterial",
+      "return": "UMaterialInterface",
+      "const": true,
+      "doc": "Returns the material used by the element at the specified index\n@param ElementIndex - The element to access the material of.\n@return the material used by the indexed element of this mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialByName",
+      "return": "UMaterialInterface",
+      "const": true,
+      "doc": "Returns the material used by the element in the slot with the specified name.\n@param MaterialSlotName - The slot name to access the material of.\n@return the material used in the slot specified, or null if none exists or the slot name is not found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialSlotName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialFromCollisionFaceIndex",
+      "return": "UMaterialInterface",
+      "const": true,
+      "doc": "Try and retrieve the material applied to a particular collision face of mesh. Used with face index returned from collision trace.\n     @param  FaceIndex               Face index from hit result that was hit by a trace\n     @param  SectionIndex    Section of the mesh that the face belongs to\n     @return                                 Material applied to section that the hit face belongs to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FaceIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialIndex",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialSlotName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialSlotNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMaxDepenetrationVelocity",
+      "return": "float32",
+      "doc": "The maximum velocity used to depenetrate this object from others when spawned or teleported with initial overlaps (does not affect overlaps as a result of normal movement).\nA value of zero will allow objects that are spawned overlapping to go to sleep without moving rather than pop out of each other. E.g., use zero if you spawn dynamic rocks\npartially embedded in the ground and want them to be interactive but not pop out of the ground when touched.\nA negative value means that the config setting CollisionInitialOverlapDepenetrationVelocity will be used.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetNumMaterials",
+      "return": "int",
+      "const": true,
+      "doc": "Return number of material elements in this primitive",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOverlappingActors",
+      "return": "void",
+      "const": true,
+      "doc": "Returns a list of actors that this component is overlapping.\n@param OverlappingActors             [out] Returned list of overlapping actors\n@param ClassFilter                   [optional] If set, only returns actors of this class or subclasses",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OverlappingActors",
+          "type": "TArray<AActor>&"
+        },
+        {
+          "name": "ClassFilter",
+          "default": "nullptr",
+          "type": "TSubclassOf<AActor>"
+        }
+      ]
+    },
+    {
+      "name": "GetOverlappingComponents",
+      "return": "void",
+      "const": true,
+      "doc": "Returns unique list of components this component is overlapping.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutOverlappingComponents",
+          "type": "TArray<UPrimitiveComponent>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPhysicsAngularVelocityInDegrees",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the angular velocity of a single body, in degrees per second.\n@param BoneName                 If a SkeletalMeshComponent, name of body to get velocity of. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetPhysicsAngularVelocityInRadians",
+      "return": "FVector",
+      "const": true,
+      "doc": "Get the angular velocity of a single body, in radians per second.\n@param BoneName                 If a SkeletalMeshComponent, name of body to get velocity of. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetPhysicsLinearVelocity",
+      "return": "FVector",
+      "doc": "Get the linear velocity of a single body.\n@param BoneName                 If a SkeletalMeshComponent, name of body to get velocity of. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetPhysicsLinearVelocityAtPoint",
+      "return": "FVector",
+      "doc": "Get the linear velocity of a point on a single body.\n@param Point                    Point is specified in world space.\n@param BoneName                 If a SkeletalMeshComponent, name of body to get velocity of. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Point",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetStaticWhenNotMoveable",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetUpdateKinematicFromSimulation",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether this component should be updated by simulation when it is kinematic.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetWalkableSlopeOverride",
+      "return": "FWalkableSlopeOverride",
+      "const": true,
+      "doc": "Returns the slope override struct for this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IgnoreActorWhenMoving",
+      "return": "void",
+      "doc": "Tells this component whether to ignore collision with all components of a specific Actor when this component is moved.\nComponents on the other Actor may also need to be told to do the same when they move.\nDoes not affect movement of this component when simulating physics.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "bShouldIgnore",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "IgnoreComponentWhenMoving",
+      "return": "void",
+      "doc": "Tells this component whether to ignore collision with another component when this component is moved.\nThe other components may also need to be told to do the same when they move.\nDoes not affect movement of this component when simulating physics.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "bShouldIgnore",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "InvalidateLumenSurfaceCache",
+      "return": "void",
+      "doc": "Invalidates Lumen surface cache and forces it to be refreshed. Useful to make material updates more responsive.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsAnyRigidBodyAwake",
+      "return": "bool",
+      "doc": "Returns if any body in this component is currently awake and simulating.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsExcludedFromHLODLevel",
+      "return": "bool",
+      "const": true,
+      "doc": "Whether this primitive is excluded from the specified HLOD level",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HLODLevel",
+          "type": "EHLODLevelExclusion"
+        }
+      ]
+    },
+    {
+      "name": "IsGravityEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether this component is affected by gravity. Returns always false if the component is not simulated.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsMaterialSlotNameValid",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialSlotName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsOverlappingActor",
+      "return": "bool",
+      "const": true,
+      "doc": "Check whether this component is overlapping any component of the given Actor.\n@param Other Actor to test this component against.\n@return Whether this component is overlapping any component of the given Actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Other",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "IsOverlappingComponent",
+      "return": "bool",
+      "const": true,
+      "doc": "Check whether this component is overlapping another component.\n@param OtherComp Component to test this component against.\n@return Whether this component is overlapping another component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OtherComp",
+          "type": "const UPrimitiveComponent"
+        }
+      ]
+    },
+    {
+      "name": "BoxOverlapComponent",
+      "return": "bool",
+      "doc": "Perform a box overlap against a single component as an AABB (No rotation)\n@param InBoxCentre The centre of the box to overlap with the component\n@param InBox Description of the box to use in the overlap\n@param bTraceComplex Whether or not to trace the complex physics representation or just the simple representation\n@param bShowTrace Whether or not to draw the trace in the world (for debugging)\n@param bPersistentShowTrace Whether or not to make the debugging draw stay in the world permanently",
+      "ufunction": true,
+      "unrealname": "K2_BoxOverlapComponent",
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoxCentre",
+          "type": "FVector"
+        },
+        {
+          "name": "InBox",
+          "type": "FBox"
+        },
+        {
+          "name": "bTraceComplex",
+          "type": "bool"
+        },
+        {
+          "name": "bShowTrace",
+          "type": "bool"
+        },
+        {
+          "name": "bPersistentShowTrace",
+          "type": "bool"
+        },
+        {
+          "name": "HitLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "HitNormal",
+          "type": "FVector&"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName&"
+        },
+        {
+          "name": "OutHit",
+          "type": "FHitResult&"
+        }
+      ]
+    },
+    {
+      "name": "IsCollisionEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Utility to see if there is any form of collision (query or physics) enabled on this component.",
+      "ufunction": true,
+      "unrealname": "K2_IsCollisionEnabled",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPhysicsCollisionEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Utility to see if there is any physics collision enabled on this component.",
+      "ufunction": true,
+      "unrealname": "K2_IsPhysicsCollisionEnabled",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsQueryCollisionEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Utility to see if there is any query collision enabled on this component.",
+      "ufunction": true,
+      "unrealname": "K2_IsQueryCollisionEnabled",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LineTraceComponent",
+      "return": "bool",
+      "doc": "Perform a line trace against a single component\n@param TraceStart The start of the trace in world-space\n@param TraceEnd The end of the trace in world-space\n@param bTraceComplex Whether or not to trace the complex physics representation or just the simple representation\n@param bShowTrace Whether or not to draw the trace in the world (for debugging)\n@param bPersistentShowTrace Whether or not to make the debugging draw stay in the world permanently",
+      "ufunction": true,
+      "unrealname": "K2_LineTraceComponent",
+      "meta": null,
+      "args": [
+        {
+          "name": "TraceStart",
+          "type": "FVector"
+        },
+        {
+          "name": "TraceEnd",
+          "type": "FVector"
+        },
+        {
+          "name": "bTraceComplex",
+          "type": "bool"
+        },
+        {
+          "name": "bShowTrace",
+          "type": "bool"
+        },
+        {
+          "name": "bPersistentShowTrace",
+          "type": "bool"
+        },
+        {
+          "name": "HitLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "HitNormal",
+          "type": "FVector&"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName&"
+        },
+        {
+          "name": "OutHit",
+          "type": "FHitResult&"
+        }
+      ]
+    },
+    {
+      "name": "SphereOverlapComponent",
+      "return": "bool",
+      "doc": "Perform a sphere overlap against a single component\n@param InSphereCentre The centre of the sphere to overlap with the component\n@param InSphereRadius The Radius of the sphere to overlap with the component\n@param bTraceComplex Whether or not to trace the complex physics representation or just the simple representation\n@param bShowTrace Whether or not to draw the trace in the world (for debugging)\n@param bPersistentShowTrace Whether or not to make the debugging draw stay in the world permanently",
+      "ufunction": true,
+      "unrealname": "K2_SphereOverlapComponent",
+      "meta": null,
+      "args": [
+        {
+          "name": "InSphereCentre",
+          "type": "FVector"
+        },
+        {
+          "name": "InSphereRadius",
+          "type": "float32"
+        },
+        {
+          "name": "bTraceComplex",
+          "type": "bool"
+        },
+        {
+          "name": "bShowTrace",
+          "type": "bool"
+        },
+        {
+          "name": "bPersistentShowTrace",
+          "type": "bool"
+        },
+        {
+          "name": "HitLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "HitNormal",
+          "type": "FVector&"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName&"
+        },
+        {
+          "name": "OutHit",
+          "type": "FHitResult&"
+        }
+      ]
+    },
+    {
+      "name": "SphereTraceComponent",
+      "return": "bool",
+      "doc": "Perform a sphere trace against a single component\n@param TraceStart The start of the trace in world-space\n@param TraceEnd The end of the trace in world-space\n@param SphereRadius Radius of the sphere to trace against the component\n@param bTraceComplex Whether or not to trace the complex physics representation or just the simple representation\n@param bShowTrace Whether or not to draw the trace in the world (for debugging)\n@param bPersistentShowTrace Whether or not to make the debugging draw stay in the world permanently",
+      "ufunction": true,
+      "unrealname": "K2_SphereTraceComponent",
+      "meta": null,
+      "args": [
+        {
+          "name": "TraceStart",
+          "type": "FVector"
+        },
+        {
+          "name": "TraceEnd",
+          "type": "FVector"
+        },
+        {
+          "name": "SphereRadius",
+          "type": "float32"
+        },
+        {
+          "name": "bTraceComplex",
+          "type": "bool"
+        },
+        {
+          "name": "bShowTrace",
+          "type": "bool"
+        },
+        {
+          "name": "bPersistentShowTrace",
+          "type": "bool"
+        },
+        {
+          "name": "HitLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "HitNormal",
+          "type": "FVector&"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName&"
+        },
+        {
+          "name": "OutHit",
+          "type": "FHitResult&"
+        }
+      ]
+    },
+    {
+      "name": "PutRigidBodyToSleep",
+      "return": "void",
+      "doc": "Force a single body back to sleep.\n@param  BoneName        If a SkeletalMeshComponent, name of body to put to sleep. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ScaleByMomentOfInertia",
+      "return": "FVector",
+      "const": true,
+      "doc": "Scales the given vector by the world space moment of inertia. Useful for computing the torque needed to rotate an object.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputVector",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetAffectDistanceFieldLighting",
+      "return": "void",
+      "doc": "Changes the value of Affect Distance Field Lighting",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAffectDistanceFieldLighting",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAffectDynamicIndirectLighting",
+      "return": "void",
+      "doc": "Changes the value of bAffectDynamicIndirectLighting",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewAffectDynamicIndirectLighting",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAffectIndirectLightingWhileHidden",
+      "return": "void",
+      "doc": "Changes the value of bAffectIndirectLightingWhileHidden",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewAffectIndirectLightingWhileHidden",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAllMassScale",
+      "return": "void",
+      "doc": "Change the mass scale used fo all bodies in this component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMassScale",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAllPhysicsAngularVelocityInDegrees",
+      "return": "void",
+      "doc": "Set the angular velocity of all bodies in this component.\n\n@param NewAngVel                New angular velocity to apply to physics, in degrees per second.\n@param bAddToCurrent    If true, NewAngVel is added to the existing angular velocity of all bodies.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAngVel",
+          "type": "FVector"
+        },
+        {
+          "name": "bAddToCurrent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAllPhysicsAngularVelocityInRadians",
+      "return": "void",
+      "doc": "Set the angular velocity of all bodies in this component.\n\n@param NewAngVel                New angular velocity to apply to physics, in radians per second.\n@param bAddToCurrent    If true, NewAngVel is added to the existing angular velocity of all bodies.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAngVel",
+          "type": "FVector"
+        },
+        {
+          "name": "bAddToCurrent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAllPhysicsLinearVelocity",
+      "return": "void",
+      "doc": "Set the linear velocity of all bodies in this component.\n\n@param NewVel                   New linear velocity to apply to physics.\n@param bAddToCurrent    If true, NewVel is added to the existing velocity of the body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewVel",
+          "type": "FVector"
+        },
+        {
+          "name": "bAddToCurrent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAllUseCCD",
+      "return": "void",
+      "doc": "Set whether all bodies in this component should use Continuous Collision Detection",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InUseCCD",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularDamping",
+      "return": "void",
+      "doc": "Sets the angular damping of this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDamping",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetBoundsScale",
+      "return": "void",
+      "doc": "Scale the bounds of this object, used for frustum culling. Useful for features like WorldPositionOffset.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewBoundsScale",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetCastContactShadow",
+      "return": "void",
+      "doc": "Changes the value of bCastContactShadow.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInCastContactShadow",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCastHiddenShadow",
+      "return": "void",
+      "doc": "Changes the value of CastHiddenShadow.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewCastHiddenShadow",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCastInsetShadow",
+      "return": "void",
+      "doc": "Changes the value of CastInsetShadow.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInCastInsetShadow",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCastShadow",
+      "return": "void",
+      "doc": "Changes the value of CastShadow.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewCastShadow",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCenterOfMass",
+      "return": "void",
+      "doc": "Set the center of mass of a single body. This will offset the physx-calculated center of mass.\nNote that in the case where multiple bodies are attached together, the center of mass will be set for the entire group.\n@param CenterOfMassOffset               User specified offset for the center of mass of this object, from the calculated location.\n@param BoneName                 If a SkeletalMeshComponent, name of body to set center of mass of. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CenterOfMassOffset",
+          "type": "FVector"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetCollisionEnabled",
+      "return": "void",
+      "doc": "Controls what kind of collision is enabled for this body",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewType",
+          "type": "ECollisionEnabled"
+        }
+      ]
+    },
+    {
+      "name": "SetCollisionObjectType",
+      "return": "void",
+      "doc": "Changes the collision channel that this object uses when it moves\n@param      Channel     The new channel for this component to use",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Channel",
+          "type": "ECollisionChannel"
+        }
+      ]
+    },
+    {
+      "name": "SetCollisionProfileName",
+      "return": "void",
+      "doc": "Set Collision Profile Name\nThis function is called by constructors when they set ProfileName\nThis will change current CollisionProfileName to be this, and overwrite Collision Setting\n\n@param InCollisionProfileName : New Profile Name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCollisionProfileName",
+          "type": "FName"
+        },
+        {
+          "name": "bUpdateOverlaps",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCollisionResponseToAllChannels",
+      "return": "void",
+      "doc": "Changes all ResponseToChannels container for this PrimitiveComponent. to be NewResponse\n\n@param       NewResponse  What the new response should be to the supplied Channel",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewResponse",
+          "type": "ECollisionResponse"
+        }
+      ]
+    },
+    {
+      "name": "SetCollisionResponseToChannel",
+      "return": "void",
+      "doc": "Changes a member of the ResponseToChannels container for this PrimitiveComponent.\n\n@param       Channel      The channel to change the response of\n@param       NewResponse  What the new response should be to the supplied Channel",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Channel",
+          "type": "ECollisionChannel"
+        },
+        {
+          "name": "NewResponse",
+          "type": "ECollisionResponse"
+        }
+      ]
+    },
+    {
+      "name": "SetConstraintMode",
+      "return": "void",
+      "doc": "Sets the constraint mode of the component.\n@param ConstraintMode The type of constraint to use.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ConstraintMode",
+          "type": "EDOFMode"
+        }
+      ]
+    },
+    {
+      "name": "SetCullDistance",
+      "return": "void",
+      "doc": "Changes the value of CullDistance.\n@param NewCullDistance - The value to assign to CullDistance.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewCullDistance",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomDepthStencilValue",
+      "return": "void",
+      "doc": "Sets the CustomDepth stencil value (0 - 255) and marks the render state dirty.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomDepthStencilWriteMask",
+      "return": "void",
+      "doc": "Sets the CustomDepth stencil write mask and marks the render state dirty.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WriteMaskBit",
+          "type": "ERendererStencilMask"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomPrimitiveDataFloat",
+      "return": "void",
+      "doc": "Set custom primitive data at index DataIndex. This sets the run-time data only, so it doesn't serialize.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataIndex",
+          "type": "int"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomPrimitiveDataVector2",
+      "return": "void",
+      "doc": "Set custom primitive data, two floats at once, from index DataIndex to index DataIndex + 1. This sets the run-time data only, so it doesn't serialize.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataIndex",
+          "type": "int"
+        },
+        {
+          "name": "Value",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomPrimitiveDataVector3",
+      "return": "void",
+      "doc": "Set custom primitive data, three floats at once, from index DataIndex to index DataIndex + 2. This sets the run-time data only, so it doesn't serialize.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataIndex",
+          "type": "int"
+        },
+        {
+          "name": "Value",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomPrimitiveDataVector4",
+      "return": "void",
+      "doc": "Set custom primitive data, four floats at once, from index DataIndex to index DataIndex + 3. This sets the run-time data only, so it doesn't serialize.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataIndex",
+          "type": "int"
+        },
+        {
+          "name": "Value",
+          "type": "FVector4"
+        }
+      ]
+    },
+    {
+      "name": "SetDefaultCustomPrimitiveDataFloat",
+      "return": "void",
+      "doc": "Set default custom primitive data at index DataIndex, and marks the render state dirty",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataIndex",
+          "type": "int"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDefaultCustomPrimitiveDataVector2",
+      "return": "void",
+      "doc": "Set default custom primitive data, two floats at once, from index DataIndex to index DataIndex + 1, and marks the render state dirty",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataIndex",
+          "type": "int"
+        },
+        {
+          "name": "Value",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetDefaultCustomPrimitiveDataVector3",
+      "return": "void",
+      "doc": "Set default custom primitive data, three floats at once, from index DataIndex to index DataIndex + 2, and marks the render state dirty",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataIndex",
+          "type": "int"
+        },
+        {
+          "name": "Value",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetDefaultCustomPrimitiveDataVector4",
+      "return": "void",
+      "doc": "Set default custom primitive data, four floats at once, from index DataIndex to index DataIndex + 3, and marks the render state dirty",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataIndex",
+          "type": "int"
+        },
+        {
+          "name": "Value",
+          "type": "FVector4"
+        }
+      ]
+    },
+    {
+      "name": "SetEmissiveLightSource",
+      "return": "void",
+      "doc": "Changes the value of EmissiveLightSource.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewEmissiveLightSource",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableGravity",
+      "return": "void",
+      "doc": "Enables/disables whether this component is affected by gravity. This applies only to components with bSimulatePhysics set to true.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bGravityEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetExcludedFromHLODLevel",
+      "return": "void",
+      "doc": "Exclude this primitive from the specified HLOD level",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HLODLevel",
+          "type": "EHLODLevelExclusion"
+        },
+        {
+          "name": "bExcluded",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetExcludeFromLightAttachmentGroup",
+      "return": "void",
+      "doc": "Changes the value of ExcludeFromLightAttachmentGroup.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInExcludeFromLightAttachmentGroup",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetGenerateOverlapEvents",
+      "return": "void",
+      "doc": "Modifies value returned by GetGenerateOverlapEvents()",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInGenerateOverlapEvents",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetHiddenInSceneCapture",
+      "return": "void",
+      "doc": "Sets bHideInSceneCapture property and marks the render state dirty.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetHoldout",
+      "return": "void",
+      "doc": "Changes the value of bHoldout (Path Tracing only feature)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewHoldout",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIgnoreBoundsForEditorFocus",
+      "return": "void",
+      "doc": "Set if we should ignore bounds when focusing the editor camera.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIgnore",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLightAttachmentsAsGroup",
+      "return": "void",
+      "doc": "Changes the value of LightAttachmentsAsGroup.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInLightAttachmentsAsGroup",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLightingChannels",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bChannel0",
+          "type": "bool"
+        },
+        {
+          "name": "bChannel1",
+          "type": "bool"
+        },
+        {
+          "name": "bChannel2",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearDamping",
+      "return": "void",
+      "doc": "Sets the linear damping of this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDamping",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMassOverrideInKg",
+      "return": "void",
+      "doc": "Override the mass (in Kg) of a single physics body.\nNote that in the case where multiple bodies are attached together, the override mass will be set for the entire group.\nSet the Override Mass to false if you want to reset the body's mass to the auto-calculated physx mass.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "MassInKg",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bOverrideMass",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMassScale",
+      "return": "void",
+      "doc": "Change the mass scale used to calculate the mass of a single physics body",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "InMassScale",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterial",
+      "return": "void",
+      "doc": "Changes the material applied to an element of the mesh.\n@param ElementIndex - The element to access the material of.\n@return the material used by the indexed element of this mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementIndex",
+          "type": "int"
+        },
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterialByName",
+      "return": "void",
+      "doc": "Changes the material applied to an element of the mesh.\n@param MaterialSlotName - The slot name to access the material of.\n@return the material used by the indexed element of this mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialSlotName",
+          "type": "FName"
+        },
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetMaxDepenetrationVelocity",
+      "return": "void",
+      "doc": "The maximum velocity used to depenetrate this object from others when spawned or teleported with initial overlaps (does not affect overlaps as a result of normal movement).\nA value of zero will allow objects that are spawned overlapping to go to sleep without moving rather than pop out of each other. E.g., use zero if you spawn dynamic rocks\npartially embedded in the ground and want them to be interactive but not pop out of the ground when touched.\nA negative value means that the config setting CollisionInitialOverlapDepenetrationVelocity will be used.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "InMaxDepenetrationVelocity",
+          "default": "- 1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetNotifyRigidBodyCollision",
+      "return": "void",
+      "doc": "Changes the value of bNotifyRigidBodyCollision",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewNotifyRigidBodyCollision",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetOnlyOwnerSee",
+      "return": "void",
+      "doc": "Changes the value of bOnlyOwnerSee.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewOnlyOwnerSee",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetOwnerNoSee",
+      "return": "void",
+      "doc": "Changes the value of bOwnerNoSee.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewOwnerNoSee",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPhysicsAngularVelocityInDegrees",
+      "return": "void",
+      "doc": "Set the angular velocity of a single body.\nThis should be used cautiously - it may be better to use AddTorque or AddImpulse.\n\n@param NewAngVel                New angular velocity to apply to body, in degrees per second.\n@param bAddToCurrent    If true, NewAngVel is added to the existing angular velocity of the body.\n@param BoneName                 If a SkeletalMeshComponent, name of body to modify angular velocity of. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAngVel",
+          "type": "FVector"
+        },
+        {
+          "name": "bAddToCurrent",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetPhysicsAngularVelocityInRadians",
+      "return": "void",
+      "doc": "Set the angular velocity of a single body.\nThis should be used cautiously - it may be better to use AddTorque or AddImpulse.\n\n@param NewAngVel                New angular velocity to apply to body, in radians per second.\n@param bAddToCurrent    If true, NewAngVel is added to the existing angular velocity of the body.\n@param BoneName                 If a SkeletalMeshComponent, name of body to modify angular velocity of. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAngVel",
+          "type": "FVector"
+        },
+        {
+          "name": "bAddToCurrent",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetPhysicsLinearVelocity",
+      "return": "void",
+      "doc": "Set the linear velocity of a single body.\nThis should be used cautiously - it may be better to use AddForce or AddImpulse.\n\n@param NewVel                   New linear velocity to apply to physics.\n@param bAddToCurrent    If true, NewVel is added to the existing velocity of the body.\n@param BoneName                 If a SkeletalMeshComponent, name of body to modify velocity of. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewVel",
+          "type": "FVector"
+        },
+        {
+          "name": "bAddToCurrent",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetPhysicsMaxAngularVelocityInDegrees",
+      "return": "void",
+      "doc": "Set the maximum angular velocity of a single body.\n\n@param NewMaxAngVel             New maximum angular velocity to apply to body, in degrees per second.\n@param bAddToCurrent    If true, NewMaxAngVel is added to the existing maximum angular velocity of the body.\n@param BoneName                 If a SkeletalMeshComponent, name of body to modify maximum angular velocity of. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMaxAngVel",
+          "type": "float32"
+        },
+        {
+          "name": "bAddToCurrent",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetPhysicsMaxAngularVelocityInRadians",
+      "return": "void",
+      "doc": "Set the maximum angular velocity of a single body.\n\n@param NewMaxAngVel             New maximum angular velocity to apply to body, in radians per second.\n@param bAddToCurrent    If true, NewMaxAngVel is added to the existing maximum angular velocity of the body.\n@param BoneName                 If a SkeletalMeshComponent, name of body to modify maximum angular velocity of. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMaxAngVel",
+          "type": "float32"
+        },
+        {
+          "name": "bAddToCurrent",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetPhysMaterialOverride",
+      "return": "void",
+      "doc": "Changes the current PhysMaterialOverride for this component.\nNote that if physics is already running on this component, this will _not_ alter its mass/inertia etc,\nit will only change its surface properties like friction.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPhysMaterial",
+          "type": "UPhysicalMaterial"
+        }
+      ]
+    },
+    {
+      "name": "SetReceivesDecals",
+      "return": "void",
+      "doc": "Changes the value of bReceivesDecals.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewReceivesDecals",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderCustomDepth",
+      "return": "void",
+      "doc": "Sets the bRenderCustomDepth property and marks the render state dirty.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderInDepthPass",
+      "return": "void",
+      "doc": "Sets bRenderInDepthPass property and marks the render state dirty.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderInMainPass",
+      "return": "void",
+      "doc": "Sets bRenderInMainPass property and marks the render state dirty.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetScalarParameterForCustomPrimitiveData",
+      "return": "void",
+      "doc": "Set a scalar parameter for custom primitive data. This sets the run-time data only, so it doesn't serialize.\n@param       ParameterName   The parameter name of the custom primitive\n@param       Value                   The new value of the custom primitive",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetScalarParameterForDefaultCustomPrimitiveData",
+      "return": "void",
+      "doc": "Set a scalar parameter for default custom primitive data. This will be serialized and is useful in construction scripts.\n@param       ParameterName   The parameter name of the custom primitive\n@param       Value                   The new value of the custom primitive",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSimulatePhysics",
+      "return": "void",
+      "doc": "Sets whether or not a single body should use physics simulation, or should be 'fixed' (kinematic).\nNote that if this component is currently attached to something, beginning simulation will detach it.\n\n@param  bSimulate       New simulation state for single body",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSimulate",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSingleSampleShadowFromStationaryLights",
+      "return": "void",
+      "doc": "Changes the value of bSingleSampleShadowFromStationaryLights.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewSingleSampleShadowFromStationaryLights",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStaticWhenNotMoveable",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInStaticWhenNotMoveable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTranslucencySortDistanceOffset",
+      "return": "void",
+      "doc": "Changes the value of TranslucencySortDistanceOffset.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTranslucencySortDistanceOffset",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTranslucentSortPriority",
+      "return": "void",
+      "doc": "Changes the value of TranslucentSortPriority.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTranslucentSortPriority",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetUpdateKinematicFromSimulation",
+      "return": "void",
+      "doc": "Enables/disables whether this component should be updated by simulation when it is kinematic. This is needed if (for example) its velocity needs to be accessed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bUpdateKinematicFromSimulation",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetUseCCD",
+      "return": "void",
+      "doc": "Set whether this component should use Continuous Collision Detection",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InUseCCD",
+          "type": "bool"
+        },
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetVectorParameterForCustomPrimitiveData",
+      "return": "void",
+      "doc": "Set a vector parameter for custom primitive data. This sets the run-time data only, so it doesn't serialize.\n@param       ParameterName   The parameter name of the custom primitive\n@param       Value                   The new value of the custom primitive",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "FVector4"
+        }
+      ]
+    },
+    {
+      "name": "SetVectorParameterForDefaultCustomPrimitiveData",
+      "return": "void",
+      "doc": "Set a vector parameter for default custom primitive data. This will be serialized and is useful in construction scripts.\n@param       ParameterName   The parameter name of the custom primitive\n@param       Value                   The new value of the custom primitive",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "FVector4"
+        }
+      ]
+    },
+    {
+      "name": "SetVisibleInRayTracing",
+      "return": "void",
+      "doc": "Changes the value of bIsVisibleInRayTracing.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewVisibleInRayTracing",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetVisibleInSceneCaptureOnly",
+      "return": "void",
+      "doc": "Sets bVisibleInSceneCaptureOnly property and marks the render state dirty.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWalkableSlopeOverride",
+      "return": "void",
+      "doc": "Sets a new slope override for this component instance.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewOverride",
+          "type": "FWalkableSlopeOverride"
+        }
+      ]
+    },
+    {
+      "name": "WakeAllRigidBodies",
+      "return": "void",
+      "doc": "Ensure simulation is running for all bodies in this component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "WakeRigidBody",
+      "return": "void",
+      "doc": "'Wake' physics simulation for a single body.\n@param  BoneName        If a SkeletalMeshComponent, name of body to wake. 'None' indicates root body.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "WasRecentlyRendered",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this component has been rendered \"recently\", with a tolerance in seconds to define what \"recent\" means.\ne.g.: If a tolerance of 0.1 is used, this function will return true only if the actor was rendered in the last 0.1 seconds of game time.\n\n@param Tolerance  How many seconds ago the actor last render time can be and still count as having been \"recently\" rendered.\n@return Whether this actor was recently rendered.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "0.200000",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

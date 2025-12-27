@@ -1,0 +1,128 @@
+{
+  "name": "TSoftObjectPtr",
+  "subtypes": [
+    "T"
+  ],
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "ToSoftObjectPath",
+      "return": "FSoftObjectPath",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetLongPackageName",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetAssetName",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsPending",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsNull",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "opAssign",
+      "return": "TSoftObjectPtr<T>&",
+      "args": [
+        {
+          "name": "Path",
+          "type": "FSoftObjectPath"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "TSoftObjectPtr<T>&",
+      "args": [
+        {
+          "name": "Object",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "TSoftObjectPtr<T>&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TSoftObjectPtr<T>"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "TSoftObjectPtr<T>"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Object",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "Get",
+      "return": "T",
+      "const": true,
+      "doc": "Returns the object selected at the specified path.\nIf the object is not loaded, returns nullptr.",
+      "args": []
+    },
+    {
+      "name": "LoadAsync",
+      "return": "void",
+      "const": true,
+      "doc": "Asynchronously loads the package that contains the referenced object.\nDelegate may be called immediately if object is already loaded.",
+      "args": [
+        {
+          "name": "OnLoaded",
+          "type": "FOnSoftObjectLoaded"
+        }
+      ]
+    }
+  ]
+}

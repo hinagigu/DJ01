@@ -1,0 +1,38 @@
+{
+  "name": "UDataRegistry",
+  "inherits": "UObject",
+  "doc": "Defines a place to efficiently store and retrieve structure data, can be used as a wrapper around Data/Curve Tables or extended with other sources",
+  "properties": {
+    "RegistryType": [
+      "FName",
+      2,
+      "Globally unique name used to identify this registry"
+    ],
+    "IdFormat": [
+      "FDataRegistryIdFormat",
+      2,
+      "Rules for specifying valid item Ids, if default than any name can be used"
+    ],
+    "ItemStruct": [
+      "const UScriptStruct",
+      2,
+      "Structure type of all for items in this registry"
+    ],
+    "DataSources": [
+      "TArray<TObjectPtr<UDataRegistrySource>>",
+      2,
+      "List of data sources to search for items"
+    ],
+    "TimerUpdateFrequency": [
+      "float32",
+      2,
+      "How often to check for cache updates"
+    ],
+    "DefaultCachePolicy": [
+      "FDataRegistryCachePolicy",
+      2,
+      "Editor-set cache policy"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,54 @@
+{
+  "name": "FInputDeviceState",
+  "isStruct": true,
+  "doc": "Current state of physical input devices at a point in time.\nAssumption is that the state refers to a single physical input device,\nie InputDevice field is a single value of EInputDevices and not a combination.",
+  "properties": {
+    "InputDevice": [
+      "EInputDevices",
+      1,
+      "Which InputDevice member is valid in this state"
+    ],
+    "bShiftKeyDown": [
+      "bool",
+      1,
+      "Is they keyboard SHIFT modifier key currently pressed down"
+    ],
+    "bAltKeyDown": [
+      "bool",
+      1,
+      "Is they keyboard ALT modifier key currently pressed down"
+    ],
+    "bCtrlKeyDown": [
+      "bool",
+      1,
+      "Is they keyboard CTRL modifier key currently pressed down"
+    ],
+    "bCmdKeyDown": [
+      "bool",
+      1,
+      "Is they keyboard CMD modifier key currently pressed down (only on Apple devices)"
+    ],
+    "Keyboard": [
+      "FKeyboardInputDeviceState",
+      1,
+      "Current state of Keyboard device, if InputDevice == EInputDevices::Keyboard"
+    ],
+    "Mouse": [
+      "FMouseInputDeviceState",
+      1,
+      "Current state of Mouse device, if InputDevice == EInputDevices::Mouse"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInputDeviceState&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInputDeviceState"
+        }
+      ]
+    }
+  ]
+}

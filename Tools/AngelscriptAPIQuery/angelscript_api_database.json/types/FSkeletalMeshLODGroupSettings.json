@@ -1,0 +1,68 @@
+{
+  "name": "FSkeletalMeshLODGroupSettings",
+  "isStruct": true,
+  "properties": {
+    "ScreenSize": [
+      "FPerPlatformFloat",
+      2,
+      "The screen sizes to use for the respective LOD level"
+    ],
+    "LODHysteresis": [
+      "float32",
+      2,
+      "Used to avoid 'flickering' when on LOD boundary. Only taken into account when moving from complex->simple."
+    ],
+    "BoneFilterActionOption": [
+      "EBoneFilterActionOption",
+      2,
+      "Bones which should be removed from the skeleton for the LOD level"
+    ],
+    "BoneList": [
+      "TArray<FBoneFilter>",
+      2,
+      "Bones which should be removed from the skeleton for the LOD level"
+    ],
+    "BonesToPrioritize": [
+      "TArray<FName>",
+      2,
+      "Bones which should be prioritized for the quality, this will be weighted toward keeping source data. Use WeightOfPrioritization to control the value."
+    ],
+    "SectionsToPrioritize": [
+      "TArray<int>",
+      2,
+      "Sections which should be prioritized for the quality, this will be weighted toward keeping source data. Use WeightOfPrioritization to control the value."
+    ],
+    "WeightOfPrioritization": [
+      "float32",
+      2,
+      "How much to consideration to give BonesToPrioritize and SectionsToPrioritize.  The weight is an additional vertex simplification penalty where 0 means nothing."
+    ],
+    "BakePose": [
+      "UAnimSequence",
+      2,
+      "Pose which should be used to reskin vertex influences for which the bones will be removed in this LOD level, uses ref-pose by default"
+    ],
+    "ReductionSettings": [
+      "FSkeletalMeshOptimizationSettings",
+      2,
+      "The optimization settings to use for the respective LOD level"
+    ],
+    "bAllowMeshDeformer": [
+      "bool",
+      2,
+      "Whether a Mesh Deformer applied to the mesh asset or Skinned Mesh Component should be used on this LOD or not"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSkeletalMeshLODGroupSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSkeletalMeshLODGroupSettings"
+        }
+      ]
+    }
+  ]
+}

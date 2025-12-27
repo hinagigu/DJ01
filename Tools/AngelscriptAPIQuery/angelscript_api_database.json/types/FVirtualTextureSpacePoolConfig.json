@@ -1,0 +1,59 @@
+{
+  "name": "FVirtualTextureSpacePoolConfig",
+  "isStruct": true,
+  "doc": "Settings for a single virtual texture physical pool.",
+  "properties": {
+    "Formats": [
+      "TArray<EPixelFormat>",
+      2,
+      "Formats of the layers in the physical pool. Leave empty to match any format."
+    ],
+    "MinTileSize": [
+      "int",
+      2,
+      "Minimum tile size to match (including tile border)."
+    ],
+    "MaxTileSize": [
+      "int",
+      2,
+      "Maximum tile size to match (including tile border). Set to 0 to match any tile size."
+    ],
+    "SizeInMegabyte": [
+      "int",
+      2,
+      "Upper limit size in megabytes to allocate for the pool. The allocator will allocate as close as possible below this limit."
+    ],
+    "bEnableResidencyMipMapBias": [
+      "bool",
+      2,
+      "Enable MipMapBias based on pool residency tracking."
+    ],
+    "bAllowSizeScale": [
+      "bool",
+      2,
+      "Allow the size to allocate for the pool to be scaled by scalability settings."
+    ],
+    "MinScaledSizeInMegabyte": [
+      "int",
+      2,
+      "Lower limit of size in megabytes to allocate for the pool after size scaling."
+    ],
+    "MaxScaledSizeInMegabyte": [
+      "int",
+      2,
+      "Upper limit of size in megabytes to allocate for the pool after size scaling. Set to 0 to ignore."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FVirtualTextureSpacePoolConfig&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVirtualTextureSpacePoolConfig"
+        }
+      ]
+    }
+  ]
+}

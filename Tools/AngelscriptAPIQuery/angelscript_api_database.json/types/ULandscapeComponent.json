@@ -1,0 +1,144 @@
+{
+  "name": "ULandscapeComponent",
+  "inherits": "UPrimitiveComponent",
+  "properties": {
+    "SectionBaseX": [
+      "int",
+      1,
+      "X offset from global components grid origin (in quads)"
+    ],
+    "SectionBaseY": [
+      "int",
+      1,
+      "Y offset from global components grid origin (in quads)"
+    ],
+    "OverrideMaterial": [
+      "UMaterialInterface"
+    ],
+    "OverrideHoleMaterial": [
+      "UMaterialInterface"
+    ],
+    "PerLODOverrideMaterials": [
+      "TArray<FLandscapePerLODMaterialOverride>",
+      2,
+      ""
+    ],
+    "CollisionMipLevel": [
+      "int",
+      2,
+      "Heightfield mipmap used to generate collision"
+    ],
+    "SimpleCollisionMipLevel": [
+      "int",
+      2,
+      "Heightfield mipmap used to generate simple collision"
+    ],
+    "NegativeZBoundsExtension": [
+      "float32",
+      2,
+      "Allows overriding the landscape bounds. This is useful if you distort the landscape with world-position-offset, for example\nExtension value in the negative Z axis, positive value increases bound size"
+    ],
+    "PositiveZBoundsExtension": [
+      "float32",
+      2,
+      "Allows overriding the landscape bounds. This is useful if you distort the landscape with world-position-offset, for example\nExtension value in the positive Z axis, positive value increases bound size"
+    ],
+    "StaticLightingResolution": [
+      "float32",
+      2,
+      "StaticLightingResolution overriding per component, default value 0 means no overriding"
+    ],
+    "LightingLODBias": [
+      "int",
+      2,
+      "LOD level Bias to use when lighting building via lightmass, -1 Means automatic LOD calculation based on ForcedLOD + LODBias"
+    ],
+    "LayerAllowList": [
+      "TArray<TObjectPtr<ULandscapeLayerInfoObject>>",
+      2,
+      "List of layers allowed to be painted on this component"
+    ],
+    "ForcedLOD": [
+      "int",
+      "Forced LOD level to use when rendering"
+    ],
+    "LODBias": [
+      "int",
+      "LOD level Bias to use when rendering"
+    ]
+  },
+  "methods": [
+    {
+      "name": "EditorGetPaintLayerWeightAtLocation",
+      "return": "float32",
+      "doc": "Gets the landscape paint layer weight value at the given position using LandscapeLayerInfo . Returns 0 in case it fails.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "PaintLayer",
+          "type": "ULandscapeLayerInfoObject"
+        }
+      ]
+    },
+    {
+      "name": "EditorGetPaintLayerWeightByNameAtLocation",
+      "return": "float32",
+      "doc": "Gets the landscape paint layer weight value at the given position using layer name. Returns 0 in case it fails.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "InPaintLayerName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMaterialInstanceDynamic",
+      "return": "UMaterialInstanceDynamic",
+      "const": true,
+      "doc": "Gets the landscape material instance dynamic for this component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetForcedLOD",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InForcedLOD",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetLODBias",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLODBias",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

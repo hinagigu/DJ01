@@ -1,0 +1,116 @@
+{
+  "name": "FGuid",
+  "isStruct": true,
+  "doc": "A globally unique identifier (mirrored from Guid.h)",
+  "properties": {
+    "A": [
+      "int",
+      2,
+      ""
+    ],
+    "B": [
+      "int",
+      2,
+      ""
+    ],
+    "C": [
+      "int",
+      2,
+      ""
+    ],
+    "D": [
+      "int",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGuid"
+        }
+      ]
+    },
+    {
+      "name": "opCmp",
+      "return": "int",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGuid"
+        }
+      ]
+    },
+    {
+      "name": "opIndex",
+      "return": "uint&",
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "opIndex",
+      "return": "uint",
+      "const": true,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Invalidate",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": [
+        {
+          "name": "Format",
+          "type": "EGuidFormats"
+        }
+      ]
+    },
+    {
+      "name": "GetTypeHash",
+      "return": "uint",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "opAssign",
+      "return": "FGuid&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGuid"
+        }
+      ]
+    }
+  ]
+}

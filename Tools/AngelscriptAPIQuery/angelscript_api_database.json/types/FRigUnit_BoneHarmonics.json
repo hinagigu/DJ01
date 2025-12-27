@@ -1,0 +1,61 @@
+{
+  "name": "FRigUnit_BoneHarmonics",
+  "isStruct": true,
+  "doc": "Performs point based simulation",
+  "properties": {
+    "Bones": [
+      "TArray<FRigUnit_BoneHarmonics_BoneTarget>",
+      1,
+      "The bones to drive."
+    ],
+    "WaveSpeed": [
+      "FVector"
+    ],
+    "WaveFrequency": [
+      "FVector"
+    ],
+    "WaveAmplitude": [
+      "FVector",
+      "The amplitude in degrees per axis"
+    ],
+    "WaveOffset": [
+      "FVector"
+    ],
+    "WaveNoise": [
+      "FVector"
+    ],
+    "WaveEase": [
+      "ERigVMAnimEasingType"
+    ],
+    "WaveMinimum": [
+      "float32"
+    ],
+    "WaveMaximum": [
+      "float32"
+    ],
+    "RotationOrder": [
+      "EEulerRotationOrder"
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      1,
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_BoneHarmonics&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_BoneHarmonics"
+        }
+      ]
+    }
+  ]
+}

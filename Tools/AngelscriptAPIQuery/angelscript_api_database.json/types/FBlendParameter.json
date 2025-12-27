@@ -1,0 +1,48 @@
+{
+  "name": "FBlendParameter",
+  "isStruct": true,
+  "properties": {
+    "DisplayName": [
+      "FString",
+      2,
+      ""
+    ],
+    "Min": [
+      "float32",
+      2,
+      "Minimum value for this axis range."
+    ],
+    "Max": [
+      "float32",
+      2,
+      "Maximum value for this axis range."
+    ],
+    "GridNum": [
+      "int",
+      2,
+      "The number of grid divisions along this axis."
+    ],
+    "bSnapToGrid": [
+      "bool",
+      2,
+      "If true then samples will always be snapped to the grid on this axis when added, moved, or the axes are changed."
+    ],
+    "bWrapInput": [
+      "bool",
+      2,
+      "If true then the input can go outside the min/max range and the blend space is treated as being cyclic on this axis. If false then input parameters are clamped to the min/max values on this axis."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FBlendParameter&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBlendParameter"
+        }
+      ]
+    }
+  ]
+}

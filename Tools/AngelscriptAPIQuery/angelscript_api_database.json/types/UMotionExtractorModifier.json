@@ -1,0 +1,65 @@
+{
+  "name": "UMotionExtractorModifier",
+  "inherits": "UAnimationModifier",
+  "doc": "Extracts motion from a bone in the animation and bakes it into a curve",
+  "properties": {
+    "BoneName": [
+      "FName",
+      "Bone we are going to generate the curve from"
+    ],
+    "RelativeToBoneName": [
+      "FName",
+      "Bone which we'll use as the reference frame to generate this curve from. Space must be RelativeToBone to use this."
+    ],
+    "MotionType": [
+      "EMotionExtractor_MotionType",
+      "Type of motion to extract"
+    ],
+    "Axis": [
+      "EMotionExtractor_Axis",
+      "Axis to get the value from"
+    ],
+    "bRemoveCurveOnRevert": [
+      "bool",
+      "Whether we want to remove the curve when we revert or re-apply modifier\n              Disabling this allows you to modify settings and create a new curve each time you re-apply the modifier\n              Enabling this is the preferred setting when using a modifier that's applied in bulk and you may want to remove/rename curves"
+    ],
+    "bRelativeToFirstFrame": [
+      "bool",
+      "Whether to extract the bone transforms relative to the first frame in the animation"
+    ],
+    "Space": [
+      "EMotionExtractor_Space",
+      "Reference frame/space to use when extracting the bone pose."
+    ],
+    "bAbsoluteValue": [
+      "bool",
+      "Whether to convert the final value to absolute (positive)"
+    ],
+    "MathOperation": [
+      "EMotionExtractor_MathOperation",
+      "Optional math operation to apply on the extracted value before add it to the generated curve"
+    ],
+    "Modifier": [
+      "float32",
+      "Right operand for the math operation selected"
+    ],
+    "bNormalize": [
+      "bool",
+      "Whether we want a normalized value (0 - 1)"
+    ],
+    "SampleRate": [
+      "int",
+      2,
+      "Rate used to sample the animation"
+    ],
+    "bUseCustomCurveName": [
+      "bool",
+      "Whether we want to specify a custom name for the curve. If false, the name of the curve will be auto generated based on the data we are going to extract"
+    ],
+    "CustomCurveName": [
+      "FName",
+      "Custom name for the curve we are going to generate."
+    ]
+  },
+  "methods": []
+}

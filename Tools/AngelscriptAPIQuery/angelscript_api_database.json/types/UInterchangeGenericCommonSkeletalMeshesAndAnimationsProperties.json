@@ -1,0 +1,27 @@
+{
+  "name": "UInterchangeGenericCommonSkeletalMeshesAndAnimationsProperties",
+  "inherits": "UInterchangePipelineBase",
+  "properties": {
+    "bImportOnlyAnimations": [
+      "bool",
+      "If enabled, only animations are imported from the source. You must also set a valid skeleton."
+    ],
+    "Skeleton": [
+      "TWeakObjectPtr<USkeleton>",
+      "Skeleton to use for imported asset. When importing a skeletal mesh, leaving this as \"None\" will create a new skeleton. When importing an animation, this must be specified."
+    ],
+    "bImportMeshesInBoneHierarchy": [
+      "bool",
+      "If enabled, meshes nested in bone hierarchies will be imported as meshes instead of being converted to bones. If the meshes are not skinned, they are\nadded to the skeletal mesh and removed from the list of static meshes."
+    ],
+    "bUseT0AsRefPose": [
+      "bool",
+      "If enabled, frame 0 is used as the reference pose for skeletal meshes."
+    ],
+    "bConvertStaticsWithMorphTargetsToSkeletals": [
+      "bool",
+      "If enabled, all static meshes that have morph targets will be imported as skeletal meshes instead."
+    ]
+  },
+  "methods": []
+}

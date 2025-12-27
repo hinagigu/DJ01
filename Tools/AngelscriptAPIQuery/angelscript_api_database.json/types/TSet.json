@@ -1,0 +1,110 @@
+{
+  "name": "TSet",
+  "subtypes": [
+    "T"
+  ],
+  "isStruct": true,
+  "properties": {},
+  "methods": [
+    {
+      "name": "Add",
+      "return": "void",
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "void",
+      "args": [
+        {
+          "name": "Array",
+          "type": "TArray<T>"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "void",
+      "args": [
+        {
+          "name": "Set",
+          "type": "TSet<T>"
+        }
+      ]
+    },
+    {
+      "name": "Contains",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "Remove",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Value",
+          "type": "T"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "TSet<T>&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TSet<T>"
+        }
+      ]
+    },
+    {
+      "name": "Empty",
+      "return": "void",
+      "args": [
+        {
+          "name": "Slack",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "Num",
+      "return": "int",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsEmpty",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Iterator",
+      "return": "TSetIterator<T>",
+      "args": []
+    },
+    {
+      "name": "Iterator",
+      "return": "TSetConstIterator<T>",
+      "const": true,
+      "args": []
+    }
+  ]
+}

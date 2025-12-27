@@ -1,0 +1,288 @@
+{
+  "name": "UNiagaraDataChannelWriter",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "InitWrite",
+      "return": "bool",
+      "doc": "Call before each batch of writes to allocate the data we'll be writing to.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SearchParams",
+          "type": "FNiagaraDataChannelSearchParameters"
+        },
+        {
+          "name": "Count",
+          "type": "int"
+        },
+        {
+          "name": "bVisibleToGame",
+          "type": "bool"
+        },
+        {
+          "name": "bVisibleToCPU",
+          "type": "bool"
+        },
+        {
+          "name": "bVisibleToGPU",
+          "type": "bool"
+        },
+        {
+          "name": "DebugSource",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Num",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "WriteBool",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "WriteEnum",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "WriteFloat",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "WriteID",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "FNiagaraID"
+        }
+      ]
+    },
+    {
+      "name": "WriteInt",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "WriteLinearColor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "WritePosition",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "WriteQuat",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "FQuat"
+        }
+      ]
+    },
+    {
+      "name": "WriteSpawnInfo",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "FNiagaraSpawnInfo"
+        }
+      ]
+    },
+    {
+      "name": "WriteVector",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "WriteVector2D",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "WriteVector4",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VarName",
+          "type": "FName"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "InData",
+          "type": "FVector4"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,358 @@
+{
+  "name": "URadialSlider",
+  "inherits": "UWidget",
+  "doc": "A simple widget that shows a sliding bar with a handle that allows you to control the value between 0..1.\n\n* No Children",
+  "properties": {
+    "bUseCustomDefaultValue": [
+      "bool",
+      2,
+      "Whether the slider should draw it's progress bar from a custom value on the slider"
+    ],
+    "WidgetStyle": [
+      "FSliderStyle",
+      "The progress bar style"
+    ],
+    "MouseUsesStep": [
+      "bool",
+      "Sets new value if mouse position is greater/less than half the step size."
+    ],
+    "RequiresControllerLock": [
+      "bool",
+      "Sets whether we have to lock input to change the slider value."
+    ],
+    "IsFocusable": [
+      "bool",
+      "Should the slider be focusable?"
+    ],
+    "OnMouseCaptureBegin": [
+      "FOnMouseCaptureBeginEvent",
+      "Invoked when the mouse is pressed and a capture begins."
+    ],
+    "OnMouseCaptureEnd": [
+      "FOnMouseCaptureEndEvent",
+      "Invoked when the mouse is released and a capture ends."
+    ],
+    "OnControllerCaptureBegin": [
+      "FOnControllerCaptureBeginEvent",
+      "Invoked when the controller capture begins."
+    ],
+    "OnControllerCaptureEnd": [
+      "FOnControllerCaptureEndEvent",
+      "Invoked when the controller capture ends."
+    ],
+    "OnValueChanged": [
+      "FOnFloatValueChangedEvent",
+      "Called when the value is changed by slider or typing."
+    ],
+    "SliderRange": [
+      "FRuntimeFloatCurve",
+      "A curve that defines how the slider should be sampled. Default is linear."
+    ],
+    "ValueTags": [
+      "TArray<float32>",
+      "Adds text tags to the radial slider at the value's position."
+    ],
+    "SliderHandleStartAngle": [
+      "float32",
+      "The angle at which the Slider Handle will start."
+    ],
+    "SliderHandleEndAngle": [
+      "float32",
+      "The angle at which the Slider Handle will end."
+    ],
+    "AngularOffset": [
+      "float32",
+      "Rotates radial slider by arbitrary offset to support full gamut of configurations."
+    ],
+    "HandStartEndRatio": [
+      "FVector2D",
+      "Start and end of the hand as a ratio to the slider radius (so 0.0 to 1.0 is from the slider center to the handle)."
+    ],
+    "SliderBarColor": [
+      "FLinearColor",
+      "The color to draw the slider bar in."
+    ],
+    "SliderProgressColor": [
+      "FLinearColor",
+      "The color to draw the completed progress of the slider bar in."
+    ],
+    "SliderHandleColor": [
+      "FLinearColor",
+      "The color to draw the slider handle in."
+    ],
+    "CenterBackgroundColor": [
+      "FLinearColor",
+      "The color to draw the center background in."
+    ],
+    "Locked": [
+      "bool",
+      "Whether the handle is interactive or fixed."
+    ],
+    "StepSize": [
+      "float32",
+      "The amount to adjust the value by, when using a controller or keyboard"
+    ],
+    "UseVerticalDrag": [
+      "bool",
+      "Whether the value is changed when dragging vertically as opposed to along the radial curve."
+    ],
+    "ShowSliderHandle": [
+      "bool",
+      "Whether to show the slider handle (thumb)."
+    ],
+    "ShowSliderHand": [
+      "bool",
+      "Whether to show the slider hand."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCustomDefaultValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current custom default value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNormalizedSliderHandlePosition",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the current raw slider alpha from 0 to 1",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAngularOffset",
+      "return": "void",
+      "doc": "Sets the Angular Offset for the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetCenterBackgroundColor",
+      "return": "void",
+      "doc": "Sets the color of the slider bar",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomDefaultValue",
+      "return": "void",
+      "doc": "Sets the current custom default value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetHandStartEndRatio",
+      "return": "void",
+      "doc": "Sets the start and end of the hand as a ratio to the slider radius (so 0.0 to 1.0 is from the slider center to the handle).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetLocked",
+      "return": "void",
+      "doc": "Sets the handle to be interactive or fixed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetShowSliderHand",
+      "return": "void",
+      "doc": "Whether to show the slider hand.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InShowSliderHand",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetShowSliderHandle",
+      "return": "void",
+      "doc": "Whether to show the slider handle (thumb).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InShowSliderHandle",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderBarColor",
+      "return": "void",
+      "doc": "Sets the color of the slider bar",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderHandleColor",
+      "return": "void",
+      "doc": "Sets the color of the handle bar",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderHandleEndAngle",
+      "return": "void",
+      "doc": "Sets the maximum angle of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderHandleStartAngle",
+      "return": "void",
+      "doc": "Sets the minimum angle of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderProgressColor",
+      "return": "void",
+      "doc": "Sets the progress color of the slider bar",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderRange",
+      "return": "void",
+      "doc": "Sets the curve for the slider range",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSliderRange",
+          "type": "FRuntimeFloatCurve"
+        }
+      ]
+    },
+    {
+      "name": "SetStepSize",
+      "return": "void",
+      "doc": "Sets the amount to adjust the value by, when using a controller or keyboard",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetUseVerticalDrag",
+      "return": "void",
+      "doc": "Set whether the value is changed when dragging vertically as opposed to along the radial curve.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InUseVerticalDrag",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetValue",
+      "return": "void",
+      "doc": "Sets the current value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetValueTags",
+      "return": "void",
+      "doc": "Adds value tags to the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValueTags",
+          "type": "TArray<float32>"
+        }
+      ]
+    }
+  ]
+}

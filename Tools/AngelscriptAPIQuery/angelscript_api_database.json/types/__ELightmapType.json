@@ -1,0 +1,23 @@
+{
+  "name": "__ELightmapType",
+  "isEnum": true,
+  "doc": "Type of lightmap that is used for primitive components",
+  "properties": {
+    "Default": [
+      "ELightmapType",
+      "Use the default based on Mobility: Surface Lightmap for Static components, Volumetric Lightmap for Movable components."
+    ],
+    "ForceSurface": [
+      "ELightmapType",
+      "Force Surface Lightmap, even if the component moves, which should otherwise change the lighting.  This is only supported on components which support surface lightmaps, like static meshes."
+    ],
+    "ForceVolumetric": [
+      "ELightmapType",
+      "Force Volumetric Lightmaps, even if the component is static and could have supported surface lightmaps.\nVolumetric Lightmaps have better directionality and no Lightmap UV seams, but are much lower resolution than Surface Lightmaps and frequently have self-occlusion and leaking problems.\nNote: Lightmass currently requires valid lightmap UVs and sufficient lightmap resolution to compute bounce lighting, even though the Volumetric Lightmap will be used at runtime."
+    ],
+    "ELightmapType_MAX": [
+      "ELightmapType"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,24 @@
+{
+  "name": "FMaterialOverrideNanite",
+  "isStruct": true,
+  "doc": "Storage for nanite material override.\nAn override material can be selected, and the override material can be used according to the current settings.\nWe handle removing the override material and its dependencies from the cook on platforms where we can determine\nthat the override material can never be used.",
+  "properties": {
+    "OverrideMaterialEditor": [
+      "UMaterialInterface",
+      2,
+      "EditorOnly version of the OverrideMaterial reference.\nThis is a hard reference, but is editoronly. We rely on -skiponlyeditoronly to avoid pulling this editoronly hard reference into the cook."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMaterialOverrideNanite&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMaterialOverrideNanite"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "name": "__ConstraintsScripting",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddConstraint",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorld",
+          "type": "UWorld"
+        },
+        {
+          "name": "InParentHandle",
+          "type": "UTransformableHandle"
+        },
+        {
+          "name": "InChildHandle",
+          "type": "UTransformableHandle"
+        },
+        {
+          "name": "InConstraint",
+          "type": "UTickableTransformConstraint"
+        },
+        {
+          "name": "bMaintainOffset",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreateFromType",
+      "return": "UTickableTransformConstraint",
+      "doc": "Create Constraint based on the specified type.\n@param InWorld World to create the constraint\n@param InType The type of constraint\n@return return The constraint object",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorld",
+          "type": "UWorld"
+        },
+        {
+          "name": "InType",
+          "type": "ETransformConstraintType"
+        }
+      ]
+    },
+    {
+      "name": "CreateTransformableComponentHandle",
+      "return": "UTransformableComponentHandle",
+      "doc": "Create the transformable handle that deals with getting and setting transforms on this scene component\n@param InWorld, the world you are in\n@param InSceneComponent World to create the constraint\n@param InSocketName Optional name of the socket to get the transform\n@return returns the handle for this scene component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorld",
+          "type": "UWorld"
+        },
+        {
+          "name": "InSceneComponent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "InSocketName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CreateTransformableHandle",
+      "return": "UTransformableHandle",
+      "doc": "Create the transformable handle that deals with getting and setting transforms on this object\n@param InWorld, the world you are in\n@param InObject World to create the constraint\n@param InAttachmentName Optional name of the attachment to get the transform. Not that this can represent a scene component's socket name or a control rig control for example.\n@return returns the handle for this scene component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorld",
+          "type": "UWorld"
+        },
+        {
+          "name": "InObject",
+          "type": "UObject"
+        },
+        {
+          "name": "InAttachmentName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetConstraintsArray",
+      "return": "TArray<UTickableConstraint>",
+      "doc": "Get a copy of the constraints in the current world\n      @param InWorld World we are in\n      @return Copy of the constraints in the level",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorld",
+          "type": "UWorld"
+        }
+      ]
+    },
+    {
+      "name": "RemoveConstraint",
+      "return": "bool",
+      "doc": "Remove constraint at specified index\n@param InWorld World to remove the constraint\n@param InIndex Index to remove from\n@return return If constraint removed correctly",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorld",
+          "type": "UWorld"
+        },
+        {
+          "name": "InIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveThisConstraint",
+      "return": "bool",
+      "doc": "Remove specified constraint\n@param InWorld World to remove the constraint\n@param InTickableConstraint Constraint to remove\n@return return If constraint removed correctly",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorld",
+          "type": "UWorld"
+        },
+        {
+          "name": "InTickableConstraint",
+          "type": "UTickableConstraint"
+        }
+      ]
+    }
+  ]
+}

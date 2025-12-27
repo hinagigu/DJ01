@@ -1,0 +1,124 @@
+{
+  "name": "UControlRigPoseAsset",
+  "inherits": "UObject",
+  "doc": "An individual Pose made of Control Rig Controls",
+  "properties": {
+    "Pose": [
+      "FControlRigControlPose"
+    ]
+  },
+  "methods": [
+    {
+      "name": "DoesMirrorMatch",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "ControlName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetControlNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentPose",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "OutPose",
+          "type": "FControlRigControlPose&"
+        }
+      ]
+    },
+    {
+      "name": "PastePose",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "bDoKey",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bDoMirror",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceControlName",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CurrentName",
+          "type": "FName"
+        },
+        {
+          "name": "NewName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SavePose",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "bUseAll",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SelectControls",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControlRig",
+          "type": "UControlRig"
+        },
+        {
+          "name": "bDoMirror",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

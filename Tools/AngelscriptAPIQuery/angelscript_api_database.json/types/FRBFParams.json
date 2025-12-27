@@ -1,0 +1,61 @@
+{
+  "name": "FRBFParams",
+  "isStruct": true,
+  "doc": "Parameters used by RBF solver",
+  "properties": {
+    "SolverType": [
+      "ERBFSolverType",
+      "Specifies the type of solver to use. The additive solver requires normalization, for the\n              most part, whereas the Interpolative solver is not as reliant on it. The interpolative\n              solver also has smoother blending, whereas the additive solver requires more targets but\n              has a more precise control over the influence of each target."
+    ],
+    "Radius": [
+      "float32",
+      "Default radius for each target."
+    ],
+    "bAutomaticRadius": [
+      "bool",
+      "Automatically pick the radius based on the average distance between targets"
+    ],
+    "Function": [
+      "ERBFFunctionType"
+    ],
+    "DistanceMethod": [
+      "ERBFDistanceMethod"
+    ],
+    "TwistAxis": [
+      "EBoneAxis",
+      "Axis to use when DistanceMethod is SwingAngle"
+    ],
+    "WeightThreshold": [
+      "float32",
+      "Weight below which we shouldn't bother returning a contribution from a target"
+    ],
+    "NormalizeMethod": [
+      "ERBFNormalizeMethod",
+      "Method to use for normalizing the weight"
+    ],
+    "MedianReference": [
+      "FVector",
+      "Rotation or position of median (used for normalization)"
+    ],
+    "MedianMin": [
+      "float32",
+      "Minimum distance used for median"
+    ],
+    "MedianMax": [
+      "float32",
+      "Maximum distance used for median"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRBFParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRBFParams"
+        }
+      ]
+    }
+  ]
+}

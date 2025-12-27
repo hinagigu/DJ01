@@ -1,0 +1,31 @@
+{
+  "name": "FRigUnit_SetControlDrivenList",
+  "isStruct": true,
+  "doc": "SetControlDrivenList is used to change the list of affected controls of an indirect control",
+  "properties": {
+    "Control": [
+      "FName",
+      "The name of the Control to set the list for"
+    ],
+    "Driven": [
+      "TArray<FRigElementKey>",
+      "The list of affected controls"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SetControlDrivenList&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SetControlDrivenList"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "UCSGMeshesToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Standard properties of the CSG operation",
+  "properties": {
+    "Operation": [
+      "ECSGOperation",
+      2,
+      "Type of Boolean operation"
+    ],
+    "bTryFixHoles": [
+      "bool",
+      2,
+      "Try to fill holes created by the Boolean operation, e.g. due to numerical errors"
+    ],
+    "bTryCollapseEdges": [
+      "bool",
+      2,
+      "Try to collapse extra edges created by the Boolean operation"
+    ],
+    "WindingThreshold": [
+      "float32",
+      2,
+      "Threshold to determine whether a triangle in one mesh is inside or outside of the other"
+    ],
+    "bShowNewBoundaries": [
+      "bool",
+      2,
+      "Show boundary edges created by the Boolean operation, which might happen due to numerical errors"
+    ],
+    "bShowSubtractedMesh": [
+      "bool",
+      2,
+      "Show a translucent version of the subtracted mesh, to help visualize geometry that is being removed"
+    ],
+    "SubtractedMeshOpacity": [
+      "float32",
+      2,
+      "Opacity of the translucent subtracted mesh"
+    ],
+    "SubtractedMeshColor": [
+      "FLinearColor",
+      2,
+      "Color of the translucent subtracted mesh"
+    ],
+    "bUseFirstMeshMaterials": [
+      "bool",
+      2,
+      "If true, only the first mesh will keep its material assignments, and all other faces will have the first material assigned"
+    ]
+  },
+  "methods": []
+}

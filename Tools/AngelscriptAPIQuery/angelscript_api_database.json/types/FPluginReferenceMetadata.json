@@ -1,0 +1,34 @@
+{
+  "name": "FPluginReferenceMetadata",
+  "isStruct": true,
+  "doc": "We use this object to display plugin reference properties using details view.",
+  "properties": {
+    "Name": [
+      "FString",
+      2,
+      "Name of the dependency plugin"
+    ],
+    "bOptional": [
+      "bool",
+      2,
+      "Whether the dependency plugin is optional meaning it will be silently ignored if not present"
+    ],
+    "bEnabled": [
+      "bool",
+      2,
+      "Whether the dependency plugin should be enabled by default"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPluginReferenceMetadata&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPluginReferenceMetadata"
+        }
+      ]
+    }
+  ]
+}

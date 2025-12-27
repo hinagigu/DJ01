@@ -1,0 +1,39 @@
+{
+  "name": "FConstraint",
+  "isStruct": true,
+  "doc": "Constraint Set up",
+  "properties": {
+    "TargetBone": [
+      "FBoneReference",
+      2,
+      "Target Bone this is constraint to"
+    ],
+    "OffsetOption": [
+      "EConstraintOffsetOption",
+      2,
+      "Maintain offset based on refpose or not.\n\nNone - no offset\nOffset_RefPose - offset is created based on reference pose\n\nIn the future, we'd like to support custom offset, not just based on ref pose"
+    ],
+    "TransformType": [
+      "ETransformConstraintType",
+      2,
+      "What transform type is constraint to - Translation, Rotation, Scale OR Parent. Parent overrides all component"
+    ],
+    "PerAxis": [
+      "FFilterOptionPerAxis",
+      2,
+      "Per axis filter options - applied in their local space not in world space"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FConstraint&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FConstraint"
+        }
+      ]
+    }
+  ]
+}

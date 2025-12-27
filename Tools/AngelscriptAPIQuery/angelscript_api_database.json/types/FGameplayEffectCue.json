@@ -1,0 +1,39 @@
+{
+  "name": "FGameplayEffectCue",
+  "isStruct": true,
+  "doc": "FGameplayEffectCue\n    This is a cosmetic cue that can be tied to a UGameplayEffect.\n This is essentially a GameplayTag + a Min/Max level range that is used to map the level of a GameplayEffect to a normalized value used by the GameplayCue system.",
+  "properties": {
+    "MagnitudeAttribute": [
+      "FGameplayAttribute",
+      2,
+      "The attribute to use as the source for cue magnitude. If none use level"
+    ],
+    "MinLevel": [
+      "float32",
+      2,
+      "The minimum level that this Cue supports"
+    ],
+    "MaxLevel": [
+      "float32",
+      2,
+      "The maximum level that this Cue supports"
+    ],
+    "GameplayCueTags": [
+      "FGameplayTagContainer",
+      2,
+      "Tags passed to the gameplay cue handler when this cue is activated"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayEffectCue&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayEffectCue"
+        }
+      ]
+    }
+  ]
+}

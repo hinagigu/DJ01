@@ -1,0 +1,72 @@
+{
+  "name": "UUserDefinedImageCaptureProtocol",
+  "inherits": "UUserDefinedCaptureProtocol",
+  "doc": "A blueprintable capture protocol tailored to capturing and exporting frames as images",
+  "properties": {
+    "Format": [
+      "EDesiredImageFormat",
+      "The image format to save as"
+    ],
+    "bEnableCompression": [
+      "bool",
+      "Whether to save images with compression or not. Not supported for bitmaps."
+    ],
+    "CompressionQuality": [
+      "int",
+      "The compression quality for the image type. For EXRs, 0 = Default ZIP compression, 1 = No compression, PNGs and JPEGs expect a value between 0 and 100"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GenerateFilenameForBuffer",
+      "return": "FString",
+      "doc": "* Generate a filename for the specified buffer using this protocol's file name formatter\n*\n* @param Buffer          The desired buffer to generate a filename for\n* @param StreamID        The ID of the stream for this buffer (e.g. a composition pass name)\n* @return A fully qualified file name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Buffer",
+          "type": "UTexture"
+        },
+        {
+          "name": "StreamID",
+          "type": "FCapturedPixelsID"
+        }
+      ]
+    },
+    {
+      "name": "GenerateFilenameForCurrentFrame",
+      "return": "FString",
+      "doc": "* Generate a filename for the current frame using this protocol's file name formatter\n*\n* @return A fully qualified file name for the current frame number",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "WriteImageToDisk",
+      "return": "void",
+      "doc": "* Generate a filename for the current frame using this protocol's file name formatter\n*\n* @return A fully qualified file name for the current frame number",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PixelData",
+          "type": "FCapturedPixels"
+        },
+        {
+          "name": "StreamID",
+          "type": "FCapturedPixelsID"
+        },
+        {
+          "name": "FrameMetrics",
+          "type": "FFrameMetrics"
+        },
+        {
+          "name": "bCopyImageData",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

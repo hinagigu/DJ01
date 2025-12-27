@@ -1,0 +1,111 @@
+{
+  "name": "UCookerSettings",
+  "inherits": "UDeveloperSettings",
+  "doc": "Various cooker settings.",
+  "properties": {
+    "bEnableCookOnTheSide": [
+      "bool",
+      2,
+      ""
+    ],
+    "bEnableBuildDDCInBackground": [
+      "bool",
+      2,
+      ""
+    ],
+    "bIterativeCookingForLaunchOn": [
+      "bool",
+      2,
+      "Enable -iterate for launch on"
+    ],
+    "bIterativeCookingForFileCookContent": [
+      "bool",
+      2,
+      "Enable -iterate when triggering from File dropdown menu"
+    ],
+    "bCookOnTheFlyForLaunchOn": [
+      "bool",
+      2,
+      "Enable -cookonthefly for launch on"
+    ],
+    "CookProgressDisplayMode": [
+      "ECookProgressDisplayMode",
+      2,
+      "Controls log output of the cooker"
+    ],
+    "bIgnoreIniSettingsOutOfDateForIteration": [
+      "bool",
+      2,
+      "Ignore ini changes when doing iterative cooking, either in editor or out of editor"
+    ],
+    "bIgnoreScriptPackagesOutOfDateForIteration": [
+      "bool",
+      2,
+      "Ignore native header file changes when doing iterative cooking, either in editor or out of editor"
+    ],
+    "bCompileBlueprintsInDevelopmentMode": [
+      "bool",
+      2,
+      "Whether or not to compile Blueprints in development mode when cooking."
+    ],
+    "BlueprintComponentDataCookingMethod": [
+      "EBlueprintComponentDataCookingMethod",
+      2,
+      "Generate optimized component data to speed up Blueprint construction at runtime. This option can increase the overall Blueprint memory usage in a cooked build. Requires Event-Driven Loading (EDL), which is enabled by default."
+    ],
+    "BlueprintPropertyGuidsCookingMethod": [
+      "EBlueprintPropertyGuidsCookingMethod",
+      2,
+      "Should we include the property GUIDs for a Blueprint class in a cooked build, so that SaveGame archives can redirect property names via the GUIDs?\n@note This option can increase the overall Blueprint memory usage in a cooked build, but can avoid needing to add CoreRedirect data for Blueprint classes stored within SaveGame archives."
+    ],
+    "ClassesExcludedOnDedicatedServer": [
+      "TArray<FString>",
+      2,
+      "List of class names to exclude when cooking for dedicated server"
+    ],
+    "ModulesExcludedOnDedicatedServer": [
+      "TArray<FString>",
+      2,
+      "List of module names to exclude when cooking for dedicated server"
+    ],
+    "ClassesExcludedOnDedicatedClient": [
+      "TArray<FString>",
+      2,
+      "List of class names to exclude when cooking for dedicated client"
+    ],
+    "ModulesExcludedOnDedicatedClient": [
+      "TArray<FString>",
+      2,
+      "List of module names to exclude when cooking for dedicated client"
+    ],
+    "VersionedIntRValues": [
+      "TArray<FString>",
+      2,
+      "List of r values that need to be versioned"
+    ],
+    "DefaultASTCQualityBySpeed": [
+      "int",
+      2,
+      "Quality of 0 means fastest, 3 means best quality"
+    ],
+    "DefaultASTCQualityBySize": [
+      "int",
+      2,
+      "Quality of 0 means smallest (12x12 block size), 4 means best (4x4 block size)"
+    ],
+    "DefaultASTCCompressor": [
+      "ETextureFormatASTCCompressor",
+      2,
+      "which compressor to use for ASTC textures"
+    ],
+    "bAllowASTCHDRProfile": [
+      "bool",
+      "whether to allow ASTC HDR profile using Arm encoder, the hdr format is only supported on some devices, e.g. Apple A13, Mali-G72, Adreno (TM) 660"
+    ],
+    "bAllowCookedDataInEditorBuilds": [
+      "bool",
+      "If true, the editor will be able to open cooked assets (limited to a subset of supported asset types)."
+    ]
+  },
+  "methods": []
+}

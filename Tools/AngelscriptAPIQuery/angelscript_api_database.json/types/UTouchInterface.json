@@ -1,0 +1,48 @@
+{
+  "name": "UTouchInterface",
+  "inherits": "UObject",
+  "doc": "Defines an interface by which touch input can be controlled using any number of buttons and virtual joysticks",
+  "properties": {
+    "Controls": [
+      "TArray<FTouchInputControl>",
+      2,
+      ""
+    ],
+    "ActiveOpacity": [
+      "float32",
+      2,
+      "Opacity (0.0 - 1.0) of all controls while any control is active"
+    ],
+    "InactiveOpacity": [
+      "float32",
+      2,
+      "Opacity (0.0 - 1.0) of all controls while no controls are active"
+    ],
+    "TimeUntilDeactive": [
+      "float32",
+      2,
+      "How long after user interaction will all controls fade out to Inactive Opacity"
+    ],
+    "TimeUntilReset": [
+      "float32",
+      2,
+      "How long after going inactive will controls reset/recenter themselves (0.0 will disable this feature)"
+    ],
+    "ActivationDelay": [
+      "float32",
+      2,
+      "How long after joystick enabled for touch (0.0 will disable this feature)"
+    ],
+    "bPreventRecenter": [
+      "bool",
+      2,
+      "Prevent joystick re-centering and moving from Center through user taps"
+    ],
+    "StartupDelay": [
+      "float32",
+      2,
+      "Delay at startup before virtual joystick is drawn"
+    ]
+  },
+  "methods": []
+}

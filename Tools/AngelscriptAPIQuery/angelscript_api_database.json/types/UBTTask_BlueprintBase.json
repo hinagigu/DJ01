@@ -1,0 +1,201 @@
+{
+  "name": "UBTTask_BlueprintBase",
+  "inherits": "UBTTaskNode",
+  "doc": "Base class for blueprint based task nodes. Do NOT use it for creating native c++ classes!\n\nWhen task receives Abort event, all latent actions associated this instance are being removed.\nThis prevents from resuming activity started by Execute, but does not handle external events.\nPlease use them safely (unregister at abort) and call IsTaskExecuting() when in doubt.",
+  "properties": {
+    "TickInterval": [
+      "FIntervalCountdown",
+      2,
+      "If any of the Tick functions is implemented, how often should they be ticked.\n    Values < 0 mean 'every tick'."
+    ],
+    "CustomDescription": [
+      "FString"
+    ],
+    "bShowPropertyDetails": [
+      "bool",
+      "show detailed information about properties"
+    ]
+  },
+  "methods": [
+    {
+      "name": "FinishAbort",
+      "return": "void",
+      "doc": "aborts task execution",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FinishExecute",
+      "return": "void",
+      "doc": "finishes task execution with Success or Fail result",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSuccess",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "IsTaskAborting",
+      "return": "bool",
+      "const": true,
+      "doc": "check if task is currently being aborted",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsTaskExecuting",
+      "return": "bool",
+      "const": true,
+      "doc": "check if task is currently being executed",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Abort",
+      "return": "void",
+      "callable": false,
+      "doc": "if blueprint graph contains this event, task will stay active until FinishAbort is called\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveAbort",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "AbortAI",
+      "return": "void",
+      "callable": false,
+      "doc": "Alternative AI version of ReceiveAbort\n    @see ReceiveAbort for more details\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveAbortAI",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerController",
+          "type": "AAIController"
+        },
+        {
+          "name": "ControlledPawn",
+          "type": "APawn"
+        }
+      ]
+    },
+    {
+      "name": "Execute",
+      "return": "void",
+      "callable": false,
+      "doc": "entry point, task will stay active until FinishExecute is called.\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveExecute",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "ExecuteAI",
+      "return": "void",
+      "callable": false,
+      "doc": "Alternative AI version of ReceiveExecute\n     @see ReceiveExecute for more details\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveExecuteAI",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerController",
+          "type": "AAIController"
+        },
+        {
+          "name": "ControlledPawn",
+          "type": "APawn"
+        }
+      ]
+    },
+    {
+      "name": "Tick",
+      "return": "void",
+      "callable": false,
+      "doc": "tick function\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveTick",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerActor",
+          "type": "AActor"
+        },
+        {
+          "name": "DeltaSeconds",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "TickAI",
+      "return": "void",
+      "callable": false,
+      "doc": "Alternative AI version of tick function.\n    @see ReceiveTick for more details\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveTickAI",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerController",
+          "type": "AAIController"
+        },
+        {
+          "name": "ControlledPawn",
+          "type": "APawn"
+        },
+        {
+          "name": "DeltaSeconds",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetFinishOnMessage",
+      "return": "void",
+      "doc": "task execution will be finished (with result 'Success') after receiving specified message",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MessageName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetFinishOnMessageWithId",
+      "return": "void",
+      "doc": "task execution will be finished (with result 'Success') after receiving specified message with indicated ID",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MessageName",
+          "type": "FName"
+        },
+        {
+          "name": "RequestID",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

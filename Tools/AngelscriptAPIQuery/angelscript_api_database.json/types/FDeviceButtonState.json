@@ -1,0 +1,39 @@
+{
+  "name": "FDeviceButtonState",
+  "isStruct": true,
+  "doc": "Current State of a physical device button (mouse, key, etc) at a point in time.\nEach \"click\" of a button should involve at minimum two separate state\nevents, one where bPressed=true and one where bReleased=true.\nEach of these states should occur only once.\nIn addition there may be additional frames where the button is\nheld down and bDown=true and bPressed=false.",
+  "properties": {
+    "Button": [
+      "FKey",
+      1,
+      "Button identifier"
+    ],
+    "bPressed": [
+      "bool",
+      1,
+      "Was the button pressed down this frame. This should happen once per \"click\""
+    ],
+    "bDown": [
+      "bool",
+      1,
+      "Is the button currently pressed down. This should be true every frame the button is pressed."
+    ],
+    "bReleased": [
+      "bool",
+      1,
+      "Was the button released this frame. This should happen once per \"click\""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDeviceButtonState&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDeviceButtonState"
+        }
+      ]
+    }
+  ]
+}

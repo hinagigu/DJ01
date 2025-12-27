@@ -1,0 +1,68 @@
+{
+  "name": "ASpectatorBeaconClient",
+  "inherits": "AOnlineBeaconClient",
+  "doc": "A beacon client used for making reservations with an existing game session",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ClientCancelReservationResponse",
+      "return": "void",
+      "callable": false,
+      "doc": "Response from the host session after making a cancellation request\n\n@param ReservationResponse response from server",
+      "meta": null,
+      "args": [
+        {
+          "name": "ReservationResponse",
+          "type": "ESpectatorReservationResult"
+        }
+      ]
+    },
+    {
+      "name": "ClientReservationResponse",
+      "return": "void",
+      "callable": false,
+      "doc": "Response from the host session after making a reservation request\n\n@param ReservationResponse response from server",
+      "meta": null,
+      "args": [
+        {
+          "name": "ReservationResponse",
+          "type": "ESpectatorReservationResult"
+        }
+      ]
+    },
+    {
+      "name": "ClientSendReservationFull",
+      "return": "void",
+      "callable": false,
+      "doc": "Response from the host session that the reservation is full",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientSendReservationUpdates",
+      "return": "void",
+      "callable": false,
+      "doc": "Response from the host session that the reservation count has changed\n\n@param NumRemainingReservations number of slots remaining until a full session",
+      "meta": null,
+      "args": [
+        {
+          "name": "NumRemainingReservations",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ServerCancelReservationRequest",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell the server to cancel a pending or existing reservation\n\n@param Spectator id of the spectator for the reservation to cancel",
+      "meta": null,
+      "args": [
+        {
+          "name": "Spectator",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    }
+  ]
+}

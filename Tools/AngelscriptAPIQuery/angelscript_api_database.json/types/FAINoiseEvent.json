@@ -1,0 +1,38 @@
+{
+  "name": "FAINoiseEvent",
+  "isStruct": true,
+  "properties": {
+    "NoiseLocation": [
+      "FVector",
+      "if not set Instigator's location will be used"
+    ],
+    "Loudness": [
+      "float32",
+      "Loudness modifier of the sound.\nIf MaxRange is non-zero, this modifies the range (by multiplication).\nIf there is no MaxRange, then if Square(DistanceToSound) <= Square(HearingRange * Loudness), the sound is heard, false otherwise."
+    ],
+    "MaxRange": [
+      "float32",
+      "Max range at which the sound can be heard. Multiplied by Loudness.\nA value of 0 indicates that there is no range limit, though listeners are still limited by their own hearing range."
+    ],
+    "Instigator": [
+      "AActor",
+      "Actor triggering the sound."
+    ],
+    "Tag": [
+      "FName",
+      "Named identifier for the noise."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAINoiseEvent&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAINoiseEvent"
+        }
+      ]
+    }
+  ]
+}

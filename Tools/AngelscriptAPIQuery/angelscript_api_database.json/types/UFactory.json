@@ -1,0 +1,78 @@
+{
+  "name": "UFactory",
+  "inherits": "UObject",
+  "doc": "Base class for all factories\nAn object responsible for creating and importing new objects.",
+  "properties": {
+    "SupportedClass": [
+      "TSubclassOf<UObject>",
+      1,
+      "The class manufactured by this factory."
+    ],
+    "ContextClass": [
+      "TSubclassOf<UObject>",
+      1,
+      "Class of the context object used to help create the object."
+    ],
+    "Formats": [
+      "TArray<FString>",
+      1,
+      "List of formats supported by the factory. Each entry is of the form \"ext;Description\" where ext is the file extension."
+    ],
+    "AutomatedImportData": [
+      "const UAutomatedAssetImportData",
+      1,
+      "Data for how to import files via the automated command line importing interface"
+    ],
+    "AssetImportTask": [
+      "UAssetImportTask",
+      1,
+      "Task for importing file via script interfaces"
+    ],
+    "bCreateNew": [
+      "bool",
+      "The default value to return from CanCreateNew()"
+    ],
+    "bEditAfterNew": [
+      "bool",
+      "true if the associated editor should be opened after creating a new object."
+    ],
+    "bEditorImport": [
+      "bool",
+      "true if the factory imports objects from files."
+    ],
+    "bText": [
+      "bool",
+      "true if the factory imports objects from text."
+    ]
+  },
+  "methods": [
+    {
+      "name": "ScriptFactoryCanImport",
+      "return": "bool",
+      "callable": false,
+      "doc": "Whether the specified file can be imported by this factory. (Implemented in script)\n\n@return true if the file is supported, false otherwise.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Filename",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ScriptFactoryCreateFile",
+      "return": "bool",
+      "callable": false,
+      "doc": "Import object(s) using a task via script\n\n@param InTask\n@return True if script implements",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTask",
+          "type": "UAssetImportTask"
+        }
+      ]
+    }
+  ]
+}

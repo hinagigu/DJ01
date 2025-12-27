@@ -1,0 +1,46 @@
+{
+  "name": "FQuartzQuantizationBoundary",
+  "isStruct": true,
+  "doc": "struct used to specify the quantization boundary of an event",
+  "properties": {
+    "Quantization": [
+      "EQuartzCommandQuantization",
+      "resolution we are interested in"
+    ],
+    "Multiplier": [
+      "float32",
+      "how many \"Resolutions\" to wait before the onset we care about"
+    ],
+    "CountingReferencePoint": [
+      "EQuarztQuantizationReference"
+    ],
+    "bFireOnClockStart": [
+      "bool",
+      "If this is true and the Clock hasn't started yet, the event will fire immediately when the Clock starts"
+    ],
+    "bCancelCommandIfClockIsNotRunning": [
+      "bool",
+      "If this is true, this command will be canceled if the Clock is stopped or otherwise not running"
+    ],
+    "bResetClockOnQueued": [
+      "bool",
+      "If this is true, queueing the sound will also call a Reset Clock command"
+    ],
+    "bResumeClockOnQueued": [
+      "bool",
+      "If this is true, queueing the sound will also call a Resume Clock command"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FQuartzQuantizationBoundary&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FQuartzQuantizationBoundary"
+        }
+      ]
+    }
+  ]
+}

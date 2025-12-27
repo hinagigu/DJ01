@@ -1,0 +1,43 @@
+{
+  "name": "UNiagaraPreviewAxis",
+  "inherits": "UObject",
+  "doc": "Base class for all preview axis types.\nNiagaraPreviewGrid uses these to control how many systems to spawn in each axis and how each system varies on that axis.\nC++ Examples are show below. You can also create these as Blueprint classes as show in the Plugin content folder.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ApplyToPreview",
+      "return": "void",
+      "callable": false,
+      "doc": "Applies this axis for the preview at PreviewIndex on this axis.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PreviewComponent",
+          "type": "UNiagaraComponent"
+        },
+        {
+          "name": "PreviewIndex",
+          "type": "int"
+        },
+        {
+          "name": "bIsXAxis",
+          "type": "bool"
+        },
+        {
+          "name": "OutLabelText",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "Num",
+      "return": "int",
+      "callable": false,
+      "doc": "Returns the number of previews for this axis.",
+      "event": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

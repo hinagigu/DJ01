@@ -1,0 +1,190 @@
+{
+  "name": "UFXSystemComponent",
+  "inherits": "UPrimitiveComponent",
+  "properties": {},
+  "methods": [
+    {
+      "name": "DeactivateImmediate",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "GetFXSystemAsset",
+      "return": "UFXSystemAsset",
+      "const": true,
+      "doc": "Get the referenced FXSystem asset.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReleaseToPool",
+      "return": "void",
+      "doc": "Deactivates this system and releases it to the pool on completion.\nUsage of this PSC reference after this call is unsafe.\nYou should clear out your references to it.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetActorParameter",
+      "return": "void",
+      "doc": "Set a named actor instance parameter on this ParticleSystemComponent.\nUpdates the parameter if it already exists, or creates a new entry if not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Param",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetAutoAttachmentParameters",
+      "return": "void",
+      "doc": "Set AutoAttachParent, AutoAttachSocketName, AutoAttachLocationRule, AutoAttachRotationRule, AutoAttachScaleRule to the specified parameters. Does not change bAutoManageAttachment; that must be set separately.\n@param  Parent                       Component to attach to.\n@param  SocketName           Socket on Parent to attach to.\n@param  LocationRule         Option for how we handle our location when we attach to Parent.\n@param  RotationRule         Option for how we handle our rotation when we attach to Parent.\n@param  ScaleRule            Option for how we handle our scale when we attach to Parent.\n@see bAutoManageAttachment, AutoAttachParent, AutoAttachSocketName, AutoAttachLocationRule, AutoAttachRotationRule, AutoAttachScaleRule",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "SocketName",
+          "type": "FName"
+        },
+        {
+          "name": "LocationRule",
+          "type": "EAttachmentRule"
+        },
+        {
+          "name": "RotationRule",
+          "type": "EAttachmentRule"
+        },
+        {
+          "name": "ScaleRule",
+          "type": "EAttachmentRule"
+        }
+      ]
+    },
+    {
+      "name": "SetBoolParameter",
+      "return": "void",
+      "doc": "Change a named boolean parameter, ParticleSystemComponent converts to float.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Param",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetColorParameter",
+      "return": "void",
+      "doc": "Set a named color instance parameter on this ParticleSystemComponent.\nUpdates the parameter if it already exists, or creates a new entry if not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Param",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetEmitterEnable",
+      "return": "void",
+      "doc": "Enables / disables an emitter by halting spawning of new particles.\nYou will still pay the cost of the emitter update.\n\n@param  EmitterName                     The name of the emitter\n@param  bNewEnableState         The value to set it to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterName",
+          "type": "FName"
+        },
+        {
+          "name": "bNewEnableState",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetFloatParameter",
+      "return": "void",
+      "doc": "Change a named float parameter",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Param",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetIntParameter",
+      "return": "void",
+      "doc": "Change a named int parameter",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Param",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetUseAutoManageAttachment",
+      "return": "void",
+      "doc": "Sets whether we should automatically attach to AutoAttachParent when activated, and detach from our parent when completed.\nThis overrides any current attachment that may be present at the time of activation (deferring initial attachment until activation, if AutoAttachParent is null).\nWhen enabled, detachment occurs regardless of whether AutoAttachParent is assigned, and the relative transform from the time of activation is restored.\nThis also disables attachment on dedicated servers, where we don't actually activate even if bAutoActivate is true.\n@see SetAutoAttachmentParameters()",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAutoManage",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetVectorParameter",
+      "return": "void",
+      "doc": "Set a named vector instance parameter on this ParticleSystemComponent.\nUpdates the parameter if it already exists, or creates a new entry if not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "Param",
+          "type": "FVector"
+        }
+      ]
+    }
+  ]
+}

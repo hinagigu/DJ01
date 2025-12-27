@@ -1,0 +1,92 @@
+{
+  "name": "UUdpMessagingSettings",
+  "inherits": "UObject",
+  "properties": {
+    "EnabledByDefault": [
+      "bool",
+      2,
+      "Whether UDP messaging is enabled by default. If false -messaging will need to be added\nto the commandline when running non-editor builds.\n\n(Note - in Shipping builds ALLOW_UDP_MESSAGING_SHIPPING=1 must also be defined in TargetRules\nfor messaging to be available with or without this setting)"
+    ],
+    "EnableTransport": [
+      "bool",
+      2,
+      "Whether the UDP transport channel is enabled.\nCan be specified on the command line with `-UDPMESSAGING_TRANSPORT_ENABLE=`"
+    ],
+    "bAutoRepair": [
+      "bool",
+      2,
+      "Whether the UDP transport channel should try to auto repair when in error."
+    ],
+    "MaxSendRate": [
+      "float32",
+      2,
+      "Maximum sustained transmission rate in Gbit / s.\n\nThe default value is 1 Gbit/s.\n\nThis is to control transmission of larger packages over the network. Without a limit, it is\npossible for packet data loss to occur because more data may be sent then may be supported\nby your network card.\n\nAdjust this value higher or lower depending on your network capacity."
+    ],
+    "AutoRepairAttemptLimit": [
+      "uint",
+      2,
+      "The number of consecutive attempt the auto repair routine will try to repair."
+    ],
+    "WorkQueueSize": [
+      "uint16",
+      2,
+      "The buffer size for the working send queues. Each node connections\ngets a send queue and new messages to send are put on that queue.  The send\nscheduler will fairly send data on this queue and re-queue when partial data is\nsent or waiting for a reliable message. Can be specified on the command line with\n`-UDPMESSAGING_WORK_QUEUE_SIZE=`"
+    ],
+    "UnicastEndpoint": [
+      "FString",
+      2,
+      "The IP endpoint to listen to and send packets from.\n\nThe format is IP_ADDRESS:PORT_NUMBER.\n0.0.0.0:0 will bind to the default network adapter on Windows,\nand all available network adapters on other operating systems.\nSpecifying an interface IP here, will use that interface for multicasting and static endpoint *might* also reach this client through <unicast ip:multicast port>\nSpecifying both the IP and Port will allow usage of static endpoint to reach this client\nCan be specified on the command line with `-UDPMESSAGING_TRANSPORT_UNICAST=`"
+    ],
+    "MulticastEndpoint": [
+      "FString",
+      2,
+      "The IP endpoint to send multicast packets to.\n\nThe format is IP_ADDRESS:PORT_NUMBER.\nThe multicast IP address must be in the range 224.0.0.0 to 239.255.255.255.\nCan be specified on the command line with `-UDPMESSAGING_TRANSPORT_MULTICAST=`"
+    ],
+    "MessageFormat": [
+      "EUdpMessageFormat",
+      2,
+      "The format used to serialize the UDP message payload."
+    ],
+    "MulticastTimeToLive": [
+      "uint8",
+      2,
+      "The time-to-live (TTL) for sent multicast packets."
+    ],
+    "StaticEndpoints": [
+      "TArray<FString>",
+      2,
+      "The IP endpoints of static devices.\n\nUse this setting to reach devices on other subnets, such as mobile phones on a WiFi network.\nThe format is IP_ADDRESS:PORT_NUMBER."
+    ],
+    "ExcludedEndpoints": [
+      "TArray<FString>",
+      2,
+      "List of IP addresses that are banned from communicating with this client. Wildcard IPv4 addresses can be specified by using '*' and '?'\ncharacters.\n\nFor example, 192.168.12.* will deny all addresses on the .12 subnet for the class C network.\nThe string 192.16?.12.10 will deny all addresses in the range 192.160.12.10-192.169.12.10.\n\nThe format is IP_ADDRESS:PORT_NUMBER.  If port number is 0 then all ports are blocked."
+    ],
+    "bShareKnownNodesWithActiveConnections": [
+      "bool",
+      2,
+      "Whether to share our list of known endpoints with those endpoints.  This allows message processors to completely mesh their networks."
+    ],
+    "EnableTunnel": [
+      "bool",
+      2,
+      "Whether the UDP tunnel is enabled."
+    ],
+    "TunnelUnicastEndpoint": [
+      "FString",
+      2,
+      "The local IP endpoint to listen to and send packets from.\n\nThe format is IP_ADDRESS:PORT_NUMBER."
+    ],
+    "TunnelMulticastEndpoint": [
+      "FString",
+      2,
+      "The IP endpoint to send multicast packets to.\n\nThe format is IP_ADDRESS:PORT_NUMBER.\nThe multicast IP address must be in the range 224.0.0.0 to 239.255.255.255."
+    ],
+    "RemoteTunnelEndpoints": [
+      "TArray<FString>",
+      2,
+      "The IP endpoints of remote tunnel nodes.\n\nUse this setting to connect to remote tunnel services.\nThe format is IP_ADDRESS:PORT_NUMBER."
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,54 @@
+{
+  "name": "FPluginTemplateData",
+  "isStruct": true,
+  "doc": "* Data for specifying a usable plugin template.\n*      -Plugin templates are a folder/file structure that are duplicated and renamed\n*       by the plugin creation wizard to easily create new plugins with a standard\n*       format.\n* See PluginUtils.h for more information.",
+  "properties": {
+    "Path": [
+      "FDirectoryPath",
+      2,
+      ""
+    ],
+    "Label": [
+      "FText",
+      2,
+      ""
+    ],
+    "Description": [
+      "FText",
+      2,
+      ""
+    ],
+    "DefaultSubfolder": [
+      "FString",
+      2,
+      "Optional sub folder that new plugins will be created in."
+    ],
+    "DefaultGameFeatureDataClass": [
+      "TSubclassOf<UGameFeatureData>",
+      2,
+      "The default class of game feature data to create for new game feature plugins (if not set, UGameFeatureData will be used)"
+    ],
+    "DefaultGameFeatureDataName": [
+      "FString",
+      2,
+      "The default name of the created game feature data assets. If empty, will use the plugin name."
+    ],
+    "bIsEnabledByDefault": [
+      "bool",
+      2,
+      "If true, the created plugin will be enabled by default without needing to be added to the project file."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPluginTemplateData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPluginTemplateData"
+        }
+      ]
+    }
+  ]
+}

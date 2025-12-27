@@ -1,0 +1,73 @@
+{
+  "name": "UMaterialParameterCollection",
+  "inherits": "UObject",
+  "doc": "Asset class that contains a list of parameter names and their default values.\nAny number of materials can reference these parameters and get new values when the parameter values are changed.",
+  "properties": {
+    "ScalarParameters": [
+      "TArray<FCollectionScalarParameter>",
+      2,
+      ""
+    ],
+    "VectorParameters": [
+      "TArray<FCollectionVectorParameter>",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetScalarParameterDefaultValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the default value of a scalar parameter from a material collection.\n@param ParameterName - The name of the value to get the value of\n@param bParameterFound - if a parameter with the input name was found\n@returns the value of the parameter",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "bParameterFound",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetScalarParameterNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Returns an array of the names of all the scalar parameters in this Material Parameter Collection *",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVectorParameterDefaultValue",
+      "return": "FLinearColor",
+      "const": true,
+      "doc": "Gets the default value of a scalar parameter from a material collection.\n@param ParameterName - The name of the value to get the value of\n@param bParameterFound - if a parameter with the input name was found\n@returns the value of the parameter",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        },
+        {
+          "name": "bParameterFound",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetVectorParameterNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Returns an array of the names of all the vector parameters in this Material Parameter Collection *",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "name": "UAvoidanceManager",
+  "inherits": "UObject",
+  "properties": {
+    "DefaultTimeToLive": [
+      "float32",
+      2,
+      "How long an avoidance UID must not be updated before the system will put it back in the pool. Actual delay is up to 150% of this value."
+    ],
+    "LockTimeAfterAvoid": [
+      "float32",
+      2,
+      "How long to stay on course (barring collision) after making an avoidance move"
+    ],
+    "LockTimeAfterClean": [
+      "float32",
+      2,
+      "How long to stay on course (barring collision) after making an unobstructed move (should be > 0.0, but can be less than a full frame)"
+    ],
+    "DeltaTimeToPredict": [
+      "float32",
+      2,
+      "This is how far forward in time (seconds) we extend our velocity cones and thus our prediction"
+    ],
+    "ArtificialRadiusExpansion": [
+      "float32",
+      2,
+      "Multiply the radius of all STORED avoidance objects by this value to allow a little extra room for avoidance maneuvers."
+    ],
+    "HeightCheckMargin": [
+      "float32",
+      2,
+      "Allowable height margin between obstacles and agents. This is over and above the difference in agent heights."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAvoidanceVelocityForComponent",
+      "return": "FVector",
+      "doc": "Calculate avoidance velocity for component (avoids collisions with the supplied component)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MovementComp",
+          "type": "UMovementComponent"
+        }
+      ]
+    },
+    {
+      "name": "GetNewAvoidanceUID",
+      "return": "int",
+      "doc": "Get appropriate UID for use when reporting to this function or requesting RVO assistance.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetObjectCount",
+      "return": "int",
+      "doc": "Get the number of avoidance objects currently in the manager.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RegisterMovementComponent",
+      "return": "bool",
+      "doc": "Register with the given avoidance manager.\n@param AvoidanceWeight      When avoiding each other, actors divert course in proportion to their relative weights. Range is 0.0 to 1.0. Special: at 1.0, actor will not divert course at all.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MovementComp",
+          "type": "UMovementComponent"
+        },
+        {
+          "name": "AvoidanceWeight",
+          "default": "0.500000",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

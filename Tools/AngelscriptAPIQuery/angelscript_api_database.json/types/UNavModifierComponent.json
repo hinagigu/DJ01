@@ -1,0 +1,37 @@
+{
+  "name": "UNavModifierComponent",
+  "inherits": "UNavRelevantComponent",
+  "properties": {
+    "FailsafeExtent": [
+      "FVector",
+      2,
+      "box extent used ONLY when owning actor doesn't have collision component"
+    ],
+    "NavMeshResolution": [
+      "ENavigationDataResolution",
+      2,
+      "Experimental: Indicates which navmesh resolution should be used around the actor."
+    ],
+    "AreaClass": [
+      "TSubclassOf<UNavArea>"
+    ],
+    "bIncludeAgentHeight": [
+      "bool",
+      "Setting to 'true' will result in expanding lower bounding box of the nav\n    modifier by agent's height, before applying to navmesh"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetAreaClass",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewAreaClass",
+          "type": "TSubclassOf<UNavArea>"
+        }
+      ]
+    }
+  ]
+}

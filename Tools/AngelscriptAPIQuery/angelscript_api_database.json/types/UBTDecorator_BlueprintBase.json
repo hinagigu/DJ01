@@ -1,0 +1,256 @@
+{
+  "name": "UBTDecorator_BlueprintBase",
+  "inherits": "UBTDecorator",
+  "doc": "Base class for blueprint based decorator nodes. Do NOT use it for creating native c++ classes!\n\nUnlike task and services, decorator have two execution chains:\n ExecutionStart-ExecutionFinish and ObserverActivated-ObserverDeactivated\nwhich makes automatic latent action cleanup impossible. Keep in mind, that\nyou HAVE TO verify is given chain is still active after resuming from any\nlatent action (like Delay, Timelines, etc).\n\nHelper functions:\n- IsDecoratorExecutionActive (true after ExecutionStart, until ExecutionFinish)\n- IsDecoratorObserverActive (true after ObserverActivated, until ObserverDeactivated)",
+  "properties": {
+    "CustomDescription": [
+      "FString"
+    ],
+    "bShowPropertyDetails": [
+      "bool",
+      "show detailed information about properties"
+    ],
+    "bCheckConditionOnlyBlackBoardChanges": [
+      "bool",
+      "Applies only if Decorator has any FBlackboardKeySelector property and if decorator is\n    set to abort BT flow. Is set to true ReceiveConditionCheck will be called only on changes\n   to observed BB keys. If false or no BB keys observed ReceiveConditionCheck will be called every tick"
+    ]
+  },
+  "methods": [
+    {
+      "name": "IsDecoratorExecutionActive",
+      "return": "bool",
+      "const": true,
+      "doc": "check if decorator is part of currently active branch",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDecoratorObserverActive",
+      "return": "bool",
+      "const": true,
+      "doc": "check if decorator's observer is currently active",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PerformConditionCheck",
+      "return": "bool",
+      "callable": false,
+      "doc": "called when testing if underlying node can be executed, must call FinishConditionCheck\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "PerformConditionCheckAI",
+      "return": "bool",
+      "callable": false,
+      "doc": "Alternative AI version of ReceiveConditionCheck\n    @see ReceiveConditionCheck for more details\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerController",
+          "type": "AAIController"
+        },
+        {
+          "name": "ControlledPawn",
+          "type": "APawn"
+        }
+      ]
+    },
+    {
+      "name": "ExecutionFinish",
+      "return": "void",
+      "callable": false,
+      "doc": "called when execution of underlying node is finished\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveExecutionFinish",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerActor",
+          "type": "AActor"
+        },
+        {
+          "name": "NodeResult",
+          "type": "EBTNodeResult"
+        }
+      ]
+    },
+    {
+      "name": "ExecutionFinishAI",
+      "return": "void",
+      "callable": false,
+      "doc": "Alternative AI version of ReceiveExecutionFinish\n    @see ReceiveExecutionFinish for more details\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveExecutionFinishAI",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerController",
+          "type": "AAIController"
+        },
+        {
+          "name": "ControlledPawn",
+          "type": "APawn"
+        },
+        {
+          "name": "NodeResult",
+          "type": "EBTNodeResult"
+        }
+      ]
+    },
+    {
+      "name": "ExecutionStart",
+      "return": "void",
+      "callable": false,
+      "doc": "called on execution of underlying node\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveExecutionStart",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "ExecutionStartAI",
+      "return": "void",
+      "callable": false,
+      "doc": "Alternative AI version of ReceiveExecutionStart\n    @see ReceiveExecutionStart for more details\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveExecutionStartAI",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerController",
+          "type": "AAIController"
+        },
+        {
+          "name": "ControlledPawn",
+          "type": "APawn"
+        }
+      ]
+    },
+    {
+      "name": "ObserverActivated",
+      "return": "void",
+      "callable": false,
+      "doc": "called when observer is activated (flow controller)\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveObserverActivated",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "ObserverActivatedAI",
+      "return": "void",
+      "callable": false,
+      "doc": "Alternative AI version of ReceiveObserverActivated\n    @see ReceiveObserverActivated for more details\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveObserverActivatedAI",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerController",
+          "type": "AAIController"
+        },
+        {
+          "name": "ControlledPawn",
+          "type": "APawn"
+        }
+      ]
+    },
+    {
+      "name": "ObserverDeactivated",
+      "return": "void",
+      "callable": false,
+      "doc": "called when observer is deactivated (flow controller)\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveObserverDeactivated",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "ObserverDeactivatedAI",
+      "return": "void",
+      "callable": false,
+      "doc": "Alternative AI version of ReceiveObserverDeactivated\n    @see ReceiveObserverDeactivated for more details\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveObserverDeactivatedAI",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerController",
+          "type": "AAIController"
+        },
+        {
+          "name": "ControlledPawn",
+          "type": "APawn"
+        }
+      ]
+    },
+    {
+      "name": "Tick",
+      "return": "void",
+      "callable": false,
+      "doc": "tick function\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveTick",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerActor",
+          "type": "AActor"
+        },
+        {
+          "name": "DeltaSeconds",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "TickAI",
+      "return": "void",
+      "callable": false,
+      "doc": "Alternative AI version of ReceiveTick\n    @see ReceiveTick for more details\n    @Note that if both generic and AI event versions are implemented only the more\n    suitable one will be called, meaning the AI version if called for AI, generic one otherwise",
+      "event": true,
+      "unrealname": "ReceiveTickAI",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerController",
+          "type": "AAIController"
+        },
+        {
+          "name": "ControlledPawn",
+          "type": "APawn"
+        },
+        {
+          "name": "DeltaSeconds",
+          "type": "float"
+        }
+      ]
+    }
+  ]
+}

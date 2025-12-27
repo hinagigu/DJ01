@@ -1,0 +1,321 @@
+{
+  "name": "UBaseDynamicMeshComponent",
+  "inherits": "UMeshComponent",
+  "doc": "UBaseDynamicMeshComponent is a base interface for a UMeshComponent based on a UDynamicMesh.",
+  "properties": {
+    "bExplicitShowWireframe": [
+      "bool",
+      "If true, render the Wireframe on top of the Shaded Mesh"
+    ],
+    "WireframeColor": [
+      "FLinearColor",
+      "Constant Color used when Override Color Mode is set to Constant"
+    ],
+    "ColorMode": [
+      "EDynamicMeshComponentColorOverrideMode"
+    ],
+    "ConstantColor": [
+      "FColor",
+      "Constant Color used when Override Color Mode is set to Constant"
+    ],
+    "ColorSpaceMode": [
+      "EDynamicMeshVertexColorTransformMode",
+      "Color Space Transform that will be applied to the colors stored in the DynamicMesh Attribute Color Overlay when\nconstructing render buffers.\nDefault is \"No Transform\", ie color R/G/B/A will be independently converted from 32-bit float to 8-bit by direct mapping.\nLinearToSRGB mode will apply SRGB conversion, ie assumes colors in the Mesh are in Linear space. This will produce the same behavior as UStaticMesh.\nSRGBToLinear mode will invert SRGB conversion, ie assumes colors in the Mesh are in SRGB space."
+    ],
+    "bEnableFlatShading": [
+      "bool",
+      "Enable use of per-triangle facet normals in place of mesh normals"
+    ],
+    "bEnableViewModeOverrides": [
+      "bool",
+      "This flag controls whether Editor View Mode Overrides are enabled for this mesh. For example, this controls hidden-line removal on the wireframe\nin Wireframe View Mode, and whether the normal map will be disabled in Lighting-Only View Mode, as well as various other things.\nUse SetViewModeOverridesEnabled() to control this setting in Blueprints/C++."
+    ],
+    "bEnableRaytracing": [
+      "bool",
+      "Enable/disable Raytracing support on this Mesh, if Raytracing is currently enabled in the Project Settings.\nUse SetEnableRaytracing() to configure this flag in Blueprints/C++."
+    ]
+  },
+  "methods": [
+    {
+      "name": "ClearOverrideRenderMaterial",
+      "return": "void",
+      "doc": "Clear any active override render material",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearSecondaryRenderMaterial",
+      "return": "void",
+      "doc": "Clear any active secondary render material",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetColorOverrideMode",
+      "return": "EDynamicMeshComponentColorOverrideMode",
+      "const": true,
+      "doc": "@return active Color Override mode",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetConstantOverrideColor",
+      "return": "FColor",
+      "const": true,
+      "doc": "@return active Color used for Constant Color Override Mode",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDynamicMesh",
+      "return": "UDynamicMesh",
+      "doc": "@return the child UDynamicMesh",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEnableRaytracing",
+      "return": "bool",
+      "const": true,
+      "doc": "@return true if raytracing support is currently enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEnableWireframeRenderPass",
+      "return": "bool",
+      "const": true,
+      "doc": "@return true if wireframe rendering pass is enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFlatShadingEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "@return active Color used for Constant Color Override Mode",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOverrideRenderMaterial",
+      "return": "UMaterialInterface",
+      "const": true,
+      "doc": "@return active override render material for the given MaterialIndex",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetSecondaryBuffersVisibility",
+      "return": "bool",
+      "const": true,
+      "doc": "@return true if secondary buffers are currently set to be visible",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSecondaryRenderMaterial",
+      "return": "UMaterialInterface",
+      "const": true,
+      "doc": "@return active secondary render material",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetShadowsEnabled",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVertexColorSpaceTransformMode",
+      "return": "EDynamicMeshVertexColorTransformMode",
+      "const": true,
+      "doc": "@return active Color Override mode",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetViewModeOverridesEnabled",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasOverrideRenderMaterial",
+      "return": "bool",
+      "const": true,
+      "doc": "@return true if an override render material is currently enabled for the given MaterialIndex",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "k",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetColorOverrideMode",
+      "return": "void",
+      "doc": "Configure the active Color Override",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMode",
+          "type": "EDynamicMeshComponentColorOverrideMode"
+        }
+      ]
+    },
+    {
+      "name": "SetConstantOverrideColor",
+      "return": "void",
+      "doc": "Configure the Color used with Constant Color Override Mode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewColor",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableFlatShading",
+      "return": "void",
+      "doc": "Configure the Color used with Constant Color Override Mode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableRaytracing",
+      "return": "void",
+      "doc": "Enable/Disable raytracing support. This is an expensive call as it flushes\nthe rendering queue and forces an immediate rebuild of the SceneProxy.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSetEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableWireframeRenderPass",
+      "return": "void",
+      "doc": "Configure whether wireframe rendering is enabled or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetOverrideRenderMaterial",
+      "return": "void",
+      "doc": "Set an active override render material. This should replace all materials during rendering.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetSecondaryBuffersVisibility",
+      "return": "void",
+      "doc": "Show/Hide the secondary triangle buffers. Does not invalidate SceneProxy.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSetVisible",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSecondaryRenderMaterial",
+      "return": "void",
+      "doc": "Set an active secondary render material.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetShadowsEnabled",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetVertexColorSpaceTransformMode",
+      "return": "void",
+      "doc": "Configure the active Color Space Transform Mode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMode",
+          "type": "EDynamicMeshVertexColorTransformMode"
+        }
+      ]
+    },
+    {
+      "name": "SetViewModeOverridesEnabled",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "ULevelSequenceBurnIn",
+  "inherits": "UUserWidget",
+  "doc": "Base class for level sequence burn ins",
+  "properties": {
+    "FrameInformation": [
+      "FLevelSequencePlayerSnapshot",
+      1,
+      "Snapshot of frame information."
+    ],
+    "LevelSequenceActor": [
+      "ALevelSequenceActor",
+      1,
+      "The actor to get our burn in frames from"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetSettingsClass",
+      "return": "TSubclassOf<ULevelSequenceBurnInInitSettings>",
+      "const": true,
+      "callable": false,
+      "doc": "Get the settings class to use for this burn in",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetSettings",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when this burn in is receiving its settings",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSettings",
+          "type": "UObject"
+        }
+      ]
+    }
+  ]
+}

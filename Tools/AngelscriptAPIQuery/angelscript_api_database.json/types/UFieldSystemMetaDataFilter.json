@@ -1,0 +1,42 @@
+{
+  "name": "UFieldSystemMetaDataFilter",
+  "inherits": "UFieldSystemMetaData",
+  "doc": "Filter the particles on which the field will be applied",
+  "properties": {
+    "FilterType": [
+      "EFieldFilterType",
+      "Filter state type used to select the particles on which the field will be applied"
+    ],
+    "ObjectType": [
+      "EFieldObjectType",
+      "Filter object type used to select the particles on which the field will be applied"
+    ],
+    "PositionType": [
+      "EFieldPositionType",
+      "Specify which position type will be used for the field evaluation"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetMetaDataFilterType",
+      "return": "UFieldSystemMetaDataFilter",
+      "doc": "Set the particles filter type\n@param    FilterType State type used to select the state particles on which the field will be applied\n@param    ObjectType Object type used to select the type of objects(rigid, cloth...) on which the field will be applied\n@param    PositionType Position type used to compute the samples positions",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FilterType",
+          "type": "EFieldFilterType"
+        },
+        {
+          "name": "ObjectType",
+          "type": "EFieldObjectType"
+        },
+        {
+          "name": "PositionType",
+          "type": "EFieldPositionType"
+        }
+      ]
+    }
+  ]
+}

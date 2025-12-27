@@ -1,0 +1,1256 @@
+{
+  "name": "__ConstraintInstance",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CopyParams",
+      "return": "void",
+      "doc": "Copies all properties from one constraint to another\n@param Accessor       Constraint accessor to write to\n@param SourceAccessor Constraint accessor to read from\n@param bKeepPosition  Whether to keep original constraint positions\n@param bKeepRotation  Whether to keep original constraint rotations",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "SourceAccessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bKeepPosition",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bKeepRotation",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularBreakable",
+      "return": "void",
+      "doc": "Gets Constraint Angular Breakable properties\n     @param Accessor                                 Constraint accessor to query\n     @param bAngularBreakable                Whether it is possible to break the joint with angular force\n     @param AngularBreakThreshold    Torque needed to break the joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bAngularBreakable",
+          "type": "bool&"
+        },
+        {
+          "name": "AngularBreakThreshold",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularDriveMode",
+      "return": "void",
+      "doc": "Gets the angular drive mode ( SLERP or Twist And Swing)\n     @param Accessor         Constraint accessor to query\n     @param OutDriveMode     The angular drive mode to use. SLERP uses shortest spherical path, but will not work if any angular constraints are locked. Twist and Swing decomposes the path into the different angular degrees of freedom but may experience gimbal lock",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "OutDriveMode",
+          "type": "EAngularDriveMode&"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularDriveParams",
+      "return": "void",
+      "doc": "Gets the drive params for the angular drive.\n     @param Accessor                         Constraint accessor to query\n     @param OutPositionStrength      Positional strength for the drive (stiffness)\n     @param OutVelocityStrength      Velocity strength of the drive (damping)\n     @param OutForceLimit            Max force applied by the drive",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "OutPositionStrength",
+          "type": "float32&"
+        },
+        {
+          "name": "OutVelocityStrength",
+          "type": "float32&"
+        },
+        {
+          "name": "OutForceLimit",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularLimits",
+      "return": "void",
+      "doc": "Gets Constraint Angular Motion Ranges\n     @param Accessor                         Constraint accessor to query\n     @param Swing1MotionType         Type of swing motion ( first axis )\n     @param Swing1LimitAngle         Size of limit in degrees in [0, 180] range\n @param Swing2MotionType             Type of swing motion ( second axis )\n     @param Swing2LimitAngle         Size of limit in degrees in [0, 180] range\n @param TwistMotionType              Type of twist motion\n     @param TwistLimitAngle          Size of limit in degrees in [0, 180] range",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "Swing1MotionType",
+          "type": "EAngularConstraintMotion&"
+        },
+        {
+          "name": "Swing1LimitAngle",
+          "type": "float32&"
+        },
+        {
+          "name": "Swing2MotionType",
+          "type": "EAngularConstraintMotion&"
+        },
+        {
+          "name": "Swing2LimitAngle",
+          "type": "float32&"
+        },
+        {
+          "name": "TwistMotionType",
+          "type": "EAngularConstraintMotion&"
+        },
+        {
+          "name": "TwistLimitAngle",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularOrientationTarget",
+      "return": "void",
+      "doc": "Gets the target orientation for the angular drive.\n     @param Accessor                         Constraint accessor to query\n     @param OutPosTarget                     Target orientation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "OutPosTarget",
+          "type": "FRotator&"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularPlasticity",
+      "return": "void",
+      "doc": "Sets Constraint Angular Plasticity properties\n     @param Accessor                                         Constraint accessor to query\n     @param bAngularPlasticity                       Whether it is possible to reset the target angle from the angular displacement\n     @param AngularPlasticityThreshold       Degrees needed to reset the rest state of the joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bAngularPlasticity",
+          "type": "bool&"
+        },
+        {
+          "name": "AngularPlasticityThreshold",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularSoftSwingLimitParams",
+      "return": "void",
+      "doc": "Gets Constraint Angular Soft Swing Limit parameters\n     @param Accessor                                         Constraint accessor to query\n*     @param bSoftSwingLimit                          True is the swing limit is soft\n     @param SwingLimitStiffness                      Stiffness of the soft swing limit. Only used when Soft limit is on ( positive value )\n     @param SwingLimitDamping                        Damping of the soft swing limit. Only used when Soft limit is on ( positive value )\n @param SwingLimitRestitution                Controls the amount of bounce when the constraint is violated. A restitution value of 1 will bounce back with the same velocity the limit was hit. A value of 0 will stop dead.\n     @param SwingLimitContactDistance        Determines how close to the limit we have to get before turning the joint on. Larger value will be more expensive, but will do a better job not violating constraints. A smaller value will be more efficient, but easier to violate.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bSoftSwingLimit",
+          "type": "bool&"
+        },
+        {
+          "name": "SwingLimitStiffness",
+          "type": "float32&"
+        },
+        {
+          "name": "SwingLimitDamping",
+          "type": "float32&"
+        },
+        {
+          "name": "SwingLimitRestitution",
+          "type": "float32&"
+        },
+        {
+          "name": "SwingLimitContactDistance",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularSoftTwistLimitParams",
+      "return": "void",
+      "doc": "Gets Constraint Angular Soft Twist Limit parameters\n     @param Accessor                                         Constraint accessor to query\n*     @param bSoftTwistLimit                          True is the Twist limit is soft\n     @param TwistLimitStiffness                      Stiffness of the soft Twist limit. Only used when Soft limit is on ( positive value )\n     @param TwistLimitDamping                        Damping of the soft Twist limit. Only used when Soft limit is on ( positive value )\n @param TwistLimitRestitution                Controls the amount of bounce when the constraint is violated. A restitution value of 1 will bounce back with the same velocity the limit was hit. A value of 0 will stop dead.\n     @param TwistLimitContactDistance        Determines how close to the limit we have to get before turning the joint on. Larger value will be more expensive, but will do a better job not violating constraints. A smaller value will be more efficient, but easier to violate.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bSoftTwistLimit",
+          "type": "bool&"
+        },
+        {
+          "name": "TwistLimitStiffness",
+          "type": "float32&"
+        },
+        {
+          "name": "TwistLimitDamping",
+          "type": "float32&"
+        },
+        {
+          "name": "TwistLimitRestitution",
+          "type": "float32&"
+        },
+        {
+          "name": "TwistLimitContactDistance",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularVelocityDriveSLERP",
+      "return": "void",
+      "doc": "Gets whether the angular velocity slerp drive is enabled or not. Only relevant if the AngularDriveMode is set to SLERP\n     @param Accessor                         Constraint accessor to query\n     @param bOutEnableSLERP          Indicates whether the SLERP drive is enabled. Only relevant if the AngularDriveMode is set to SLERP",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bOutEnableSLERP",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularVelocityDriveTwistAndSwing",
+      "return": "void",
+      "doc": "Gets whether angular velocity twist and swing drive is enabled or not. Only relevant if the AngularDriveMode is set to Twist and Swing\n     @param Accessor                         Constraint accessor to query\n     @param bOutEnableTwistDrive     Indicates whether the drive for the twist axis should be enabled. Only relevant if the AngularDriveMode is set to Twist and Swing\n @param bOutEnableSwingDrive Indicates whether the drive for the swing axis should be enabled. Only relevant if the AngularDriveMode is set to Twist and Swing",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bOutEnableTwistDrive",
+          "type": "bool&"
+        },
+        {
+          "name": "bOutEnableSwingDrive",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetAngularVelocityTarget",
+      "return": "void",
+      "doc": "Gets the target velocity for the angular drive.\n     @param Accessor                         Constraint accessor to query\n     @param OutVelTarget                     Target velocity",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "OutVelTarget",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetAttachedBodyNames",
+      "return": "void",
+      "doc": "Gets Attached body names\n     @param Accessor         Constraint accessor to query\n     @param ParentBody       Parent body name of the constraint\n     @param ChildBody        Child body name of the constraint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "ParentBody",
+          "type": "FName&"
+        },
+        {
+          "name": "ChildBody",
+          "type": "FName&"
+        }
+      ]
+    },
+    {
+      "name": "GetContactTransferScale",
+      "return": "void",
+      "doc": "Gets Constraint Contact Transfer Scale properties\n     @param Accessor                                         Constraint accessor to query\n     @param ContactTransferScale                     Scale for transfer of child energy to parent.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "ContactTransferScale",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetDisableCollsion",
+      "return": "bool",
+      "doc": "Gets whether bodies attched to the constraint can collide or not\n     @param Accessor         Constraint accessor to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearBreakable",
+      "return": "void",
+      "doc": "Gets Constraint Linear Breakable properties\n     @param Accessor                         Constraint accessor to query\n     @param bLinearBreakable         Whether it is possible to break the joint with linear force\n     @param LinearBreakThreshold     Force needed to break the joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bLinearBreakable",
+          "type": "bool&"
+        },
+        {
+          "name": "LinearBreakThreshold",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearDriveParams",
+      "return": "void",
+      "doc": "Gets the drive params for the linear drive.\n     @param Accessor                         Constraint accessor to query\n     @param OutPositionStrength      Positional strength for the drive (stiffness)\n     @param OutVelocityStrength      Velocity strength of the drive (damping)\n     @param OutForceLimit            Max force applied by the drive",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "OutPositionStrength",
+          "type": "float32&"
+        },
+        {
+          "name": "OutVelocityStrength",
+          "type": "float32&"
+        },
+        {
+          "name": "OutForceLimit",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearLimits",
+      "return": "void",
+      "doc": "Gets Constraint Linear Motion Ranges\n     @param Accessor Constraint accessor to query\n     @param XMotion  Type of motion along the X axis\n     @param YMotion  Type of motion along the Y axis\n     @param ZMotion  Type of motion along the Z axis\n     @param Limit    linear limit applied to all axis",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "XMotion",
+          "type": "ELinearConstraintMotion&"
+        },
+        {
+          "name": "YMotion",
+          "type": "ELinearConstraintMotion&"
+        },
+        {
+          "name": "ZMotion",
+          "type": "ELinearConstraintMotion&"
+        },
+        {
+          "name": "Limit",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearPlasticity",
+      "return": "void",
+      "doc": "Gets Constraint Linear Plasticity properties\n     @param Accessor                                         Constraint accessor to query\n     @param bAngularPlasticity                       Whether it is possible to reset the target position from the linear displacement\n     @param AngularPlasticityThreshold       Delta from target needed to reset the target joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bLinearPlasticity",
+          "type": "bool&"
+        },
+        {
+          "name": "LinearPlasticityThreshold",
+          "type": "float32&"
+        },
+        {
+          "name": "PlasticityType",
+          "type": "EConstraintPlasticityType&"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearPositionDrive",
+      "return": "void",
+      "doc": "Gets whether linear position drive is enabled or not\n     @param Accessor                         Constraint accessor to query\n     @param bOutEnableDriveX         Indicates whether the drive for the X-Axis is enabled\n     @param bOutEnableDriveY         Indicates whether the drive for the Y-Axis is enabled\n     @param bOutEnableDriveZ         Indicates whether the drive for the Z-Axis is enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bOutEnableDriveX",
+          "type": "bool&"
+        },
+        {
+          "name": "bOutEnableDriveY",
+          "type": "bool&"
+        },
+        {
+          "name": "bOutEnableDriveZ",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearPositionTarget",
+      "return": "void",
+      "doc": "Gets the target position for the linear drive.\n     @param Accessor                         Constraint accessor to query\n     @param OutPosTarget                     Target position",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "OutPosTarget",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearSoftLimitParams",
+      "return": "void",
+      "doc": "Gets Constraint Linear Soft Limit parameters\n     @param Accessor                                         Constraint accessor to query\n*     @param bSoftLinearLimit                         True is the Linear limit is soft\n     @param LinearLimitStiffness                     Stiffness of the soft Linear limit. Only used when Soft limit is on ( positive value )\n     @param LinearLimitDamping                       Damping of the soft Linear limit. Only used when Soft limit is on ( positive value )\n @param LinearLimitRestitution               Controls the amount of bounce when the constraint is violated. A restitution value of 1 will bounce back with the same velocity the limit was hit. A value of 0 will stop dead.\n     @param LinearLimitContactDistance       Determines how close to the limit we have to get before turning the joint on. Larger value will be more expensive, but will do a better job not violating constraints. A smaller value will be more efficient, but easier to violate.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bSoftLinearLimit",
+          "type": "bool&"
+        },
+        {
+          "name": "LinearLimitStiffness",
+          "type": "float32&"
+        },
+        {
+          "name": "LinearLimitDamping",
+          "type": "float32&"
+        },
+        {
+          "name": "LinearLimitRestitution",
+          "type": "float32&"
+        },
+        {
+          "name": "LinearLimitContactDistance",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearVelocityDrive",
+      "return": "void",
+      "doc": "Gets whether linear velocity drive is enabled or not\n     @param Accessor                         Constraint accessor to query\n     @param bOutEnableDriveX         Indicates whether the drive for the X-Axis is enabled\n     @param bOutEnableDriveY         Indicates whether the drive for the Y-Axis is enabled\n     @param bOutEnableDriveZ         Indicates whether the drive for the Z-Axis is enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bOutEnableDriveX",
+          "type": "bool&"
+        },
+        {
+          "name": "bOutEnableDriveY",
+          "type": "bool&"
+        },
+        {
+          "name": "bOutEnableDriveZ",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearVelocityTarget",
+      "return": "void",
+      "doc": "Gets the target velocity for the linear drive.\n     @param Accessor                         Constraint accessor to query\n     @param OutVelTarget                     Target velocity",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "OutVelTarget",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetMassConditioningEnabled",
+      "return": "bool",
+      "doc": "@brief Gets whether mass conditioning is enabled for the constraint.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        }
+      ]
+    },
+    {
+      "name": "GetOrientationDriveSLERP",
+      "return": "void",
+      "doc": "Gets whether the angular orientation slerp drive is enabled or not. Only relevant if the AngularDriveMode is set to SLERP\n     @param Accessor                         Constraint accessor to query\n     @param bOutEnableSLERP          Indicates whether the SLERP drive should be enabled. Only relevant if the AngularDriveMode is set to SLERP",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bOutEnableSLERP",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetOrientationDriveTwistAndSwing",
+      "return": "void",
+      "doc": "Gets whether angular orientation drive are enabled. Only relevant if the AngularDriveMode is set to Twist and Swing\n     @param Accessor                         Constraint accessor to query\n     @param bOutEnableTwistDrive     Indicates whether the drive for the twist axis is enabled. Only relevant if the AngularDriveMode is set to Twist and Swing\n     @param bOutEnableSwingDrive     Indicates whether the drive for the swing axis is enabled. Only relevant if the AngularDriveMode is set to Twist and Swing",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bOutEnableTwistDrive",
+          "type": "bool&"
+        },
+        {
+          "name": "bOutEnableSwingDrive",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetParentDominates",
+      "return": "bool",
+      "doc": "Gets whether the parent body is not affected by it's child motion\n     @param Accessor Constraint accessor to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        }
+      ]
+    },
+    {
+      "name": "GetProjectionParams",
+      "return": "void",
+      "doc": "Gets projection parameters of the constraint\n     @param Accessor                                 Constraint accessor to query\n     @param bEnableProjection                true to enable projection\n     @param ProjectionLinearAlpha    how much linear projection to apply in [0,1] range\n     @param ProjectionAngularAlpha   how much angular projection to apply in [0,1] range",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bEnableProjection",
+          "type": "bool&"
+        },
+        {
+          "name": "ProjectionLinearAlpha",
+          "type": "float32&"
+        },
+        {
+          "name": "ProjectionAngularAlpha",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularBreakable",
+      "return": "void",
+      "doc": "Sets Constraint Angular Breakable properties\n     @param Accessor                                 Constraint accessor to change\n     @param bAngularBreakable                Whether it is possible to break the joint with angular force\n     @param AngularBreakThreshold    Torque needed to break the joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bAngularBreakable",
+          "type": "bool"
+        },
+        {
+          "name": "AngularBreakThreshold",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularDriveMode",
+      "return": "void",
+      "doc": "Switches the angular drive mode between SLERP and Twist And Swing\n     @param Accessor         Constraint accessor to change\n     @param DriveMode        The angular drive mode to use. SLERP uses shortest spherical path, but will not work if any angular constraints are locked. Twist and Swing decomposes the path into the different angular degrees of freedom but may experience gimbal lock",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "DriveMode",
+          "type": "EAngularDriveMode"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularDriveParams",
+      "return": "void",
+      "doc": "Sets the drive params for the angular drive.\n     @param Accessor                         Constraint accessor to change\n     @param PositionStrength         Positional strength for the drive (stiffness)\n     @param VelocityStrength         Velocity strength of the drive (damping)\n     @param InForceLimit                     Max force applied by the drive",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "PositionStrength",
+          "type": "float32"
+        },
+        {
+          "name": "VelocityStrength",
+          "type": "float32"
+        },
+        {
+          "name": "InForceLimit",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularLimits",
+      "return": "void",
+      "doc": "Sets COnstraint Angular Motion Ranges\n     @param Accessor                         Constraint accessor to change\n     @param Swing1MotionType         Type of swing motion ( first axis )\n     @param Swing1LimitAngle         Size of limit in degrees in [0, 180] range\n @param Swing2MotionType             Type of swing motion ( second axis )\n     @param Swing2LimitAngle         Size of limit in degrees in [0, 180] range\n @param TwistMotionType              Type of twist motion\n     @param TwistLimitAngle          Size of limit in degrees in [0, 180] range",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "Swing1MotionType",
+          "type": "EAngularConstraintMotion"
+        },
+        {
+          "name": "Swing1LimitAngle",
+          "type": "float32"
+        },
+        {
+          "name": "Swing2MotionType",
+          "type": "EAngularConstraintMotion"
+        },
+        {
+          "name": "Swing2LimitAngle",
+          "type": "float32"
+        },
+        {
+          "name": "TwistMotionType",
+          "type": "EAngularConstraintMotion"
+        },
+        {
+          "name": "TwistLimitAngle",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularOrientationTarget",
+      "return": "void",
+      "doc": "Sets the target orientation for the angular drive.\n     @param Accessor                         Constraint accessor to change\n     @param InPosTarget                      Target orientation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "InPosTarget",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularPlasticity",
+      "return": "void",
+      "doc": "Sets Constraint Angular Plasticity properties\n     @param Accessor                                         Constraint accessor to change\n     @param bAngularPlasticity                       Whether it is possible to reset the target angle from the angular displacement\n     @param AngularPlasticityThreshold       Degrees needed to reset the rest state of the joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bAngularPlasticity",
+          "type": "bool"
+        },
+        {
+          "name": "AngularPlasticityThreshold",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularSoftSwingLimitParams",
+      "return": "void",
+      "doc": "Sets Constraint Angular Soft Swing Limit parameters\n     @param Accessor                                         Constraint accessor to change\n*     @param bSoftSwingLimit                          True is the swing limit is soft\n     @param SwingLimitStiffness                      Stiffness of the soft swing limit. Only used when Soft limit is on ( positive value )\n     @param SwingLimitDamping                        Damping of the soft swing limit. Only used when Soft limit is on ( positive value )\n @param SwingLimitRestitution                Controls the amount of bounce when the constraint is violated. A restitution value of 1 will bounce back with the same velocity the limit was hit. A value of 0 will stop dead.\n     @param SwingLimitContactDistance        Determines how close to the limit we have to get before turning the joint on. Larger value will be more expensive, but will do a better job not violating constraints. A smaller value will be more efficient, but easier to violate.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bSoftSwingLimit",
+          "type": "bool"
+        },
+        {
+          "name": "SwingLimitStiffness",
+          "type": "float32"
+        },
+        {
+          "name": "SwingLimitDamping",
+          "type": "float32"
+        },
+        {
+          "name": "SwingLimitRestitution",
+          "type": "float32"
+        },
+        {
+          "name": "SwingLimitContactDistance",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularSoftTwistLimitParams",
+      "return": "void",
+      "doc": "Sets Constraint Angular Soft Twist Limit parameters\n     @param Accessor                                         Constraint accessor to change\n*     @param bSoftTwistLimit                          True is the twist limit is soft\n     @param TwistLimitStiffness                      Stiffness of the soft Twist limit. Only used when Soft limit is on ( positive value )\n     @param TwistLimitDamping                        Damping of the soft Twist limit. Only used when Soft limit is on ( positive value )\n @param TwistLimitRestitution                Controls the amount of bounce when the constraint is violated. A restitution value of 1 will bounce back with the same velocity the limit was hit. A value of 0 will stop dead.\n     @param TwistLimitContactDistance        Determines how close to the limit we have to get before turning the joint on. Larger value will be more expensive, but will do a better job not violating constraints. A smaller value will be more efficient, but easier to violate.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bSoftTwistLimit",
+          "type": "bool"
+        },
+        {
+          "name": "TwistLimitStiffness",
+          "type": "float32"
+        },
+        {
+          "name": "TwistLimitDamping",
+          "type": "float32"
+        },
+        {
+          "name": "TwistLimitRestitution",
+          "type": "float32"
+        },
+        {
+          "name": "TwistLimitContactDistance",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularVelocityDriveSLERP",
+      "return": "void",
+      "doc": "Enables/Disables the angular velocity slerp drive. Only relevant if the AngularDriveMode is set to SLERP\n     @param Accessor                         Constraint accessor to change\n     @param bEnableSLERP                     Indicates whether the SLERP drive should be enabled. Only relevant if the AngularDriveMode is set to SLERP",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bEnableSLERP",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularVelocityDriveTwistAndSwing",
+      "return": "void",
+      "doc": "Enables/Disables angular velocity twist and swing drive. Only relevant if the AngularDriveMode is set to Twist and Swing\n     @param Accessor                         Constraint accessor to change\n     @param bEnableTwistDrive        Indicates whether the drive for the twist axis should be enabled. Only relevant if the AngularDriveMode is set to Twist and Swing\n     @param bEnableSwingDrive        Indicates whether the drive for the swing axis should be enabled. Only relevant if the AngularDriveMode is set to Twist and Swing",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bEnableTwistDrive",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableSwingDrive",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAngularVelocityTarget",
+      "return": "void",
+      "doc": "Sets the target velocity for the angular drive.\n     @param Accessor                         Constraint accessor to change\n     @param InVelTarget                      Target velocity",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "InVelTarget",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetContactTransferScale",
+      "return": "void",
+      "doc": "Set Contact Transfer Scale\n     @param Accessor                                         Constraint accessor to change\n     @param ContactTransferScale                     Set Contact Transfer Scale onto joints parent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "ContactTransferScale",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDisableCollision",
+      "return": "void",
+      "doc": "Sets whether bodies attched to the constraint can collide or not\n     @param Accessor                         Constraint accessor to change\n     @param bDisableCollision        true to disable collision between constrained bodies",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bDisableCollision",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearBreakable",
+      "return": "void",
+      "doc": "Sets the Linear Breakable properties\n     @param Accessor                         Constraint accessor to change\n     @param bLinearBreakable         Whether it is possible to break the joint with linear force\n     @param LinearBreakThreshold     Force needed to break the joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bLinearBreakable",
+          "type": "bool"
+        },
+        {
+          "name": "LinearBreakThreshold",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearDriveParams",
+      "return": "void",
+      "doc": "Sets the drive params for the linear drive.\n     @param Accessor                         Constraint accessor to change\n     @param PositionStrength         Positional strength for the drive (stiffness)\n     @param VelocityStrength         Velocity strength of the drive (damping)\n     @param InForceLimit                     Max force applied by the drive",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "PositionStrength",
+          "type": "float32"
+        },
+        {
+          "name": "VelocityStrength",
+          "type": "float32"
+        },
+        {
+          "name": "InForceLimit",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearLimits",
+      "return": "void",
+      "doc": "Sets Constraint Linear Motion Ranges\n     @param Accessor Constraint accessor to change\n     @param XMotion  Type of motion along the X axis\n     @param YMotion  Type of motion along the Y axis\n     @param ZMotion  Type of motion along the Z axis\n     @param Limit    linear limit to apply to all axis",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "XMotion",
+          "type": "ELinearConstraintMotion"
+        },
+        {
+          "name": "YMotion",
+          "type": "ELinearConstraintMotion"
+        },
+        {
+          "name": "ZMotion",
+          "type": "ELinearConstraintMotion"
+        },
+        {
+          "name": "Limit",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearPlasticity",
+      "return": "void",
+      "doc": "Sets Constraint Linear Plasticity properties\n     @param Accessor                                         Constraint accessor to change\n     @param bLinearPlasticity                        Whether it is possible to reset the target position from the linear displacement\n     @param LinearPlasticityThreshold        Delta from target needed to reset the target joint",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bLinearPlasticity",
+          "type": "bool"
+        },
+        {
+          "name": "LinearPlasticityThreshold",
+          "type": "float32"
+        },
+        {
+          "name": "PlasticityType",
+          "type": "EConstraintPlasticityType"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearPositionDrive",
+      "return": "void",
+      "doc": "Enables/Disables linear position drive\n     @param Accessor                         Constraint accessor to change\n     @param bEnableDriveX            Indicates whether the drive for the X-Axis should be enabled\n     @param bEnableDriveY            Indicates whether the drive for the Y-Axis should be enabled\n     @param bEnableDriveZ            Indicates whether the drive for the Z-Axis should be enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bEnableDriveX",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableDriveY",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableDriveZ",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearPositionTarget",
+      "return": "void",
+      "doc": "Sets the target position for the linear drive.\n     @param Accessor                         Constraint accessor to change\n     @param InPosTarget                      Target position",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "InPosTarget",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearSoftLimitParams",
+      "return": "void",
+      "doc": "Sets Constraint Linear Soft Limit parameters\n     @param Accessor                                         Constraint accessor to change\n*     @param bSoftLinearLimit                         True is the linear limit is soft\n     @param LinearLimitStiffness                     Stiffness of the soft linear limit. Only used when Soft limit is on ( positive value )\n     @param LinearLimitDamping                       Damping of the soft linear limit. Only used when Soft limit is on ( positive value )\n @param LinearLimitRestitution               Controls the amount of bounce when the constraint is violated. A restitution value of 1 will bounce back with the same velocity the limit was hit. A value of 0 will stop dead.\n     @param LinearLimitContactDistance       Determines how close to the limit we have to get before turning the joint on. Larger value will be more expensive, but will do a better job not violating constraints. A smaller value will be more efficient, but easier to violate.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bSoftLinearLimit",
+          "type": "bool"
+        },
+        {
+          "name": "LinearLimitStiffness",
+          "type": "float32"
+        },
+        {
+          "name": "LinearLimitDamping",
+          "type": "float32"
+        },
+        {
+          "name": "LinearLimitRestitution",
+          "type": "float32"
+        },
+        {
+          "name": "LinearLimitContactDistance",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearVelocityDrive",
+      "return": "void",
+      "doc": "Enables/Disables linear velocity drive\n     @param Accessor                         Constraint accessor to change\n     @param bEnableDriveX            Indicates whether the drive for the X-Axis should be enabled\n     @param bEnableDriveY            Indicates whether the drive for the Y-Axis should be enabled\n     @param bEnableDriveZ            Indicates whether the drive for the Z-Axis should be enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bEnableDriveX",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableDriveY",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableDriveZ",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLinearVelocityTarget",
+      "return": "void",
+      "doc": "Sets the target velocity for the linear drive.\n     @param Accessor                         Constraint accessor to change\n     @param InVelTarget                      Target velocity",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "InVelTarget",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetMassConditioningEnabled",
+      "return": "void",
+      "doc": "@brief Enable or disable mass conditioning for the constraint.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bEnableMassConditioning",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetOrientationDriveSLERP",
+      "return": "void",
+      "doc": "Enables/Disables the angular orientation slerp drive. Only relevant if the AngularDriveMode is set to SLERP\n     @param Accessor                         Constraint accessor to change\n     @param bEnableSLERP                     Indicates whether the SLERP drive should be enabled. Only relevant if the AngularDriveMode is set to SLERP",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bEnableSLERP",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetOrientationDriveTwistAndSwing",
+      "return": "void",
+      "doc": "Enables/Disables angular orientation drive. Only relevant if the AngularDriveMode is set to Twist and Swing\n     @param Accessor                         Constraint accessor to change\n     @param bEnableSwingDrive        Indicates whether the drive for the swing axis should be enabled. Only relevant if the AngularDriveMode is set to Twist and Swing\n     @param bEnableTwistDrive        Indicates whether the drive for the twist axis should be enabled. Only relevant if the AngularDriveMode is set to Twist and Swing",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bEnableTwistDrive",
+          "type": "bool"
+        },
+        {
+          "name": "bEnableSwingDrive",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetParentDominates",
+      "return": "void",
+      "doc": "Sets whether the parent body is not affected by it's child motion\n     @param Accessor                         Constraint accessor to change\n     @param bParentDominates         true to avoid the parent being affected by its child motion",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bParentDominates",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetProjectionParams",
+      "return": "void",
+      "doc": "Sets projection parameters of the constraint\n     @param Accessor                                 Constraint accessor to change\n     @param bEnableProjection                true to enable projection\n     @param ProjectionLinearAlpha    how much linear projection to apply in [0,1] range\n     @param ProjectionAngularAlpha   how much angular projection to apply in [0,1] range",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Accessor",
+          "type": "FConstraintInstanceAccessor&"
+        },
+        {
+          "name": "bEnableProjection",
+          "type": "bool"
+        },
+        {
+          "name": "ProjectionLinearAlpha",
+          "type": "float32"
+        },
+        {
+          "name": "ProjectionAngularAlpha",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

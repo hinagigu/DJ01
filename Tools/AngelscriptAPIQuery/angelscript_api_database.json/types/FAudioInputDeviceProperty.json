@@ -1,0 +1,36 @@
+{
+  "name": "FAudioInputDeviceProperty",
+  "isStruct": true,
+  "doc": "Encapsulates the array of audio input devices which is populated by UTakeRecorderMicrophoneAudioManager and\nutilized by the audio input device list in FAudioInputDevicePropertyCustomization.",
+  "properties": {
+    "bUseSystemDefaultAudioDevice": [
+      "bool",
+      "Boolean indicating if the system selects audio device should be used or to use the selected device from the details panel"
+    ],
+    "DeviceInfoArray": [
+      "TArray<FAudioInputDeviceInfoProperty>",
+      1,
+      "Holds device information for each of the audio devices available on this system."
+    ],
+    "DeviceId": [
+      "FString",
+      "The unique id of the currently selected audio device"
+    ],
+    "AudioInputBufferSize": [
+      "int",
+      "The desired buffer size used for audio callbacks during record"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAudioInputDeviceProperty&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAudioInputDeviceProperty"
+        }
+      ]
+    }
+  ]
+}

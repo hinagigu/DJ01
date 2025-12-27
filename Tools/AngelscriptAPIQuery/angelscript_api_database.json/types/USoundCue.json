@@ -1,0 +1,43 @@
+{
+  "name": "USoundCue",
+  "inherits": "USoundBase",
+  "doc": "The behavior of audio playback is defined within Sound Cues.",
+  "properties": {
+    "FirstNode": [
+      "USoundNode",
+      1,
+      ""
+    ],
+    "VolumeMultiplier": [
+      "float32",
+      "Base volume multiplier"
+    ],
+    "PitchMultiplier": [
+      "float32",
+      "Base pitch multiplier"
+    ],
+    "AttenuationOverrides": [
+      "FSoundAttenuationSettings",
+      2,
+      "Attenuation settings to use if Override Attenuation is set to true"
+    ],
+    "SubtitlePriority": [
+      "float32",
+      2,
+      "The priority of the subtitle.  Defaults to 10000.  Higher values will play instead of lower values."
+    ],
+    "bPrimeOnLoad": [
+      "bool",
+      "Makes this sound cue automatically load any sound waves it can play into the cache when it is loaded."
+    ],
+    "bOverrideAttenuation": [
+      "bool",
+      "Indicates whether attenuation should use the Attenuation Overrides or the Attenuation Settings asset"
+    ],
+    "bExcludeFromRandomNodeBranchCulling": [
+      "bool",
+      "Ignore per-platform random node culling for memory purposes"
+    ]
+  },
+  "methods": []
+}

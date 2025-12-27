@@ -1,0 +1,52 @@
+{
+  "name": "UConstantQNRTSettings",
+  "inherits": "UAudioSynesthesiaNRTSettings",
+  "doc": "UConstantQNRTSettings\n\nSettings for a UConstantQNRT analyzer.",
+  "properties": {
+    "StartingFrequency": [
+      "float32",
+      "Starting frequency for first bin of CQT"
+    ],
+    "NumBands": [
+      "int",
+      "Total number of resulting constant Q bands."
+    ],
+    "NumBandsPerOctave": [
+      "float32",
+      "Number of bands within an octave."
+    ],
+    "AnalysisPeriod": [
+      "float32",
+      "Number of seconds between cqt measurements"
+    ],
+    "bDownmixToMono": [
+      "bool",
+      "If true, multichannel audio is downmixed to mono with equal amplitude scaling. If false, each channel gets it's own CQT result."
+    ],
+    "FFTSize": [
+      "EConstantQFFTSizeEnum",
+      "Size of FFT."
+    ],
+    "WindowType": [
+      "EFFTWindowType",
+      "Type of window to be applied to input audio"
+    ],
+    "SpectrumType": [
+      "EAudioSpectrumType",
+      "Type of spectrum to use."
+    ],
+    "BandWidthStretch": [
+      "float32",
+      "Stretching factor to control overlap of adjacent bands."
+    ],
+    "CQTNormalization": [
+      "EConstantQNormalizationEnum",
+      "Normalization scheme used to generate band windows."
+    ],
+    "NoiseFloorDb": [
+      "float32",
+      "Noise floor to use when normalizing CQT"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,37 @@
+{
+  "name": "UStreamableRenderAsset",
+  "inherits": "UObject",
+  "properties": {
+    "NumCinematicMipLevels": [
+      "int",
+      "Number of mip-levels to use for cinematic quality."
+    ],
+    "NeverStream": [
+      "bool"
+    ],
+    "bGlobalForceMipLevelsToBeResident": [
+      "bool",
+      "Global and serialized version of ForceMiplevelsToBeResident."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetForceMipLevelsToBeResident",
+      "return": "void",
+      "doc": "Tells the streaming system that it should force all mip-levels to be resident for a number of seconds.\n@param Seconds                                        Duration in seconds\n@param CinematicTextureGroups Bitfield indicating which texture groups that use extra high-resolution mips",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Seconds",
+          "type": "float32"
+        },
+        {
+          "name": "CinematicLODGroupMask",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

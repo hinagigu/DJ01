@@ -1,0 +1,332 @@
+{
+  "name": "UModularRigController",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddModule",
+      "return": "FString",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InModuleName",
+          "type": "FName"
+        },
+        {
+          "name": "InClass",
+          "type": "TSubclassOf<UControlRig>"
+        },
+        {
+          "name": "InParentModulePath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AutoConnectModules",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InModulePaths",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "bReplaceExistingConnections",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AutoConnectSecondaryConnectors",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InConnectorKeys",
+          "type": "TArray<FRigElementKey>"
+        },
+        {
+          "name": "bReplaceExistingConnections",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "BindModuleVariable",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InModulePath",
+          "type": "FString"
+        },
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InSourcePath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CanConnectConnectorToElement",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InConnectorKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTargetKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "OutErrorMessage",
+          "type": "FText&"
+        }
+      ]
+    },
+    {
+      "name": "ConnectConnectorToElement",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InConnectorKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "InTargetKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bAutoResolveOtherConnectors",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bCheckValidConnection",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DeleteModule",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InModulePath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DisconnectConnector",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InConnectorKey",
+          "type": "FRigElementKey"
+        },
+        {
+          "name": "bDisconnectSubModules",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DisconnectCyclicConnectors",
+      "return": "TArray<FRigElementKey>",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MirrorModule",
+      "return": "FString",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InModulePath",
+          "type": "FString"
+        },
+        {
+          "name": "InSettings",
+          "type": "FRigVMMirrorSettings"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RenameModule",
+      "return": "FString",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InModulePath",
+          "type": "FString"
+        },
+        {
+          "name": "InNewName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReparentModule",
+      "return": "FString",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InModulePath",
+          "type": "FString"
+        },
+        {
+          "name": "InNewParentModulePath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetConfigValueInModule",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InModulePath",
+          "type": "FString"
+        },
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InValue",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetModuleShortName",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InModulePath",
+          "type": "FString"
+        },
+        {
+          "name": "InNewShortName",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UnBindModuleVariable",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InModulePath",
+          "type": "FString"
+        },
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

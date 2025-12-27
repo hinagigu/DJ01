@@ -1,0 +1,84 @@
+{
+  "name": "FAnimNode_SequencePlayer_Standalone",
+  "isStruct": true,
+  "doc": "Sequence player node that can be used standalone (without constant folding)",
+  "properties": {
+    "GroupName": [
+      "FName",
+      2,
+      "The group name that we synchronize with (NAME_None if it is not part of any group)."
+    ],
+    "GroupRole": [
+      "EAnimGroupRole",
+      2,
+      "The role this node can assume within the group (ignored if GroupName is not set)"
+    ],
+    "Method": [
+      "EAnimSyncMethod",
+      2,
+      "How this node will synchronize with other animations."
+    ],
+    "bIgnoreForRelevancyTest": [
+      "bool",
+      2,
+      "If true, \"Relevant anim\" nodes that look for the highest weighted animation in a state will ignore this node"
+    ],
+    "Sequence": [
+      "UAnimSequenceBase",
+      2,
+      "The animation sequence asset to play"
+    ],
+    "PlayRateBasis": [
+      "float32",
+      2,
+      "The Basis in which the PlayRate is expressed in. This is used to rescale PlayRate inputs.\nFor example a Basis of 100 means that the PlayRate input will be divided by 100."
+    ],
+    "PlayRate": [
+      "float32",
+      2,
+      "The play rate multiplier. Can be negative, which will cause the animation to play in reverse."
+    ],
+    "PlayRateScaleBiasClampConstants": [
+      "FInputScaleBiasClampConstants",
+      2,
+      "Additional scaling, offsetting and clamping of PlayRate input.\nPerformed after PlayRateBasis."
+    ],
+    "StartPosition": [
+      "float32",
+      2,
+      "The start position between 0 and the length of the sequence to use when initializing. When looping, play will still jump back to the beginning when reaching the end."
+    ],
+    "bLoopAnimation": [
+      "bool",
+      2,
+      "Should the animation loop back to the start when it reaches the end?"
+    ],
+    "bStartFromMatchingPose": [
+      "bool",
+      2,
+      "Use pose matching to choose the start position. Requires experimental PoseSearch plugin."
+    ],
+    "BlendWeight": [
+      "float32",
+      1,
+      "Last encountered blendweight for this node"
+    ],
+    "InternalTimeAccumulator": [
+      "float32",
+      1,
+      "Accumulated time used to reference the asset in this node"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_SequencePlayer_Standalone&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_SequencePlayer_Standalone"
+        }
+      ]
+    }
+  ]
+}

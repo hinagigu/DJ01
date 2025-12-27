@@ -1,0 +1,98 @@
+{
+  "name": "FChaosSolverConfiguration",
+  "isStruct": true,
+  "properties": {
+    "PositionIterations": [
+      "int",
+      2,
+      "The number of position iterations to run during the constraint solver step"
+    ],
+    "VelocityIterations": [
+      "int",
+      2,
+      "The number of velocity iterations to run during the constraint solver step"
+    ],
+    "ProjectionIterations": [
+      "int",
+      2,
+      "The number of projection iterations to run during the constraint solver step"
+    ],
+    "CollisionMarginFraction": [
+      "float32",
+      2,
+      "A collision margin as a fraction of size used by some boxes and convex shapes to improve collision detection results.\nThe core geometry of shapes that support a margin are reduced in size by the margin, and the margin\nis added back on during collision detection. The net result is a shape of the same size but with rounded corners."
+    ],
+    "CollisionMarginMax": [
+      "float32",
+      2,
+      "An upper limit on the collision margin that will be subtracted from boxes and convex shapes. See CollisionMarginFraction"
+    ],
+    "CollisionCullDistance": [
+      "float32",
+      2,
+      "During collision detection, if tweo shapes are at least this far apart we do not calculate their nearest features\nduring the collision detection step."
+    ],
+    "CollisionMaxPushOutVelocity": [
+      "float32",
+      2,
+      "The maximum speed at which two bodies can be extracted from each other when they start a frame inter-penetrating. This can\nhappen because they spawned on top of each other, or the solver failed to fully reolve collisions last frame. A value of\nzero means \"no limit\". A non-zero value can be used to prevent explosive behaviour when bodies start deeply penetrating.\nAn alternative to using this approach is to increase the number of Velocity Iterations, which is more expensive but will\nensure the bodies are depenetrated in a single frame without explosive behaviour."
+    ],
+    "CollisionInitialOverlapDepenetrationVelocity": [
+      "float32",
+      2,
+      "If two bodies start off in overlapping each other, they will depentrate at this speed when they wake.\nIf set to a large value, initially-overlapping objects will tend to \"explode\" apart at a speed that depends on the\noverlap amount and the timestep (this is the original, previously untunable behaviour). If set to zero,\ninitially-overlapping objects will remain stationary and go to sleep until acted on by some other object or force.\nA negative value (-1) disables the feature and is equivalent to infinity.\nThis property can be overridden per Body (see FBodyInstance::MaxDepenetrationVelocity)"
+    ],
+    "ClusterConnectionFactor": [
+      "float32",
+      2,
+      ""
+    ],
+    "ClusterUnionConnectionType": [
+      "EClusterUnionMethod",
+      2,
+      ""
+    ],
+    "bGenerateCollisionData": [
+      "bool",
+      2,
+      ""
+    ],
+    "CollisionFilterSettings": [
+      "FSolverCollisionFilterSettings",
+      2,
+      ""
+    ],
+    "bGenerateBreakData": [
+      "bool",
+      2,
+      ""
+    ],
+    "BreakingFilterSettings": [
+      "FSolverBreakingFilterSettings",
+      2,
+      ""
+    ],
+    "bGenerateTrailingData": [
+      "bool",
+      2,
+      ""
+    ],
+    "TrailingFilterSettings": [
+      "FSolverTrailingFilterSettings",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FChaosSolverConfiguration&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FChaosSolverConfiguration"
+        }
+      ]
+    }
+  ]
+}

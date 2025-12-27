@@ -1,0 +1,44 @@
+{
+  "name": "FNiagaraPlatformSetRedirect",
+  "isStruct": true,
+  "doc": "Allows us to replace a specific device profile usage condition in all NiagaraPlatformSets.\nHelpful when dealing with changes to device profile structure.",
+  "properties": {
+    "ProfileNames": [
+      "TArray<FName>",
+      2,
+      "The names of any device profile entry that will apply this redirect."
+    ],
+    "Mode": [
+      "ENiagaraDeviceProfileRedirectMode",
+      2,
+      ""
+    ],
+    "RedirectProfileName": [
+      "FName",
+      2,
+      "When in Device Profile mode, the name of the device profile to redirect to."
+    ],
+    "CVarConditionEnabled": [
+      "FNiagaraPlatformSetCVarCondition",
+      2,
+      "When in CVar mode, the CVar condition to replace this device profile entry with when the profile entry is in the Enabled state."
+    ],
+    "CVarConditionDisabled": [
+      "FNiagaraPlatformSetCVarCondition",
+      2,
+      "When in CVar mode, the CVar condition to replace this device profile entry with when the profile entry is in the Disabled state."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraPlatformSetRedirect&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraPlatformSetRedirect"
+        }
+      ]
+    }
+  ]
+}

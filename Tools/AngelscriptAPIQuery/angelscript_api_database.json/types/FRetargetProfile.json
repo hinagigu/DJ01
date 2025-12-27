@@ -1,0 +1,58 @@
+{
+  "name": "FRetargetProfile",
+  "isStruct": true,
+  "properties": {
+    "bApplyTargetRetargetPose": [
+      "bool",
+      "If true, the TARGET Retarget Pose specified in this profile will be applied to the Retargeter (when plugged into the Retargeter)."
+    ],
+    "TargetRetargetPoseName": [
+      "FName",
+      "Override the TARGET Retarget Pose to use when this profile is active.\nThe pose must be present in the Retarget Asset and is not applied unless bApplyTargetRetargetPose is true."
+    ],
+    "bApplySourceRetargetPose": [
+      "bool",
+      "If true, the Source Retarget Pose specified in this profile will be applied to the Retargeter (when plugged into the Retargeter)."
+    ],
+    "SourceRetargetPoseName": [
+      "FName",
+      "Override the SOURCE Retarget Pose to use when this profile is active.\nThe pose must be present in the Retarget Asset and is not applied unless bApplySourceRetargetPose is true."
+    ],
+    "bApplyChainSettings": [
+      "bool",
+      "If true, the Chain Settings stored in this profile will be applied to the Retargeter (when plugged into the Retargeter)."
+    ],
+    "ChainSettings": [
+      "TMap<FName,FTargetChainSettings>",
+      "A (potentially sparse) set of setting overrides for the target chains (only applied when bApplyChainSettings is true)."
+    ],
+    "bApplyRootSettings": [
+      "bool",
+      "If true, the root settings stored in this profile will be applied to the Retargeter (when plugged into the Retargeter)."
+    ],
+    "RootSettings": [
+      "FTargetRootSettings",
+      "Retarget settings to control behavior of the retarget root motion (not applied unless bApplyRootSettings is true)"
+    ],
+    "bApplyGlobalSettings": [
+      "bool",
+      "If true, the global settings stored in this profile will be applied to the Retargeter (when plugged into the Retargeter)."
+    ],
+    "GlobalSettings": [
+      "FRetargetGlobalSettings",
+      "Retarget settings to control global behavior, like Stride Warping (not applied unless bApplyGlobalSettings is true)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRetargetProfile&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRetargetProfile"
+        }
+      ]
+    }
+  ]
+}

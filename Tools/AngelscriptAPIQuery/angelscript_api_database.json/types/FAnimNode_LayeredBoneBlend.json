@@ -1,0 +1,67 @@
+{
+  "name": "FAnimNode_LayeredBoneBlend",
+  "isStruct": true,
+  "doc": "Layered blend (per bone); has dynamic number of blendposes that can blend per different bone sets",
+  "properties": {
+    "BasePose": [
+      "FPoseLink",
+      "The source pose"
+    ],
+    "BlendPoses": [
+      "TArray<FPoseLink>",
+      "Each layer's blended pose"
+    ],
+    "BlendMode": [
+      "ELayeredBoneBlendMode",
+      2,
+      "Whether to use branch filters or a blend mask to specify an input pose per-bone influence"
+    ],
+    "BlendMasks": [
+      "TArray<TObjectPtr<UBlendProfile>>",
+      2,
+      "The blend masks to use for our layer inputs. Allows the use of per-bone alphas.\nBlend masks are used when BlendMode is BlendMask."
+    ],
+    "LayerSetup": [
+      "TArray<FInputBlendPose>",
+      2,
+      "Configuration for the parts of the skeleton to blend for each layer. Allows\ncertain parts of the tree to be blended out or omitted from the pose.\nLayerSetup is used when BlendMode is BranchFilter."
+    ],
+    "BlendWeights": [
+      "TArray<float32>",
+      "The weights of each layer"
+    ],
+    "bMeshSpaceRotationBlend": [
+      "bool",
+      "Whether to blend bone rotations in mesh space or in local space"
+    ],
+    "bMeshSpaceScaleBlend": [
+      "bool",
+      "Whether to blend bone scales in mesh space or in local space"
+    ],
+    "CurveBlendOption": [
+      "ECurveBlendOption",
+      "How to blend the layers together"
+    ],
+    "bBlendRootMotionBasedOnRootBone": [
+      "bool",
+      2,
+      "Whether to incorporate the per-bone blend weight of the root bone when lending root motion"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_LayeredBoneBlend&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_LayeredBoneBlend"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "name": "UTimecodeProvider",
+  "inherits": "UObject",
+  "doc": "A class responsible of fetching a timecode from a source.\nNote, FApp::GetTimecode and FApp::GetTimecodeFramerate should be used to retrieve\nthe current system Timecode and Framerate.",
+  "properties": {
+    "FrameDelay": [
+      "float32",
+      2,
+      "Number of frames to subtract from the qualified frame time when GetDelayedQualifiedFrameTime or GetDelayedTimecode is called.\n@see GetDelayedQualifiedFrameTime, GetDelayedTimecode"
+    ]
+  },
+  "methods": [
+    {
+      "name": "FetchAndUpdate",
+      "return": "void",
+      "doc": "Update the state of the provider. Call it to ensure timecode and state are updated.\nIt is suggested to fetch timecode from its source and cache it for the getters.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FetchTimecode",
+      "return": "bool",
+      "doc": "Fetch current timecode from its source. e.g. From hardware/network/file/etc.\nIt is recommended to cache the fetched timecode.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutFrameTime",
+          "type": "FQualifiedFrameTime&"
+        }
+      ]
+    },
+    {
+      "name": "GetDelayedQualifiedFrameTime",
+      "return": "FQualifiedFrameTime",
+      "const": true,
+      "doc": "Return current frame time with FrameDelay applied.\nOnly assume valid when GetSynchronizationState() returns Synchronized.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDelayedTimecode",
+      "return": "FTimecode",
+      "const": true,
+      "doc": "Return the delayed frame time converted into a timecode value.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFrameRate",
+      "return": "FFrameRate",
+      "const": true,
+      "doc": "Return the frame rate of the frame time.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetQualifiedFrameTime",
+      "return": "FQualifiedFrameTime",
+      "const": true,
+      "doc": "Return current frame time.\nSince it may be called several times per frame, it is suggested to return a cached value.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSynchronizationState",
+      "return": "ETimecodeProviderSynchronizationState",
+      "const": true,
+      "doc": "The state of the TimecodeProvider and if it's currently synchronized and the Timecode and FrameRate getters are valid.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTimecode",
+      "return": "FTimecode",
+      "const": true,
+      "doc": "Return the frame time converted into a timecode value.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

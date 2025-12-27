@@ -1,0 +1,38 @@
+{
+  "name": "FAbcNormalGenerationSettings",
+  "isStruct": true,
+  "properties": {
+    "bForceOneSmoothingGroupPerObject": [
+      "bool",
+      "Whether or not to force smooth normals for each individual object rather than calculating smoothing groups"
+    ],
+    "HardEdgeAngleThreshold": [
+      "float32",
+      "Threshold used to determine whether an angle between two normals should be considered hard, closer to 0 means more smooth vs 1"
+    ],
+    "bRecomputeNormals": [
+      "bool",
+      "Determines whether or not the normals should be forced to be recomputed"
+    ],
+    "bIgnoreDegenerateTriangles": [
+      "bool",
+      "Determines whether or not the degenerate triangles should be ignored when calculating tangents/normals"
+    ],
+    "bSkipComputingTangents": [
+      "bool",
+      "Determines whether tangents are computed for GeometryCache. Skipping them can improve streaming performance but may cause visual artifacts where they are required"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAbcNormalGenerationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAbcNormalGenerationSettings"
+        }
+      ]
+    }
+  ]
+}

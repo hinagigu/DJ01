@@ -1,0 +1,79 @@
+{
+  "name": "__ULegacyCameraShake",
+  "properties": {},
+  "methods": [
+    {
+      "name": "StartLegacyCameraShake",
+      "return": "ULegacyCameraShake",
+      "doc": "Backwards compatible method used by core BP redirectors. This is needed because the return value is specifically a legacy camera shake,\nwhich some BP logic often uses directly to set oscillator/anim properties.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerCameraManager",
+          "type": "APlayerCameraManager"
+        },
+        {
+          "name": "ShakeClass",
+          "type": "TSubclassOf<ULegacyCameraShake>"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PlaySpace",
+          "default": "ECameraShakePlaySpace :: CameraLocal",
+          "type": "ECameraShakePlaySpace"
+        },
+        {
+          "name": "UserPlaySpaceRot",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "StartLegacyCameraShakeFromSource",
+      "return": "ULegacyCameraShake",
+      "doc": "Backwards compatible method used by core BP redirectors. This is needed because the return value is specifically a legacy camera shake,\nwhich some BP logic often uses directly to set oscillator/anim properties.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerCameraManager",
+          "type": "APlayerCameraManager"
+        },
+        {
+          "name": "ShakeClass",
+          "type": "TSubclassOf<ULegacyCameraShake>"
+        },
+        {
+          "name": "SourceComponent",
+          "type": "UCameraShakeSourceComponent"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PlaySpace",
+          "default": "ECameraShakePlaySpace :: CameraLocal",
+          "type": "ECameraShakePlaySpace"
+        },
+        {
+          "name": "UserPlaySpaceRot",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

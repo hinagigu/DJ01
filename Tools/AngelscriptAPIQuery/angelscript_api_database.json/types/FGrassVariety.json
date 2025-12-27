@@ -1,0 +1,126 @@
+{
+  "name": "FGrassVariety",
+  "isStruct": true,
+  "properties": {
+    "GrassMesh": [
+      "UStaticMesh"
+    ],
+    "OverrideMaterials": [
+      "TArray<TObjectPtr<UMaterialInterface>>",
+      "Material Overrides."
+    ],
+    "GrassDensity": [
+      "FPerPlatformFloat",
+      "Instances per 10 square meters."
+    ],
+    "GrassDensityQuality": [
+      "FPerQualityLevelFloat"
+    ],
+    "bUseGrid": [
+      "bool",
+      "If true, use a jittered grid sequence for placement, otherwise use a halton sequence."
+    ],
+    "PlacementJitter": [
+      "float32"
+    ],
+    "StartCullDistance": [
+      "FPerPlatformInt",
+      "The distance where instances will begin to fade out if using a PerInstanceFadeAmount material node. 0 disables."
+    ],
+    "StartCullDistanceQuality": [
+      "FPerQualityLevelInt"
+    ],
+    "EndCullDistance": [
+      "FPerPlatformInt",
+      "The distance where instances will have completely faded out when using a PerInstanceFadeAmount material node. 0 disables.\nWhen the entire cluster is beyond this distance, the cluster is completely culled and not rendered at all."
+    ],
+    "EndCullDistanceQuality": [
+      "FPerQualityLevelInt"
+    ],
+    "MinLOD": [
+      "int",
+      "Specifies the smallest LOD that will be used for this component.\nIf -1 (default), the MinLOD of the static mesh asset will be used instead."
+    ],
+    "Scaling": [
+      "EGrassScaling",
+      "Specifies grass instance scaling type"
+    ],
+    "ScaleX": [
+      "FFloatInterval",
+      "Specifies the range of scale, from minimum to maximum, to apply to a grass instance's X Scale property"
+    ],
+    "ScaleY": [
+      "FFloatInterval",
+      "Specifies the range of scale, from minimum to maximum, to apply to a grass instance's Y Scale property"
+    ],
+    "ScaleZ": [
+      "FFloatInterval",
+      "Specifies the range of scale, from minimum to maximum, to apply to a grass instance's Z Scale property"
+    ],
+    "bWeightAttenuatesMaxScale": [
+      "bool",
+      "If enabled the the scale of instances is reduced as the weight (density) decreases"
+    ],
+    "MaxScaleWeightAttenuation": [
+      "float32",
+      "Modulate the scale of the instances based on weight (normalized density). The weight range (ScaleWeightAttenuation, 1.0) maps to (scaleMin, scaleMax), weight values less than ScaleWeightAttenuation are set to minScale"
+    ],
+    "RandomRotation": [
+      "bool",
+      "Whether the grass instances should be placed at random rotation (true) or all at the same rotation (false)"
+    ],
+    "AlignToSurface": [
+      "bool",
+      "Whether the grass instances should be tilted to the normal of the landscape (true), or always vertical (false)"
+    ],
+    "bUseLandscapeLightmap": [
+      "bool",
+      "Whether to use the landscape's lightmap when rendering the grass."
+    ],
+    "LightingChannels": [
+      "FLightingChannels",
+      "Lighting channels that the grass will be assigned. Lights with matching channels will affect the grass.\nThese channels only apply to opaque materials, direct lighting, and dynamic lighting and shadowing."
+    ],
+    "bReceivesDecals": [
+      "bool",
+      "Whether the grass instances should receive decals."
+    ],
+    "bAffectDistanceFieldLighting": [
+      "bool",
+      "Controls whether the primitive should affect dynamic distance field lighting methods."
+    ],
+    "bCastDynamicShadow": [
+      "bool",
+      "Whether the grass should cast shadows when using non-precomputed shadowing. *"
+    ],
+    "bCastContactShadow": [
+      "bool",
+      "Whether the grass should cast contact shadows. *"
+    ],
+    "bKeepInstanceBufferCPUCopy": [
+      "bool",
+      "Whether we should keep a cpu copy of the instance buffer. This should be set to true if you plan on using GetOverlappingXXXXCount functions of the component otherwise it won't return any data.*"
+    ],
+    "InstanceWorldPositionOffsetDisableDistance": [
+      "uint",
+      2,
+      "Distance at which to grass instances should disable WPO for performance reasons"
+    ],
+    "ShadowCacheInvalidationBehavior": [
+      "EShadowCacheInvalidationBehavior",
+      "Control shadow invalidation behavior, in particular with respect to Virtual Shadow Maps and material effects like World Position Offset."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGrassVariety&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGrassVariety"
+        }
+      ]
+    }
+  ]
+}

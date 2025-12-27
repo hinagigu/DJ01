@@ -1,0 +1,44 @@
+{
+  "name": "FRigUnit_TransformConstraint",
+  "isStruct": true,
+  "properties": {
+    "Bone": [
+      "FName"
+    ],
+    "BaseTransformSpace": [
+      "ETransformSpaceMode"
+    ],
+    "BaseTransform": [
+      "FTransform",
+      "Transform op option. Use if ETransformSpace is BaseTransform"
+    ],
+    "BaseBone": [
+      "FName",
+      "Transform op option. Use if ETransformSpace is BaseJoint"
+    ],
+    "Targets": [
+      "TArray<FConstraintTarget>"
+    ],
+    "bUseInitialTransforms": [
+      "bool",
+      1,
+      "If checked the initial transform will be used for the constraint data"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_TransformConstraint&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_TransformConstraint"
+        }
+      ]
+    }
+  ]
+}

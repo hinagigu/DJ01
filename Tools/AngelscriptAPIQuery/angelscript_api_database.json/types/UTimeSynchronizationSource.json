@@ -1,0 +1,18 @@
+{
+  "name": "UTimeSynchronizationSource",
+  "inherits": "UObject",
+  "doc": "Base class for sources to be used for time synchronization.\n\nSubclasses don't need to directly contain data, nor provide access to the\ndata in any way (although they may).\n\nCurrently, Synchronization does not work on the subframe level.",
+  "properties": {
+    "bUseForSynchronization": [
+      "bool",
+      2,
+      "Whether or not this source should be considered when establishing synchronization."
+    ],
+    "FrameOffset": [
+      "int",
+      2,
+      "An additional offset in frames (relative to this source's frame rate) that should used.\nThis is mainly useful to help correct discrepancies between the reported Sample Times\nand how the samples actually line up relative to other sources."
+    ]
+  },
+  "methods": []
+}

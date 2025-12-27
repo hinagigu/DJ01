@@ -1,0 +1,203 @@
+{
+  "name": "UChaosClothConfig",
+  "inherits": "UClothConfigCommon",
+  "doc": "Holds initial, asset level config for clothing actors. // Hiding categories that will be used in the future",
+  "properties": {
+    "MassMode": [
+      "EClothMassMode",
+      2,
+      "How cloth particle mass is determined\n-    Uniform Mass: Every particle's mass will be set to the value specified in the UniformMass setting. Mostly to avoid as it can cause some serious issues with irregular tessellations.\n-    Total Mass: The total mass is distributed equally over all the particles. Useful when referencing a specific garment size and feel.\n-    Density: A constant mass density is used. Density is usually the preferred way of setting mass since it allows matching real life materials' density values."
+    ],
+    "UniformMass": [
+      "float32",
+      2,
+      "The value used when the Mass Mode is set to Uniform Mass."
+    ],
+    "TotalMass": [
+      "float32",
+      2,
+      "The value used when Mass Mode is set to TotalMass."
+    ],
+    "Density": [
+      "float32",
+      2,
+      "The value used when Mass Mode is set to Density.\nMelton Wool: 0.7\nHeavy leather: 0.6\nPolyurethane: 0.5\nDenim: 0.4\nLight leather: 0.3\nCotton: 0.2\nSilk: 0.1"
+    ],
+    "EdgeStiffnessWeighted": [
+      "FChaosClothWeightedValue",
+      2,
+      "The Stiffness of segments constraints. Increase the iteration count for stiffer materials.\nIf an enabled Weight Map (Mask with values in the range [0;1]) targeting the \"Edge Stiffness\" is added to the cloth,\nthen both the Low and High values will be used in conjunction with the per particle Weight stored in the Weight Map to interpolate the final value from them.\nOtherwise only the Low value is meaningful and sufficient to enable this constraint."
+    ],
+    "BendingStiffnessWeighted": [
+      "FChaosClothWeightedValue",
+      2,
+      "The Stiffness of cross segments and bending elements constraints. Increase the iteration count for stiffer materials.\nIf an enabled Weight Map (Mask with values in the range [0;1]) targeting the \"Bend Stiffness\" is added to the cloth,\nthen both the Low and High values will be used in conjunction with the per particle Weight stored in the Weight Map to interpolate the final value from them.\nOtherwise only the Low value is meaningful and sufficient to enable this constraint."
+    ],
+    "bUseBendingElements": [
+      "bool",
+      2,
+      "Enable the more accurate bending element constraints instead of the faster cross-edge spring constraints used for controlling bending stiffness."
+    ],
+    "BucklingRatio": [
+      "float32",
+      2,
+      "Once the element has bent such that it's folded more than this ratio from its rest angle (\"buckled\"), switch to using Buckling Stiffness instead of Bending Stiffness.\nWhen Buckling Ratio = 0, the Buckling Stiffness will never be used. When BucklingRatio = 1, the Buckling Stiffness will be used as soon as its bent past its rest configuration."
+    ],
+    "BucklingStiffnessWeighted": [
+      "FChaosClothWeightedValue",
+      2,
+      "Bending will use this stiffness instead of Bending Stiffness once the cloth has buckled, i.e., bent beyond a certain angle.\nTypically, Buckling Stiffness is set to be less than Bending Stiffness. Buckling Ratio determines the switch point between using Bending Stiffness and Buckling Stiffness.\nIf an enabled Weight Map (Mask with values in the range [0;1]) targeting the \"Buckling Stiffness\" is added to the cloth,\nthen both the Low and High values will be used in conjunction with the per particle Weight stored in the Weight Map to interpolate the final value from them.\nOtherwise only the Low value is meaningful and sufficient to enable this constraint."
+    ],
+    "AreaStiffnessWeighted": [
+      "FChaosClothWeightedValue",
+      2,
+      "The stiffness of the surface area preservation constraints. Increase the iteration count for stiffer materials.\nIf an enabled Weight Map (Mask with values in the range [0;1]) targeting the \"Bend Stiffness\" is added to the cloth,\nthen both the Low and High values will be used in conjunction with the per particle Weight stored in the Weight Map to interpolate the final value from them.\nOtherwise only the Low value is meaningful and sufficient to enable this constraint."
+    ],
+    "TetherStiffness": [
+      "FChaosClothWeightedValue",
+      2,
+      "The tethers' stiffness of the long range attachment constraints.\nThe long range attachment connects each of the cloth particles to its closest fixed point with a spring constraint.\nThis can be used to compensate for a lack of stretch resistance when the iterations count is kept low for performance reasons.\nCan lead to an unnatural pull string puppet like behavior.\nIf an enabled Weight Map (Mask with values in the range [0;1]) targeting the \"Tether Stiffness\" is added to the cloth,\nthen both the Low and High values will be used in conjunction with the per particle Weight stored\nin the Weight Map to interpolate the final value from them.\nOtherwise only the Low value is meaningful and sufficient to enable this constraint.\nUse 0, 0 to disable."
+    ],
+    "TetherScale": [
+      "FChaosClothWeightedValue",
+      2,
+      "The limit scale of the long range attachment constraints (aka tether limit).\nIf an enabled Weight Map (Mask with values in the range [0;1]) targeting the \"Tether Scale\" is added to the cloth,\nthen both the Low and High values will be used in conjunction with the per particle Weight stored\nin the Weight Map to interpolate the final value from them.\nOtherwise only the Low value is meaningful and sufficient to set the tethers' scale."
+    ],
+    "bUseGeodesicDistance": [
+      "bool",
+      2,
+      "Use geodesic instead of euclidean distance calculations for the Long Range Attachment constraint,\nwhich is slower at setup but more accurate at establishing the correct position and length of the tethers,\nand therefore is less prone to artifacts during the simulation."
+    ],
+    "CollisionThickness": [
+      "float32",
+      2,
+      "The added thickness of collision shapes."
+    ],
+    "FrictionCoefficient": [
+      "float32",
+      2,
+      "Friction coefficient for cloth - collider interaction."
+    ],
+    "bUseCCD": [
+      "bool",
+      2,
+      "Use continuous collision detection (CCD) to prevent any missed collisions between fast moving particles and colliders.\nThis has a negative effect on performance compared to when resolving collision without using CCD."
+    ],
+    "bUseSelfCollisions": [
+      "bool",
+      2,
+      "Enable self collision repulsion forces (point-face)."
+    ],
+    "SelfCollisionThickness": [
+      "float32",
+      2,
+      "The radius of the spheres used in self collision. (i.e., offset per side. total thickness of cloth is 2x this value)"
+    ],
+    "SelfCollisionFriction": [
+      "float32",
+      2,
+      "Friction coefficient for cloth - cloth interaction."
+    ],
+    "bUseSelfIntersections": [
+      "bool",
+      2,
+      "Enable self intersection resolution. This will try to fix any cloth intersections that are not handled by collision repulsions."
+    ],
+    "bUseSelfCollisionSpheres": [
+      "bool",
+      2,
+      "Enable sphere-based self collision repulsion forces."
+    ],
+    "SelfCollisionSphereRadius": [
+      "float32",
+      2,
+      "The radius of the spheres used in self collision centered at each vertex."
+    ],
+    "SelfCollisionSphereStiffness": [
+      "float32",
+      2,
+      "The stiffness of the springs used to control self collision."
+    ],
+    "SelfCollisionSphereRadiusCullMultiplier": [
+      "float32",
+      2,
+      "Multiplier for culling the self collision spheres. Spheres are seeded on every vertex,\nand culled based on SelfCollisionSphereRadius * SelfCollisionSphereRadiusCullMultiplier."
+    ],
+    "bUseLegacyBackstop": [
+      "bool",
+      2,
+      "This parameter is automatically set by the migration code. It can be overridden here to use the old way of authoring the backstop distances.\nThe legacy backstop requires the sphere radius to be included within the painted distance mask, making it difficult to author correctly. In this case the backstop distance is the distance from the animated mesh to the center of the corresponding backstop collision sphere.\nThe non legacy backstop automatically adds the matching sphere's radius to the distance calculations at runtime to make for a simpler authoring of the backstop distances. In this case the backstop distance is the distance from the animated mesh to the surface of the backstop collision sphere.\nIn both cases, a positive backstop distance goes against the corresponding animated mesh's normal, and a negative backstop distance goes along the corresponding animated mesh's normal."
+    ],
+    "DampingCoefficient": [
+      "float32",
+      2,
+      "The amount of global damping applied to the cloth velocities, also known as point damping.\nPoint damping improves simulation stability, but can also cause an overall slow-down effect and therefore is best left to very small percentage amounts."
+    ],
+    "LocalDampingCoefficient": [
+      "float32",
+      2,
+      "The amount of local damping applied to the cloth velocities.\nThis type of damping only damps individual deviations of the particles velocities from the global motion.\nIt makes the cloth deformations more cohesive and reduces jitter without affecting the overall movement.\nIt can also produce synchronization artifacts where part of the cloth mesh are disconnected (which might well be desirable, or not), and is more expensive than global damping."
+    ],
+    "bUsePointBasedWindModel": [
+      "bool",
+      2,
+      "This parameter is automatically set by the migration code. It can be overridden here to use the old deprecated \"Legacy\" wind model in order to preserve behavior with previous versions of the engine.\nThe old wind model is not an accurate aerodynamic model and as such should be avoided. Being point based, it doesn't take into account the surface area that gets hit by the wind.\nUsing this model makes the simulation slightly slower, disables the aerodynamically accurate wind model, and prevents the cloth to interact with the surrounding environment (air, water, ...etc.) even when there is no wind."
+    ],
+    "Drag": [
+      "FChaosClothWeightedValue",
+      2,
+      "The aerodynamic coefficient of drag applying on each particle.\nIf an enabled Weight Map (Mask with values in the range [0;1]) targeting the \"Drag\" is added to the cloth,\nthen both the Low and High values will be used in conjunction with the per particle Weight stored\nin the Weight Map to interpolate the final value from them.\nOtherwise only the Low value is meaningful and sufficient to set the aerodynamic drag."
+    ],
+    "Lift": [
+      "FChaosClothWeightedValue",
+      2,
+      "The aerodynamic coefficient of lift applying on each particle.\nIf an enabled Weight Map (Mask with values in the range [0;1]) targeting the \"Lift\" is added to the cloth,\nthen both the Low and High values will be used in conjunction with the per particle Weight stored\nin the Weight Map to interpolate the final value from them.\nOtherwise only the Low value is meaningful and sufficient to set the aerodynamic lift."
+    ],
+    "bUseGravityOverride": [
+      "bool",
+      2,
+      "Use the config gravity value instead of world gravity."
+    ],
+    "GravityScale": [
+      "float32",
+      2,
+      "Scale factor applied to the world gravity and also to the clothing simulation interactor gravity. Does not affect the gravity if set using the override below."
+    ],
+    "Gravity": [
+      "FVector",
+      2,
+      "The gravitational acceleration vector [cm/s^2]"
+    ],
+    "Pressure": [
+      "FChaosClothWeightedValue",
+      2,
+      "Pressure force strength applied in the normal direction(use negative value to push toward backface)\nIf an enabled Weight Map (Mask with values in the range [0;1]) targeting the \"Pressure\" is added to the cloth,\nthen both the Low and High values will be used in conjunction with the per particle Weight stored\nin the Weight Map to interpolate the final value from them.\nOtherwise only the Low value is meaningful and sufficient to set the pressure."
+    ],
+    "AnimDriveStiffness": [
+      "FChaosClothWeightedValue",
+      2,
+      "The strength of the constraint driving the cloth towards the animated goal mesh.\nIf an enabled Weight Map (Mask with values in the range [0;1]) targeting the \"Anim Drive Stiffness\" is added to the cloth,\nthen both the Low and High values will be used in conjunction with the per particle Weight stored\nin the Weight Map to interpolate the final value from them.\nOtherwise only the Low value is meaningful and sufficient to enable this constraint."
+    ],
+    "AnimDriveDamping": [
+      "FChaosClothWeightedValue",
+      2,
+      "The damping amount of the anim drive.\nIf an enabled Weight Map (Mask with values in the range [0;1]) targeting the \"Anim Drive Damping\" is added to the cloth,\nthen both the Low and High values will be used in conjunction with the per particle Weight stored\nin the Weight Map to interpolate the final value from them.\nOtherwise only the Low value is sufficient to work on this constraint."
+    ],
+    "LinearVelocityScale": [
+      "FVector",
+      2,
+      "The amount of linear velocities sent to the local cloth space from the reference bone\n(the closest bone to the root on which the cloth section has been skinned, or the root itself if the cloth isn't skinned)."
+    ],
+    "AngularVelocityScale": [
+      "float32",
+      2,
+      "The amount of angular velocities sent to the local cloth space from the reference bone\n(the closest bone to the root on which the cloth section has been skinned, or the root itself if the cloth isn't skinned)."
+    ],
+    "FictitiousAngularScale": [
+      "float32",
+      2,
+      "The portion of the angular velocity that is used to calculate the strength of all fictitious forces (e.g. centrifugal force).\nThis parameter is only having an effect on the portion of the reference bone's angular velocity that has been removed from the\nsimulation via the Angular Velocity Scale parameter. This means it has no effect when AngularVelocityScale is set to 1 in which\ncase the cloth is simulated with full world space angular velocities and subjected to the true physical world inertial forces.\nValues range from 0 to 2, with 0 showing no centrifugal effect, 1 full centrifugal effect, and 2 an overdriven centrifugal effect."
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,95 @@
+{
+  "name": "FMeshReductionSettings",
+  "isStruct": true,
+  "doc": "Settings used to reduce a mesh.",
+  "properties": {
+    "PercentTriangles": [
+      "float32",
+      "Percentage of triangles to keep. 1.0 = no reduction, 0.0 = no triangles. (Triangles criterion properties)"
+    ],
+    "MaxNumOfTriangles": [
+      "uint",
+      2,
+      "The maximum number of triangles to retain when using percentage termination criterion. (Triangles criterion properties)"
+    ],
+    "PercentVertices": [
+      "float32",
+      "Percentage of vertices to keep. 1.0 = no reduction, 0.0 = no vertices. (Vertices criterion properties)"
+    ],
+    "MaxNumOfVerts": [
+      "uint",
+      2,
+      "The maximum number of vertices to retain when using percentage termination criterion. (Vertices criterion properties)"
+    ],
+    "MaxDeviation": [
+      "float32",
+      "The maximum distance in object space by which the reduced mesh may deviate from the original mesh."
+    ],
+    "PixelError": [
+      "float32",
+      "The amount of error in pixels allowed for this LOD."
+    ],
+    "WeldingThreshold": [
+      "float32",
+      "Threshold in object space at which vertices are welded together."
+    ],
+    "HardAngleThreshold": [
+      "float32",
+      "Angle at which a hard edge is introduced between faces."
+    ],
+    "BaseLODModel": [
+      "int"
+    ],
+    "SilhouetteImportance": [
+      "EMeshFeatureImportance",
+      "Higher values minimize change to border edges."
+    ],
+    "TextureImportance": [
+      "EMeshFeatureImportance",
+      "Higher values reduce texture stretching."
+    ],
+    "ShadingImportance": [
+      "EMeshFeatureImportance",
+      "Higher values try to preserve normals better."
+    ],
+    "TerminationCriterion": [
+      "EStaticMeshReductionTerimationCriterion",
+      "The method to use when optimizing static mesh LODs"
+    ],
+    "VisibilityAggressiveness": [
+      "EMeshFeatureImportance",
+      "Higher values generates fewer samples"
+    ],
+    "VertexColorImportance": [
+      "EMeshFeatureImportance",
+      "Higher values minimize change to vertex color data."
+    ],
+    "bRecalculateNormals": [
+      "bool"
+    ],
+    "bGenerateUniqueLightmapUVs": [
+      "bool"
+    ],
+    "bKeepSymmetry": [
+      "bool"
+    ],
+    "bVisibilityAided": [
+      "bool"
+    ],
+    "bCullOccluded": [
+      "bool"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMeshReductionSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMeshReductionSettings"
+        }
+      ]
+    }
+  ]
+}

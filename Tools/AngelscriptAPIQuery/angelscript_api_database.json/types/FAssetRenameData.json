@@ -1,0 +1,33 @@
+{
+  "name": "FAssetRenameData",
+  "isStruct": true,
+  "properties": {
+    "Asset": [
+      "TWeakObjectPtr<UObject>",
+      1,
+      "Object being renamed"
+    ],
+    "NewPackagePath": [
+      "FString",
+      1,
+      "New path to package without package name, ie /Game/SubDirectory"
+    ],
+    "NewName": [
+      "FString",
+      1,
+      "New package and asset name, new object path will be PackagePath/NewName.NewName"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAssetRenameData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAssetRenameData"
+        }
+      ]
+    }
+  ]
+}

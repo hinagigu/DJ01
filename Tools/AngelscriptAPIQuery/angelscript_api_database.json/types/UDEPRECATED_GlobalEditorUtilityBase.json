@@ -1,0 +1,153 @@
+{
+  "name": "UDEPRECATED_GlobalEditorUtilityBase",
+  "inherits": "UObject",
+  "properties": {
+    "HelpText": [
+      "FString"
+    ],
+    "bAutoRunDefaultAction": [
+      "bool",
+      "Should this blueprint automatically run OnDefaultActionClicked, or should it open up a details panel to edit properties and/or offer multiple buttons"
+    ],
+    "OnEachSelectedActor": [
+      "FForEachActorIteratorSignature",
+      "The method called for each selected actor when ForEachSelectedActor is called"
+    ],
+    "OnEachSelectedAsset": [
+      "FForEachAssetIteratorSignature",
+      "The method called for each selected asset when ForEachSelectedAsset is called"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ClearActorSelectionSet",
+      "return": "void",
+      "doc": "Remove all actors from the selection set",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ForEachSelectedActor",
+      "return": "void",
+      "doc": "Calls OnEachSelectedActor for each selected actor",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ForEachSelectedAsset",
+      "return": "void",
+      "doc": "Calls OnEachSelectedAsset for each selected asset",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorReference",
+      "return": "AActor",
+      "doc": "Attempts to find the actor specified by PathToActor in the current editor world\n@param       PathToActor     The path to the actor (e.g. PersistentLevel.PlayerStart)\n@return      A reference to the actor, or none if it wasn't found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PathToActor",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetEditorUserSettings",
+      "return": "UEditorPerProjectUserSettings",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedAssets",
+      "return": "TArray<UObject>",
+      "doc": "Gets the set of currently selected assets",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectionBounds",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Origin",
+          "type": "FVector&"
+        },
+        {
+          "name": "BoxExtent",
+          "type": "FVector&"
+        },
+        {
+          "name": "SphereRadius",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectionSet",
+      "return": "TArray<AActor>",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnDefaultActionClicked",
+      "return": "void",
+      "callable": false,
+      "doc": "The default action called when the blutility is invoked if bAutoRunDefaultAction=true (it is never called otherwise)",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RenameAsset",
+      "return": "void",
+      "doc": "Renames an asset (cannot move folders)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Asset",
+          "type": "UObject"
+        },
+        {
+          "name": "NewName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SelectNothing",
+      "return": "void",
+      "doc": "Selects nothing in the editor (another way to clear the selection)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetActorSelectionState",
+      "return": "void",
+      "doc": "Set the selection state for the selected actor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "bShouldBeSelected",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

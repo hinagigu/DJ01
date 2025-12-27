@@ -1,0 +1,59 @@
+{
+  "name": "__EAnimFunctionCallSite",
+  "isEnum": true,
+  "doc": "When to call the function during the execution of the animation graph",
+  "properties": {
+    "OnInitialize": [
+      "EAnimFunctionCallSite",
+      "Called when the node is initialized - i.e. it becomes weighted/relevant in the graph (before child nodes are initialized)"
+    ],
+    "OnUpdate": [
+      "EAnimFunctionCallSite",
+      "Called when the node is updated (before child nodes are updated)"
+    ],
+    "OnBecomeRelevant": [
+      "EAnimFunctionCallSite",
+      "Called when the node is updated for the first time with a valid weight"
+    ],
+    "OnEvaluate": [
+      "EAnimFunctionCallSite",
+      "Called when the node is evaluated (before child nodes are evaluated)"
+    ],
+    "OnInitializePostRecursion": [
+      "EAnimFunctionCallSite",
+      "Called when the node is initialized - i.e. it becomes weighted/relevant in the graph (after child nodes are initialized)"
+    ],
+    "OnUpdatePostRecursion": [
+      "EAnimFunctionCallSite",
+      "Called when the node is updated (after child nodes are updated)"
+    ],
+    "OnBecomeRelevantPostRecursion": [
+      "EAnimFunctionCallSite",
+      "Called when the node is updated for the first time with a valid weight (after child nodes are updated)"
+    ],
+    "OnEvaluatePostRecursion": [
+      "EAnimFunctionCallSite",
+      "Called when the node is evaluated (after child nodes are evaluated)"
+    ],
+    "OnStartedBlendingOut": [
+      "EAnimFunctionCallSite",
+      "Called when the node is updated, was at full weight and beings to blend out. Called before child nodes are\nupdated"
+    ],
+    "OnStartedBlendingIn": [
+      "EAnimFunctionCallSite",
+      "Called when the node is updated, was at zero weight and beings to blend in. Called before child nodes are updated"
+    ],
+    "OnFinishedBlendingOut": [
+      "EAnimFunctionCallSite",
+      "Called when the node is updated, was at non-zero weight and finishes blending out. Called before child nodes are\nupdated (note that this is necessarily not called within the graph update but from outside)\n@TODO: Not currently supported, needs subsystem support!"
+    ],
+    "OnFinishedBlendingIn": [
+      "EAnimFunctionCallSite",
+      "Called when the node is updated, was at non-zero weight and becomes full weight. Called before child nodes are\nupdated"
+    ],
+    "EAnimFunctionCallSite_MAX": [
+      "EAnimFunctionCallSite"
+    ]
+  },
+  "methods": []
+}

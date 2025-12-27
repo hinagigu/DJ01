@@ -1,0 +1,43 @@
+{
+  "name": "FSwarmTaskRequestSpecificationMessage",
+  "isStruct": true,
+  "properties": {
+    "TaskGuid": [
+      "FGuid",
+      2,
+      "The GUID used for identifying the Task being referred to"
+    ],
+    "Parameters": [
+      "FString",
+      2,
+      "The Task's parameter string specified with AddTask"
+    ],
+    "Flags": [
+      "uint8",
+      2,
+      "Flags used to control the behavior of the Task, subject to overrides from the containing Job"
+    ],
+    "Cost": [
+      "uint",
+      2,
+      "The Task's cost, relative to all other Tasks in the same Job, used for even distribution and scheduling"
+    ],
+    "Dependencies": [
+      "TArray<FString>",
+      2,
+      "Any additional Task dependencies"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSwarmTaskRequestSpecificationMessage&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSwarmTaskRequestSpecificationMessage"
+        }
+      ]
+    }
+  ]
+}

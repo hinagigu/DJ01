@@ -1,0 +1,317 @@
+{
+  "name": "UVolumetricCloudComponent",
+  "inherits": "USceneComponent",
+  "doc": "A component that represents a participating media material around a planet, e.g. clouds.",
+  "properties": {
+    "TracingMaxDistanceMode": [
+      "EVolumetricCloudTracingMaxDistanceMode",
+      "Mode to select how the tracing max distance should be interpreted. DistanceFromPointOfView is useful to avoid the top of the cloud layer to be clipped when TracingMaxDistance is shorten for performance."
+    ],
+    "ReflectionViewSampleCountScaleValue": [
+      "float32",
+      "Scale the tracing sample count in reflection views. Quality level scalability CVARs affect the maximum range.\nThe sample count resolution is still clamped according to scalability setting to 'r.VolumetricCloud.ReflectionRaySampleMaxCount'."
+    ],
+    "ShadowReflectionViewSampleCountScaleValue": [
+      "float32",
+      "Scale the shadow tracing sample count in reflection views, only used with Advanced Output ray marched shadows. Quality level scalability CVARs affect the maximum range.\nThe sample count resolution is still clamped according to scalability setting to 'r.VolumetricCloud.Shadow.ReflectionRaySampleMaxCount'."
+    ],
+    "AerialPespectiveRayleighScatteringStartDistance": [
+      "float32",
+      "Specify the aerial perspective start distance on cloud for Rayleigh scattering only. (kilometers)"
+    ],
+    "AerialPespectiveRayleighScatteringFadeDistance": [
+      "float32",
+      "Specify the distance over which the Rayleigh scattering will linearly ramp up to full effect. (kilometers)"
+    ],
+    "AerialPespectiveMieScatteringStartDistance": [
+      "float32",
+      "Specify the aerial perspective start distance on cloud for Mie scattering only. (kilometers)"
+    ],
+    "AerialPespectiveMieScatteringFadeDistance": [
+      "float32",
+      "Specify the distance over which the Rayleigh scattering will linearly ramp up to full effect. (kilometers)"
+    ],
+    "LayerBottomAltitude": [
+      "float32",
+      "The altitude at which the cloud layer starts. (kilometers above the ground)"
+    ],
+    "LayerHeight": [
+      "float32",
+      "The height of the the cloud layer. (kilometers above the layer bottom altitude)"
+    ],
+    "TracingStartMaxDistance": [
+      "float32",
+      "The maximum distance of the volumetric surface, i.e. cloud layer upper and lower bound, before which we will accept to start tracing. (kilometers)"
+    ],
+    "TracingStartDistanceFromCamera": [
+      "float32",
+      "The distance from which the tracing will start. This is useful when the camera for instance is inside the layer of cloud. (kilometers)"
+    ],
+    "TracingMaxDistance": [
+      "float32",
+      "The maximum distance that will be traced inside the cloud layer. (kilometers)"
+    ],
+    "PlanetRadius": [
+      "float32",
+      "The planet radius used when there is not SkyAtmosphere component present in the scene."
+    ],
+    "GroundAlbedo": [
+      "FColor",
+      "The ground albedo used to light the cloud from below with respect to the sun light and sky atmosphere.\nThis is only used by the cloud material when the 'Volumetric Advanced' node have GroundContribution enabled."
+    ],
+    "Material": [
+      "UMaterialInterface",
+      "The material describing the cloud volume. It must be a Volume domain material."
+    ],
+    "bUsePerSampleAtmosphericLightTransmittance": [
+      "bool",
+      "Whether to apply atmosphere transmittance per sample, instead of using the light global transmittance."
+    ],
+    "SkyLightCloudBottomOcclusion": [
+      "float32",
+      "Occlude the sky light contribution at the bottom of the cloud layer. This is a fast approximation to sky lighting being occluded by cloud without having to trace rays or sample AO texture. Ignored if the cloud material explicitely sets the ambient occlusion value."
+    ],
+    "ViewSampleCountScale": [
+      "float32",
+      "Scale the tracing sample count in primary views. Quality level scalability CVARs affect the maximum range.\nThe sample count resolution is still clamped according to scalability setting to 'r.VolumetricCloud.ViewRaySampleCountMax'."
+    ],
+    "ShadowViewSampleCountScale": [
+      "float32",
+      "Scale the shadow tracing sample count in primary views, only used with Advanced Output ray marched shadows. Quality level scalability CVARs affect the maximum range.\nThe sample count resolution is still clamped according to scalability setting to 'r.VolumetricCloud.Shadow.ViewRaySampleMaxCount'."
+    ],
+    "ShadowTracingDistance": [
+      "float32",
+      "The shadow tracing distance in kilometers, only used with Advanced Output ray marched shadows."
+    ],
+    "StopTracingTransmittanceThreshold": [
+      "float32",
+      "When the mean transmittance is below this threshold, we stop tracing. This is a good way to reduce the ray marched sample count, and thus to increase performance."
+    ],
+    "bHoldout": [
+      "bool",
+      "If this is True, this primitive will render black with an alpha of 0, but all secondary effects (shadows, reflections, indirect lighting) remain. This feature required the project setting \"Enable alpha channel support in post processing\"."
+    ],
+    "bRenderInMainPass": [
+      "bool",
+      "If true, this component will be rendered in the main pass (basepass, transparency)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetbUsePerSampleAtmosphericLightTransmittance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetGroundAlbedo",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "SetHoldout",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewHoldout",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLayerBottomAltitude",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLayerHeight",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMaterial",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "UMaterialInterface"
+        }
+      ]
+    },
+    {
+      "name": "SetPlanetRadius",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetReflectionViewSampleCountScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderInMainPass",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetShadowReflectionViewSampleCountScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetShadowTracingDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetShadowViewSampleCountScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSkyLightCloudBottomOcclusion",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetStopTracingTransmittanceThreshold",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTracingMaxDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTracingStartDistanceFromCamera",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetTracingStartMaxDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetViewSampleCountScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

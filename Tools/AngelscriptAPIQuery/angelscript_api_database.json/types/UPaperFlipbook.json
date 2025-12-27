@@ -1,0 +1,119 @@
+{
+  "name": "UPaperFlipbook",
+  "inherits": "UObject",
+  "doc": "Contains an animation sequence of sprite frames",
+  "properties": {
+    "FramesPerSecond": [
+      "float32",
+      "The nominal frame rate to play this flipbook animation back at"
+    ],
+    "KeyFrames": [
+      "TArray<FPaperFlipbookKeyFrame>",
+      2,
+      "The set of key frames for this flipbook animation (each one has a duration and a sprite to display)"
+    ],
+    "DefaultMaterial": [
+      "UMaterialInterface",
+      "The material to use on a flipbook player instance if not overridden"
+    ],
+    "CollisionSource": [
+      "EFlipbookCollisionMode",
+      "Collision source"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetKeyFrameIndexAtTime",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the keyframe index that covers the specified time (in seconds), or INDEX_NONE if none exists.\nWhen bClampToEnds is true, it will choose the first or last keyframe if the time is out of range.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "bClampToEnds",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetNumFrames",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the total number of frames",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumKeyFrames",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of key frames",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSpriteAtFrame",
+      "return": "UPaperSprite",
+      "const": true,
+      "doc": "Returns the sprite at the specified keyframe index, or nullptr if none exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FrameIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetSpriteAtTime",
+      "return": "UPaperSprite",
+      "const": true,
+      "doc": "Returns the sprite at the specified time (in seconds), or nullptr if none exists.\nWhen bClampToEnds is true, it will choose the first or last sprite if the time is out of range.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Time",
+          "type": "float32"
+        },
+        {
+          "name": "bClampToEnds",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetTotalDuration",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the total duration in seconds",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsValidKeyFrameIndex",
+      "return": "bool",
+      "const": true,
+      "doc": "Is the specified Index within the valid range of key frames?",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

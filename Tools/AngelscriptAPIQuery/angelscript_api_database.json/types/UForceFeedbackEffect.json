@@ -1,0 +1,28 @@
+{
+  "name": "UForceFeedbackEffect",
+  "inherits": "UObject",
+  "doc": "A predefined force-feedback effect to be played on a controller",
+  "properties": {
+    "ChannelDetails": [
+      "TArray<FForceFeedbackChannelDetails>",
+      2,
+      ""
+    ],
+    "PerDeviceOverrides": [
+      "TMap<FName,FForceFeedbackEffectOverridenChannelDetails>",
+      2,
+      "A map of platform name -> ForceFeedback channel details"
+    ],
+    "DeviceProperties": [
+      "TArray<TObjectPtr<UInputDeviceProperty>>",
+      2,
+      "A map of input device properties that we want to set while this effect is playing"
+    ],
+    "Duration": [
+      "float32",
+      1,
+      "Duration of force feedback pattern in seconds."
+    ]
+  },
+  "methods": []
+}

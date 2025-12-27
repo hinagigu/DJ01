@@ -1,0 +1,31 @@
+{
+  "name": "FCameraTrackingFocusSettings",
+  "isStruct": true,
+  "doc": "Settings to control tracking-focus mode.",
+  "properties": {
+    "ActorToTrack": [
+      "TSoftObjectPtr<AActor>",
+      "Focus distance will be tied to this actor's location."
+    ],
+    "RelativeOffset": [
+      "FVector",
+      "Offset from actor position to track. Relative to actor if tracking an actor, relative to world otherwise."
+    ],
+    "bDrawDebugTrackingFocusPoint": [
+      "bool",
+      "True to draw a debug representation of the tracked position."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCameraTrackingFocusSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCameraTrackingFocusSettings"
+        }
+      ]
+    }
+  ]
+}

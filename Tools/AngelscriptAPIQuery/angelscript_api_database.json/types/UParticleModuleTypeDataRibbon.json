@@ -1,0 +1,91 @@
+{
+  "name": "UParticleModuleTypeDataRibbon",
+  "inherits": "UParticleModuleTypeDataBase",
+  "properties": {
+    "SheetsPerTrail": [
+      "int",
+      2,
+      "The number of sheets to render for the trail."
+    ],
+    "MaxTrailCount": [
+      "int",
+      2,
+      "The number of live trails"
+    ],
+    "MaxParticleInTrailCount": [
+      "int",
+      2,
+      "Max particles per trail"
+    ],
+    "RenderAxis": [
+      "ETrailsRenderAxisOption",
+      2,
+      "The 'render' axis for the trail (what axis the trail is stretched out on)\n        Trails_CameraUp - Traditional camera-facing trail.\n        Trails_SourceUp - Use the up axis of the source for each spawned particle.\n        Trails_WorldUp  - Use the world up axis."
+    ],
+    "TangentSpawningScalar": [
+      "float32",
+      2,
+      "The tangent scalar for spawning.\nAngles between tangent A and B are mapped to [0.0f .. 1.0f]\nThis is then multiplied by TangentTessellationScalar to give the number of particles to spawn"
+    ],
+    "TilingDistance": [
+      "float32",
+      2,
+      "The (estimated) covered distance to tile the 2nd UV set at.\nIf 0.0, a second UV set will not be passed in."
+    ],
+    "DistanceTessellationStepSize": [
+      "float32",
+      2,
+      "The distance step size for tessellation.\n# Tessellation Points = TruncToInt((Distance Between Spawned Particles) / DistanceTessellationStepSize))"
+    ],
+    "TangentTessellationScalar": [
+      "float32",
+      2,
+      "The tangent scalar for tessellation.\nAngles between tangent A and B are mapped to [0.0f .. 1.0f]\nThis is then multiplied by TangentTessellationScalar to give the number of points to tessellate"
+    ],
+    "bDeadTrailsOnDeactivate": [
+      "bool",
+      "If true, when the system is deactivated, mark trails as dead.\nThis means they will still render, but will not have more particles\nadded to them, even if the system re-activates..."
+    ],
+    "bDeadTrailsOnSourceLoss": [
+      "bool",
+      "If true, when the source of a trail is 'lost' (ie, the source particle\ndies), mark the current trail as dead."
+    ],
+    "bClipSourceSegement": [
+      "bool",
+      "If true, do not join the trail to the source position"
+    ],
+    "bEnablePreviousTangentRecalculation": [
+      "bool",
+      "If true, recalculate the previous tangent when a new particle is spawned"
+    ],
+    "bTangentRecalculationEveryFrame": [
+      "bool",
+      "If true, recalculate tangents every frame to allow velocity/acceleration to be applied"
+    ],
+    "bSpawnInitialParticle": [
+      "bool",
+      "If true, ribbon will spawn a particle when it first starts moving"
+    ],
+    "bRenderGeometry": [
+      "bool",
+      "If true, render the trail geometry (this should typically be on)"
+    ],
+    "bRenderSpawnPoints": [
+      "bool",
+      "If true, render stars at each spawned particle point along the trail"
+    ],
+    "bRenderTangents": [
+      "bool",
+      "If true, render a line showing the tangent at each spawned particle point along the trail"
+    ],
+    "bRenderTessellation": [
+      "bool",
+      "If true, render the tessellated path between spawned particles"
+    ],
+    "bEnableTangentDiffInterpScale": [
+      "bool",
+      "If this flag is enabled, the system will scale the number of interpolated vertices\nbased on the difference in the tangents of neighboring particles.\nEach pair of neighboring particles will compute the following CheckTangent value:\n        CheckTangent = ((ParticleA Tangent DOT ParticleB Tangent) - 1.0f) * 0.5f\nIf CheckTangent is LESS THAN 0.5, then the DistanceTessellationStepSize will be\nscaled based on the result. This will map so that from parallel to orthogonal\n(0..90 degrees) will scale from [0..1]. Anything greater than 90 degrees will clamp\nat a scale of 1."
+    ]
+  },
+  "methods": []
+}

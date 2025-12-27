@@ -1,0 +1,60 @@
+{
+  "name": "FEnvOverlapData",
+  "isStruct": true,
+  "properties": {
+    "ExtentX": [
+      "float32",
+      2,
+      "shape parameter for overlap"
+    ],
+    "ExtentY": [
+      "float32",
+      2,
+      "shape parameter for overlap"
+    ],
+    "ExtentZ": [
+      "float32",
+      2,
+      "shape parameter for overlap"
+    ],
+    "ShapeOffset": [
+      "FVector",
+      2,
+      "Offset from the item location at which to test the overlap.  For example, you may need to offset vertically to avoid overlaps with flat ground."
+    ],
+    "OverlapChannel": [
+      "ECollisionChannel",
+      2,
+      "geometry trace channel used for overlap"
+    ],
+    "OverlapShape": [
+      "EEnvOverlapShape",
+      2,
+      "shape used for geometry overlap"
+    ],
+    "bOnlyBlockingHits": [
+      "bool",
+      "if set, overlap will look only for blocking hits"
+    ],
+    "bOverlapComplex": [
+      "bool",
+      "if set, overlap will run on complex collisions"
+    ],
+    "bSkipOverlapQuerier": [
+      "bool",
+      "if set, overlap will skip querier context hits"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FEnvOverlapData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FEnvOverlapData"
+        }
+      ]
+    }
+  ]
+}

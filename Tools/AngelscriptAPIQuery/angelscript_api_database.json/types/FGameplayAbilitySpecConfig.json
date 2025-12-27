@@ -1,0 +1,39 @@
+{
+  "name": "FGameplayAbilitySpecConfig",
+  "isStruct": true,
+  "doc": "Options on how to configure a GameplayAbilitySpec to grant an Actor",
+  "properties": {
+    "Ability": [
+      "TSubclassOf<UGameplayAbility>",
+      2,
+      "What ability to grant"
+    ],
+    "LevelScalableFloat": [
+      "FScalableFloat",
+      2,
+      "What level to grant this ability at"
+    ],
+    "InputID": [
+      "int",
+      2,
+      "Input ID to bind this ability to"
+    ],
+    "RemovalPolicy": [
+      "EGameplayEffectGrantedAbilityRemovePolicy",
+      2,
+      "What will remove this ability later"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayAbilitySpecConfig&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayAbilitySpecConfig"
+        }
+      ]
+    }
+  ]
+}

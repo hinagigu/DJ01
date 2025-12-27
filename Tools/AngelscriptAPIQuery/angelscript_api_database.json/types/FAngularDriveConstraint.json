@@ -1,0 +1,49 @@
+{
+  "name": "FAngularDriveConstraint",
+  "isStruct": true,
+  "doc": "Angular Drive",
+  "properties": {
+    "TwistDrive": [
+      "FConstraintDrive",
+      2,
+      "Controls the twist (roll) constraint drive between current orientation/velocity and target orientation/velocity. This is available as long as the twist limit is set to free or limited."
+    ],
+    "SwingDrive": [
+      "FConstraintDrive",
+      2,
+      "Controls the cone constraint drive between current orientation/velocity and target orientation/velocity. This is available as long as there is at least one swing limit set to free or limited."
+    ],
+    "SlerpDrive": [
+      "FConstraintDrive",
+      2,
+      "Controls the SLERP (spherical lerp) drive between current orientation/velocity and target orientation/velocity. NOTE: This is only available when all three angular limits are either free or limited. Locking any angular limit will turn off the drive implicitly."
+    ],
+    "OrientationTarget": [
+      "FRotator",
+      2,
+      "Target orientation relative to the the body reference frame."
+    ],
+    "AngularVelocityTarget": [
+      "FVector",
+      2,
+      "Target angular velocity relative to the body reference frame in revolutions per second."
+    ],
+    "AngularDriveMode": [
+      "EAngularDriveMode",
+      2,
+      "Whether motors use SLERP (spherical lerp) or decompose into a Swing motor (cone constraints) and Twist motor (roll constraints). NOTE: SLERP will NOT work if any of the angular constraints are locked."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAngularDriveConstraint&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAngularDriveConstraint"
+        }
+      ]
+    }
+  ]
+}

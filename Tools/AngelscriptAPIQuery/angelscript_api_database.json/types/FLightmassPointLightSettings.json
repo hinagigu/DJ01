@@ -1,0 +1,34 @@
+{
+  "name": "FLightmassPointLightSettings",
+  "isStruct": true,
+  "doc": "Point/spot settings for Lightmass",
+  "properties": {
+    "IndirectLightingSaturation": [
+      "float32",
+      2,
+      "0 will be completely desaturated, 1 will be unchanged"
+    ],
+    "ShadowExponent": [
+      "float32",
+      2,
+      "Controls the falloff of shadow penumbras"
+    ],
+    "bUseAreaShadowsForStationaryLight": [
+      "bool",
+      2,
+      "Whether to use area shadows for stationary light precomputed shadowmaps.\nArea shadows get softer the further they are from shadow casters, but require higher lightmap resolution to get the same quality where the shadow is sharp."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLightmassPointLightSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLightmassPointLightSettings"
+        }
+      ]
+    }
+  ]
+}

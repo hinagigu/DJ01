@@ -1,0 +1,48 @@
+{
+  "name": "FNiagaraModuleDependency",
+  "isStruct": true,
+  "properties": {
+    "Id": [
+      "FName",
+      2,
+      "Specifies the provided id of the required dependent module (e.g. 'ProvidesNormalizedAge')"
+    ],
+    "Type": [
+      "ENiagaraModuleDependencyType",
+      2,
+      "Whether the dependency belongs before or after this module"
+    ],
+    "ScriptConstraint": [
+      "ENiagaraModuleDependencyScriptConstraint",
+      2,
+      "Specifies constraints related to the source script a modules provides as dependency."
+    ],
+    "RequiredVersion": [
+      "FString",
+      2,
+      "Specifies the version constraint that module providing the dependency must fulfill.\nExample usages:\n'1.2' requires the exact version 1.2 of the source script\n'1.2+' requires at least version 1.2, but any higher version is also ok\n'1.2-2.0' requires any version between 1.2 and 2.0"
+    ],
+    "OnlyEvaluateInScriptUsage": [
+      "int",
+      2,
+      "This property can limit where the dependency is evaluated. By default, the dependency is enforced in all script usages"
+    ],
+    "Description": [
+      "FText",
+      2,
+      "Detailed description of the dependency"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraModuleDependency&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraModuleDependency"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "FSlatePostSettings",
+  "isStruct": true,
+  "doc": "Settings for a particular Slate Post RT.\nNotably if enabled & blur by default. To be updated with additional effects & to be expandable in game code / settings.",
+  "properties": {
+    "PostProcessorClass": [
+      "TSubclassOf<USlateRHIPostBufferProcessor>",
+      "Copy of actually loaded post processor class"
+    ],
+    "bEnabled": [
+      "bool",
+      "Should this post buffer be enabled for updating"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSlatePostSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSlatePostSettings"
+        }
+      ]
+    }
+  ]
+}

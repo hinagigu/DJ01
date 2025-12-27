@@ -1,0 +1,178 @@
+{
+  "name": "__EditorFilter",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ByActorLabel",
+      "return": "TArray<AActor>",
+      "doc": "Filter the array based on the Actor's label (what we see in the editor)\n@param       TargetArray             Array of Actor to filter. The array will not change.\n@param       NameSubString   The text the Actor's Label.\n@param       FilterType              Should include or not the array's item if it respects the condition.\n@param       StringMatch             Contains the NameSubString OR matches with the wildcard *? OR exactly the same value.\n@param       bIgnoreCase             Determines case sensitivity options for string comparisons.\n@return      The filtered list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetArray",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "NameSubString",
+          "type": "FString"
+        },
+        {
+          "name": "StringMatch",
+          "default": "EEditorScriptingStringMatchType :: Contains",
+          "type": "EEditorScriptingStringMatchType"
+        },
+        {
+          "name": "FilterType",
+          "default": "EEditorScriptingFilterType :: Include",
+          "type": "EEditorScriptingFilterType"
+        },
+        {
+          "name": "bIgnoreCase",
+          "default": "true",
+          "type": "bool"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "ByActorTag",
+      "return": "TArray<AActor>",
+      "doc": "Filter the array by Tag the Actor contains\n@param       TargetArray             Array of Actor to filter. The array will not change.\n@param       Tag                             The exact name of the Tag the actor contains.\n@param       FilterType              Should include or not the array's item if it respects the condition.\n@return      The filtered list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetArray",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "Tag",
+          "type": "FName"
+        },
+        {
+          "name": "FilterType",
+          "default": "EEditorScriptingFilterType :: Include",
+          "type": "EEditorScriptingFilterType"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "ByClass",
+      "return": "TArray<UObject>",
+      "doc": "Filter the array based on the Object's class.\n@param       TargetArray             Array of Object to filter. The array will not change.\n@param       ObjectClass             The Class of the object.\n@param       FilterType              Should include or not the array's item if it respects the condition.\n@return      The filtered list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetArray",
+          "type": "TArray<UObject>"
+        },
+        {
+          "name": "ObjectClass",
+          "type": "TSubclassOf<UObject>"
+        },
+        {
+          "name": "FilterType",
+          "default": "EEditorScriptingFilterType :: Include",
+          "type": "EEditorScriptingFilterType"
+        }
+      ],
+      "outputTypeIndex": 1
+    },
+    {
+      "name": "ByIDName",
+      "return": "TArray<UObject>",
+      "doc": "Filter the array based on the Object's ID name.\n@param       TargetArray             Array of Object to filter. The array will not change.\n@param       NameSubString   The text the Object's ID name.\n@param       FilterType              Should include or not the array's item if it respects the condition.\n@param       StringMatch             Contains the NameSubString OR matches with the wildcard *? OR exactly the same value.\n@return      The filtered list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetArray",
+          "type": "TArray<UObject>"
+        },
+        {
+          "name": "NameSubString",
+          "type": "FString"
+        },
+        {
+          "name": "StringMatch",
+          "default": "EEditorScriptingStringMatchType :: Contains",
+          "type": "EEditorScriptingStringMatchType"
+        },
+        {
+          "name": "FilterType",
+          "default": "EEditorScriptingFilterType :: Include",
+          "type": "EEditorScriptingFilterType"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "ByLayer",
+      "return": "TArray<AActor>",
+      "doc": "Filter the array by Layer the Actor belongs to.\n@param       TargetArray             Array of Actor to filter. The array will not change.\n@param       LayerName               The exact name of the Layer the actor belongs to.\n@param       FilterType              Should include or not the array's item if it respects the condition.\n@return      The filtered list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetArray",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "LayerName",
+          "type": "FName"
+        },
+        {
+          "name": "FilterType",
+          "default": "EEditorScriptingFilterType :: Include",
+          "type": "EEditorScriptingFilterType"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "ByLevelName",
+      "return": "TArray<AActor>",
+      "doc": "Filter the array by Level the Actor belongs to.\n@param       TargetArray             Array of Actor to filter. The array will not change.\n@param       LevelName               The name of the Level the actor belongs to (same name as in the ContentBrowser).\n@param       FilterType              Should include or not the array's item if it respects the condition.\n@return      The filtered list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetArray",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "LevelName",
+          "type": "FName"
+        },
+        {
+          "name": "FilterType",
+          "default": "EEditorScriptingFilterType :: Include",
+          "type": "EEditorScriptingFilterType"
+        }
+      ],
+      "outputTypeIndex": 0
+    },
+    {
+      "name": "BySelection",
+      "return": "TArray<AActor>",
+      "doc": "Filter the array based on Object's selection.\n@param       TargetArray             Array of Object to filter. The array will not change.\n@param       FilterType              Should include or not the array's item if it respects the condition.\n@return      The filtered list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetArray",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "FilterType",
+          "default": "EEditorScriptingFilterType :: Include",
+          "type": "EEditorScriptingFilterType"
+        }
+      ],
+      "outputTypeIndex": 0
+    }
+  ]
+}

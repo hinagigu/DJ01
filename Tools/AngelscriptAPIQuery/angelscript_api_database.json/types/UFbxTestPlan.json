@@ -1,0 +1,38 @@
+{
+  "name": "UFbxTestPlan",
+  "inherits": "UObject",
+  "doc": "Container for detailing collision automated test data.",
+  "properties": {
+    "TestPlanName": [
+      "FString",
+      2,
+      "Name of the Test Plan"
+    ],
+    "Action": [
+      "EFBXTestPlanActionType",
+      2,
+      "Tell the system what we want to do"
+    ],
+    "LodIndex": [
+      "int",
+      2,
+      "The LOD index in case the user choose to add or reimport a LOD"
+    ],
+    "bDeleteFolderAssets": [
+      "bool",
+      2,
+      "If true the test will delete all assets create in the import folder"
+    ],
+    "ExpectedResult": [
+      "TArray<FFbxTestPlanExpectedResult>",
+      2,
+      "Expected preset type"
+    ],
+    "ImportUI": [
+      "UFbxImportUI",
+      2,
+      "Options use for this test plan, Transient because we manually serialize the options."
+    ]
+  },
+  "methods": []
+}

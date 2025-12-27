@@ -1,0 +1,37 @@
+{
+  "name": "__UDIMTexture",
+  "properties": {},
+  "methods": [
+    {
+      "name": "MakeUDIMVirtualTextureFromTexture2Ds",
+      "return": "UTexture2D",
+      "doc": "Make a UDIM virtual texture from a list of regular 2D textures\n@param OutputPathName                 Path name of the UDIM texture (e.g. /Game/MyTexture)\n@param SourceTextures                 List of regular 2D textures to be packed into the atlas\n@param BlockCoords                    Coordinates of the corresponding texture in the atlas\n@param bKeepExistingSettings  Whether to keep existing settings if a texture with the same path name exists. Otherwise, settings will be copied from the first source texture\n@param bCheckOutAndSave               Whether to check out and save the UDIM texture\n@return UTexture2D*                   Pointer to the UDIM texture or null if failed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutputPathName",
+          "type": "FString"
+        },
+        {
+          "name": "SourceTextures",
+          "type": "TArray<UTexture2D>"
+        },
+        {
+          "name": "BlockCoords",
+          "type": "TArray<FIntPoint>"
+        },
+        {
+          "name": "bKeepExistingSettings",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bCheckOutAndSave",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "name": "FRecastNavMeshGenerationProperties",
+  "isStruct": true,
+  "properties": {
+    "TilePoolSize": [
+      "int",
+      2,
+      "maximum number of tiles NavMesh can hold"
+    ],
+    "TileSizeUU": [
+      "float32",
+      2,
+      "size of single tile, expressed in uu"
+    ],
+    "CellSize": [
+      "float32",
+      2,
+      "horizontal size of voxelization cell"
+    ],
+    "CellHeight": [
+      "float32",
+      2,
+      "vertical size of voxelization cell"
+    ],
+    "AgentRadius": [
+      "float32",
+      2,
+      "Radius of largest agent that can freely traverse the generated navmesh"
+    ],
+    "AgentHeight": [
+      "float32",
+      2,
+      "Size of the tallest agent that will path with this navmesh."
+    ],
+    "AgentMaxSlope": [
+      "float32",
+      2,
+      "The maximum slope (angle) that the agent can move on."
+    ],
+    "AgentMaxStepHeight": [
+      "float32",
+      2,
+      "Largest vertical step the agent can perform"
+    ],
+    "MinRegionArea": [
+      "float32",
+      2,
+      "The minimum dimension of area. Areas smaller than this will be discarded"
+    ],
+    "MergeRegionSize": [
+      "float32",
+      2,
+      "The size limit of regions to be merged with bigger regions (watershed partitioning only)"
+    ],
+    "MaxSimplificationError": [
+      "float32",
+      2,
+      "How much navigable shapes can get simplified - the higher the value the more freedom"
+    ],
+    "TileNumberHardLimit": [
+      "int",
+      2,
+      "Absolute hard limit to number of navmesh tiles. Be very, very careful while modifying it while\n     having big maps with navmesh. A single, empty tile takes 176 bytes and empty tiles are\n     allocated up front (subject to change, but that's where it's at now)\n     @note TileNumberHardLimit is always rounded up to the closest power of 2"
+    ],
+    "RegionPartitioning": [
+      "ERecastPartitioning",
+      2,
+      "partitioning method for creating navmesh polys"
+    ],
+    "LayerPartitioning": [
+      "ERecastPartitioning",
+      2,
+      "partitioning method for creating tile layers"
+    ],
+    "RegionChunkSplits": [
+      "int",
+      2,
+      "number of chunk splits (along single axis) used for region's partitioning: ChunkyMonotone"
+    ],
+    "LayerChunkSplits": [
+      "int",
+      2,
+      "number of chunk splits (along single axis) used for layer's partitioning: ChunkyMonotone"
+    ],
+    "bSortNavigationAreasByCost": [
+      "bool",
+      "Controls whether Navigation Areas will be sorted by cost before application\n    to navmesh during navmesh generation. This is relevant when there are\n    areas overlapping and we want to have area cost express area relevancy\n    as well. Setting it to true will result in having area sorted by cost,\n    but it will also increase navmesh generation cost a bit"
+    ],
+    "bPerformVoxelFiltering": [
+      "bool",
+      "controls whether voxel filtering will be applied (via FRecastTileGenerator::ApplyVoxelFilter).\n    Results in generated navmesh better fitting navigation bounds, but hits (a bit) generation performance"
+    ],
+    "bMarkLowHeightAreas": [
+      "bool",
+      "mark areas with insufficient free height above instead of cutting them out (accessible only for area modifiers using replace mode)"
+    ],
+    "bUseExtraTopCellWhenMarkingAreas": [
+      "bool",
+      "Expand the top of the area nav modifier's bounds by one cell height when applying to the navmesh.\n          If unset, navmesh on top of surfaces might not be marked by marking bounds flush with top surfaces (since navmesh is generated slightly above collision, depending on cell height)."
+    ],
+    "bFilterLowSpanSequences": [
+      "bool",
+      "if set, only single low height span will be allowed under valid one"
+    ],
+    "bFilterLowSpanFromTileCache": [
+      "bool",
+      "if set, only low height spans with corresponding area modifier will be stored in tile cache (reduces memory, can't modify without full tile rebuild)"
+    ],
+    "bFixedTilePoolSize": [
+      "bool",
+      "if true, the NavMesh will allocate fixed size pool for tiles, should be enabled to support streaming"
+    ],
+    "bIsWorldPartitioned": [
+      "bool",
+      "In a world partitioned map, is this navmesh using world partitioning"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRecastNavMeshGenerationProperties&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRecastNavMeshGenerationProperties"
+        }
+      ]
+    }
+  ]
+}

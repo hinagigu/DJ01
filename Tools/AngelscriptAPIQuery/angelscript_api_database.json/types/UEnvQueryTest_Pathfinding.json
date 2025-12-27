@@ -1,0 +1,32 @@
+{
+  "name": "UEnvQueryTest_Pathfinding",
+  "inherits": "UEnvQueryTest",
+  "properties": {
+    "TestMode": [
+      "EEnvTestPathfinding",
+      2,
+      "testing mode"
+    ],
+    "Context": [
+      "TSubclassOf<UEnvQueryContext>",
+      2,
+      "context: other end of pathfinding test"
+    ],
+    "PathFromContext": [
+      "FAIDataProviderBoolValue",
+      2,
+      "pathfinding direction"
+    ],
+    "SkipUnreachable": [
+      "FAIDataProviderBoolValue",
+      2,
+      "if set, items with failed path will be invalidated (PathCost, PathLength)"
+    ],
+    "FilterClass": [
+      "TSubclassOf<UNavigationQueryFilter>",
+      2,
+      "navigation filter to use in pathfinding"
+    ]
+  },
+  "methods": []
+}

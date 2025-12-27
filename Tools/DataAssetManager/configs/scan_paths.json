@@ -1,0 +1,130 @@
+{
+  "_comment": "扫描路径配置 - 可在编辑器中修改",
+  
+  "pawn_classes": {
+    "description": "Pawn/Character 类扫描配置",
+    "cpp_paths": [
+      "Source/DJ01/Character/Public"
+    ],
+    "blueprint_paths": [
+      "Content/Characters/Heroes",
+      "Content/Characters/Enemy"
+    ]
+  },
+  
+  "camera_modes": {
+    "description": "相机模式扫描配置",
+    "cpp_paths": [
+      "Source/DJ01/Camera/Public"
+    ],
+    "blueprint_paths": [
+      "Content/Characters/Cameras"
+    ]
+  },
+  
+  "input_actions": {
+    "description": "输入动作扫描配置（递归扫描 /Game/Input/Actions）",
+    "blueprint_paths": [
+      "Content/Input/Actions"
+    ],
+    "prefixes": ["IA_"]
+  },
+  
+  "input_tags": {
+    "description": "输入标签（从 Gameplay Tags 的 InputTag 分类获取）",
+    "tag_category": "InputTag"
+  },
+  
+  "input_mapping_contexts": {
+    "description": "输入映射上下文扫描配置（递归扫描）",
+    "blueprint_paths": [
+      "Content/Input"
+    ],
+    "prefixes": ["IMC_", "Mapping_"],
+    "keywords": ["Mapping", "Context"]
+  },
+  
+  "ability_sets": {
+    "description": "技能集扫描配置（递归扫描）",
+    "blueprint_paths": [
+      "Content/Gameplay/Abilities/AbilitySets"
+    ],
+    "prefixes": ["AS_", "AbilitySet_"]
+  },
+  
+  "gameplay_abilities": {
+    "description": "Gameplay 技能类扫描配置（递归扫描）",
+    "cpp_paths": [
+      "Source/DJ01/AbilitySystem/Abilities"
+    ],
+    "blueprint_paths": [
+      "Content/Gameplay/Abilities/GA_Blueprints"
+    ],
+    "prefixes": ["GA_", "Ability_"]
+  },
+  
+  "attribute_sets": {
+    "description": "属性集类扫描配置",
+    "cpp_paths": [
+      "Source/DJ01/AbilitySystem/Attributes"
+    ]
+  },
+  
+  "widget_classes": {
+    "description": "UI Widget 类扫描配置（递归扫描）",
+    "blueprint_paths": [
+      "Content/UI"
+    ],
+    "prefixes": ["W_", "WBP_", "UI_", "HUD_"]
+  },
+  
+  "activatable_widgets": {
+    "description": "CommonActivatableWidget 类扫描配置（递归扫描）",
+    "blueprint_paths": [
+      "Content/UI"
+    ],
+    "prefixes": ["W_", "WBP_", "Layout_", "Screen_"]
+  },
+  
+  "ui_layer_tags": {
+    "description": "UI 层级标签（从 Gameplay Tags 的 UI.Layer 分类获取）",
+    "tag_category": "UI.Layer"
+  },
+  
+  "ui_slot_tags": {
+    "description": "UI 插槽标签（从 Gameplay Tags 的 UI.Slot 分类获取）",
+    "tag_category": "UI.Slot"
+  },
+  
+  "pawn_data": {
+    "description": "PawnData 扫描配置（递归扫描）",
+    "blueprint_paths": [
+      "Content/Characters/PawnData"
+    ],
+    "prefixes": ["PD_", "PawnData_"]
+  },
+  
+  "game_features": {
+    "description": "GameFeature 扫描配置",
+    "plugin_paths": [
+      "Plugins/GameFeatures"
+    ]
+  },
+  
+  "gamefeature_actions": {
+    "description": "GameFeature Actions 扫描配置",
+    "blueprint_paths": [
+      "Content/System/Actions",
+      "Content/Gameplay/Actions"
+    ],
+    "builtin_actions": [
+      {"name": "AddComponents", "display_name": "添加组件", "description": "向 Actor 添加组件"},
+      {"name": "AddInputBinding", "display_name": "添加输入绑定", "description": "添加增强输入映射上下文"},
+      {"name": "AddAbilities", "display_name": "添加技能", "description": "授予 GAS 技能"},
+      {"name": "AddInputContextMapping", "display_name": "添加输入上下文", "description": "添加 InputMappingContext"},
+      {"name": "AddWidgets", "display_name": "添加 UI 控件", "description": "添加 HUD 或 UI 控件"},
+      {"name": "DataRegistry", "display_name": "数据注册", "description": "注册数据资产到注册表"},
+      {"name": "AddWorldSystem", "display_name": "添加世界系统", "description": "添加世界子系统"}
+    ]
+  }
+}

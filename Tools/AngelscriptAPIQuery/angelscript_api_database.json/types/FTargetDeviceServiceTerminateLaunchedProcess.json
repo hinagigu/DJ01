@@ -1,0 +1,29 @@
+{
+  "name": "FTargetDeviceServiceTerminateLaunchedProcess",
+  "isStruct": true,
+  "doc": "Implements a message for terminating an application running on the device.\n\n@see FTargetDeviceServiceTerminateLaunchedProcess",
+  "properties": {
+    "Variant": [
+      "FName",
+      2,
+      "Holds the variant identifier of the target device to use."
+    ],
+    "AppID": [
+      "FString",
+      2,
+      "Holds the identifier of the application to launch.\n\nThe semantics of this identifier are target platform specific. In some cases it may be\na GUID, in other cases it may be the path to the application or some other means of\nidentifying the application. Application identifiers are returned from target device\nservices as result of successful deployment transactions."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTargetDeviceServiceTerminateLaunchedProcess&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTargetDeviceServiceTerminateLaunchedProcess"
+        }
+      ]
+    }
+  ]
+}

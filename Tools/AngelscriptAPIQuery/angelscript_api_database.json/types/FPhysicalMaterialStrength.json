@@ -1,0 +1,31 @@
+{
+  "name": "FPhysicalMaterialStrength",
+  "isStruct": true,
+  "doc": "Defines the directional strengths of a physical material in term of force per surface area",
+  "properties": {
+    "TensileStrength": [
+      "float32",
+      "Tensile strength of the material in MegaPascal ( 10^6 N/m2 )\nThis amount of tension force per area the material can withstand before it fractures"
+    ],
+    "CompressionStrength": [
+      "float32",
+      "Compression strength of the material in MegaPascal ( 10^6 N/m2 )\nThis amount of compression force per area the material can withstand before it fractures, crumbles or buckles"
+    ],
+    "ShearStrength": [
+      "float32",
+      "Shear strength of the material in MegaPascal ( 10^6 N/m2 )\nThis amount of shear force per area the material can withstand before it fractures"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPhysicalMaterialStrength&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPhysicalMaterialStrength"
+        }
+      ]
+    }
+  ]
+}

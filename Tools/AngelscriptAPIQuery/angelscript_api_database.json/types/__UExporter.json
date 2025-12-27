@@ -1,0 +1,37 @@
+{
+  "name": "__UExporter",
+  "properties": {},
+  "methods": [
+    {
+      "name": "RunAssetExportTask",
+      "return": "bool",
+      "doc": "Export the given object to file.  Child classes do not override this, but they do provide an Export() function\nto do the resource-specific export work.\n\n@param        Task            The task to export.\n\n@return       true if the the object was successfully exported",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Task",
+          "type": "UAssetExportTask"
+        }
+      ]
+    },
+    {
+      "name": "RunAssetExportTasks",
+      "return": "bool",
+      "doc": "Export the given objects to files.  Child classes do not override this, but they do provide an Export() function\nto do the resource-specific export work.\n\n@param       ExportTasks             The array of tasks to export.\n\n@return      true if all tasks ran without error",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExportTasks",
+          "type": "TArray<UAssetExportTask>"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

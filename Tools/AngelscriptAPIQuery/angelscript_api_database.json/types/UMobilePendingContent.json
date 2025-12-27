@@ -1,0 +1,73 @@
+{
+  "name": "UMobilePendingContent",
+  "inherits": "UMobileInstalledContent",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetDownloadSize",
+      "return": "float32",
+      "doc": "Get the total download size for this content installation",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDownloadSpeed",
+      "return": "float32",
+      "doc": "Get the current download speed in megabytes per second. Valid during installation",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDownloadStatusText",
+      "return": "FText",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInstallProgress",
+      "return": "float32",
+      "doc": "Get the current installation progress. Between 0 and 1 for known progress, or less than 0 for unknown progress",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRequiredDiskSpace",
+      "return": "float32",
+      "doc": "Get the required disk space in megabytes for this content installation",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTotalDownloadedSize",
+      "return": "float32",
+      "doc": "Get the total downloaded size in megabytes. Valid during installation",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StartInstall",
+      "return": "void",
+      "doc": "Attempt to download and install remote content.\nUser can choose to mount installed content into the game.\n@param       OnSucceeded: Callback on installation success.\n@param       OnFailed: Callback on installation fail. Will return error message text and error integer code",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OnSucceeded",
+          "default": "FOnContentInstallSucceeded ( )",
+          "type": "FOnContentInstallSucceeded"
+        },
+        {
+          "name": "OnFailed",
+          "default": "FOnContentInstallFailed ( )",
+          "type": "FOnContentInstallFailed"
+        }
+      ]
+    }
+  ]
+}

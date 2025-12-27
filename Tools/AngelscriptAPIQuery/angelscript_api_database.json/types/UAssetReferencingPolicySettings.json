@@ -1,0 +1,33 @@
+{
+  "name": "UAssetReferencingPolicySettings",
+  "inherits": "UDeveloperSettings",
+  "doc": "Settings for the Asset Referencing Policy, these settings are used to determine which plugins and game folders can reference content from each other",
+  "properties": {
+    "EnginePlugins": [
+      "FARPDomainSettingsForPlugins",
+      2,
+      "Settings/rules for engine plugins"
+    ],
+    "ProjectPlugins": [
+      "FARPDomainSettingsForPlugins",
+      2,
+      "Settings/rules for project plugins"
+    ],
+    "DefaultProjectContentRule": [
+      "FARPDefaultProjectDomainRules",
+      2,
+      "The default rules for project content (if a more specific rule doesn't apply)"
+    ],
+    "AdditionalDomains": [
+      "TArray<FARPDomainDefinitionByContentRoot>",
+      2,
+      "List of additional domains to carve out from the project content folder"
+    ],
+    "bIgnoreEditorOnlyReferences": [
+      "bool",
+      2,
+      "If true, ignore any editor-only domain references that will not affect the cooked game"
+    ]
+  },
+  "methods": []
+}

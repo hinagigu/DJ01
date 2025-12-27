@@ -1,0 +1,64 @@
+{
+  "name": "FPyTestChildStruct",
+  "isStruct": true,
+  "doc": "Struct to allow testing of inheritance on Python wrapped types.",
+  "properties": {
+    "Bool": [
+      "bool"
+    ],
+    "Int": [
+      "int"
+    ],
+    "Float": [
+      "float32"
+    ],
+    "Enum": [
+      "EPyTestEnum"
+    ],
+    "String": [
+      "FString"
+    ],
+    "Name": [
+      "FName"
+    ],
+    "Text": [
+      "FText"
+    ],
+    "StringArray": [
+      "TArray<FString>"
+    ],
+    "StringSet": [
+      "TSet<FString>"
+    ],
+    "StringIntMap": [
+      "TMap<FString,int>"
+    ],
+    "BoolInstanceOnly": [
+      "bool",
+      2,
+      ""
+    ],
+    "BoolDefaultsOnly": [
+      "bool",
+      2,
+      ""
+    ],
+    "BoolMutable": [
+      "bool",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPyTestChildStruct&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPyTestChildStruct"
+        }
+      ]
+    }
+  ]
+}

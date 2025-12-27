@@ -1,0 +1,409 @@
+{
+  "name": "UNiagaraSimCache",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetAttributeCaptureMode",
+      "return": "ENiagaraSimCacheAttributeCaptureMode",
+      "const": true,
+      "doc": "How were the attributes captured for this sim cache.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEmitterName",
+      "return": "FName",
+      "const": true,
+      "doc": "Get the emitter name at the provided index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EmitterIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetEmitterNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Returns a list of emitters we have captured in the SimCache.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumEmitters",
+      "return": "int",
+      "const": true,
+      "doc": "Get number of emitters stored inside the cache.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumFrames",
+      "return": "int",
+      "const": true,
+      "doc": "Get number of frames stored in the cache.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStartSeconds",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the time the simulation was at when recorded.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsCacheValid",
+      "return": "bool",
+      "const": true,
+      "doc": "A valid cache is one that contains at least 1 frames worth of data.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsEmpty",
+      "return": "bool",
+      "const": true,
+      "doc": "An empty cache contains no frame data and can not be used",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReadColorAttribute",
+      "return": "void",
+      "const": true,
+      "doc": "Reads Niagara Color attributes by name from the cache frame and appends them into the OutValues array.\nEmitterName - If left blank will return the system simulation attributes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<FLinearColor>&"
+        },
+        {
+          "name": "AttributeName",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "EmitterName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "FrameIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReadFloatAttribute",
+      "return": "void",
+      "const": true,
+      "doc": "Reads Niagara float attributes by name from the cache frame and appends them into the OutValues array.\nEmitterName - If left blank will return the system simulation attributes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<float32>&"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "EmitterName",
+          "type": "FName"
+        },
+        {
+          "name": "FrameIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReadIDAttribute",
+      "return": "void",
+      "const": true,
+      "doc": "Reads Niagara ID attributes by name from the cache frame and appends them into the OutValues array.\nEmitterName - If left blank will return the system simulation attributes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<FNiagaraID>&"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "EmitterName",
+          "type": "FName"
+        },
+        {
+          "name": "FrameIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReadIntAttribute",
+      "return": "void",
+      "const": true,
+      "doc": "Reads Niagara int attributes by name from the cache frame and appends them into the OutValues array.\nEmitterName - If left blank will return the system simulation attributes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<int>&"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "EmitterName",
+          "type": "FName"
+        },
+        {
+          "name": "FrameIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReadPositionAttribute",
+      "return": "void",
+      "const": true,
+      "doc": "Reads Niagara Position attributes by name from the cache frame and appends them into the OutValues array.\nLocal space emitters provide data at local locations unless bLocalSpaceToWorld is true.\nEmitterName - If left blank will return the system simulation attributes.\nLocalSpaceToWorld - Caches are always stored in the emitters space, i.e. local or world space.  You can set this to false if you want the local position rather than the world position.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "AttributeName",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "EmitterName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bLocalSpaceToWorld",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "FrameIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReadPositionAttributeWithRebase",
+      "return": "void",
+      "const": true,
+      "doc": "Reads Niagara Position attributes by name from the cache frame and appends them into the OutValues array.\nAll attributes read with this method will be re-based from the captured space into the provided transform space,\nthis will occur even if the cache was not captured with re-basing enabled.\nEmitterName - If left blank will return the system simulation attributes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "Transform",
+          "type": "FTransform"
+        },
+        {
+          "name": "AttributeName",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "EmitterName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "FrameIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReadQuatAttribute",
+      "return": "void",
+      "const": true,
+      "doc": "Reads Niagara Quaternion attributes by name from the cache frame and appends them into the OutValues array.\nLocal space emitters provide data at local rotation unless bLocalSpaceToWorld is true.\nEmitterName - If left blank will return the system simulation attributes.\nLocalSpaceToWorld - Caches are always stored in the emitters space, i.e. local or world space.  You can set this to false if you want the local Quat rather than the world Quat.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<FQuat>&"
+        },
+        {
+          "name": "AttributeName",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "EmitterName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "bLocalSpaceToWorld",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "FrameIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReadQuatAttributeWithRebase",
+      "return": "void",
+      "const": true,
+      "doc": "Reads Niagara Quaternion attributes by name from the cache frame and appends them into the OutValues array.\nOnly attributes that in the rebase list will be transform into the provided Quat space.  Therefore the cache\nmust be captured with rebasing enabled to have any impact.\nEmitterName - If left blank will return the system simulation attributes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<FQuat>&"
+        },
+        {
+          "name": "Quat",
+          "type": "FQuat"
+        },
+        {
+          "name": "AttributeName",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "EmitterName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "FrameIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReadVector2Attribute",
+      "return": "void",
+      "const": true,
+      "doc": "Reads Niagara Vec2 attributes by name from the cache frame and appends them into the OutValues array.\nEmitterName - If left blank will return the system simulation attributes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<FVector2D>&"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "EmitterName",
+          "type": "FName"
+        },
+        {
+          "name": "FrameIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReadVector4Attribute",
+      "return": "void",
+      "const": true,
+      "doc": "Reads Niagara Vec4 attributes by name from the cache frame and appends them into the OutValues array.\nEmitterName - If left blank will return the system simulation attributes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<FVector4>&"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "EmitterName",
+          "type": "FName"
+        },
+        {
+          "name": "FrameIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReadVectorAttribute",
+      "return": "void",
+      "const": true,
+      "doc": "Reads Niagara Vec3 attributes by name from the cache frame and appends them into the OutValues array.\nEmitterName - If left blank will return the system simulation attributes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValues",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "EmitterName",
+          "type": "FName"
+        },
+        {
+          "name": "FrameIndex",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "name": "UGameInstance",
+  "inherits": "UObject",
+  "doc": "GameInstance: high-level manager object for an instance of the running game.\nSpawned at game creation and not destroyed until game instance is shut down.\nRunning as a standalone game, there will be one of these.\nRunning in PIE (play-in-editor) will generate one of these per PIE instance.",
+  "properties": {
+    "OnPawnControllerChangedDelegates": [
+      "FOnPawnControllerChanged",
+      "gets triggered shortly after a pawn's controller is set. Most of the time\n    it signals that the Controller has changed but in edge cases (like during\n    replication) it might end up broadcasting the same pawn-controller pair\n    more than once"
+    ],
+    "OnInputDeviceConnectionChange": [
+      "FOnUserInputDeviceConnectionChange",
+      "Callback for when an input device connection state has changed (a new gamepad was connected or disconnected)"
+    ],
+    "OnUserInputDevicePairingChange": [
+      "FOnUserInputDevicePairingChange",
+      "Callback when an input device has changed pairings (the owning platform user has changed for that device)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CreateInitialPlayer",
+      "return": "ULocalPlayer",
+      "args": [
+        {
+          "name": "OutError",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "CreateLocalPlayer",
+      "return": "ULocalPlayer",
+      "args": [
+        {
+          "name": "ControllerId",
+          "type": "int"
+        },
+        {
+          "name": "OutError",
+          "type": "FString&"
+        },
+        {
+          "name": "bSpawnPlayerController",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreateLocalPlayer",
+      "return": "ULocalPlayer",
+      "args": [
+        {
+          "name": "UserId",
+          "type": "FPlatformUserId"
+        },
+        {
+          "name": "OutError",
+          "type": "FString&"
+        },
+        {
+          "name": "bSpawnPlayerController",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalPlayer",
+      "return": "int",
+      "args": [
+        {
+          "name": "NewPlayer",
+          "type": "ULocalPlayer"
+        },
+        {
+          "name": "UserId",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLocalPlayer",
+      "return": "bool",
+      "args": [
+        {
+          "name": "ExistingPlayer",
+          "type": "ULocalPlayer"
+        }
+      ]
+    },
+    {
+      "name": "GetNumLocalPlayers",
+      "return": "int",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetLocalPlayerByIndex",
+      "return": "ULocalPlayer",
+      "const": true,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetFirstLocalPlayerController",
+      "return": "APlayerController",
+      "const": true,
+      "args": [
+        {
+          "name": "World",
+          "default": "nullptr",
+          "type": "const UWorld"
+        }
+      ]
+    },
+    {
+      "name": "FindLocalPlayerFromControllerId",
+      "return": "ULocalPlayer",
+      "const": true,
+      "args": [
+        {
+          "name": "ControllerId",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "FindLocalPlayerFromUniqueNetId",
+      "return": "ULocalPlayer",
+      "const": true,
+      "args": [
+        {
+          "name": "UniqueNetId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    },
+    {
+      "name": "GetFirstGamePlayer",
+      "return": "ULocalPlayer",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "HandleNetworkError",
+      "return": "void",
+      "callable": false,
+      "doc": "Opportunity for blueprints to handle network errors.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FailureType",
+          "type": "ENetworkFailure"
+        },
+        {
+          "name": "bIsServer",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "HandleTravelError",
+      "return": "void",
+      "callable": false,
+      "doc": "Opportunity for blueprints to handle travel errors.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FailureType",
+          "type": "ETravelFailure"
+        }
+      ]
+    },
+    {
+      "name": "Init",
+      "return": "void",
+      "callable": false,
+      "doc": "Opportunity for blueprints to handle the game instance being initialized.",
+      "event": true,
+      "unrealname": "ReceiveInit",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Shutdown",
+      "return": "void",
+      "callable": false,
+      "doc": "Opportunity for blueprints to handle the game instance being shutdown.",
+      "event": true,
+      "unrealname": "ReceiveShutdown",
+      "meta": null,
+      "args": []
+    }
+  ]
+}

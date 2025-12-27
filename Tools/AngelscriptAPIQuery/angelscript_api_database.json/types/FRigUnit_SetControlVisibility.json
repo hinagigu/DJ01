@@ -1,0 +1,36 @@
+{
+  "name": "FRigUnit_SetControlVisibility",
+  "isStruct": true,
+  "doc": "SetControlVisibility is used to change the visibility on a control at runtime",
+  "properties": {
+    "Item": [
+      "FRigElementKey",
+      "The name of the Control to set the visibility for."
+    ],
+    "Pattern": [
+      "FString",
+      1,
+      "If the ControlName is set to None this can be used to look for a series of Controls"
+    ],
+    "bVisible": [
+      "bool",
+      "The visibility to set for the control"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SetControlVisibility&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SetControlVisibility"
+        }
+      ]
+    }
+  ]
+}

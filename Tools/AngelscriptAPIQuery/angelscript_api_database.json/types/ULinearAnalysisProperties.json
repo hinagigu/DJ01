@@ -1,0 +1,37 @@
+{
+  "name": "ULinearAnalysisProperties",
+  "inherits": "UAnalysisProperties",
+  "properties": {
+    "FunctionAxis": [
+      "EAnalysisLinearAxis",
+      2,
+      "Axis for the analysis function"
+    ],
+    "BoneSocket": [
+      "FBoneSocketTarget",
+      2,
+      "The bone or socket used for analysis"
+    ],
+    "Space": [
+      "EAnalysisSpace",
+      2,
+      "The space in which to perform the analysis. Fixed will use the analysis bone/socket at the first frame\nof the analysis time range. Changing will use the analysis bone/socket at the relevant frame during the\nanalysis, but calculate velocities assuming that frame isn't moving. Moving will do the same but velocities\nas well as positions/rotations will be relative to this moving frame."
+    ],
+    "SpaceBoneSocket": [
+      "FBoneSocketTarget",
+      2,
+      "Bone or socket that defines the analysis space (when it isn't World)"
+    ],
+    "StartTimeFraction": [
+      "float32",
+      2,
+      "Fraction through each animation at which analysis starts"
+    ],
+    "EndTimeFraction": [
+      "float32",
+      2,
+      "Fraction through each animation at which analysis ends"
+    ]
+  },
+  "methods": []
+}

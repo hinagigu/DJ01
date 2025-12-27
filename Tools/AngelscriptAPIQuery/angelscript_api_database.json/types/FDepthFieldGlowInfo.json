@@ -1,0 +1,38 @@
+{
+  "name": "FDepthFieldGlowInfo",
+  "isStruct": true,
+  "doc": "Info for glow when using depth field rendering",
+  "properties": {
+    "GlowColor": [
+      "FLinearColor",
+      1,
+      "Base color to use for the glow"
+    ],
+    "GlowOuterRadius": [
+      "FVector2D",
+      1,
+      "If bEnableGlow, outline glow outer radius (0 to 1, 0.5 is edge of character silhouette)\nglow influence will be 0 at GlowOuterRadius.X and 1 at GlowOuterRadius.Y"
+    ],
+    "GlowInnerRadius": [
+      "FVector2D",
+      1,
+      "If bEnableGlow, outline glow inner radius (0 to 1, 0.5 is edge of character silhouette)\nglow influence will be 1 at GlowInnerRadius.X and 0 at GlowInnerRadius.Y"
+    ],
+    "bEnableGlow": [
+      "bool",
+      "Whether to turn on the outline glow (depth field fonts only)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDepthFieldGlowInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDepthFieldGlowInfo"
+        }
+      ]
+    }
+  ]
+}

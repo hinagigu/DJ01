@@ -1,0 +1,75 @@
+{
+  "name": "UNiagaraPythonEmitter",
+  "inherits": "UObject",
+  "doc": "Wrapper for an emitter stack.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetModule",
+      "return": "UNiagaraPythonModule",
+      "const": true,
+      "doc": "returns a module by name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ModuleName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetModules",
+      "return": "TArray<UNiagaraPythonModule>",
+      "const": true,
+      "doc": "returns a list of all modules contained in this emitter",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetObject",
+      "return": "UNiagaraEmitter",
+      "doc": "Returns the raw underlying object",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetProperties",
+      "return": "FVersionedNiagaraEmitterData",
+      "const": true,
+      "doc": "returns the emitter properties, such as determinism or interpolated spawning",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasModule",
+      "return": "bool",
+      "const": true,
+      "doc": "returns true if the emitter contains a certain module",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ModuleName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetProperties",
+      "return": "void",
+      "doc": "sets the new emitter properties",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Data",
+          "type": "FVersionedNiagaraEmitterData"
+        }
+      ]
+    }
+  ]
+}

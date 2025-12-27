@@ -1,0 +1,91 @@
+{
+  "name": "FAnimNode_LookAt",
+  "isStruct": true,
+  "doc": "Simple controller that make a bone to look at the point or another bone",
+  "properties": {
+    "BoneToModify": [
+      "FBoneReference",
+      2,
+      "Name of bone to control. This is the main bone chain to modify from. *"
+    ],
+    "LookAtTarget": [
+      "FBoneSocketTarget",
+      2,
+      "Target socket to look at. Used if LookAtBone is empty. - You can use  LookAtLocation if you need offset from this point. That location will be used in their local space. *"
+    ],
+    "LookAtLocation": [
+      "FVector",
+      "Target Offset. It's in world space if LookAtBone is empty or it is based on LookAtBone or LookAtSocket in their local space"
+    ],
+    "LookAt_Axis": [
+      "FAxis",
+      2,
+      ""
+    ],
+    "bUseLookUpAxis": [
+      "bool",
+      2,
+      "Whether or not to use Look up axis"
+    ],
+    "InterpolationType": [
+      "EInterpolationBlend"
+    ],
+    "LookUp_Axis": [
+      "FAxis",
+      2,
+      ""
+    ],
+    "LookAtClamp": [
+      "float32",
+      "Look at Clamp value in degrees - if your look at axis is Z, only X, Y degree of clamp will be used"
+    ],
+    "InterpolationTime": [
+      "float32"
+    ],
+    "InterpolationTriggerThreashold": [
+      "float32"
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_LookAt&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_LookAt"
+        }
+      ]
+    }
+  ]
+}

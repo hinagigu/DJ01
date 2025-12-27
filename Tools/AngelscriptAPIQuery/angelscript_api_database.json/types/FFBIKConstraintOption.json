@@ -1,0 +1,73 @@
+{
+  "name": "FFBIKConstraintOption",
+  "isStruct": true,
+  "properties": {
+    "Item": [
+      "FRigElementKey",
+      1,
+      "Bone Name"
+    ],
+    "bEnabled": [
+      "bool",
+      2,
+      ""
+    ],
+    "bUseStiffness": [
+      "bool",
+      2,
+      ""
+    ],
+    "LinearStiffness": [
+      "FVector",
+      2,
+      "Scale of [0, 1] and applied to linear motion strength - linear stiffness works on their local frame"
+    ],
+    "AngularStiffness": [
+      "FVector",
+      2,
+      "Scale of [0, 1] and applied to angular motion strength, xyz is applied to twist, swing1, swing2"
+    ],
+    "bUseAngularLimit": [
+      "bool",
+      2,
+      ""
+    ],
+    "AngularLimit": [
+      "FFBIKBoneLimit",
+      2,
+      "Angular delta limit of this joints local transform. [-Limit, Limit]"
+    ],
+    "bUsePoleVector": [
+      "bool",
+      2,
+      ""
+    ],
+    "PoleVectorOption": [
+      "EPoleVectorOption",
+      2,
+      ""
+    ],
+    "PoleVector": [
+      "FVector",
+      2,
+      "Pole Vector in their local space"
+    ],
+    "OffsetRotation": [
+      "FRotator",
+      2,
+      "this is offset rotation applied when constructing the local frame"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FFBIKConstraintOption&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FFBIKConstraintOption"
+        }
+      ]
+    }
+  ]
+}

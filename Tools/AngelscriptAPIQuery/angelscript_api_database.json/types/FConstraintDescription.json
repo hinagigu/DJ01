@@ -1,0 +1,41 @@
+{
+  "name": "FConstraintDescription",
+  "isStruct": true,
+  "doc": "A description of how to apply a simple transform constraint",
+  "properties": {
+    "bTranslation": [
+      "bool"
+    ],
+    "bRotation": [
+      "bool"
+    ],
+    "bScale": [
+      "bool"
+    ],
+    "bParent": [
+      "bool",
+      "this does composed transform - where as individual will accumulate per component"
+    ],
+    "TranslationAxes": [
+      "FFilterOptionPerAxis"
+    ],
+    "RotationAxes": [
+      "FFilterOptionPerAxis"
+    ],
+    "ScaleAxes": [
+      "FFilterOptionPerAxis"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FConstraintDescription&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FConstraintDescription"
+        }
+      ]
+    }
+  ]
+}

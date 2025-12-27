@@ -1,0 +1,44 @@
+{
+  "name": "FPropertyBagPropertyDesc",
+  "isStruct": true,
+  "doc": "Describes a property in the property bag.",
+  "properties": {
+    "ValueTypeObject": [
+      "const UObject",
+      2,
+      "Pointer to object that defines the Enum, Struct, or Class."
+    ],
+    "ID": [
+      "FGuid",
+      2,
+      "Unique ID for this property. Used as main identifier when copying values over."
+    ],
+    "Name": [
+      "FName",
+      2,
+      "Name for the property."
+    ],
+    "ValueType": [
+      "EPropertyBagPropertyType",
+      2,
+      "Type of the value described by this property."
+    ],
+    "MetaClass": [
+      "UClass",
+      2,
+      "Editor-only meta class for IClassViewer"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPropertyBagPropertyDesc&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPropertyBagPropertyDesc"
+        }
+      ]
+    }
+  ]
+}

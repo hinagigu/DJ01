@@ -1,0 +1,39 @@
+{
+  "name": "UDJ01AbilitySystemComponent",
+  "inherits": "UAbilitySystemComponent",
+  "doc": "UDJ01AbilitySystemComponent\n\n    Base ability system component class used by this project.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ClientNotifyAbilityFailed",
+      "return": "void",
+      "callable": false,
+      "doc": "Notify client that an ability failed to activate",
+      "meta": null,
+      "args": [
+        {
+          "name": "Ability",
+          "type": "const UGameplayAbility"
+        },
+        {
+          "name": "FailureReason",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "GetAttributeSetByTag",
+      "return": "const UAttributeSet",
+      "const": true,
+      "doc": "通过 Tag 获取属性集\n@param AttributeSetTag - 属性集的标识 Tag\n@return 对应的属性集实例，如果不存在则返回 nullptr",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    }
+  ]
+}

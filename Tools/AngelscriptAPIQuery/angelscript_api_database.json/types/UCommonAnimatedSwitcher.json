@@ -1,0 +1,90 @@
+{
+  "name": "UCommonAnimatedSwitcher",
+  "inherits": "UWidgetSwitcher",
+  "doc": "A widget switcher that activates / deactivates CommonActivatableWidgets, allowing for associated animations to trigger.",
+  "properties": {
+    "OnActiveWidgetIndexChangedBP": [
+      "FOnActiveIndexChangedDelegate",
+      "Fires when the active widget displayed by the switcher changes"
+    ],
+    "TransitionType": [
+      "ECommonSwitcherTransition",
+      "The type of transition to play between widgets"
+    ],
+    "TransitionCurveType": [
+      "ETransitionCurve",
+      "The curve function type to apply to the transition animation"
+    ],
+    "TransitionDuration": [
+      "float32",
+      "The total duration of a single transition between widgets"
+    ],
+    "TransitionFallbackStrategy": [
+      "ECommonSwitcherTransitionFallbackStrategy",
+      "Controls how we will choose another widget if a transitioning widget is removed during the transition."
+    ]
+  },
+  "methods": [
+    {
+      "name": "ActivateNextWidget",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bCanWrap",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ActivatePreviousWidget",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bCanWrap",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "HasWidgets",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsCurrentlySwitching",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsTransitionPlaying",
+      "return": "bool",
+      "const": true,
+      "doc": "Is the switcher playing a transition animation?",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetDisableTransitionAnimation",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bDisableAnimation",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

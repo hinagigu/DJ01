@@ -1,0 +1,896 @@
+{
+  "name": "UGameplayAbility",
+  "inherits": "UObject",
+  "doc": "Abilities define custom gameplay logic that can be activated by players or external game logic",
+  "properties": {
+    "AbilityTags": [
+      "FGameplayTagContainer",
+      2,
+      "This ability has these tags"
+    ],
+    "bReplicateInputDirectly": [
+      "bool",
+      2,
+      "If true, this ability will always replicate input press/release events to the server."
+    ],
+    "ReplicationPolicy": [
+      "EGameplayAbilityReplicationPolicy",
+      2,
+      "How an ability replicates state/events to everyone on the network. Replication is not required for NetExecutionPolicy."
+    ],
+    "InstancingPolicy": [
+      "EGameplayAbilityInstancingPolicy",
+      2,
+      "How the ability is instanced when executed. This limits what an ability can do in its implementation."
+    ],
+    "bServerRespectsRemoteAbilityCancellation": [
+      "bool",
+      2,
+      "If this is set, the server-side version of the ability can be canceled by the client-side version. The client-side version can always be canceled by the server."
+    ],
+    "bRetriggerInstancedAbility": [
+      "bool",
+      2,
+      "if true, and trying to activate an already active instanced ability, end it and re-trigger it."
+    ],
+    "CurrentActivationInfo": [
+      "FGameplayAbilityActivationInfo",
+      1,
+      "This is information specific to this instance of the ability. E.g, whether it is predicting, authoring, confirmed, etc."
+    ],
+    "CurrentEventData": [
+      "FGameplayEventData",
+      1,
+      "Information specific to this instance of the ability, if it was activated by an event"
+    ],
+    "NetExecutionPolicy": [
+      "EGameplayAbilityNetExecutionPolicy",
+      2,
+      "How does an ability execute on the network. Does a client \"ask and predict\", \"ask and wait\", \"don't ask (just do it)\"."
+    ],
+    "NetSecurityPolicy": [
+      "EGameplayAbilityNetSecurityPolicy",
+      2,
+      "What protections does this ability have? Should the client be allowed to request changes to the execution of the ability?"
+    ],
+    "CostGameplayEffectClass": [
+      "TSubclassOf<UGameplayEffect>",
+      2,
+      "This GameplayEffect represents the cost (mana, stamina, etc) of the ability. It will be applied when the ability is committed."
+    ],
+    "AbilityTriggers": [
+      "TArray<FAbilityTriggerData>",
+      2,
+      "Triggers to determine if this ability should execute in response to an event"
+    ],
+    "CooldownGameplayEffectClass": [
+      "TSubclassOf<UGameplayEffect>",
+      2,
+      "This GameplayEffect represents the cooldown. It will be applied when the ability is committed and the ability cannot be used again until it is expired."
+    ],
+    "CancelAbilitiesWithTag": [
+      "FGameplayTagContainer",
+      2,
+      "Abilities with these tags are cancelled when this ability is executed"
+    ],
+    "BlockAbilitiesWithTag": [
+      "FGameplayTagContainer",
+      2,
+      "Abilities with these tags are blocked while this ability is active"
+    ],
+    "ActivationOwnedTags": [
+      "FGameplayTagContainer",
+      2,
+      "Tags to apply to activating owner while this ability is active. These are replicated if ReplicateActivationOwnedTags is enabled in AbilitySystemGlobals."
+    ],
+    "ActivationRequiredTags": [
+      "FGameplayTagContainer",
+      2,
+      "This ability can only be activated if the activating actor/component has all of these tags"
+    ],
+    "ActivationBlockedTags": [
+      "FGameplayTagContainer",
+      2,
+      "This ability is blocked if the activating actor/component has any of these tags"
+    ],
+    "SourceRequiredTags": [
+      "FGameplayTagContainer",
+      2,
+      "This ability can only be activated if the source actor/component has all of these tags"
+    ],
+    "SourceBlockedTags": [
+      "FGameplayTagContainer",
+      2,
+      "This ability is blocked if the source actor/component has any of these tags"
+    ],
+    "TargetRequiredTags": [
+      "FGameplayTagContainer",
+      2,
+      "This ability can only be activated if the target actor/component has all of these tags"
+    ],
+    "TargetBlockedTags": [
+      "FGameplayTagContainer",
+      2,
+      "This ability is blocked if the target actor/component has any of these tags"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ApplyGameplayEffectToOwner",
+      "return": "FActiveGameplayEffectHandle",
+      "doc": "Apply a gameplay effect to the owner of this ability",
+      "ufunction": true,
+      "unrealname": "BP_ApplyGameplayEffectToOwner",
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayEffectClass",
+          "type": "TSubclassOf<UGameplayEffect>"
+        },
+        {
+          "name": "GameplayEffectLevel",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "Stacks",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ApplyGameplayEffectToTarget",
+      "return": "TArray<FActiveGameplayEffectHandle>",
+      "doc": "Apply a gameplay effect to a Target",
+      "ufunction": true,
+      "unrealname": "BP_ApplyGameplayEffectToTarget",
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        },
+        {
+          "name": "GameplayEffectClass",
+          "type": "TSubclassOf<UGameplayEffect>"
+        },
+        {
+          "name": "GameplayEffectLevel",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "Stacks",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveGameplayEffectFromOwnerWithAssetTags",
+      "return": "void",
+      "doc": "Removes GameplayEffects from owner which match the given asset level tags",
+      "ufunction": true,
+      "unrealname": "BP_RemoveGameplayEffectFromOwnerWithAssetTags",
+      "meta": null,
+      "args": [
+        {
+          "name": "WithAssetTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "StacksToRemove",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveGameplayEffectFromOwnerWithGrantedTags",
+      "return": "void",
+      "doc": "Removes GameplayEffects from owner which grant the given tags",
+      "ufunction": true,
+      "unrealname": "BP_RemoveGameplayEffectFromOwnerWithGrantedTags",
+      "meta": null,
+      "args": [
+        {
+          "name": "WithGrantedTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "StacksToRemove",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveGameplayEffectFromOwnerWithHandle",
+      "return": "void",
+      "doc": "Removes GameplayEffect from owner that match the given handle",
+      "ufunction": true,
+      "unrealname": "BP_RemoveGameplayEffectFromOwnerWithHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FActiveGameplayEffectHandle"
+        },
+        {
+          "name": "StacksToRemove",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "CancelTaskByInstanceName",
+      "return": "void",
+      "doc": "Add any task with this instance name to a list to be canceled (not ended) next frame.  See also EndTaskByInstanceName.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ConfirmTaskByInstanceName",
+      "return": "void",
+      "doc": "Finds all currently active tasks named InstanceName and confirms them. What this means depends on the individual task. By default, this does nothing other than ending if bEndTask is true.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceName",
+          "type": "FName"
+        },
+        {
+          "name": "bEndTask",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "EndAbilityState",
+      "return": "void",
+      "doc": "Ends any active ability state task with the given name. If name is 'None' all active states will be ended (in an arbitrary order).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OptionalStateNameToEnd",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "EndTaskByInstanceName",
+      "return": "void",
+      "doc": "Add any task with this instance name to a list to be ended (not canceled) next frame.  See also CancelTaskByInstanceName.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InstanceName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetAbilityLevel",
+      "return": "int",
+      "const": true,
+      "doc": "Returns current level of the Ability",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAbilityLevel_BP",
+      "return": "int",
+      "const": true,
+      "doc": "Returns current ability level for non instanced abilities. You must call this version in these contexts!",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "ActorInfo",
+          "type": "FGameplayAbilityActorInfo"
+        }
+      ]
+    },
+    {
+      "name": "GetAbilitySystemComponentFromActorInfo",
+      "return": "UAbilitySystemComponent",
+      "const": true,
+      "doc": "Returns the AbilitySystemComponent that is activating this ability",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorInfo",
+      "return": "FGameplayAbilityActorInfo",
+      "const": true,
+      "doc": "Returns the actor info associated with this ability, has cached pointers to useful objects",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAvatarActorFromActorInfo",
+      "return": "AActor",
+      "const": true,
+      "doc": "Returns the physical actor that is executing this ability. May be null",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetContextFromOwner",
+      "return": "FGameplayEffectContextHandle",
+      "const": true,
+      "doc": "Generates a GameplayEffectContextHandle from our owner and an optional TargetData.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OptionalTargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetCooldownTimeRemaining",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the time in seconds remaining on the currently active cooldown.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentMontage",
+      "return": "UAnimMontage",
+      "const": true,
+      "doc": "Returns the currently playing montage for this ability, if any",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentSourceObject",
+      "return": "UObject",
+      "const": true,
+      "doc": "Retrieves the SourceObject associated with this ability. Can only be called on instanced abilities.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGrantedByEffectContext",
+      "return": "FGameplayEffectContextHandle",
+      "const": true,
+      "doc": "Retrieves the EffectContext of the GameplayEffect that granted this ability. Can only be called on instanced abilities.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningActorFromActorInfo",
+      "return": "AActor",
+      "const": true,
+      "doc": "Returns the actor that owns this ability, which may not have a physical location",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningComponentFromActorInfo",
+      "return": "USkeletalMeshComponent",
+      "const": true,
+      "doc": "Convenience method for abilities to get skeletal mesh component - useful for aiming abilities",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSourceObject_BP",
+      "return": "UObject",
+      "const": true,
+      "doc": "Retrieves the SourceObject associated with this ability. Callable on non instanced",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "ActorInfo",
+          "type": "FGameplayAbilityActorInfo"
+        }
+      ]
+    },
+    {
+      "name": "InvalidateClientPredictionKey",
+      "return": "void",
+      "const": true,
+      "doc": "Invalidates the current prediction key. This should be used in cases where there is a valid prediction window, but the server is doing logic that only it can do, and afterwards performs an action that the client could predict (had the client been able to run the server-only code prior).\nThis returns instantly and has no other side effects other than clearing the current prediction key.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLocallyControlled",
+      "return": "bool",
+      "const": true,
+      "doc": "True if the owning actor is locally controlled, true in single player",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ActivateAbility",
+      "return": "void",
+      "callable": false,
+      "doc": "The main function that defines what an ability does.\n -Child classes will want to override this\n -This function graph should call CommitAbility\n -This function graph should call EndAbility\n\n Latent/async actions are ok in this graph. Note that Commit and EndAbility calling requirements speak to the K2_ActivateAbility graph.\n In C++, the call to K2_ActivateAbility() may return without CommitAbility or EndAbility having been called. But it is expected that this\n will only occur when latent/async actions are pending. When K2_ActivateAbility logically finishes, then we will expect Commit/End to have been called.",
+      "event": true,
+      "unrealname": "K2_ActivateAbility",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ActivateAbilityFromEvent",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "K2_ActivateAbilityFromEvent",
+      "meta": null,
+      "args": [
+        {
+          "name": "EventData",
+          "type": "FGameplayEventData"
+        }
+      ]
+    },
+    {
+      "name": "AddGameplayCue",
+      "return": "void",
+      "doc": "Adds a persistent gameplay cue to the ability owner. Optionally will remove if ability ends",
+      "ufunction": true,
+      "unrealname": "K2_AddGameplayCue",
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Context",
+          "type": "FGameplayEffectContextHandle"
+        },
+        {
+          "name": "bRemoveOnAbilityEnd",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddGameplayCueWithParams",
+      "return": "void",
+      "doc": "Adds a persistent gameplay cue to the ability owner. Optionally will remove if ability ends",
+      "ufunction": true,
+      "unrealname": "K2_AddGameplayCueWithParams",
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "GameplayCueParameter",
+          "type": "FGameplayCueParameters"
+        },
+        {
+          "name": "bRemoveOnAbilityEnd",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ApplyGameplayEffectSpecToOwner",
+      "return": "FActiveGameplayEffectHandle",
+      "doc": "Apply a previously created gameplay effect spec to the owner of this ability",
+      "ufunction": true,
+      "unrealname": "K2_ApplyGameplayEffectSpecToOwner",
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "ApplyGameplayEffectSpecToTarget",
+      "return": "TArray<FActiveGameplayEffectHandle>",
+      "doc": "Apply a previously created gameplay effect spec to a target",
+      "ufunction": true,
+      "unrealname": "K2_ApplyGameplayEffectSpecToTarget",
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        },
+        {
+          "name": "TargetData",
+          "type": "FGameplayAbilityTargetDataHandle"
+        }
+      ]
+    },
+    {
+      "name": "CanActivateAbility",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "doc": "Returns true if this ability can be activated right now. Has no side effects",
+      "event": true,
+      "unrealname": "K2_CanActivateAbility",
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorInfo",
+          "type": "FGameplayAbilityActorInfo"
+        },
+        {
+          "name": "Handle",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "RelevantTags",
+          "type": "FGameplayTagContainer&"
+        }
+      ]
+    },
+    {
+      "name": "CancelAbility",
+      "return": "void",
+      "doc": "Call from Blueprint to cancel the ability naturally",
+      "ufunction": true,
+      "unrealname": "K2_CancelAbility",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CheckAbilityCooldown",
+      "return": "bool",
+      "doc": "Checks the ability's cooldown, but does not apply it.",
+      "ufunction": true,
+      "unrealname": "K2_CheckAbilityCooldown",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CheckAbilityCost",
+      "return": "bool",
+      "doc": "Checks the ability's cost, but does not apply it.",
+      "ufunction": true,
+      "unrealname": "K2_CheckAbilityCost",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CommitAbility",
+      "return": "bool",
+      "doc": "Attempts to commit the ability (spend resources, etc). This our last chance to fail. Child classes that override ActivateAbility must call this themselves!",
+      "ufunction": true,
+      "unrealname": "K2_CommitAbility",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CommitAbilityCooldown",
+      "return": "bool",
+      "doc": "Attempts to commit the ability's cooldown only. If BroadcastCommitEvent is true, it will broadcast the commit event that tasks like WaitAbilityCommit are listening for.",
+      "ufunction": true,
+      "unrealname": "K2_CommitAbilityCooldown",
+      "meta": null,
+      "args": [
+        {
+          "name": "BroadcastCommitEvent",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "ForceCooldown",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CommitAbilityCost",
+      "return": "bool",
+      "doc": "Attempts to commit the ability's cost only. If BroadcastCommitEvent is true, it will broadcast the commit event that tasks like WaitAbilityCommit are listening for.",
+      "ufunction": true,
+      "unrealname": "K2_CommitAbilityCost",
+      "meta": null,
+      "args": [
+        {
+          "name": "BroadcastCommitEvent",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CommitExecute",
+      "return": "void",
+      "callable": false,
+      "doc": "BP event called from CommitAbility",
+      "event": true,
+      "unrealname": "K2_CommitExecute",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EndAbility",
+      "return": "void",
+      "doc": "Call from blueprints to forcibly end the ability without canceling it. This will replicate the end ability to the client or server which can interrupt tasks",
+      "ufunction": true,
+      "unrealname": "K2_EndAbility",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EndAbilityLocally",
+      "return": "void",
+      "doc": "Call from blueprints to end the ability naturally. This will only end predicted abilities locally, allowing it end naturally on the client or server",
+      "ufunction": true,
+      "unrealname": "K2_EndAbilityLocally",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ExecuteGameplayCue",
+      "return": "void",
+      "doc": "Invoke a gameplay cue on the ability owner",
+      "ufunction": true,
+      "unrealname": "K2_ExecuteGameplayCue",
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Context",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "ExecuteGameplayCueWithParams",
+      "return": "void",
+      "doc": "Invoke a gameplay cue on the ability owner, with extra parameters",
+      "ufunction": true,
+      "unrealname": "K2_ExecuteGameplayCueWithParams",
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "GameplayCueParameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "HasAuthority",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "unrealname": "K2_HasAuthority",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnEndAbility",
+      "return": "void",
+      "callable": false,
+      "doc": "Blueprint event, will be called if an ability ends normally or abnormally",
+      "event": true,
+      "unrealname": "K2_OnEndAbility",
+      "meta": null,
+      "args": [
+        {
+          "name": "bWasCancelled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveGameplayCue",
+      "return": "void",
+      "doc": "Removes a persistent gameplay cue from the ability owner",
+      "ufunction": true,
+      "unrealname": "K2_RemoveGameplayCue",
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "ShouldAbilityRespondToEvent",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "doc": "Returns true if this ability can be activated right now. Has no side effects",
+      "event": true,
+      "unrealname": "K2_ShouldAbilityRespondToEvent",
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorInfo",
+          "type": "FGameplayAbilityActorInfo"
+        },
+        {
+          "name": "Payload",
+          "type": "FGameplayEventData"
+        }
+      ]
+    },
+    {
+      "name": "MakeOutgoingGameplayEffectSpec",
+      "return": "FGameplayEffectSpecHandle",
+      "const": true,
+      "doc": "Convenience method for abilities to get outgoing gameplay effect specs (for example, to pass on to projectiles to apply to whoever they hit)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayEffectClass",
+          "type": "TSubclassOf<UGameplayEffect>"
+        },
+        {
+          "name": "Level",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "MakeTargetLocationInfoFromOwnerActor",
+      "return": "FGameplayAbilityTargetingLocationInfo",
+      "doc": "Creates a target location from where the owner avatar is",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "MakeTargetLocationInfoFromOwnerSkeletalMeshComponent",
+      "return": "FGameplayAbilityTargetingLocationInfo",
+      "doc": "Creates a target location from a socket on the owner avatar's skeletal mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SocketName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "MontageJumpToSection",
+      "return": "void",
+      "doc": "Immediately jumps the active montage to a section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SectionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "MontageSetNextSectionName",
+      "return": "void",
+      "doc": "Sets pending section on active montage",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FromSectionName",
+          "type": "FName"
+        },
+        {
+          "name": "ToSectionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "MontageStop",
+      "return": "void",
+      "doc": "Stops the current animation montage.\n\n@param OverrideBlendTime If >= 0, will override the BlendOutTime parameter on the AnimMontage instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OverrideBlendOutTime",
+          "default": "- 1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RemoveGrantedByEffect",
+      "return": "void",
+      "doc": "Removes the GameplayEffect that granted this ability. Can only be called on instanced abilities.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SendGameplayEvent",
+      "return": "void",
+      "doc": "Sends a gameplay event, also creates a prediction window",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EventTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Payload",
+          "type": "FGameplayEventData"
+        }
+      ]
+    },
+    {
+      "name": "SetCanBeCanceled",
+      "return": "void",
+      "doc": "Sets whether the ability should ignore cancel requests. Only valid on instanced abilities",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bCanBeCanceled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetShouldBlockOtherAbilities",
+      "return": "void",
+      "doc": "Sets rather ability block flags are enabled or disabled. Only valid on instanced abilities",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bShouldBlockAbilities",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2189 @@
+{
+  "name": "APlayerController",
+  "inherits": "AController",
+  "doc": "PlayerControllers are used by human players to control Pawns.\n\nControlRotation (accessed via GetControlRotation()), determines the aiming\norientation of the controlled Pawn.\n\nIn networked games, PlayerControllers exist on the server for every player-controlled pawn,\nand also on the controlling client's machine. They do NOT exist on a client's\nmachine for pawns controlled by remote players elsewhere on the network.\n\n@see https://docs.unrealengine.com/latest/INT/Gameplay/Framework/Controller/PlayerController/",
+  "properties": {
+    "PlayerCameraManager": [
+      "APlayerCameraManager",
+      1,
+      "Camera manager associated with this Player Controller."
+    ],
+    "PlayerCameraManagerClass": [
+      "TSubclassOf<APlayerCameraManager>",
+      "PlayerCamera class should be set for each game, otherwise Engine.PlayerCameraManager is used"
+    ],
+    "bAutoManageActiveCameraTarget": [
+      "bool",
+      2,
+      "True to allow this player controller to manage the camera target for you,\ntypically by using the possessed pawn as the camera target. Set to false\nif you want to manually control the camera target."
+    ],
+    "SmoothTargetViewRotationSpeed": [
+      "float32",
+      "Interp speed for blending remote view rotation for smoother client updates"
+    ],
+    "CheatManager": [
+      "UCheatManager",
+      1,
+      "Object that manages \"cheat\" commands.\n\nBy default:\n      - In Shipping configurations, the manager is always disabled because UE_WITH_CHEAT_MANAGER is 0\n  - When playing in the editor, cheats are always enabled\n  - In other cases, cheats are enabled by default in single player games but can be forced on with the EnableCheats console command\n\nThis behavior can be changed either by overriding APlayerController::EnableCheats or AGameModeBase::AllowCheats."
+    ],
+    "CheatClass": [
+      "TSubclassOf<UCheatManager>",
+      "Class of my CheatManager.\n@see CheatManager for more information about when it will be instantiated."
+    ],
+    "StreamingSourceDebugColor": [
+      "FColor",
+      "Color used for debugging."
+    ],
+    "ClickEventKeys": [
+      "TArray<FKey>",
+      "List of keys that will cause click events to be forwarded, default to left click"
+    ],
+    "DefaultMouseCursor": [
+      "EMouseCursor",
+      "Type of mouse cursor to show by default"
+    ],
+    "CurrentMouseCursor": [
+      "EMouseCursor",
+      1,
+      "Currently visible mouse cursor"
+    ],
+    "DefaultClickTraceChannel": [
+      "ECollisionChannel",
+      "Default trace channel used for determining what world object was clicked on."
+    ],
+    "CurrentClickTraceChannel": [
+      "ECollisionChannel",
+      1,
+      "Trace channel currently being used for determining what world object was clicked on."
+    ],
+    "HitResultTraceDistance": [
+      "float32",
+      "Distance to trace when computing click events"
+    ],
+    "bEnableMotionControls": [
+      "bool",
+      "Whether or not to consider input from motion sources (tilt, acceleration, etc)"
+    ],
+    "bPlayerIsWaiting": [
+      "bool",
+      "True if PlayerController is currently waiting for the match to start or to respawn. Only valid in Spectating state."
+    ],
+    "bShowMouseCursor": [
+      "bool",
+      "Whether the mouse cursor should be displayed."
+    ],
+    "bEnableClickEvents": [
+      "bool",
+      "Whether actor/component click events should be generated."
+    ],
+    "bEnableTouchEvents": [
+      "bool",
+      "Whether actor/component touch events should be generated."
+    ],
+    "bEnableMouseOverEvents": [
+      "bool",
+      "Whether actor/component mouse over events should be generated."
+    ],
+    "bEnableTouchOverEvents": [
+      "bool",
+      "Whether actor/component touch over events should be generated."
+    ],
+    "bForceFeedbackEnabled": [
+      "bool"
+    ],
+    "bEnableStreamingSource": [
+      "bool",
+      "Whether the PlayerController should be used as a World Partiton streaming source."
+    ],
+    "bStreamingSourceShouldActivate": [
+      "bool",
+      "Whether the PlayerController streaming source should activate cells after loading."
+    ],
+    "bStreamingSourceShouldBlockOnSlowStreaming": [
+      "bool",
+      "Whether the PlayerController streaming source should block on slow streaming."
+    ],
+    "StreamingSourcePriority": [
+      "EStreamingSourcePriority",
+      "PlayerController streaming source priority."
+    ],
+    "StreamingSourceShapes": [
+      "TArray<FStreamingSourceShape>",
+      "Optional aggregated shape list used to build a custom shape for the streaming source. When empty, fallbacks sphere shape with a radius equal to grid's loading range."
+    ],
+    "bShouldPerformFullTickWhenPaused": [
+      "bool",
+      "Whether we fully tick when the game is paused, if our tick function is allowed to do so. If false, we do a minimal update during the tick."
+    ],
+    "OverridePlayerInputClass": [
+      "TSubclassOf<UPlayerInput>",
+      "If set, then this UPlayerInput class will be used instead of the Input Settings' DefaultPlayerInputClass"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetPlayer",
+      "return": "void",
+      "args": [
+        {
+          "name": "InPlayer",
+          "type": "UPlayer"
+        }
+      ]
+    },
+    {
+      "name": "GetLocalPlayer",
+      "return": "ULocalPlayer",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ActivateTouchInterface",
+      "return": "void",
+      "doc": "Activates a new touch interface for this player controller",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTouchInterface",
+          "type": "UTouchInterface"
+        }
+      ]
+    },
+    {
+      "name": "AddPitchInput",
+      "return": "void",
+      "doc": "Add Pitch (look up) input. This value is multiplied by InputPitchScale.\n@param Val Amount to add to Pitch. This value is multiplied by InputPitchScale.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Val",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddRollInput",
+      "return": "void",
+      "doc": "Add Roll input. This value is multiplied by InputRollScale.\n@param Val Amount to add to Roll. This value is multiplied by InputRollScale.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Val",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "AddYawInput",
+      "return": "void",
+      "doc": "Add Yaw (turn) input. This value is multiplied by InputYawScale.\n@param Val Amount to add to Yaw. This value is multiplied by InputYawScale.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Val",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CanRestartPlayer",
+      "return": "bool",
+      "doc": "Returns true if this controller thinks it's able to restart. Called from GameModeBase::PlayerCanRestart",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearAudioListenerAttenuationOverride",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearAudioListenerOverride",
+      "return": "void",
+      "doc": "Clear any overrides that have been applied to audio listener",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientAckTimeDilation",
+      "return": "void",
+      "callable": false,
+      "doc": "Client receives the time dilation value it needs to use to keep its ServerFrame to LocalFrame offset in sync",
+      "meta": null,
+      "args": [
+        {
+          "name": "TimeDilation",
+          "type": "float32"
+        },
+        {
+          "name": "ServerStep",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ClientAddTextureStreamingLoc",
+      "return": "void",
+      "callable": false,
+      "doc": "Adds a location to the texture streaming system for the specified duration.",
+      "meta": null,
+      "args": [
+        {
+          "name": "InLoc",
+          "type": "FVector"
+        },
+        {
+          "name": "Duration",
+          "type": "float32"
+        },
+        {
+          "name": "bOverrideLocation",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientCancelPendingMapChange",
+      "return": "void",
+      "callable": false,
+      "doc": "Tells client to cancel any pending map change.",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientCapBandwidth",
+      "return": "void",
+      "callable": false,
+      "doc": "Set CurrentNetSpeed to the lower of its current value and Cap.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Cap",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ClientClearCameraLensEffects",
+      "return": "void",
+      "doc": "Removes all Camera Lens Effects.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientCommitMapChange",
+      "return": "void",
+      "callable": false,
+      "doc": "Actually performs the level transition prepared by PrepareMapChange().",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientEnableNetworkVoice",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell the client to enable or disable voice chat (not muting)\n@param bEnable enable or disable voice chat",
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientEndOnlineSession",
+      "return": "void",
+      "callable": false,
+      "doc": "Notify client that the session is about to start",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientFlushLevelStreaming",
+      "return": "void",
+      "callable": false,
+      "doc": "Tells the client to block until all pending level streaming actions are complete\nhappens at the end of the tick\nprimarily used to force update the client ASAP at join time",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientForceGarbageCollection",
+      "return": "void",
+      "callable": false,
+      "doc": "Forces GC at the end of the tick on the client",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientGameEnded",
+      "return": "void",
+      "callable": false,
+      "doc": "Replicated function called by GameHasEnded().\n@param       EndGameFocus - actor to view with camera\n@param       bIsWinner - true if this controller is on winning team",
+      "meta": null,
+      "args": [
+        {
+          "name": "EndGameFocus",
+          "type": "AActor"
+        },
+        {
+          "name": "bIsWinner",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientGotoState",
+      "return": "void",
+      "callable": false,
+      "doc": "Server uses this to force client into NewState .\n@Note ALL STATE NAMES NEED TO BE DEFINED IN name table in UnrealNames.h to be correctly replicated (so they are mapped to the same thing on client and server).",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewState",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ClientIgnoreLookInput",
+      "return": "void",
+      "callable": false,
+      "doc": "Calls IgnoreLookInput on client",
+      "meta": null,
+      "args": [
+        {
+          "name": "bIgnore",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientIgnoreMoveInput",
+      "return": "void",
+      "callable": false,
+      "doc": "Calls IgnoreMoveInput on client",
+      "meta": null,
+      "args": [
+        {
+          "name": "bIgnore",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientMessage",
+      "return": "void",
+      "callable": false,
+      "doc": "Outputs a message to HUD\n@param S - message to display\n@param Type - @todo document\n@param MsgLifeTime - Optional length of time to display 0 = default time",
+      "meta": null,
+      "args": [
+        {
+          "name": "S",
+          "type": "FString"
+        },
+        {
+          "name": "Type",
+          "type": "FName"
+        },
+        {
+          "name": "MsgLifeTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClientMutePlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell the client to mute a player for this controller\n@param PlayerId player id to mute",
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    },
+    {
+      "name": "ClientPlaySound",
+      "return": "void",
+      "callable": false,
+      "doc": "Play sound client-side (so only the client will hear it)\n@param Sound - Sound to play\n@param VolumeMultiplier - Volume multiplier to apply to the sound\n@param PitchMultiplier - Pitch multiplier to apply to the sound",
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClientPlaySoundAtLocation",
+      "return": "void",
+      "callable": false,
+      "doc": "Play sound client-side at the specified location\n@param Sound - Sound to play\n@param Location - Location to play the sound at\n@param VolumeMultiplier - Volume multiplier to apply to the sound\n@param PitchMultiplier - Pitch multiplier to apply to the sound",
+      "meta": null,
+      "args": [
+        {
+          "name": "Sound",
+          "type": "USoundBase"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "VolumeMultiplier",
+          "type": "float32"
+        },
+        {
+          "name": "PitchMultiplier",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClientPrepareMapChange",
+      "return": "void",
+      "callable": false,
+      "doc": "Asynchronously loads the given level in preparation for a streaming map transition.\nthe server sends one function per level name since dynamic arrays can't be replicated\n@param LevelNames - the names of the level packages to load. LevelNames[0] will be the new persistent (primary) level\n@param bFirst - whether this is the first item in the list (so clear the list first)\n@param bLast - whether this is the last item in the list (so start preparing the change after receiving it)",
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelName",
+          "type": "FName"
+        },
+        {
+          "name": "bFirst",
+          "type": "bool"
+        },
+        {
+          "name": "bLast",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientPrestreamTextures",
+      "return": "void",
+      "callable": false,
+      "doc": "Forces the streaming system to disregard the normal logic for the specified duration and\ninstead always load all mip-levels for all textures used by the specified actor.\n@param ForcedActor           - The actor whose textures should be forced into memory.\n@param ForceDuration         - Number of seconds to keep all mip-levels in memory, disregarding the normal priority logic.\n@param bEnableStreaming      - Whether to start (true) or stop (false) streaming\n@param CinematicTextureGroups        - Bitfield indicating which texture groups that use extra high-resolution mips",
+      "meta": null,
+      "args": [
+        {
+          "name": "ForcedActor",
+          "type": "AActor"
+        },
+        {
+          "name": "ForceDuration",
+          "type": "float32"
+        },
+        {
+          "name": "bEnableStreaming",
+          "type": "bool"
+        },
+        {
+          "name": "CinematicTextureGroups",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ClientReceiveLocalizedMessage",
+      "return": "void",
+      "callable": false,
+      "doc": "send client localized message id",
+      "meta": null,
+      "args": [
+        {
+          "name": "Message",
+          "type": "TSubclassOf<ULocalMessage>"
+        },
+        {
+          "name": "Switch",
+          "type": "int"
+        },
+        {
+          "name": "RelatedPlayerState_1",
+          "type": "APlayerState"
+        },
+        {
+          "name": "RelatedPlayerState_2",
+          "type": "APlayerState"
+        },
+        {
+          "name": "OptionalObject",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "ClientRecvServerAckFrame",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "LastProcessedInputFrame",
+          "type": "int"
+        },
+        {
+          "name": "RecvServerFrameNumber",
+          "type": "int"
+        },
+        {
+          "name": "TimeDilation",
+          "type": "int8"
+        }
+      ]
+    },
+    {
+      "name": "ClientRecvServerAckFrameDebug",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumBuffered",
+          "type": "uint8"
+        },
+        {
+          "name": "TargetNumBufferedCmds",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClientRepObjRef",
+      "return": "void",
+      "callable": false,
+      "doc": "Development RPC for testing object reference replication",
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "ClientReset",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell client to reset the PlayerController",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientRestart",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell client to restart the level",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPawn",
+          "type": "APawn"
+        }
+      ]
+    },
+    {
+      "name": "ClientRetryClientRestart",
+      "return": "void",
+      "callable": false,
+      "doc": "Assign Pawn to player, but avoid calling ClientRestart if we have already accepted this pawn",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPawn",
+          "type": "APawn"
+        }
+      ]
+    },
+    {
+      "name": "ClientReturnToMainMenuWithTextReason",
+      "return": "void",
+      "callable": false,
+      "doc": "Return the client to the main menu gracefully",
+      "meta": null,
+      "args": [
+        {
+          "name": "ReturnReason",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "ClientSetBlockOnAsyncLoading",
+      "return": "void",
+      "callable": false,
+      "doc": "Tells the client to block until all pending level streaming actions are complete.\nHappens at the end of the tick primarily used to force update the client ASAP at join time.",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientSetCameraFade",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell client to fade camera\n@Param bEnableFading - true if we should apply FadeColor/FadeAmount to the screen\n@Param FadeColor - Color to fade to\n@Param FadeAlpha - Contains the start fade (X) and end fade (Y) values to apply. A start fade of less than 0 will use the screen's current fade value\n@Param FadeTime - length of time for fade to occur over\n@Param bFadeAudio - true to apply fading of audio alongside the video\n@param bHoldWhenFinished - True for fade to hold at the ToAlpha until fade is disabled",
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnableFading",
+          "type": "bool"
+        },
+        {
+          "name": "FadeColor",
+          "type": "FColor"
+        },
+        {
+          "name": "FadeAlpha",
+          "type": "FVector2D"
+        },
+        {
+          "name": "FadeTime",
+          "type": "float32"
+        },
+        {
+          "name": "bFadeAudio",
+          "type": "bool"
+        },
+        {
+          "name": "bHoldWhenFinished",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientSetCameraMode",
+      "return": "void",
+      "callable": false,
+      "doc": "Replicated function to set camera style on client\n@param       NewCamMode, name defining the new camera mode",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewCamMode",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ClientSetCinematicMode",
+      "return": "void",
+      "callable": false,
+      "doc": "Called by the server to synchronize cinematic transitions with the client",
+      "meta": null,
+      "args": [
+        {
+          "name": "bInCinematicMode",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectsMovement",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectsTurning",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectsHUD",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientSetForceMipLevelsToBeResident",
+      "return": "void",
+      "callable": false,
+      "doc": "Forces the streaming system to disregard the normal logic for the specified duration and\ninstead always load all mip-levels for all textures used by the specified material.\n\n@param Material              - The material whose textures should be forced into memory.\n@param ForceDuration - Number of seconds to keep all mip-levels in memory, disregarding the normal priority logic.\n@param CinematicTextureGroups        - Bitfield indicating which texture groups that use extra high-resolution mips",
+      "meta": null,
+      "args": [
+        {
+          "name": "Material",
+          "type": "UMaterialInterface"
+        },
+        {
+          "name": "ForceDuration",
+          "type": "float32"
+        },
+        {
+          "name": "CinematicTextureGroups",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ClientSetHUD",
+      "return": "void",
+      "doc": "Set the client's class of HUD and spawns a new instance of it. If there was already a HUD active, it is destroyed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewHUDClass",
+          "type": "TSubclassOf<AHUD>"
+        }
+      ]
+    },
+    {
+      "name": "ClientSetSpectatorWaiting",
+      "return": "void",
+      "callable": false,
+      "doc": "Indicate that the Spectator is waiting to join/respawn.",
+      "meta": null,
+      "args": [
+        {
+          "name": "bWaiting",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientSetViewTarget",
+      "return": "void",
+      "callable": false,
+      "doc": "Set the view target\n@param A - new actor to set as view target\n@param TransitionParams - parameters to use for controlling the transition",
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "AActor"
+        },
+        {
+          "name": "TransitionParams",
+          "type": "FViewTargetTransitionParams"
+        }
+      ]
+    },
+    {
+      "name": "ClientSpawnGenericCameraLensEffect",
+      "return": "void",
+      "doc": "Spawn a camera lens effect (e.g. blood).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LensEffectEmitterClass",
+          "type": "TSubclassOf<AActor>"
+        }
+      ]
+    },
+    {
+      "name": "ClientStartCameraShake",
+      "return": "void",
+      "doc": "Play Camera Shake\n@param Shake - Camera shake animation to play\n@param Scale - Scalar defining how \"intense\" to play the anim\n@param PlaySpace - Which coordinate system to play the shake in (used for CameraAnims within the shake).\n@param UserPlaySpaceRot - Matrix used when PlaySpace = CAPS_UserDefined",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Shake",
+          "type": "TSubclassOf<UCameraShakeBase>"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PlaySpace",
+          "default": "ECameraShakePlaySpace :: CameraLocal",
+          "type": "ECameraShakePlaySpace"
+        },
+        {
+          "name": "UserPlaySpaceRot",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "ClientStartCameraShakeFromSource",
+      "return": "void",
+      "doc": "Play Camera Shake localized to a given source\n@param Shake - Camera shake animation to play\n@param SourceComponent - The source from which the camera shakes originates",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Shake",
+          "type": "TSubclassOf<UCameraShakeBase>"
+        },
+        {
+          "name": "SourceComponent",
+          "type": "UCameraShakeSourceComponent"
+        }
+      ]
+    },
+    {
+      "name": "ClientStartOnlineSession",
+      "return": "void",
+      "callable": false,
+      "doc": "Notify client that the session is starting",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientStopCameraShake",
+      "return": "void",
+      "doc": "Stop camera shake on client.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Shake",
+          "type": "TSubclassOf<UCameraShakeBase>"
+        },
+        {
+          "name": "bImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientStopCameraShakesFromSource",
+      "return": "void",
+      "doc": "Stop camera shake on client.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceComponent",
+          "type": "UCameraShakeSourceComponent"
+        },
+        {
+          "name": "bImmediately",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClientStopForceFeedback",
+      "return": "void",
+      "doc": "Stops a playing force feedback pattern\n@param       ForceFeedbackEffect             If set only patterns from that effect will be stopped\n@param       Tag                                             If not none only the pattern with this tag will be stopped",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ForceFeedbackEffect",
+          "type": "UForceFeedbackEffect"
+        },
+        {
+          "name": "Tag",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ClientTeamMessage",
+      "return": "void",
+      "callable": false,
+      "doc": "@todo document",
+      "meta": null,
+      "args": [
+        {
+          "name": "SenderPlayerState",
+          "type": "APlayerState"
+        },
+        {
+          "name": "S",
+          "type": "FString"
+        },
+        {
+          "name": "Type",
+          "type": "FName"
+        },
+        {
+          "name": "MsgLifeTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClientTravelInternal",
+      "return": "void",
+      "callable": false,
+      "doc": "Internal clientside implementation of ClientTravel - use ClientTravel to call this\n\n@param URL                           A string containing the mapname (or IP address) to travel to, along with option key/value pairs\n@param TravelType            specifies whether the client should append URL options used in previous travels; if true is specified\n                                                     for the bSeamlesss parameter, this value must be TRAVEL_Relative.\n@param bSeamless                     Indicates whether to use seamless travel (requires TravelType of TRAVEL_Relative)\n@param MapPackageGuid        The GUID of the map package to travel to - this is used to find the file when it has been autodownloaded,\n                                                     so it is only needed for clients",
+      "meta": null,
+      "args": [
+        {
+          "name": "URL",
+          "type": "FString"
+        },
+        {
+          "name": "TravelType",
+          "type": "ETravelType"
+        },
+        {
+          "name": "bSeamless",
+          "type": "bool"
+        },
+        {
+          "name": "MapPackageGuid",
+          "type": "FGuid"
+        }
+      ]
+    },
+    {
+      "name": "ClientUnmutePlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell the client to unmute a player for this controller\n@param PlayerId player id to unmute",
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    },
+    {
+      "name": "ClientUnmutePlayers",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell the client to unmute an array of players for this controller\n@param PlayerIds player ids to unmute",
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerIds",
+          "type": "TArray<FUniqueNetIdRepl>"
+        }
+      ]
+    },
+    {
+      "name": "ClientVoiceHandshakeComplete",
+      "return": "void",
+      "callable": false,
+      "doc": "Tells the client that the server has all the information it needs and that it\nis ok to start sending voice packets. The server will already send voice packets\nwhen this function is called, since it is set server side and then forwarded\n\nNOTE: This is done as an RPC instead of variable replication because ordering matters",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientWasKicked",
+      "return": "void",
+      "callable": false,
+      "doc": "Notify client they were kicked from the server",
+      "meta": null,
+      "args": [
+        {
+          "name": "KickReason",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "DeprojectMousePositionToWorld",
+      "return": "bool",
+      "const": true,
+      "doc": "Convert current mouse 2D position to World Space 3D position and direction. Returns false if unable to determine value. *",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "WorldDirection",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "DeprojectScreenPositionToWorld",
+      "return": "bool",
+      "const": true,
+      "doc": "Convert 2D screen position to World Space 3D position and direction. Returns false if unable to determine value. *",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ScreenX",
+          "type": "float32"
+        },
+        {
+          "name": "ScreenY",
+          "type": "float32"
+        },
+        {
+          "name": "WorldLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "WorldDirection",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetAsyncPhysicsDataToConsume",
+      "return": "const UAsyncPhysicsData",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAsyncPhysicsDataToWrite",
+      "return": "UAsyncPhysicsData",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDeprecatedInputPitchScale",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDeprecatedInputRollScale",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDeprecatedInputYawScale",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFocalLocation",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns the location the PlayerController is focused on.\n If there is a possessed Pawn, returns the Pawn's location.\n If there is a spectator Pawn, returns that Pawn's location.\n Otherwise, returns the PlayerController's spawn location (usually the last known Pawn location after it has died).",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHitResultUnderCursorByChannel",
+      "return": "bool",
+      "const": true,
+      "doc": "Performs a collision query under the mouse cursor, looking on a trace channel",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TraceChannel",
+          "type": "ETraceTypeQuery"
+        },
+        {
+          "name": "bTraceComplex",
+          "type": "bool"
+        },
+        {
+          "name": "HitResult",
+          "type": "FHitResult&"
+        }
+      ]
+    },
+    {
+      "name": "GetHitResultUnderCursorForObjects",
+      "return": "bool",
+      "const": true,
+      "doc": "Performs a collision query under the mouse cursor, looking for object types",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectTypes",
+          "type": "TArray<EObjectTypeQuery>"
+        },
+        {
+          "name": "bTraceComplex",
+          "type": "bool"
+        },
+        {
+          "name": "HitResult",
+          "type": "FHitResult&"
+        }
+      ]
+    },
+    {
+      "name": "GetHitResultUnderFingerByChannel",
+      "return": "bool",
+      "const": true,
+      "doc": "Performs a collision query under the finger, looking on a trace channel",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FingerIndex",
+          "type": "ETouchIndex"
+        },
+        {
+          "name": "TraceChannel",
+          "type": "ETraceTypeQuery"
+        },
+        {
+          "name": "bTraceComplex",
+          "type": "bool"
+        },
+        {
+          "name": "HitResult",
+          "type": "FHitResult&"
+        }
+      ]
+    },
+    {
+      "name": "GetHitResultUnderFingerForObjects",
+      "return": "bool",
+      "const": true,
+      "doc": "Performs a collision query under the finger, looking for object types",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FingerIndex",
+          "type": "ETouchIndex"
+        },
+        {
+          "name": "ObjectTypes",
+          "type": "TArray<EObjectTypeQuery>"
+        },
+        {
+          "name": "bTraceComplex",
+          "type": "bool"
+        },
+        {
+          "name": "HitResult",
+          "type": "FHitResult&"
+        }
+      ]
+    },
+    {
+      "name": "GetHUD",
+      "return": "AHUD",
+      "const": true,
+      "doc": "Gets the HUD currently being used by this player controller",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInputAnalogKeyState",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the analog value for the given key/button.  If analog isn't supported, returns 1 for down and 0 for up.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "GetInputAnalogStickState",
+      "return": "void",
+      "const": true,
+      "doc": "Retrieves the X and Y displacement of the given analog stick.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WhichStick",
+          "type": "EControllerAnalogStick"
+        },
+        {
+          "name": "StickX",
+          "type": "float32&"
+        },
+        {
+          "name": "StickY",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetInputKeyTimeDown",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns how long the given key/button has been down.  Returns 0 if it's up or it just went down this frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "GetInputMotionState",
+      "return": "void",
+      "const": true,
+      "doc": "Retrieves the current motion state of the player's input device",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tilt",
+          "type": "FVector&"
+        },
+        {
+          "name": "RotationRate",
+          "type": "FVector&"
+        },
+        {
+          "name": "Gravity",
+          "type": "FVector&"
+        },
+        {
+          "name": "Acceleration",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetInputMouseDelta",
+      "return": "void",
+      "const": true,
+      "doc": "Retrieves how far the mouse moved this frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaX",
+          "type": "float32&"
+        },
+        {
+          "name": "DeltaY",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetInputTouchState",
+      "return": "void",
+      "const": true,
+      "doc": "Retrieves the X and Y screen coordinates of the specified touch key. Returns false if the touch index is not down",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FingerIndex",
+          "type": "ETouchIndex"
+        },
+        {
+          "name": "LocationX",
+          "type": "float32&"
+        },
+        {
+          "name": "LocationY",
+          "type": "float32&"
+        },
+        {
+          "name": "bIsCurrentlyPressed",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetInputVectorKeyState",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns the vector value for the given key/button.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "GetMousePosition",
+      "return": "bool",
+      "const": true,
+      "doc": "Retrieves the X and Y screen coordinates of the mouse cursor. Returns false if there is no associated mouse device",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LocationX",
+          "type": "float32&"
+        },
+        {
+          "name": "LocationY",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetOverridePlayerInputClass",
+      "return": "TSubclassOf<UPlayerInput>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlatformUserId",
+      "return": "FPlatformUserId",
+      "const": true,
+      "doc": "Returns the platform user that is assigned to this Player Controller's Local Player.\nIf there is no local player, then this will return PLATFORMUSERID_NONE",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSpectatorPawn",
+      "return": "ASpectatorPawn",
+      "const": true,
+      "doc": "Get the Pawn used when spectating. nullptr when not spectating.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStreamingSourceLocationAndRotation",
+      "return": "void",
+      "const": true,
+      "doc": "Gets the streaming source location and rotation.\nDefault implementation returns APlayerController::GetPlayerViewPoint but can be overriden in child classes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutLocation",
+          "type": "FVector&"
+        },
+        {
+          "name": "OutRotation",
+          "type": "FRotator&"
+        }
+      ]
+    },
+    {
+      "name": "GetStreamingSourcePriority",
+      "return": "EStreamingSourcePriority",
+      "const": true,
+      "doc": "Gets the streaming source priority.\nDefault implementation returns StreamingSourcePriority but can be overriden in child classes.\n@return the streaming source priority.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetStreamingSourceShapes",
+      "return": "void",
+      "const": true,
+      "doc": "Gets the streaming source priority.\nDefault implementation returns StreamingSourceShapes but can be overriden in child classes.\n@return the streaming source priority.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutShapes",
+          "type": "TArray<FStreamingSourceShape>&"
+        }
+      ]
+    },
+    {
+      "name": "GetViewportSize",
+      "return": "void",
+      "const": true,
+      "doc": "Helper to get the size of the HUD canvas for this player controller.  Returns 0 if there is no HUD",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SizeX",
+          "type": "int&"
+        },
+        {
+          "name": "SizeY",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "IsInputKeyDown",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the given key/button is pressed on the input of the controller (if present)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "IsStreamingSourceEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Whether the PlayerController should be used as a World Partiton streaming source.\nDefault implementation returns bEnableStreamingSource but can be overriden in child classes.\n@return true if it should.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClientPlayForceFeedback",
+      "return": "void",
+      "doc": "Play a force feedback pattern on the player's controller\n@param       ForceFeedbackEffect             The force feedback pattern to play\n@param       bLooping                                Whether the pattern should be played repeatedly or be a single one shot\n@param       bIgnoreTimeDilation             Whether the pattern should ignore time dilation\n@param       bPlayWhilePaused                Whether the pattern should continue to play while the game is paused\n@param       Tag                                             A tag that allows stopping of an effect.  If another effect with this Tag is playing, it will be stopped and replaced",
+      "ufunction": true,
+      "unrealname": "K2_ClientPlayForceFeedback",
+      "meta": null,
+      "args": [
+        {
+          "name": "ForceFeedbackEffect",
+          "type": "UForceFeedbackEffect"
+        },
+        {
+          "name": "Tag",
+          "type": "FName"
+        },
+        {
+          "name": "bLooping",
+          "type": "bool"
+        },
+        {
+          "name": "bIgnoreTimeDilation",
+          "type": "bool"
+        },
+        {
+          "name": "bPlayWhilePaused",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "OnServerStartedVisualLogger",
+      "return": "void",
+      "callable": false,
+      "doc": "Notify from server that Visual Logger is recording, to show that information on client about possible performance issues",
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsLogging",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PlayDynamicForceFeedback",
+      "return": "void",
+      "doc": "Latent action that controls the playing of force feedback\nBegins playing when Start is called.  Calling Update or Stop if the feedback is not active will have no effect.\nCompleted will execute when Stop is called or the duration ends.\nWhen Update is called the Intensity, Duration, and affect values will be updated with the current inputs\n@param       Intensity                               How strong the feedback should be.  Valid values are between 0.0 and 1.0\n@param       Duration                                How long the feedback should play for.  If the value is negative it will play until stopped\n@param   bAffectsLeftLarge           Whether the intensity should be applied to the large left servo\n@param   bAffectsLeftSmall           Whether the intensity should be applied to the small left servo\n@param   bAffectsRightLarge          Whether the intensity should be applied to the large right servo\n@param   bAffectsRightSmall          Whether the intensity should be applied to the small right servo",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Intensity",
+          "type": "float32"
+        },
+        {
+          "name": "Duration",
+          "type": "float32"
+        },
+        {
+          "name": "bAffectsLeftLarge",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectsLeftSmall",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectsRightLarge",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectsRightSmall",
+          "type": "bool"
+        },
+        {
+          "name": "Action",
+          "type": "EDynamicForceFeedbackAction"
+        },
+        {
+          "name": "LatentInfo",
+          "type": "FLatentActionInfo"
+        }
+      ]
+    },
+    {
+      "name": "PlayHapticEffect",
+      "return": "void",
+      "doc": "Play a haptic feedback curve on the player's controller\n@param       HapticEffect                    The haptic effect to play\n@param       Hand                                    Which hand to play the effect on\n@param       Scale                                   Scale between 0.0 and 1.0 on the intensity of playback",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "HapticEffect",
+          "type": "UHapticFeedbackEffect_Base"
+        },
+        {
+          "name": "Hand",
+          "type": "EControllerHand"
+        },
+        {
+          "name": "Scale",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bLoop",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ProjectWorldLocationToScreen",
+      "return": "bool",
+      "const": true,
+      "doc": "Convert a World Space 3D position into a 2D Screen Space position.\n@return true if the world coordinate was successfully projected to the screen.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "ScreenLocation",
+          "type": "FVector2D&"
+        },
+        {
+          "name": "bPlayerViewportRelative",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ResetControllerLightColor",
+      "return": "void",
+      "doc": "Resets the light color of the player's controller to default",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerAcknowledgePossession",
+      "return": "void",
+      "callable": false,
+      "doc": "acknowledge possession of pawn",
+      "meta": null,
+      "args": [
+        {
+          "name": "P",
+          "type": "APawn"
+        }
+      ]
+    },
+    {
+      "name": "ServerBlockPlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell the client to block a player for this controller\n@param PlayerId player id to block",
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    },
+    {
+      "name": "ServerCamera",
+      "return": "void",
+      "callable": false,
+      "doc": "change mode of camera",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMode",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ServerChangeName",
+      "return": "void",
+      "callable": false,
+      "doc": "Change name of server",
+      "meta": null,
+      "args": [
+        {
+          "name": "S",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerCheckClientPossession",
+      "return": "void",
+      "callable": false,
+      "doc": "Tells the server to make sure the possessed pawn is in sync with the client.",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerCheckClientPossessionReliable",
+      "return": "void",
+      "callable": false,
+      "doc": "Reliable version of ServerCheckClientPossession to be used when there is no likely danger of spamming the network.",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerExecRPC",
+      "return": "void",
+      "callable": false,
+      "doc": "RPC used by ServerExec. Not intended to be called directly",
+      "meta": null,
+      "args": [
+        {
+          "name": "Msg",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ServerMutePlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell the server to mute a player for this controller\n@param PlayerId player id to mute",
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    },
+    {
+      "name": "ServerNotifyLoadedWorld",
+      "return": "void",
+      "callable": false,
+      "doc": "Called to notify the server when the client has loaded a new world via seamless traveling\n@param WorldPackageName the name of the world package that was loaded",
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldPackageName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ServerPause",
+      "return": "void",
+      "callable": false,
+      "doc": "Replicate pause request to the server",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerRecvClientInputFrame",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "RecvClientInputFrame",
+          "type": "int"
+        },
+        {
+          "name": "Data",
+          "type": "TArray<uint8>"
+        }
+      ]
+    },
+    {
+      "name": "ServerRestartPlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Attempts to restart this player, generally called from the client upon respawn request.",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerSetSpectatorLocation",
+      "return": "void",
+      "callable": false,
+      "doc": "When spectating, updates spectator location/rotation and pings the server to make sure spectating should continue.",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLoc",
+          "type": "FVector"
+        },
+        {
+          "name": "NewRot",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "ServerSetSpectatorWaiting",
+      "return": "void",
+      "callable": false,
+      "doc": "Indicate that the Spectator is waiting to join/respawn.",
+      "meta": null,
+      "args": [
+        {
+          "name": "bWaiting",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ServerShortTimeout",
+      "return": "void",
+      "callable": false,
+      "doc": "Notifies the server that the client has ticked gameplay code, and should no longer get the extended \"still loading\" timeout grace period",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerToggleAILogging",
+      "return": "void",
+      "callable": false,
+      "doc": "Used by UGameplayDebuggingControllerComponent to replicate messages for AI debugging in network games.",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerUnblockPlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell the client to unblock a player for this controller\n@param PlayerId player id to unblock",
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    },
+    {
+      "name": "ServerUnmutePlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Tell the server to unmute a player for this controller\n@param PlayerId player id to unmute",
+      "meta": null,
+      "args": [
+        {
+          "name": "PlayerId",
+          "type": "FUniqueNetIdRepl"
+        }
+      ]
+    },
+    {
+      "name": "ServerUpdateCamera",
+      "return": "void",
+      "callable": false,
+      "doc": "If PlayerCamera.bUseClientSideCameraUpdates is set, client will replicate camera positions to the server. // @TODO - combine pitch/yaw into one int, maybe also send location compressed",
+      "meta": null,
+      "args": [
+        {
+          "name": "CamLoc",
+          "type": "FVector"
+        },
+        {
+          "name": "CamPitchAndYaw",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ServerVerifyViewTarget",
+      "return": "void",
+      "callable": false,
+      "doc": "Used by client to request server to confirm current viewtarget (server will respond with ClientSetViewTarget() ).",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerViewNextPlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Move camera to next player on round ended or spectating",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerViewPrevPlayer",
+      "return": "void",
+      "callable": false,
+      "doc": "Move camera to previous player on round ended or spectating",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerViewSelf",
+      "return": "void",
+      "callable": false,
+      "doc": "Move camera to current user",
+      "meta": null,
+      "args": [
+        {
+          "name": "TransitionParams",
+          "type": "FViewTargetTransitionParams"
+        }
+      ]
+    },
+    {
+      "name": "SetAudioListenerAttenuationOverride",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttachToComponent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "AttenuationLocationOVerride",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetAudioListenerOverride",
+      "return": "void",
+      "doc": "Used to override the default positioning of the audio listener\n\n@param AttachToComponent Optional component to attach the audio listener to\n@param Location Depending on whether Component is attached this is either an offset from its location or an absolute position\n@param Rotation Depending on whether Component is attached this is either an offset from its rotation or an absolute rotation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttachToComponent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "SetCinematicMode",
+      "return": "void",
+      "doc": "Server/SP only function for changing whether the player is in cinematic mode.  Updates values of various state variables, then replicates the call to the client\nto sync the current cinematic mode.\n@param       bInCinematicMode        specify true if the player is entering cinematic mode; false if the player is leaving cinematic mode.\n@param       bHidePlayer                     specify true to hide the player's pawn (only relevant if bInCinematicMode is true)\n@param       bAffectsHUD                     specify true if we should show/hide the HUD to match the value of bCinematicMode\n@param       bAffectsMovement        specify true to disable movement in cinematic mode, enable it when leaving\n@param       bAffectsTurning         specify true to disable turning in cinematic mode or enable it when leaving",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInCinematicMode",
+          "type": "bool"
+        },
+        {
+          "name": "bHidePlayer",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectsHUD",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectsMovement",
+          "type": "bool"
+        },
+        {
+          "name": "bAffectsTurning",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetControllerLightColor",
+      "return": "void",
+      "doc": "Sets the light color of the player's controller\n@param       Color                                   The color for the light to be",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Color",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "SetDeprecatedInputPitchScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDeprecatedInputRollScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDeprecatedInputYawScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDisableHaptics",
+      "return": "void",
+      "doc": "Allows the player controller to disable all haptic requests from being fired, e.g. in the case of a level loading\n\n@param       bNewDisabled    If TRUE, the haptics will stop and prevented from being enabled again until set to FALSE",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewDisabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetHapticsByValue",
+      "return": "void",
+      "doc": "Sets the value of the haptics for the specified hand directly, using frequency and amplitude.  NOTE:  If a curve is already\nplaying for this hand, it will be cancelled in favour of the specified values.\n\n@param       Frequency                               The normalized frequency [0.0, 1.0] to play through the haptics system\n@param       Amplitude                               The normalized amplitude [0.0, 1.0] to set the haptic feedback to\n@param       Hand                                    Which hand to play the effect on",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Frequency",
+          "type": "float32"
+        },
+        {
+          "name": "Amplitude",
+          "type": "float32"
+        },
+        {
+          "name": "Hand",
+          "type": "EControllerHand"
+        }
+      ]
+    },
+    {
+      "name": "SetMotionControlsEnabled",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMouseCursorWidget",
+      "return": "void",
+      "doc": "Sets the Widget for the Mouse Cursor to display\n@param Cursor - the cursor to set the widget for\n@param CursorWidget - the widget to set the cursor to",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Cursor",
+          "type": "EMouseCursor"
+        },
+        {
+          "name": "CursorWidget",
+          "type": "UUserWidget"
+        }
+      ]
+    },
+    {
+      "name": "SetMouseLocation",
+      "return": "void",
+      "doc": "Positions the mouse cursor in screen space, in pixels.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Y",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetViewTargetWithBlend",
+      "return": "void",
+      "doc": "Set the view target blending with variable control\n@param NewViewTarget - new actor to set as view target\n@param BlendTime - time taken to blend\n@param BlendFunc - Cubic, Linear etc functions for blending\n@param BlendExp -  Exponent, used by certain blend functions to control the shape of the curve.\n@param bLockOutgoing - If true, lock outgoing viewtarget to last frame's camera position for the remainder of the blend.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewViewTarget",
+          "type": "AActor"
+        },
+        {
+          "name": "BlendTime",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "BlendFunc",
+          "default": "EViewTargetBlendFunction :: VTBlend_Linear",
+          "type": "EViewTargetBlendFunction"
+        },
+        {
+          "name": "BlendExp",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bLockOutgoing",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetVirtualJoystickVisibility",
+      "return": "void",
+      "doc": "Set the virtual joystick visibility.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bVisible",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "StopHapticEffect",
+      "return": "void",
+      "doc": "Stops a playing haptic feedback curve\n@param       HapticEffect                    The haptic effect to stop\n@param       Hand                                    Which hand to stop the effect for",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Hand",
+          "type": "EControllerHand"
+        }
+      ]
+    },
+    {
+      "name": "StreamingSourceShouldActivate",
+      "return": "bool",
+      "const": true,
+      "doc": "Whether the PlayerController streaming source should activate cells after loading.\nDefault implementation returns bStreamingSourceShouldActivate but can be overriden in child classes.\n@return true if it should.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StreamingSourceShouldBlockOnSlowStreaming",
+      "return": "bool",
+      "const": true,
+      "doc": "Whether the PlayerController streaming source should block on slow streaming.\nDefault implementation returns bStreamingSourceShouldBlockOnSlowStreaming but can be overriden in child classes.\n@return true if it should.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "WasInputKeyJustPressed",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the given key/button was up last frame and down this frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "WasInputKeyJustReleased",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the given key/button was down last frame and up this frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Key",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerInput",
+      "return": "UPlayerInput",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PopInputComponent",
+      "return": "void",
+      "doc": "Remove an input component so it no longer handles input from this player controller.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UInputComponent"
+        }
+      ]
+    },
+    {
+      "name": "PushInputComponent",
+      "return": "void",
+      "doc": "Push an input component to handle input from this player controller.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UInputComponent"
+        }
+      ]
+    }
+  ]
+}

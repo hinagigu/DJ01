@@ -1,0 +1,16 @@
+{
+  "name": "UGameplayTask_TimeLimitedExecution",
+  "inherits": "UGameplayTask",
+  "doc": "Adds time limit for running a child task\n- child task needs to be created with UGameplayTask_TimeLimitedExecution passed as TaskOwner\n- activations are tied together and when either UGameplayTask_TimeLimitedExecution or child task is activated, other one starts as well\n- OnFinished and OnTimeExpired are mutually exclusive",
+  "properties": {
+    "OnFinished": [
+      "FTaskFinishDelegate__GameplayTask_TimeLimitedExecution",
+      "called when child task finishes execution before time runs out"
+    ],
+    "OnTimeExpired": [
+      "FTaskFinishDelegate__GameplayTask_TimeLimitedExecution",
+      "called when time runs out"
+    ]
+  },
+  "methods": []
+}

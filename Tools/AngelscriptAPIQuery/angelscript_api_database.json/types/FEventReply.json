@@ -1,0 +1,142 @@
+{
+  "name": "FEventReply",
+  "isStruct": true,
+  "doc": "Allows users to handle events and return information to the underlying UI layer.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "PreventThrottling",
+      "return": "FEventReply&",
+      "args": []
+    },
+    {
+      "name": "SetUserFocus",
+      "return": "FEventReply&",
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UWidget"
+        },
+        {
+          "name": "FocusCause",
+          "default": "EFocusCause :: SetDirectly",
+          "type": "EFocusCause"
+        },
+        {
+          "name": "bAllUsers",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClearUserFocus",
+      "return": "FEventReply&",
+      "args": [
+        {
+          "name": "bAllUsers",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CaptureMouse",
+      "return": "FEventReply&",
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "UseHighPrecisionMouseMovement",
+      "return": "FEventReply&",
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "ReleaseMouseCapture",
+      "return": "FEventReply&",
+      "args": []
+    },
+    {
+      "name": "LockMouseToWidget",
+      "return": "FEventReply&",
+      "args": [
+        {
+          "name": "Widget",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "ReleaseMouseLock",
+      "return": "FEventReply&",
+      "args": []
+    },
+    {
+      "name": "SetMousePos",
+      "return": "FEventReply&",
+      "args": [
+        {
+          "name": "NewMousePos",
+          "type": "FIntPoint"
+        }
+      ]
+    },
+    {
+      "name": "SetNavigation",
+      "return": "FEventReply&",
+      "args": [
+        {
+          "name": "NavigationType",
+          "type": "EUINavigation"
+        },
+        {
+          "name": "Genesis",
+          "type": "ENavigationGenesis"
+        },
+        {
+          "name": "Source",
+          "default": "ENavigationSource :: FocusedWidget",
+          "type": "ENavigationSource"
+        }
+      ]
+    },
+    {
+      "name": "SetNavigation",
+      "return": "FEventReply&",
+      "args": [
+        {
+          "name": "NavigationDestination",
+          "type": "UWidget"
+        },
+        {
+          "name": "Genesis",
+          "type": "ENavigationGenesis"
+        },
+        {
+          "name": "Source",
+          "default": "ENavigationSource :: FocusedWidget",
+          "type": "ENavigationSource"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "FEventReply&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FEventReply"
+        }
+      ]
+    }
+  ]
+}

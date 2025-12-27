@@ -1,0 +1,34 @@
+{
+  "name": "FTargetDeviceClaimDenied",
+  "isStruct": true,
+  "doc": "Implements a message that is sent when a device is already claimed by someone else.\n\n@see FTargetDeviceClaimDropped\n@see FTargetDeviceClaimRequest",
+  "properties": {
+    "DeviceName": [
+      "FString",
+      2,
+      "Holds the identifier of the device that is already claimed."
+    ],
+    "HostName": [
+      "FString",
+      2,
+      "Holds the name of the host computer that claimed the device."
+    ],
+    "HostUser": [
+      "FString",
+      2,
+      "Holds the name of the user that claimed the device."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTargetDeviceClaimDenied&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTargetDeviceClaimDenied"
+        }
+      ]
+    }
+  ]
+}

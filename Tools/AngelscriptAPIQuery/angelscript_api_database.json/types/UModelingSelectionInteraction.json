@@ -1,0 +1,7 @@
+{
+  "name": "UModelingSelectionInteraction",
+  "inherits": "UObject",
+  "doc": "UModelingSelectionInteraction provides element-level selection behavior (ie mesh triangles/edges/vertices)\nvia the UGeometrySelectionManager. The Interaction doesn't actually know about the meshes or interact\nwith them at all, it simply \"operates\" the SelectionManager based on user input.\n\nIn addition to handling selection/deselection behaviors based on user input, the UModelingSelectionInteraction\nalso creates a Gizmo for the active selection if it is transformable, and forwards gizmo transformations\nto the SelectionManager.\n\nCurrently some desired Selection-related interactions require a slightly convoluted path through the code,\nbecause (for example) we want the standard UE editor gizmo to have \"click precedence\" over our selection\nclick behaviors. However we will get the input event first, so we need to be able to check if the gizmo is\nhit via a callback function provided by the EdMode owning the ToolsContext this Interaction will be registered in.\nSimilarly we need to be able to filter out hits if a closer visible object is hit, because there is\nno higher-level Behavior that will do that for us. (This may be improved in future, if more of the existing\nEditor interaction behaviors are re-implemented as InputBehaviors)",
+  "properties": {},
+  "methods": []
+}

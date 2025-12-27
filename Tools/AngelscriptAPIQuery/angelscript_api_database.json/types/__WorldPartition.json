@@ -1,0 +1,129 @@
+{
+  "name": "__WorldPartition",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetActorDescs",
+      "return": "bool",
+      "doc": "Gets all the actor descriptors into the provided array, recursing into actor containers.\n@return True if the operation was successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutActorDescs",
+          "type": "TArray<FActorDesc>&"
+        }
+      ]
+    },
+    {
+      "name": "GetActorDescsForActors",
+      "return": "bool",
+      "doc": "Gets all the actor descriptors from the provided actor pointers, which represents descriptors on disk, e.g. will not\nreflect properties of unsaved actors.\n@return True if the operation was successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InActors",
+          "type": "TArray<AActor>"
+        },
+        {
+          "name": "OutActorDescs",
+          "type": "TArray<FActorDesc>&"
+        }
+      ]
+    },
+    {
+      "name": "GetDataLayerManager",
+      "return": "UDataLayerManager",
+      "doc": "Returns the Data Layer Manager for this object.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEditorWorldBounds",
+      "return": "FBox",
+      "doc": "Gets the editor world bounds, which includes all actor descriptors.\n@return The editor world bounds.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetIntersectingActorDescs",
+      "return": "bool",
+      "doc": "Gets all the actor descriptors intersecting the provided box into the provided array, recursing into actor containers.\n@return True if the operation was successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBox",
+          "type": "FBox"
+        },
+        {
+          "name": "OutActorDescs",
+          "type": "TArray<FActorDesc>&"
+        }
+      ]
+    },
+    {
+      "name": "GetRuntimeWorldBounds",
+      "return": "FBox",
+      "doc": "Gets the runtime world bounds, which only includes actor descriptors that aren't editor only.\n@return The runtime world bounds.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LoadActors",
+      "return": "void",
+      "doc": "Load actors",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InActorsToLoad",
+          "type": "TArray<FGuid>"
+        }
+      ]
+    },
+    {
+      "name": "PinActors",
+      "return": "void",
+      "doc": "Pin actors",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InActorsToPin",
+          "type": "TArray<FGuid>"
+        }
+      ]
+    },
+    {
+      "name": "UnloadActors",
+      "return": "void",
+      "doc": "Unload actors",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InActorsToUnload",
+          "type": "TArray<FGuid>"
+        }
+      ]
+    },
+    {
+      "name": "UnpinActors",
+      "return": "void",
+      "doc": "Unpin actors",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InActorsToUnpin",
+          "type": "TArray<FGuid>"
+        }
+      ]
+    }
+  ]
+}

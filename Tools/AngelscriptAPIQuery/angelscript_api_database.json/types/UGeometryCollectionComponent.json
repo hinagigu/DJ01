@@ -1,0 +1,833 @@
+{
+  "name": "UGeometryCollectionComponent",
+  "inherits": "UMeshComponent",
+  "doc": "GeometryCollectionComponent",
+  "properties": {
+    "ChaosSolverActor": [
+      "AChaosSolverActor",
+      2,
+      "Chaos RBD Solver override. Will use the world's default solver actor if null."
+    ],
+    "InitializationFields": [
+      "TArray<TObjectPtr<AFieldSystemActor>>"
+    ],
+    "ObjectType": [
+      "EObjectStateTypeEnum",
+      "ObjectType defines how to initialize the rigid objects state, Kinematic, Sleeping, Dynamic."
+    ],
+    "GravityGroupIndex": [
+      "int"
+    ],
+    "OneWayInteractionLevel": [
+      "int",
+      "All bodies with a level greater than or equal to this will have One-Way Interaction enabled and act like debris (will not apply forces to non-debris bodies)\nSet to -1 to disable (no bodies will have One-Way Interaction enabled)"
+    ],
+    "bDensityFromPhysicsMaterial": [
+      "bool",
+      "when true, density will be used to compute mass using the assigned physics material"
+    ],
+    "bForceMotionBlur": [
+      "bool",
+      "If ForceMotionBlur is on, motion blur will always be active, even if the GeometryCollection is at rest."
+    ],
+    "EnableClustering": [
+      "bool"
+    ],
+    "ClusterGroupIndex": [
+      "int",
+      "Maximum level for cluster breaks."
+    ],
+    "MaxClusterLevel": [
+      "int",
+      "Maximum level for cluster breaks."
+    ],
+    "MaxSimulatedLevel": [
+      "int",
+      "The maximum level to create rigid bodies that could be simulated.\n      Example: If we have a Geometry Collection with 2 levels, where:\n      0 = Root\n      1 = Clusters\n      2 = Leaf Nodes\n      A setting of '1' would only generate a physics representation of the Root transform and Level 1 clusters.\n      The leaf nodes on Level 2 would never be created on the solver, and would therefore never be considered as part of the simulation."
+    ],
+    "DamageModel": [
+      "EDamageModelTypeEnum",
+      "Damage model to use for evaluating destruction."
+    ],
+    "DamageThreshold": [
+      "TArray<float32>"
+    ],
+    "bUseSizeSpecificDamageThreshold": [
+      "bool",
+      "Damage threshold for clusters at different levels."
+    ],
+    "bUseMaterialDamageModifiers": [
+      "bool",
+      "When on , use the modifiers on the material to adjust the user defined damage threshold values"
+    ],
+    "DamagePropagationData": [
+      "FGeometryCollectionDamagePropagationData",
+      "Data about how damage propagation shoudl behave."
+    ],
+    "bAllowRemovalOnSleep": [
+      "bool",
+      "Allow removal on sleep for the instance if the rest collection has it enabled"
+    ],
+    "bAllowRemovalOnBreak": [
+      "bool",
+      "Allow removal on break for the instance if the rest collection has it enabled"
+    ],
+    "CollisionGroup": [
+      "int"
+    ],
+    "CollisionSampleFraction": [
+      "float32",
+      "Fraction of collision sample particles to keep"
+    ],
+    "InitialVelocityType": [
+      "EInitialVelocityTypeEnum"
+    ],
+    "InitialLinearVelocity": [
+      "FVector"
+    ],
+    "InitialAngularVelocity": [
+      "FVector"
+    ],
+    "NotifyGeometryCollectionPhysicsStateChange": [
+      "FNotifyGeometryCollectionPhysicsStateChange__GeometryCollectionComponent"
+    ],
+    "NotifyGeometryCollectionPhysicsLoadingStateChange": [
+      "FNotifyGeometryCollectionPhysicsLoadingStateChange__GeometryCollectionComponent"
+    ],
+    "OnChaosBreakEvent": [
+      "FOnChaosBreakEvent"
+    ],
+    "OnChaosRemovalEvent": [
+      "FOnChaosRemovalEvent"
+    ],
+    "OnChaosCrumblingEvent": [
+      "FOnChaosCrumblingEvent"
+    ],
+    "DesiredCacheTime": [
+      "float32",
+      1,
+      ""
+    ],
+    "CachePlayback": [
+      "bool",
+      1,
+      ""
+    ],
+    "OnChaosPhysicsCollision": [
+      "FOnChaosPhysicsCollision"
+    ],
+    "bNotifyBreaks": [
+      "bool",
+      "If true, this component will generate breaking events that other systems may subscribe to."
+    ],
+    "bNotifyCollisions": [
+      "bool",
+      "If true, this component will generate collision events that other systems may subscribe to."
+    ],
+    "bNotifyTrailing": [
+      "bool",
+      "If true, this component will generate trailing events that other systems may subscribe to."
+    ],
+    "bNotifyRemovals": [
+      "bool",
+      "If true, this component will generate removal events that other systems may subscribe to."
+    ],
+    "bNotifyCrumblings": [
+      "bool",
+      "If true, this component will generate crumbling events that other systems may subscribe to."
+    ],
+    "bCrumblingEventIncludesChildren": [
+      "bool",
+      "If this and bNotifyCrumblings are true, the crumbling events will contain released children indices."
+    ],
+    "bNotifyGlobalBreaks": [
+      "bool",
+      "If true, this component will generate breaking events that will be listened by the global event relay."
+    ],
+    "bNotifyGlobalCollisions": [
+      "bool",
+      "If true, this component will generate collision events  that will be listened by the global event relay."
+    ],
+    "bNotifyGlobalRemovals": [
+      "bool",
+      "If true, this component will generate removal events  that will be listened by the global event relay."
+    ],
+    "bNotifyGlobalCrumblings": [
+      "bool",
+      "If true, this component will generate crumbling events  that will be listened by the global event relay."
+    ],
+    "bGlobalCrumblingEventIncludesChildren": [
+      "bool",
+      "If this and bNotifyGlobalCrumblings are true, the crumbling events will contain released children indices."
+    ],
+    "bStoreVelocities": [
+      "bool",
+      "If true, this component will save linear and angular velocities on its DynamicCollection."
+    ],
+    "bShowBoneColors": [
+      "bool",
+      "Display Bone Colors instead of assigned materials"
+    ],
+    "bUpdateComponentTransformToRootBone": [
+      "bool",
+      "Relocate the component so that the original offset to the root bone is maintained\nThis only works when the root bone is moving whole being dynamically simulated\nNote: Once the root element is broken, the component will no longer update its position"
+    ],
+    "bUseRootProxyForNavigation": [
+      "bool"
+    ],
+    "bUpdateNavigationInTick": [
+      "bool"
+    ],
+    "bEnableRunTimeDataCollection": [
+      "bool",
+      2,
+      ""
+    ],
+    "RunTimeDataCollectionGuid": [
+      "FGuid",
+      1,
+      ""
+    ],
+    "bOverrideCustomRenderer": [
+      "bool",
+      "If true, CustomRendererType will be used. If false, CustomRendererType comes from the RestCollection."
+    ],
+    "CustomRendererType": [
+      "UClass",
+      "Custom class type that will be used to render the geometry collection instead of using the native rendering."
+    ],
+    "bEnableReplication": [
+      "bool",
+      "Per-instance override to enable/disable replication for the geometry collection"
+    ],
+    "bEnableAbandonAfterLevel": [
+      "bool",
+      "Enables use of ReplicationAbandonAfterLevel to stop providing network updates to\nclients when the updated particle is of a level higher then specified."
+    ],
+    "ReplicationAbandonAfterLevel": [
+      "int",
+      "If replicating - the cluster level after which replication will not happen\n@see bEnableAbandonAfterLevel"
+    ],
+    "ReplicationMaxPositionAndVelocityCorrectionLevel": [
+      "int",
+      "If replicating - the maximum level where clusters will have their position and velocity send over to the client for tracking and correcting\nWhen breaking, client will only receive the initial break velocity\nThis helps save bandwidth where only the destruction state of the GC is to be replicated but the falling pieces do not need to be tracked precisely\n@note This will have an effect only if set to a value less than ReplicationAbandonAfterLevel\n@see ReplicationAbandonAfterLevel"
+    ],
+    "bUseStaticMeshCollisionForTraces": [
+      "bool",
+      "todo(chaos): Remove the ability to change this at runtime, as we'll want to use this at cook time instead"
+    ],
+    "bEnableDamageFromCollision": [
+      "bool",
+      "Whether or not collisions against this geometry collection will apply strain which could cause the geometry collection to fracture."
+    ],
+    "AbandonedCollisionProfileName": [
+      "FName",
+      "Whether abandoned particles on the client should continue to have collision (i.e.\nstill be in the external/internal acceleration structure)."
+    ],
+    "CollisionProfilePerLevel": [
+      "TArray<FName>",
+      "A per-level collision profile name. If the name is set to NONE or an invalid collision profile, nothing will be changed.\nIf the there are more levels than elements in this array, then each level will use the index that best matches it.\nFor example, if the particle is level 2, and there is only 1 element in the array, then the particle will use the 0th\ncollision profile. AbandonedCollisionProfileName will override this on the client when relevant."
+    ],
+    "RestCollection": [
+      "const UGeometryCollection"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ApplyAngularVelocity",
+      "return": "void",
+      "doc": "Apply angular velocity on specific piece\n@param ItemIndex item index ( from HitResult) of the piece to apply velocity on\n@param AngularVelocity linear velocity to apply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemIndex",
+          "type": "int"
+        },
+        {
+          "name": "AngularVelocity",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ApplyAssetDefaults",
+      "return": "void",
+      "doc": "Apply default values from asset ( damage related data and physics material )",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ApplyBreakingAngularVelocity",
+      "return": "void",
+      "doc": "Apply linear velocity on breaking pieces for a specific cluster\nIf ItemIndex does not represent a cluster this will do nothing\n@param ItemIndex item index ( from HitResult) of the cluster owning the breaking pieces to apply velocity on\n@param AngularVelocity linear velocity to apply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemIndex",
+          "type": "int"
+        },
+        {
+          "name": "AngularVelocity",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ApplyBreakingLinearVelocity",
+      "return": "void",
+      "doc": "Apply linear velocity on breaking pieces for a specific cluster\nIf ItemIndex does not represent a cluster this will do nothing\n@param ItemIndex item index ( from HitResult) of the cluster owning the breaking pieces to apply velocity on\n@param LinearVelocity linear velocity to apply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemIndex",
+          "type": "int"
+        },
+        {
+          "name": "LinearVelocity",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ApplyExternalStrain",
+      "return": "void",
+      "doc": "Apply an external strain to specific piece of the geometry collection\n@param ItemIndex item index ( from HitResult) of the piece to apply strain on\n@param Location world location of where to apply the strain\n@param Radius radius from the location point to apply the strain to ( using the center of mass of the pieces )\n@param PropagationDepth How many level of connection to follow to propagate the strain through\n@param PropagationFactor when using propagation, the factor to multiply the strain from one level to the other, allowing falloff effect\n@param Strain strain / damage to apply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemIndex",
+          "type": "int"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PropagationDepth",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "PropagationFactor",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "Strain",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ApplyInternalStrain",
+      "return": "void",
+      "doc": "Apply an internal strain to specific piece of the geometry collection\n@param ItemIndex item index ( from HitResult) of the piece to apply strain on\n@param Location world location of where to apply the strain\n@param Radius radius from the location point to apply the strain to ( using the center of mass of the pieces )\n@param PropagationDepth How many level of connection to follow to propagate the strain through\n@param PropagationFactor when using propagation, the factor to multiply the strain from one level to the other, allowing falloff effect\n@param Strain strain / damage to apply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemIndex",
+          "type": "int"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "PropagationDepth",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "PropagationFactor",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "Strain",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ApplyKinematicField",
+      "return": "void",
+      "doc": "SetDynamicState\n  This function will dispatch a command to the physics thread to apply\n  a kinematic to dynamic state change for the geo collection particles within the field.\n\n      @param Radius Radial influence from the position\n  @param Position The location of the command",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Radius",
+          "type": "float32"
+        },
+        {
+          "name": "Position",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ApplyLinearVelocity",
+      "return": "void",
+      "doc": "Apply linear velocity on specific piece\n@param ItemIndex item index ( from HitResult) of the piece to apply velocity on\n@param LinearVelocity linear velocity to apply",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemIndex",
+          "type": "int"
+        },
+        {
+          "name": "LinearVelocity",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ApplyPhysicsField",
+      "return": "void",
+      "doc": "AddPhysicsField\n  This function will dispatch a command to the physics thread to apply\n  a generic evaluation of a user defined transient field network. See documentation,\n  for examples of how to recreate variations of the above generic\n  fields using field networks\n\n      @param Enabled Is this force enabled for evaluation.\n  @param Target Type of field supported by the solver.\n  @param MetaData Meta data used to assist in evaluation\n  @param Field Base evaluation node for the field network.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Enabled",
+          "type": "bool"
+        },
+        {
+          "name": "Target",
+          "type": "EGeometryCollectionPhysicsTypeEnum"
+        },
+        {
+          "name": "MetaData",
+          "type": "UFieldSystemMetaData"
+        },
+        {
+          "name": "Field",
+          "type": "UFieldNodeBase"
+        }
+      ]
+    },
+    {
+      "name": "CrumbleActiveClusters",
+      "return": "void",
+      "doc": "Crumbe active clusters for this entire geometry collection\nthis will apply to internal and regular clusters",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CrumbleCluster",
+      "return": "void",
+      "doc": "Crumbe a cluster into all its pieces\n@param ItemIndex item index ( from HitResult) of the cluster to crumble",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "EnableRootProxyForCustomRenderer",
+      "return": "void",
+      "doc": "Enable or disable root proxy for custom rendering - this can be set at runtime",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetDebugInfo",
+      "return": "FString",
+      "doc": "RestCollection",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInitialLevel",
+      "return": "int",
+      "doc": "Get the initial level of a specific piece\nInitial level means the level as it is in the unbroken state\n@param ItemIndex item index ( from HitResult) of the cluster to get level from\n@param Level of the piece ( 0 for root level and positive for the rest )",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetInitialLocalRestTransforms",
+      "return": "TArray<FTransform>",
+      "const": true,
+      "doc": "Get the initial rest transforms in component (local) space  space,\nthey are the transforms as defined in the rest collection asset",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLocalBounds",
+      "return": "FBox",
+      "const": true,
+      "doc": "Get local bounds of the geometry collection",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMassAndExtents",
+      "return": "void",
+      "doc": "Get mass and extent of a specific piece\n@param ItemIndex item index ( from HitResult) of the cluster to get level from\n@param Level of the piece ( 0 for root level and positive for the rest )",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ItemIndex",
+          "type": "int"
+        },
+        {
+          "name": "OutMass",
+          "type": "float32&"
+        },
+        {
+          "name": "OutExtents",
+          "type": "FBox&"
+        }
+      ]
+    },
+    {
+      "name": "GetRootCurrentTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Get the root item current world transform",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRootIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Get the root item index of the hierarchy",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRootInitialTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Get the root item initial transform in world space",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsRootBroken",
+      "return": "bool",
+      "const": true,
+      "doc": "return true if the root cluster is not longer active at runtime",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PhysicsCollision",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "ReceivePhysicsCollision",
+      "meta": null,
+      "args": [
+        {
+          "name": "CollisionInfo",
+          "type": "FChaosPhysicsCollisionInfo"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllAnchors",
+      "return": "void",
+      "doc": "this will remove anchors on all the pieces ( including the static and kinematic initial states ones ) of the geometry colection",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAbandonedParticleCollisionProfileName",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CollisionProfile",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetAnchoredByBox",
+      "return": "void",
+      "doc": "Set all pieces within a world space bounding box to be anchored or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorldSpaceBox",
+          "type": "FBox"
+        },
+        {
+          "name": "bAnchored",
+          "type": "bool"
+        },
+        {
+          "name": "MaxLevel",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetAnchoredByIndex",
+      "return": "void",
+      "doc": "Set a piece or cluster to be anchored or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "bAnchored",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAnchoredByTransformedBox",
+      "return": "void",
+      "doc": "Set all pieces within a world transformed bounding box to be anchored or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Box",
+          "type": "FBox"
+        },
+        {
+          "name": "Transform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bAnchored",
+          "type": "bool"
+        },
+        {
+          "name": "MaxLevel",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableDamageFromCollision",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalRestTransforms",
+      "return": "void",
+      "doc": "Set the local rest transform, this may be different from the rest collection\nIf the geometry collection is already simulating those matrices will be overriden by the physics state updates",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Transforms",
+          "type": "TArray<FTransform>"
+        },
+        {
+          "name": "bOnlyLeaves",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNotifyBreaks",
+      "return": "void",
+      "doc": "Changes whether or not this component will get future break notifications.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewNotifyBreaks",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNotifyCrumblings",
+      "return": "void",
+      "doc": "Changes whether or not this component will get future crumbling notifications.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewNotifyCrumblings",
+          "type": "bool"
+        },
+        {
+          "name": "bNewCrumblingEventIncludesChildren",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNotifyGlobalBreaks",
+      "return": "void",
+      "doc": "Changes whether or not this component will get future global break notifications.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewNotifyGlobalBreaks",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNotifyGlobalCollision",
+      "return": "void",
+      "doc": "Changes whether or not this component will get future global collision notifications.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewNotifyGlobalCollisions",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNotifyGlobalCrumblings",
+      "return": "void",
+      "doc": "Changes whether or not this component will get future global crumbling notifications.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewNotifyGlobalCrumblings",
+          "type": "bool"
+        },
+        {
+          "name": "bGlobalNewCrumblingEventIncludesChildren",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNotifyGlobalRemovals",
+      "return": "void",
+      "doc": "Changes whether or not this component will get future global removal notifications.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewNotifyGlobalRemovals",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNotifyRemovals",
+      "return": "void",
+      "doc": "Changes whether or not this component will get future removal notifications.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewNotifyRemovals",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPerLevelCollisionProfileNames",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ProfileNames",
+          "type": "TArray<FName>"
+        }
+      ]
+    },
+    {
+      "name": "SetPerParticleCollisionProfileName",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoneIds",
+          "type": "TArray<int>"
+        },
+        {
+          "name": "ProfileName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetRestCollection",
+      "return": "void",
+      "doc": "RestCollection",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RestCollectionIn",
+          "type": "const UGeometryCollection"
+        },
+        {
+          "name": "bApplyAssetDefaults",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

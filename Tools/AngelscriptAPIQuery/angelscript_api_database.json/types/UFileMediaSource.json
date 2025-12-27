@@ -1,0 +1,29 @@
+{
+  "name": "UFileMediaSource",
+  "inherits": "UBaseMediaSource",
+  "properties": {
+    "PrecacheFile": [
+      "bool",
+      "Load entire media file into memory and play from there (if possible)."
+    ],
+    "FilePath": [
+      "FString",
+      "The path to the media file to be played.\n\n@see SetFilePath"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetFilePath",
+      "return": "void",
+      "doc": "Set the path to the media file that this source represents.\n\nAutomatically converts full paths to media sources that reside in the\nEngine's or project's /Content/Movies directory into relative paths.\n\n@param Path The path to set.\n@see FilePath, GetFilePath",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Path",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "USynthComponentToneGenerator",
+  "inherits": "USynthComponent",
+  "properties": {
+    "DistanceAttenuationCurve": [
+      "FRuntimeFloatCurve",
+      "A distance attenuation curve to use to attenuate the audio."
+    ],
+    "DistanceRange": [
+      "FVector2D",
+      "A distance range over which to apply distance attenuation using the supplied curve."
+    ],
+    "AttenuationDbAtMaxRange": [
+      "float32",
+      "An attenuation, in decibels, to apply to the sound at max range."
+    ],
+    "Frequency": [
+      "float32",
+      "The frequency (in hz) of the tone generator."
+    ],
+    "Volume": [
+      "float32",
+      "The linear volume of the tone generator."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetFrequency",
+      "return": "void",
+      "doc": "Sets the frequency of the tone generator",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFrequency",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetVolume",
+      "return": "void",
+      "doc": "Sets the volume of the tone generator",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVolume",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

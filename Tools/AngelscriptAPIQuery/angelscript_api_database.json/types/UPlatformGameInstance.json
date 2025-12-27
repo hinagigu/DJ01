@@ -1,0 +1,60 @@
+{
+  "name": "UPlatformGameInstance",
+  "inherits": "UGameInstance",
+  "doc": "UObject based class for handling mobile events. Having this object as an option gives the app lifetime access to these global delegates. The component UApplicationLifecycleComponent is destroyed at level loads",
+  "properties": {
+    "ApplicationWillDeactivateDelegate": [
+      "FPlatformDelegate__PlatformGameInstance",
+      "This is called when the application is about to be deactivated (e.g., due to a phone call or SMS or the sleep button).\nThe game should be paused if possible, etc..."
+    ],
+    "ApplicationHasReactivatedDelegate": [
+      "FPlatformDelegate__PlatformGameInstance",
+      "Called when the application has been reactivated (reverse any processing done in the Deactivate delegate)"
+    ],
+    "ApplicationWillEnterBackgroundDelegate": [
+      "FPlatformDelegate__PlatformGameInstance",
+      "This is called when the application is being backgrounded (e.g., due to switching\nto another app or closing it via the home button)\nThe game should release shared resources, save state, etc..., since it can be\nterminated from the background state without any further warning."
+    ],
+    "ApplicationHasEnteredForegroundDelegate": [
+      "FPlatformDelegate__PlatformGameInstance",
+      "Called when the application is returning to the foreground (reverse any processing done in the EnterBackground delegate)"
+    ],
+    "ApplicationWillTerminateDelegate": [
+      "FPlatformDelegate__PlatformGameInstance",
+      "This *may* be called when the application is getting terminated by the OS.\nThere is no guarantee that this will ever be called on a mobile device,\nsave state when ApplicationWillEnterBackgroundDelegate is called instead."
+    ],
+    "ApplicationShouldUnloadResourcesDelegate": [
+      "FPlatformDelegate__PlatformGameInstance",
+      "Called when the OS is running low on resources and asks the application to free up any cached resources, drop graphics quality etc."
+    ],
+    "ApplicationReceivedStartupArgumentsDelegate": [
+      "FPlatformStartupArgumentsDelegate__PlatformGameInstance",
+      "Called with arguments passed to the application on statup, perhaps meta data passed on by another application which launched this one."
+    ],
+    "ApplicationRegisteredForRemoteNotificationsDelegate": [
+      "FPlatformRegisteredForRemoteNotificationsDelegate__PlatformGameInstance",
+      "called when the user grants permission to register for remote notifications"
+    ],
+    "ApplicationRegisteredForUserNotificationsDelegate": [
+      "FPlatformRegisteredForUserNotificationsDelegate__PlatformGameInstance",
+      "called when the user grants permission to register for notifications"
+    ],
+    "ApplicationFailedToRegisterForRemoteNotificationsDelegate": [
+      "FPlatformFailedToRegisterForRemoteNotificationsDelegate__PlatformGameInstance",
+      "called when the application fails to register for remote notifications"
+    ],
+    "ApplicationReceivedRemoteNotificationDelegate": [
+      "FPlatformReceivedRemoteNotificationDelegate__PlatformGameInstance",
+      "called when the application receives a remote notification"
+    ],
+    "ApplicationReceivedLocalNotificationDelegate": [
+      "FPlatformReceivedLocalNotificationDelegate__PlatformGameInstance",
+      "called when the application receives a local notification"
+    ],
+    "ApplicationReceivedScreenOrientationChangedNotificationDelegate": [
+      "FPlatformScreenOrientationChangedDelegate__PlatformGameInstance",
+      "called when the application receives a screen orientation change notification"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,105 @@
+{
+  "name": "UActorGroupingUtils",
+  "inherits": "UObject",
+  "doc": "Helper class for grouping actors in the level editor",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddSelectedToGroup",
+      "return": "void",
+      "doc": "Activates \"Add to Group\" mode which allows the user to select a group to append current selection",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CanGroupActors",
+      "return": "bool",
+      "const": true,
+      "doc": "Check if the provided list of actors can be grouped together",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorsToGroup",
+          "type": "TArray<AActor>"
+        }
+      ]
+    },
+    {
+      "name": "CanGroupSelectedActors",
+      "return": "bool",
+      "const": true,
+      "doc": "* Check if the currently selected actors can be grouped together",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GroupActors",
+      "return": "AGroupActor",
+      "doc": "Creates a new group from the provided list of actors removing the actors from any existing groups they are already in",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorsToGroup",
+          "type": "TArray<AActor>"
+        }
+      ]
+    },
+    {
+      "name": "GroupSelected",
+      "return": "AGroupActor",
+      "doc": "Creates a new group from the current selection removing the actors from any existing groups they are already in",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LockSelectedGroups",
+      "return": "void",
+      "doc": "Locks any groups in the current selection",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveSelectedFromGroup",
+      "return": "void",
+      "doc": "Removes any groups or actors in the current selection from their immediate parent.\nIf all actors/subgroups are removed, the parent group will be destroyed.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UngroupActors",
+      "return": "void",
+      "doc": "Disbands any groups that the provided actors belong to, does not attempt to maintain any hierarchy",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActorsToUngroup",
+          "type": "TArray<AActor>"
+        }
+      ]
+    },
+    {
+      "name": "UngroupSelected",
+      "return": "void",
+      "doc": "Disbands any groups in the current selection, does not attempt to maintain any hierarchy",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UnlockSelectedGroups",
+      "return": "void",
+      "doc": "Unlocks any groups in the current selection",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

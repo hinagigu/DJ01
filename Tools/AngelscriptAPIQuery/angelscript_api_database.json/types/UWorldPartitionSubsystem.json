@@ -1,0 +1,37 @@
+{
+  "name": "UWorldPartitionSubsystem",
+  "inherits": "UTickableWorldSubsystem",
+  "doc": "UWorldPartitionSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "IsAllStreamingCompleted",
+      "return": "bool",
+      "doc": "Returns true if world partition is done streaming levels, adding them to the world or removing them from the world.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsStreamingCompleted",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QueryState",
+          "type": "EWorldPartitionRuntimeCellState"
+        },
+        {
+          "name": "QuerySources",
+          "type": "TArray<FWorldPartitionStreamingQuerySource>"
+        },
+        {
+          "name": "bExactState",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

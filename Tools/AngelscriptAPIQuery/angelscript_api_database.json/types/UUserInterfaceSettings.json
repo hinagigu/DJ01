@@ -1,0 +1,78 @@
+{
+  "name": "UUserInterfaceSettings",
+  "inherits": "UDeveloperSettings",
+  "doc": "User Interface settings that control Slate and UMG.",
+  "properties": {
+    "RenderFocusRule": [
+      "ERenderFocusRule",
+      2,
+      "Rule to determine if we should render the Focus Brush for widgets that have user focus."
+    ],
+    "HardwareCursors": [
+      "TMap<EMouseCursor,FHardwareCursorReference>",
+      2,
+      ""
+    ],
+    "SoftwareCursors": [
+      "TMap<EMouseCursor,FSoftClassPath>",
+      2,
+      ""
+    ],
+    "ApplicationScale": [
+      "float32",
+      2,
+      "An optional application scale to apply on top of the custom scaling rules.  So if you want to expose a\nproperty in your game title, you can modify this underlying value to scale the entire UI."
+    ],
+    "UIScaleRule": [
+      "EUIScalingRule",
+      2,
+      "The rule used when trying to decide what scale to apply."
+    ],
+    "CustomScalingRuleClass": [
+      "FSoftClassPath",
+      2,
+      "Set DPI Scale Rule to Custom, and this class will be used instead of any of the built-in rules."
+    ],
+    "UIScaleCurve": [
+      "FRuntimeFloatCurve",
+      2,
+      "Controls how the UI is scaled at different resolutions based on the DPI Scale Rule"
+    ],
+    "bAllowHighDPIInGameMode": [
+      "bool",
+      2,
+      "If true, game window on desktop platforms will be created with high-DPI awareness enabled.\nRecommended to be enabled only if the game's UI allows users to modify 3D resolution scaling."
+    ],
+    "DesignScreenSize": [
+      "FIntPoint",
+      2,
+      "Used only with ScaleToFit scaling rule. Defines native resolution for which were source UI textures created. DPI scaling will be 1.0 at this screen resolution."
+    ],
+    "bLoadWidgetsOnDedicatedServer": [
+      "bool",
+      2,
+      "If false, widget references will be stripped during cook for server builds and not loaded at runtime."
+    ],
+    "bAuthorizeAutomaticWidgetVariableCreation": [
+      "bool",
+      2,
+      "Setting to authorize or not automatic variable creation.\nIf true, variables will be created automatically, if the type created allows it. Drawback: it's easier to have a bad data architecture because various blueprint graph will have access to many variables.\nIf false, variables are never created automatically, and you have to create them manually on a case by case basis."
+    ],
+    "CustomFontDPI": [
+      "uint",
+      2,
+      "Controls the relationship between UMG font size and pixel height."
+    ],
+    "FontDPIPreset": [
+      "EFontDPI",
+      2,
+      "Controls the relationship between UMG font size and pixel height."
+    ],
+    "bUseCustomFontDPI": [
+      "bool",
+      2,
+      "To set your own custom value, check this box, then enter the value in the text box."
+    ]
+  },
+  "methods": []
+}

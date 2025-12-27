@@ -1,0 +1,436 @@
+{
+  "name": "UActorComponent",
+  "inherits": "UObject",
+  "doc": "ActorComponent is the base class for components that define reusable behavior that can be added to different types of Actors.\nActorComponents that have a transform are known as SceneComponents and those that can be rendered are PrimitiveComponents.\n\n@see [ActorComponent](https://docs.unrealengine.com/latest/INT/Programming/UnrealArchitecture/Actors/Components/index.html#actorcomponents)\n@see USceneComponent\n@see UPrimitiveComponent",
+  "properties": {
+    "PrimaryComponentTick": [
+      "FActorComponentTickFunction",
+      2,
+      "Main tick function for the Component"
+    ],
+    "ComponentTags": [
+      "TArray<FName>",
+      "Array of tags that can be used for grouping and categorizing. Can also be accessed from scripting."
+    ],
+    "AssetUserData": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the component"
+    ],
+    "AssetUserDataEditorOnly": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the component"
+    ],
+    "OnComponentActivated": [
+      "FActorComponentActivatedSignature",
+      "Called when the component has been activated, with parameter indicating if it was from a reset"
+    ],
+    "OnComponentDeactivated": [
+      "FActorComponentDeactivateSignature",
+      "Called when the component has been deactivated"
+    ],
+    "bReplicateUsingRegisteredSubObjectList": [
+      "bool",
+      "When true the replication system will only replicate the registered subobjects list\nWhen false the replication system will instead call the virtual ReplicateSubObjects() function where the subobjects need to be manually replicated."
+    ],
+    "bReplicates": [
+      "bool",
+      "Is this component currently replicating? Should the network code consider it for replication? Owning Actor must be replicating first!"
+    ],
+    "bAutoActivate": [
+      "bool",
+      "Whether the component is activated at creation or must be explicitly activated."
+    ],
+    "bEditableWhenInherited": [
+      "bool",
+      "True if this component can be modified when it was inherited from a parent actor class"
+    ],
+    "bCanEverAffectNavigation": [
+      "bool",
+      "Whether this component can potentially influence navigation"
+    ],
+    "bIsEditorOnly": [
+      "bool",
+      "If true, the component will be excluded from non-editor builds"
+    ]
+  },
+  "methods": [
+    {
+      "name": "MarkRenderStateDirty",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "HasBegunPlay",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetbTickInEditor",
+      "return": "void",
+      "args": [
+        {
+          "name": "Value",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetbIsEditorOnly",
+      "return": "void",
+      "args": [
+        {
+          "name": "Value",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetComponentCreationMethod",
+      "return": "EComponentCreationMethod",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetIsVisualizationComponent",
+      "return": "void",
+      "args": [
+        {
+          "name": "Value",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "IsVisualizationComponent",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Activate",
+      "return": "void",
+      "doc": "Activates the SceneComponent, should be overridden by native child classes.\n@param bReset - Whether the activation should happen even if ShouldActivate returns false.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bReset",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddTickPrerequisiteActor",
+      "return": "void",
+      "doc": "Make this component tick after PrerequisiteActor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PrerequisiteActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "AddTickPrerequisiteComponent",
+      "return": "void",
+      "doc": "Make this component tick after PrerequisiteComponent.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PrerequisiteComponent",
+          "type": "UActorComponent"
+        }
+      ]
+    },
+    {
+      "name": "ComponentHasTag",
+      "return": "bool",
+      "const": true,
+      "doc": "See if this component contains the supplied tag",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tag",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "Deactivate",
+      "return": "void",
+      "doc": "Deactivates the SceneComponent.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetComponentTickInterval",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the tick interval for this component's primary tick function, which is the frequency in seconds at which it will be executed",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwner",
+      "return": "AActor",
+      "const": true,
+      "doc": "Follow the Outer chain to get the  AActor  that 'Owns' this component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsActive",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the component is active or not\n@return - The active state of the component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsBeingDestroyed",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the component is in the process of being destroyed.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsComponentTickEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether this component has tick enabled or not",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DestroyComponent",
+      "return": "void",
+      "doc": "Unregister and mark for pending kill a component.  This may not be used to destroy a component that is owned by an actor unless the owning actor is calling the function.",
+      "ufunction": true,
+      "unrealname": "K2_DestroyComponent",
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "AsyncPhysicsTick",
+      "return": "void",
+      "callable": false,
+      "doc": "Event called every async physics tick if bAsyncPhysicsTickEnabled is true",
+      "event": true,
+      "unrealname": "ReceiveAsyncPhysicsTick",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaSeconds",
+          "type": "float"
+        },
+        {
+          "name": "SimSeconds",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "BeginPlay",
+      "return": "void",
+      "callable": false,
+      "doc": "Blueprint implementable event for when the component is beginning play, called before its owning actor's BeginPlay\nor when the component is dynamically created if the Actor has already BegunPlay.",
+      "event": true,
+      "unrealname": "ReceiveBeginPlay",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EndPlay",
+      "return": "void",
+      "callable": false,
+      "doc": "Blueprint implementable event for when the component ends play, generally via destruction or its Actor's EndPlay.",
+      "event": true,
+      "unrealname": "ReceiveEndPlay",
+      "meta": null,
+      "args": [
+        {
+          "name": "EndPlayReason",
+          "type": "EEndPlayReason"
+        }
+      ]
+    },
+    {
+      "name": "Tick",
+      "return": "void",
+      "callable": false,
+      "doc": "Event called every frame if tick is enabled",
+      "event": true,
+      "unrealname": "ReceiveTick",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaSeconds",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "RemoveTickPrerequisiteActor",
+      "return": "void",
+      "doc": "Remove tick dependency on PrerequisiteActor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PrerequisiteActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "RemoveTickPrerequisiteComponent",
+      "return": "void",
+      "doc": "Remove tick dependency on PrerequisiteComponent.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PrerequisiteComponent",
+          "type": "UActorComponent"
+        }
+      ]
+    },
+    {
+      "name": "SetActive",
+      "return": "void",
+      "doc": "Sets whether the component is active or not\n@param bNewActive - The new active state of the component\n@param bReset - Whether the activation should happen even if ShouldActivate returns false.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewActive",
+          "type": "bool"
+        },
+        {
+          "name": "bReset",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAutoActivate",
+      "return": "void",
+      "doc": "Sets whether the component should be auto activate or not. Only safe during construction scripts.\n@param bNewAutoActivate - The new auto activate state of the component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewAutoActivate",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetComponentTickEnabled",
+      "return": "void",
+      "doc": "Set this component's tick functions to be enabled or disabled. Only has an effect if the function is registered\n\n@param       bEnabled - Whether it should be enabled or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetComponentTickInterval",
+      "return": "void",
+      "doc": "Sets the tick interval for this component's primary tick function. Does not enable the tick interval. Takes effect on next tick.\n@param TickInterval   The duration between ticks for this component's primary tick function",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TickInterval",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetComponentTickIntervalAndCooldown",
+      "return": "void",
+      "doc": "Sets the tick interval for this component's primary tick function. Does not enable the tick interval. Takes effect imediately.\n@param TickInterval   The duration between ticks for this component's primary tick function",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TickInterval",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetIsReplicated",
+      "return": "void",
+      "doc": "Enable or disable replication. This is the equivalent of RemoteRole for actors (only a bool is required for components)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ShouldReplicate",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTickableWhenPaused",
+      "return": "void",
+      "doc": "Sets whether this component can tick when paused.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bTickableWhenPaused",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetTickGroup",
+      "return": "void",
+      "doc": "Changes the ticking group for this component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewTickGroup",
+          "type": "ETickingGroup"
+        }
+      ]
+    },
+    {
+      "name": "ToggleActive",
+      "return": "void",
+      "doc": "Toggles the active state of the component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

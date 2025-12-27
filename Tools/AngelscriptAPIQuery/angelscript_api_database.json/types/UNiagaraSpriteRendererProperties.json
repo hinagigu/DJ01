@@ -1,0 +1,146 @@
+{
+  "name": "UNiagaraSpriteRendererProperties",
+  "inherits": "UNiagaraRendererProperties",
+  "properties": {
+    "Material": [
+      "UMaterialInterface",
+      2,
+      "The material used to render the particle. Note that it must have the Use with Niagara Sprites flag checked."
+    ],
+    "MaterialUserParamBinding": [
+      "FNiagaraUserParameterBinding",
+      2,
+      "Use the UMaterialInterface bound to this user variable if it is set to a valid value. If this is bound to a valid value and Material is also set, UserParamBinding wins."
+    ],
+    "SourceMode": [
+      "ENiagaraRendererSourceDataMode",
+      2,
+      "Whether or not to draw a single element for the Emitter or to draw the particles."
+    ],
+    "Alignment": [
+      "ENiagaraSpriteAlignment",
+      2,
+      "Imagine the particle texture having an arrow pointing up, these modes define how the particle aligns that texture to other particle attributes."
+    ],
+    "FacingMode": [
+      "ENiagaraSpriteFacingMode",
+      2,
+      "Determines how the particle billboard orients itself relative to the camera."
+    ],
+    "SortMode": [
+      "ENiagaraSortMode",
+      2,
+      "Determines how we sort the particles prior to rendering."
+    ],
+    "MacroUVRadius": [
+      "float32",
+      2,
+      "World space radius that UVs generated with the ParticleMacroUV material node will tile based on."
+    ],
+    "PivotInUVSpace": [
+      "FVector2D",
+      2,
+      "Determines the location of the pivot point of this particle. It follows Unreal's UV space, which has the upper left of the image at 0,0 and bottom right at 1,1. The middle is at 0.5, 0.5.\nNOTE: This value is ignored if \"Pivot Offset Binding\" is bound to a valid attribute"
+    ],
+    "SubImageSize": [
+      "FVector2D",
+      2,
+      "When using SubImage lookups for particles, this variable contains the number of columns in X and the number of rows in Y."
+    ],
+    "SortPrecision": [
+      "ENiagaraRendererSortPrecision",
+      2,
+      "Sort precision to use when sorting is active."
+    ],
+    "GpuTranslucentLatency": [
+      "ENiagaraRendererGpuTranslucentLatency",
+      2,
+      "Gpu simulations run at different points in the frame depending on what features are used, i.e. depth buffer, distance fields, etc.\nOpaque materials will run latent when these features are used.\nTranslucent materials can choose if they want to use this frames or the previous frames data to match opaque draws."
+    ],
+    "PixelCoverageMode": [
+      "ENiagaraRendererPixelCoverageMode",
+      2,
+      "This setting controls what happens when a sprite becomes less than a pixel in size.\nDisabling will apply nothing and can result in flickering issues, especially with Temporal Super Resolution.\nAutomatic will enable the appropriate settings when the material blend mode is some form of translucency, project setting must also be enabled.\nWhen coverage is less than a pixel, we also calculate a percentage of coverage, and then darken or reduce opacity\nto visually compensate. The different enabled settings allow you to control how the coverage amount is applied to\nyour particle color.  If particle color is not connected to your material the compensation will not be applied."
+    ],
+    "PixelCoverageBlend": [
+      "float32",
+      2,
+      "When pixel coverage is enabled this allows you to control the blend of the pixel coverage color adjustment.\ni.e. 1.0 = full, 0.5 = 50/50 blend, 0.0 = none"
+    ],
+    "MinFacingCameraBlendDistance": [
+      "float32",
+      2,
+      "When FacingMode is FacingCameraDistanceBlend, the distance at which the sprite is fully facing the camera plane."
+    ],
+    "MaxFacingCameraBlendDistance": [
+      "float32",
+      2,
+      "When FacingMode is FacingCameraDistanceBlend, the distance at which the sprite is fully facing the camera position"
+    ],
+    "MinCameraDistance": [
+      "float32",
+      2,
+      ""
+    ],
+    "MaxCameraDistance": [
+      "float32",
+      2,
+      ""
+    ],
+    "RendererVisibility": [
+      "uint",
+      2,
+      "If a render visibility tag is present, particles whose tag matches this value will be visible in this renderer."
+    ],
+    "MaterialParameters": [
+      "FNiagaraRendererMaterialParameters",
+      2,
+      "If this array has entries, we will create a MaterialInstanceDynamic per Emitter instance from Material and set the Material parameters using the Niagara simulation variables listed."
+    ],
+    "bUseMaterialCutoutTexture": [
+      "bool",
+      "Use the cutout texture from the material opacity mask, or if none exist, from the material opacity."
+    ],
+    "CutoutTexture": [
+      "UTexture2D",
+      2,
+      "Texture to generate bounding geometry from."
+    ],
+    "BoundingMode": [
+      "ESubUVBoundingVertexCount",
+      2,
+      "More bounding vertices results in reduced overdraw, but adds more triangle overhead.\nThe eight vertex mode is best used when the SubUV texture has a lot of space to cut out that is not captured by the four vertex version,\nand when the particles using the texture will be few and large."
+    ],
+    "OpacitySourceMode": [
+      "EOpacitySourceMode",
+      2,
+      ""
+    ],
+    "AlphaThreshold": [
+      "float32",
+      2,
+      "Alpha channel values larger than the threshold are considered occupied and will be contained in the bounding geometry.\nRaising this threshold slightly can reduce overdraw in particles using this animation asset."
+    ],
+    "bSubImageBlend": [
+      "bool",
+      "If true, blends the sub-image UV lookup with its next adjacent member using the fractional part of the SubImageIndex float value as the linear interpolation factor."
+    ],
+    "bRemoveHMDRollInVR": [
+      "bool",
+      "If true, removes the HMD view roll (e.g. in VR)"
+    ],
+    "bSortOnlyWhenTranslucent": [
+      "bool",
+      "If true, the particles are only sorted when using a translucent material."
+    ],
+    "bEnableCameraDistanceCulling": [
+      "bool",
+      "Enables frustum culling of individual sprites"
+    ],
+    "bCastShadows": [
+      "bool",
+      "When disabled the renderer will not cast shadows.\nThe component controls if shadows are enabled, this flag allows you to disable the renderer casting shadows."
+    ]
+  },
+  "methods": []
+}

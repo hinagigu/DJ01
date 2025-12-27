@@ -1,0 +1,480 @@
+{
+  "name": "UInterchangeStaticMeshFactoryNode",
+  "inherits": "UInterchangeMeshFactoryNode",
+  "doc": "namespace UE",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddSocketUid",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SocketUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "AddSocketUids",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSocketUids",
+          "type": "TArray<FString>"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomBuildNanite",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether the static mesh factory should set the Nanite build setting. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomBuildReversedIndexBuffer",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether the static mesh should build a reversed index buffer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomBuildScale3D",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the local scale that is applied when building the static mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomDistanceFieldReplacementMesh",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the static mesh asset whose distance field will be used as the distance field for the imported mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FSoftObjectPath&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomDistanceFieldResolutionScale",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the scale to apply to the mesh when allocating the distance field volume texture.\nThe default scale is 1, which assumes that the mesh will be placed unscaled in the world.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomDstLightmapIndex",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the index of the UV that is used to store generated lightmaps for the static mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomGenerateDistanceFieldAsIfTwoSided",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether to generate the distance field by treating every triangle hit as a front face.\nThis prevents the distance field from being discarded due to the mesh being open, but also lowers distance field ambient occlusion quality.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomGenerateLightmapUVs",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether the static mesh should generate lightmap UVs.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomMaxLumenMeshCards",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the maximum number of Lumen mesh cards to generate for this mesh.\nMore cards means that the surface will have better coverage, but will result in increased runtime overhead.\nSet this to 0 to disable mesh card generation for this mesh.\nThe default is 12.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomMinLightmapResolution",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the amount of padding used to pack UVs for the static mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomSrcLightmapIndex",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the index of the UV that is used as the source for generating lightmaps for the static mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomSupportFaceRemap",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether the static mesh is set up for use with physical material masks.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetObjectClass",
+      "return": "UClass",
+      "const": true,
+      "doc": "Get the class this node creates.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSocketUidCount",
+      "return": "int",
+      "const": true,
+      "doc": "Return the number of socket UIDs this static mesh has.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSocketUids",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutSocketUids",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "InitializeStaticMeshNode",
+      "return": "void",
+      "doc": "Initialize node data.\n@param UniqueID - The unique ID for this node.\n@param DisplayLabel - The name of the node.\n@param InAssetClass - The class the StaticMesh factory will create for this node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UniqueID",
+          "type": "FString"
+        },
+        {
+          "name": "DisplayLabel",
+          "type": "FString"
+        },
+        {
+          "name": "InAssetClass",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSocketUd",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SocketUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomBuildNanite",
+      "return": "bool",
+      "doc": "Set whether the static mesh factory should set the Nanite build setting. Return false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomBuildReversedIndexBuffer",
+      "return": "bool",
+      "doc": "Set whether the static mesh should build a reversed index buffer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomBuildScale3D",
+      "return": "bool",
+      "doc": "Set the local scale that is applied when building the static mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FVector"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomDistanceFieldReplacementMesh",
+      "return": "bool",
+      "doc": "Set the static mesh asset whose distance field will be used as the distance field for the imported mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FSoftObjectPath"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomDistanceFieldResolutionScale",
+      "return": "bool",
+      "doc": "Set the scale to apply to the mesh when allocating the distance field volume texture.\nThe default scale is 1, which assumes that the mesh will be placed unscaled in the world.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float32"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomDstLightmapIndex",
+      "return": "bool",
+      "doc": "Set the index of the UV that is used to store generated lightmaps for the static mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomGenerateDistanceFieldAsIfTwoSided",
+      "return": "bool",
+      "doc": "Set whether to generate the distance field by treating every triangle hit as a front face.\nThis prevents the distance field from being discarded due to the mesh being open, but also lowers distance field ambient occlusion quality.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomGenerateLightmapUVs",
+      "return": "bool",
+      "doc": "Set whether the static mesh should generate lightmap UVs.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomMaxLumenMeshCards",
+      "return": "bool",
+      "doc": "Set the maximum number of Lumen mesh cards to generate for this mesh.\nMore cards means that the surface will have better coverage, but will result in increased runtime overhead.\nSet this to 0 to disable mesh card generation for this mesh.\nThe default is 12.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomMinLightmapResolution",
+      "return": "bool",
+      "doc": "Set the amount of padding used to pack UVs for the static mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomSrcLightmapIndex",
+      "return": "bool",
+      "doc": "Set the index of the UV that is used as the source for generating lightmaps for the static mesh.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "int"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomSupportFaceRemap",
+      "return": "bool",
+      "doc": "Set whether the static mesh is set up for use with physical material masks.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        },
+        {
+          "name": "bAddApplyDelegate",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

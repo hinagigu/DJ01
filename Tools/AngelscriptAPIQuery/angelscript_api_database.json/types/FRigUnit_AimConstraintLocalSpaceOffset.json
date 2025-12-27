@@ -1,0 +1,56 @@
+{
+  "name": "FRigUnit_AimConstraintLocalSpaceOffset",
+  "isStruct": true,
+  "doc": "Orients an item such that its aim axis points towards a global target.\nNote: This node operates in global space!",
+  "properties": {
+    "Child": [
+      "FRigElementKey",
+      "The name of the item to apply aim"
+    ],
+    "bMaintainOffset": [
+      "bool",
+      "Maintains the offset between child and weighted average of parents based on initial transforms"
+    ],
+    "Filter": [
+      "FFilterOptionPerAxis",
+      "Filters the final rotation by axes based on the euler rotation order defined in the node's advanced settings\nIf flipping is observed, try adjusting the rotation order"
+    ],
+    "AimAxis": [
+      "FVector",
+      "Child is rotated so that its AimAxis points to the parents"
+    ],
+    "UpAxis": [
+      "FVector",
+      "Child is rotated around the AimAxis so that its UpAxis points to/Aligns with the WorldUp target"
+    ],
+    "WorldUp": [
+      "FRigUnit_AimConstraint_WorldUp",
+      "Defines how Child should rotate around the AimAxis. This is the aim target for the UpAxis"
+    ],
+    "Parents": [
+      "TArray<FConstraintParent>"
+    ],
+    "AdvancedSettings": [
+      "FRigUnit_AimConstraint_AdvancedSettings"
+    ],
+    "Weight": [
+      "float32"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_AimConstraintLocalSpaceOffset&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_AimConstraintLocalSpaceOffset"
+        }
+      ]
+    }
+  ]
+}

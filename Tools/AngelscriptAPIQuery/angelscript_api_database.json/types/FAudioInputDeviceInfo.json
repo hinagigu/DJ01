@@ -1,0 +1,43 @@
+{
+  "name": "FAudioInputDeviceInfo",
+  "isStruct": true,
+  "doc": "Platform audio input device info, in a Blueprint-readable format",
+  "properties": {
+    "DeviceName": [
+      "FString",
+      1,
+      "The name of the audio device"
+    ],
+    "DeviceId": [
+      "FString",
+      1,
+      "ID of the device."
+    ],
+    "InputChannels": [
+      "int",
+      1,
+      "The number of channels supported by the audio device"
+    ],
+    "PreferredSampleRate": [
+      "int",
+      1,
+      "The preferred sample rate of the audio device"
+    ],
+    "bSupportsHardwareAEC": [
+      "bool",
+      "Whether or not the device supports Acoustic Echo Canceling"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAudioInputDeviceInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAudioInputDeviceInfo"
+        }
+      ]
+    }
+  ]
+}

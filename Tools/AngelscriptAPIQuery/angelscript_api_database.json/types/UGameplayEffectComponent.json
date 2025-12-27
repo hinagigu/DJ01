@@ -1,0 +1,7 @@
+{
+  "name": "UGameplayEffectComponent",
+  "inherits": "UObject",
+  "doc": "Gameplay Effect Component (aka GEComponent)\n\nGEComponents are what define how a GameplayEffect behaves.  Introduced in UE 5.3, there are very few calls from UGameplayEffect to UGameplayEffectComponent by design.\nInstead of providing a larger API for all desired functionality, the implementer of a GEComponent must read the GE flow carefully and register desired callbacks\nto achieve the desired results.  This effectively limits the implementation of GEComponents to native code for the time being.\n\nGEComponents live Within a GameplayEffect (which is typically a data-only blueprint asset).  Thus, like GEs, only one GEComponent exists for all applied instances.\nOne of the unintuitive caveats of this is that GEComponent should not contain any runtime manipulated/instanced data (e.g. stored state per execution).\nOne must take careful consideration about where to store any data (and thus when it can be evaluated).  The early implementations typically work around this by\nstoring small amounts of runtime data on the desired callbacks (e.g. by binding extra parameters on the delegate).  This may explain why some functionality is still\nin UGameplayEffect rather than a UGameplayEffectComponent.  Future implementations may need extra data stored on the FGameplayEffectSpec (i.e. Gameplay Effect Spec Components).\n\n@see GameplayEffect.h for further notes, especially on the terminology used (Added vs. Executed vs. Apply).",
+  "properties": {},
+  "methods": []
+}

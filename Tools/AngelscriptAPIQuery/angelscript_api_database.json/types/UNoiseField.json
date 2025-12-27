@@ -1,0 +1,42 @@
+{
+  "name": "UNoiseField",
+  "inherits": "UFieldNodeFloat",
+  "doc": "Defines a perlin noise scalar value if the sample is within a box",
+  "properties": {
+    "MinRange": [
+      "float32",
+      "The initial function value between 0 and 1 will be scaled between MinRange and MaxRange"
+    ],
+    "MaxRange": [
+      "float32",
+      "The initial function value between 0 and 1 will be scaled between MinRange and MaxRange"
+    ],
+    "Transform": [
+      "FTransform",
+      "Transform of the box in which the perlin noise will be defined"
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetNoiseField",
+      "return": "UNoiseField",
+      "doc": "Defines a perlin noise scalar value if the sample is within a box\n@param    MinRange The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude\n@param    MaxRange The initial function value between 0 and 1 will be scaled between MinRange and MaxRange before being multiplied by magnitude\n@param    Transform Transform of the box in which the perlin noise will be defined",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MinRange",
+          "type": "float32"
+        },
+        {
+          "name": "MaxRange",
+          "type": "float32"
+        },
+        {
+          "name": "Transform",
+          "type": "FTransform"
+        }
+      ]
+    }
+  ]
+}

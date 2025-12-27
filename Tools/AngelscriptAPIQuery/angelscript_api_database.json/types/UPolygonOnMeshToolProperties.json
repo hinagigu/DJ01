@@ -1,0 +1,63 @@
+{
+  "name": "UPolygonOnMeshToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Standard properties of the polygon-on-mesh operations",
+  "properties": {
+    "Operation": [
+      "EEmbeddedPolygonOpMethod",
+      2,
+      "What operation to apply using the Polygon"
+    ],
+    "Shape": [
+      "EPolygonType",
+      2,
+      "Polygon Shape to use in this Operation"
+    ],
+    "bCutWithBoolean": [
+      "bool",
+      2,
+      "Use a volumetric boolean rather than curve projection; cuts through all layers and across edges"
+    ],
+    "bTryToFixHoles": [
+      "bool",
+      2,
+      "Automatically attempt to fill any open boundaries left by CSG (e.g. due to numerical errors)"
+    ],
+    "PolygonScale": [
+      "float32",
+      2,
+      "Scale of polygon to embed"
+    ],
+    "Width": [
+      "float32",
+      2,
+      "Width of Polygon"
+    ],
+    "Height": [
+      "float32",
+      2,
+      "Height of Polygon"
+    ],
+    "CornerRatio": [
+      "float32",
+      2,
+      "Corner Ratio of RoundRect Polygon"
+    ],
+    "Subdivisions": [
+      "int",
+      2,
+      "Number of sides in Circle or RoundRect Corner"
+    ],
+    "bCanAcceptFailedResult": [
+      "bool",
+      2,
+      "Whether the tool will allow accepting a result if the operation fails, for instance due to inability to insert the\npolygon when not cutting with boolean, or due to unrepaired cracks in the result."
+    ],
+    "bShowIntermediateResultOnFailure": [
+      "bool",
+      2,
+      "If an operation fails and we do not allow accepting the result, whether to show the intermediate failed result, or to\nshow the original mesh."
+    ]
+  },
+  "methods": []
+}

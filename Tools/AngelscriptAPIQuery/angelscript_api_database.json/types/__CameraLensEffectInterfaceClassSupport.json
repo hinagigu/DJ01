@@ -1,0 +1,57 @@
+{
+  "name": "__CameraLensEffectInterfaceClassSupport",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetInterfaceClass",
+      "return": "TSubclassOf<AActor>",
+      "doc": "Returns the class represented by this lens effect wrapper...",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CameraLens",
+          "type": "FCameraLensInterfaceClassSupport"
+        }
+      ]
+    },
+    {
+      "name": "IsInterfaceClassValid",
+      "return": "void",
+      "doc": "Check whether or not the interface class is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CameraLens",
+          "type": "FCameraLensInterfaceClassSupport"
+        },
+        {
+          "name": "Result",
+          "type": "EInterfaceValidResult&"
+        }
+      ]
+    },
+    {
+      "name": "SetInterfaceClass",
+      "return": "void",
+      "doc": "Set the represented class of the passed in variable. Note: Check the tooltips on the individual pins.\nYou cannot bypass the validation by connecting a wires to this node!!\n\n@param Class MUST implement CameraLensEffectInterface - when connecting variables to the input, take care that the input class does in fact implement the interface.\n@param Var The wrapper (for validation purposes) of the lens effect class.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "TSubclassOf<AActor>"
+        },
+        {
+          "name": "Var",
+          "type": "FCameraLensInterfaceClassSupport&"
+        },
+        {
+          "name": "Result",
+          "type": "EInterfaceValidResult&"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "name": "UWorldPartitionStreamingSourceComponent",
+  "inherits": "UActorComponent",
+  "properties": {
+    "DefaultVisualizerLoadingRange": [
+      "float32",
+      2,
+      "Value used by debug visualizer when grid loading range is chosen."
+    ],
+    "TargetBehavior": [
+      "EStreamingSourceTargetBehavior",
+      "When TargetGrids or TargetHLODLayers are specified, this indicates the behavior."
+    ],
+    "TargetGrids": [
+      "TArray<FName>",
+      "Optional target grids affected by streaming source."
+    ],
+    "DebugColor": [
+      "FColor",
+      2,
+      "Color used for debugging."
+    ],
+    "Shapes": [
+      "TArray<FStreamingSourceShape>",
+      "Optional aggregated shape list used to build a custom shape for the streaming source. When empty, fallbacks sphere shape with a radius equal to grid's loading range."
+    ],
+    "Priority": [
+      "EStreamingSourcePriority"
+    ],
+    "bStreamingSourceEnabled": [
+      "bool",
+      "Whether this component is enabled or not"
+    ],
+    "TargetState": [
+      "EStreamingSourceTargetState",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "DisableStreamingSource",
+      "return": "void",
+      "doc": "Disable the component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EnableStreamingSource",
+      "return": "void",
+      "doc": "Enable the component",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsStreamingCompleted",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if streaming is completed for this streaming source component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsStreamingSourceEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the component is active.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

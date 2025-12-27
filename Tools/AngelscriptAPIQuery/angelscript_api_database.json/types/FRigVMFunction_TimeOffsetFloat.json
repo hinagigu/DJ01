@@ -1,0 +1,42 @@
+{
+  "name": "FRigVMFunction_TimeOffsetFloat",
+  "isStruct": true,
+  "doc": "Records a value over time and can access the value from the past",
+  "properties": {
+    "Value": [
+      "float32",
+      "The value to record"
+    ],
+    "SecondsAgo": [
+      "float32",
+      "Seconds of time in the past you want to query the value for"
+    ],
+    "BufferSize": [
+      "int",
+      1,
+      "The sampling precision of the buffer. The higher the more precise - the more memory usage."
+    ],
+    "TimeRange": [
+      "float32",
+      1,
+      "The maximum time required for offsetting in seconds."
+    ],
+    "Result": [
+      "float32",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigVMFunction_TimeOffsetFloat&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigVMFunction_TimeOffsetFloat"
+        }
+      ]
+    }
+  ]
+}

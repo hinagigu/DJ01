@@ -1,0 +1,39 @@
+{
+  "name": "FInterchangePipelineMeshesUtilitiesContext",
+  "isStruct": true,
+  "doc": "* Represents the context UInterchangePipelineMeshesUtilities will use when the client queries data.",
+  "properties": {
+    "bConvertStaticMeshToSkeletalMesh": [
+      "bool",
+      "If enabled, all static meshes are converted to skeletal meshes."
+    ],
+    "bConvertSkeletalMeshToStaticMesh": [
+      "bool",
+      "If enabled, all skeletal meshes are converted to static meshes."
+    ],
+    "bConvertStaticsWithMorphTargetsToSkeletals": [
+      "bool",
+      "If enabled, all static meshes that have morph targets will be imported as skeletal meshes instead."
+    ],
+    "bImportMeshesInBoneHierarchy": [
+      "bool",
+      "If enabled, meshes nested in bone hierarchies are imported as meshes instead of being converted to bones. If the meshes are not skinned, they are\nadded to the skeletal mesh and removed from the list of static meshes."
+    ],
+    "bQueryGeometryOnlyIfNoInstance": [
+      "bool",
+      "When querying geometry, this flag will not add MeshGeometry if there is a scene node that points to a geometry."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInterchangePipelineMeshesUtilitiesContext&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInterchangePipelineMeshesUtilitiesContext"
+        }
+      ]
+    }
+  ]
+}

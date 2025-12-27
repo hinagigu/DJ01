@@ -1,0 +1,7 @@
+{
+  "name": "UPlatformSettings",
+  "inherits": "UObject",
+  "doc": "The base class of any per platform settings.  The pattern for using these is as follows.\n\nStep 1) Subclass UPlatformSettings, UMyPerPlatformSettings : public UPlatformSettings.\n\nStep 2) For your system should already have a UDeveloperSettings that you created so that\n        users can customize other properties for your system in the project.  On that class\n        you need to create a property of type FPerPlatformSettings, e.g.\n        UPROPERTY(EditAnywhere, Category=Platform)\n        FPerPlatformSettings PlatformOptions\n\nStep 3) In your UDeveloperSettings subclasses construct, there should be a line like this,\n        PlatformOptions.Settings.Initialize(UMyPerPlatformSettings::StaticClass());\n        This will actually ensure that you initialize the settings exposed in the editor to whatever\n        the current platform configuration is for them.\n\nStep 4) Nothing else needed.  In your system code, you will just call\n        UMyPerPlatformSettings* MySettings = UPlatformSettingsManager::Get().GetSettingsForPlatform<UMyPerPlatformSettings>()\n        that will get you the current settings for the active platform, or the simulated platform in the editor.",
+  "properties": {},
+  "methods": []
+}

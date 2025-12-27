@@ -1,0 +1,32 @@
+{
+  "name": "FRigUnit_HierarchyRemoveElement",
+  "isStruct": true,
+  "doc": "Removes an element from the hierarchy\nNote: This node only runs as part of the construction event.",
+  "properties": {
+    "Item": [
+      "FRigElementKey",
+      "* The item to remove"
+    ],
+    "bSuccess": [
+      "bool",
+      1,
+      "* True if the element has been removed successfuly"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_HierarchyRemoveElement&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_HierarchyRemoveElement"
+        }
+      ]
+    }
+  ]
+}

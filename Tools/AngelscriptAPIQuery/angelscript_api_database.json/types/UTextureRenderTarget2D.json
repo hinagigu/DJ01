@@ -1,0 +1,52 @@
+{
+  "name": "UTextureRenderTarget2D",
+  "inherits": "UTextureRenderTarget",
+  "doc": "TextureRenderTarget2D\n\n2D render target texture resource. This can be used as a target\nfor rendering as well as rendered as a regular 2D texture resource.",
+  "properties": {
+    "SizeX": [
+      "int",
+      "The width of the texture."
+    ],
+    "SizeY": [
+      "int",
+      "The height of the texture."
+    ],
+    "ClearColor": [
+      "FLinearColor",
+      "the color the texture is cleared to"
+    ],
+    "AddressX": [
+      "TextureAddress",
+      "The addressing mode to use for the X axis."
+    ],
+    "AddressY": [
+      "TextureAddress",
+      "The addressing mode to use for the Y axis."
+    ],
+    "RenderTargetFormat": [
+      "ETextureRenderTargetFormat",
+      "Format of the texture render target.\nData written to the render target will be quantized to this format, which can limit the range and precision.\nThe largest format (RTF_RGBA32f) uses 16x more memory and bandwidth than the smallest (RTF_R8) and can greatly affect performance.\nUse the smallest format that has enough precision and range for what you are doing."
+    ],
+    "MipsSamplerFilter": [
+      "TextureFilter",
+      "Sampler filter type for AutoGenerateMips. Defaults to match texture filter."
+    ],
+    "MipsAddressU": [
+      "TextureAddress",
+      "AutoGenerateMips sampler address mode for U channel. Defaults to clamp."
+    ],
+    "MipsAddressV": [
+      "TextureAddress",
+      "AutoGenerateMips sampler address mode for V channel. Defaults to clamp."
+    ],
+    "bGPUSharedFlag": [
+      "bool",
+      "Whether to support GPU sharing of the underlying native texture resource."
+    ],
+    "bAutoGenerateMips": [
+      "bool",
+      "Whether to support Mip maps for this render target texture"
+    ]
+  },
+  "methods": []
+}

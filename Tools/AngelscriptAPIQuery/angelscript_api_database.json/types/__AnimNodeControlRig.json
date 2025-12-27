@@ -1,0 +1,61 @@
+{
+  "name": "__AnimNodeControlRig",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ConvertToControlRig",
+      "return": "FControlRigReference",
+      "doc": "Get a control rig context from an anim node context",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "Result",
+          "type": "EAnimNodeReferenceConversionResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConvertToControlRigPure",
+      "return": "void",
+      "doc": "Get a control rig context from an anim node context (pure)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "ControlRig",
+          "type": "FControlRigReference&"
+        },
+        {
+          "name": "Result",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "SetControlRigClass",
+      "return": "FControlRigReference",
+      "doc": "Set the control rig class on the node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FControlRigReference"
+        },
+        {
+          "name": "ControlRigClass",
+          "type": "TSubclassOf<UControlRig>"
+        }
+      ]
+    }
+  ]
+}

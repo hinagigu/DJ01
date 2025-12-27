@@ -1,0 +1,92 @@
+{
+  "name": "__UAnimationCurveIdentifierExtensions",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetName",
+      "return": "FName",
+      "doc": "@return       The name used for displaying the Curve Identifier",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Identifier",
+          "type": "FAnimationCurveIdentifier&"
+        }
+      ]
+    },
+    {
+      "name": "GetTransformChildCurveIdentifier",
+      "return": "bool",
+      "doc": "Converts a valid FAnimationCurveIdentifier instance with RCT_Transform curve type to target a child curve.\n\n@param        InOutIdentifier         [out] Identifier to be converted\n@param        Channel                         Channel to target\n@param        Axis                            Axis within channel to target\n\n@return       Valid FAnimationCurveIdentifier if the operation was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOutIdentifier",
+          "type": "FAnimationCurveIdentifier&"
+        },
+        {
+          "name": "Channel",
+          "type": "ETransformCurveChannel"
+        },
+        {
+          "name": "Axis",
+          "type": "EVectorCurveChannel"
+        }
+      ]
+    },
+    {
+      "name": "GetType",
+      "return": "ERawCurveTrackTypes",
+      "doc": "@return       The animation curve type for the curve represented by the Curve Identifier",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Identifier",
+          "type": "FAnimationCurveIdentifier&"
+        }
+      ]
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "doc": "@return       Whether or not the Curve Identifier is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Identifier",
+          "type": "FAnimationCurveIdentifier&"
+        }
+      ]
+    },
+    {
+      "name": "SetCurveIdentifier",
+      "return": "void",
+      "doc": "Constructs a valid FAnimationCurveIdentifier instance.\n\n@param        InOutIdentifier         The identifier to set up\n@param        Name                            Name of the curve to find or add\n@param        CurveType                       Type of the curve to find or add",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOutIdentifier",
+          "type": "FAnimationCurveIdentifier&"
+        },
+        {
+          "name": "Name",
+          "type": "FName"
+        },
+        {
+          "name": "CurveType",
+          "type": "ERawCurveTrackTypes"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

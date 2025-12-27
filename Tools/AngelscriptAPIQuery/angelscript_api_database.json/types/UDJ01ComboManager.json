@@ -1,0 +1,160 @@
+{
+  "name": "UDJ01ComboManager",
+  "inherits": "UActorComponent",
+  "doc": "UDJ01ComboManager\n\n连招管理器 - 协调输入缓冲、GAS、动画系统\n\n职责：\n- 管理输入缓冲\n- 控制连招窗口（是否可接受输入）\n- 追踪当前连招状态\n- 与 ASC 协调技能激活",
+  "properties": {
+    "OnComboWindowStateChanged": [
+      "FOnComboWindowStateChanged",
+      "连招窗口状态变化"
+    ],
+    "OnComboAdvanced": [
+      "FOnComboAdvanced",
+      "连招推进"
+    ],
+    "InputBuffer": [
+      "FDJ01ComboInputBuffer",
+      2,
+      "输入缓冲配置"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AdvanceComboIndex",
+      "return": "void",
+      "doc": "推进连招索引",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "BufferInput",
+      "return": "void",
+      "doc": "缓冲输入\n由输入系统调用（EnhancedInput / AngelScript）\n\n@param AbilityTag 技能标签\n@param Priority 优先级（越小越高）",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Priority",
+          "default": "50",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ClearInputBuffer",
+      "return": "void",
+      "doc": "清空输入缓冲",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CloseComboWindow",
+      "return": "void",
+      "doc": "仅关闭连招窗口（不消费输入）",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CloseComboWindowAndConsume",
+      "return": "bool",
+      "doc": "关闭连招窗口并尝试消费输入\n由 AnimNotify 调用\n\n@return 是否成功消费输入并激活下一段",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentComboChainTag",
+      "return": "FGameplayTag",
+      "const": true,
+      "doc": "获取当前连招链 Tag",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentComboIndex",
+      "return": "int",
+      "const": true,
+      "doc": "获取当前连招索引",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasBufferedInput",
+      "return": "bool",
+      "const": true,
+      "doc": "检查是否有缓冲输入",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsComboWindowOpen",
+      "return": "bool",
+      "const": true,
+      "doc": "连招窗口是否打开",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OpenComboWindow",
+      "return": "void",
+      "doc": "打开连招窗口\n由 AnimNotify 调用，标记可以接受下一段输入\n\n@param ComboChainTag 当前连招链标识（可选）",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ComboChainTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "RequestAutoChain",
+      "return": "void",
+      "doc": "请求自动衔接下一段\n无需玩家输入，自动触发下一个技能\n\n@param NextAbilityTag 下一个技能的 Tag",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NextAbilityTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "ResetComboState",
+      "return": "void",
+      "doc": "重置连招状态",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "TryActivateOrBuffer",
+      "return": "bool",
+      "doc": "尝试立即激活或缓冲输入\n如果当前无技能执行，立即激活；否则缓冲\n\n@param AbilityTag 技能标签\n@param Priority 优先级\n@return 是否立即激活成功",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Priority",
+          "default": "50",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

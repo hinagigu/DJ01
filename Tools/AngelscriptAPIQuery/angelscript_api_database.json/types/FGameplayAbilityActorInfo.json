@@ -1,0 +1,59 @@
+{
+  "name": "FGameplayAbilityActorInfo",
+  "isStruct": true,
+  "doc": "FGameplayAbilityActorInfo\n\nCached data associated with an Actor using an Ability.\n        -Initialized from an AActor* in InitFromActor\n        -Abilities use this to know what to actor upon. E.g., instead of being coupled to a specific actor class.\n        -These are generally passed around as pointers to support polymorphism.\n        -Projects can override UAbilitySystemGlobals::AllocAbilityActorInfo to override the default struct type that is created.",
+  "properties": {
+    "OwnerActor": [
+      "TWeakObjectPtr<AActor>",
+      1,
+      "The actor that owns the abilities, shouldn't be null"
+    ],
+    "AvatarActor": [
+      "TWeakObjectPtr<AActor>",
+      1,
+      "The physical representation of the owner, used for targeting and animation. This will often be null!"
+    ],
+    "PlayerController": [
+      "TWeakObjectPtr<APlayerController>",
+      1,
+      "PlayerController associated with the owning actor. This will often be null!"
+    ],
+    "AbilitySystemComponent": [
+      "TWeakObjectPtr<UAbilitySystemComponent>",
+      1,
+      "Ability System component associated with the owner actor, shouldn't be null"
+    ],
+    "SkeletalMeshComponent": [
+      "TWeakObjectPtr<USkeletalMeshComponent>",
+      1,
+      "Skeletal mesh of the avatar actor. Often null"
+    ],
+    "AnimInstance": [
+      "TWeakObjectPtr<UAnimInstance>",
+      1,
+      "Anim instance of the avatar actor. Often null"
+    ],
+    "MovementComponent": [
+      "TWeakObjectPtr<UMovementComponent>",
+      1,
+      "Movement component of the avatar actor. Often null"
+    ],
+    "AffectedAnimInstanceTag": [
+      "FName",
+      1,
+      "The linked Anim Instance that this component will play montages in. Use NAME_None for the main anim instance."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayAbilityActorInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayAbilityActorInfo"
+        }
+      ]
+    }
+  ]
+}

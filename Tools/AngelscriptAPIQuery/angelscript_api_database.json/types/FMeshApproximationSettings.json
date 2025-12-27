@@ -1,0 +1,183 @@
+{
+  "name": "FMeshApproximationSettings",
+  "isStruct": true,
+  "properties": {
+    "OutputType": [
+      "EMeshApproximationType",
+      "Type of output from mesh approximation process"
+    ],
+    "ApproximationAccuracy": [
+      "float32",
+      "Approximation Accuracy in Meters, will determine (eg) voxel resolution"
+    ],
+    "ClampVoxelDimension": [
+      "int",
+      "Maximum allowable voxel count along main directions. This is a limit on ApproximationAccuracy. Max of 1290 (1290^3 is the last integer < 2^31, using a bigger number results in failures in TArray code & probably elsewhere)"
+    ],
+    "bAttemptAutoThickening": [
+      "bool",
+      "if enabled, we will attempt to auto-thicken thin parts or flat sheets"
+    ],
+    "TargetMinThicknessMultiplier": [
+      "float32",
+      "Multiplier on Approximation Accuracy used for auto-thickening"
+    ],
+    "bIgnoreTinyParts": [
+      "bool",
+      "If enabled, tiny parts will be excluded from the mesh merging, which can improve performance"
+    ],
+    "TinyPartSizeMultiplier": [
+      "float32",
+      "Multiplier on Approximation Accuracy used to define tiny-part threshold, using maximum bounding-box dimension"
+    ],
+    "BaseCapping": [
+      "EMeshApproximationBaseCappingType",
+      "Optional methods to attempt to close off the bottom of open meshes"
+    ],
+    "WindingThreshold": [
+      "float32",
+      "Winding Threshold controls hole filling at open mesh borders. Smaller value means \"more/rounder\" filling"
+    ],
+    "bFillGaps": [
+      "bool",
+      "If true, topological expand/contract is used to try to fill small gaps between objects."
+    ],
+    "GapDistance": [
+      "float32",
+      "Distance in Meters to expand/contract to fill gaps"
+    ],
+    "OcclusionMethod": [
+      "EOccludedGeometryFilteringPolicy",
+      "Type of hidden geometry removal to apply"
+    ],
+    "bOccludeFromBottom": [
+      "bool",
+      "If true, then the OcclusionMethod computation is configured to try to consider downward-facing \"bottom\" geometry as occluded"
+    ],
+    "SimplifyMethod": [
+      "EMeshApproximationSimplificationPolicy",
+      "Mesh Simplification criteria"
+    ],
+    "TargetTriCount": [
+      "int",
+      "Target triangle count for Mesh Simplification, for SimplifyMethods that use a Count"
+    ],
+    "TrianglesPerM": [
+      "float32",
+      "Approximate Number of triangles per Square Meter, for SimplifyMethods that use such a constraint"
+    ],
+    "GeometricDeviation": [
+      "float32",
+      "Allowable Geometric Deviation in Meters when SimplifyMethod incorporates a Geometric Tolerance"
+    ],
+    "GroundClipping": [
+      "EMeshApproximationGroundPlaneClippingPolicy",
+      "Configure how the final mesh should be clipped with a ground plane, if desired"
+    ],
+    "GroundClippingZHeight": [
+      "float32",
+      "Z-Height for the ground clipping plane, if enabled"
+    ],
+    "bEstimateHardNormals": [
+      "bool",
+      "If true, normal angle will be used to estimate hard normals"
+    ],
+    "HardNormalAngle": [
+      "float32"
+    ],
+    "UVGenerationMethod": [
+      "EMeshApproximationUVGenerationPolicy",
+      "Mesh UV Generation Settings"
+    ],
+    "InitialPatchCount": [
+      "int",
+      "Number of initial patches mesh will be split into before computing island merging"
+    ],
+    "CurvatureAlignment": [
+      "float32",
+      "This parameter controls alignment of the initial patches to creases in the mesh"
+    ],
+    "MergingThreshold": [
+      "float32",
+      "Distortion/Stretching Threshold for island merging - larger values increase the allowable UV stretching"
+    ],
+    "MaxAngleDeviation": [
+      "float32",
+      "UV islands will not be merged if their average face normals deviate by larger than this amount"
+    ],
+    "bGenerateNaniteEnabledMesh": [
+      "bool",
+      "Whether to generate a nanite-enabled mesh"
+    ],
+    "NaniteFallbackTarget": [
+      "ENaniteFallbackTarget",
+      "Which heuristic to use when generating the Nanite fallback mesh."
+    ],
+    "NaniteFallbackPercentTriangles": [
+      "float32",
+      "Percentage of triangles to keep from source Nanite mesh for fallback. 1.0 = no reduction, 0.0 = no triangles."
+    ],
+    "NaniteFallbackRelativeError": [
+      "float32",
+      "Reduce Nanite fallback mesh until at least this amount of error is reached relative to size of the mesh."
+    ],
+    "bSupportRayTracing": [
+      "bool",
+      "Whether ray tracing will be supported on this mesh. Disable this to save memory if the generated mesh will only be rendered in the distance."
+    ],
+    "bAllowDistanceField": [
+      "bool",
+      "Whether to allow distance field to be computed for this mesh. Disable this to save memory if the generated mesh will only be rendered in the distance."
+    ],
+    "MultiSamplingAA": [
+      "int",
+      "If Value is > 1, Multisample output baked textures by this amount in each direction (eg 4 == 16x supersampling)"
+    ],
+    "RenderCaptureResolution": [
+      "int",
+      "If Value is zero, use MaterialSettings resolution, otherwise override the render capture resolution"
+    ],
+    "MaterialSettings": [
+      "FMaterialProxySettings",
+      "Material generation settings"
+    ],
+    "CaptureFieldOfView": [
+      "float32"
+    ],
+    "NearPlaneDist": [
+      "float32"
+    ],
+    "bUseRenderLODMeshes": [
+      "bool",
+      "If true, LOD0 Render Meshes (or Nanite Fallback meshes) are used instead of Source Mesh data. This can significantly reduce computation time and memory usage, but potentially at the cost of lower quality output."
+    ],
+    "bEnableSimplifyPrePass": [
+      "bool",
+      "If true, a faster mesh simplfication strategy will be used. This can significantly reduce computation time and memory usage, but potentially at the cost of lower quality output."
+    ],
+    "bEnableParallelBaking": [
+      "bool",
+      "If false, texture capture and baking will be done serially after mesh generation, rather than in parallel when possible. This will reduce the maximum memory requirements of the process."
+    ],
+    "bPrintDebugMessages": [
+      "bool",
+      "If true, print out debugging messages"
+    ],
+    "bEmitFullDebugMesh": [
+      "bool",
+      "If true, write the full mesh triangle set (ie flattened, non-instanced) used for mesh generation. Warning: this asset may be extremely large!!"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMeshApproximationSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMeshApproximationSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "name": "UInputKeySelector",
+  "inherits": "UWidget",
+  "doc": "A widget for selecting a single key or a single key with a modifier.",
+  "properties": {
+    "WidgetStyle": [
+      "FButtonStyle",
+      "The button style used at runtime"
+    ],
+    "TextStyle": [
+      "FTextBlockStyle",
+      "The button style used at runtime"
+    ],
+    "Margin": [
+      "FMargin",
+      "The amount of blank space around the text used to display the currently selected key."
+    ],
+    "OnKeySelected": [
+      "FOnKeySelected__InputKeySelector",
+      "Called whenever a new key is selected by the user."
+    ],
+    "OnIsSelectingKeyChanged": [
+      "FOnIsSelectingKeyChanged__InputKeySelector",
+      "Called whenever the key selection mode starts or stops."
+    ],
+    "bAllowModifierKeys": [
+      "bool",
+      "When true modifier keys such as control and alt are allowed in the\ninput chord representing the selected key, if false modifier keys are ignored."
+    ],
+    "bAllowGamepadKeys": [
+      "bool",
+      "When true gamepad keys are allowed in the input chord representing the selected key, otherwise they are ignored."
+    ],
+    "SelectedKey": [
+      "FInputChord",
+      "The currently selected key chord."
+    ],
+    "KeySelectionText": [
+      "FText",
+      "Sets the text which is displayed while selecting keys."
+    ],
+    "NoKeySpecifiedText": [
+      "FText",
+      "Sets the text to display when no key text is available or not selecting a key."
+    ],
+    "EscapeKeys": [
+      "TArray<FKey>",
+      "When true gamepad keys are allowed in the input chord representing the selected key, otherwise they are ignored."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetIsSelectingKey",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the widget is currently selecting a key, otherwise returns false.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAllowGamepadKeys",
+      "return": "void",
+      "doc": "Sets whether or not gamepad keys are allowed in the selected key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInAllowGamepadKeys",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAllowModifierKeys",
+      "return": "void",
+      "doc": "Sets whether or not modifier keys are allowed in the selected key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInAllowModifierKeys",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEscapeKeys",
+      "return": "void",
+      "doc": "Sets escape keys.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKeys",
+          "type": "TArray<FKey>"
+        }
+      ]
+    },
+    {
+      "name": "SetKeySelectionText",
+      "return": "void",
+      "doc": "Sets the text which is displayed while selecting keys.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InKeySelectionText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetNoKeySpecifiedText",
+      "return": "void",
+      "doc": "Sets the text to display when no key text is available or not selecting a key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNoKeySpecifiedText",
+          "type": "FText"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectedKey",
+      "return": "void",
+      "doc": "Sets the currently selected key.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSelectedKey",
+          "type": "FInputChord"
+        }
+      ]
+    },
+    {
+      "name": "SetTextBlockVisibility",
+      "return": "void",
+      "doc": "Sets the visibility of the text block.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVisibility",
+          "type": "ESlateVisibility"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "name": "FAnimNode_ObserveBone",
+  "isStruct": true,
+  "doc": "Debugging node that displays the current value of a bone in a specific space.",
+  "properties": {
+    "BoneToObserve": [
+      "FBoneReference",
+      2,
+      "Name of bone to observe."
+    ],
+    "DisplaySpace": [
+      "EBoneControlSpace",
+      2,
+      "Reference frame to display the bone transform in."
+    ],
+    "bRelativeToRefPose": [
+      "bool",
+      2,
+      "Show the difference from the reference pose?"
+    ],
+    "ComponentPose": [
+      "FComponentSpacePoseLink",
+      "Input link"
+    ],
+    "LODThreshold": [
+      "int",
+      "* Max LOD that this node is allowed to run\n* For example if you have LODThreshold to be 2, it will run until LOD 2 (based on 0 index)\n* when the component LOD becomes 3, it will stop update/evaluate\n* currently transition would be issue and that has to be re-visited"
+    ],
+    "AlphaInputType": [
+      "EAnimAlphaInputType"
+    ],
+    "bAlphaBoolEnabled": [
+      "bool"
+    ],
+    "Alpha": [
+      "float32",
+      "Current strength of the skeletal control"
+    ],
+    "AlphaScaleBias": [
+      "FInputScaleBias"
+    ],
+    "AlphaBoolBlend": [
+      "FInputAlphaBoolBlend"
+    ],
+    "AlphaCurveName": [
+      "FName"
+    ],
+    "AlphaScaleBiasClamp": [
+      "FInputScaleBiasClamp"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_ObserveBone&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_ObserveBone"
+        }
+      ]
+    }
+  ]
+}

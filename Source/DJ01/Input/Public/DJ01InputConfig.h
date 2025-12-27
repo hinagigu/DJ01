@@ -23,10 +23,10 @@ struct FDJ01InputAction
 
 public:
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<const UInputAction> InputAction = nullptr;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Meta = (Categories = "InputTag"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Meta = (Categories = "InputTag"))
 	FGameplayTag InputTag;
 };
 

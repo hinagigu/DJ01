@@ -1,0 +1,58 @@
+{
+  "name": "FTakeRecorderUserParameters",
+  "isStruct": true,
+  "properties": {
+    "bMaximizeViewport": [
+      "bool",
+      "Whether to maximize the viewport (enter Immersive Mode) when recording"
+    ],
+    "CountdownSeconds": [
+      "float32",
+      "Delay that we will use before starting recording"
+    ],
+    "EngineTimeDilation": [
+      "float32",
+      "The engine time dilation to apply during the recording"
+    ],
+    "bResetPlayhead": [
+      "bool",
+      "Reset playhead to beginning of the playback range when starting recording"
+    ],
+    "bStopAtPlaybackEnd": [
+      "bool",
+      "Automatically stop recording when reaching the end of the playback range"
+    ],
+    "bRemoveRedundantTracks": [
+      "bool",
+      "Recommended for use with recorded spawnables. Beware that changes to actor instances in the map after recording may alter the recording when played back"
+    ],
+    "ReduceKeysTolerance": [
+      "float32",
+      "Tolerance to use when reducing keys"
+    ],
+    "bSaveRecordedAssets": [
+      "bool",
+      "Whether to save recorded level sequences and assets when done recording"
+    ],
+    "bAutoLock": [
+      "bool",
+      "Whether to lock the level sequence when done recording"
+    ],
+    "bAutoSerialize": [
+      "bool",
+      "Whether to incrementally serialize and store some data while recording"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTakeRecorderUserParameters&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTakeRecorderUserParameters"
+        }
+      ]
+    }
+  ]
+}

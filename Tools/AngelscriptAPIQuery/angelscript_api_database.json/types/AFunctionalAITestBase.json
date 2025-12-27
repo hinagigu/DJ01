@@ -1,0 +1,70 @@
+{
+  "name": "AFunctionalAITestBase",
+  "inherits": "AFunctionalTest",
+  "doc": "AFunctionalAITestBase\n\nBase abstract class defining a Functional AI Test.\nYou can derive from this base class to create a test with a different type of SpawnSets.",
+  "properties": {
+    "SpawnLocationRandomizationRange": [
+      "float32"
+    ],
+    "SpawnedPawns": [
+      "TArray<TObjectPtr<APawn>>",
+      1,
+      ""
+    ],
+    "PendingDelayedSpawns": [
+      "TArray<FPendingDelayedSpawn>",
+      1,
+      ""
+    ],
+    "CurrentSpawnSetIndex": [
+      "int",
+      1,
+      ""
+    ],
+    "CurrentSpawnSetName": [
+      "FString",
+      1,
+      ""
+    ],
+    "OnAISpawned": [
+      "FFunctionalTestAISpawned",
+      "Called when a single AI finished spawning"
+    ],
+    "OnAllAISPawned": [
+      "FFunctionalTestEventSignature",
+      "Called when a all AI finished spawning"
+    ],
+    "NavMeshDebugOrigin": [
+      "FVector",
+      2,
+      "navmesh debug: log navoctree modifiers around this point"
+    ],
+    "NavMeshDebugExtent": [
+      "FVector",
+      2,
+      "navmesh debug: extent around NavMeshDebugOrigin"
+    ],
+    "bWaitForNavMesh": [
+      "bool",
+      "if set, ftest will postpone start until navmesh is fully generated"
+    ],
+    "bDebugNavMeshOnTimeout": [
+      "bool",
+      "if set, ftest will postpone start until navmesh is fully generated"
+    ]
+  },
+  "methods": [
+    {
+      "name": "IsOneOfSpawnedPawns",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    }
+  ]
+}

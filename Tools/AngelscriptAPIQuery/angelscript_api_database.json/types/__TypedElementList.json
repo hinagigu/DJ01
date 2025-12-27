@@ -1,0 +1,334 @@
+{
+  "name": "__TypedElementList",
+  "properties": {},
+  "methods": [
+    {
+      "name": "Add",
+      "return": "bool",
+      "doc": "Add the given element handle to this element list, if it isn't already in the list.\n@return True if the element handle was added, false if it is already in the list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "ElementHandle",
+          "type": "FScriptTypedElementHandle"
+        }
+      ]
+    },
+    {
+      "name": "Append",
+      "return": "void",
+      "doc": "Append the given element handles to this element list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "ElementHandles",
+          "type": "TArray<FScriptTypedElementHandle>"
+        }
+      ]
+    },
+    {
+      "name": "AppendList",
+      "return": "void",
+      "doc": "Append the another element list to this element list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "OtherElementList",
+          "type": "FScriptTypedElementListProxy"
+        }
+      ]
+    },
+    {
+      "name": "Clone",
+      "return": "FScriptTypedElementListProxy",
+      "doc": "Clone this list instance.\n@note Only copies elements; does not copy any bindings!",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        }
+      ]
+    },
+    {
+      "name": "Contains",
+      "return": "bool",
+      "doc": "Does this element list contain an entry for the given element handle?",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "ElementHandle",
+          "type": "FScriptTypedElementHandle"
+        }
+      ]
+    },
+    {
+      "name": "CountElements",
+      "return": "int",
+      "doc": "Count the number of elements in this list, optionally filtering to elements that implement the given interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "BaseInterfaceType",
+          "default": "nullptr",
+          "type": "TSubclassOf<UInterface>"
+        }
+      ]
+    },
+    {
+      "name": "CountElementsOfType",
+      "return": "int",
+      "doc": "Count the number of elements in this list of the given type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "ElementTypeName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CreateElementList",
+      "return": "FScriptTypedElementListProxy",
+      "doc": "Create an empty list of elements associated with the given registry.",
+      "ufunction": true,
+      "unrealname": "CreateScriptElementList",
+      "meta": null,
+      "args": [
+        {
+          "name": "Registry",
+          "type": "UTypedElementRegistry"
+        }
+      ]
+    },
+    {
+      "name": "Empty",
+      "return": "void",
+      "doc": "Remove all entries from this element list, potentially leaving space allocated for the given number of entries.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "Slack",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetElementHandleAt",
+      "return": "FScriptTypedElementHandle",
+      "doc": "Get the element handle at the given index.\n@note Use IsValidIndex to test for validity.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetElementHandles",
+      "return": "TArray<FScriptTypedElementHandle>",
+      "doc": "Get the handle of every element in this list, optionally filtering to elements that implement the given interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "BaseInterfaceType",
+          "type": "TSubclassOf<UInterface>"
+        }
+      ]
+    },
+    {
+      "name": "GetElementInterface",
+      "return": "UObject",
+      "doc": "Get the element interface from the given handle.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "ElementHandle",
+          "type": "FScriptTypedElementHandle"
+        },
+        {
+          "name": "BaseInterfaceType",
+          "type": "TSubclassOf<UInterface>"
+        }
+      ]
+    },
+    {
+      "name": "HasElements",
+      "return": "bool",
+      "doc": "Test whether there are elements in this list, optionally filtering to elements that implement the given interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "BaseInterfaceType",
+          "default": "nullptr",
+          "type": "TSubclassOf<UInterface>"
+        }
+      ]
+    },
+    {
+      "name": "HasElementsOfType",
+      "return": "bool",
+      "doc": "Test whether there are elements in this list of the given type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "ElementTypeName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsValidIndex",
+      "return": "bool",
+      "doc": "Is the given index a valid entry within this element list?",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Num",
+      "return": "int",
+      "doc": "Get the number of entries within this element list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        }
+      ]
+    },
+    {
+      "name": "Remove",
+      "return": "bool",
+      "doc": "Remove the given element handle from this element list, if it is in the list.\n@return True if the element handle was removed, false if it isn't in the list.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "ElementHandle",
+          "type": "FScriptTypedElementHandle"
+        }
+      ]
+    },
+    {
+      "name": "Reserve",
+      "return": "void",
+      "doc": "Pre-allocate enough memory in this element list to store the given number of entries.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        },
+        {
+          "name": "Size",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "doc": "Remove all entries from this element list, preserving existing allocations.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        }
+      ]
+    },
+    {
+      "name": "Shrink",
+      "return": "void",
+      "doc": "Shrink this element list storage to avoid slack.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ElementList",
+          "type": "FScriptTypedElementListProxy"
+        }
+      ]
+    }
+  ]
+}

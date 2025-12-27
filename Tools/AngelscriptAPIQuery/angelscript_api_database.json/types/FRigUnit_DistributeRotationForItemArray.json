@@ -1,0 +1,40 @@
+{
+  "name": "FRigUnit_DistributeRotationForItemArray",
+  "isStruct": true,
+  "doc": "Distributes rotations provided across a array of items.\nEach rotation is expressed by a quaternion and a ratio, where the ratio is between 0.0 and 1.0\nNote: This node adds rotation in local space of each item!",
+  "properties": {
+    "Items": [
+      "TArray<FRigElementKey>",
+      "The items to use to distribute the rotation"
+    ],
+    "Rotations": [
+      "TArray<FRigUnit_DistributeRotation_Rotation>",
+      "The list of rotations to be applied"
+    ],
+    "RotationEaseType": [
+      "ERigVMAnimEasingType",
+      1,
+      "The easing to use between to rotations."
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the solver - how much the rotation should be applied"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_DistributeRotationForItemArray&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_DistributeRotationForItemArray"
+        }
+      ]
+    }
+  ]
+}

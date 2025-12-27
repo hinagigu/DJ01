@@ -1,0 +1,34 @@
+{
+  "name": "FChaosPhysicsSettings",
+  "isStruct": true,
+  "doc": "Settings container for Chaos physics engine settings, accessed in Chaos through a setting provider interface.\nSee: IChaosSettingsProvider",
+  "properties": {
+    "DefaultThreadingModel": [
+      "EChaosThreadingMode",
+      2,
+      "Default threading model to use on module initialisation. Can be switched at runtime using p.Chaos.ThreadingModel"
+    ],
+    "DedicatedThreadTickMode": [
+      "EChaosSolverTickMode",
+      2,
+      "The framerate/timestep ticking mode when running with a dedicated thread"
+    ],
+    "DedicatedThreadBufferMode": [
+      "EChaosBufferMode",
+      2,
+      "The buffering mode to use when running with a dedicated thread"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FChaosPhysicsSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FChaosPhysicsSettings"
+        }
+      ]
+    }
+  ]
+}

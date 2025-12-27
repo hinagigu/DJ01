@@ -1,0 +1,164 @@
+{
+  "name": "UCommonButtonGroupBase",
+  "inherits": "UCommonWidgetGroupBase",
+  "doc": "Manages an arbitrary collection of CommonButton widgets.\nEnsures that no more (and optionally, no less) than one button in the group is selected at a time",
+  "properties": {
+    "OnSelectedButtonBaseChanged": [
+      "FSimpleButtonBaseGroupDelegate"
+    ],
+    "OnHoveredButtonBaseChanged": [
+      "FSimpleButtonBaseGroupDelegate"
+    ],
+    "OnButtonBaseClicked": [
+      "FSimpleButtonBaseGroupDelegate"
+    ],
+    "OnButtonBaseDoubleClicked": [
+      "FSimpleButtonBaseGroupDelegate"
+    ],
+    "OnSelectionCleared": [
+      "FOnSelectionCleared"
+    ],
+    "bSelectionRequired": [
+      "bool",
+      "If true, the group will force that a button be selected at all times"
+    ]
+  },
+  "methods": [
+    {
+      "name": "DeselectAll",
+      "return": "void",
+      "doc": "Deselects all buttons in the group.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FindButtonIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Find the button index of the specified button, if possible\n@param ButtonToFind  Button to find the index of\n@return Index of the button in the group. INDEX_NONE if not found",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ButtonToFind",
+          "type": "const UCommonButtonBase"
+        }
+      ]
+    },
+    {
+      "name": "GetButtonBaseAtIndex",
+      "return": "UCommonButtonBase",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetButtonCount",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHoveredButtonIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Get the index of the currently hovered button, if any.\n@param The index of the currently hovered button in the group, or -1 if there is no hovered button.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedButtonBase",
+      "return": "UCommonButtonBase",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedButtonIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Get the index of the currently selected button, if any.\n@param The index of the currently selected button in the group, or -1 if there is no selected button.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasAnyButtons",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SelectButtonAtIndex",
+      "return": "void",
+      "doc": "Selects a button at a specific index in the group. Clears all selection if given an invalid index.\n@param ButtonIndex The index of the button in the group to select\n@param bAllowSound Whether the selected button should play its click sound",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ButtonIndex",
+          "type": "int"
+        },
+        {
+          "name": "bAllowSound",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SelectNextButton",
+      "return": "void",
+      "doc": "Selects the next button in the group\n@param bAllowWrap Whether to wrap to the first button if the last one is currently selected",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAllowWrap",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SelectPreviousButton",
+      "return": "void",
+      "doc": "Selects the previous button in the group\n@param bAllowWrap Whether to wrap to the first button if the last one is currently selected",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAllowWrap",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSelectionRequired",
+      "return": "void",
+      "doc": "Sets whether the group should always have a button selected.\n@param bRequireSelection True to force the group to always have a button selected.\nIf true and nothing is selected, will select the first entry. If empty, will select the first button added.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bRequireSelection",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

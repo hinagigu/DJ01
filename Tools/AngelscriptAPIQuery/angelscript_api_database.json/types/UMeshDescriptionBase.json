@@ -1,0 +1,1413 @@
+{
+  "name": "UMeshDescriptionBase",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ComputePolygonTriangulation",
+      "return": "void",
+      "doc": "Generates triangles and internal edges for the given polygon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        }
+      ]
+    },
+    {
+      "name": "CreateEdge",
+      "return": "FEdgeID",
+      "doc": "Adds a new edge to the mesh and returns its ID",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID0",
+          "type": "FVertexID"
+        },
+        {
+          "name": "VertexID1",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "CreateEdgeWithID",
+      "return": "void",
+      "doc": "Adds a new edge to the mesh with the given ID",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeID",
+          "type": "FEdgeID"
+        },
+        {
+          "name": "VertexID0",
+          "type": "FVertexID"
+        },
+        {
+          "name": "VertexID1",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "CreatePolygon",
+      "return": "FPolygonID",
+      "doc": "Adds a new polygon to the mesh and returns its ID. This will also make any missing edges, and all constituent triangles.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonGroupID",
+          "type": "FPolygonGroupID"
+        },
+        {
+          "name": "VertexInstanceIDs",
+          "type": "TArray<FVertexInstanceID>&"
+        },
+        {
+          "name": "NewEdgeIDs",
+          "type": "TArray<FEdgeID>&"
+        }
+      ]
+    },
+    {
+      "name": "CreatePolygonGroup",
+      "return": "FPolygonGroupID",
+      "doc": "Adds a new polygon group to the mesh and returns its ID",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CreatePolygonGroupWithID",
+      "return": "void",
+      "doc": "Adds a new polygon group to the mesh with the given ID",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonGroupID",
+          "type": "FPolygonGroupID"
+        }
+      ]
+    },
+    {
+      "name": "CreatePolygonWithID",
+      "return": "void",
+      "doc": "Adds a new polygon to the mesh with the given ID. This will also make any missing edges, and all constituent triangles.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        },
+        {
+          "name": "PolygonGroupID",
+          "type": "FPolygonGroupID"
+        },
+        {
+          "name": "VertexInstanceIDs",
+          "type": "TArray<FVertexInstanceID>&"
+        },
+        {
+          "name": "NewEdgeIDs",
+          "type": "TArray<FEdgeID>&"
+        }
+      ]
+    },
+    {
+      "name": "CreateTriangle",
+      "return": "FTriangleID",
+      "doc": "Adds a new triangle to the mesh and returns its ID. This will also make an encapsulating polygon, and any missing edges.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonGroupID",
+          "type": "FPolygonGroupID"
+        },
+        {
+          "name": "VertexInstanceIDs",
+          "type": "TArray<FVertexInstanceID>"
+        },
+        {
+          "name": "NewEdgeIDs",
+          "type": "TArray<FEdgeID>&"
+        }
+      ]
+    },
+    {
+      "name": "CreateTriangleWithID",
+      "return": "void",
+      "doc": "Adds a new triangle to the mesh with the given ID. This will also make an encapsulating polygon, and any missing edges.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        },
+        {
+          "name": "PolygonGroupID",
+          "type": "FPolygonGroupID"
+        },
+        {
+          "name": "VertexInstanceIDs",
+          "type": "TArray<FVertexInstanceID>"
+        },
+        {
+          "name": "NewEdgeIDs",
+          "type": "TArray<FEdgeID>&"
+        }
+      ]
+    },
+    {
+      "name": "CreateVertex",
+      "return": "FVertexID",
+      "doc": "Adds a new vertex to the mesh and returns its ID",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CreateVertexInstance",
+      "return": "FVertexInstanceID",
+      "doc": "Adds a new vertex instance to the mesh and returns its ID",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "CreateVertexInstanceWithID",
+      "return": "void",
+      "doc": "Adds a new vertex instance to the mesh with the given ID",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexInstanceID",
+          "type": "FVertexInstanceID"
+        },
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "CreateVertexWithID",
+      "return": "void",
+      "doc": "Adds a new vertex to the mesh with the given ID",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "DeleteEdge",
+      "return": "void",
+      "doc": "Deletes an edge from a mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeID",
+          "type": "FEdgeID"
+        },
+        {
+          "name": "OrphanedVertices",
+          "type": "TArray<FVertexID>&"
+        }
+      ]
+    },
+    {
+      "name": "DeletePolygon",
+      "return": "void",
+      "doc": "Deletes a polygon from the mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        },
+        {
+          "name": "OrphanedEdges",
+          "type": "TArray<FEdgeID>&"
+        },
+        {
+          "name": "OrphanedVertexInstances",
+          "type": "TArray<FVertexInstanceID>&"
+        },
+        {
+          "name": "OrphanedPolygonGroups",
+          "type": "TArray<FPolygonGroupID>&"
+        }
+      ]
+    },
+    {
+      "name": "DeletePolygonGroup",
+      "return": "void",
+      "doc": "Deletes a polygon group from the mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonGroupID",
+          "type": "FPolygonGroupID"
+        }
+      ]
+    },
+    {
+      "name": "DeleteTriangle",
+      "return": "void",
+      "doc": "Deletes a triangle from the mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        },
+        {
+          "name": "OrphanedEdges",
+          "type": "TArray<FEdgeID>&"
+        },
+        {
+          "name": "OrphanedVertexInstances",
+          "type": "TArray<FVertexInstanceID>&"
+        },
+        {
+          "name": "OrphanedPolygonGroupsPtr",
+          "type": "TArray<FPolygonGroupID>&"
+        }
+      ]
+    },
+    {
+      "name": "DeleteVertex",
+      "return": "void",
+      "doc": "Deletes a vertex from the mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "DeleteVertexInstance",
+      "return": "void",
+      "doc": "Deletes a vertex instance from a mesh",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexInstanceID",
+          "type": "FVertexInstanceID"
+        },
+        {
+          "name": "OrphanedVertices",
+          "type": "TArray<FVertexID>&"
+        }
+      ]
+    },
+    {
+      "name": "Empty",
+      "return": "void",
+      "doc": "Empty the mesh description",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEdgeConnectedPolygons",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the polygons connected to this edge",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeID",
+          "type": "FEdgeID"
+        },
+        {
+          "name": "OutConnectedPolygonIDs",
+          "type": "TArray<FPolygonID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetEdgeConnectedTriangles",
+      "return": "void",
+      "const": true,
+      "doc": "Returns reference to an array of triangle IDs connected to this edge",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeID",
+          "type": "FEdgeID"
+        },
+        {
+          "name": "OutConnectedTriangleIDs",
+          "type": "TArray<FTriangleID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetEdgeCount",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of edges",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEdgeVertex",
+      "return": "FVertexID",
+      "const": true,
+      "doc": "Returns the vertex ID corresponding to one of the edge endpoints",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeID",
+          "type": "FEdgeID"
+        },
+        {
+          "name": "VertexNumber",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetEdgeVertices",
+      "return": "void",
+      "const": true,
+      "doc": "Returns a pair of vertex IDs defining the edge",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeID",
+          "type": "FEdgeID"
+        },
+        {
+          "name": "OutVertexIDs",
+          "type": "TArray<FVertexID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetNumEdgeConnectedPolygons",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of polygons connected to this edge",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeID",
+          "type": "FEdgeID"
+        }
+      ]
+    },
+    {
+      "name": "GetNumEdgeConnectedTriangles",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of triangles connected to this edge",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeID",
+          "type": "FEdgeID"
+        }
+      ]
+    },
+    {
+      "name": "GetNumPolygonGroupPolygons",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of polygons in this polygon group",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonGroupID",
+          "type": "FPolygonGroupID"
+        }
+      ]
+    },
+    {
+      "name": "GetNumPolygonInternalEdges",
+      "return": "int",
+      "const": true,
+      "doc": "Return the number of internal edges in this polygon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        }
+      ]
+    },
+    {
+      "name": "GetNumPolygonTriangles",
+      "return": "int",
+      "const": true,
+      "doc": "Return the number of triangles which comprise this polygon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        }
+      ]
+    },
+    {
+      "name": "GetNumPolygonVertices",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of vertices this polygon has",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        }
+      ]
+    },
+    {
+      "name": "GetNumVertexConnectedEdges",
+      "return": "int",
+      "const": true,
+      "doc": "Returns number of edges connected to this vertex",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "GetNumVertexConnectedPolygons",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of polygons connected to this vertex",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "GetNumVertexConnectedTriangles",
+      "return": "int",
+      "const": true,
+      "doc": "Returns number of triangles connected to this vertex",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "GetNumVertexInstanceConnectedPolygons",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of polygons connected to this vertex instance.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexInstanceID",
+          "type": "FVertexInstanceID"
+        }
+      ]
+    },
+    {
+      "name": "GetNumVertexInstanceConnectedTriangles",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of triangles connected to this vertex instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexInstanceID",
+          "type": "FVertexInstanceID"
+        }
+      ]
+    },
+    {
+      "name": "GetNumVertexVertexInstances",
+      "return": "int",
+      "const": true,
+      "doc": "Returns number of vertex instances created from this vertex",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "GetPolygonAdjacentPolygons",
+      "return": "void",
+      "const": true,
+      "doc": "Populates the passed array with adjacent polygons",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        },
+        {
+          "name": "OutPolygonIDs",
+          "type": "TArray<FPolygonID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPolygonCount",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of polygons",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPolygonGroupCount",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of polygon groups",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPolygonGroupPolygons",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the polygons associated with the given polygon group",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonGroupID",
+          "type": "FPolygonGroupID"
+        },
+        {
+          "name": "OutPolygonIDs",
+          "type": "TArray<FPolygonID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPolygonInternalEdges",
+      "return": "void",
+      "const": true,
+      "doc": "Populate the provided array with a list of edges which are internal to the polygon, i.e. those which separate\n          constituent triangles.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        },
+        {
+          "name": "OutEdgeIDs",
+          "type": "TArray<FEdgeID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPolygonPerimeterEdges",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the edges which form the polygon perimeter",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        },
+        {
+          "name": "OutEdgeIDs",
+          "type": "TArray<FEdgeID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPolygonPolygonGroup",
+      "return": "FPolygonGroupID",
+      "const": true,
+      "doc": "Return the polygon group associated with a polygon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        }
+      ]
+    },
+    {
+      "name": "GetPolygonTriangles",
+      "return": "void",
+      "const": true,
+      "doc": "Return reference to an array of triangle IDs which comprise this polygon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        },
+        {
+          "name": "OutTriangleIDs",
+          "type": "TArray<FTriangleID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPolygonVertexInstances",
+      "return": "void",
+      "const": true,
+      "doc": "Returns reference to an array of VertexInstance IDs forming the perimeter of this polygon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        },
+        {
+          "name": "OutVertexInstanceIDs",
+          "type": "TArray<FVertexInstanceID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPolygonVertices",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the vertices which form the polygon perimeter",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        },
+        {
+          "name": "OutVertexIDs",
+          "type": "TArray<FVertexID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetTriangleAdjacentTriangles",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the adjacent triangles to this triangle",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        },
+        {
+          "name": "OutTriangleIDs",
+          "type": "TArray<FTriangleID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetTriangleCount",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of triangles",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTriangleEdges",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the edges which define this triangle",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        },
+        {
+          "name": "OutEdgeIDs",
+          "type": "TArray<FEdgeID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetTrianglePolygon",
+      "return": "FPolygonID",
+      "const": true,
+      "doc": "Get the polygon which contains this triangle",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        }
+      ]
+    },
+    {
+      "name": "GetTrianglePolygonGroup",
+      "return": "FPolygonGroupID",
+      "const": true,
+      "doc": "Get the polygon group which contains this triangle",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        }
+      ]
+    },
+    {
+      "name": "GetTriangleVertexInstance",
+      "return": "FVertexInstanceID",
+      "const": true,
+      "doc": "Get the specified vertex instance by index",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        },
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetTriangleVertexInstances",
+      "return": "void",
+      "const": true,
+      "doc": "Get the vertex instances which define this triangle",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        },
+        {
+          "name": "OutVertexInstanceIDs",
+          "type": "TArray<FVertexInstanceID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetTriangleVertices",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the vertices which define this triangle",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        },
+        {
+          "name": "OutVertexIDs",
+          "type": "TArray<FVertexID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexAdjacentVertices",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the vertices adjacent to this vertex",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        },
+        {
+          "name": "OutAdjacentVertexIDs",
+          "type": "TArray<FVertexID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexConnectedEdges",
+      "return": "void",
+      "const": true,
+      "doc": "Returns reference to an array of Edge IDs connected to this vertex",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        },
+        {
+          "name": "OutEdgeIDs",
+          "type": "TArray<FEdgeID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexConnectedPolygons",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the polygons connected to this vertex",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        },
+        {
+          "name": "OutConnectedPolygonIDs",
+          "type": "TArray<FPolygonID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexConnectedTriangles",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the triangles connected to this vertex",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        },
+        {
+          "name": "OutConnectedTriangleIDs",
+          "type": "TArray<FTriangleID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexCount",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of vertices",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVertexInstanceConnectedPolygons",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the polygons connected to this vertex instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexInstanceID",
+          "type": "FVertexInstanceID"
+        },
+        {
+          "name": "OutConnectedPolygonIDs",
+          "type": "TArray<FPolygonID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexInstanceConnectedTriangles",
+      "return": "void",
+      "const": true,
+      "doc": "Returns reference to an array of Triangle IDs connected to this vertex instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexInstanceID",
+          "type": "FVertexInstanceID"
+        },
+        {
+          "name": "OutConnectedTriangleIDs",
+          "type": "TArray<FTriangleID>&"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexInstanceCount",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the number of vertex instances",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVertexInstanceForPolygonVertex",
+      "return": "FVertexInstanceID",
+      "const": true,
+      "doc": "Return the vertex instance which corresponds to the given vertex on the given polygon, or INDEX_NONE",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        },
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexInstanceForTriangleVertex",
+      "return": "FVertexInstanceID",
+      "const": true,
+      "doc": "Return the vertex instance which corresponds to the given vertex on the given triangle, or INDEX_NONE",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        },
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexInstancePairEdge",
+      "return": "FEdgeID",
+      "const": true,
+      "doc": "Returns the edge ID defined by the two given vertex instance IDs, if there is one; otherwise INDEX_NONE",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexInstanceID0",
+          "type": "FVertexInstanceID"
+        },
+        {
+          "name": "VertexInstanceID1",
+          "type": "FVertexInstanceID"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexInstanceVertex",
+      "return": "FVertexID",
+      "const": true,
+      "doc": "Returns the vertex ID associated with the given vertex instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexInstanceID",
+          "type": "FVertexInstanceID"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexPairEdge",
+      "return": "FEdgeID",
+      "const": true,
+      "doc": "Returns the edge ID defined by the two given vertex IDs, if there is one; otherwise INDEX_NONE",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID0",
+          "type": "FVertexID"
+        },
+        {
+          "name": "VertexID1",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexPosition",
+      "return": "FVector",
+      "const": true,
+      "doc": "Gets a vertex position",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "GetVertexVertexInstances",
+      "return": "void",
+      "const": true,
+      "doc": "Returns reference to an array of VertexInstance IDs instanced from this vertex",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        },
+        {
+          "name": "OutVertexInstanceIDs",
+          "type": "TArray<FVertexInstanceID>&"
+        }
+      ]
+    },
+    {
+      "name": "IsEdgeInternal",
+      "return": "bool",
+      "const": true,
+      "doc": "Determine whether a given edge is an internal edge between triangles of a polygon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeID",
+          "type": "FEdgeID"
+        }
+      ]
+    },
+    {
+      "name": "IsEdgeInternalToPolygon",
+      "return": "bool",
+      "const": true,
+      "doc": "Determine whether a given edge is an internal edge between triangles of a specific polygon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeID",
+          "type": "FEdgeID"
+        },
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        }
+      ]
+    },
+    {
+      "name": "IsEdgeValid",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the passed edge ID is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EdgeID",
+          "type": "FEdgeID"
+        }
+      ]
+    },
+    {
+      "name": "IsEmpty",
+      "return": "bool",
+      "const": true,
+      "doc": "Return whether the mesh description is empty",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPolygonGroupValid",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the passed polygon group ID is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonGroupID",
+          "type": "FPolygonGroupID"
+        }
+      ]
+    },
+    {
+      "name": "IsPolygonValid",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the passed polygon ID is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        }
+      ]
+    },
+    {
+      "name": "IsTrianglePartOfNgon",
+      "return": "bool",
+      "const": true,
+      "doc": "Determines if this triangle is part of an n-gon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        }
+      ]
+    },
+    {
+      "name": "IsTriangleValid",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the passed triangle ID is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TriangleID",
+          "type": "FTriangleID"
+        }
+      ]
+    },
+    {
+      "name": "IsVertexInstanceValid",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the passed vertex instance ID is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexInstanceID",
+          "type": "FVertexInstanceID"
+        }
+      ]
+    },
+    {
+      "name": "IsVertexOrphaned",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether a given vertex is orphaned, i.e. it doesn't form part of any polygon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "IsVertexValid",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether the passed vertex ID is valid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        }
+      ]
+    },
+    {
+      "name": "ReserveNewEdges",
+      "return": "void",
+      "doc": "Reserves space for this number of new edges",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumberOfNewEdges",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReserveNewPolygonGroups",
+      "return": "void",
+      "doc": "Reserves space for this number of new polygon groups",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumberOfNewPolygonGroups",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReserveNewPolygons",
+      "return": "void",
+      "doc": "Reserves space for this number of new polygons",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumberOfNewPolygons",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReserveNewTriangles",
+      "return": "void",
+      "doc": "Reserves space for this number of new triangles",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumberOfNewTriangles",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReserveNewVertexInstances",
+      "return": "void",
+      "doc": "Reserves space for this number of new vertex instances",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumberOfNewVertexInstances",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReserveNewVertices",
+      "return": "void",
+      "doc": "Reserves space for this number of new vertices",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumberOfNewVertices",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReversePolygonFacing",
+      "return": "void",
+      "doc": "Reverse the winding order of the vertices of this polygon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        }
+      ]
+    },
+    {
+      "name": "SetPolygonPolygonGroup",
+      "return": "void",
+      "doc": "Sets the polygon group associated with a polygon",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        },
+        {
+          "name": "PolygonGroupID",
+          "type": "FPolygonGroupID"
+        }
+      ]
+    },
+    {
+      "name": "SetPolygonVertexInstances",
+      "return": "void",
+      "doc": "Set the vertex instance at the given index around the polygon to the new value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PolygonID",
+          "type": "FPolygonID"
+        },
+        {
+          "name": "VertexInstanceIDs",
+          "type": "TArray<FVertexInstanceID>"
+        }
+      ]
+    },
+    {
+      "name": "SetVertexPosition",
+      "return": "void",
+      "doc": "Sets a vertex position",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "FVertexID"
+        },
+        {
+          "name": "Position",
+          "type": "FVector"
+        }
+      ]
+    }
+  ]
+}

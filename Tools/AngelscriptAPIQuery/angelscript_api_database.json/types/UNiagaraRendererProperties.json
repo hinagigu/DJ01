@@ -1,0 +1,28 @@
+{
+  "name": "UNiagaraRendererProperties",
+  "inherits": "UNiagaraMergeable",
+  "doc": "Emitter properties base class\nEach EmitterRenderer derives from this with its own class, and returns it in GetProperties; a copy\nof those specific properties is stored on UNiagaraEmitter (on the System) for serialization\nand handed back to the System renderer on load.",
+  "properties": {
+    "Platforms": [
+      "FNiagaraPlatformSet",
+      2,
+      "Platforms on which this renderer is enabled."
+    ],
+    "SortOrderHint": [
+      "int",
+      2,
+      "By default, emitters are drawn in the order that they are added to the system. This value will allow you to control the order in a more fine-grained manner.\n      Materials of the same type (i.e. Transparent) will draw in order from lowest to highest within the system. The default value is 0."
+    ],
+    "MotionVectorSetting": [
+      "ENiagaraRendererMotionVectorSetting",
+      2,
+      "Hint about how to generate motion (velocity) vectors for this renderer."
+    ],
+    "bAllowInCullProxies": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,38 @@
+{
+  "name": "FInputAxisProperties",
+  "isStruct": true,
+  "doc": "Configurable properties for control axes, used to transform raw input into game ready values.",
+  "properties": {
+    "DeadZone": [
+      "float32",
+      2,
+      "What the dead zone of the axis is.  For control axes such as analog sticks."
+    ],
+    "Sensitivity": [
+      "float32",
+      2,
+      "Scaling factor to multiply raw value by."
+    ],
+    "Exponent": [
+      "float32",
+      2,
+      "For applying curves to [0..1] axes, e.g. analog sticks"
+    ],
+    "bInvert": [
+      "bool",
+      "Inverts reported values for this axis"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FInputAxisProperties&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInputAxisProperties"
+        }
+      ]
+    }
+  ]
+}

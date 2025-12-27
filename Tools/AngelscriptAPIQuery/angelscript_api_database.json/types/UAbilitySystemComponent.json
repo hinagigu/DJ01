@@ -1,0 +1,968 @@
+{
+  "name": "UAbilitySystemComponent",
+  "inherits": "UGameplayTasksComponent",
+  "doc": "The core ActorComponent for interfacing with the GameplayAbilities System",
+  "properties": {
+    "DefaultStartingData": [
+      "TArray<FAttributeDefaults>",
+      2,
+      ""
+    ],
+    "AffectedAnimInstanceTag": [
+      "FName",
+      "The linked Anim Instance that this component will play montages in. Use NAME_None for the main anim instance."
+    ],
+    "ActivatableAbilities": [
+      "FGameplayAbilitySpecContainer",
+      1,
+      "The abilities we can activate.\n        -This will include CDOs for non instanced abilities and per-execution instanced abilities.\n        -Actor-instanced abilities will be the actual instance (not CDO)\n\nThis array is not vital for things to work. It is a convenience thing for 'giving abilities to the actor'. But abilities could also work on things\nwithout an AbilitySystemComponent. For example an ability could be written to execute on a StaticMeshActor. As long as the ability doesn't require\ninstancing or anything else that the AbilitySystemComponent would provide, then it doesn't need the component to function."
+    ]
+  },
+  "methods": [
+    {
+      "name": "ApplyGameplayEffectSpecToSelf",
+      "return": "FActiveGameplayEffectHandle",
+      "doc": "Applies a previously created gameplay effect spec to this component",
+      "ufunction": true,
+      "unrealname": "BP_ApplyGameplayEffectSpecToSelf",
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "ApplyGameplayEffectSpecToTarget",
+      "return": "FActiveGameplayEffectHandle",
+      "doc": "Applies a previously created gameplay effect spec to a target",
+      "ufunction": true,
+      "unrealname": "BP_ApplyGameplayEffectSpecToTarget",
+      "meta": null,
+      "args": [
+        {
+          "name": "SpecHandle",
+          "type": "FGameplayEffectSpecHandle"
+        },
+        {
+          "name": "Target",
+          "type": "UAbilitySystemComponent"
+        }
+      ]
+    },
+    {
+      "name": "ApplyGameplayEffectToSelf",
+      "return": "FActiveGameplayEffectHandle",
+      "doc": "Apply a gameplay effect to self",
+      "ufunction": true,
+      "unrealname": "BP_ApplyGameplayEffectToSelf",
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayEffectClass",
+          "type": "TSubclassOf<UGameplayEffect>"
+        },
+        {
+          "name": "Level",
+          "type": "float32"
+        },
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "ApplyGameplayEffectToTarget",
+      "return": "FActiveGameplayEffectHandle",
+      "doc": "Apply a gameplay effect to passed in target",
+      "ufunction": true,
+      "unrealname": "BP_ApplyGameplayEffectToTarget",
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayEffectClass",
+          "type": "TSubclassOf<UGameplayEffect>"
+        },
+        {
+          "name": "Target",
+          "type": "UAbilitySystemComponent"
+        },
+        {
+          "name": "Level",
+          "type": "float32"
+        },
+        {
+          "name": "Context",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "ClearAbility",
+      "return": "void",
+      "doc": "Removes the specified ability.\nThis will be ignored if the actor is not authoritative.\n\n@param Handle Ability Spec Handle of the ability we want to remove",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FGameplayAbilitySpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "ClearAllAbilities",
+      "return": "void",
+      "doc": "Wipes all 'given' abilities. This will be ignored if the actor is not authoritative.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearAllAbilitiesWithInputID",
+      "return": "void",
+      "doc": "Clears all abilities bound to a given Input ID\nThis will be ignored if the actor is not authoritative\n\n@param InputID The numeric Input ID of the abilities to remove",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputID",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ClientActivateAbilityFailed",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityToActivate",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "PredictionKey",
+          "type": "int16"
+        }
+      ]
+    },
+    {
+      "name": "ClientCancelAbility",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityToCancel",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "ActivationInfo",
+          "type": "FGameplayAbilityActivationInfo"
+        }
+      ]
+    },
+    {
+      "name": "ClientEndAbility",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityToEnd",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "ActivationInfo",
+          "type": "FGameplayAbilityActivationInfo"
+        }
+      ]
+    },
+    {
+      "name": "ClientPrintDebug_Response",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "Strings",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "GameFlags",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ClientTryActivateAbility",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityToActivate",
+          "type": "FGameplayAbilitySpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "FindAllAbilitiesMatchingQuery",
+      "return": "void",
+      "const": true,
+      "doc": "Returns an array with all abilities that match the provided Gameplay Tag Query\n\n@param OutAbilityHandles This array will be filled with matching Ability Spec Handles\n@param Query Gameplay Tag Query to match",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutAbilityHandles",
+          "type": "TArray<FGameplayAbilitySpecHandle>&"
+        },
+        {
+          "name": "Query",
+          "type": "FGameplayTagQuery"
+        }
+      ]
+    },
+    {
+      "name": "FindAllAbilitiesWithInputID",
+      "return": "void",
+      "const": true,
+      "doc": "Returns an array with all abilities bound to an Input ID value\n\n@param OutAbilityHandles This array will be filled with matching Ability Spec Handles\n@param InputID The Input ID to match",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutAbilityHandles",
+          "type": "TArray<FGameplayAbilitySpecHandle>&"
+        },
+        {
+          "name": "InputID",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "FindAllAbilitiesWithTags",
+      "return": "void",
+      "const": true,
+      "doc": "Returns an array with all abilities that match the provided tags\n\n@param OutAbilityHandles This array will be filled with matching Ability Spec Handles\n@param Tags Gameplay Tags to match\n@param bExactMatch If true, tags must be matched exactly. Otherwise, abilities matching any of the tags will be returned",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutAbilityHandles",
+          "type": "TArray<FGameplayAbilitySpecHandle>&"
+        },
+        {
+          "name": "Tags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "bExactMatch",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveEffects",
+      "return": "TArray<FActiveGameplayEffectHandle>",
+      "const": true,
+      "doc": "Returns list of active effects, for a query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Query",
+          "type": "FGameplayEffectQuery"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveEffectsWithAllTags",
+      "return": "TArray<FActiveGameplayEffectHandle>",
+      "const": true,
+      "doc": "Returns list of active effects that have all of the passed in tags",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "GetAllAbilities",
+      "return": "void",
+      "const": true,
+      "doc": "Returns an array with all granted ability handles\nNOTE: currently this doesn't include abilities that are mid-activation\n\n@param OutAbilityHandles This array will be filled with the granted Ability Spec Handles",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutAbilityHandles",
+          "type": "TArray<FGameplayAbilitySpecHandle>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAllAttributes",
+      "return": "void",
+      "doc": "Returns a list of all attributes for this abilty system component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutAttributes",
+          "type": "TArray<FGameplayAttribute>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAttributeSet",
+      "return": "const UAttributeSet",
+      "const": true,
+      "doc": "Returns a reference to the Attribute Set instance, if one exists in this component\n\n@param AttributeSetClass The type of attribute set to look for\n@param bFound Set to true if an instance of the Attribute Set exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAttributeSet>"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayAttributeValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Returns the current value of the given gameplay attribute, or zero if the attribute is not found.\nNOTE: This doesn't take predicted gameplay effect modifiers into consideration, so the value may not be accurate on clients at all times.\n\n@param Attribute The gameplay attribute to query\n@param bFound Set to true if the attribute exists in this component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "bFound",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayEffectCount",
+      "return": "int",
+      "const": true,
+      "doc": "Get the count of the specified source effect on the ability system component. For non-stacking effects, this is the sum of all active instances.\nFor stacking effects, this is the sum of all valid stack counts. If an instigator is specified, only effects from that instigator are counted.\n\n@param SourceGameplayEffect                                  Effect to get the count of\n@param OptionalInstigatorFilterComponent             If specified, only count effects applied by this ability system component\n\n@return Count of the specified source effect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceGameplayEffect",
+          "type": "TSubclassOf<UGameplayEffect>"
+        },
+        {
+          "name": "OptionalInstigatorFilterComponent",
+          "type": "UAbilitySystemComponent"
+        },
+        {
+          "name": "bEnforceOnGoingCheck",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayEffectCount_IfLoaded",
+      "return": "int",
+      "const": true,
+      "doc": "Get the count of the specified source effect on the ability system component. For non-stacking effects, this is the sum of all active instances.\nFor stacking effects, this is the sum of all valid stack counts. If an instigator is specified, only effects from that instigator are counted.\n\n@param SoftSourceGameplayEffect                              Effect to get the count of. If this is not currently loaded, the count is 0\n@param OptionalInstigatorFilterComponent             If specified, only count effects applied by this ability system component\n\n@return Count of the specified source effect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoftSourceGameplayEffect",
+          "type": "TSoftClassPtr<UGameplayEffect>"
+        },
+        {
+          "name": "OptionalInstigatorFilterComponent",
+          "type": "UAbilitySystemComponent"
+        },
+        {
+          "name": "bEnforceOnGoingCheck",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayEffectMagnitude",
+      "return": "float32",
+      "const": true,
+      "doc": "Raw accessor to ask the magnitude of a gameplay effect, not necessarily always correct. How should outside code (UI, etc) ask things like 'how much is this gameplay effect modifying my damage by'\n(most likely we want to catch this on the backend - when damage is applied we can get a full dump/history of how the number got to where it is. But still we may need polling methods like below (how much would my damage be)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FActiveGameplayEffectHandle"
+        },
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayTagCount",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the current count of the given gameplay tag.\nThis includes both loose tags, and tags granted by gameplay effects and abilities.\nThis function can be called on the client, but it may not display the most current count on the server.\n\n@param GameplayTag The gameplay tag to query",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "GetUserAbilityActivationInhibited",
+      "return": "bool",
+      "const": true,
+      "doc": "This is meant to be used to inhibit activating an ability from an input perspective. (E.g., the menu is pulled up, another game mechanism is consuming all input, etc)\nThis should only be called on locally owned players.\nThis should not be used to game mechanics like silences or disables. Those should be done through gameplay effects.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InputCancel",
+      "return": "void",
+      "doc": "Sends a local player Input Cancel event, notifying abilities",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InputConfirm",
+      "return": "void",
+      "doc": "Sends a local player Input Confirm event, notifying abilities",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsGameplayCueActive",
+      "return": "bool",
+      "const": true,
+      "doc": "Allows polling to see if a GameplayCue is active. We expect most GameplayCue handling to be event based, but some cases we may need to check if a GameplayCue is active (Animation Blueprint for example)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "GiveAbility",
+      "return": "FGameplayAbilitySpecHandle",
+      "doc": "Grants a Gameplay Ability and returns its handle.\nThis will be ignored if the actor is not authoritative.\n\n@param AbilityClass Type of ability to grant\n@param Level Level to grant the ability at\n@param InputID Input ID value to bind ability activation to.",
+      "ufunction": true,
+      "unrealname": "K2_GiveAbility",
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityClass",
+          "type": "TSubclassOf<UGameplayAbility>"
+        },
+        {
+          "name": "Level",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "InputID",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GiveAbilityAndActivateOnce",
+      "return": "FGameplayAbilitySpecHandle",
+      "doc": "Grants a Gameplay Ability, activates it once, and removes it.\nThis will be ignored if the actor is not authoritative.\n\n@param AbilityClass Type of ability to grant\n@param Level Level to grant the ability at\n@param InputID Input ID value to bind ability activation to.",
+      "ufunction": true,
+      "unrealname": "K2_GiveAbilityAndActivateOnce",
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityClass",
+          "type": "TSubclassOf<UGameplayAbility>"
+        },
+        {
+          "name": "Level",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "InputID",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "InitStats",
+      "return": "void",
+      "ufunction": true,
+      "unrealname": "K2_InitStats",
+      "meta": null,
+      "args": [
+        {
+          "name": "Attributes",
+          "type": "TSubclassOf<UAttributeSet>"
+        },
+        {
+          "name": "DataTable",
+          "type": "const UDataTable"
+        }
+      ]
+    },
+    {
+      "name": "MakeEffectContext",
+      "return": "FGameplayEffectContextHandle",
+      "const": true,
+      "doc": "Create an EffectContext for the owner of this AbilitySystemComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "MakeOutgoingSpec",
+      "return": "FGameplayEffectSpecHandle",
+      "const": true,
+      "doc": "Get an outgoing GameplayEffectSpec that is ready to be applied to other things.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayEffectClass",
+          "type": "TSubclassOf<UGameplayEffect>"
+        },
+        {
+          "name": "Level",
+          "type": "float32"
+        },
+        {
+          "name": "Context",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "PressInputID",
+      "return": "void",
+      "doc": "* Sends a local player Input Pressed event with the provided Input ID, notifying any bound abilities\n*\n* @param InputID The Input ID to match",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputID",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReleaseInputID",
+      "return": "void",
+      "doc": "Sends a local player Input Released event with the provided Input ID, notifying any bound abilities\n@param InputID The Input ID to match",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputID",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActiveEffectsWithAppliedTags",
+      "return": "int",
+      "doc": "Removes all active effects that apply any of the tags in Tags",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActiveEffectsWithGrantedTags",
+      "return": "int",
+      "doc": "Removes all active effects that grant any of the tags in Tags",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActiveEffectsWithSourceTags",
+      "return": "int",
+      "doc": "Removes all active effects with captured source tags that contain any of the tags in Tags",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActiveEffectsWithTags",
+      "return": "int",
+      "doc": "Removes all active effects that contain any of the tags in Tags",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActiveGameplayEffect",
+      "return": "bool",
+      "doc": "Removes GameplayEffect by Handle. StacksToRemove=-1 will remove all stacks.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FActiveGameplayEffectHandle"
+        },
+        {
+          "name": "StacksToRemove",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActiveGameplayEffectBySourceEffect",
+      "return": "void",
+      "doc": "Remove active gameplay effects whose backing definition are the specified gameplay effect class\n\n@param GameplayEffect                                        Class of gameplay effect to remove; Does nothing if left null\n@param InstigatorAbilitySystemComponent      If specified, will only remove gameplay effects applied from this instigator ability system component\n@param StacksToRemove                                        Number of stacks to remove, -1 means remove all",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayEffect",
+          "type": "TSubclassOf<UGameplayEffect>"
+        },
+        {
+          "name": "InstigatorAbilitySystemComponent",
+          "type": "UAbilitySystemComponent"
+        },
+        {
+          "name": "StacksToRemove",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ServerCancelAbility",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityToCancel",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "ActivationInfo",
+          "type": "FGameplayAbilityActivationInfo"
+        }
+      ]
+    },
+    {
+      "name": "ServerCurrentMontageJumpToSectionName",
+      "return": "void",
+      "callable": false,
+      "doc": "RPC function called from CurrentMontageJumpToSection, replicates to other clients",
+      "meta": null,
+      "args": [
+        {
+          "name": "ClientAnimation",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "SectionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ServerCurrentMontageSetNextSectionName",
+      "return": "void",
+      "callable": false,
+      "doc": "RPC function called from CurrentMontageSetNextSectionName, replicates to other clients",
+      "meta": null,
+      "args": [
+        {
+          "name": "ClientAnimation",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "ClientPosition",
+          "type": "float32"
+        },
+        {
+          "name": "SectionName",
+          "type": "FName"
+        },
+        {
+          "name": "NextSectionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ServerCurrentMontageSetPlayRate",
+      "return": "void",
+      "callable": false,
+      "doc": "RPC function called from CurrentMontageSetPlayRate, replicates to other clients",
+      "meta": null,
+      "args": [
+        {
+          "name": "ClientAnimation",
+          "type": "UAnimSequenceBase"
+        },
+        {
+          "name": "InPlayRate",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ServerPrintDebug_Request",
+      "return": "void",
+      "callable": false,
+      "doc": "Ask the server to send ability system debug information back to the client, via ClientPrintDebug_Response",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ServerPrintDebug_RequestWithStrings",
+      "return": "void",
+      "callable": false,
+      "doc": "Same as ServerPrintDebug_Request but this includes the client debug strings so that the server can embed them in replays",
+      "meta": null,
+      "args": [
+        {
+          "name": "Strings",
+          "type": "TArray<FString>"
+        }
+      ]
+    },
+    {
+      "name": "ServerSetInputPressed",
+      "return": "void",
+      "callable": false,
+      "doc": "Direct Input state replication. These will be called if bReplicateInputDirectly is true on the ability and is generally not a good thing to use. (Instead, prefer to use Generic Replicated Events).",
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityHandle",
+          "type": "FGameplayAbilitySpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "ServerSetInputReleased",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityHandle",
+          "type": "FGameplayAbilitySpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "SetActiveGameplayEffectLevel",
+      "return": "void",
+      "doc": "Updates the level of an already applied gameplay effect. The intention is that this is 'seemless' and doesnt behave like removing/reapplying",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActiveHandle",
+          "type": "FActiveGameplayEffectHandle"
+        },
+        {
+          "name": "NewLevel",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetActiveGameplayEffectLevelUsingQuery",
+      "return": "void",
+      "doc": "Updates the level of an already applied gameplay effect. The intention is that this is 'seemless' and doesnt behave like removing/reapplying",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Query",
+          "type": "FGameplayEffectQuery"
+        },
+        {
+          "name": "NewLevel",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetUserAbilityActivationInhibited",
+      "return": "void",
+      "doc": "Disable or Enable a local user from being able to activate abilities. This should only be used for input/UI etc related inhibition. Do not use for game mechanics.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewInhibit",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "TargetCancel",
+      "return": "void",
+      "doc": "Any active targeting actors will be stopped and canceled, not returning any targeting data",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "TargetConfirm",
+      "return": "void",
+      "doc": "Any active targeting actors will be told to stop and return current targeting data",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "TryActivateAbilitiesByTag",
+      "return": "bool",
+      "doc": "Attempts to activate every gameplay ability that matches the given tag and DoesAbilitySatisfyTagRequirements().\nReturns true if anything attempts to activate. Can activate more than one ability and the ability may fail later.\nIf bAllowRemoteActivation is true, it will remotely activate local/server abilities, if false it will only try to locally activate abilities.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTagContainer",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "bAllowRemoteActivation",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "TryActivateAbility",
+      "return": "bool",
+      "doc": "Attempts to activate the given ability, will check costs and requirements before doing so.\nReturns true if it thinks it activated, but it may return false positives due to failure later in activation.\nIf bAllowRemoteActivation is true, it will remotely activate local/server abilities, if false it will only try to locally activate the ability",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityToActivate",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "bAllowRemoteActivation",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "TryActivateAbilityByClass",
+      "return": "bool",
+      "doc": "Attempts to activate the ability that is passed in. This will check costs and requirements before doing so.\nReturns true if it thinks it activated, but it may return false positives due to failure later in activation.\nIf bAllowRemoteActivation is true, it will remotely activate local/server abilities, if false it will only try to locally activate the ability",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAbilityToActivate",
+          "type": "TSubclassOf<UGameplayAbility>"
+        },
+        {
+          "name": "bAllowRemoteActivation",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UpdateActiveGameplayEffectSetByCallerMagnitude",
+      "return": "void",
+      "doc": "Dynamically update the set-by-caller magnitude for an active gameplay effect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActiveHandle",
+          "type": "FActiveGameplayEffectHandle"
+        },
+        {
+          "name": "SetByCallerTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "UpdateActiveGameplayEffectSetByCallerMagnitudes",
+      "return": "void",
+      "doc": "Dynamically update multiple set-by-caller magnitudes for an active gameplay effect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ActiveHandle",
+          "type": "FActiveGameplayEffectHandle"
+        },
+        {
+          "name": "NewSetByCallerValues",
+          "type": "TMap<FGameplayTag,float32>"
+        }
+      ]
+    }
+  ]
+}

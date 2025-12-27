@@ -1,0 +1,47 @@
+{
+  "name": "UCommonUISubsystemBase",
+  "inherits": "UGameInstanceSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetEnhancedInputActionButtonIcon",
+      "return": "FSlateBrush",
+      "const": true,
+      "doc": "Gets Action Button Icon for given action and player, enhanced input API currently does not allow input type specification",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputAction",
+          "type": "const UInputAction"
+        },
+        {
+          "name": "LocalPlayer",
+          "type": "const ULocalPlayer"
+        }
+      ]
+    },
+    {
+      "name": "GetInputActionButtonIcon",
+      "return": "FSlateBrush",
+      "const": true,
+      "doc": "Gets Action Button Icon for current gamepad",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputActionRowHandle",
+          "type": "FDataTableRowHandle"
+        },
+        {
+          "name": "InputType",
+          "type": "ECommonInputType"
+        },
+        {
+          "name": "GamepadName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "UNiagaraVersionMetaData",
+  "inherits": "UObject",
+  "properties": {
+    "bIsExposedVersion": [
+      "bool",
+      2,
+      "If true then this version is exposed to the user and is used as the default version for new assets."
+    ],
+    "ChangeDescription": [
+      "FText",
+      2,
+      "Changelist displayed to the user when upgrading to a new script version."
+    ],
+    "bIsVisibleInVersionSelector": [
+      "bool",
+      2,
+      "If false then this version is not visible in the version selector dropdown menu of the stack. This is useful to hide work in progress versions without removing the module from the search menu.\nThe exposed version is always visible to users."
+    ],
+    "bDeprecated": [
+      "bool",
+      2,
+      "True if this asset version is deprecated and should no longer be used."
+    ],
+    "DeprecationMessage": [
+      "FText",
+      2,
+      "Message to display when the asset is used in an emitter."
+    ],
+    "UpdateScriptExecution": [
+      "ENiagaraPythonUpdateScriptReference",
+      2,
+      "Reference to a python script that is executed when the user updates from a previous version to this version."
+    ],
+    "PythonUpdateScript": [
+      "FString",
+      2,
+      "Python script to run when updating to this script version."
+    ],
+    "ScriptAsset": [
+      "FFilePath",
+      2,
+      "Asset reference to a python script to run when updating to this script version."
+    ]
+  },
+  "methods": []
+}

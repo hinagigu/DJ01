@@ -1,0 +1,68 @@
+{
+  "name": "USimplifyMeshToolProperties",
+  "inherits": "UMeshConstraintProperties",
+  "doc": "Standard properties of the Simplify operation",
+  "properties": {
+    "SimplifierType": [
+      "ESimplifyType",
+      2,
+      "Simplification Scheme"
+    ],
+    "TargetMode": [
+      "ESimplifyTargetType",
+      2,
+      "Simplification Target Type"
+    ],
+    "TargetPercentage": [
+      "int",
+      2,
+      "Target percentage of original triangle count"
+    ],
+    "TargetEdgeLength": [
+      "float32",
+      2,
+      "Target edge length"
+    ],
+    "TargetTriangleCount": [
+      "int",
+      2,
+      "Target triangle count"
+    ],
+    "TargetVertexCount": [
+      "int",
+      2,
+      "Target vertex count"
+    ],
+    "PolyEdgeAngleTolerance": [
+      "float32",
+      2,
+      "Threshold angle change (in degrees) along a polygroup edge, above which a vertex must be added"
+    ],
+    "bDiscardAttributes": [
+      "bool",
+      2,
+      "Discard UVs and existing normals, allowing the simplifier to ignore any UV and normal seams. New per-vertex normals are computed."
+    ],
+    "bGeometricConstraint": [
+      "bool",
+      2,
+      "If true, then simplification will consider geometric deviation with the input mesh"
+    ],
+    "GeometricTolerance": [
+      "float32",
+      2,
+      "Geometric deviation tolerance used when bGeometricConstraint is enabled, to limit the geometric deviation between the simplified and original meshes"
+    ],
+    "bShowGroupColors": [
+      "bool",
+      2,
+      "Display colors corresponding to the mesh's polygon groups"
+    ],
+    "bReproject": [
+      "bool",
+      2,
+      "Enable projection back to input mesh"
+    ]
+  },
+  "methods": []
+}

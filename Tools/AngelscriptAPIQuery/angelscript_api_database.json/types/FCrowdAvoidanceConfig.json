@@ -1,0 +1,69 @@
+{
+  "name": "FCrowdAvoidanceConfig",
+  "isStruct": true,
+  "doc": "Crowd manager is responsible for handling crowds using Detour (Recast library)\n\nAgents will respect navmesh for all steering and avoidance updates,\nbut it's slower than AvoidanceManager solution (RVO, cares only about agents)\n\nAll agents will operate on the same navmesh data, which will be picked from\nnavigation system defaults (UNavigationSystemV1::SupportedAgents[0])\n\nTo use it, you have to add CrowdFollowingComponent to your agent\n(usually: replace class of PathFollowingComponent in AIController by adding\n those lines in controller's constructor\n\n ACrowdAIController::ACrowdAIController(const FObjectInitializer& ObjectInitializer)\n     : Super(ObjectInitializer.SetDefaultSubobjectClass<UCrowdFollowingComponent>(TEXT(\"PathFollowingComponent\")))\n\n or simply add both components and switch move requests between them)\n\nActors that should be avoided, but are not being simulated by crowd (like players)\nshould implement CrowdAgentInterface AND register/unregister themselves with crowd manager:\n\n UCrowdManager* CrowdManager = UCrowdManager::GetCurrent(this);\n if (CrowdManager)\n {\n    CrowdManager->RegisterAgent(this);\n }\n\n Check flags in CrowdDebugDrawing namespace (CrowdManager.cpp) for debugging options.",
+  "properties": {
+    "VelocityBias": [
+      "float32",
+      2,
+      ""
+    ],
+    "DesiredVelocityWeight": [
+      "float32",
+      2,
+      ""
+    ],
+    "CurrentVelocityWeight": [
+      "float32",
+      2,
+      ""
+    ],
+    "SideBiasWeight": [
+      "float32",
+      2,
+      ""
+    ],
+    "ImpactTimeWeight": [
+      "float32",
+      2,
+      ""
+    ],
+    "ImpactTimeRange": [
+      "float32",
+      2,
+      ""
+    ],
+    "CustomPatternIdx": [
+      "uint8",
+      2,
+      "index in SamplingPatterns array or 0xff for adaptive sampling"
+    ],
+    "AdaptiveDivisions": [
+      "uint8",
+      2,
+      "adaptive sampling: number of divisions per ring"
+    ],
+    "AdaptiveRings": [
+      "uint8",
+      2,
+      "adaptive sampling: number of rings"
+    ],
+    "AdaptiveDepth": [
+      "uint8",
+      2,
+      "adaptive sampling: number of iterations at best velocity"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCrowdAvoidanceConfig&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCrowdAvoidanceConfig"
+        }
+      ]
+    }
+  ]
+}

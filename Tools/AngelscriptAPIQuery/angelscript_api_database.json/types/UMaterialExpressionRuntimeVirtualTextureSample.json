@@ -1,0 +1,48 @@
+{
+  "name": "UMaterialExpressionRuntimeVirtualTextureSample",
+  "inherits": "UMaterialExpression",
+  "doc": "Material expression for sampling from a runtime virtual texture.",
+  "properties": {
+    "VirtualTexture": [
+      "URuntimeVirtualTexture",
+      2,
+      "The virtual texture object to sample."
+    ],
+    "MaterialType": [
+      "ERuntimeVirtualTextureMaterialType",
+      2,
+      "How to interpret the virtual texture contents. Note that the bound Virtual Texture should have the same setting for sampling to work correctly."
+    ],
+    "bSinglePhysicalSpace": [
+      "bool",
+      2,
+      "Enable page table channel packing. Note that the bound Virtual Texture should have the same setting for sampling to work correctly."
+    ],
+    "bAdaptive": [
+      "bool",
+      2,
+      "Enable sparse adaptive page tables. Note that the bound Virtual Texture should have valid adaptive virtual texture settings for sampling to work correctly."
+    ],
+    "bEnableFeedback": [
+      "bool",
+      2,
+      "Enable virtual texture feedback.\nDisabling this can result in the virtual texture not reaching the correct mip level.\nIt should only be used in cases where we don't care about the correct mip level being resident, or some other process is maintaining the correct level."
+    ],
+    "WorldPositionOriginType": [
+      "EPositionOrigin",
+      2,
+      "Defines the reference space for the WorldPosition input."
+    ],
+    "MipValueMode": [
+      "ERuntimeVirtualTextureMipValueMode",
+      2,
+      "Defines how the mip level is calculated for the virtual texture lookup."
+    ],
+    "TextureAddressMode": [
+      "ERuntimeVirtualTextureTextureAddressMode",
+      2,
+      "Defines the texture addressing mode."
+    ]
+  },
+  "methods": []
+}

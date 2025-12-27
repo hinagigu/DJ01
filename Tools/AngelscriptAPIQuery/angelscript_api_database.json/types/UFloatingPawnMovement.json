@@ -1,0 +1,24 @@
+{
+  "name": "UFloatingPawnMovement",
+  "inherits": "UPawnMovementComponent",
+  "doc": "FloatingPawnMovement is a movement component that provides simple movement for any Pawn class.\nLimits on speed and acceleration are provided, while gravity is not implemented.\n\nNormally the root component of the owning actor is moved, however another component may be selected (see SetUpdatedComponent()).\nDuring swept (non-teleporting) movement only collision of UpdatedComponent is considered, attached components will teleport to the end location ignoring collision.",
+  "properties": {
+    "Acceleration": [
+      "float32",
+      "Acceleration applied by input (rate of change of velocity)"
+    ],
+    "Deceleration": [
+      "float32",
+      "Deceleration applied when there is no input (rate of change of velocity)"
+    ],
+    "TurningBoost": [
+      "float32",
+      "Setting affecting extra force applied when changing direction, making turns have less drift and become more responsive.\nVelocity magnitude is not allowed to increase, that only happens due to normal acceleration. It may decrease with large direction changes.\nLarger values apply extra force to reach the target direction more quickly, while a zero value disables any extra turn force."
+    ],
+    "MaxSpeed": [
+      "float32",
+      "Maximum velocity magnitude allowed for the controlled Pawn."
+    ]
+  },
+  "methods": []
+}

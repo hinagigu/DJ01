@@ -1,0 +1,60 @@
+{
+  "name": "UTextureEncodingProjectSettings",
+  "inherits": "UDeveloperSettings",
+  "doc": "Encoding can either use the \"Final\" or \"Fast\" speeds, for supported encoders (e.g. Oodle)\nEncode speed settings have no effect on encoders that don't support encode speed, currently limited to Oodle.",
+  "properties": {
+    "FinalRDOLambda": [
+      "int8",
+      2,
+      "Ignored if UsesRDO is false. This value is used if a given texture is using \"Default\" LossyCompressionAmount.\nOtherwise, the value of LossyCompressionAmount is translated in to a fixed lambda (see UsesRDO tooltip).\n\nLow values (1) represent highest quality (least distortion) results."
+    ],
+    "FinalEffortLevel": [
+      "ETextureEncodeEffort",
+      2,
+      "Specifies how much time to take trying for better encoding results."
+    ],
+    "FinalUniversalTiling": [
+      "ETextureUniversalTiling",
+      2,
+      "Specifies how to assume textures are laid out on disc. This only applies to Oodle with RDO\nenabled. 256 KB is a good middle ground. Enabling this will decrease the on-disc\nsizes of textures for platforms with exposed texture tiling (i.e. consoles), but will slightly increase\nsizes of textures for platforms with opaque tiling (i.e. desktop)."
+    ],
+    "FastRDOLambda": [
+      "int8",
+      2,
+      "Ignored if UsesRDO is false. This value is used if a given texture is using \"Default\" LossyCompressionAmount.\nOtherwise, the value of LossyCompressionAmount is translated in to a fixed lambda (see UsesRDO tooltip).\n\nLow values (1) represent highest quality (least distortion) results."
+    ],
+    "FastEffortLevel": [
+      "ETextureEncodeEffort",
+      2,
+      "Specifies how much time to take trying for better encode results."
+    ],
+    "FastUniversalTiling": [
+      "ETextureUniversalTiling",
+      2,
+      "Specifies how to assume textures are laid out on disc. This only applies to Oodle with RDO\nenabled. 256 KB is a good middle ground. Enabling this will decrease the on-disc\nsizes of textures for platforms with exposed texture tiling (i.e. consoles), but will slightly increase\nsizes of textures for platforms with opaque tiling (i.e. desktop)."
+    ],
+    "CookUsesSpeed": [
+      "ETextureEncodeSpeed",
+      2,
+      "Which encode speed non interactive editor sessions will use (i.e. commandlets)"
+    ],
+    "EditorUsesSpeed": [
+      "ETextureEncodeSpeed",
+      2,
+      "Which encode speed everything else uses."
+    ],
+    "bSharedLinearTextureEncoding": [
+      "bool",
+      "If true, platforms that want to take a linearly encoded texture and then tile them\nwill try to reuse the linear texture rather than encode it for every platform. This can result in\nmassive speedups for texture building as tiling is very fast compared to encoding. So instead of:\n\n      Host Platform: Linear encode\n      Console 1: Linear encode + platform specific tile\n      Console 2: Linear encode + platform specific tile\n\nyou instead get:\n      Host platform: Linear encode\n      Console 1: fetch linear + platform specific tile\n      Console 2: fetch linear + platform specific tile\n\nNote that this has no effect on cook time, only build time - once the texture is in the DDC this has no\neffect."
+    ],
+    "bFinalUsesRDO": [
+      "bool",
+      "If true, Final encode speed enables rate-distortion optimization on supported encoders to\ndecrease *on disc* size of textures in compressed package files.\nThis rate-distortion tradeoff is controlled via \"Lambda\". The \"LossyCompressionAmount\" parameter on\ntextures is used to control it. Specific LossyCompressionAmount values correspond to\nto RDO lambdas of:\n\n      None - Disable RDO for this texture.\n      Lowest - 1 (Least distortion)\n      Low - 10\n      Medium - 20\n      High - 30\n      Highest - 40\n\nIf set to Default, then the LossyCompressionAmount in the LODGroup for the texture is\nused. If that is also Default, then the RDOLambda in these settings is used.\n\nNote that any distortion introduced is on top of, and likely less than, any introduced by the format itself."
+    ],
+    "bFastUsesRDO": [
+      "bool",
+      "If true, Final encode speed enables rate-distortion optimization on supported encoders to\ndecrease *on disc* size of textures in compressed package files.\nThis rate-distortion tradeoff is controlled via \"Lambda\". The \"LossyCompressionAmount\" parameter on\ntextures is used to control it. Specific LossyCompressionAmount values correspond to\nto RDO lambdas of:\n\n      None - Disable RDO for this texture.\n      Lowest - 1 (Least distortion)\n      Low - 10\n      Medium - 20\n      High - 30\n      Highest - 40\n\nIf set to Default, then the LossyCompressionAmount in the LODGroup for the texture is\nused. If that is also Default, then the RDOLambda in these settings is used.\n\nNote that any distortion introduced is on top of, and likely less than, any introduced by the format itself."
+    ]
+  },
+  "methods": []
+}

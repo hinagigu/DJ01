@@ -1,0 +1,39 @@
+{
+  "name": "FBranchFloatDataflowNode",
+  "isStruct": true,
+  "doc": "Branch between two float inputs based on boolean condition",
+  "properties": {
+    "A": [
+      "float32",
+      2,
+      "Float input"
+    ],
+    "B": [
+      "float32",
+      2,
+      "Float input"
+    ],
+    "bCondition": [
+      "bool",
+      2,
+      "If true, Output = A, otherwise Output = B"
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FBranchFloatDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBranchFloatDataflowNode"
+        }
+      ]
+    }
+  ]
+}

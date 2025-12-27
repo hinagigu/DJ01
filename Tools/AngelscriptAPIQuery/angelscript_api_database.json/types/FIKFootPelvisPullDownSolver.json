@@ -1,0 +1,43 @@
+{
+  "name": "FIKFootPelvisPullDownSolver",
+  "isStruct": true,
+  "properties": {
+    "PelvisAdjustmentInterp": [
+      "FVectorRK4SpringInterpolator",
+      2,
+      "Specifies the spring interpolation parameters applied during pelvis adjustment"
+    ],
+    "PelvisAdjustmentInterpAlpha": [
+      "float",
+      2,
+      "Specifies an alpha between the original and final adjusted pelvis locations\nThis is used to retain some degree of the original pelvis motion"
+    ],
+    "PelvisAdjustmentMaxDistance": [
+      "float",
+      2,
+      "Specifies the maximum displacement the pelvis can be adjusted relative to its original location"
+    ],
+    "PelvisAdjustmentErrorTolerance": [
+      "float",
+      2,
+      "Specifies the pelvis adjustment distance error that is tolerated for each iteration of the solver\n\nWhen it is detected that the pelvis adjustment distance is incrementing at a value lower or equal\nto this value for each iteration, the solve will halt. Lower values will marginally increase visual\nquality at the cost of performance, but may require a higher PelvisAdjustmentMaxIter to be specified\n\nThe default value of 0.01 specifies 1 centimeter of error"
+    ],
+    "PelvisAdjustmentMaxIter": [
+      "int",
+      2,
+      "Specifies the maximum number of iterations to run for the pelvis adjustment solver\nHigher iterations will guarantee closer PelvisAdjustmentErrorTolerance convergence at the cost of performance"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FIKFootPelvisPullDownSolver&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FIKFootPelvisPullDownSolver"
+        }
+      ]
+    }
+  ]
+}

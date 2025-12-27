@@ -1,0 +1,69 @@
+{
+  "name": "ADynamicMeshActor",
+  "inherits": "AActor",
+  "doc": "ADynamicMeshActor is an Actor that has a USimpleDynamicMeshComponent as it's RootObject.",
+  "properties": {
+    "bEnableComputeMeshPool": [
+      "bool",
+      "Control whether the DynamicMeshPool will be created when requested via GetComputeMeshPool()"
+    ],
+    "DynamicMeshComponent": [
+      "UDynamicMeshComponent"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AllocateComputeMesh",
+      "return": "UDynamicMesh",
+      "doc": "Request a compute mesh from the Pool, which will return a previously-allocated mesh or add and return a new one. If the Pool is disabled, a new UDynamicMesh will be allocated and returned.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FreeAllComputeMeshes",
+      "return": "void",
+      "doc": "Release all compute meshes that the Pool has allocated, and then release them from the Pool, so that they will be garbage-collected",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetComputeMeshPool",
+      "return": "UDynamicMeshPool",
+      "doc": "Access the compute mesh pool",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDynamicMeshComponent",
+      "return": "UDynamicMeshComponent",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReleaseAllComputeMeshes",
+      "return": "void",
+      "doc": "Release all compute meshes that the Pool has allocated",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReleaseComputeMesh",
+      "return": "bool",
+      "doc": "Release a compute mesh back to the Pool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Mesh",
+          "type": "UDynamicMesh"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "FGameplayEffectRemovalInfo",
+  "isStruct": true,
+  "doc": "Data struct for containing information pertinent to GameplayEffects as they are removed",
+  "properties": {
+    "bPrematureRemoval": [
+      "bool",
+      1,
+      "True when the gameplay effect's duration has not expired, meaning the gameplay effect is being forcefully removed."
+    ],
+    "StackCount": [
+      "int",
+      1,
+      "Number of Stacks this gameplay effect had before it was removed."
+    ],
+    "EffectContext": [
+      "FGameplayEffectContextHandle",
+      1,
+      "Actor this gameplay effect was targeting."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayEffectRemovalInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayEffectRemovalInfo"
+        }
+      ]
+    }
+  ]
+}

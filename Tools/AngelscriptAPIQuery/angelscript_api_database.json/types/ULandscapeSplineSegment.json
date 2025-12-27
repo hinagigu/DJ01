@@ -1,0 +1,100 @@
+{
+  "name": "ULandscapeSplineSegment",
+  "inherits": "UObject",
+  "properties": {
+    "Connections": [
+      "FLandscapeSplineSegmentConnection",
+      2,
+      "Directly editable data:"
+    ],
+    "LayerName": [
+      "FName",
+      2,
+      "Name of blend layer to paint when applying spline to landscape\nIf \"none\", no layer is painted"
+    ],
+    "SplineMeshes": [
+      "TArray<FLandscapeSplineMeshEntry>",
+      2,
+      "Spline meshes from this list are used in random order along the spline."
+    ],
+    "RandomSeed": [
+      "int",
+      2,
+      "Random seed used for choosing which order to use spline meshes. Ignored if only one mesh is set."
+    ],
+    "LDMaxDrawDistance": [
+      "float32",
+      2,
+      "Max draw distance for all the mesh pieces used in this spline"
+    ],
+    "TranslucencySortPriority": [
+      "int",
+      2,
+      "Translucent objects with a lower sort priority draw behind objects with a higher priority.\nTranslucent objects with the same priority are rendered from back-to-front based on their bounds origin.\nThis setting is also used to sort objects being drawn into a runtime virtual texture.\n\nIgnored if the object is not translucent.  The default priority is zero.\nWarning: This should never be set to a non-default value unless you know what you are doing, as it will prevent the renderer from sorting correctly."
+    ],
+    "CustomDepthStencilWriteMask": [
+      "ERendererStencilMask",
+      2,
+      "Mask used for stencil buffer writes."
+    ],
+    "CustomDepthStencilValue": [
+      "int",
+      2,
+      "Optionally write this 0-255 value to the stencil buffer in CustomDepth pass (Requires project setting or r.CustomDepth == 3)"
+    ],
+    "RuntimeVirtualTextures": [
+      "TArray<TObjectPtr<URuntimeVirtualTexture>>",
+      2,
+      "Array of runtime virtual textures into which we draw the spline segment.\nThe material also needs to be set up to output to a virtual texture."
+    ],
+    "VirtualTextureLodBias": [
+      "int",
+      2,
+      "Lod bias for rendering to runtime virtual texture."
+    ],
+    "VirtualTextureCullMips": [
+      "int",
+      2,
+      "Number of lower mips in the runtime virtual texture to skip for rendering this primitive.\nLarger values reduce the effective draw distance in the runtime virtual texture.\nThis culling method doesn't take into account primitive size or virtual texture size."
+    ],
+    "VirtualTextureMainPassMaxDrawDistance": [
+      "float32",
+      2,
+      "Desired cull distance in the main pass if we are rendering to both the virtual texture AND the main pass. A value of 0 has no effect."
+    ],
+    "VirtualTextureRenderPassType": [
+      "ERuntimeVirtualTextureMainPassType",
+      2,
+      "Controls if this component draws in the main pass as well as in the virtual texture."
+    ],
+    "BodyInstance": [
+      "FBodyInstance",
+      "Mesh Collision Settings"
+    ],
+    "bRaiseTerrain": [
+      "bool",
+      "If the spline is above the terrain, whether to raise the terrain up to the level of the spline when applying it to the landscape."
+    ],
+    "bLowerTerrain": [
+      "bool",
+      "If the spline is below the terrain, whether to lower the terrain down to the level of the spline when applying it to the landscape."
+    ],
+    "bCastShadow": [
+      "bool",
+      "Whether the Spline Meshes should cast a shadow."
+    ],
+    "bHiddenInGame": [
+      "bool",
+      "Whether to hide the mesh in game"
+    ],
+    "bPlaceSplineMeshesInStreamingLevels": [
+      "bool",
+      "Whether spline meshes should be placed in landscape proxy streaming levels (true) or the spline's level (false)"
+    ],
+    "bRenderCustomDepth": [
+      "bool",
+      "If true, this component will be rendered in the CustomDepth pass (usually used for outlines)"
+    ]
+  },
+  "methods": []
+}

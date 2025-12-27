@@ -1,0 +1,23 @@
+{
+  "name": "__EGameplayEffectStackingExpirationPolicy",
+  "isEnum": true,
+  "doc": "Enumeration of policies for dealing gameplay effect stacks that expire (in duration based effects).",
+  "properties": {
+    "ClearEntireStack": [
+      "EGameplayEffectStackingExpirationPolicy",
+      "The entire stack is cleared when the active gameplay effect expires"
+    ],
+    "RemoveSingleStackAndRefreshDuration": [
+      "EGameplayEffectStackingExpirationPolicy",
+      "The current stack count will be decremented by 1 and the duration refreshed. The GE is not \"reapplied\", just continues to exist with one less stacks."
+    ],
+    "RefreshDuration": [
+      "EGameplayEffectStackingExpirationPolicy",
+      "The duration of the gameplay effect is refreshed. This essentially makes the effect infinite in duration. This can be used to manually handle stack decrements via OnStackCountChange callback"
+    ],
+    "EGameplayEffectStackingExpirationPolicy_MAX": [
+      "EGameplayEffectStackingExpirationPolicy"
+    ]
+  },
+  "methods": []
+}

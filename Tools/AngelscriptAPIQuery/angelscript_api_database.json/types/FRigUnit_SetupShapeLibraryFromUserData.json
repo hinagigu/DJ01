@@ -1,0 +1,39 @@
+{
+  "name": "FRigUnit_SetupShapeLibraryFromUserData",
+  "isStruct": true,
+  "doc": "Allows to set / add a shape library on the running control rig from user data",
+  "properties": {
+    "NameSpace": [
+      "FString",
+      "* The name space of the user data to look the shape library up within"
+    ],
+    "Path": [
+      "FString",
+      "* The path within the user data for the shape library"
+    ],
+    "LibraryName": [
+      "FString",
+      "* Optionally provide the namespace of the shape library to use.\n* This is only useful if you have multiple shape libraries and you\n* want to override a specific one."
+    ],
+    "LogShapeLibraries": [
+      "bool",
+      "* If this is checked we'll output the resulting shape libraries to the log for debugging."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SetupShapeLibraryFromUserData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SetupShapeLibraryFromUserData"
+        }
+      ]
+    }
+  ]
+}

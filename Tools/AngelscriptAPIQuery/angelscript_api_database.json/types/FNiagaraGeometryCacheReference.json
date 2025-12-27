@@ -1,0 +1,33 @@
+{
+  "name": "FNiagaraGeometryCacheReference",
+  "isStruct": true,
+  "properties": {
+    "GeometryCache": [
+      "UGeometryCache",
+      2,
+      "Reference to the geometry cache asset to use (if the user parameter binding is not set)"
+    ],
+    "GeometryCacheUserParamBinding": [
+      "FNiagaraUserParameterBinding",
+      2,
+      "Use the UGeometryCache bound to this user variable if it is set to a valid value. If this is bound to a valid value and GeometryCache is also set, GeometryCacheUserParamBinding wins."
+    ],
+    "OverrideMaterials": [
+      "TArray<TObjectPtr<UMaterialInterface>>",
+      2,
+      "The materials to be used instead of the GeometryCache's materials. If the GeometryCache requires more materials than exist in this array or any entry in this array is set to None, we will use the GeometryCache's existing material instead."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraGeometryCacheReference&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraGeometryCacheReference"
+        }
+      ]
+    }
+  ]
+}

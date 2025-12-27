@@ -1,0 +1,28 @@
+{
+  "name": "UVirtualTextureBuilder",
+  "inherits": "UObject",
+  "doc": "Container for a UVirtualTexture2D that can be built from a FVirtualTextureBuildDesc description.\nThis has a simple BuildTexture() interface but we may want to extend in the future to support partial builds\nor other more blueprint driven approaches for data generation.",
+  "properties": {
+    "Texture": [
+      "UVirtualTexture2D",
+      1,
+      "The UTexture object."
+    ],
+    "TextureMobile": [
+      "UVirtualTexture2D",
+      1,
+      "The UTexture object for Mobile rendering."
+    ],
+    "bSeparateTextureForMobile": [
+      "bool",
+      2,
+      "Whether to use a separate texture for Mobile rendering. A separate texure will be built using mobile preview editor mode"
+    ],
+    "EnableCookPerPlatform": [
+      "FPerPlatformBool",
+      2,
+      "Per platform overrides for cooking the virtual texture."
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,43 @@
+{
+  "name": "FBlackboardEntry",
+  "isStruct": true,
+  "doc": "blackboard entry definition",
+  "properties": {
+    "EntryName": [
+      "FName",
+      2,
+      ""
+    ],
+    "EntryDescription": [
+      "FString",
+      2,
+      "Optional description to explain what this blackboard entry does."
+    ],
+    "EntryCategory": [
+      "FName",
+      2,
+      ""
+    ],
+    "KeyType": [
+      "UBlackboardKeyType",
+      2,
+      "key type and additional properties"
+    ],
+    "bInstanceSynced": [
+      "bool",
+      "if set to true then this field will be synchronized across all instances of this blackboard"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FBlackboardEntry&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBlackboardEntry"
+        }
+      ]
+    }
+  ]
+}

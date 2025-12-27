@@ -1,0 +1,30 @@
+{
+  "name": "FAnimNode_CurveSource",
+  "isStruct": true,
+  "doc": "Supply curves from some external source (e.g. audio)",
+  "properties": {
+    "SourcePose": [
+      "FPoseLink"
+    ],
+    "SourceBinding": [
+      "FName",
+      "The binding of the curve source we want to bind to.\nWe will bind to an object that implements ICurveSourceInterface. First we check\nthe actor that owns this (if any), then we check each of its components to see if we should\nbind to the source that matches this name."
+    ],
+    "Alpha": [
+      "float32",
+      "How much we wan to blend the curve in by"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_CurveSource&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_CurveSource"
+        }
+      ]
+    }
+  ]
+}

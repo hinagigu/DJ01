@@ -1,0 +1,104 @@
+{
+  "name": "FGameplayCueParameters",
+  "isStruct": true,
+  "doc": "Metadata about a gameplay cue execution",
+  "properties": {
+    "NormalizedMagnitude": [
+      "float32",
+      1,
+      "Magnitude of source gameplay effect, normalzed from 0-1. Use this for \"how strong is the gameplay effect\" (0=min, 1=,max)"
+    ],
+    "RawMagnitude": [
+      "float32",
+      1,
+      "Raw final magnitude of source gameplay effect. Use this is you need to display numbers or for other informational purposes."
+    ],
+    "EffectContext": [
+      "FGameplayEffectContextHandle",
+      1,
+      "Effect context, contains information about hit result, etc"
+    ],
+    "MatchedTagName": [
+      "FGameplayTag",
+      1,
+      "The tag name that matched this specific gameplay cue handler"
+    ],
+    "OriginalTag": [
+      "FGameplayTag",
+      1,
+      "The original tag of the gameplay cue"
+    ],
+    "AggregatedSourceTags": [
+      "FGameplayTagContainer",
+      1,
+      "The aggregated source tags taken from the effect spec"
+    ],
+    "AggregatedTargetTags": [
+      "FGameplayTagContainer",
+      1,
+      "The aggregated target tags taken from the effect spec"
+    ],
+    "Location": [
+      "FVector",
+      1,
+      "Location cue took place at"
+    ],
+    "Normal": [
+      "FVector",
+      1,
+      "Normal of impact that caused cue"
+    ],
+    "Instigator": [
+      "TWeakObjectPtr<AActor>",
+      1,
+      "Instigator actor, the actor that owns the ability system component"
+    ],
+    "EffectCauser": [
+      "TWeakObjectPtr<AActor>",
+      1,
+      "The physical actor that actually did the damage, can be a weapon or projectile"
+    ],
+    "SourceObject": [
+      "TWeakObjectPtr<const UObject>",
+      1,
+      "Object this effect was created from, can be an actor or static object. Useful to bind an effect to a gameplay object"
+    ],
+    "PhysicalMaterial": [
+      "TWeakObjectPtr<const UPhysicalMaterial>",
+      1,
+      "PhysMat of the hit, if there was a hit."
+    ],
+    "GameplayEffectLevel": [
+      "int",
+      1,
+      "If originating from a GameplayEffect, the level of that GameplayEffect"
+    ],
+    "AbilityLevel": [
+      "int",
+      1,
+      "If originating from an ability, this will be the level of that ability"
+    ],
+    "TargetAttachComponent": [
+      "TWeakObjectPtr<USceneComponent>",
+      1,
+      "Could be used to say \"attach FX to this component always\""
+    ],
+    "bReplicateLocationWhenUsingMinimalRepProxy": [
+      "bool",
+      1,
+      "If we're using a minimal replication proxy, should we replicate location for this cue"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayCueParameters&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    }
+  ]
+}

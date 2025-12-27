@@ -1,0 +1,18 @@
+{
+  "name": "__ENetObjectCountLimiterMode",
+  "isEnum": true,
+  "properties": {
+    "RoundRobin": [
+      "ENetObjectCountLimiterMode",
+      "Each net update the next N, as configured, objects will be allowed to be replicated if they have modified properties.\nThis means that even if there are many objects that have modified properties none will be sent if the N objects that\nare considered this frame haven't been modified."
+    ],
+    "Fill": [
+      "ENetObjectCountLimiterMode",
+      "Each net update the N least recently replicated objects with modified properties will be allowed to be replicated.\nThis can cause an object to be replicated very often if it's modified a lot and nothing else is."
+    ],
+    "ENetObjectCountLimiterMode_MAX": [
+      "ENetObjectCountLimiterMode"
+    ]
+  },
+  "methods": []
+}

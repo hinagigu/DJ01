@@ -1,0 +1,49 @@
+{
+  "name": "FEFitDataflowNode",
+  "isStruct": true,
+  "doc": "Fits a value from one range to another\n\nTakes the value num from the range (oldmin, oldmax) and shifts it to the corresponding value in the new range (newmin, newmax). Unlike fit, this function does not clamp values in the given range.",
+  "properties": {
+    "Float": [
+      "float32",
+      2,
+      ""
+    ],
+    "OldMin": [
+      "float32",
+      2,
+      ""
+    ],
+    "OldMax": [
+      "float32",
+      2,
+      ""
+    ],
+    "NewMin": [
+      "float32",
+      2,
+      ""
+    ],
+    "NewMax": [
+      "float32",
+      2,
+      ""
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FEFitDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FEFitDataflowNode"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "UMovieSceneSequence",
+  "inherits": "UMovieSceneSignedObject",
+  "doc": "Abstract base class for movie scene animations (C++ version).",
+  "properties": {},
+  "methods": [
+    {
+      "name": "FindBindingByTag",
+      "return": "FMovieSceneObjectBindingID",
+      "const": true,
+      "doc": "Find the first object binding ID associated with the specified tag name (set up through RMB->Expose on Object bindings from within sequencer)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBindingName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FindBindingsByTag",
+      "return": "TArray<FMovieSceneObjectBindingID>",
+      "const": true,
+      "doc": "Find all object binding IDs associated with the specified tag name (set up through RMB->Expose on Object bindings from within sequencer)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBindingName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetEarliestTimecodeSource",
+      "return": "FMovieSceneTimecodeSource",
+      "const": true,
+      "doc": "Get the earliest timecode source out of all of the movie scene sections contained within this sequence's movie scene.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

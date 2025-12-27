@@ -1,0 +1,31 @@
+{
+  "name": "FModifyContextOptions",
+  "isStruct": true,
+  "doc": "Passed in as params for Adding/Remove input contexts",
+  "properties": {
+    "bIgnoreAllPressedKeysUntilRelease": [
+      "bool",
+      "If true, then any keys that are \"down\" or \"pressed\" during the rebuild of control mappings will\nnot be processed by Enhanced Input until after they are \"released\".\n\nFor example, if you are adding a mapping context with a key mapping to \"X\",\nand the player is holding down \"X\" while that IMC is added,\nthere will not be a \"Triggered\" event until the player releases \"X\" and presses it again.\n\nIf this is set to false for the above example, then the \"Triggered\" would fire immediately\nas soon as the IMC is finished being added.\n\nDefault: True\n\nNote: This will only do something for keys bound to boolean Input Action types.\nNote: This includes all keys that the player has pressed, not just the keys that are previously mapped in Enhanced Input before\nthe call to RebuildControlMappings."
+    ],
+    "bForceImmediately": [
+      "bool",
+      "The mapping changes will be applied synchronously, rather than at the end of the frame,\nmaking them available to the input system on the same frame.\n\nThis is not recommended to be set to true if you are adding multiple mapping contexts\nas it will have poor performance.\n\nDefault: False"
+    ],
+    "bNotifyUserSettings": [
+      "bool",
+      "If true, then this Mapping Context will be registered or unregistered with the\nEnhanced Input User Settings on this subsystem, if they exist.\n\nDefault: False\n\nNote: You need to enable and configure your UEnhancedInputUserSettings class in the project\nsettings for this to do anything."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FModifyContextOptions&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FModifyContextOptions"
+        }
+      ]
+    }
+  ]
+}

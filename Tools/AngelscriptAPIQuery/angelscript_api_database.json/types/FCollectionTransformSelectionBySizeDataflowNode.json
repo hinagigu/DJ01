@@ -1,0 +1,49 @@
+{
+  "name": "FCollectionTransformSelectionBySizeDataflowNode",
+  "isStruct": true,
+  "doc": "Selects pieces based on their size",
+  "properties": {
+    "SizeMin": [
+      "float32",
+      2,
+      "Minimum size for the selection"
+    ],
+    "SizeMax": [
+      "float32",
+      2,
+      "Maximum size for the selection"
+    ],
+    "RangeSetting": [
+      "ERangeSettingEnum",
+      2,
+      "Values for the selection has to be inside or outside [Min, Max] range"
+    ],
+    "bInclusive": [
+      "bool",
+      2,
+      "If true then range includes Min and Max values"
+    ],
+    "bUseRelativeSize": [
+      "bool",
+      2,
+      "Whether to use the 'Relative Size' -- i.e., the Size / Largest Bone Size. Otherwise, Size is the cube root of Volume."
+    ],
+    "bActive": [
+      "bool",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCollectionTransformSelectionBySizeDataflowNode&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCollectionTransformSelectionBySizeDataflowNode"
+        }
+      ]
+    }
+  ]
+}

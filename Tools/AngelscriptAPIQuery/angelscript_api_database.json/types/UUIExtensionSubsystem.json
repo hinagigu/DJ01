@@ -1,0 +1,156 @@
+{
+  "name": "UUIExtensionSubsystem",
+  "inherits": "UWorldSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "RegisterExtensionAsData",
+      "return": "FUIExtensionHandle",
+      "doc": "Registers the extension as data for any extension point that can make use of it.",
+      "ufunction": true,
+      "unrealname": "K2_RegisterExtensionAsData",
+      "meta": null,
+      "args": [
+        {
+          "name": "ExtensionPointTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Data",
+          "type": "UObject"
+        },
+        {
+          "name": "Priority",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RegisterExtensionAsDataForContext",
+      "return": "FUIExtensionHandle",
+      "doc": "Registers the extension as data for any extension point that can make use of it.",
+      "ufunction": true,
+      "unrealname": "K2_RegisterExtensionAsDataForContext",
+      "meta": null,
+      "args": [
+        {
+          "name": "ExtensionPointTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "ContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "Data",
+          "type": "UObject"
+        },
+        {
+          "name": "Priority",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RegisterExtensionAsWidget",
+      "return": "FUIExtensionHandle",
+      "ufunction": true,
+      "unrealname": "K2_RegisterExtensionAsWidget",
+      "meta": null,
+      "args": [
+        {
+          "name": "ExtensionPointTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "WidgetClass",
+          "type": "TSubclassOf<UUserWidget>"
+        },
+        {
+          "name": "Priority",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RegisterExtensionAsWidgetForContext",
+      "return": "FUIExtensionHandle",
+      "doc": "Registers the widget (as data) for a specific player.  This means the extension points will receive a UIExtensionForPlayer data object\nthat they can look at to determine if it's for whatever they consider their player.",
+      "ufunction": true,
+      "unrealname": "K2_RegisterExtensionAsWidgetForContext",
+      "meta": null,
+      "args": [
+        {
+          "name": "ExtensionPointTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "WidgetClass",
+          "type": "TSubclassOf<UUserWidget>"
+        },
+        {
+          "name": "ContextObject",
+          "type": "UObject"
+        },
+        {
+          "name": "Priority",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RegisterExtensionPoint",
+      "return": "FUIExtensionPointHandle",
+      "ufunction": true,
+      "unrealname": "K2_RegisterExtensionPoint",
+      "meta": null,
+      "args": [
+        {
+          "name": "ExtensionPointTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "ExtensionPointTagMatchType",
+          "type": "EUIExtensionPointMatch"
+        },
+        {
+          "name": "AllowedDataClasses",
+          "type": "TArray<UClass>"
+        },
+        {
+          "name": "ExtensionCallback",
+          "default": "FExtendExtensionPointDynamicDelegate ( )",
+          "type": "FExtendExtensionPointDynamicDelegate"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterExtension",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExtensionHandle",
+          "type": "FUIExtensionHandle"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterExtensionPoint",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExtensionPointHandle",
+          "type": "FUIExtensionPointHandle"
+        }
+      ]
+    }
+  ]
+}

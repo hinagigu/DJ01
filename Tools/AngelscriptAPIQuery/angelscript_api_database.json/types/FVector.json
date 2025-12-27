@@ -1,0 +1,1010 @@
+{
+  "name": "FVector",
+  "isStruct": true,
+  "properties": {
+    "X": [
+      "float"
+    ],
+    "Y": [
+      "float"
+    ],
+    "Z": [
+      "float"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FVector&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opAdd",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opSub",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opMul",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opDiv",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opMul",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opDiv",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opNeg",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "opMulAssign",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opDivAssign",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Scale",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "opMulAssign",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opDivAssign",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opAddAssign",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opSubAssign",
+      "return": "FVector",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "opIndex",
+      "return": "float&",
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "opIndex",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "Equals",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        },
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "CrossProduct",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "DotProduct",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "AllComponentsEqual",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Parallel",
+      "return": "bool",
+      "const": true,
+      "doc": "* See if two normal vectors are nearly parallel, meaning the angle between them is close to 0 degrees. \n* @param  Normal1 First normalized vector.\n* @param  Normal1 Second normalized vector.\n* @param  ParallelCosineThreshold Normals are parallel if absolute value of dot product (cosine of angle between them) is greater than or equal to this. For example: cos(1.0 degrees). \n* @return true if vectors are nearly parallel, false otherwise. \n",
+      "args": [
+        {
+          "name": "Normal2",
+          "type": "FVector"
+        },
+        {
+          "name": "ParallelCosineThreshold",
+          "default": "THRESH_NORMALS_ARE_PARALLEL",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Coincident",
+      "return": "bool",
+      "const": true,
+      "doc": "* See if two normal vectors are coincident (nearly parallel and point in the same direction).\n* @param  Normal1 First normalized vector.\n* @param  Normal2 Second normalized vector.\n* @param  ParallelCosineThreshold Normals are coincident if dot product (cosine of angle between them) is greater than or equal to this. For example: cos(1.0 degrees).\n* @return true if vectors are coincident (nearly parallel and point in the same direction), false otherwise.\n",
+      "args": [
+        {
+          "name": "Normal2",
+          "type": "FVector"
+        },
+        {
+          "name": "ParallelCosineThreshold",
+          "default": "THRESH_NORMALS_ARE_PARALLEL",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Orthogonal",
+      "return": "bool",
+      "const": true,
+      "doc": "* See if two normal vectors are nearly orthogonal (perpendicular), meaning the angle between them is close to 90 degrees.\n* @param  Normal1 First normalized vector.\n* @param  Normal2 Second normalized vector.\n* @param  OrthogonalCosineThreshold Normals are orthogonal if absolute value of dot product (cosine of angle between them) is less than or equal to this. For example: cos(89.0 degrees).\n* @return true if vectors are orthogonal (perpendicular), false otherwise.\n",
+      "args": [
+        {
+          "name": "Normal2",
+          "type": "FVector"
+        },
+        {
+          "name": "OrthogonalCosineThreshold",
+          "default": "THRESH_NORMALS_ARE_ORTHOGONAL",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "GetMax",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetAbsMax",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetMin",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetAbsMin",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ComponentMin",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ComponentMax",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ComponentClamp",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Min",
+          "type": "FVector"
+        },
+        {
+          "name": "Max",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "GetAbs",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Size",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SizeSquared",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Size2D",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SizeSquared2D",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsNearlyZero",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsZero",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Normalize",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "IsNormalized",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToDirectionAndLength",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "OutDir",
+          "type": "FVector&"
+        },
+        {
+          "name": "OutLength",
+          "type": "float&"
+        }
+      ]
+    },
+    {
+      "name": "ToDirectionAndLength",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "OutDir",
+          "type": "FVector&"
+        },
+        {
+          "name": "OutLength",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetSignVector",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Projection",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetUnsafeNormal",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GridSnap",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "GridSize",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "BoundToCube",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Radius",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "BoundToBox",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Min",
+          "type": "FVector"
+        },
+        {
+          "name": "Max",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "GetClampedToSize",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Min",
+          "type": "float"
+        },
+        {
+          "name": "Max",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "GetClampedToSize2D",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Min",
+          "type": "float"
+        },
+        {
+          "name": "Max",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "GetClampedToMaxSize",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Max",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "GetClampedToMaxSize2D",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Max",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "AddBounded",
+      "return": "void",
+      "args": [
+        {
+          "name": "V",
+          "type": "FVector"
+        },
+        {
+          "name": "Radius",
+          "default": "MAX_int16",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Reciprocal",
+      "return": "FVector",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsUniform",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "MirrorByVector",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "MirrorNormal",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "VectorPlaneProject",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "PlaneNormal",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "RotateAngleAxis",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "AngleDeg",
+          "type": "float"
+        },
+        {
+          "name": "Axis",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "GetSafeNormal",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "SMALL_NUMBER",
+          "type": "float"
+        },
+        {
+          "name": "ResultIfZero",
+          "default": "FVector :: ZeroVector",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "GetSafeNormal2D",
+      "return": "FVector",
+      "const": true,
+      "args": [
+        {
+          "name": "Tolerance",
+          "default": "SMALL_NUMBER",
+          "type": "float"
+        },
+        {
+          "name": "ResultIfZero",
+          "default": "FVector :: ZeroVector",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "CosineAngle2D",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "B",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ProjectOnTo",
+      "return": "FVector",
+      "const": true,
+      "doc": "Gets a copy of this vector projected onto the input vector.\n\n@param A\tVector to project onto, does not assume it is normalized.\n@return Projected vector.",
+      "args": [
+        {
+          "name": "A",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ProjectOnToNormal",
+      "return": "FVector",
+      "const": true,
+      "doc": "Gets a copy of this vector projected onto the input vector, which is assumed to be unit length.\n\n@param A\tNormal vector to project onto (assumed to be unit length).\n@return Projected vector.",
+      "args": [
+        {
+          "name": "Normal",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "FindBestAxisVectors",
+      "return": "void",
+      "const": true,
+      "args": [
+        {
+          "name": "Axis1",
+          "type": "FVector&"
+        },
+        {
+          "name": "Axis2",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "UnwindEuler",
+      "return": "void",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ContainsNaN",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsUnit",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "LengthSquaredTolerance",
+          "default": "KINDA_SMALL_NUMBER",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "HeadingAngle",
+      "return": "float",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "PointsAreSame",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "P2",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "PointsAreNear",
+      "return": "bool",
+      "const": true,
+      "args": [
+        {
+          "name": "P2",
+          "type": "FVector"
+        },
+        {
+          "name": "Dist",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Distance",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "DistSquared",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "Dist2D",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "DistXY",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "DistSquaredXY",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "DistSquared2D",
+      "return": "float",
+      "const": true,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ToOrientationRotator",
+      "return": "FRotator",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ToOrientationQuat",
+      "return": "FQuat",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "Rotation",
+      "return": "FRotator",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "InitFromString",
+      "return": "bool",
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ToString",
+      "return": "FString",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "AngularDistance",
+      "return": "float",
+      "const": true,
+      "doc": "Get the angle in radians between two vectors. Vectors are not assumed to be normalized.",
+      "meta": null,
+      "args": [
+        {
+          "name": "B",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "AngularDistanceForNormals",
+      "return": "float",
+      "const": true,
+      "doc": "Get the angle in radians between two normal vectors. Both vectors are assumed to be unit length, or a wrong value will be returned.",
+      "meta": null,
+      "args": [
+        {
+          "name": "B",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ConstrainToDirection",
+      "return": "FVector",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Direction",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ConstrainToPlane",
+      "return": "FVector",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlaneUp",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "Dist2D",
+      "return": "float",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        },
+        {
+          "name": "UpDirection",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "DistSquared2D",
+      "return": "float",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Other",
+          "type": "FVector"
+        },
+        {
+          "name": "UpDirection",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "MoveTowards",
+      "return": "FVector",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Target",
+          "type": "FVector"
+        },
+        {
+          "name": "StepSize",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "PointPlaneProject",
+      "return": "FVector",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlaneBase",
+          "type": "FVector"
+        },
+        {
+          "name": "PlaneNormal",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "Size2D",
+      "return": "float",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UpDirection",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SizeSquared2D",
+      "return": "float",
+      "const": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UpDirection",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ToColorString",
+      "return": "FString",
+      "const": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

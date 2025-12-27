@@ -1,0 +1,358 @@
+{
+  "name": "AAIController",
+  "inherits": "AController",
+  "doc": "AIController is the base class of controllers for AI-controlled Pawns.\n\nControllers are non-physical actors that can be attached to a pawn to control its actions.\nAIControllers manage the artificial intelligence for the pawns they control.\nIn networked games, they only exist on the server.\n\n@see https://docs.unrealengine.com/latest/INT/Gameplay/Framework/Controller/",
+  "properties": {
+    "BrainComponent": [
+      "UBrainComponent",
+      1,
+      "Component responsible for behaviors."
+    ],
+    "PerceptionComponent": [
+      "UAIPerceptionComponent",
+      2,
+      ""
+    ],
+    "Blackboard": [
+      "UBlackboardComponent",
+      1,
+      "blackboard"
+    ],
+    "DefaultNavigationFilterClass": [
+      "TSubclassOf<UNavigationQueryFilter>"
+    ],
+    "ReceiveMoveCompleted": [
+      "FAIMoveCompletedSignature",
+      "Blueprint notification that we've completed the current movement request"
+    ],
+    "bStartAILogicOnPossess": [
+      "bool",
+      "By default AI's logic does not start when controlled Pawn is possessed. Setting this flag to true\n    will make AI logic start when pawn is possessed"
+    ],
+    "bStopAILogicOnUnposses": [
+      "bool",
+      "By default AI's logic gets stopped when controlled Pawn is unpossessed. Setting this flag to false\n    will make AI logic persist past losing control over a pawn"
+    ],
+    "bSkipExtraLOSChecks": [
+      "bool",
+      "Skip extra line of sight traces to extremities of target being checked."
+    ],
+    "bAllowStrafe": [
+      "bool",
+      "Is strafing allowed during movement?"
+    ],
+    "bWantsPlayerState": [
+      "bool",
+      "Specifies if this AI wants its own PlayerState."
+    ],
+    "bSetControlRotationFromPawnOrientation": [
+      "bool",
+      "Copy Pawn rotation to ControlRotation, if there is no focus point."
+    ],
+    "ActionsComp": [
+      "UDEPRECATED_PawnActionsComponent"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ClaimTaskResource",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ResourceClass",
+          "type": "TSubclassOf<UGameplayTaskResource>"
+        }
+      ]
+    },
+    {
+      "name": "GetAIPerceptionComponent",
+      "return": "UAIPerceptionComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFocalPoint",
+      "return": "FVector",
+      "const": true,
+      "doc": "Retrieve the final position that controller should be looking at.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFocalPointOnActor",
+      "return": "FVector",
+      "const": true,
+      "doc": "Retrieve the focal point this controller should focus to on given actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetFocusActor",
+      "return": "AActor",
+      "const": true,
+      "doc": "Get the focused actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetImmediateMoveDestination",
+      "return": "FVector",
+      "const": true,
+      "doc": "Returns position of current path segment's end.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMoveStatus",
+      "return": "EPathFollowingStatus",
+      "const": true,
+      "doc": "Returns status of path following",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPathFollowingComponent",
+      "return": "UPathFollowingComponent",
+      "const": true,
+      "doc": "Returns PathFollowingComponent subobject *",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasPartialPath",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the current PathFollowingComponent's path is partial (does not reach desired destination).",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearFocus",
+      "return": "void",
+      "doc": "Clears Focus, will also clear FocalPoint as a result",
+      "ufunction": true,
+      "unrealname": "K2_ClearFocus",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetFocalPoint",
+      "return": "void",
+      "doc": "Set the position that controller should be looking at.",
+      "ufunction": true,
+      "unrealname": "K2_SetFocalPoint",
+      "meta": null,
+      "args": [
+        {
+          "name": "FP",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetFocus",
+      "return": "void",
+      "doc": "Set Focus for actor, will set FocalPoint as a result.",
+      "ufunction": true,
+      "unrealname": "K2_SetFocus",
+      "meta": null,
+      "args": [
+        {
+          "name": "NewFocus",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "MoveToActor",
+      "return": "EPathFollowingRequestResult",
+      "doc": "Makes AI go toward specified Goal actor (destination will be continuously updated), aborts any active path following\n@param AcceptanceRadius - finish move if pawn gets close enough\n@param bStopOnOverlap - add pawn's radius to AcceptanceRadius\n@param bUsePathfinding - use navigation data to calculate path (otherwise it will go in straight line)\n@param bCanStrafe - set focus related flag: bAllowStrafe\n@param FilterClass - navigation filter for pathfinding adjustments. If none specified DefaultNavigationFilterClass will be used\n@param bAllowPartialPath - use incomplete path when goal can't be reached\n    @note AcceptanceRadius has default value or -1 due to Header Parser not being able to recognize UPathFollowingComponent::DefaultAcceptanceRadius",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Goal",
+          "type": "AActor"
+        },
+        {
+          "name": "AcceptanceRadius",
+          "default": "- 1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bStopOnOverlap",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bUsePathfinding",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bCanStrafe",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "FilterClass",
+          "default": "nullptr",
+          "type": "TSubclassOf<UNavigationQueryFilter>"
+        },
+        {
+          "name": "bAllowPartialPath",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MoveToLocation",
+      "return": "EPathFollowingRequestResult",
+      "doc": "Makes AI go toward specified Dest location, aborts any active path following\n@param AcceptanceRadius - finish move if pawn gets close enough\n@param bStopOnOverlap - add pawn's radius to AcceptanceRadius\n@param bUsePathfinding - use navigation data to calculate path (otherwise it will go in straight line)\n@param bProjectDestinationToNavigation - project location on navigation data before using it\n@param bCanStrafe - set focus related flag: bAllowStrafe\n@param FilterClass - navigation filter for pathfinding adjustments. If none specified DefaultNavigationFilterClass will be used\n@param bAllowPartialPath - use incomplete path when goal can't be reached\n    @note AcceptanceRadius has default value or -1 due to Header Parser not being able to recognize UPathFollowingComponent::DefaultAcceptanceRadius",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Dest",
+          "type": "FVector"
+        },
+        {
+          "name": "AcceptanceRadius",
+          "default": "- 1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "bStopOnOverlap",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bUsePathfinding",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bProjectDestinationToNavigation",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bCanStrafe",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "FilterClass",
+          "default": "nullptr",
+          "type": "TSubclassOf<UNavigationQueryFilter>"
+        },
+        {
+          "name": "bAllowPartialPath",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "OnUsingBlackBoard",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BlackboardComp",
+          "type": "UBlackboardComponent"
+        },
+        {
+          "name": "BlackboardAsset",
+          "type": "UBlackboardData"
+        }
+      ]
+    },
+    {
+      "name": "RunBehaviorTree",
+      "return": "bool",
+      "doc": "Starts executing behavior tree.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BTAsset",
+          "type": "UBehaviorTree"
+        }
+      ]
+    },
+    {
+      "name": "SetMoveBlockDetection",
+      "return": "void",
+      "doc": "Updates state of movement block detection.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPathFollowingComponent",
+      "return": "void",
+      "doc": "Note that this function does not do any pathfollowing state transfer.\n    Intended to be called as part of initialization/setup process",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPFComponent",
+          "type": "UPathFollowingComponent"
+        }
+      ]
+    },
+    {
+      "name": "UnclaimTaskResource",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ResourceClass",
+          "type": "TSubclassOf<UGameplayTaskResource>"
+        }
+      ]
+    },
+    {
+      "name": "UseBlackboard",
+      "return": "bool",
+      "doc": "Makes AI use the specified Blackboard asset & creates a Blackboard Component if one does not already exist.\n@param       BlackboardAsset                 The Blackboard asset to use.\n@param       BlackboardComponent             The Blackboard component that was used or created to work with the passed-in Blackboard Asset.\n@return true if we successfully linked the blackboard asset to the blackboard component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BlackboardAsset",
+          "type": "UBlackboardData"
+        },
+        {
+          "name": "BlackboardComponent",
+          "type": "UBlackboardComponent&"
+        }
+      ]
+    }
+  ]
+}

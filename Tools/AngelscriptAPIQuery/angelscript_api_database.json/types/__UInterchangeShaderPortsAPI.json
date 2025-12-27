@@ -1,0 +1,236 @@
+{
+  "name": "__UInterchangeShaderPortsAPI",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ConnectDefaultOuputToInput",
+      "return": "bool",
+      "doc": "Adds an input connection attribute.\n@param InterchangeNode       The node to create the input on.\n@param InputName                     The name to give to the input.\n@param ExpressionUid         The unique ID of the node to connect to the input.\n@return                                      True if the input connection was successfully added to the node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterchangeNode",
+          "type": "UInterchangeBaseNode"
+        },
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "ExpressionUid",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ConnectOuputToInputByIndex",
+      "return": "bool",
+      "doc": "Adds an input connection attribute.\n@param InterchangeNode       The node to create the input on.\n@param InputName                     The name to give to the input.\n@param ExpressionUid         The unique ID of the node to connect to the input.\n@param OutputIndex           The index of the output from ExpressionUid to connect to the input.\n@return                                      True if the input connection was successfully added to the node.\nOutputIndex is encoded in a string in the following pattern: ExpressionUid:OutputByIndex:FString::FromInt(OutputIndex)\nThe index should be retrieved using UInterchangeShaderPortsAPI::GetOutputIndexFromName().",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterchangeNode",
+          "type": "UInterchangeBaseNode"
+        },
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "ExpressionUid",
+          "type": "FString"
+        },
+        {
+          "name": "OutputIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ConnectOuputToInputByName",
+      "return": "bool",
+      "doc": "Adds an input connection attribute.\n@param InterchangeNode       The node to create the input on.\n@param InputName                     The name to give to the input.\n@param ExpressionUid         The unique ID of the node to connect to the input.\n@param OutputName            The name of the output from ExpressionUid to connect to the input.\n@return                                      True if the input connection was successfully added to the node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterchangeNode",
+          "type": "UInterchangeBaseNode"
+        },
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "ExpressionUid",
+          "type": "FString"
+        },
+        {
+          "name": "OutputName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GatherInputs",
+      "return": "void",
+      "doc": "Retrieves the names of all the inputs for a given node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterchangeNode",
+          "type": "const UInterchangeBaseNode"
+        },
+        {
+          "name": "OutInputNames",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetInputConnection",
+      "return": "bool",
+      "doc": "Retrieves the node unique id and the output name connected to a given input, if any.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterchangeNode",
+          "type": "const UInterchangeBaseNode"
+        },
+        {
+          "name": "InputName",
+          "type": "FString"
+        },
+        {
+          "name": "OutExpressionUid",
+          "type": "FString&"
+        },
+        {
+          "name": "OutputName",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "HasInput",
+      "return": "bool",
+      "doc": "Checks whether a particular input exists on a given node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterchangeNode",
+          "type": "const UInterchangeBaseNode"
+        },
+        {
+          "name": "InInputName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "HasParameter",
+      "return": "bool",
+      "doc": "Checks whether a particular input exists as a parameter on a given node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterchangeNode",
+          "type": "const UInterchangeBaseNode"
+        },
+        {
+          "name": "InInputName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsAnInput",
+      "return": "bool",
+      "doc": "Returns true if the attribute key is associated with an input (starts with \"Inputs:\").",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeKey",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsAParameter",
+      "return": "bool",
+      "doc": "Returns true if the attribute key is an input that represents parameters (ends with \":Parameter\").",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeKey",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "MakeInputConnectionKey",
+      "return": "FString",
+      "doc": "Makes an attribute key to represent a node being connected to an input (that is, Inputs:InputName:Connect).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "MakeInputName",
+      "return": "FString",
+      "doc": "From an attribute key associated with an input (that is, Inputs:InputName:Value), retrieves the input name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputKey",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "MakeInputParameterKey",
+      "return": "FString",
+      "doc": "Makes an attribute key to represent a parameter being given to an input (that is, Inputs:InputName:Parameter).\nThis is more relevant to Materials, but could be used to differentiate between constant values and parameters.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "MakeInputValueKey",
+      "return": "FString",
+      "doc": "Makes an attribute key to represent a value being given to an input (that is, Inputs:InputName:Value).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

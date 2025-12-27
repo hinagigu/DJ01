@@ -1,0 +1,27 @@
+{
+  "name": "__ERuntimeVirtualTextureMipValueMode",
+  "isEnum": true,
+  "doc": "Set how Mip levels are calculated.\nInternally we will convert to ETextureMipValueMode which is used by internal APIs.",
+  "properties": {
+    "RVTMVM_None": [
+      "ERuntimeVirtualTextureMipValueMode",
+      "* Use default computed mip level. Takes into account UV scaling from using the WorldPosition pin."
+    ],
+    "RVTMVM_MipLevel": [
+      "ERuntimeVirtualTextureMipValueMode",
+      "* Use an absolute mip level from the MipValue pin.\n* 0 is full resolution."
+    ],
+    "RVTMVM_MipBias": [
+      "ERuntimeVirtualTextureMipValueMode",
+      "* Bias the default computed mip level using the MipValue pin.\n* Negative values increase resolution."
+    ],
+    "RVTMVM_RecalculateDerivatives": [
+      "ERuntimeVirtualTextureMipValueMode",
+      "* This is like 'Default' but it ignores the WorldPosition pin when computing the mip level.\n* It uses the actual pixel WorldPosition instead.\n* This can prevent sampling mip 0 if the WorldPosition pin gives a constant value."
+    ],
+    "RVTMVM_MAX": [
+      "ERuntimeVirtualTextureMipValueMode"
+    ]
+  },
+  "methods": []
+}

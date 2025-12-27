@@ -1,0 +1,85 @@
+{
+  "name": "UParticleModuleCollision",
+  "inherits": "UParticleModuleCollisionBase",
+  "properties": {
+    "DampingFactor": [
+      "FRawDistributionVector",
+      2,
+      "How much to `slow' the velocity of the particle after a collision.\nValue is obtained using the EmitterTime at particle spawn."
+    ],
+    "DampingFactorRotation": [
+      "FRawDistributionVector",
+      2,
+      "How much to `slow' the rotation of the particle after a collision.\nValue is obtained using the EmitterTime at particle spawn."
+    ],
+    "MaxCollisions": [
+      "FRawDistributionFloat",
+      2,
+      "The maximum number of collisions a particle can have.\nValue is obtained using the EmitterTime at particle spawn."
+    ],
+    "CollisionCompletionOption": [
+      "EParticleCollisionComplete",
+      2,
+      "What to do once a particles MaxCollisions is reached.\nOne of the following:\nEPCC_Kill\n        Kill the particle when MaxCollisions is reached\nEPCC_Freeze\n        Freeze in place, NO MORE UPDATES\nEPCC_HaltCollisions,\n        Stop collision checks, keep updating everything\nEPCC_FreezeTranslation,\n        Stop translations, keep updating everything else\nEPCC_FreezeRotation,\n        Stop rotations, keep updating everything else\nEPCC_FreezeMovement\n        Stop all movement, keep updating"
+    ],
+    "CollisionTypes": [
+      "TArray<EObjectTypeQuery>",
+      2,
+      "Which ObjectTypes to collide with"
+    ],
+    "ParticleMass": [
+      "FRawDistributionFloat",
+      2,
+      "The mass of the particle - for use when bApplyPhysics is true.\nValue is obtained using the EmitterTime at particle spawn."
+    ],
+    "DirScalar": [
+      "float32",
+      2,
+      "The directional scalar value - used to scale the bounds to\n'assist' in avoiding inter-penetration or large gaps."
+    ],
+    "VerticalFudgeFactor": [
+      "float32",
+      2,
+      "The fudge factor to use to determine vertical.\nTrue vertical will have a Hit.Normal.Z == 1.0\nThis will allow for Z components in the range of\n[1.0-VerticalFudgeFactor..1.0]\nto count as vertical collisions."
+    ],
+    "DelayAmount": [
+      "FRawDistributionFloat",
+      2,
+      "How long to delay before checking a particle for collisions.\nValue is retrieved using the EmitterTime.\nDuring update, the particle flag IgnoreCollisions will be\nset until the particle RelativeTime has surpassed the\nDelayAmount."
+    ],
+    "MaxCollisionDistance": [
+      "float32",
+      2,
+      "Max distance at which particle collision will occur."
+    ],
+    "bApplyPhysics": [
+      "bool",
+      "If true, physic will be applied between a particle and the\nobject it collides with.\nThis is one-way - particle --> object. The particle does\nnot have physics applied to it - it just generates an\nimpulse applied to the object it collides with.\nNOTE: having this on prevents the code from running off the game thread."
+    ],
+    "bIgnoreTriggerVolumes": [
+      "bool",
+      "Any trigger volumes that are hit will be ignored. NOTE: This can be turned off if the TrigerVolume physics object type is not in the CollisionTypes array.\nTurning this off is strongly recommended as having it on prevents the code from running off the game thread."
+    ],
+    "bPawnsDoNotDecrementCount": [
+      "bool",
+      "If true, then collisions with Pawns will still react, but\nthe UsedMaxCollisions count will not be decremented.\n(ie., They don't 'count' as collisions)\nNOTE: Having this on prevents the code from running in parallel."
+    ],
+    "bOnlyVerticalNormalsDecrementCount": [
+      "bool",
+      "If true, then collisions that do not have a vertical hit\nnormal will still react, but UsedMaxCollisions count will\nnot be decremented. (ie., They don't 'count' as collisions)\nUseful for having particles come to rest on floors."
+    ],
+    "bDropDetail": [
+      "bool",
+      "If true, when the World->bDropDetail flag is set, the module will be ignored."
+    ],
+    "bCollideOnlyIfVisible": [
+      "bool",
+      "If true, Particle collision only if particle system is currently being rendered."
+    ],
+    "bIgnoreSourceActor": [
+      "bool",
+      "If true, then the source actor is ignored in collision checks.\nDefaults to true."
+    ]
+  },
+  "methods": []
+}

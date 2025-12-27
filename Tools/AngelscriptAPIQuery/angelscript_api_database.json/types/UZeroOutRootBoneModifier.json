@@ -1,0 +1,16 @@
+{
+  "name": "UZeroOutRootBoneModifier",
+  "inherits": "UAnimationModifier",
+  "doc": "Adjust root motion to be relative to the first frame. Optionally cut the start and end sections of the animation that don't have motion on the root.\n      This was written to be used when capturing Character Movement motion via Take Recorder. Take Recorder outputs an animation captured from\n      a character moving in game in world space, and this modifier zeroes out the root. The animation can then be exported to fbx to be animated against.",
+  "properties": {
+    "bClipStartFramesWithNoMotion": [
+      "bool",
+      "Clip frames at the start of the animation that have no root motion."
+    ],
+    "bClipEndFramesWithNoMotion": [
+      "bool",
+      "Clip frames at the end of the animation that have no root motion."
+    ]
+  },
+  "methods": []
+}

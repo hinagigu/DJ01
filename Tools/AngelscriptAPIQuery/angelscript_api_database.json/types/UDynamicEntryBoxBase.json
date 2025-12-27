@@ -1,0 +1,81 @@
+{
+  "name": "UDynamicEntryBoxBase",
+  "inherits": "UWidget",
+  "doc": "Base for widgets that support a dynamic number of auto-generated entries at both design- and run-time.\nContains all functionality needed to create, construct, and cache an arbitrary number of entry widgets, but exposes no means of entry creation or removal\nIt's up to child classes to decide how they want to perform the population (some may do so entirely on their own without exposing a thing)\n\n@see UDynamicEntryBox for a ready-to-use version",
+  "properties": {
+    "SpacingPattern": [
+      "TArray<FVector2D>",
+      "The looping sequence of entry paddings to apply as entries are created. Overlay boxes only. Ignores EntrySpacing if not empty."
+    ],
+    "EntryBoxType": [
+      "EDynamicBoxType",
+      "The type of box panel into which created entries are added. Some differences in functionality exist between each type."
+    ],
+    "EntrySizeRule": [
+      "FSlateChildSize",
+      "Sizing rule to apply to generated entries. Horizontal/Vertical boxes only."
+    ],
+    "EntryHorizontalAlignment": [
+      "EHorizontalAlignment",
+      "Horizontal alignment of generated entries. Horizontal/Vertical/Wrap boxes only."
+    ],
+    "EntryVerticalAlignment": [
+      "EVerticalAlignment",
+      "Vertical alignment of generated entries. Horizontal/Vertical/Wrap boxes only."
+    ],
+    "MaxElementSize": [
+      "int",
+      "The maximum size of each entry in the dominant axis of the box. Vertical/Horizontal boxes only."
+    ],
+    "RadialBoxSettings": [
+      "FRadialBoxSettings",
+      "Settings only relevant to RadialBox"
+    ],
+    "EntrySpacing": [
+      "FVector2D",
+      "The padding to apply between entries in the box.\nNote horizontal boxes only use the X and vertical boxes only use Y. Value is also ignored for the first entry in the box.\nWrap and Overlay types use both X and Y for spacing."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAllEntries",
+      "return": "TArray<UUserWidget>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumEntries",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetEntrySpacing",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InEntrySpacing",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "SetRadialSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSettings",
+          "type": "FRadialBoxSettings"
+        }
+      ]
+    }
+  ]
+}

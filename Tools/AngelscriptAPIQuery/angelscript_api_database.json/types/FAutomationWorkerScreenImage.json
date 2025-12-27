@@ -1,0 +1,44 @@
+{
+  "name": "FAutomationWorkerScreenImage",
+  "isStruct": true,
+  "doc": "Implements a message that is sent in containing a screen shot run during performance test.",
+  "properties": {
+    "ScreenImage": [
+      "TArray<uint8>",
+      2,
+      "The screen shot data."
+    ],
+    "FrameTrace": [
+      "TArray<uint8>",
+      2,
+      "The frame trace data."
+    ],
+    "ScreenShotName": [
+      "FString",
+      2,
+      "The screen shot name."
+    ],
+    "Metadata": [
+      "FAutomationScreenshotMetadata",
+      2,
+      ""
+    ],
+    "InstanceId": [
+      "FGuid",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAutomationWorkerScreenImage&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAutomationWorkerScreenImage"
+        }
+      ]
+    }
+  ]
+}

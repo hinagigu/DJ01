@@ -1,0 +1,48 @@
+{
+  "name": "UAnimationSharingStateProcessor",
+  "inherits": "UObject",
+  "properties": {
+    "AnimationStateEnum": [
+      "TSoftObjectPtr<UEnum>"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAnimationStateEnum",
+      "return": "UEnum",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ProcessActorState",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutState",
+          "type": "int&"
+        },
+        {
+          "name": "InActor",
+          "type": "AActor"
+        },
+        {
+          "name": "CurrentState",
+          "type": "uint8"
+        },
+        {
+          "name": "OnDemandState",
+          "type": "uint8"
+        },
+        {
+          "name": "bShouldProcess",
+          "type": "bool&"
+        }
+      ]
+    }
+  ]
+}

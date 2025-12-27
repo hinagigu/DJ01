@@ -1,0 +1,43 @@
+{
+  "name": "FComponentReference",
+  "isStruct": true,
+  "doc": "Struct that allows for different ways to reference a component using TObjectPtr.\nIf just an Actor is specified, will return RootComponent of that Actor.",
+  "properties": {
+    "OtherActor": [
+      "TWeakObjectPtr<AActor>",
+      "Weak Pointer to a different Actor that owns the Component.\nIf this is not provided the reference refers to a component on this / the same actor."
+    ],
+    "ComponentProperty": [
+      "FName",
+      "Name of component to use. If this is not specified the reference refers to the root component."
+    ],
+    "PathToComponent": [
+      "FString",
+      2,
+      "Path to the component from its owner actor"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetComponent",
+      "return": "UActorComponent",
+      "const": true,
+      "args": [
+        {
+          "name": "OwningActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "FComponentReference&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FComponentReference"
+        }
+      ]
+    }
+  ]
+}

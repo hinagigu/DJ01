@@ -1,0 +1,37 @@
+{
+  "name": "UMetaSoundSettings",
+  "inherits": "UDeveloperSettings",
+  "properties": {
+    "bAutoUpdateEnabled": [
+      "bool",
+      2,
+      "If true, AutoUpdate is enabled, increasing load times.  If false, skips AutoUpdate on load, but can result in MetaSounds failing to load,\nregister, and execute if interface differences are present."
+    ],
+    "AutoUpdateDenylist": [
+      "TArray<FMetasoundFrontendClassName>",
+      2,
+      "List of native MetaSound classes whose node references should not be AutoUpdated."
+    ],
+    "AutoUpdateAssetDenylist": [
+      "TArray<FDefaultMetaSoundAssetAutoUpdateSettings>",
+      2,
+      "List of MetaSound assets whose node references should not be AutoUpdated."
+    ],
+    "bAutoUpdateLogWarningOnDroppedConnection": [
+      "bool",
+      2,
+      "If true, warnings will be logged if updating a node results in existing connections being discarded."
+    ],
+    "DirectoriesToRegister": [
+      "TArray<FDirectoryPath>",
+      2,
+      "Directories to scan & automatically register MetaSound post initial asset scan on engine start-up.\nMay speed up subsequent calls to playback MetaSounds post asset scan but increases application load time.\nSee 'MetaSoundAssetSubsystem::RegisterAssetClassesInDirectories' to dynamically register or\n'MetaSoundAssetSubsystem::UnregisterAssetClassesInDirectories' to unregister asset classes."
+    ],
+    "QualitySettings": [
+      "TArray<FMetaSoundQualitySettings>",
+      2,
+      "Array of possible quality settings for Metasounds to chose from // NOTE: Ideally this would be wrapped with WITH_EDITORONLY_DATA, but standalone \"-game\" requires\n// it to exist. Access is limited to the accessor above, which enforces it correctly."
+    ]
+  },
+  "methods": []
+}

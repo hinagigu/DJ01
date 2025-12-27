@@ -1,0 +1,18 @@
+{
+  "name": "__EVolumeLightingMethod",
+  "isEnum": true,
+  "properties": {
+    "VLM_VolumetricLightmap": [
+      "EVolumeLightingMethod",
+      "Lighting samples are computed in an adaptive grid which covers the entire Lightmass Importance Volume.  Higher density grids are used near geometry.\nThe Volumetric Lightmap is interpolated efficiently on the GPU per-pixel, allowing accurate indirect lighting for dynamic objects and volumetric fog.\nPositions outside of the Importance Volume reuse the border texels of the Volumetric Lightmap (clamp addressing).\nOn mobile, interpolation is done on the CPU at the center of each object's bounds."
+    ],
+    "VLM_SparseVolumeLightingSamples": [
+      "EVolumeLightingMethod",
+      "Volume lighting samples are placed on top of static surfaces at medium density, and everywhere else in the Lightmass Importance Volume at low density.  Positions outside of the Importance Volume will have no indirect lighting.\nThis method requires CPU interpolation so the Indirect Lighting Cache is used to interpolate results for each dynamic object, adding Rendering Thread overhead.\nVolumetric Fog cannot be affected by precomputed lighting with this method."
+    ],
+    "VLM_MAX": [
+      "EVolumeLightingMethod"
+    ]
+  },
+  "methods": []
+}

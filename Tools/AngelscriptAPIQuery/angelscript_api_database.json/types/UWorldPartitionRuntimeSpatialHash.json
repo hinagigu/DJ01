@@ -1,0 +1,37 @@
+{
+  "name": "UWorldPartitionRuntimeSpatialHash",
+  "inherits": "UWorldPartitionRuntimeHash",
+  "properties": {
+    "Grids": [
+      "TArray<FSpatialHashRuntimeGrid>",
+      2,
+      ""
+    ],
+    "UseAlignedGridLevels": [
+      "EWorldPartitionCVarProjectDefaultOverride",
+      2,
+      "Disable to help break the pattern caused by world partition promotion of actors to upper grid levels that are always aligned on child levels."
+    ],
+    "SnapNonAlignedGridLevelsToLowerLevels": [
+      "EWorldPartitionCVarProjectDefaultOverride",
+      2,
+      "Disable to avoid snapping higher levels cells to child cells. Only used when bUseAlignedGridLevels is false."
+    ],
+    "PlaceSmallActorsUsingLocation": [
+      "EWorldPartitionCVarProjectDefaultOverride",
+      2,
+      "Enable to place actors smaller than a cell size into their corresponding cell using their location instead of their bounding box."
+    ],
+    "PlacePartitionActorsUsingLocation": [
+      "EWorldPartitionCVarProjectDefaultOverride",
+      2,
+      "Enable to place partitioned actors into their corresponding cell using their location instead of their bounding box."
+    ],
+    "bEnableZCulling": [
+      "bool",
+      2,
+      "Whether this hash enables Z culling."
+    ]
+  },
+  "methods": []
+}

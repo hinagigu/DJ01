@@ -1,0 +1,78 @@
+{
+  "name": "FNiagaraMeshRendererMeshProperties",
+  "isStruct": true,
+  "properties": {
+    "Mesh": [
+      "UStaticMesh",
+      2,
+      "The mesh to use when rendering this slot"
+    ],
+    "MeshParameterBinding": [
+      "FNiagaraParameterBinding",
+      2,
+      "Binding to supported mesh types."
+    ],
+    "LODMode": [
+      "ENiagaraMeshLODMode",
+      2,
+      ""
+    ],
+    "LODLevelBinding": [
+      "FNiagaraParameterBindingWithValue",
+      2,
+      "Absolute LOD level to use"
+    ],
+    "LODBiasBinding": [
+      "FNiagaraParameterBindingWithValue",
+      2,
+      "LOD bias to apply to the LOD calculation."
+    ],
+    "LODDistanceFactor": [
+      "float32",
+      2,
+      "Used in LOD calculation to modify the distance, i.e. increasing the value will make lower poly LODs transition closer to the camera."
+    ],
+    "bUseLODRange": [
+      "bool",
+      2,
+      "When enabled you can restrict the LOD range we consider for LOD calculation.\nThis can be useful to reduce the performance impact, as it reduces the number of draw calls required."
+    ],
+    "LODRange": [
+      "FIntVector2",
+      2,
+      "Used to restrict the range of LODs we include when dynamically calculating the LOD level."
+    ],
+    "Scale": [
+      "FVector",
+      2,
+      "Scale of the mesh"
+    ],
+    "Rotation": [
+      "FRotator",
+      2,
+      "Rotation of the mesh"
+    ],
+    "PivotOffset": [
+      "FVector",
+      2,
+      "Offset of the mesh pivot"
+    ],
+    "PivotOffsetSpace": [
+      "ENiagaraMeshPivotOffsetSpace",
+      2,
+      "What space is the pivot offset in?"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraMeshRendererMeshProperties&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraMeshRendererMeshProperties"
+        }
+      ]
+    }
+  ]
+}

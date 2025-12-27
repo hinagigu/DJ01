@@ -1,0 +1,24 @@
+{
+  "name": "FKeyMappingRow",
+  "isStruct": true,
+  "doc": "Stores all mappings bound to a single mapping name.\n\nSince a single mapping can have multiple bindings to it and this system should be Blueprint friendly,\nthis needs to be a struct (blueprint don't support nested containers).",
+  "properties": {
+    "Mappings": [
+      "TSet<FPlayerKeyMapping>",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FKeyMappingRow&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FKeyMappingRow"
+        }
+      ]
+    }
+  ]
+}

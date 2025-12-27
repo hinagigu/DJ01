@@ -1,0 +1,109 @@
+{
+  "name": "FMeshMergingSettings",
+  "isStruct": true,
+  "doc": "Mesh merging settings",
+  "properties": {
+    "TargetLightMapResolution": [
+      "int",
+      "The lightmap resolution used both for generating lightmap UV coordinates, and also set on the generated static mesh"
+    ],
+    "OutputUVs": [
+      "EUVOutput",
+      2,
+      "Whether to output the specified UV channels into the merged mesh (only if the source meshes contain valid UVs for the specified channel)"
+    ],
+    "MaterialSettings": [
+      "FMaterialProxySettings",
+      "Material simplification"
+    ],
+    "GutterSize": [
+      "int",
+      2,
+      "The gutter (in texels) to add to each sub-chart for our baked-out material for the top mip level"
+    ],
+    "LODSelectionType": [
+      "EMeshLODSelectionType",
+      "Which selection mode should be used when generating the merged static mesh"
+    ],
+    "SpecificLOD": [
+      "int",
+      "A given LOD level to export from the source meshes, used if LOD Selection Type is set to SpecificLOD"
+    ],
+    "NaniteSettings": [
+      "FMeshNaniteSettings",
+      "Settings related to building Nanite data."
+    ],
+    "bGenerateLightMapUV": [
+      "bool",
+      "Whether to generate lightmap UVs for a merged mesh"
+    ],
+    "bComputedLightMapResolution": [
+      "bool",
+      "Whether or not the lightmap resolution should be computed by summing the lightmap resolutions for the input Mesh Components"
+    ],
+    "bPivotPointAtZero": [
+      "bool",
+      "Whether merged mesh should have pivot at world origin, or at first merged component otherwise"
+    ],
+    "bMergePhysicsData": [
+      "bool",
+      "Whether to merge physics data (collision primitives)"
+    ],
+    "bMergeMeshSockets": [
+      "bool",
+      "Whether to merge sockets"
+    ],
+    "bMergeMaterials": [
+      "bool",
+      "Whether to merge source materials into one flat material, ONLY available when LOD Selection Type is set to LowestDetailLOD"
+    ],
+    "bBakeVertexDataToMesh": [
+      "bool",
+      "Whether or not vertex data such as vertex colours should be baked into the resulting mesh"
+    ],
+    "bUseVertexDataForBakingMaterial": [
+      "bool",
+      "Whether or not vertex data such as vertex colours should be used when baking out materials"
+    ],
+    "bUseTextureBinning": [
+      "bool",
+      "Whether or not to calculate varying output texture sizes according to their importance in the final atlas texture"
+    ],
+    "bReuseMeshLightmapUVs": [
+      "bool",
+      "Whether to attempt to re-use the source mesh's lightmap UVs when baking the material or always generate a new set."
+    ],
+    "bMergeEquivalentMaterials": [
+      "bool",
+      "Whether to attempt to merge materials that are deemed equivalent. This can cause artifacts in the merged mesh if world position/actor position etc. is used to determine output color."
+    ],
+    "bUseLandscapeCulling": [
+      "bool",
+      "Whether or not to use available landscape geometry to cull away invisible triangles"
+    ],
+    "bIncludeImposters": [
+      "bool",
+      "Whether or not to include any imposter LODs that are part of the source static meshes"
+    ],
+    "bSupportRayTracing": [
+      "bool",
+      "Whether ray tracing will be supported on this mesh. Disable this to save memory if the generated mesh will only be rendered in the distance."
+    ],
+    "bAllowDistanceField": [
+      "bool",
+      "Whether to allow distance field to be computed for this mesh. Disable this to save memory if the merged mesh will only be rendered in the distance."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMeshMergingSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMeshMergingSettings"
+        }
+      ]
+    }
+  ]
+}

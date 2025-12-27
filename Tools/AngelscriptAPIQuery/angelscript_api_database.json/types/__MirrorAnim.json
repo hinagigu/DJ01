@@ -1,0 +1,117 @@
+{
+  "name": "__MirrorAnim",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ConvertToMirrorNode",
+      "return": "FMirrorAnimNodeReference",
+      "doc": "Get a mirror node context from an anim node context",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "Result",
+          "type": "EAnimNodeReferenceConversionResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConvertToMirrorNodePure",
+      "return": "void",
+      "doc": "Get a mirror context from an anim node context (pure)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "MirrorNode",
+          "type": "FMirrorAnimNodeReference&"
+        },
+        {
+          "name": "Result",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetMirror",
+      "return": "bool",
+      "doc": "Get the mirror state",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MirrorNode",
+          "type": "FMirrorAnimNodeReference"
+        }
+      ]
+    },
+    {
+      "name": "GetMirrorDataTable",
+      "return": "UMirrorDataTable",
+      "doc": "Get MirrorDataTable used to perform mirroring",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MirrorNode",
+          "type": "FMirrorAnimNodeReference"
+        }
+      ]
+    },
+    {
+      "name": "GetMirrorTransitionBlendTime",
+      "return": "float32",
+      "doc": "Get how long to blend using inertialization when switching mirrored state",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MirrorNode",
+          "type": "FMirrorAnimNodeReference"
+        }
+      ]
+    },
+    {
+      "name": "SetMirror",
+      "return": "FMirrorAnimNodeReference",
+      "doc": "Set the mirror state",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MirrorNode",
+          "type": "FMirrorAnimNodeReference"
+        },
+        {
+          "name": "bInMirror",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMirrorTransitionBlendTime",
+      "return": "FMirrorAnimNodeReference",
+      "doc": "Set how long to blend using inertialization when switching mirrored state",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MirrorNode",
+          "type": "FMirrorAnimNodeReference"
+        },
+        {
+          "name": "InBlendTime",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

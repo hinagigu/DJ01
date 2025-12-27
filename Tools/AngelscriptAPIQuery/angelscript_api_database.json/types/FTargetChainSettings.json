@@ -1,0 +1,30 @@
+{
+  "name": "FTargetChainSettings",
+  "isStruct": true,
+  "properties": {
+    "FK": [
+      "FTargetChainFKSettings",
+      "All settings for FK retargeting of this chain.\nFK retargeting runs before the IK pass."
+    ],
+    "IK": [
+      "FTargetChainIKSettings",
+      "All settings controlling the IK Goal assigned to this chain.\nThe IK pass runs AFTER the FK pass and can be used to fix contacts."
+    ],
+    "SpeedPlanting": [
+      "FTargetChainSpeedPlantSettings",
+      "All settings associated with planting IK goals based on the speed of the source.\nSpeed planting will pin the IK goal to the location determined by the IK settings above."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FTargetChainSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTargetChainSettings"
+        }
+      ]
+    }
+  ]
+}

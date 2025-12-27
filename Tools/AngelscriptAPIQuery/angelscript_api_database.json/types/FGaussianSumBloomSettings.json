@@ -1,0 +1,78 @@
+{
+  "name": "FGaussianSumBloomSettings",
+  "isStruct": true,
+  "properties": {
+    "Intensity": [
+      "float32",
+      "Multiplier for all bloom contributions >=0: off, 1(default), >1 brighter"
+    ],
+    "Threshold": [
+      "float32",
+      "minimum brightness the bloom starts having effect\n-1:all pixels affect bloom equally (physically correct, faster as a threshold pass is omitted), 0:all pixels affect bloom brights more, 1(default), >1 brighter"
+    ],
+    "SizeScale": [
+      "float32",
+      "Scale for all bloom sizes"
+    ],
+    "Filter1Size": [
+      "float32",
+      "Diameter size for the Bloom1 in percent of the screen width\n(is done in 1/2 resolution, larger values cost more performance, good for high frequency details)\n>=0: can be clamped because of shader limitations"
+    ],
+    "Filter2Size": [
+      "float32",
+      "Diameter size for Bloom2 in percent of the screen width\n(is done in 1/4 resolution, larger values cost more performance)\n>=0: can be clamped because of shader limitations"
+    ],
+    "Filter3Size": [
+      "float32",
+      "Diameter size for Bloom3 in percent of the screen width\n(is done in 1/8 resolution, larger values cost more performance)\n>=0: can be clamped because of shader limitations"
+    ],
+    "Filter4Size": [
+      "float32",
+      "Diameter size for Bloom4 in percent of the screen width\n(is done in 1/16 resolution, larger values cost more performance, best for wide contributions)\n>=0: can be clamped because of shader limitations"
+    ],
+    "Filter5Size": [
+      "float32",
+      "Diameter size for Bloom5 in percent of the screen width\n(is done in 1/32 resolution, larger values cost more performance, best for wide contributions)\n>=0: can be clamped because of shader limitations"
+    ],
+    "Filter6Size": [
+      "float32",
+      "Diameter size for Bloom6 in percent of the screen width\n(is done in 1/64 resolution, larger values cost more performance, best for wide contributions)\n>=0: can be clamped because of shader limitations"
+    ],
+    "Filter1Tint": [
+      "FLinearColor",
+      "Bloom1 tint color"
+    ],
+    "Filter2Tint": [
+      "FLinearColor",
+      "Bloom2 tint color"
+    ],
+    "Filter3Tint": [
+      "FLinearColor",
+      "Bloom3 tint color"
+    ],
+    "Filter4Tint": [
+      "FLinearColor",
+      "Bloom4 tint color"
+    ],
+    "Filter5Tint": [
+      "FLinearColor",
+      "Bloom5 tint color"
+    ],
+    "Filter6Tint": [
+      "FLinearColor",
+      "Bloom6 tint color"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGaussianSumBloomSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGaussianSumBloomSettings"
+        }
+      ]
+    }
+  ]
+}

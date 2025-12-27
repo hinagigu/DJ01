@@ -1,0 +1,85 @@
+{
+  "name": "UPhysicsAsset",
+  "inherits": "UObject",
+  "doc": "PhysicsAsset contains a set of rigid bodies and constraints that make up a single ragdoll.\nThe asset is not limited to human ragdolls, and can be used for any physical simulation using bodies and constraints.\nA SkeletalMesh has a single PhysicsAsset, which allows for easily turning ragdoll physics on or off for many SkeletalMeshComponents\nThe asset can be configured inside the Physics Asset Editor.\n\n@see https://docs.unrealengine.com/InteractiveExperiences/Physics/PhysicsAssetEditor\n@see USkeletalMesh",
+  "properties": {
+    "PhysicalAnimationProfiles": [
+      "TArray<FName>",
+      2,
+      ""
+    ],
+    "ConstraintProfiles": [
+      "TArray<FName>",
+      2,
+      ""
+    ],
+    "SolverSettings": [
+      "FPhysicsAssetSolverSettings",
+      2,
+      "Solver settings when the asset is used with a RigidBody Anim Node (RBAN)."
+    ],
+    "SolverType": [
+      "EPhysicsAssetSolverType",
+      2,
+      "Solver type used in physics asset editor. This can be used to make what you see in the asset editror more closely resembles what you\nsee in game (though there will be differences owing to framerate variation etc). If your asset will primarily be used as a ragdoll\nselect \"World\", but if it will be used in the AnimGraph select \"RBAN\"."
+    ],
+    "ThumbnailInfo": [
+      "UThumbnailInfo",
+      2,
+      "Information for thumbnail rendering"
+    ],
+    "bNotForDedicatedServer": [
+      "bool",
+      "If true, we skip instancing bodies for this PhysicsAsset on dedicated servers"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetConstraintByBoneNames",
+      "return": "FConstraintInstanceAccessor",
+      "doc": "Gets a constraint by its joint name\n@param Bone1Name name of the first bone in the joint\n@param Bone2Name name of the second bone in the joint\n@return ConstraintInstance accessor to the constraint data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Bone1Name",
+          "type": "FName"
+        },
+        {
+          "name": "Bone2Name",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetConstraintByName",
+      "return": "FConstraintInstanceAccessor",
+      "doc": "Gets a constraint by its joint name\n@param ConstraintName name of the constraint\n@return ConstraintInstance accessor to the constraint data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ConstraintName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetConstraints",
+      "return": "void",
+      "doc": "Gets all constraints\n@param IncludesTerminated whether or not to return terminated constraints\n@param OutConstraints returned list of constraints matching the parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIncludesTerminated",
+          "type": "bool"
+        },
+        {
+          "name": "OutConstraints",
+          "type": "TArray<FConstraintInstanceAccessor>&"
+        }
+      ]
+    }
+  ]
+}

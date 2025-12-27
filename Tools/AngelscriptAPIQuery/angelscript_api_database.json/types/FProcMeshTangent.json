@@ -1,0 +1,27 @@
+{
+  "name": "FProcMeshTangent",
+  "isStruct": true,
+  "doc": "Struct used to specify a tangent vector for a vertex\nThe Y tangent is computed from the cross product of the vertex normal (Tangent Z) and the TangentX member.",
+  "properties": {
+    "TangentX": [
+      "FVector",
+      "Direction of X tangent for this vertex"
+    ],
+    "bFlipTangentY": [
+      "bool",
+      "Bool that indicates whether we should flip the Y tangent when we compute it using cross product"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FProcMeshTangent&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FProcMeshTangent"
+        }
+      ]
+    }
+  ]
+}

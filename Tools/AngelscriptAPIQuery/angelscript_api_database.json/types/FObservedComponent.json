@@ -1,0 +1,38 @@
+{
+  "name": "FObservedComponent",
+  "isStruct": true,
+  "properties": {
+    "CacheName": [
+      "FName",
+      "Unique name for the cache, used as a key into the cache collection"
+    ],
+    "SoftComponentRef": [
+      "FSoftComponentReference",
+      "The component observed by this object for either playback or recording"
+    ],
+    "bIsSimulating": [
+      "bool",
+      "Capture of the initial state of the component before cache manager takes control."
+    ],
+    "bPlaybackEnabled": [
+      "bool",
+      "Whether this component is enabled for playback, this allow a cache to hold many component but only replay some of them."
+    ],
+    "USDCacheDirectory": [
+      "FDirectoryPath",
+      "USD cache directory, if supported for this simulated structure type."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FObservedComponent&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FObservedComponent"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "name": "ULocalPlayerSaveGame",
+  "inherits": "USaveGame",
+  "doc": "Abstract subclass of USaveGame that provides utility functions that let you associate a Save Game object with a specific local player.\nThese objects can also be loaded using the functions on GameplayStatics, but you would need to call functions like InitializeSaveGame manually.\nFor simple games, it is fine to blueprint this class directly and add parameters and override functions in blueprint,\nbut for complicated games you will want to subclass this in native code and set up proper versioning.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AsyncSaveGameToSlotForLocalPlayer",
+      "return": "bool",
+      "doc": "Asynchronously save to the slot and user index.\nThis will return true if the save was requested, and errors should be handled by the HandlePostSave function after the save succeeds or fails",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInvalidDataVersion",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the invalid save data version, which means it has never been saved/loaded",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLatestDataVersion",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the latest save data version, this is used when the new data is saved",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLocalPlayerController",
+      "return": "APlayerController",
+      "const": true,
+      "doc": "Returns the local player controller this is associated with, this will be valid if it is ready to save",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlatformUserId",
+      "return": "FPlatformUserId",
+      "const": true,
+      "doc": "Returns the platform user to save to, based on Local Player by default",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlatformUserIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the user index to save to, based on Local Player by default",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSavedDataVersion",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the game-specific version number this was last saved/loaded as",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSaveSlotName",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the save slot name to use",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsSaveInProgress",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if a save is in progress",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnPostLoad",
+      "return": "void",
+      "callable": false,
+      "doc": "Blueprint event called after loading, is not called for newly created saves",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnPostSave",
+      "return": "void",
+      "callable": false,
+      "doc": "Blueprint event called after saving finishes with success/failure result",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSuccess",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "OnPreSave",
+      "return": "void",
+      "callable": false,
+      "doc": "Blueprint event called before saving, do any game-specific fixup here",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnResetToDefault",
+      "return": "void",
+      "callable": false,
+      "doc": "Blueprint event called to reset all saved data to default, called when the load fails or manually",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResetToDefault",
+      "return": "void",
+      "doc": "Resets all saved data to default values, called when the load fails or manually",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SaveGameToSlotForLocalPlayer",
+      "return": "bool",
+      "doc": "Synchronously save using the slot and user index, stalling the main thread until it completes.\nThis will return true if the save was requested, and errors should be handled by the HandlePostSave function that will be called immediately.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "WasLastSaveSuccessful",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if it has been saved at least once and the last save was successful",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "WasLoaded",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this was loaded from an existing save",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "WasSaveRequested",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if a save was ever requested, may still be in progress",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "UVoxelBlendMeshesToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Properties of the blend operation",
+  "properties": {
+    "BlendPower": [
+      "float",
+      2,
+      "Blend power controls the shape of the blend between shapes"
+    ],
+    "BlendFalloff": [
+      "float",
+      2,
+      "Blend falloff controls the size of the blend region"
+    ],
+    "Operation": [
+      "EVoxelBlendOperation",
+      2,
+      "How to combine the shapes"
+    ],
+    "bVoxWrap": [
+      "bool",
+      2,
+      "Apply a \"VoxWrap\" operation to input mesh(es) before computing the blend.  Fixes results for inputs with holes and/or self-intersections."
+    ],
+    "bRemoveInternalsAfterVoxWrap": [
+      "bool",
+      2,
+      "Remove internal surfaces from the VoxWrap output, before computing the blend."
+    ],
+    "ThickenShells": [
+      "float",
+      2,
+      "Thicken open-boundary surfaces (extrude them inwards) before VoxWrapping them. Units are in world space. If 0 then no extrusion is applied."
+    ]
+  },
+  "methods": []
+}

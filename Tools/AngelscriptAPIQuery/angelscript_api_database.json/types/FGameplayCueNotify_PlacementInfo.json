@@ -1,0 +1,47 @@
+{
+  "name": "FGameplayCueNotify_PlacementInfo",
+  "isStruct": true,
+  "doc": "FGameplayCueNotify_PlacementInfo\n\n    Specifies how the gameplay cue notify will be positioned in the world.",
+  "properties": {
+    "SocketName": [
+      "FName",
+      "Target's socket (or bone) used for location and rotation.  If \"None\", it uses the target's root."
+    ],
+    "AttachPolicy": [
+      "EGameplayCueNotify_AttachPolicy",
+      "Whether to attach to the target actor or not attach."
+    ],
+    "AttachmentRule": [
+      "EAttachmentRule",
+      "How the transform is handled when attached."
+    ],
+    "RotationOverride": [
+      "FRotator",
+      "If enabled, will always spawn using rotation override.\nThis will also set the rotation to be absolute, so any changes to the parent's rotation will be ignored after attachment."
+    ],
+    "ScaleOverride": [
+      "FVector",
+      "If enabled, will always spawn using scale override.\nThis will also set the scale to be absolute, so any changes to the parent's scale will be ignored after attachment."
+    ],
+    "bOverrideRotation": [
+      "bool",
+      "If enabled, will always spawn using rotation override."
+    ],
+    "bOverrideScale": [
+      "bool",
+      "If enabled, will always spawn using the scale override."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayCueNotify_PlacementInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayCueNotify_PlacementInfo"
+        }
+      ]
+    }
+  ]
+}

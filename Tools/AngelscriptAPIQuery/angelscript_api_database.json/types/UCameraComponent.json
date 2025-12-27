@@ -1,0 +1,285 @@
+{
+  "name": "UCameraComponent",
+  "inherits": "USceneComponent",
+  "doc": "Represents a camera viewpoint and settings, such as projection type, field of view, and post-process overrides.\nThe default behavior for an actor used as the camera view target is to look for an attached camera component and use its location, rotation, and settings.",
+  "properties": {
+    "bAutoCalculateOrthoPlanes": [
+      "bool",
+      "Automatically determine a min/max Near/Far clip plane position depending on OrthoWidth value"
+    ],
+    "bUpdateOrthoPlanes": [
+      "bool",
+      "Adjusts the near/far planes and the view origin of the current camera automatically to avoid clipping and light artefacting"
+    ],
+    "bUseCameraHeightAsViewTarget": [
+      "bool",
+      "If UpdateOrthoPlanes is enabled, this setting will use the cameras current height to compensate the distance to the general view (as a pseudo distance to view target when one isn't present)"
+    ],
+    "bDrawFrustumAllowed": [
+      "bool",
+      "The Frustum visibility flag for draw frustum component initialization"
+    ],
+    "CameraMesh": [
+      "UStaticMesh"
+    ],
+    "PostProcessSettings": [
+      "FPostProcessSettings",
+      "Post process settings to use for this camera. Don't forget to check the properties you want to override"
+    ],
+    "FieldOfView": [
+      "float32",
+      "The horizontal field of view (in degrees) in perspective mode (ignored in Orthographic mode)\n\nIf the aspect ratio axis constraint (from ULocalPlayer, ALevelSequenceActor, etc.) is set to maintain vertical FOV, the AspectRatio\nproperty will be used to convert this property's value to a vertical FOV."
+    ],
+    "OrthoWidth": [
+      "float32",
+      "The desired width (in world units) of the orthographic view (ignored in Perspective mode)"
+    ],
+    "AutoPlaneShift": [
+      "float32",
+      "Manually adjusts the planes of this camera, maintaining the distance between them. Positive moves out to the farplane, negative towards the near plane"
+    ],
+    "OrthoNearClipPlane": [
+      "float32",
+      "The near plane distance of the orthographic view (in world units)"
+    ],
+    "OrthoFarClipPlane": [
+      "float32",
+      "The far plane distance of the orthographic view (in world units)"
+    ],
+    "AspectRatio": [
+      "float32",
+      "Aspect Ratio (Width/Height)"
+    ],
+    "AspectRatioAxisConstraint": [
+      "EAspectRatioAxisConstraint",
+      "Override for the default aspect ratio axis constraint defined on the local player"
+    ],
+    "bConstrainAspectRatio": [
+      "bool",
+      "If bConstrainAspectRatio is true, black bars will be added if the destination view has a different aspect ratio than this camera requested."
+    ],
+    "bOverrideAspectRatioAxisConstraint": [
+      "bool",
+      "Whether to override the default aspect ratio axis constraint defined on the local player"
+    ],
+    "bUseFieldOfViewForLOD": [
+      "bool",
+      "If true, account for the field of view angle when computing which level of detail to use for meshes."
+    ],
+    "bCameraMeshHiddenInGame": [
+      "bool",
+      "If the camera mesh is visible in game. Only relevant when running editor builds."
+    ],
+    "bLockToHmd": [
+      "bool",
+      "True if the camera's orientation and position should be locked to the HMD"
+    ],
+    "bUsePawnControlRotation": [
+      "bool",
+      "If this camera component is placed on a pawn, should it use the view/control rotation of the pawn where possible?\n@see APawn::GetViewRotation()"
+    ],
+    "ProjectionMode": [
+      "ECameraProjectionMode",
+      "The type of camera"
+    ],
+    "PostProcessBlendWeight": [
+      "float32",
+      "Indicates if PostProcessSettings should be used when using this Camera to view through."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCameraView",
+      "return": "void",
+      "doc": "Returns camera's Point of View.\nCalled by Camera class. Subclass and postprocess to add any effects.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaTime",
+          "type": "float32"
+        },
+        {
+          "name": "DesiredView",
+          "type": "FMinimalViewInfo&"
+        }
+      ]
+    },
+    {
+      "name": "OnCameraMeshHiddenChanged",
+      "return": "void",
+      "doc": "Internal function for updating the camera mesh visibility in PIE",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAspectRatio",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAspectRatio",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAspectRatioAxisConstraint",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAspectRatioAxisConstraint",
+          "type": "EAspectRatioAxisConstraint"
+        }
+      ]
+    },
+    {
+      "name": "SetAutoCalculateOrthoPlanes",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bAutoCalculate",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAutoPlaneShift",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAutoPlaneShift",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetConstraintAspectRatio",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInConstrainAspectRatio",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetFieldOfView",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFieldOfView",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOrthoFarClipPlane",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOrthoFarClipPlane",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOrthoNearClipPlane",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOrthoNearClipPlane",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOrthoWidth",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOrthoWidth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPostProcessBlendWeight",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPostProcessBlendWeight",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetProjectionMode",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InProjectionMode",
+          "type": "ECameraProjectionMode"
+        }
+      ]
+    },
+    {
+      "name": "SetUpdateOrthoPlanes",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInUpdateOrthoPlanes",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetUseCameraHeightAsViewTarget",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInUseCameraHeightAsViewTarget",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetUseFieldOfViewForLOD",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInUseFieldOfViewForLOD",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

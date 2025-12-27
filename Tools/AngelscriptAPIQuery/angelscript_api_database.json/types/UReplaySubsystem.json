@@ -1,0 +1,55 @@
+{
+  "name": "UReplaySubsystem",
+  "inherits": "UGameInstanceSubsystem",
+  "properties": {
+    "bLoadDefaultMapOnStop": [
+      "bool",
+      2,
+      "Whether to reload the default map when StopReplay is called."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetActiveReplayName",
+      "return": "FString",
+      "const": true,
+      "doc": "Get current recording/playing replay name\n\n@return FString Name of relpay (session id, file name, etc)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetReplayCurrentTime",
+      "return": "float32",
+      "const": true,
+      "doc": "Get current recording/playing replay time\n\n@return float Current recording/playback time in seconds",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsPlaying",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsRecording",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RequestCheckpoint",
+      "return": "void",
+      "doc": "Request a checkpoint write, if currently recording.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

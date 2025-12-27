@@ -1,0 +1,51 @@
+{
+  "name": "ULocalLightComponent",
+  "inherits": "ULightComponent",
+  "doc": "A light component which emits light from a single point equally in all directions.",
+  "properties": {
+    "InverseExposureBlend": [
+      "float32",
+      "Blend Factor used to blend between Intensity and Intensity/Exposure.\nThis is useful for gameplay lights that should have constant brighness on screen independent of current exposure.\nThis feature can cause issues with exposure particularly when used on the primary light on a scene, as such it's usage should be limited."
+    ],
+    "LightmassSettings": [
+      "FLightmassPointLightSettings",
+      2,
+      "The Lightmass settings for this object."
+    ],
+    "IntensityUnits": [
+      "ELightUnits",
+      "Units used for the intensity.\nThe peak luminous intensity is measured in candelas,\nwhile the luminous power is measured in lumens."
+    ],
+    "AttenuationRadius": [
+      "float32",
+      "Bounds the light's visible influence.\nThis clamping of the light's influence is not physically correct but very important for performance, larger lights cost more."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetAttenuationRadius",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewRadius",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetIntensityUnits",
+      "return": "void",
+      "doc": "Set the units used for the intensity of the light",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewIntensityUnits",
+          "type": "ELightUnits"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "UBrushBuilder",
+  "inherits": "UObject",
+  "doc": "Base class of UnrealEd brush builders.\n\n\nTips for writing brush builders:\n\n- Always validate the user-specified and call BadParameters function\n  if anything is wrong, instead of actually building geometry.\n  If you build an invalid brush due to bad user parameters, you'll\n  cause an extraordinary amount of pain for the poor user.\n\n- When generating polygons with more than 3 vertices, BE SURE all the\n  polygon's vertices are coplanar!  Out-of-plane polygons will cause\n  geometry to be corrupted.",
+  "properties": {},
+  "methods": []
+}

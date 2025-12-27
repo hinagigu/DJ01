@@ -1,0 +1,54 @@
+{
+  "name": "FAnimNode_BlendListBase",
+  "isStruct": true,
+  "doc": "Blend list node; has many children",
+  "properties": {
+    "BlendPose": [
+      "TArray<FPoseLink>",
+      2,
+      ""
+    ],
+    "BlendTime": [
+      "TArray<float32>",
+      2,
+      ""
+    ],
+    "TransitionType": [
+      "EBlendListTransitionType",
+      2,
+      ""
+    ],
+    "BlendType": [
+      "EAlphaBlendOption",
+      2,
+      ""
+    ],
+    "bResetChildOnActivation": [
+      "bool",
+      2,
+      "This reinitializes the re-activated child if the child's weight was zero."
+    ],
+    "CustomBlendCurve": [
+      "UCurveFloat",
+      2,
+      ""
+    ],
+    "BlendProfile": [
+      "UBlendProfile",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_BlendListBase&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_BlendListBase"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "name": "__AssetTools",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateAsset",
+      "return": "UObject",
+      "doc": "Creates an asset with the specified name, path, and optional factory\n\n@param AssetName the name of the new asset\n@param PackagePath the package that will contain the new asset\n@param AssetClass the class of the new asset\n@param Factory optional factory that will build the new asset\n@param CallingContext optional name of the module or method calling CreateAsset() - this is passed to the factory\n@return the new asset or nullptr if it fails",
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetName",
+          "type": "FString"
+        },
+        {
+          "name": "PackagePath",
+          "type": "FString"
+        },
+        {
+          "name": "AssetClass",
+          "type": "UClass"
+        },
+        {
+          "name": "Factory",
+          "default": "nullptr",
+          "type": "UFactory"
+        },
+        {
+          "name": "CallingContext",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "FixupReferencers",
+      "return": "void",
+      "doc": "Fix up references to the specified redirectors.\n\n@param bCheckoutDialogPrompt indicates whether to prompt the user with files checkout dialog or silently attempt to checkout all necessary files.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Objects",
+          "type": "TArray<UObject>"
+        },
+        {
+          "name": "bCheckoutDialogPrompt",
+          "type": "bool"
+        },
+        {
+          "name": "FixupMode",
+          "type": "ERedirectFixupMode"
+        }
+      ]
+    },
+    {
+      "name": "ImportAssetTasks",
+      "return": "void",
+      "doc": "Imports assets using tasks specified.\n\n@param ImportTasks Tasks that specify how to import each file",
+      "meta": null,
+      "args": [
+        {
+          "name": "ImportTasks",
+          "type": "TArray<UAssetImportTask>"
+        }
+      ]
+    }
+  ]
+}

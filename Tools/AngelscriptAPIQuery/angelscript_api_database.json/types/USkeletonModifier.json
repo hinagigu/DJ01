@@ -1,0 +1,336 @@
+{
+  "name": "USkeletonModifier",
+  "inherits": "UObject",
+  "doc": "FSkeletalMeshSkeletonModifier",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddBone",
+      "return": "bool",
+      "doc": "Creates a new bone in the skeleton hierarchy at desired transform\n@param InBoneName The new bone's name.\n@param InParentName The new bone parent's name.\n@param InTransform The default local transform in the parent space.\n@return \\c true if the operation succeeded, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "InParentName",
+          "type": "FName"
+        },
+        {
+          "name": "InTransform",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "AddBones",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBonesName",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "InParentsName",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "InTransforms",
+          "type": "TArray<FTransform>"
+        }
+      ]
+    },
+    {
+      "name": "CommitSkeletonToSkeletalMesh",
+      "return": "bool",
+      "doc": "Actually applies the skeleton modifications to the skeletal mesh.\n@return true if commit succeeded.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAllBoneNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Get All Bone Names\n@return \\c All bone names list",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetBoneTransform",
+      "return": "FTransform",
+      "const": true,
+      "doc": "Get Bone Transform\n@param InBoneName The current bone's name.\n@param bGlobal Whether it should return the parent space or global transform\n@return \\c The current bone's transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "bGlobal",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetChildrenNames",
+      "return": "TArray<FName>",
+      "const": true,
+      "doc": "Get Children Names\n@param InBoneName The parent's name.\n@param bRecursive If set to true grand-children will also be added recursively\n@return \\c The children names list",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "bRecursive",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetParentName",
+      "return": "FName",
+      "const": true,
+      "doc": "Get Parent Name\n@param InBoneName The current bone's name.\n@return \\c The current bone's parent name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "MirrorBone",
+      "return": "bool",
+      "doc": "Mirror bones\n@param InBoneName The new bone's name.\n@param InOptions The mirroring options\n@return \\c true if the operation succeeded, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "InOptions",
+          "type": "FMirrorOptions"
+        }
+      ]
+    },
+    {
+      "name": "MirrorBones",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBonesName",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "InOptions",
+          "type": "FMirrorOptions"
+        }
+      ]
+    },
+    {
+      "name": "OrientBone",
+      "return": "bool",
+      "doc": "Align bones\n@param InBoneName The current bone's name.\n@param InOptions The orienting options\n@return \\c true if the operation succeeded, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "InOptions",
+          "type": "FOrientOptions"
+        }
+      ]
+    },
+    {
+      "name": "OrientBones",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "InOptions",
+          "type": "FOrientOptions"
+        }
+      ]
+    },
+    {
+      "name": "ParentBone",
+      "return": "bool",
+      "doc": "Parent bones\n@param InBoneName The current bone's name.\n@param InParentName The new parent's name (Name_NONE to unparent).\n@return \\c true if the operation succeeded, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "InParentName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "ParentBones",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "InParentNames",
+          "type": "TArray<FName>"
+        }
+      ]
+    },
+    {
+      "name": "RemoveBone",
+      "return": "bool",
+      "doc": "Remove a bone in the skeleton hierarchy\n@param InBoneName The new bone's name.\n@param bRemoveChildren Remove children recursively.\n@return \\c true if the operation succeeded, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "bRemoveChildren",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveBones",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "bRemoveChildren",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RenameBone",
+      "return": "bool",
+      "doc": "Rename bones\n@param InOldBoneName The current bone's name.\n@param InNewBoneName The new bone's name.\n@return \\c true if the operation succeeded, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOldBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "InNewBoneName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RenameBones",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOldBoneNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "InNewBoneNames",
+          "type": "TArray<FName>"
+        }
+      ]
+    },
+    {
+      "name": "SetBonesTransforms",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "InNewTransforms",
+          "type": "TArray<FTransform>"
+        },
+        {
+          "name": "bMoveChildren",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetBoneTransform",
+      "return": "bool",
+      "doc": "Sets the bone the desired local transform\n@param InBoneName The new bone's name that needs to be moved.\n@param InNewTransform The new local transform in the bone's parent space.\n@param bMoveChildren Propagate new transform to children\n@return \\c true if the operation succeeded, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "InNewTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "bMoveChildren",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSkeletalMesh",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSkeletalMesh",
+          "type": "USkeletalMesh"
+        }
+      ]
+    }
+  ]
+}

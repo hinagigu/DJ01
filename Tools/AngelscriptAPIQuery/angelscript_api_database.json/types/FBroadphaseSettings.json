@@ -1,0 +1,49 @@
+{
+  "name": "FBroadphaseSettings",
+  "isStruct": true,
+  "doc": "Settings pertaining to which PhysX broadphase to use, and settings for MBP if that is the chosen broadphase type",
+  "properties": {
+    "bUseMBPOnClient": [
+      "bool",
+      2,
+      "Whether to use MBP (Multi Broadphase Pruning"
+    ],
+    "bUseMBPOnServer": [
+      "bool",
+      2,
+      ""
+    ],
+    "bUseMBPOuterBounds": [
+      "bool",
+      2,
+      "Whether to have MBP grid over concentrated inner bounds with loose outer bounds"
+    ],
+    "MBPBounds": [
+      "FBox",
+      2,
+      "Total bounds for MBP, must cover the game world or collisions are disabled for out of bounds actors"
+    ],
+    "MBPOuterBounds": [
+      "FBox",
+      2,
+      "Total bounds for MBP, should cover absolute maximum bounds of the game world where physics is required"
+    ],
+    "MBPNumSubdivs": [
+      "uint",
+      2,
+      "Number of times to subdivide the MBP bounds, final number of regions is MBPNumSubdivs^2"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FBroadphaseSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBroadphaseSettings"
+        }
+      ]
+    }
+  ]
+}

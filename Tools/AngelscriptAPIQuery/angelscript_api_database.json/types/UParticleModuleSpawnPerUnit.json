@@ -1,0 +1,43 @@
+{
+  "name": "UParticleModuleSpawnPerUnit",
+  "inherits": "UParticleModuleSpawnBase",
+  "properties": {
+    "UnitScalar": [
+      "float32",
+      2,
+      "The scalar to apply to the distance traveled.\nThe value from SpawnPerUnit is divided by this value to give the actual\nnumber of particles per unit."
+    ],
+    "MovementTolerance": [
+      "float32",
+      2,
+      "The tolerance for moving vs. not moving w.r.t. the bIgnoreSpawnRateWhenMoving flag.\nIe, if (DistanceMoved < (UnitScalar x MovementTolerance)) then consider it not moving."
+    ],
+    "SpawnPerUnit": [
+      "FRawDistributionFloat",
+      2,
+      "The amount to spawn per meter distribution.\nThe value is retrieved using the EmitterTime."
+    ],
+    "MaxFrameDistance": [
+      "float32",
+      2,
+      "The maximum valid movement for a single frame.\nIf 0.0, then the check is not performed.\nCurrently, if the distance moved between frames is greater than this\nthen NO particles will be spawned.\nThis is primiarily intended to cover cases where the PSystem is\nattached to teleporting objects."
+    ],
+    "bIgnoreSpawnRateWhenMoving": [
+      "bool",
+      "If true, process the default spawn rate when not moving...\nWhen not moving, skip the default spawn rate.\nIf false, return the bProcessSpawnRate setting."
+    ],
+    "bIgnoreMovementAlongX": [
+      "bool",
+      "If true, ignore the X-component of the movement"
+    ],
+    "bIgnoreMovementAlongY": [
+      "bool",
+      "If true, ignore the Y-component of the movement"
+    ],
+    "bIgnoreMovementAlongZ": [
+      "bool",
+      "If true, ignore the Z-component of the movement"
+    ]
+  },
+  "methods": []
+}

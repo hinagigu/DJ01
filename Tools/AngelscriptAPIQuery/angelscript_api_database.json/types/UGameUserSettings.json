@@ -1,0 +1,721 @@
+{
+  "name": "UGameUserSettings",
+  "inherits": "UObject",
+  "doc": "Stores user settings for a game (for example graphics and sound settings), with the ability to save and load to and from a file.",
+  "properties": {
+    "OnGameUserSettingsUINeedsUpdate": [
+      "FOnGameUserSettingsUINeedsUpdate"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ApplyHardwareBenchmarkResults",
+      "return": "void",
+      "doc": "Applies the settings stored in ScalabilityQuality and saves settings",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ApplyNonResolutionSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ApplyResolutionSettings",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bCheckForCommandLineOverrides",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ApplySettings",
+      "return": "void",
+      "doc": "Applies all current user settings to the game and saves to permanent storage (e.g. file), optionally checking for command line overrides.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bCheckForCommandLineOverrides",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ConfirmVideoMode",
+      "return": "void",
+      "doc": "Mark current video mode settings (fullscreenmode/resolution) as being confirmed by the user",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EnableHDRDisplayOutput",
+      "return": "void",
+      "doc": "Enables or disables HDR display output. Can be called again to change the desired nit level",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnable",
+          "type": "bool"
+        },
+        {
+          "name": "DisplayNits",
+          "default": "1000",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetAntiAliasingQuality",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the anti-aliasing quality (0..4, higher is better)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAudioQualityLevel",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the user's audio quality level setting",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentHDRDisplayNits",
+      "return": "int",
+      "const": true,
+      "doc": "Returns 0 if HDR isn't supported or is turned off",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDefaultResolutionScale",
+      "return": "float32",
+      "doc": "Gets the desired resolution quality based on DesiredScreenWidth/Height and the current screen resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDesktopResolution",
+      "return": "FIntPoint",
+      "const": true,
+      "doc": "Returns user's desktop resolution, in pixels.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFoliageQuality",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the foliage quality (0..4, higher is better)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFrameRateLimit",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the user's frame rate limit (0 indiciates the frame rate limit is disabled)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFullscreenMode",
+      "return": "EWindowMode",
+      "const": true,
+      "doc": "Returns the user setting for game window fullscreen mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGlobalIlluminationQuality",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the global illumination quality (0..4, higher is better)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLastConfirmedFullscreenMode",
+      "return": "EWindowMode",
+      "const": true,
+      "doc": "Returns the last confirmed user setting for game window fullscreen mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLastConfirmedScreenResolution",
+      "return": "FIntPoint",
+      "const": true,
+      "doc": "Returns the last confirmed user setting for game screen resolution, in pixels.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOverallScalabilityLevel",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the overall scalability level (can return -1 if the settings are custom)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPostProcessingQuality",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the post-processing quality (0..4, higher is better)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPreferredFullscreenMode",
+      "return": "EWindowMode",
+      "const": true,
+      "doc": "Returns the user setting for game window fullscreen mode.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRecommendedResolutionScale",
+      "return": "float32",
+      "doc": "Gets the recommended resolution quality based on LastRecommendedScreenWidth/Height and the current screen resolution",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetReflectionQuality",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the reflection quality (0..4, higher is better)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetResolutionScaleInformationEx",
+      "return": "void",
+      "const": true,
+      "doc": "Returns the current resolution scale and the range",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CurrentScaleNormalized",
+          "type": "float32&"
+        },
+        {
+          "name": "CurrentScaleValue",
+          "type": "float32&"
+        },
+        {
+          "name": "MinScaleValue",
+          "type": "float32&"
+        },
+        {
+          "name": "MaxScaleValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetResolutionScaleNormalized",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current resolution scale as a normalized 0..1 value between MinScaleValue and MaxScaleValue",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetScreenResolution",
+      "return": "FIntPoint",
+      "const": true,
+      "doc": "Returns the user setting for game screen resolution, in pixels.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetShadingQuality",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the shading quality (0..4, higher is better)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetShadowQuality",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the shadow quality (0..4, higher is better)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTextureQuality",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the texture quality (0..4, higher is better)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetViewDistanceQuality",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the view distance quality (0..4, higher is better)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVisualEffectQuality",
+      "return": "int",
+      "const": true,
+      "doc": "Returns the visual effects quality (0..4, higher is better)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDirty",
+      "return": "bool",
+      "const": true,
+      "doc": "Checks if any user settings is different from current",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDynamicResolutionDirty",
+      "return": "bool",
+      "const": true,
+      "doc": "Checks if the dynamic resolution user setting is different from current system setting",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsDynamicResolutionEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns the user setting for dynamic resolution.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsFullscreenModeDirty",
+      "return": "bool",
+      "const": true,
+      "doc": "Checks if the FullscreenMode user setting is different from current",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsHDREnabled",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsScreenResolutionDirty",
+      "return": "bool",
+      "const": true,
+      "doc": "Checks if the Screen Resolution user setting is different from current",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsVSyncDirty",
+      "return": "bool",
+      "const": true,
+      "doc": "Checks if the vsync user setting is different from current system setting",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsVSyncEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns the user setting for vsync.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LoadSettings",
+      "return": "void",
+      "doc": "Loads the user settings from persistent storage",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bForceReload",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ResetToCurrentSettings",
+      "return": "void",
+      "doc": "This function resets all settings to the current system settings",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RevertVideoMode",
+      "return": "void",
+      "doc": "Revert video mode (fullscreenmode/resolution) back to the last user confirmed values",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RunHardwareBenchmark",
+      "return": "void",
+      "doc": "Runs the hardware benchmark and populates ScalabilityQuality as well as the last benchmark results config members, but does not apply the settings it determines. Designed to be called in conjunction with ApplyHardwareBenchmarkResults",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WorkScale",
+          "default": "10",
+          "type": "int"
+        },
+        {
+          "name": "CPUMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        },
+        {
+          "name": "GPUMultiplier",
+          "default": "1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SaveSettings",
+      "return": "void",
+      "doc": "Save the user settings to persistent storage (automatically happens as part of ApplySettings)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAntiAliasingQuality",
+      "return": "void",
+      "doc": "Sets the anti-aliasing quality (0..4, higher is better)\n@param Value 0:low, 1:medium, 2:high, 3:epic, 4:cinematic (gets clamped if needed)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetAudioQualityLevel",
+      "return": "void",
+      "doc": "Sets the user's audio quality level setting",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "QualityLevel",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetBenchmarkFallbackValues",
+      "return": "void",
+      "doc": "Set scalability settings to sensible fallback values, for use when the benchmark fails or potentially causes a crash",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetDynamicResolutionEnabled",
+      "return": "void",
+      "doc": "Sets the user setting for dynamic resolution. See UGameUserSettings::bUseDynamicResolution.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetFoliageQuality",
+      "return": "void",
+      "doc": "Sets the foliage quality (0..4, higher is better)\n@param Value 0:low, 1:medium, 2:high, 3:epic, 4:cinematic (gets clamped if needed)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetFrameRateLimit",
+      "return": "void",
+      "doc": "Sets the user's frame rate limit (0 will disable frame rate limiting)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewLimit",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFullscreenMode",
+      "return": "void",
+      "doc": "Sets the user setting for the game window fullscreen mode. See UGameUserSettings::FullscreenMode.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFullscreenMode",
+          "type": "EWindowMode"
+        }
+      ]
+    },
+    {
+      "name": "SetGlobalIlluminationQuality",
+      "return": "void",
+      "doc": "Sets the global illumination quality (0..4, higher is better)\n@param Value 0:low, 1:medium, 2:high, 3:epic, 4:cinematic (gets clamped if needed)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetOverallScalabilityLevel",
+      "return": "void",
+      "doc": "Changes all scalability settings at once based on a single overall quality level\n@param Value 0:low, 1:medium, 2:high, 3:epic, 4:cinematic",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetPostProcessingQuality",
+      "return": "void",
+      "doc": "Sets the post-processing quality (0..4, higher is better)\n@param Value 0:low, 1:medium, 2:high, 3:epic, 4:cinematic (gets clamped if needed)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetReflectionQuality",
+      "return": "void",
+      "doc": "Sets the reflection quality (0..4, higher is better)\n@param Value 0:low, 1:medium, 2:high, 3:epic, 4:cinematic (gets clamped if needed)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetResolutionScaleNormalized",
+      "return": "void",
+      "doc": "Sets the current resolution scale as a normalized 0..1 value between MinScaleValue and MaxScaleValue",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewScaleNormalized",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetResolutionScaleValueEx",
+      "return": "void",
+      "doc": "Sets the current resolution scale",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewScaleValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetScreenResolution",
+      "return": "void",
+      "doc": "Sets the user setting for game screen resolution, in pixels.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Resolution",
+          "type": "FIntPoint"
+        }
+      ]
+    },
+    {
+      "name": "SetShadingQuality",
+      "return": "void",
+      "doc": "Sets the shading quality (0..4, higher is better)\n@param Value 0:low, 1:medium, 2:high, 3:epic, 4:cinematic (gets clamped if needed)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetShadowQuality",
+      "return": "void",
+      "doc": "Sets the shadow quality (0..4, higher is better)\n@param Value 0:low, 1:medium, 2:high, 3:epic, 4:cinematic (gets clamped if needed)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetTextureQuality",
+      "return": "void",
+      "doc": "Sets the texture quality (0..4, higher is better)\n@param Value 0:low, 1:medium, 2:high, 3:epic, 4:cinematic  (gets clamped if needed)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetToDefaults",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetViewDistanceQuality",
+      "return": "void",
+      "doc": "Sets the view distance quality (0..4, higher is better)\n@param Value 0:low, 1:medium, 2:high, 3:epic, 4:cinematic (gets clamped if needed)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetVisualEffectQuality",
+      "return": "void",
+      "doc": "Sets the visual effects quality (0..4, higher is better)\n@param Value 0:low, 1:medium, 2:high, 3:epic, 4:cinematic (gets clamped if needed)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetVSyncEnabled",
+      "return": "void",
+      "doc": "Sets the user setting for vsync. See UGameUserSettings::bUseVSync.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SupportsHDRDisplayOutput",
+      "return": "bool",
+      "const": true,
+      "doc": "Whether the curently running system supports HDR display output",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ValidateSettings",
+      "return": "void",
+      "doc": "Validates and resets bad user settings to default. Deletes stale user settings file if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

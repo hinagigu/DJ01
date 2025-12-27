@@ -1,0 +1,413 @@
+{
+  "name": "USkyAtmosphereComponent",
+  "inherits": "USceneComponent",
+  "doc": "A component that represents a planet atmosphere material and simulates sky and light scattering within it.\n@see https://docs.unrealengine.com/en-US/Engine/Actors/FogEffects/SkyAtmosphere/index.html",
+  "properties": {
+    "TransformMode": [
+      "ESkyAtmosphereTransformMode",
+      "The ground albedo that will tint the atmosphere when the sun light will bounce on it. Only taken into account when MultiScattering>0.0."
+    ],
+    "TraceSampleCountScale": [
+      "float32",
+      "Scale the atmosphere tracing sample count. Quality level scalability\nThe sample count is still clamped according to scalability setting to 'r.SkyAtmosphere.SampleCountMax' when 'r.SkyAtmosphere.FastSkyLUT' is 0.\nThe sample count is still clamped according to scalability setting to 'r.SkyAtmosphere.FastSkyLUT.SampleCountMax' when 'r.SkyAtmosphere.FastSkyLUT' is 1.\nThe sample count is still clamped for aerial perspective according to  'r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountMaxPerSlice'."
+    ],
+    "OtherTentDistribution": [
+      "FTentDistribution",
+      "Represents the altitude based tent distribution of absorption particles in the atmosphere."
+    ],
+    "TransmittanceMinLightElevationAngle": [
+      "float32",
+      "The minimum elevation angle in degree that should be used to evaluate the sun transmittance to the ground. Useful to maintain a visible sun light and shadow on meshes even when the sun has started going below the horizon. This does not affect the aerial perspective."
+    ],
+    "AerialPerspectiveStartDepth": [
+      "float32",
+      "The distance (kilometers) at which we start evaluating the aerial perspective. Having the aerial perspective starts away from the camera can help with performance: pixels not affected by the aerial perspective will have their computation skipped using early depth test."
+    ],
+    "BottomRadius": [
+      "float32",
+      "The radius in kilometers from the center of the planet to the ground level."
+    ],
+    "GroundAlbedo": [
+      "FColor",
+      "The ground albedo that will tint the atmosphere when the sun light will bounce on it. Only taken into account when MultiScattering>0.0."
+    ],
+    "AtmosphereHeight": [
+      "float32",
+      "The height of the atmosphere layer above the ground in kilometers."
+    ],
+    "MultiScatteringFactor": [
+      "float32",
+      "Factor applied to multiple scattering only (after the sun light has bounced around in the atmosphere at least once).\nMultiple scattering is evaluated using a dual scattering approach.\nA value of 2 is recommended to better represent default atmosphere when r.SkyAtmosphere.MultiScatteringLUT.HighQuality=0."
+    ],
+    "RayleighScatteringScale": [
+      "float32",
+      "Rayleigh scattering coefficient scale."
+    ],
+    "RayleighScattering": [
+      "FLinearColor",
+      "The Rayleigh scattering coefficients resulting from molecules in the air at an altitude of 0 kilometer."
+    ],
+    "RayleighExponentialDistribution": [
+      "float32",
+      "The altitude in kilometer at which Rayleigh scattering effect is reduced to 40%."
+    ],
+    "MieScatteringScale": [
+      "float32",
+      "Mie scattering coefficient scale."
+    ],
+    "MieScattering": [
+      "FLinearColor",
+      "The Mie scattering coefficients resulting from particles in the air at an altitude of 0 kilometer. As it becomes higher, light will be scattered more."
+    ],
+    "MieAbsorptionScale": [
+      "float32",
+      "Mie absorption coefficient scale."
+    ],
+    "MieAbsorption": [
+      "FLinearColor",
+      "The Mie absorption coefficients resulting from particles in the air at an altitude of 0 kilometer. As it becomes higher, light will be absorbed more."
+    ],
+    "MieAnisotropy": [
+      "float32",
+      "A value of 0 mean light is uniformly scattered. A value closer to 1 means lights will scatter more forward, resulting in halos around light sources."
+    ],
+    "MieExponentialDistribution": [
+      "float32",
+      "The altitude in kilometer at which Mie effects are reduced to 40%."
+    ],
+    "OtherAbsorptionScale": [
+      "float32",
+      "Absorption coefficients for another atmosphere layer. Density increase from 0 to 1 between 10 to 25km and decreases from 1 to 0 between 25 to 40km. This approximates ozone molecules distribution in the Earth atmosphere."
+    ],
+    "OtherAbsorption": [
+      "FLinearColor",
+      "Absorption coefficients for another atmosphere layer. Density increase from 0 to 1 between 10 to 25km and decreases from 1 to 0 between 25 to 40km. The default values represents ozone molecules absorption in the Earth atmosphere."
+    ],
+    "SkyLuminanceFactor": [
+      "FLinearColor",
+      "Scales the luminance of pixels representing the sky. This will impact the captured sky light."
+    ],
+    "AerialPespectiveViewDistanceScale": [
+      "float32",
+      "Makes the aerial perspective look thicker by scaling distances from view to surfaces (opaque and translucent)."
+    ],
+    "HeightFogContribution": [
+      "float32",
+      "Scale the sky and atmosphere lights contribution to the height fog when SupportSkyAtmosphereAffectsHeightFog project setting is true."
+    ],
+    "bHoldout": [
+      "bool",
+      "If this is True, this primitive will render black with an alpha of 0, but all secondary effects (shadows, reflections, indirect lighting) remain. This feature required the project setting \"Enable alpha channel support in post processing\"."
+    ],
+    "bRenderInMainPass": [
+      "bool",
+      "If true, this component will be rendered in the main pass (basepass, transparency)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAtmosphereTransmitanceOnGroundAtPlanetTop",
+      "return": "FLinearColor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DirectionalLight",
+          "type": "UDirectionalLightComponent"
+        }
+      ]
+    },
+    {
+      "name": "GetOverridenAtmosphereLightDirection",
+      "return": "FVector",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AtmosphereLightIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "IsAtmosphereLightDirectionOverriden",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AtmosphereLightIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "OverrideAtmosphereLightDirection",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AtmosphereLightIndex",
+          "type": "int"
+        },
+        {
+          "name": "LightDirection",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "ResetAtmosphereLightDirectionOverride",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AtmosphereLightIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetAerialPespectiveViewDistanceScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAtmosphereHeight",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetBottomRadius",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetGroundAlbedo",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FColor"
+        }
+      ]
+    },
+    {
+      "name": "SetHeightFogContribution",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetHoldout",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bNewHoldout",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMieAbsorption",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetMieAbsorptionScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMieAnisotropy",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMieExponentialDistribution",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMieScattering",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetMieScatteringScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMultiScatteringFactor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOtherAbsorption",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetOtherAbsorptionScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRayleighExponentialDistribution",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRayleighScattering",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetRayleighScatteringScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetRenderInMainPass",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSkyLuminanceFactor",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FLinearColor"
+        }
+      ]
+    }
+  ]
+}

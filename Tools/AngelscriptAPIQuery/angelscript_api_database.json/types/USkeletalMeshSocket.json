@@ -1,0 +1,65 @@
+{
+  "name": "USkeletalMeshSocket",
+  "inherits": "UObject",
+  "properties": {
+    "SocketName": [
+      "FName",
+      1,
+      "Defines a named attachment location on the USkeletalMesh.\nThese are set up in editor and used as a shortcut instead of specifying\neverything explicitly to AttachComponent in the SkeletalMeshComponent.\nThe Outer of a SkeletalMeshSocket should always be the USkeletalMesh."
+    ],
+    "BoneName": [
+      "FName",
+      1,
+      ""
+    ],
+    "RelativeLocation": [
+      "FVector"
+    ],
+    "RelativeRotation": [
+      "FRotator"
+    ],
+    "RelativeScale": [
+      "FVector"
+    ],
+    "bForceAlwaysAnimated": [
+      "bool",
+      "If true then the hierarchy of bones this socket is attached to will always be\n          evaluated, even if it had previously been removed due to the current lod setting"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetSocketLocation",
+      "return": "FVector",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkelComp",
+          "type": "const USkeletalMeshComponent"
+        }
+      ]
+    },
+    {
+      "name": "InitializeSocketFromLocation",
+      "return": "void",
+      "doc": "Sets BoneName, RelativeLocation and RelativeRotation based on closest bone to WorldLocation and WorldNormal",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SkelComp",
+          "type": "const USkeletalMeshComponent"
+        },
+        {
+          "name": "WorldLocation",
+          "type": "FVector"
+        },
+        {
+          "name": "WorldNormal",
+          "type": "FVector"
+        }
+      ]
+    }
+  ]
+}

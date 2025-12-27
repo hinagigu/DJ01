@@ -1,0 +1,91 @@
+{
+  "name": "UIKRetargeter",
+  "inherits": "UObject",
+  "properties": {
+    "SourceIKRigAsset": [
+      "TSoftObjectPtr<UIKRigDefinition>",
+      2,
+      "The rig to copy animation FROM."
+    ],
+    "SourcePreviewMesh": [
+      "TSoftObjectPtr<USkeletalMesh>",
+      2,
+      "Optional. Override the Skeletal Mesh to copy animation from. Uses the preview mesh from the Source IK Rig asset by default."
+    ],
+    "TargetIKRigAsset": [
+      "TSoftObjectPtr<UIKRigDefinition>",
+      2,
+      "The rig to copy animation TO."
+    ],
+    "TargetPreviewMesh": [
+      "TSoftObjectPtr<USkeletalMesh>",
+      2,
+      "Optional. Override the Skeletal Mesh to preview the retarget on. Uses the preview mesh from the Target IK Rig asset by default."
+    ],
+    "TargetMeshOffset": [
+      "FVector",
+      2,
+      "The offset applied to the target mesh in the editor viewport."
+    ],
+    "TargetMeshScale": [
+      "float32",
+      2,
+      "Scale the target mesh in the viewport for easier visualization next to the source."
+    ],
+    "SourceMeshOffset": [
+      "FVector",
+      2,
+      "The offset applied to the source mesh in the editor viewport."
+    ],
+    "bIgnoreRootLockInPreview": [
+      "bool",
+      2,
+      "When true, animation sequences with \"Force Root Lock\" turned On will act as though it is Off.\nThis affects only the preview in the retarget editor. Use ExportRootLockMode to control exported animation behavior.\nThis setting has no effect on runtime retargeting where root motion is copied from the source component."
+    ],
+    "bDebugDraw": [
+      "bool",
+      2,
+      "Toggle debug drawing for retargeting in the viewport."
+    ],
+    "bDrawFinalGoals": [
+      "bool",
+      2,
+      "Draw final IK goal locations."
+    ],
+    "bDrawSourceLocations": [
+      "bool",
+      2,
+      "Draw goal locations from source skeleton."
+    ],
+    "ChainDrawSize": [
+      "float32",
+      2,
+      "The visual size of the IK goals in the viewport."
+    ],
+    "ChainDrawThickness": [
+      "float32",
+      2,
+      "The thickness of lines on the IK goals in the viewport."
+    ]
+  },
+  "methods": [
+    {
+      "name": "HasSourceIKRig",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the source IK Rig has been assigned",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasTargetIKRig",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the target IK Rig has been assigned",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

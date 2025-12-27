@@ -1,0 +1,384 @@
+{
+  "name": "__Niagara",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AcquireNiagaraGPURayTracedCollisionGroup",
+      "return": "int",
+      "doc": "Returns a free collision group for use in HWRT collision group filtering. Returns -1 on failure.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNiagaraParameterCollection",
+      "return": "UNiagaraParameterCollectionInstance",
+      "doc": "This is gonna be totally reworked\n       UFUNCTION(BlueprintCallable, Category = Niagara, meta = (Keywords = \"niagara System\", UnsafeDuringActorConstruction = \"true\"))\n       static void SetUpdateScriptConstant(UNiagaraComponent* Component, FName EmitterName, FName ConstantName, FVector Value);",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Collection",
+          "type": "UNiagaraParameterCollection"
+        }
+      ]
+    },
+    {
+      "name": "OverrideSystemUserVariableSkeletalMeshComponent",
+      "return": "void",
+      "doc": "Sets a Niagara StaticMesh parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NiagaraSystem",
+          "type": "UNiagaraComponent"
+        },
+        {
+          "name": "OverrideName",
+          "type": "FString"
+        },
+        {
+          "name": "SkeletalMeshComponent",
+          "type": "USkeletalMeshComponent"
+        }
+      ]
+    },
+    {
+      "name": "OverrideSystemUserVariableStaticMesh",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NiagaraSystem",
+          "type": "UNiagaraComponent"
+        },
+        {
+          "name": "OverrideName",
+          "type": "FString"
+        },
+        {
+          "name": "StaticMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "OverrideSystemUserVariableStaticMeshComponent",
+      "return": "void",
+      "doc": "Sets a Niagara StaticMesh parameter by name, overriding locally if necessary.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NiagaraSystem",
+          "type": "UNiagaraComponent"
+        },
+        {
+          "name": "OverrideName",
+          "type": "FString"
+        },
+        {
+          "name": "StaticMeshComponent",
+          "type": "UStaticMeshComponent"
+        }
+      ]
+    },
+    {
+      "name": "ReleaseNiagaraGPURayTracedCollisionGroup",
+      "return": "void",
+      "doc": "Releases a collision group back to the system for use by ohers.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CollisionGroup",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetActorNiagaraGPURayTracedCollisionGroup",
+      "return": "void",
+      "doc": "Sets the Niagara GPU ray traced collision group for all primitive components on the given actor.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "CollisionGroup",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetComponentNiagaraGPURayTracedCollisionGroup",
+      "return": "void",
+      "doc": "Sets the Niagara GPU ray traced collision group for the give primitive component.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Primitive",
+          "type": "UPrimitiveComponent"
+        },
+        {
+          "name": "CollisionGroup",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetSkeletalMeshDataInterfaceFilteredBones",
+      "return": "void",
+      "doc": "Sets the Filtered Bones to use on the skeletal mesh data interface, this is destructive as it modifies the data interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NiagaraSystem",
+          "type": "UNiagaraComponent"
+        },
+        {
+          "name": "OverrideName",
+          "type": "FString"
+        },
+        {
+          "name": "FilteredBones",
+          "type": "TArray<FName>"
+        }
+      ]
+    },
+    {
+      "name": "SetSkeletalMeshDataInterfaceFilteredSockets",
+      "return": "void",
+      "doc": "Sets the Filtered Sockets to use on the skeletal mesh data interface, this is destructive as it modifies the data interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NiagaraSystem",
+          "type": "UNiagaraComponent"
+        },
+        {
+          "name": "OverrideName",
+          "type": "FString"
+        },
+        {
+          "name": "FilteredSockets",
+          "type": "TArray<FName>"
+        }
+      ]
+    },
+    {
+      "name": "SetSkeletalMeshDataInterfaceSamplingRegions",
+      "return": "void",
+      "doc": "Sets the SamplingRegion to use on the skeletal mesh data interface, this is destructive as it modifies the data interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NiagaraSystem",
+          "type": "UNiagaraComponent"
+        },
+        {
+          "name": "OverrideName",
+          "type": "FString"
+        },
+        {
+          "name": "SamplingRegions",
+          "type": "TArray<FName>"
+        }
+      ]
+    },
+    {
+      "name": "SetTexture2DArrayObject",
+      "return": "void",
+      "doc": "Overrides the 2D Array Texture for a Niagara 2D Array Texture Data Interface User Parameter.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NiagaraSystem",
+          "type": "UNiagaraComponent"
+        },
+        {
+          "name": "OverrideName",
+          "type": "FString"
+        },
+        {
+          "name": "Texture",
+          "type": "UTexture2DArray"
+        }
+      ]
+    },
+    {
+      "name": "SetTextureObject",
+      "return": "void",
+      "doc": "Overrides the Texture Object for a Niagara Texture Data Interface User Parameter.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NiagaraSystem",
+          "type": "UNiagaraComponent"
+        },
+        {
+          "name": "OverrideName",
+          "type": "FString"
+        },
+        {
+          "name": "Texture",
+          "type": "UTexture"
+        }
+      ]
+    },
+    {
+      "name": "SetVolumeTextureObject",
+      "return": "void",
+      "doc": "Overrides the Volume Texture for a Niagara Volume Texture Data Interface User Parameter.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NiagaraSystem",
+          "type": "UNiagaraComponent"
+        },
+        {
+          "name": "OverrideName",
+          "type": "FString"
+        },
+        {
+          "name": "Texture",
+          "type": "UVolumeTexture"
+        }
+      ]
+    },
+    {
+      "name": "SpawnSystemAtLocation",
+      "return": "UNiagaraComponent",
+      "doc": "Spawns a Niagara System at the specified world location/rotation\n@return                       The spawned UNiagaraComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SystemTemplate",
+          "type": "UNiagaraSystem"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "default": "FRotator ( )",
+          "type": "FRotator"
+        },
+        {
+          "name": "Scale",
+          "default": "FVector ( 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FVector"
+        },
+        {
+          "name": "bAutoDestroy",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bAutoActivate",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "PoolingMethod",
+          "default": "ENCPoolMethod :: None",
+          "type": "ENCPoolMethod"
+        },
+        {
+          "name": "bPreCullCheck",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SpawnSystemAtLocationWithParams",
+      "return": "UNiagaraComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpawnParams",
+          "type": "FFXSystemSpawnParameters"
+        }
+      ]
+    },
+    {
+      "name": "SpawnSystemAttached",
+      "return": "UNiagaraComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SystemTemplate",
+          "type": "UNiagaraSystem"
+        },
+        {
+          "name": "AttachToComponent",
+          "type": "USceneComponent"
+        },
+        {
+          "name": "AttachPointName",
+          "type": "FName"
+        },
+        {
+          "name": "Location",
+          "type": "FVector"
+        },
+        {
+          "name": "Rotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "LocationType",
+          "type": "EAttachLocation"
+        },
+        {
+          "name": "bAutoDestroy",
+          "type": "bool"
+        },
+        {
+          "name": "bAutoActivate",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "PoolingMethod",
+          "default": "ENCPoolMethod :: None",
+          "type": "ENCPoolMethod"
+        },
+        {
+          "name": "bPreCullCheck",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SpawnSystemAttachedWithParams",
+      "return": "UNiagaraComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SpawnParams",
+          "type": "FFXSystemSpawnParameters"
+        }
+      ]
+    }
+  ]
+}

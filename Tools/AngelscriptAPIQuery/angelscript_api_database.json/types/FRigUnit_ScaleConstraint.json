@@ -1,0 +1,38 @@
+{
+  "name": "FRigUnit_ScaleConstraint",
+  "isStruct": true,
+  "doc": "Constrains an item's scale to multiple items' scales",
+  "properties": {
+    "Child": [
+      "FRigElementKey"
+    ],
+    "bMaintainOffset": [
+      "bool"
+    ],
+    "Filter": [
+      "FFilterOptionPerAxis"
+    ],
+    "Parents": [
+      "TArray<FConstraintParent>"
+    ],
+    "Weight": [
+      "float32"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_ScaleConstraint&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_ScaleConstraint"
+        }
+      ]
+    }
+  ]
+}

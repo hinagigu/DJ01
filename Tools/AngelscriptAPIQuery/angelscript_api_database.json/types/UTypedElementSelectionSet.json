@@ -1,0 +1,353 @@
+{
+  "name": "UTypedElementSelectionSet",
+  "inherits": "UObject",
+  "doc": "A wrapper around an element list that ensures mutation goes via the selection\ninterfaces, as well as providing some utilities for batching operations.",
+  "properties": {
+    "OnPreSelectionChange": [
+      "FOnPreChangeDynamic__TypedElementSelectionSet",
+      "Delegate that is invoked whenever the underlying element list is potentially about to change."
+    ],
+    "OnSelectionChange": [
+      "FOnChangeDynamic__TypedElementSelectionSet",
+      "Delegate that is invoked whenever the underlying element list has been changed."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AllowSelectionModifiers",
+      "return": "bool",
+      "const": true,
+      "doc": "Test to see whether selection modifiers (Ctrl or Shift) are allowed while selecting this element.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementHandle",
+          "type": "FScriptTypedElementHandle"
+        }
+      ]
+    },
+    {
+      "name": "CanDeselectElement",
+      "return": "bool",
+      "const": true,
+      "doc": "Test to see whether the given element can be deselected.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementHandle",
+          "type": "FScriptTypedElementHandle"
+        },
+        {
+          "name": "InSelectionOptions",
+          "type": "FTypedElementSelectionOptions"
+        }
+      ]
+    },
+    {
+      "name": "CanSelectElement",
+      "return": "bool",
+      "const": true,
+      "doc": "Test to see whether the given element can be selected.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementHandle",
+          "type": "FScriptTypedElementHandle"
+        },
+        {
+          "name": "InSelectionOptions",
+          "type": "FTypedElementSelectionOptions"
+        }
+      ]
+    },
+    {
+      "name": "ClearSelection",
+      "return": "bool",
+      "doc": "Clear the current selection.\n@return True if the selection was changed, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSelectionOptions",
+          "type": "FTypedElementSelectionOptions"
+        }
+      ]
+    },
+    {
+      "name": "CountSelectedElements",
+      "return": "int",
+      "const": true,
+      "doc": "Count the number of selected elements, optionally filtering to elements that implement the given interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBaseInterfaceType",
+          "default": "nullptr",
+          "type": "TSubclassOf<UInterface>"
+        }
+      ]
+    },
+    {
+      "name": "CountSelectedObjects",
+      "return": "int",
+      "const": true,
+      "doc": "Count the number of selected objects.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InRequiredClass",
+          "default": "nullptr",
+          "type": "const UClass"
+        }
+      ]
+    },
+    {
+      "name": "DeselectElement",
+      "return": "bool",
+      "doc": "Attempt to deselect the given element.\n@return True if the selection was changed, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementHandle",
+          "type": "FScriptTypedElementHandle"
+        },
+        {
+          "name": "InSelectionOptions",
+          "type": "FTypedElementSelectionOptions"
+        }
+      ]
+    },
+    {
+      "name": "DeselectElements",
+      "return": "bool",
+      "doc": "Attempt to deselect the given elements.\n@return True if the selection was changed, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementHandles",
+          "type": "TArray<FScriptTypedElementHandle>"
+        },
+        {
+          "name": "InSelectionOptions",
+          "type": "FTypedElementSelectionOptions"
+        }
+      ]
+    },
+    {
+      "name": "GetBottomSelectedObject",
+      "return": "UObject",
+      "const": true,
+      "doc": "Get the last selected object of the given type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InRequiredClass",
+          "default": "nullptr",
+          "type": "const UClass"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentSelectionState",
+      "return": "FTypedElementSelectionSetState",
+      "const": true,
+      "doc": "Serializes the current selection set.\nThe calling code is responsible for storing any state information. The selection set can be returned to a prior state using RestoreSelectionState.\n\n@returns the current state of the selection set.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumSelectedElements",
+      "return": "int",
+      "const": true,
+      "doc": "Get the number of selected elements.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectedObjects",
+      "return": "TArray<UObject>",
+      "const": true,
+      "doc": "Get the array of selected objects from the currently selected elements.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InRequiredClass",
+          "default": "nullptr",
+          "type": "const UClass"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectionElement",
+      "return": "FScriptTypedElementHandle",
+      "const": true,
+      "doc": "Given an element, return the element that should actually perform a selection operation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementHandle",
+          "type": "FScriptTypedElementHandle"
+        },
+        {
+          "name": "InSelectionMethod",
+          "type": "ETypedElementSelectionMethod"
+        }
+      ]
+    },
+    {
+      "name": "GetTopSelectedObject",
+      "return": "UObject",
+      "const": true,
+      "doc": "Get the first selected object of the given type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InRequiredClass",
+          "default": "nullptr",
+          "type": "const UClass"
+        }
+      ]
+    },
+    {
+      "name": "HasSelectedElements",
+      "return": "bool",
+      "const": true,
+      "doc": "Test whether there selected elements, optionally filtering to elements that implement the given interface.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBaseInterfaceType",
+          "default": "nullptr",
+          "type": "TSubclassOf<UInterface>"
+        }
+      ]
+    },
+    {
+      "name": "HasSelectedObjects",
+      "return": "bool",
+      "const": true,
+      "doc": "Test whether there are any selected objects.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InRequiredClass",
+          "default": "nullptr",
+          "type": "const UClass"
+        }
+      ]
+    },
+    {
+      "name": "IsElementSelected",
+      "return": "bool",
+      "const": true,
+      "doc": "Test to see whether the given element is currently considered selected.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementHandle",
+          "type": "FScriptTypedElementHandle"
+        },
+        {
+          "name": "InSelectionOptions",
+          "type": "FTypedElementIsSelectedOptions"
+        }
+      ]
+    },
+    {
+      "name": "GetSelectedElementHandles",
+      "return": "TArray<FScriptTypedElementHandle>",
+      "const": true,
+      "doc": "Get the handle of every selected element, optionally filtering to elements that implement the given interface.",
+      "ufunction": true,
+      "unrealname": "K2_GetSelectedElementHandles",
+      "meta": null,
+      "args": [
+        {
+          "name": "InBaseInterfaceType",
+          "default": "nullptr",
+          "type": "TSubclassOf<UInterface>"
+        }
+      ]
+    },
+    {
+      "name": "RestoreSelectionState",
+      "return": "void",
+      "doc": "Restores the selection set from the given state.\nThe calling code is responsible for managing any undo state.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSelectionState",
+          "type": "FTypedElementSelectionSetState"
+        }
+      ]
+    },
+    {
+      "name": "SelectElement",
+      "return": "bool",
+      "doc": "Attempt to select the given element.\n@return True if the selection was changed, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementHandle",
+          "type": "FScriptTypedElementHandle"
+        },
+        {
+          "name": "InSelectionOptions",
+          "type": "FTypedElementSelectionOptions"
+        }
+      ]
+    },
+    {
+      "name": "SelectElements",
+      "return": "bool",
+      "doc": "Attempt to select the given elements.\n@return True if the selection was changed, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementHandles",
+          "type": "TArray<FScriptTypedElementHandle>"
+        },
+        {
+          "name": "InSelectionOptions",
+          "type": "FTypedElementSelectionOptions"
+        }
+      ]
+    },
+    {
+      "name": "SetSelection",
+      "return": "bool",
+      "doc": "Attempt to make the selection the given elements.\n@note Equivalent to calling ClearSelection then SelectElements, but happens in a single batch.\n@return True if the selection was changed, false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InElementHandles",
+          "type": "TArray<FScriptTypedElementHandle>"
+        },
+        {
+          "name": "InSelectionOptions",
+          "type": "FTypedElementSelectionOptions"
+        }
+      ]
+    }
+  ]
+}

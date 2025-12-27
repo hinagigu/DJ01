@@ -1,0 +1,87 @@
+{
+  "name": "__BlendSpace",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ConvertToBlendSpace",
+      "return": "FBlendSpaceReference",
+      "doc": "Get a blend space context from an anim node context.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "Result",
+          "type": "EAnimNodeReferenceConversionResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConvertToBlendSpacePure",
+      "return": "void",
+      "doc": "Get a blend space context from an anim node context (pure).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "BlendSpace",
+          "type": "FBlendSpaceReference&"
+        },
+        {
+          "name": "Result",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetFilteredPosition",
+      "return": "FVector",
+      "doc": "Get the current sample coordinates after going through the filtering.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BlendSpace",
+          "type": "FBlendSpaceReference"
+        }
+      ]
+    },
+    {
+      "name": "GetPosition",
+      "return": "FVector",
+      "doc": "Get the current position of the blend space.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BlendSpace",
+          "type": "FBlendSpaceReference"
+        }
+      ]
+    },
+    {
+      "name": "SnapToPosition",
+      "return": "void",
+      "doc": "Forces the Position to the specified value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BlendSpace",
+          "type": "FBlendSpaceReference"
+        },
+        {
+          "name": "NewPosition",
+          "type": "FVector"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "UStackBox",
+  "inherits": "UPanelWidget",
+  "doc": "A stack box widget is a layout panel allowing child widgets to be automatically laid out\nvertically or horizontally.\n\n* Many Children\n* Flows Vertical or Horizontal",
+  "properties": {
+    "Orientation": [
+      "EOrientation",
+      "The orientation of the stack box."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddChildToStackBox",
+      "return": "UStackBoxSlot",
+      "doc": "Adds a new child widget to the container.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Content",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceStackBoxChildAt",
+      "return": "bool",
+      "doc": "Replace the widget at the given index it with a different widget.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "Content",
+          "type": "UWidget"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "FSkeletalMeshClothBuildParams",
+  "isStruct": true,
+  "doc": "Struct holding parameters needed when creating a new clothing asset or sub asset (LOD)",
+  "properties": {
+    "TargetAsset": [
+      "TWeakObjectPtr<UClothingAssetBase>",
+      2,
+      "Target asset when importing LODs"
+    ],
+    "TargetLod": [
+      "int",
+      2,
+      "Target LOD to import to when importing LODs"
+    ],
+    "bRemapParameters": [
+      "bool",
+      2,
+      "If reimporting, this will map the old LOD parameters to the new LOD mesh.\nIf adding a new LOD this will map the parameters from the preceeding LOD."
+    ],
+    "AssetName": [
+      "FString",
+      2,
+      "Name of the clothing asset"
+    ],
+    "LodIndex": [
+      "int",
+      2,
+      "LOD to extract the section from"
+    ],
+    "SourceSection": [
+      "int",
+      2,
+      "Section within the specified LOD to extract"
+    ],
+    "bRemoveFromMesh": [
+      "bool",
+      2,
+      "Whether or not to leave this section behind (if driving a mesh with itself). Enable this if driving a high poly mesh with a low poly"
+    ],
+    "PhysicsAsset": [
+      "TSoftObjectPtr<UPhysicsAsset>",
+      2,
+      "Physics asset to extract collisions from, note this will only extract spheres and Sphyls, as that is what the simulation supports."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSkeletalMeshClothBuildParams&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSkeletalMeshClothBuildParams"
+        }
+      ]
+    }
+  ]
+}

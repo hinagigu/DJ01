@@ -1,0 +1,1322 @@
+{
+  "name": "__String",
+  "properties": {},
+  "methods": [
+    {
+      "name": "BuildString_Bool",
+      "return": "FString",
+      "doc": "Converts a boolean->string, creating a new string in the form AppendTo+Prefix+InBool+Suffix\n@param AppendTo - An existing string to use as the start of the conversion string\n@param Prefix - A string to use as a prefix, after the AppendTo string\n@param InBool - The bool value to convert. Will add \"true\" or \"false\" to the conversion string\n@param Suffix - A suffix to append to the end of the conversion string\n@return A new string built from the passed parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AppendTo",
+          "type": "FString"
+        },
+        {
+          "name": "Prefix",
+          "type": "FString"
+        },
+        {
+          "name": "InBool",
+          "type": "bool"
+        },
+        {
+          "name": "Suffix",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "BuildString_Color",
+      "return": "FString",
+      "doc": "Converts a color->string, creating a new string in the form AppendTo+Prefix+InColor+Suffix\n@param AppendTo - An existing string to use as the start of the conversion string\n@param Prefix - A string to use as a prefix, after the AppendTo string\n@param InColor - The linear color value to convert. Uses the standard ToString conversion\n@param Suffix - A suffix to append to the end of the conversion string\n@return A new string built from the passed parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AppendTo",
+          "type": "FString"
+        },
+        {
+          "name": "Prefix",
+          "type": "FString"
+        },
+        {
+          "name": "InColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "Suffix",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "BuildString_Double",
+      "return": "FString",
+      "doc": "Converts a double->string, create a new string in the form AppendTo+Prefix+InDouble+Suffix\n@param AppendTo - An existing string to use as the start of the conversion string\n@param Prefix - A string to use as a prefix, after the AppendTo string\n@param InDouble - The double value to convert\n@param Suffix - A suffix to append to the end of the conversion string\n@return A new string built from the passed parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AppendTo",
+          "type": "FString"
+        },
+        {
+          "name": "Prefix",
+          "type": "FString"
+        },
+        {
+          "name": "InDouble",
+          "type": "float"
+        },
+        {
+          "name": "Suffix",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "BuildString_Int",
+      "return": "FString",
+      "doc": "Converts a int->string, creating a new string in the form AppendTo+Prefix+InInt+Suffix\n@param AppendTo - An existing string to use as the start of the conversion string\n@param Prefix - A string to use as a prefix, after the AppendTo string\n@param InInt - The int value to convert\n@param Suffix - A suffix to append to the end of the conversion string\n@return A new string built from the passed parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AppendTo",
+          "type": "FString"
+        },
+        {
+          "name": "Prefix",
+          "type": "FString"
+        },
+        {
+          "name": "InInt",
+          "type": "int"
+        },
+        {
+          "name": "Suffix",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "BuildString_IntVector",
+      "return": "FString",
+      "doc": "Converts an IntVector->string, creating a new string in the form AppendTo+Prefix+InIntVector+Suffix\n@param AppendTo - An existing string to use as the start of the conversion string\n@param Prefix - A string to use as a prefix, after the AppendTo string\n@param InIntVector - The intVector value to convert. Uses the standard FVector::ToString conversion\n@param Suffix - A suffix to append to the end of the conversion string\n@return A new string built from the passed parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AppendTo",
+          "type": "FString"
+        },
+        {
+          "name": "Prefix",
+          "type": "FString"
+        },
+        {
+          "name": "InIntVector",
+          "type": "FIntVector"
+        },
+        {
+          "name": "Suffix",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "BuildString_Name",
+      "return": "FString",
+      "doc": "Converts a color->string, creating a new string in the form AppendTo+Prefix+InName+Suffix\n@param AppendTo - An existing string to use as the start of the conversion string\n@param Prefix - A string to use as a prefix, after the AppendTo string\n@param InName - The name value to convert\n@param Suffix - A suffix to append to the end of the conversion string\n@return A new string built from the passed parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AppendTo",
+          "type": "FString"
+        },
+        {
+          "name": "Prefix",
+          "type": "FString"
+        },
+        {
+          "name": "InName",
+          "type": "FName"
+        },
+        {
+          "name": "Suffix",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "BuildString_Object",
+      "return": "FString",
+      "doc": "Converts a object->string, creating a new string in the form AppendTo+Prefix+object name+Suffix\n@param AppendTo - An existing string to use as the start of the conversion string\n@param Prefix - A string to use as a prefix, after the AppendTo string\n@param InObj - The object to convert. Will insert the name of the object into the conversion string\n@param Suffix - A suffix to append to the end of the conversion string\n@return A new string built from the passed parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AppendTo",
+          "type": "FString"
+        },
+        {
+          "name": "Prefix",
+          "type": "FString"
+        },
+        {
+          "name": "InObj",
+          "type": "UObject"
+        },
+        {
+          "name": "Suffix",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "BuildString_Rotator",
+      "return": "FString",
+      "doc": "Converts a rotator->string, creating a new string in the form AppendTo+Prefix+InRot+Suffix\n@param AppendTo - An existing string to use as the start of the conversion string\n@param Prefix - A string to use as a prefix, after the AppendTo string\n@param InRot - The rotator value to convert. Uses the standard ToString conversion\n@param Suffix - A suffix to append to the end of the conversion string\n@return A new string built from the passed parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AppendTo",
+          "type": "FString"
+        },
+        {
+          "name": "Prefix",
+          "type": "FString"
+        },
+        {
+          "name": "InRot",
+          "type": "FRotator"
+        },
+        {
+          "name": "Suffix",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "BuildString_Vector",
+      "return": "FString",
+      "doc": "Converts a vector->string, creating a new string in the form AppendTo+Prefix+InVector+Suffix\n@param AppendTo - An existing string to use as the start of the conversion string\n@param Prefix - A string to use as a prefix, after the AppendTo string\n@param InVector - The vector value to convert. Uses the standard FVector::ToString conversion\n@param Suffix - A suffix to append to the end of the conversion string\n@return A new string built from the passed parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AppendTo",
+          "type": "FString"
+        },
+        {
+          "name": "Prefix",
+          "type": "FString"
+        },
+        {
+          "name": "InVector",
+          "type": "FVector"
+        },
+        {
+          "name": "Suffix",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "BuildString_Vector2d",
+      "return": "FString",
+      "doc": "Converts a vector2d->string, creating a new string in the form AppendTo+Prefix+InVector2d+Suffix\n@param AppendTo - An existing string to use as the start of the conversion string\n@param Prefix - A string to use as a prefix, after the AppendTo string\n@param InVector2d - The vector2d value to convert. Uses the standard FVector2D::ToString conversion\n@param Suffix - A suffix to append to the end of the conversion string\n@return A new string built from the passed parameters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AppendTo",
+          "type": "FString"
+        },
+        {
+          "name": "Prefix",
+          "type": "FString"
+        },
+        {
+          "name": "InVector2d",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Suffix",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Concat_StrStr",
+      "return": "FString",
+      "doc": "Concatenates two strings together to make a new string\n@param A - The original string\n@param B - The string to append to A\n@returns A new string which is the concatenation of A+B",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FString"
+        },
+        {
+          "name": "B",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Contains",
+      "return": "bool",
+      "doc": "Returns whether this string contains the specified substring.\n\n@param SubStr                 Find to search for\n@param SearchCase             Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )\n@param SearchDir                      Indicates whether the search starts at the begining or at the end ( defaults to ESearchDir::FromStart )\n@return                                       Returns whether the string contains the substring",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SearchIn",
+          "type": "FString"
+        },
+        {
+          "name": "Substring",
+          "type": "FString"
+        },
+        {
+          "name": "bUseCase",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSearchFromEnd",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Conv_BoolToString",
+      "return": "FString",
+      "doc": "Converts a boolean value to a string, either 'true' or 'false'",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBool",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Conv_BoxCenterAndExtentsToString",
+      "return": "FString",
+      "doc": "Converts a FBox value to a string of its Center and Extents values.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Box",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "Conv_BoxToString",
+      "return": "FString",
+      "doc": "Converts a FBox value to a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Box",
+          "type": "FBox"
+        }
+      ]
+    },
+    {
+      "name": "Conv_ByteToString",
+      "return": "FString",
+      "doc": "Converts a byte value to a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InByte",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "Conv_ColorToString",
+      "return": "FString",
+      "doc": "Converts a linear color value to a string, in the form '(R=,G=,B=,A=)'",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InColor",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "Conv_DoubleToString",
+      "return": "FString",
+      "doc": "Converts a double value to a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDouble",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "Conv_InputDeviceIdToString",
+      "return": "FString",
+      "doc": "Converts a InputDeviceId value to a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDeviceId",
+          "type": "FInputDeviceId"
+        }
+      ]
+    },
+    {
+      "name": "Conv_Int64ToString",
+      "return": "FString",
+      "doc": "Converts an 64-bit integer value to a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InInt",
+          "type": "int64"
+        }
+      ]
+    },
+    {
+      "name": "Conv_IntPointToString",
+      "return": "FString",
+      "doc": "Converts an IntPoint value to a string, in the form 'X= Y='",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InIntPoint",
+          "type": "FIntPoint"
+        }
+      ]
+    },
+    {
+      "name": "Conv_IntToString",
+      "return": "FString",
+      "doc": "Converts an integer value to a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InInt",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Conv_IntVectorToString",
+      "return": "FString",
+      "doc": "Converts an IntVector value to a string, in the form 'X= Y= Z='",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InIntVec",
+          "type": "FIntVector"
+        }
+      ]
+    },
+    {
+      "name": "Conv_MatrixToString",
+      "return": "FString",
+      "doc": "Converts a name value to a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMatrix",
+          "type": "FMatrix"
+        }
+      ]
+    },
+    {
+      "name": "Conv_NameToString",
+      "return": "FString",
+      "doc": "Converts a name value to a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "Conv_ObjectToString",
+      "return": "FString",
+      "doc": "Converts a UObject value to a string by calling the object's GetName method",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InObj",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "Conv_PlatformUserIdToString",
+      "return": "FString",
+      "doc": "Converts a PlatformUserId value to a string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPlatformUserId",
+          "type": "FPlatformUserId"
+        }
+      ]
+    },
+    {
+      "name": "Conv_RotatorToString",
+      "return": "FString",
+      "doc": "Converts a rotator value to a string, in the form 'P= Y= R='",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InRot",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "Conv_StringToColor",
+      "return": "void",
+      "doc": "Convert String Back To Color. IsValid indicates whether or not the string could be successfully converted.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        },
+        {
+          "name": "OutConvertedColor",
+          "type": "FLinearColor&"
+        },
+        {
+          "name": "OutIsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "Conv_StringToDouble",
+      "return": "float",
+      "doc": "Converts a string to a double value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Conv_StringToInt",
+      "return": "int",
+      "doc": "Converts a string to a int value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Conv_StringToInt64",
+      "return": "int64",
+      "doc": "Converts a string to a int value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Conv_StringToName",
+      "return": "FName",
+      "doc": "Converts a string to a name value",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Conv_StringToRotator",
+      "return": "void",
+      "doc": "Convert String Back To Rotator. IsValid indicates whether or not the string could be successfully converted.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        },
+        {
+          "name": "OutConvertedRotator",
+          "type": "FRotator&"
+        },
+        {
+          "name": "OutIsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "Conv_StringToVector",
+      "return": "void",
+      "doc": "Convert String Back To Vector. IsValid indicates whether or not the string could be successfully converted.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        },
+        {
+          "name": "OutConvertedVector",
+          "type": "FVector&"
+        },
+        {
+          "name": "OutIsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "Conv_StringToVector2D",
+      "return": "void",
+      "doc": "Convert String Back To Vector2D. IsValid indicates whether or not the string could be successfully converted.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        },
+        {
+          "name": "OutConvertedVector2D",
+          "type": "FVector2D&"
+        },
+        {
+          "name": "OutIsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "Conv_StringToVector3f",
+      "return": "void",
+      "doc": "Convert String Back To Float Vector. IsValid indicates whether or not the string could be successfully converted.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        },
+        {
+          "name": "OutConvertedVector",
+          "type": "FVector3f&"
+        },
+        {
+          "name": "OutIsValid",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "Conv_TransformToString",
+      "return": "FString",
+      "doc": "Converts a transform value to a string, in the form 'Translation: X= Y= Z= Rotation: P= Y= R= Scale: X= Y= Z='",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTrans",
+          "type": "FTransform"
+        }
+      ]
+    },
+    {
+      "name": "Conv_Vector2dToString",
+      "return": "FString",
+      "doc": "Converts a vector2d value to a string, in the form 'X= Y='",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVec",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "Conv_Vector3fToString",
+      "return": "FString",
+      "doc": "Converts a float vector value to a string, in the form 'X= Y= Z='",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVec",
+          "type": "FVector3f"
+        }
+      ]
+    },
+    {
+      "name": "Conv_VectorToString",
+      "return": "FString",
+      "doc": "Converts a vector value to a string, in the form 'X= Y= Z='",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVec",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "CullArray",
+      "return": "int",
+      "doc": "Takes an array of strings and removes any zero length entries.\n\n@param       InArray The array to cull\n\n@return      The number of elements left in InArray",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "InArray",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "EndsWith",
+      "return": "bool",
+      "doc": "Test whether this string ends with given string.\n\n@param SearchCase            Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )\n@return true if this string ends with specified text, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "InSuffix",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "EqualEqual_StriStri",
+      "return": "bool",
+      "doc": "Test if the input strings are equal (A == B), ignoring case\n@param A - The string to compare against\n@param B - The string to compare\n@returns True if the strings are equal, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FString"
+        },
+        {
+          "name": "B",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "EqualEqual_StrStr",
+      "return": "bool",
+      "doc": "Test if the input strings are equal (A == B)\n@param A - The string to compare against\n@param B - The string to compare\n@returns True if the strings are equal, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FString"
+        },
+        {
+          "name": "B",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "FindSubstring",
+      "return": "int",
+      "doc": "Finds the starting index of a substring in the a specified string\n@param SearchIn The string to search within\n@param Substring The string to look for in the SearchIn string\n@param bUseCase Whether or not to be case-sensitive\n@param bSearchFromEnd Whether or not to start the search from the end of the string instead of the beginning\n@param StartPosition The position to start the search from\n@return The index (starting from 0 if bSearchFromEnd is false) of the first occurence of the substring",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SearchIn",
+          "type": "FString"
+        },
+        {
+          "name": "Substring",
+          "type": "FString"
+        },
+        {
+          "name": "bUseCase",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSearchFromEnd",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "StartPosition",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetCharacterArrayFromString",
+      "return": "TArray<FString>",
+      "doc": "Returns an array that contains one entry for each character in SourceString\n@param        SourceString    The string to break apart into characters\n@return       An array containing one entry for each character in SourceString",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetCharacterAsNumber",
+      "return": "int",
+      "doc": "Gets a single character from the string (as an integer)\n@param SourceString - The string to convert\n@param Index - Location of the character whose value is required\n@return The integer value of the character or 0 if index is out of range",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "Index",
+          "default": "0",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetSubstring",
+      "return": "FString",
+      "doc": "Returns a substring from the string starting at the specified position\n@param SourceString - The string to get the substring from\n@param StartIndex - The location in SourceString to use as the start of the substring\n@param Length The length of the requested substring\n\n@return The requested substring",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "StartIndex",
+          "default": "0",
+          "type": "int"
+        },
+        {
+          "name": "Length",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "IsEmpty",
+      "return": "bool",
+      "doc": "Returns true if the string is empty\n@param InString - The string to check\n@return Whether or not the string is empty",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "IsNumeric",
+      "return": "bool",
+      "doc": "* Checks if a string contains only numeric characters\n* @param       SourceString    The string to check\n* @return true if the string only contains numeric characters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "JoinStringArray",
+      "return": "FString",
+      "doc": "Concatenates an array of strings into a single string.\n@param SourceArray - The array of strings to concatenate.\n@param Separator - The string used to separate each element.\n@return The final, joined, separated string.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceArray",
+          "type": "TArray<FString>"
+        },
+        {
+          "name": "Separator",
+          "default": "\" \"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Left",
+      "return": "FString",
+      "doc": "Returns the left most given number of characters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "LeftChop",
+      "return": "FString",
+      "doc": "Returns the left most characters from the string chopping the given number of characters from the end",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "LeftPad",
+      "return": "FString",
+      "doc": "* Pad the left of this string for a specified number of characters\n* @param       SourceString    The string to pad\n* @param       ChCount                 Amount of padding required\n* @return      The padded string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "ChCount",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Len",
+      "return": "int",
+      "doc": "Returns the number of characters in the string\n@param SourceString - The string to measure\n@return The number of chars in the string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "S",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "MatchesWildcard",
+      "return": "bool",
+      "doc": "Searches this string for a given wild card\n\n@param Wildcard              *?-type wildcard\n@param SearchCase    Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )\n@return true if this string matches the *?-type wildcard given.\n@warning This is a simple, SLOW routine. Use with caution",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "Wildcard",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "Mid",
+      "return": "FString",
+      "doc": "Returns the substring from Start position for Count characters.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "Start",
+          "type": "int"
+        },
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "NotEqual_StriStri",
+      "return": "bool",
+      "doc": "Test if the input string are not equal (A != B), ignoring case differences\n@param A - The string to compare against\n@param B - The string to compare\n@return Returns true if the input strings are not equal, false if they are equal",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FString"
+        },
+        {
+          "name": "B",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "NotEqual_StrStr",
+      "return": "bool",
+      "doc": "Test if the input string are not equal (A != B)\n@param A - The string to compare against\n@param B - The string to compare\n@return Returns true if the input strings are not equal, false if they are equal",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "A",
+          "type": "FString"
+        },
+        {
+          "name": "B",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ParseIntoArray",
+      "return": "TArray<FString>",
+      "doc": "Gets an array of strings from a source string divided up by a separator and empty strings can optionally be culled.\n@param SourceString - The string to chop up\n@param Delimiter - The string to delimit on\n@param CullEmptyStrings = true - Cull (true) empty strings or add them to the array (false)\n@return The array of string that have been separated",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "Delimiter",
+          "default": "\" \"",
+          "type": "FString"
+        },
+        {
+          "name": "CullEmptyStrings",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Replace",
+      "return": "FString",
+      "doc": "Replace all occurrences of a substring in this string\n\n@param From substring to replace\n@param To substring to replace From with\n@param SearchCase    Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )\n@return a copy of this string with the replacement made",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "From",
+          "type": "FString"
+        },
+        {
+          "name": "To",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceInline",
+      "return": "int",
+      "doc": "Replace all occurrences of SearchText with ReplacementText in this string.\n\n@param       SearchText      the text that should be removed from this string\n@param       ReplacementText         the text to insert in its place\n@param SearchCase    Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )\n\n@return      the number of occurrences of SearchText that were replaced.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString&"
+        },
+        {
+          "name": "SearchText",
+          "type": "FString"
+        },
+        {
+          "name": "ReplacementText",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "Reverse",
+      "return": "FString",
+      "doc": "Returns a copy of this string, with the characters in reverse order",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Right",
+      "return": "FString",
+      "doc": "Returns the string to the right of the specified location, counting back from the right (end of the word).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RightChop",
+      "return": "FString",
+      "doc": "Returns the string to the right of the specified location, counting forward from the left (from the beginning of the word).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "Count",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RightPad",
+      "return": "FString",
+      "doc": "* Pad the right of this string for a specified number of characters\n* @param       SourceString    The string to pad\n* @param       ChCount                 Amount of padding required\n* @return      The padded string",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "ChCount",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "Split",
+      "return": "bool",
+      "doc": "Splits this string at given string position case sensitive.\n\n@param InStr The string to search and split at\n@param LeftS out the string to the left of InStr, not updated if return is false\n@param RightS out the string to the right of InStr, not updated if return is false\n@param SearchCase             Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )\n@param SearchDir                      Indicates whether the search starts at the begining or at the end ( defaults to ESearchDir::FromStart )\n@return true if string is split, otherwise false",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "InStr",
+          "type": "FString"
+        },
+        {
+          "name": "LeftS",
+          "type": "FString&"
+        },
+        {
+          "name": "RightS",
+          "type": "FString&"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        },
+        {
+          "name": "SearchDir",
+          "default": "ESearchDir :: FromStart",
+          "type": "ESearchDir"
+        }
+      ]
+    },
+    {
+      "name": "StartsWith",
+      "return": "bool",
+      "doc": "Test whether this string starts with given string.\n\n@param SearchCase            Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )\n@return true if this string begins with specified text, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        },
+        {
+          "name": "InPrefix",
+          "type": "FString"
+        },
+        {
+          "name": "SearchCase",
+          "default": "ESearchCase :: IgnoreCase",
+          "type": "ESearchCase"
+        }
+      ]
+    },
+    {
+      "name": "TimeSecondsToString",
+      "return": "FString",
+      "doc": "Convert a number of seconds into minutes:seconds.milliseconds format string (including leading zeroes)\n\n@return A new string built from the seconds parameter",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSeconds",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ToLower",
+      "return": "FString",
+      "doc": "Returns a string converted to Lower case\n@param        SourceString    The string to convert\n@return       The string in lower case",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ToUpper",
+      "return": "FString",
+      "doc": "Returns a string converted to Upper case\n@param       SourceString    The string to convert\n@return      The string in upper case",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "Trim",
+      "return": "FString",
+      "doc": "Removes whitespace characters from the front of this string.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "TrimTrailing",
+      "return": "FString",
+      "doc": "Removes trailing whitespace characters",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceString",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "FIKRigGoal",
+  "isStruct": true,
+  "properties": {
+    "Name": [
+      "FName",
+      "Name of the IK Goal. Must correspond to the name of a Goal in the target IKRig asset."
+    ],
+    "TransformSource": [
+      "EIKRigGoalTransformSource",
+      "Set the source of the transform data for the Goal.\n\"Manual Input\" uses the values provided by the blueprint node pin.\n\"Bone\" uses the transform of the bone provided by OptionalSourceBone.\n\"Actor Component\" uses the transform supplied by any Actor Components that implements the IIKGoalCreatorInterface"
+    ],
+    "SourceBone": [
+      "FBoneReference",
+      2,
+      "When TransformSource is set to \"Bone\" mode, the Position and Rotation will be driven by this Bone's input transform.\nWhen using a Bone as the transform source, the Position and Rotation Alpha values can still be set as desired.\nBut the PositionSpace and RotationSpace are no longer relevant and will not be used."
+    ],
+    "Position": [
+      "FVector",
+      "Position of the IK goal in Component Space of target actor component."
+    ],
+    "Rotation": [
+      "FRotator",
+      "Rotation of the IK goal in Component Space of target actor component."
+    ],
+    "PositionAlpha": [
+      "float32",
+      "Range 0-1, default is 1.0. Smoothly blends the Goal position from the input pose (0.0) to the Goal position (1.0)."
+    ],
+    "RotationAlpha": [
+      "float32",
+      "Range 0-1, default is 1.0. Smoothly blends the Goal rotation from the input pose (0.0) to the Goal rotation (1.0)."
+    ],
+    "PositionSpace": [
+      "EIKRigGoalSpace",
+      "The space that the goal position is in.\n\"Additive\" treats the goal transform as an additive offset relative to the Bone at the effector.\n\"Component\" treats the goal transform as being in the space of the Skeletal Mesh Actor Component.\n\"World\" treats the goal transform as being in the space of the World."
+    ],
+    "RotationSpace": [
+      "EIKRigGoalSpace",
+      "The space that the goal rotation is in.\n\"Additive\" treats the goal transform as an additive offset relative to the Bone at the effector.\n\"Component\" treats the goal transform as being in the space of the Skeletal Mesh Actor Component.\n\"World\" treats the goal transform as being in the space of the World."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FIKRigGoal&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FIKRigGoal"
+        }
+      ]
+    }
+  ]
+}

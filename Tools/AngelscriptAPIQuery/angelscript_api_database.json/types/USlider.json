@@ -1,0 +1,199 @@
+{
+  "name": "USlider",
+  "inherits": "UWidget",
+  "doc": "A simple widget that shows a sliding bar with a handle that allows you to control the value in a user define range (between 0..1 by default).\n\n* No Children",
+  "properties": {
+    "WidgetStyle": [
+      "FSliderStyle",
+      "The progress bar style"
+    ],
+    "Orientation": [
+      "EOrientation",
+      "The slider's orientation."
+    ],
+    "MouseUsesStep": [
+      "bool",
+      "Sets new value if mouse position is greater/less than half the step size."
+    ],
+    "RequiresControllerLock": [
+      "bool",
+      "Sets whether we have to lock input to change the slider value."
+    ],
+    "IsFocusable": [
+      "bool",
+      "Should the slider be focusable?"
+    ],
+    "OnMouseCaptureBegin": [
+      "FOnMouseCaptureBeginEvent",
+      "Invoked when the mouse is pressed and a capture begins."
+    ],
+    "OnMouseCaptureEnd": [
+      "FOnMouseCaptureEndEvent",
+      "Invoked when the mouse is released and a capture ends."
+    ],
+    "OnControllerCaptureBegin": [
+      "FOnControllerCaptureBeginEvent",
+      "Invoked when the controller capture begins."
+    ],
+    "OnControllerCaptureEnd": [
+      "FOnControllerCaptureEndEvent",
+      "Invoked when the controller capture ends."
+    ],
+    "OnValueChanged": [
+      "FOnFloatValueChangedEvent",
+      "Called when the value is changed by slider or typing."
+    ],
+    "MinValue": [
+      "float32",
+      "The minimum value the slider can be set to."
+    ],
+    "MaxValue": [
+      "float32",
+      "The maximum value the slider can be set to."
+    ],
+    "SliderBarColor": [
+      "FLinearColor",
+      "The color to draw the slider bar in."
+    ],
+    "SliderHandleColor": [
+      "FLinearColor",
+      "The color to draw the slider handle in."
+    ],
+    "IndentHandle": [
+      "bool",
+      "Whether the slidable area should be indented to fit the handle."
+    ],
+    "Locked": [
+      "bool",
+      "Whether the handle is interactive or fixed."
+    ],
+    "StepSize": [
+      "float32",
+      "The amount to adjust the value by, when using a controller or keyboard"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetNormalizedValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the current value scaled from 0 to 1",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the current value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetIndentHandle",
+      "return": "void",
+      "doc": "Sets if the slidable area should be indented to fit the handle.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocked",
+      "return": "void",
+      "doc": "Sets the handle to be interactive or fixed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMaxValue",
+      "return": "void",
+      "doc": "Sets the maximum value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMinValue",
+      "return": "void",
+      "doc": "Sets the minimum value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderBarColor",
+      "return": "void",
+      "doc": "Sets the color of the slider bar.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetSliderHandleColor",
+      "return": "void",
+      "doc": "Sets the color of the handle bar",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetStepSize",
+      "return": "void",
+      "doc": "Sets the amount to adjust the value by, when using a controller or keyboard.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetValue",
+      "return": "void",
+      "doc": "Sets the current value of the slider.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

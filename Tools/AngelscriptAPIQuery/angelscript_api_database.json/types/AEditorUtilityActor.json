@@ -1,0 +1,50 @@
+{
+  "name": "AEditorUtilityActor",
+  "inherits": "AActor",
+  "properties": {
+    "bReceivesEditorInput": [
+      "bool",
+      "If set to true, then this actor will be able to recieve input delegate callbacks when in the editor."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetInputComponent",
+      "return": "UInputComponent",
+      "const": true,
+      "doc": "Returns the current InputComponent on this utility actor. This will be NULL unless bReceivesEditorInput is set to true.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetReceivesEditorInput",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Run",
+      "return": "void",
+      "doc": "Standard function to execute",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetReceivesEditorInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInValue",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

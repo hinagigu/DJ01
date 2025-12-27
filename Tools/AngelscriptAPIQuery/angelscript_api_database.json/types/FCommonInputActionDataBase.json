@@ -1,0 +1,50 @@
+{
+  "name": "FCommonInputActionDataBase",
+  "isStruct": true,
+  "properties": {
+    "DisplayName": [
+      "FText",
+      "User facing name (used when NOT a hold action)"
+    ],
+    "HoldDisplayName": [
+      "FText",
+      "User facing name used when it IS a hold action"
+    ],
+    "NavBarPriority": [
+      "int",
+      "Priority in nav-bar"
+    ],
+    "KeyboardInputTypeInfo": [
+      "FCommonInputTypeInfo",
+      2,
+      "Key to bind to for each input method"
+    ],
+    "DefaultGamepadInputTypeInfo": [
+      "FCommonInputTypeInfo",
+      2,
+      "Default input state for gamepads"
+    ],
+    "GamepadInputOverrides": [
+      "TMap<FName,FCommonInputTypeInfo>",
+      2,
+      "Override the input state for each input method"
+    ],
+    "TouchInputTypeInfo": [
+      "FCommonInputTypeInfo",
+      2,
+      "Override the displayed brush for each input method"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCommonInputActionDataBase&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCommonInputActionDataBase"
+        }
+      ]
+    }
+  ]
+}

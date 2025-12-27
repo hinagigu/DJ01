@@ -1,0 +1,18 @@
+{
+  "name": "UNiagaraValidationRule_SingletonModule",
+  "inherits": "UNiagaraValidationRule",
+  "doc": "This validation rule checks that a module is only used once per emitter/system stack.",
+  "properties": {
+    "Severity": [
+      "ENiagaraValidationSeverity",
+      2,
+      "How do we want to repro the error in the stack"
+    ],
+    "bCheckDetailedUsageContext": [
+      "bool",
+      2,
+      "If true then the check is not emitter-wide, but only within the same context (e.g. particle update)."
+    ]
+  },
+  "methods": []
+}

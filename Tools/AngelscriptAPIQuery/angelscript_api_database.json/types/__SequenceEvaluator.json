@@ -1,0 +1,121 @@
+{
+  "name": "__SequenceEvaluator",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ConvertToSequenceEvaluator",
+      "return": "FSequenceEvaluatorReference",
+      "doc": "Get a sequence evaluator context from an anim node context",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "Result",
+          "type": "EAnimNodeReferenceConversionResult&"
+        }
+      ]
+    },
+    {
+      "name": "ConvertToSequenceEvaluatorPure",
+      "return": "void",
+      "doc": "Get a sequence evaluator context from an anim node context (pure)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Node",
+          "type": "FAnimNodeReference"
+        },
+        {
+          "name": "SequenceEvaluator",
+          "type": "FSequenceEvaluatorReference&"
+        },
+        {
+          "name": "Result",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetAccumulatedTime",
+      "return": "float32",
+      "doc": "Gets the current accumulated time of the sequence evaluator",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequenceEvaluator",
+          "type": "FSequenceEvaluatorReference"
+        }
+      ]
+    },
+    {
+      "name": "GetSequence",
+      "return": "UAnimSequenceBase",
+      "doc": "Gets the current sequence of the sequence evaluator",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequenceEvaluator",
+          "type": "FSequenceEvaluatorReference"
+        }
+      ]
+    },
+    {
+      "name": "SetExplicitFrame",
+      "return": "FSequenceEvaluatorReference",
+      "doc": "Set the current accumulated time, using a frame number, of the sequence evaluator",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequenceEvaluator",
+          "type": "FSequenceEvaluatorReference"
+        },
+        {
+          "name": "Frame",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetExplicitTime",
+      "return": "FSequenceEvaluatorReference",
+      "doc": "Set the current accumulated time of the sequence evaluator",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequenceEvaluator",
+          "type": "FSequenceEvaluatorReference"
+        },
+        {
+          "name": "Time",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSequence",
+      "return": "FSequenceEvaluatorReference",
+      "doc": "Set the current sequence of the sequence evaluator",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SequenceEvaluator",
+          "type": "FSequenceEvaluatorReference"
+        },
+        {
+          "name": "Sequence",
+          "type": "UAnimSequenceBase"
+        }
+      ]
+    }
+  ]
+}

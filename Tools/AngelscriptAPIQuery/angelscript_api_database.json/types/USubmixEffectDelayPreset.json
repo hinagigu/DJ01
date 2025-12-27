@@ -1,0 +1,73 @@
+{
+  "name": "USubmixEffectDelayPreset",
+  "inherits": "USoundEffectSubmixPreset",
+  "doc": "USubmixEffectDelayPreset\nClass which processes audio streams and uses parameters defined in the preset class.",
+  "properties": {
+    "Settings": [
+      "FSubmixEffectDelaySettings"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetMaxDelayInMilliseconds",
+      "return": "float32",
+      "const": true,
+      "doc": "Get the maximum delay possible.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetDefaultSettings",
+      "return": "void",
+      "doc": "Sets object's default settings. This will update both the default UObject settings (and mark it as dirty),\nas well as any dynamically set settings.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSettings",
+          "type": "FSubmixEffectDelaySettings"
+        }
+      ]
+    },
+    {
+      "name": "SetDelay",
+      "return": "void",
+      "doc": "Set how long the delay actually is, in milliseconds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Length",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetInterpolationTime",
+      "return": "void",
+      "doc": "Set the time it takes to interpolate between parameters, in milliseconds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Time",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSettings",
+      "return": "void",
+      "doc": "Sets runtime delay settings. This will replace any dynamically added or modified settings without modifying\nthe original UObject.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSettings",
+          "type": "FSubmixEffectDelaySettings"
+        }
+      ]
+    }
+  ]
+}

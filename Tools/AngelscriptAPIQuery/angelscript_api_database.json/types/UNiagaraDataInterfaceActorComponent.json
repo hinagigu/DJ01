@@ -1,0 +1,28 @@
+{
+  "name": "UNiagaraDataInterfaceActorComponent",
+  "inherits": "UNiagaraDataInterface",
+  "doc": "Data interface that gives you access to actor & component information.",
+  "properties": {
+    "SourceMode": [
+      "ENDIActorComponentSourceMode",
+      2,
+      "Controls how we find the actor / component we want to bind to."
+    ],
+    "LocalPlayerIndex": [
+      "int",
+      2,
+      ", EditConditionHides))"
+    ],
+    "ActorOrComponentParameter": [
+      "FNiagaraUserParameterBinding",
+      2,
+      "User parameter binding to use, overrides SourceActor.  Can be set by Blueprint, etc."
+    ],
+    "bRequireCurrentFrameData": [
+      "bool",
+      2,
+      "When this option is disabled, we use the previous frame's data for the skeletal mesh and can often issue the simulation early. This greatly\n      reduces overhead and allows the game thread to run faster, but comes at a tradeoff if the dependencies might leave gaps or other visual artifacts."
+    ]
+  },
+  "methods": []
+}

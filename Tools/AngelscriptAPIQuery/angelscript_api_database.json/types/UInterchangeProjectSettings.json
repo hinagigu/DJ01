@@ -1,0 +1,32 @@
+{
+  "name": "UInterchangeProjectSettings",
+  "inherits": "UDeveloperSettings",
+  "properties": {
+    "ContentImportSettings": [
+      "FInterchangeContentImportSettings",
+      2,
+      "Settings used when importing into the Content Browser."
+    ],
+    "SceneImportSettings": [
+      "FInterchangeImportSettings",
+      2,
+      "Settings used when importing into a level."
+    ],
+    "FilePickerClass": [
+      "TSoftClassPtr<UInterchangeFilePickerBase>",
+      2,
+      "This tells Interchange which file picker class to construct when we need to choose a file for a source."
+    ],
+    "bStaticMeshUseSmoothEdgesIfSmoothingInformationIsMissing": [
+      "bool",
+      2,
+      "If enabled, both Interchange translators and the legacy import process smooth the edges of static meshes that don't contain smoothing information.\nIf you have an older project that relies on leaving hard edges by default, you can disable this setting to preserve consistency with older assets."
+    ],
+    "GenericPipelineClass": [
+      "TSoftClassPtr<UInterchangePipelineBase>",
+      2,
+      "Specifies which pipeline class Interchange should use when editor tools import or reimport an asset with base settings.\nUnreal Editor depends on this class to be set. You can only edit this property in the .ini file."
+    ]
+  },
+  "methods": []
+}

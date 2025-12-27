@@ -1,0 +1,64 @@
+{
+  "name": "FPoseDriverTarget",
+  "isStruct": true,
+  "doc": "Information about each target in the PoseDriver",
+  "properties": {
+    "BoneTransforms": [
+      "TArray<FPoseDriverTransform>",
+      2,
+      "Translation of this target"
+    ],
+    "TargetRotation": [
+      "FRotator",
+      2,
+      "Rotation of this target"
+    ],
+    "TargetScale": [
+      "float32",
+      2,
+      "Scale applied to this target's function - a larger value will activate this target sooner"
+    ],
+    "DistanceMethod": [
+      "ERBFDistanceMethod",
+      2,
+      "Override for the distance method to use for each target"
+    ],
+    "FunctionType": [
+      "ERBFFunctionType",
+      2,
+      "Override for the function method to use for each target"
+    ],
+    "bApplyCustomCurve": [
+      "bool",
+      2,
+      "If we should apply a custom curve mapping to how this target activates"
+    ],
+    "CustomCurve": [
+      "FRichCurve",
+      2,
+      "Custom curve mapping to apply if bApplyCustomCurve is true"
+    ],
+    "DrivenName": [
+      "FName",
+      2,
+      "Name of item to drive - depends on DriveOutput setting.\nIf DriveOutput is DrivePoses, this should be the name of a pose in the assigned PoseAsset\nIf DriveOutput is DriveCurves, this is the name of the curve (morph target, material param etc) to drive"
+    ],
+    "bIsHidden": [
+      "bool",
+      2,
+      "If we should hide this pose from the UI"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPoseDriverTarget&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPoseDriverTarget"
+        }
+      ]
+    }
+  ]
+}

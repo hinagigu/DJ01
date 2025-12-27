@@ -1,0 +1,20 @@
+# FGetSkeletonDataflowNode
+
+## 属性
+
+### Skeleton
+- **类型**: `const USkeleton`
+
+### PropertyName
+- **类型**: `FName`
+
+### bActive
+- **类型**: `bool`
+
+## 方法
+
+### opAssign
+```angelscript
+FGetSkeletonDataflowNode& opAssign(FGetSkeletonDataflowNode Other)
+```
+

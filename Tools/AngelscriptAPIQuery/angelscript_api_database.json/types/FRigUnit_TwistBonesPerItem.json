@@ -1,0 +1,51 @@
+{
+  "name": "FRigUnit_TwistBonesPerItem",
+  "isStruct": true,
+  "doc": "Creates a gradient of twist rotation along a collection of items.",
+  "properties": {
+    "Items": [
+      "FRigElementKeyCollection",
+      "The items to twist"
+    ],
+    "TwistAxis": [
+      "FVector",
+      1,
+      "The axis to twist the bones around"
+    ],
+    "PoleAxis": [
+      "FVector",
+      1,
+      "The axis to use for the pole vector for each bone"
+    ],
+    "TwistEaseType": [
+      "ERigVMAnimEasingType",
+      1,
+      "The easing to use between two twists."
+    ],
+    "Weight": [
+      "float32",
+      "The weight of the solver - how much the rotation should be applied"
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      1,
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_TwistBonesPerItem&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_TwistBonesPerItem"
+        }
+      ]
+    }
+  ]
+}

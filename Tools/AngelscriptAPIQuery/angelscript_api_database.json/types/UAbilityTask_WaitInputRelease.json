@@ -1,0 +1,11 @@
+{
+  "name": "UAbilityTask_WaitInputRelease",
+  "inherits": "UAbilityTask",
+  "doc": "Waits until the input is released from activating an ability. Clients will replicate a 'release input' event to the server, but not the exact time it was held locally.\nWe expect server to execute this task in parallel and keep its own time.",
+  "properties": {
+    "OnRelease": [
+      "FInputReleaseDelegate"
+    ]
+  },
+  "methods": []
+}

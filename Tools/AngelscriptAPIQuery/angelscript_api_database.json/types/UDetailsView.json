@@ -1,0 +1,63 @@
+{
+  "name": "UDetailsView",
+  "inherits": "UPropertyViewBase",
+  "doc": "The details view allows you to display the value of an object properties.",
+  "properties": {
+    "bAllowFiltering": [
+      "bool",
+      2,
+      "True if we allow filtering through search and the filter dropdown menu."
+    ],
+    "bAllowFavoriteSystem": [
+      "bool",
+      2,
+      "If false, the current properties editor will never display the favorite system"
+    ],
+    "bShowModifiedPropertiesOption": [
+      "bool",
+      2,
+      "True if you want to show the 'Show Only Modified Properties'. Only valid in conjunction with bAllowFiltering"
+    ],
+    "bShowKeyablePropertiesOption": [
+      "bool",
+      2,
+      "True if you want to show the 'Show Only Keyable Properties'. Only valid in conjunction with bAllowFiltering"
+    ],
+    "bShowAnimatedPropertiesOption": [
+      "bool",
+      2,
+      "True if you want to show the 'Show Only Animated Properties'. Only valid in conjunction with bAllowFiltering"
+    ],
+    "ColumnWidth": [
+      "float32",
+      2,
+      "The default column width"
+    ],
+    "bShowScrollBar": [
+      "bool",
+      2,
+      "If false, the details panel's scrollbar will always be hidden. Useful when embedding details panels in widgets that either grow to accommodate them, or with scrollbars of their own."
+    ],
+    "bForceHiddenPropertyVisibility": [
+      "bool",
+      2,
+      "If true, all properties will be visible, not just those with CPF_Edit"
+    ],
+    "ViewIdentifier": [
+      "FName",
+      2,
+      "Identifier for this details view; NAME_None if this view is anonymous"
+    ],
+    "CategoriesToShow": [
+      "TArray<FName>",
+      2,
+      "Which categories to show in the details panel. If both this and the Properties To Show lists are empty, all properties will show."
+    ],
+    "PropertiesToShow": [
+      "TArray<FName>",
+      2,
+      "Which properties to show in the details panel. If both this and the Categories To Show lists are empty, all properties will show."
+    ]
+  },
+  "methods": []
+}

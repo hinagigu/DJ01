@@ -1,0 +1,170 @@
+{
+  "name": "UCommonPlayerInputKey",
+  "inherits": "UCommonUserWidget",
+  "properties": {
+    "BoundKeyFallback": [
+      "FKey",
+      "Key this widget is bound to set directly in blueprint. Used when we want to reference a specific key instead of an action."
+    ],
+    "InputTypeOverride": [
+      "ECommonInputType",
+      "Allows us to set the input type explicitly for the keybind widget."
+    ],
+    "IsHoldKeybindValue": [
+      "bool",
+      "Whether or not this keybind widget is currently set to be a hold keybind"
+    ],
+    "bShowTimeCountDown": [
+      "bool",
+      1,
+      ""
+    ],
+    "HoldProgressBrush": [
+      "FSlateBrush",
+      2,
+      "Material for showing Progress"
+    ],
+    "KeyBindTextBorder": [
+      "FSlateBrush",
+      2,
+      "The key bind text border."
+    ],
+    "bShowUnboundStatus": [
+      "bool",
+      2,
+      "Should this keybinding widget display information that it is currently unbound?"
+    ],
+    "KeyBindTextFont": [
+      "FSlateFontInfo",
+      2,
+      "The font to apply at each size"
+    ],
+    "CountdownTextFont": [
+      "FSlateFontInfo",
+      2,
+      "The font to apply at each size"
+    ],
+    "PercentageMaterialParameterName": [
+      "FName",
+      2,
+      "The material parameter name for hold percentage in the HoldKeybindImage"
+    ],
+    "BoundAction": [
+      "FName",
+      "Our current BoundAction"
+    ],
+    "AxisScale": [
+      "float32",
+      "Scale to read when using an axis Mapping"
+    ],
+    "PresetNameOverride": [
+      "FName",
+      "Allows us to set the preset name explicitly for the keybind widget."
+    ],
+    "ForcedHoldKeybindStatus": [
+      "ECommonKeybindForcedHoldStatus",
+      "Setting that can show this keybind as a hold or never show it as a hold (even if it is)"
+    ],
+    "BoundKey": [
+      "FKey",
+      "Derived Key this widget is bound to"
+    ]
+  },
+  "methods": [
+    {
+      "name": "IsHoldKeybind",
+      "return": "bool",
+      "const": true,
+      "doc": "Get whether this keybind is a hold action.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAxisScale",
+      "return": "void",
+      "doc": "Set the axis scale value for this keybind",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetBoundAction",
+      "return": "void",
+      "doc": "Set the bound action for our keybind",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewBoundAction",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetBoundKey",
+      "return": "void",
+      "doc": "Set the bound key for our keybind",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewBoundAction",
+          "type": "FKey"
+        }
+      ]
+    },
+    {
+      "name": "SetForcedHoldKeybindStatus",
+      "return": "void",
+      "doc": "Force this keybind to be a hold keybind",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InForcedHoldKeybindStatus",
+          "type": "ECommonKeybindForcedHoldStatus"
+        }
+      ]
+    },
+    {
+      "name": "SetPresetNameOverride",
+      "return": "void",
+      "doc": "Set the preset name override value for this keybind.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetShowProgressCountDown",
+      "return": "void",
+      "doc": "Force this keybind to be a hold keybind",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bShow",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UpdateKeybindWidget",
+      "return": "void",
+      "doc": "Update the key and associated display based on our current Boundaction",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

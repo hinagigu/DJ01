@@ -1,0 +1,73 @@
+{
+  "name": "UParticleModuleLight",
+  "inherits": "UParticleModuleLightBase",
+  "properties": {
+    "bUseInverseSquaredFalloff": [
+      "bool",
+      2,
+      "Whether to use physically based inverse squared falloff from the light.  If unchecked, the LightExponent distribution will be used instead."
+    ],
+    "bAffectsTranslucency": [
+      "bool",
+      2,
+      "Whether lights from this module should affect translucency.\nUse with caution.  Modules enabling this should only make a few particle lights at most, and the smaller they are, the less they will cost."
+    ],
+    "bPreviewLightRadius": [
+      "bool",
+      2,
+      "Will draw wireframe spheres to preview the light radius if enabled.\nNote: this is intended for previewing and the value will not be saved, it will always revert to disabled."
+    ],
+    "SpawnFraction": [
+      "float32",
+      2,
+      "Fraction of particles in this emitter to create lights on."
+    ],
+    "ColorScaleOverLife": [
+      "FRawDistributionVector",
+      2,
+      "Scale that is applied to the particle's color to calculate the light's color, and can be setup as a curve over the particle's lifetime."
+    ],
+    "BrightnessOverLife": [
+      "FRawDistributionFloat",
+      2,
+      "Brightness scale for the light, which can be setup as a curve over the particle's lifetime."
+    ],
+    "RadiusScale": [
+      "FRawDistributionFloat",
+      2,
+      "Scales the particle's radius, to calculate the light's radius."
+    ],
+    "LightExponent": [
+      "FRawDistributionFloat",
+      2,
+      "Provides the light's exponent when inverse squared falloff is disabled."
+    ],
+    "InverseExposureBlend": [
+      "float32",
+      "Blend Factor used to blend between Intensity and Intensity/Exposure.\nThis is useful for gameplay lights that should have constant brighness on screen independent of current exposure.\nThis feature can cause issues with exposure particularly when used on the primary light on a scene, as such it's usage should be limited."
+    ],
+    "LightingChannels": [
+      "FLightingChannels",
+      "Channels that this light should affect.\nOnly affect high quality lights\nThese channels only apply to opaque materials, direct lighting, and dynamic lighting and shadowing."
+    ],
+    "VolumetricScatteringIntensity": [
+      "float32",
+      "Intensity of the volumetric scattering from this light.  This scales Intensity and LightColor."
+    ],
+    "bHighQualityLights": [
+      "bool",
+      2,
+      "Converts the particle lights into high quality lights as if they came from a PointLightComponent.  High quality lights cost significantly more on both CPU and GPU."
+    ],
+    "bShadowCastingLights": [
+      "bool",
+      2,
+      "Whether to cast shadows from the particle lights.  Requires High Quality Lights to be enabled.\nWarning: This can be incredibly expensive on the GPU - use with caution."
+    ],
+    "bOverrideInverseExposureBlend": [
+      "bool",
+      "When enabled we will override the project default setting with our local setting."
+    ]
+  },
+  "methods": []
+}

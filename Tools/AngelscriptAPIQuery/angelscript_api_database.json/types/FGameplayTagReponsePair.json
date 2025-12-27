@@ -1,0 +1,33 @@
+{
+  "name": "FGameplayTagReponsePair",
+  "isStruct": true,
+  "properties": {
+    "Tag": [
+      "FGameplayTag",
+      2,
+      "Tag that triggers this response"
+    ],
+    "ResponseGameplayEffects": [
+      "TArray<TSubclassOf<UGameplayEffect>>",
+      2,
+      "The GameplayEffects to apply in reponse to the tag"
+    ],
+    "SoftCountCap": [
+      "int",
+      2,
+      "The max \"count\" this response can achieve. This will not prevent counts from being applied, but will be used when calculating the net count of a tag. 0=no cap."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayTagReponsePair&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayTagReponsePair"
+        }
+      ]
+    }
+  ]
+}

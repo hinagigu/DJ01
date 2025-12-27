@@ -1,0 +1,42 @@
+{
+  "name": "FAbcCompressionSettings",
+  "isStruct": true,
+  "properties": {
+    "bMergeMeshes": [
+      "bool",
+      "Whether or not the individual meshes should be merged for compression purposes"
+    ],
+    "bBakeMatrixAnimation": [
+      "bool",
+      "Whether or not Matrix-only animation should be baked out as vertex animation (or skipped?)"
+    ],
+    "BaseCalculationType": [
+      "EBaseCalculationType",
+      "Determines how the final number of bases that are stored as morph targets are calculated"
+    ],
+    "PercentageOfTotalBases": [
+      "float32",
+      "Will generate given percentage of the given bases as morph targets"
+    ],
+    "MaxNumberOfBases": [
+      "int",
+      "Will generate given fixed number of bases as morph targets"
+    ],
+    "MinimumNumberOfVertexInfluencePercentage": [
+      "float32",
+      "Minimum percentage of influenced vertices required for a morph target to be valid"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAbcCompressionSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAbcCompressionSettings"
+        }
+      ]
+    }
+  ]
+}

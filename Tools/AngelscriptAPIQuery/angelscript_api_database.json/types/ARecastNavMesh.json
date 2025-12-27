@@ -1,0 +1,279 @@
+{
+  "name": "ARecastNavMesh",
+  "inherits": "ANavigationData",
+  "properties": {
+    "DrawOffset": [
+      "float32",
+      2,
+      "vertical offset added to navmesh's debug representation for better readability"
+    ],
+    "TileGenerationDebug": [
+      "FRecastNavMeshTileGenerationDebug",
+      2,
+      ""
+    ],
+    "TilePoolSize": [
+      "int",
+      2,
+      "maximum number of tiles NavMesh can hold"
+    ],
+    "TileSizeUU": [
+      "float32",
+      2,
+      "size of single tile, expressed in uu"
+    ],
+    "NavMeshResolutionParams": [
+      "FNavMeshResolutionParam",
+      2,
+      "Resolution params\nIf using multiple resolutions, it's recommended to chose the highest resolution first and\nset it according to the highest desired precision and then the other resolutions."
+    ],
+    "AgentRadius": [
+      "float32",
+      2,
+      "Radius of smallest agent to traverse this navmesh"
+    ],
+    "AgentHeight": [
+      "float32",
+      2,
+      "Size of the tallest agent that will path with this navmesh."
+    ],
+    "AgentMaxSlope": [
+      "float32",
+      2,
+      "The maximum slope (angle) that the agent can move on."
+    ],
+    "MinRegionArea": [
+      "float32",
+      2,
+      "The minimum dimension of area. Areas smaller than this will be discarded"
+    ],
+    "MergeRegionSize": [
+      "float32",
+      2,
+      "The size limit of regions to be merged with bigger regions (watershed partitioning only)"
+    ],
+    "MaxVerticalMergeError": [
+      "int",
+      2,
+      "Maximum vertical deviation between raw contour points to allowing merging (in voxel).\nUse a low value (2-5) depending on CellHeight, AgentMaxStepHeight and AgentMaxSlope, to allow more precise contours (also see SimplificationElevationRatio).\nUse very high value to deactivate (Recast behavior)."
+    ],
+    "MaxSimplificationError": [
+      "float32",
+      2,
+      "How much navigable shapes can get simplified - the higher the value the more freedom"
+    ],
+    "SimplificationElevationRatio": [
+      "float32",
+      2,
+      "When simplifying contours, how much is the vertical error taken into account when comparing with MaxSimplificationError.\nUse 0 to deactivate (Recast behavior), use 1 as a typical value."
+    ],
+    "MaxSimultaneousTileGenerationJobsCount": [
+      "int",
+      2,
+      "Sets the limit for number of asynchronous tile generators running at one time, also used for some synchronous tasks"
+    ],
+    "TileNumberHardLimit": [
+      "int",
+      2,
+      "Absolute hard limit to number of navmesh tiles. Be very, very careful while modifying it while\n    having big maps with navmesh. A single, empty tile takes 176 bytes and empty tiles are\n    allocated up front (subject to change, but that's where it's at now)\n    @note TileNumberHardLimit is always rounded up to the closest power of 2"
+    ],
+    "NavMeshOriginOffset": [
+      "FVector",
+      2,
+      "Use this if you don't want your tiles to start at (0,0,0)"
+    ],
+    "LedgeSlopeFilterMode": [
+      "ENavigationLedgeSlopeFilterMode",
+      2,
+      "filtering methode used for filtering ledge slopes"
+    ],
+    "RegionPartitioning": [
+      "ERecastPartitioning",
+      2,
+      "partitioning method for creating navmesh polys"
+    ],
+    "LayerPartitioning": [
+      "ERecastPartitioning",
+      2,
+      "partitioning method for creating tile layers"
+    ],
+    "RegionChunkSplits": [
+      "int",
+      2,
+      "number of chunk splits (along single axis) used for region's partitioning: ChunkyMonotone"
+    ],
+    "LayerChunkSplits": [
+      "int",
+      2,
+      "number of chunk splits (along single axis) used for layer's partitioning: ChunkyMonotone"
+    ],
+    "TimeSliceFilterLedgeSpansMaxYProcess": [
+      "int",
+      2,
+      "The maximum number of y coords to process when time slicing filter ledge spans during navmesh regeneration."
+    ],
+    "TimeSliceLongDurationDebug": [
+      "float",
+      2,
+      "If a single time sliced section of navmesh regen code exceeds this duration then it will trigger debug logging"
+    ],
+    "InvokerTilePriorityBumpDistanceThresholdInTileUnits": [
+      "uint",
+      2,
+      "If >= 1, when sorting pending tiles by priority, tiles near invokers (within the distance threshold) will have their priority increased."
+    ],
+    "InvokerTilePriorityBumpIncrease": [
+      "uint8",
+      2,
+      "Priority increase steps for tiles that are withing near distance."
+    ],
+    "HeuristicScale": [
+      "float32",
+      2,
+      "Euclidean distance heuristic scale used while pathfinding"
+    ],
+    "VerticalDeviationFromGroundCompensation": [
+      "float32",
+      2,
+      "Value added to each search height to compensate for error between navmesh polys and walkable geometry"
+    ],
+    "bDrawTriangleEdges": [
+      "bool",
+      "Draw edges of every navmesh's triangle"
+    ],
+    "bDrawPolyEdges": [
+      "bool",
+      "Draw edges of every poly (i.e. not only border-edges)"
+    ],
+    "bDrawFilledPolys": [
+      "bool",
+      "if disabled skips filling drawn navmesh polygons"
+    ],
+    "bDrawNavMeshEdges": [
+      "bool",
+      "Draw border-edges"
+    ],
+    "bDrawTileBounds": [
+      "bool",
+      "Draw the tile boundaries"
+    ],
+    "bDrawTileResolutions": [
+      "bool",
+      "Draw the tile resolutions"
+    ],
+    "bDrawPathCollidingGeometry": [
+      "bool",
+      "Draw input geometry passed to the navmesh generator.  Recommend disabling other geometry rendering via viewport showflags in editor."
+    ],
+    "bDrawTileLabels": [
+      "bool"
+    ],
+    "bDrawTileBuildTimes": [
+      "bool"
+    ],
+    "bDrawTileBuildTimesHeatMap": [
+      "bool"
+    ],
+    "bDrawPolygonLabels": [
+      "bool",
+      "Draw a label for every poly that indicates its poly and tile indices"
+    ],
+    "bDrawDefaultPolygonCost": [
+      "bool",
+      "Draw a label for every poly that indicates its default and fixed costs"
+    ],
+    "bDrawPolygonFlags": [
+      "bool",
+      "Draw a label for every poly that indicates its poly and area flags"
+    ],
+    "bDrawLabelsOnPathNodes": [
+      "bool"
+    ],
+    "bDrawNavLinks": [
+      "bool"
+    ],
+    "bDrawFailedNavLinks": [
+      "bool"
+    ],
+    "bDrawClusters": [
+      "bool",
+      "Draw navmesh's clusters and cluster links. (Requires WITH_NAVMESH_CLUSTER_LINKS=1)"
+    ],
+    "bDrawOctree": [
+      "bool",
+      "Draw octree used to store navigation relevant actors"
+    ],
+    "bDrawOctreeDetails": [
+      "bool",
+      "Draw octree used to store navigation relevant actors with the elements bounds"
+    ],
+    "bDrawMarkedForbiddenPolys": [
+      "bool"
+    ],
+    "bFixedTilePoolSize": [
+      "bool",
+      "if true, the NavMesh will allocate fixed size pool for tiles, should be enabled to support streaming"
+    ],
+    "bSortNavigationAreasByCost": [
+      "bool",
+      "Controls whether Navigation Areas will be sorted by cost before application\n    to navmesh during navmesh generation. This is relevant when there are\n    areas overlapping and we want to have area cost express area relevancy\n    as well. Setting it to true will result in having area sorted by cost,\n    but it will also increase navmesh generation cost a bit"
+    ],
+    "bIsWorldPartitioned": [
+      "bool",
+      "In a world partitioned map, is this navmesh using world partitioning"
+    ],
+    "bPerformVoxelFiltering": [
+      "bool",
+      "controls whether voxel filtering will be applied (via FRecastTileGenerator::ApplyVoxelFilter).\n    Results in generated navmesh better fitting navigation bounds, but hits (a bit) generation performance"
+    ],
+    "bMarkLowHeightAreas": [
+      "bool",
+      "mark areas with insufficient free height above instead of cutting them out (accessible only for area modifiers using replace mode)"
+    ],
+    "bUseExtraTopCellWhenMarkingAreas": [
+      "bool",
+      "Expand the top of the area nav modifier's bounds by one cell height when applying to the navmesh.\n              If unset, navmesh on top of surfaces might not be marked by marking bounds flush with top surfaces (since navmesh is generated slightly above collision, depending on cell height)."
+    ],
+    "bFilterLowSpanSequences": [
+      "bool",
+      "if set, only single low height span will be allowed under valid one"
+    ],
+    "bFilterLowSpanFromTileCache": [
+      "bool",
+      "if set, only low height spans with corresponding area modifier will be stored in tile cache (reduces memory, can't modify without full tile rebuild)"
+    ],
+    "bDoFullyAsyncNavDataGathering": [
+      "bool",
+      "if set, navmesh data gathering will never happen on the game thread and will only be done on background threads"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ReplaceAreaInTileBounds",
+      "return": "bool",
+      "doc": "@return true if any polygon/link has been touched",
+      "ufunction": true,
+      "unrealname": "K2_ReplaceAreaInTileBounds",
+      "meta": null,
+      "args": [
+        {
+          "name": "Bounds",
+          "type": "FBox"
+        },
+        {
+          "name": "OldArea",
+          "type": "TSubclassOf<UNavArea>"
+        },
+        {
+          "name": "NewArea",
+          "type": "TSubclassOf<UNavArea>"
+        },
+        {
+          "name": "ReplaceLinks",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

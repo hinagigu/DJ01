@@ -1,0 +1,870 @@
+{
+  "name": "UModularSynthComponent",
+  "inherits": "USynthComponent",
+  "doc": "UModularSynthComponent\nImplementation of a USynthComponent.",
+  "properties": {
+    "VoiceCount": [
+      "int",
+      "The voice count to use for the synthesizer. Cannot be changed"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CreatePatch",
+      "return": "FPatchId",
+      "doc": "Creates a new modular synth patch between a modulation source and a set of modulation destinations",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PatchSource",
+          "type": "ESynth1PatchSource"
+        },
+        {
+          "name": "PatchCables",
+          "type": "TArray<FSynth1PatchCable>"
+        },
+        {
+          "name": "bEnableByDefault",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "NoteOff",
+      "return": "void",
+      "doc": "Stop the note (will only do anything if a voice is playing with that note)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Note",
+          "type": "float32"
+        },
+        {
+          "name": "bAllNotesOff",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bKillAllNotes",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "NoteOn",
+      "return": "void",
+      "doc": "Play a new note. Optionally pass in a duration to automatically turn off the note.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Note",
+          "type": "float32"
+        },
+        {
+          "name": "Velocity",
+          "type": "int"
+        },
+        {
+          "name": "Duration",
+          "default": "- 1.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAttackTime",
+      "return": "void",
+      "doc": "Sets the envelope attack time in msec.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttackTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetChorusDepth",
+      "return": "void",
+      "doc": "Sets the chorus depth",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Depth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetChorusEnabled",
+      "return": "void",
+      "doc": "Sets whether or not chorus is enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EnableChorus",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetChorusFeedback",
+      "return": "void",
+      "doc": "Sets the chorus feedback",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Feedback",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetChorusFrequency",
+      "return": "void",
+      "doc": "Sets the chorus frequency",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Frequency",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetDecayTime",
+      "return": "void",
+      "doc": "Sets the envelope decay time in msec.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DecayTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableLegato",
+      "return": "void",
+      "doc": "Sets whether or not to use legato for the synthesizer.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LegatoEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEnablePatch",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PatchId",
+          "type": "FPatchId"
+        },
+        {
+          "name": "bIsEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEnablePolyphony",
+      "return": "void",
+      "doc": "Sets whether or not to use polyphony for the synthesizer.\n@param bEnablePolyphony Whether or not to enable polyphony for the synth.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnablePolyphony",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableRetrigger",
+      "return": "void",
+      "doc": "Sets whether or not to retrigger envelope per note on.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "RetriggerEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEnableUnison",
+      "return": "void",
+      "doc": "Sets whether or not the synth is in unison mode (i.e. no spread)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EnableUnison",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterAlgorithm",
+      "return": "void",
+      "doc": "Sets the filter algorithm.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FilterAlgorithm",
+          "type": "ESynthFilterAlgorithm"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterFrequency",
+      "return": "void",
+      "doc": "Sets the filter cutoff frequency in hz.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FilterFrequencyHz",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterFrequencyMod",
+      "return": "void",
+      "doc": "Sets the filter cutoff frequency in hz.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FilterFrequencyHz",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterQ",
+      "return": "void",
+      "doc": "Sets the filter Q (resonance)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FilterQ",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterQMod",
+      "return": "void",
+      "doc": "Sets a modulated filter Q (resonance)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FilterQ",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterType",
+      "return": "void",
+      "doc": "Sets the filter type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FilterType",
+          "type": "ESynthFilterType"
+        }
+      ]
+    },
+    {
+      "name": "SetGainDb",
+      "return": "void",
+      "doc": "Sets the synth gain in decibels.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GainDb",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLFOFrequency",
+      "return": "void",
+      "doc": "Sets the LFO frequency in hz\n@param LFOIndex Which LFO to set the frequency for.\n@param FrequencyHz The LFO frequency to use.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LFOIndex",
+          "type": "int"
+        },
+        {
+          "name": "FrequencyHz",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLFOFrequencyMod",
+      "return": "void",
+      "doc": "Sets the LFO frequency modulation in hz\n@param LFOIndex Which LFO to set the frequency for.\n@param FrequencyModHz The LFO frequency to use.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LFOIndex",
+          "type": "int"
+        },
+        {
+          "name": "FrequencyModHz",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLFOGain",
+      "return": "void",
+      "doc": "Sets the LFO gain factor\n@param LFOIndex Which LFO to set the frequency for.\n@param Gain The gain factor to use for the LFO.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LFOIndex",
+          "type": "int"
+        },
+        {
+          "name": "Gain",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLFOGainMod",
+      "return": "void",
+      "doc": "Sets the LFO gain mod factor (external modulation)\n@param LFOIndex Which LFO to set the frequency for.\n@param Gain The gain factor to use for the LFO.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LFOIndex",
+          "type": "int"
+        },
+        {
+          "name": "GainMod",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLFOMode",
+      "return": "void",
+      "doc": "Sets the LFO type\n@param LFOIndex Which LFO to set the frequency for.\n@param LFOMode The LFO mode to use.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LFOIndex",
+          "type": "int"
+        },
+        {
+          "name": "LFOMode",
+          "type": "ESynthLFOMode"
+        }
+      ]
+    },
+    {
+      "name": "SetLFOPatch",
+      "return": "void",
+      "doc": "Sets the LFO patch type. LFO patch determines what parameter is modulated by the LFO.\n@param LFOIndex Which LFO to set the frequency for.\n@param LFOPatchType The LFO patch type to use.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LFOIndex",
+          "type": "int"
+        },
+        {
+          "name": "LFOPatchType",
+          "type": "ESynthLFOPatchType"
+        }
+      ]
+    },
+    {
+      "name": "SetLFOType",
+      "return": "void",
+      "doc": "Sets the LFO type\n@param LFOIndex Which LFO to set the frequency for.\n@param LFOType The LFO type to use.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LFOIndex",
+          "type": "int"
+        },
+        {
+          "name": "LFOType",
+          "type": "ESynthLFOType"
+        }
+      ]
+    },
+    {
+      "name": "SetModEnvAttackTime",
+      "return": "void",
+      "doc": "Sets the envelope modulator attack time in msec",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttackTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetModEnvBiasInvert",
+      "return": "void",
+      "doc": "Sets whether or not to invert the bias output of the envelope modulator.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInvert",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetModEnvBiasPatch",
+      "return": "void",
+      "doc": "Sets whether or not to modulate a param based on the envelope. Uses bias envelope output (offset from sustain gain).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPatchType",
+          "type": "ESynthModEnvBiasPatch"
+        }
+      ]
+    },
+    {
+      "name": "SetModEnvDecayTime",
+      "return": "void",
+      "doc": "Sets the envelope modulator attack time in msec",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DecayTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetModEnvDepth",
+      "return": "void",
+      "doc": "Sets the envelope modulator depth (amount to apply the output modulation)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Depth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetModEnvInvert",
+      "return": "void",
+      "doc": "Sets whether or not to invert the envelope modulator.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInvert",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetModEnvPatch",
+      "return": "void",
+      "doc": "Sets whether or not to modulate a param based on the envelope. Uses bias envelope output (offset from sustain gain).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPatchType",
+          "type": "ESynthModEnvPatch"
+        }
+      ]
+    },
+    {
+      "name": "SetModEnvReleaseTime",
+      "return": "void",
+      "doc": "Sets the envelope modulator release",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Release",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetModEnvSustainGain",
+      "return": "void",
+      "doc": "Sets the envelope modulator sustain gain",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SustainGain",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOscCents",
+      "return": "void",
+      "doc": "Sets the oscillator cents.\n@param OscIndex Which oscillator to set the type for.\n@param Cents The amount of cents to set the oscillator to (relative to base frequency/pitch)..",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OscIndex",
+          "type": "int"
+        },
+        {
+          "name": "Cents",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOscFrequencyMod",
+      "return": "void",
+      "doc": "Set the oscillator frequency modulation\n@param OscIndex Which oscillator to set the type for.\n@param OscFreqMod The oscillator frequency modulation to use.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OscIndex",
+          "type": "int"
+        },
+        {
+          "name": "OscFreqMod",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOscGain",
+      "return": "void",
+      "doc": "Set the oscillator gain.\n@param OscIndex Which oscillator to set the type for.\n@param OscGain The oscillator gain.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OscIndex",
+          "type": "int"
+        },
+        {
+          "name": "OscGain",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOscGainMod",
+      "return": "void",
+      "doc": "Set the oscillator gain modulation.\n@param OscIndex Which oscillator to set the type for.\n@param OscGainMod The oscillator gain modulation to use.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OscIndex",
+          "type": "int"
+        },
+        {
+          "name": "OscGainMod",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOscOctave",
+      "return": "void",
+      "doc": "Sets the oscillator octaves\n@param OscIndex Which oscillator to set the type for.\n@param Octave Which octave to set the oscillator to (relative to base frequency/pitch).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OscIndex",
+          "type": "int"
+        },
+        {
+          "name": "Octave",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOscPulsewidth",
+      "return": "void",
+      "doc": "Sets the square wave pulsewidth [0.0, 1.0]",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OscIndex",
+          "type": "int"
+        },
+        {
+          "name": "Pulsewidth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOscSemitones",
+      "return": "void",
+      "doc": "Sets the oscillator semitones.\n@param OscIndex Which oscillator to set the type for.\n@param Semitones The amount of semitones to set the oscillator to (relative to base frequency/pitch).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OscIndex",
+          "type": "int"
+        },
+        {
+          "name": "Semitones",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetOscSync",
+      "return": "void",
+      "doc": "Set whether or not to follow the phase of osc2 to osc1",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsSynced",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetOscType",
+      "return": "void",
+      "doc": "Set the oscillator type.\n@param OscIndex Which oscillator to set the type for.\n@param OscType The oscillator type to set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OscIndex",
+          "type": "int"
+        },
+        {
+          "name": "OscType",
+          "type": "ESynth1OscType"
+        }
+      ]
+    },
+    {
+      "name": "SetPan",
+      "return": "void",
+      "doc": "Sets the pan of the synth [-1.0, 1.0].",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pan",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPitchBend",
+      "return": "void",
+      "doc": "Sets the synth pitch bend amount.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PitchBend",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPortamento",
+      "return": "void",
+      "doc": "Sets the synth portamento [0.0, 1.0]",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Portamento",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetReleaseTime",
+      "return": "void",
+      "doc": "Sets the envelope release time in msec.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ReleaseTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSpread",
+      "return": "void",
+      "doc": "Sets the amount of spread of the oscillators. [0.0, 1.0]",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Spread",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetStereoDelayFeedback",
+      "return": "void",
+      "doc": "Sets the amount of stereo delay feedback [0.0, 1.0]",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DelayFeedback",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetStereoDelayIsEnabled",
+      "return": "void",
+      "doc": "Sets whether not stereo delay is enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StereoDelayEnabled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStereoDelayMode",
+      "return": "void",
+      "doc": "Sets whether not stereo delay is enabled.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StereoDelayMode",
+          "type": "ESynthStereoDelayMode"
+        }
+      ]
+    },
+    {
+      "name": "SetStereoDelayRatio",
+      "return": "void",
+      "doc": "Sets the amount of stereo delay ratio between left and right delay lines [0.0, 1.0]",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DelayRatio",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetStereoDelayTime",
+      "return": "void",
+      "doc": "Sets the amount of stereo delay time in msec.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DelayTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetStereoDelayWetlevel",
+      "return": "void",
+      "doc": "Sets the amount of stereo delay wetlevel [0.0, 1.0]",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DelayWetlevel",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSustainGain",
+      "return": "void",
+      "doc": "Sets the envelope sustain gain value.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SustainGain",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSynthPreset",
+      "return": "void",
+      "doc": "Sets the preset struct for the synth",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SynthPreset",
+          "type": "FModularSynthPreset"
+        }
+      ]
+    }
+  ]
+}

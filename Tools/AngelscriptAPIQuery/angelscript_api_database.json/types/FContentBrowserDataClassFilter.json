@@ -1,0 +1,35 @@
+{
+  "name": "FContentBrowserDataClassFilter",
+  "isStruct": true,
+  "doc": "Data used to filter object instances by their class.\n@note This will typically limit your query to returning assets.",
+  "properties": {
+    "ClassNamesToInclude": [
+      "TArray<FString>",
+      "Array of class names that should be included in this query"
+    ],
+    "ClassNamesToExclude": [
+      "TArray<FString>",
+      "Array of class names that should be excluded from this query"
+    ],
+    "bRecursiveClassNamesToInclude": [
+      "bool",
+      "Whether we should include inclusive sub-classes in this query"
+    ],
+    "bRecursiveClassNamesToExclude": [
+      "bool",
+      "Whether we should include exclusive sub-classes in this query"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FContentBrowserDataClassFilter&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FContentBrowserDataClassFilter"
+        }
+      ]
+    }
+  ]
+}

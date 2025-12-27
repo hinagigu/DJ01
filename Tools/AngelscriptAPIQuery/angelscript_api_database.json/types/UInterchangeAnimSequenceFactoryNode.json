@@ -1,0 +1,670 @@
+{
+  "name": "UInterchangeAnimSequenceFactoryNode",
+  "inherits": "UInterchangeFactoryBaseNode",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetAnimatedAttributeCurveName",
+      "return": "void",
+      "const": true,
+      "doc": "Get the animated attribute curve name at the specified index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "OutAttributeCurveName",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimatedAttributeCurveNames",
+      "return": "void",
+      "const": true,
+      "doc": "Get all animated attribute curve names.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutAttributeCurveNames",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimatedAttributeCurveNamesCount",
+      "return": "int",
+      "const": true,
+      "doc": "Return the number of animated attribute curve names this anim sequence drives. Curves are FRichCurve of type float.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAnimatedAttributeStepCurveName",
+      "return": "void",
+      "const": true,
+      "doc": "Get the animated attribute step curve name at the specified index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "OutAttributeStepCurveName",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimatedAttributeStepCurveNames",
+      "return": "void",
+      "const": true,
+      "doc": "Get all animated attribute step curve names.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutAttributeStepCurveNames",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimatedAttributeStepCurveNamesCount",
+      "return": "int",
+      "const": true,
+      "doc": "Return the number of animated attribute step curve names this anim sequence drives.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAnimatedMaterialCurveSuffixe",
+      "return": "void",
+      "const": true,
+      "doc": "Get the animated material curve suffix with the specified index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "OutMaterialCurveSuffixe",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimatedMaterialCurveSuffixes",
+      "return": "void",
+      "const": true,
+      "doc": "Get all animated material curve suffixes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutMaterialCurveSuffixes",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimatedMaterialCurveSuffixesCount",
+      "return": "int",
+      "const": true,
+      "doc": "Return the number of animated material curve suffixes this anim sequence drives. Curves are FRichCurve of type float.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCustomAddCurveMetadataToSkeleton",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the custom attribute AddCurveMetadataToSkeleton. Return false if the attribute is not set.\n\nNote - If this setting is disabled, curve metadata will be added to skeletal meshes for morph targets, but no metadata entry will be created for general curves.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomDeleteExistingCustomAttributeCurves",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the custom attribute DeleteExistingCustomAttributeCurves. Return false if the attribute is not set.\n\nNote - If true, all previous custom attribute curves are deleted if you reimport.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomDeleteExistingMorphTargetCurves",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the custom attribute DeleteExistingMorphTargetCurves. Return false if the attribute is not set.\n\nNote: If true, all previous morph target curves are deleted if you reimport.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomDeleteExistingNonCurveCustomAttributes",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the custom attribute DeleteExistingNonCurveCustomAttributes. Return false if the attribute is not set.\n\nNote - If true, all previous non-curve custom attributes are deleted if you reimport.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomDoNotImportCurveWithZero",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the custom attribute DoNotImportCurveWithZero. Return false if the attribute is not set.\n\nNote - If this attribute is enabled, only curves that have a value other than zero will be imported. This is to avoid adding extra curves to evaluate.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomImportAttributeCurves",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the import attribute curves state. If true, all user custom attributes on nodes are imported.\n\nReturn false if the attribute is not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomImportBoneTracks",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the import bone tracks state. If the attribute is true, bone tracks are imported. If the attribute\nis false, bone tracks are not imported.\n\nReturn false if the attribute is not set. Return true if the attribute exists and can be queried.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomImportBoneTracksRangeStart",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the import bone tracks start time in seconds. Return false if the attribute is not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomImportBoneTracksRangeStop",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the import bone tracks end time in seconds. Return false if the attribute is not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomImportBoneTracksSampleRate",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the import bone tracks sample rate. Return false if the attribute is not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomMaterialDriveParameterOnCustomAttribute",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the custom attribute MaterialDriveParameterOnCustomAttribute. Return false if the attribute is not set.\n\nNote: If true, sets Material Curve Type for all custom attributes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomRemoveCurveRedundantKeys",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the custom attribute RemoveCurveRedundantKeys. Return false if the attribute is not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomSkeletonFactoryNodeUid",
+      "return": "bool",
+      "const": true,
+      "doc": "Get the unique ID of the skeleton factory node. Return false if the attribute is not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetCustomSkeletonSoftObjectPath",
+      "return": "bool",
+      "const": true,
+      "doc": "Query the optional existing USkeleton this animation must use. If this attribute is set and the skeleton is valid,\nthe AnimSequence factory uses this skeleton instead of the one imported from GetCustomSkeletonFactoryNodeUid.\nPipelines set this attribute when the user wants to specify an existing skeleton.\nReturn false if the attribute was not set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FSoftObjectPath&"
+        }
+      ]
+    },
+    {
+      "name": "GetMorphTargetNodeAnimationPayloadKeys",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutMorphTargetNodeAnimationPayloads",
+          "type": "TMap<FString,FInterchangeAnimationPayLoadKey>&"
+        }
+      ]
+    },
+    {
+      "name": "GetObjectClass",
+      "return": "UClass",
+      "const": true,
+      "doc": "Get the class this node creates.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSceneNodeAnimationPayloadKeys",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutSceneNodeAnimationPayloadKeys",
+          "type": "TMap<FString,FInterchangeAnimationPayLoadKey>&"
+        }
+      ]
+    },
+    {
+      "name": "InitializeAnimSequenceNode",
+      "return": "void",
+      "doc": "Initialize node data.\n@param UniqueID - The unique ID for this node.\n@param DisplayLabel - The name of the node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "UniqueID",
+          "type": "FString"
+        },
+        {
+          "name": "DisplayLabel",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAnimatedAttributeCurveName",
+      "return": "bool",
+      "doc": "Remove the specified animated attribute curve name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeCurveName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAnimatedAttributeStepCurveName",
+      "return": "bool",
+      "doc": "Remove the specified animated attribute step curve name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeStepCurveName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAnimatedMaterialCurveSuffixe",
+      "return": "bool",
+      "doc": "Remove the specified animated material curve suffix.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialCurveSuffixe",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimatedAttributeCurveName",
+      "return": "bool",
+      "doc": "Add an animated attribute curve name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeCurveName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimatedAttributeStepCurveName",
+      "return": "bool",
+      "doc": "Add an animated attribute step curve name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeStepCurveName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimatedMaterialCurveSuffixe",
+      "return": "bool",
+      "doc": "Add an animated material curve suffix.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaterialCurveSuffixe",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimationPayloadKeysForMorphTargetNodeUids",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MorphTargetAnimationPayloadKeyUids",
+          "type": "TMap<FString,FString>"
+        },
+        {
+          "name": "MorphTargetAnimationPayloadKeyTypes",
+          "type": "TMap<FString,uint8>"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimationPayloadKeysForSceneNodeUids",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SceneNodeAnimationPayloadKeyUids",
+          "type": "TMap<FString,FString>"
+        },
+        {
+          "name": "SceneNodeAnimationPayloadKeyTypes",
+          "type": "TMap<FString,uint8>"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomAddCurveMetadataToSkeleton",
+      "return": "bool",
+      "doc": "Set the custom attribute AddCurveMetadataToSkeleton. Return false if the attribute could not be set.\n\nNote - If this setting is disabled, curve metadata will be added to skeletal meshes for morph targets, but no metadata entry will be created for general curves.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomDeleteExistingCustomAttributeCurves",
+      "return": "bool",
+      "doc": "Set the custom attribute DeleteExistingCustomAttributeCurves. Return false if the attribute could not be set.\n\nNote - If true, all previous custom attribute curves are deleted if you reimport.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomDeleteExistingMorphTargetCurves",
+      "return": "bool",
+      "doc": "Set the custom attribute DeleteExistingMorphTargetCurves. Return false if the attribute could not be set.\n\nNote: If true, all previous morph target curves are deleted if you reimport.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomDeleteExistingNonCurveCustomAttributes",
+      "return": "bool",
+      "doc": "Set the custom attribute DeleteExistingNonCurveCustomAttributes. Return false if the attribute could not be set.\n\nNote - If true, all previous non-curve custom attributes are deleted if you reimport.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomDoNotImportCurveWithZero",
+      "return": "bool",
+      "doc": "Set the custom attribute DoNotImportCurveWithZero. Return false if the attribute could not be set.\n\nNote - If this attribute is enabled, only curves that have a value other than zero will be imported. This is to avoid adding extra curves to evaluate.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomImportAttributeCurves",
+      "return": "bool",
+      "doc": "Set the import attribute curves state. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomImportBoneTracks",
+      "return": "bool",
+      "doc": "Set the import bone tracks state. Pass true to import bone tracks, or false to not import bone tracks.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomImportBoneTracksRangeStart",
+      "return": "bool",
+      "doc": "Set the import bone tracks start time in seconds. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomImportBoneTracksRangeStop",
+      "return": "bool",
+      "doc": "Set the import bone tracks end time in seconds. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomImportBoneTracksSampleRate",
+      "return": "bool",
+      "doc": "Set the import bone tracks sample rate. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomMaterialDriveParameterOnCustomAttribute",
+      "return": "bool",
+      "doc": "Set the custom attribute MaterialDriveParameterOnCustomAttribute. Return false if the attribute could not be set.\n\nNote: If true, sets Material Curve Type for all custom attributes.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomRemoveCurveRedundantKeys",
+      "return": "bool",
+      "doc": "Set the custom attribute RemoveCurveRedundantKeys. Return false if the attribute could not be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomSkeletonFactoryNodeUid",
+      "return": "bool",
+      "doc": "Set the unique ID of the skeleton factory node. Return false if the attribute cannot be set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SetCustomSkeletonSoftObjectPath",
+      "return": "bool",
+      "doc": "Set the optional existing USkeleton this animation must use. If this attribute is set and the skeleton is valid,\nthe AnimSequence factory uses this skeleton instead of the one imported from GetCustomSkeletonFactoryNodeUid.\nPipelines set this attribute when the user wants to specify an existing skeleton.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeValue",
+          "type": "FSoftObjectPath"
+        }
+      ]
+    }
+  ]
+}

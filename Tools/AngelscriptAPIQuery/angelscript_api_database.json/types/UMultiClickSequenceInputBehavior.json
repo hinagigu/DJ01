@@ -1,0 +1,7 @@
+{
+  "name": "UMultiClickSequenceInputBehavior",
+  "inherits": "UAnyButtonInputBehavior",
+  "doc": "UMultiClickSequenceInputBehavior implements a generic multi-click-sequence input behavior.\nFor example this behavior could be used to implement a multi-click polygon-drawing interaction.\n\nThe internal state machine works as follows:\n  1) on input-device-button-press, check if target wants to begin sequence. If so, begin capture.\n  2) on button *release*, check if target wants to continue or terminate sequence\n      a) if terminate, release capture\n      b) if continue, do nothing (capture continues between presses)\n\nThe target will receive \"preview\" notifications (basically hover) during updates where there is\nnot a release. This can be used to (eg) update a rubber-band selection end point\n\n@todo it may be better to implement this as multiple captures, and use hover callbacks to\ndo the between-capture previews. holding capture across mouse release is not ideal.",
+  "properties": {},
+  "methods": []
+}

@@ -1,0 +1,141 @@
+{
+  "name": "UMenuAnchor",
+  "inherits": "UContentWidget",
+  "doc": "The Menu Anchor allows you to specify an location that a popup menu should be anchored to,\nand should be summoned from.\n* Single Child\n* Popup",
+  "properties": {
+    "MenuClass": [
+      "TSubclassOf<UUserWidget>",
+      "The widget class to spawn when the menu is required.  Creates the widget freshly each time.\nIf you want to customize the creation of the popup, you should bind a function to OnGetMenuContentEvent\ninstead."
+    ],
+    "OnGetMenuContentEvent": [
+      "FGetWidget__Widget",
+      2,
+      ""
+    ],
+    "OnGetUserMenuContentEvent": [
+      "FGetUserWidget__MenuAnchor",
+      2,
+      "Called when the menu content is requested to allow a more customized handling over what to display"
+    ],
+    "ShouldFitInWindow": [
+      "bool",
+      "Should the menu anchor attempt to fit the menu inside the window."
+    ],
+    "ShouldDeferPaintingAfterWindowContent": [
+      "bool"
+    ],
+    "UseApplicationMenuStack": [
+      "bool",
+      "Does this menu behave like a normal stacked menu? Set it to false to control the menu's lifetime yourself."
+    ],
+    "OnMenuOpenChanged": [
+      "FOnMenuOpenChangedEvent",
+      "Called when the opened state of the menu changes"
+    ],
+    "bFitInWindow": [
+      "bool",
+      "Should the menu anchor attempt to fit the menu inside the window."
+    ],
+    "Placement": [
+      "EMenuPlacement",
+      "The placement location of the summoned widget."
+    ]
+  },
+  "methods": [
+    {
+      "name": "Close",
+      "return": "void",
+      "doc": "Closes the menu if it is currently open.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "FitInWindow",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bFit",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetMenuPosition",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Returns the current menu position",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasOpenSubMenus",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns whether this menu has open submenus",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsOpen",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the popup is open; false otherwise.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Open",
+      "return": "void",
+      "doc": "Opens the menu if it is not already open",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bFocusMenu",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPlacement",
+      "return": "void",
+      "doc": "TODO UMG Add Set MenuClass",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPlacement",
+          "type": "EMenuPlacement"
+        }
+      ]
+    },
+    {
+      "name": "ShouldOpenDueToClick",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if we should open the menu due to a click. Sometimes we should not, if\nthe same MouseDownEvent that just closed the menu is about to re-open it because it\nhappens to land on the button.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ToggleOpen",
+      "return": "void",
+      "doc": "Toggles the menus open state.\n\n@param bFocusOnOpen  Should we focus the popup as soon as it opens?",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bFocusOnOpen",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

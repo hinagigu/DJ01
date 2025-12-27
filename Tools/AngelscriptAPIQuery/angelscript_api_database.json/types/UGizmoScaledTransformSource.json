@@ -1,0 +1,7 @@
+{
+  "name": "UGizmoScaledTransformSource",
+  "inherits": "UGizmoBaseTransformSource",
+  "doc": "@deprecated Use UGizmoScaledAndUnscaledTransformSources instead.\n\nOld description:\nUGizmoScaledTransformSource wraps another IGizmoTransformSource implementation and adds a\nseparate scaling vector to the Transform. The main use of this class is to support scaling\nin a 3D gizmo without actually scaling the Gizmo itself. Generally our pattern is to apply\nthe gizmo's position/rotation transform to the target object via a TransformProxy, but\nthat does not work with Scaling. So this class stores the scaling vector separately, provided by\nan external source via FSeparateScaleProvider, and in GetTransform/SetTransform rewrites the\nTransform from the child IGizmoTransformSource with the new scale.",
+  "properties": {},
+  "methods": []
+}

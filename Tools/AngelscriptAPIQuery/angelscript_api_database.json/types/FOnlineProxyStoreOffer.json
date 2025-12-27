@@ -1,0 +1,84 @@
+{
+  "name": "FOnlineProxyStoreOffer",
+  "isStruct": true,
+  "doc": "Offer entry for display from online store",
+  "properties": {
+    "OfferId": [
+      "FString",
+      1,
+      "Unique offer identifier"
+    ],
+    "Title": [
+      "FText",
+      1,
+      "Title for display"
+    ],
+    "Description": [
+      "FText",
+      1,
+      "Short description for display"
+    ],
+    "LongDescription": [
+      "FText",
+      1,
+      "Full description for display"
+    ],
+    "RegularPriceText": [
+      "FText",
+      1,
+      "Regular non-sale price as text for display"
+    ],
+    "RegularPrice": [
+      "int",
+      1,
+      "Regular non-sale price in numeric form for comparison/sorting"
+    ],
+    "PriceText": [
+      "FText",
+      1,
+      "Final-Pricing (Post-Sales/Discounts) as text for display"
+    ],
+    "NumericPrice": [
+      "int",
+      1,
+      "Final-Price (Post-Sales/Discounts) in numeric form for comparison/sorting"
+    ],
+    "CurrencyCode": [
+      "FString",
+      1,
+      "Price currency code"
+    ],
+    "ReleaseDate": [
+      "FDateTime",
+      1,
+      "Date the offer was released"
+    ],
+    "ExpirationDate": [
+      "FDateTime",
+      1,
+      "Date this information is no longer valid (maybe due to sale ending, etc)"
+    ],
+    "DiscountType": [
+      "EOnlineProxyStoreOfferDiscountType",
+      1,
+      "Type of discount currently running on this offer (if any)"
+    ],
+    "DynamicFields": [
+      "TMap<FString,FString>",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FOnlineProxyStoreOffer&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FOnlineProxyStoreOffer"
+        }
+      ]
+    }
+  ]
+}

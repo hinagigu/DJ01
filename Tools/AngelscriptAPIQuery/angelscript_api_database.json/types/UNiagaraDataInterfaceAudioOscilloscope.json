@@ -1,0 +1,23 @@
+{
+  "name": "UNiagaraDataInterfaceAudioOscilloscope",
+  "inherits": "UNiagaraDataInterface",
+  "doc": "Data Interface allowing sampling of recent audio data.",
+  "properties": {
+    "Submix": [
+      "USoundSubmix",
+      2,
+      ""
+    ],
+    "Resolution": [
+      "int",
+      2,
+      "The number of samples of audio to pass to the GPU. Audio will be resampled to fit this resolution.\nIncreasing this number will increase the resolution of the waveform, but will also increase usage of the GPU memory bus,\npotentially causing issues across the application."
+    ],
+    "ScopeInMilliseconds": [
+      "float32",
+      2,
+      "The number of milliseconds of audio to show."
+    ]
+  },
+  "methods": []
+}

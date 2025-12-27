@@ -1,0 +1,193 @@
+{
+  "name": "UTakeRecorderPanel",
+  "inherits": "UObject",
+  "doc": "Take recorder UI panel interop object",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CanStartRecording",
+      "return": "bool",
+      "const": true,
+      "doc": "Whether the panel is ready to start recording",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutErrorText",
+          "type": "FText&"
+        }
+      ]
+    },
+    {
+      "name": "ClearPendingTake",
+      "return": "void",
+      "doc": "* Clear the pending take level sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetFrameRate",
+      "return": "FFrameRate",
+      "const": true,
+      "doc": "Access the frame rate for this take",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLastRecordedLevelSequence",
+      "return": "ULevelSequence",
+      "const": true,
+      "doc": "Access the last level sequence that was recorded",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLevelSequence",
+      "return": "ULevelSequence",
+      "const": true,
+      "doc": "Access the level sequence for this take",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMode",
+      "return": "ETakeRecorderPanelMode",
+      "const": true,
+      "doc": "Get the mode that the panel is currently in",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSources",
+      "return": "UTakeRecorderSources",
+      "const": true,
+      "doc": "Access the sources that are to be (or were) used for recording this take",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTakeMetaData",
+      "return": "UTakeMetaData",
+      "const": true,
+      "doc": "Access take meta data for this take",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetFrameRate",
+      "return": "void",
+      "doc": "Set the frame rate for this take",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFrameRate",
+          "type": "FFrameRate"
+        }
+      ]
+    },
+    {
+      "name": "SetFrameRateFromTimecode",
+      "return": "void",
+      "doc": "Set if the frame rate is set from the Timecode frame rate",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInFromTimecode",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetupForEditing",
+      "return": "void",
+      "doc": "Setup this panel as an editor for the specified take preset asset.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TakePreset",
+          "type": "UTakePreset"
+        }
+      ]
+    },
+    {
+      "name": "SetupForRecording_LevelSequence",
+      "return": "void",
+      "doc": "Setup this panel such that it is ready to start recording using the specified\nlevel sequence asset as a template for the recording.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequenceAsset",
+          "type": "ULevelSequence"
+        }
+      ]
+    },
+    {
+      "name": "SetupForRecording_TakePreset",
+      "return": "void",
+      "doc": "Setup this panel such that it is ready to start recording using the specified\ntake preset as a template for the recording.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TakePresetAsset",
+          "type": "UTakePreset"
+        }
+      ]
+    },
+    {
+      "name": "SetupForRecordingInto_LevelSequence",
+      "return": "void",
+      "doc": "Setup this panel such that it is ready to start recording using the specified\nlevel sequence asset to record into.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequenceAsset",
+          "type": "ULevelSequence"
+        }
+      ]
+    },
+    {
+      "name": "SetupForViewing",
+      "return": "void",
+      "doc": "Setup this panel as a viewer for a previously recorded take.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LevelSequenceAsset",
+          "type": "ULevelSequence"
+        }
+      ]
+    },
+    {
+      "name": "StartRecording",
+      "return": "void",
+      "const": true,
+      "doc": "Start recording with the current take",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "StopRecording",
+      "return": "void",
+      "const": true,
+      "doc": "Stop recording with the current take",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

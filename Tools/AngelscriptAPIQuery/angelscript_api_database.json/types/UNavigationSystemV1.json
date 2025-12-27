@@ -1,0 +1,193 @@
+{
+  "name": "UNavigationSystemV1",
+  "inherits": "UNavigationSystemBase",
+  "properties": {
+    "DefaultAgentName": [
+      "FName",
+      "If not None indicates which of navigation datas and supported agents are\ngoing to be used as the default ones. If navigation agent of this type does\nnot exist or is not enabled then the first available nav data will be used\nas the default one"
+    ],
+    "CrowdManagerClass": [
+      "TSoftClassPtr<UCrowdManagerBase>"
+    ],
+    "GeometryExportTriangleCountWarningThreshold": [
+      "int",
+      2,
+      "Warnings are logged if exporting the navigation collision for an object exceed this triangle count.\nUse -1 to disable."
+    ],
+    "ActiveTilesUpdateInterval": [
+      "float32",
+      2,
+      "Minimal time, in seconds, between active tiles set update"
+    ],
+    "InvokersMaximumDistanceFromSeed": [
+      "float",
+      2,
+      "When in use, invokers farther away from any invoker seed will be ignored (set to -1 to disable)."
+    ],
+    "DataGatheringMode": [
+      "ENavDataGatheringModeConfig",
+      2,
+      "Sets how navigation data should be gathered when building collision information"
+    ],
+    "DirtyAreaWarningSizeThreshold": [
+      "float32",
+      2,
+      "-1 by default, if set to a positive value dirty areas with any dimensions in 2d over the threshold created at runtime will be logged"
+    ],
+    "GatheringNavModifiersWarningLimitTime": [
+      "float32",
+      2,
+      "-1.0f by default, if set to a positive value, all calls to GetNavigationData will be timed and compared to it.\n     Over the limit calls will be logged as warnings.\n     In seconds. Non-shipping build only."
+    ],
+    "SupportedAgents": [
+      "TArray<FNavDataConfig>",
+      2,
+      "List of agents types supported by this navigation system"
+    ],
+    "SupportedAgentsMask": [
+      "FNavAgentSelector",
+      2,
+      "NavigationSystem's properties in Project Settings define all possible supported agents,\n    but a specific navigation system can choose to support only a subset of agents. Set via\n    NavigationSystemConfig"
+    ],
+    "OnNavigationGenerationFinishedDelegate": [
+      "FOnNavDataGenericEvent"
+    ],
+    "bAutoCreateNavigationData": [
+      "bool",
+      "Should navigation system spawn default Navigation Data when there's none and there are navigation bounds present?"
+    ],
+    "bSpawnNavDataInNavBoundsLevel": [
+      "bool",
+      "If true will try to spawn the navigation data instance in the sublevel with navigation bounds, if false it will spawn in the persistent level"
+    ],
+    "bAllowClientSideNavigation": [
+      "bool",
+      "If false, will not create nav collision when connecting as a client"
+    ],
+    "bShouldDiscardSubLevelNavData": [
+      "bool",
+      "If true, games should ignore navigation data inside loaded sublevels"
+    ],
+    "bTickWhilePaused": [
+      "bool",
+      "If true, will update navigation even when the game is paused"
+    ],
+    "bInitialBuildingLocked": [
+      "bool",
+      "if set to true will result navigation system not rebuild navigation until\n    a call to ReleaseInitialBuildingLock() is called. Does not influence\n    editor-time generation (i.e. does influence PIE and Game).\n    Defaults to false."
+    ],
+    "bSkipAgentHeightCheckWhenPickingNavData": [
+      "bool",
+      "false by default, if set to true will result in not caring about nav agent height\n    when trying to match navigation data to passed in nav agent"
+    ],
+    "bGenerateNavigationOnlyAroundNavigationInvokers": [
+      "bool",
+      "If set to true navigation will be generated only around registered \"navigation enforcers\"\n     This has a range of consequences (including how navigation octree operates) so it needs to\n     be a conscious decision.\n     Once enabled results in whole world being navigable.\n     @see RegisterNavigationInvoker"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ReplaceAreaInOctreeData",
+      "return": "bool",
+      "ufunction": true,
+      "unrealname": "K2_ReplaceAreaInOctreeData",
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "const UObject"
+        },
+        {
+          "name": "OldArea",
+          "type": "TSubclassOf<UNavArea>"
+        },
+        {
+          "name": "NewArea",
+          "type": "TSubclassOf<UNavArea>"
+        }
+      ]
+    },
+    {
+      "name": "OnNavigationBoundsUpdated",
+      "return": "void",
+      "doc": "@todo document",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NavVolume",
+          "type": "ANavMeshBoundsVolume"
+        }
+      ]
+    },
+    {
+      "name": "RegisterNavigationInvoker",
+      "return": "void",
+      "doc": "Registers given actor as a \"navigation enforcer\" which means navigation system will\n    make sure navigation is being generated in specified radius around it.\n    @note: you need NavigationSystem's GenerateNavigationOnlyAroundNavigationInvokers to be set to true\n            to take advantage of this feature",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Invoker",
+          "type": "AActor"
+        },
+        {
+          "name": "TileGenerationRadius",
+          "default": "3000.000000",
+          "type": "float32"
+        },
+        {
+          "name": "TileRemovalRadius",
+          "default": "5000.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ResetMaxSimultaneousTileGenerationJobsCount",
+      "return": "void",
+      "doc": "Brings limit of simultaneous navmesh tile generation jobs back to Project Setting's default value",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetGeometryGatheringMode",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMode",
+          "type": "ENavDataGatheringModeConfig"
+        }
+      ]
+    },
+    {
+      "name": "SetMaxSimultaneousTileGenerationJobsCount",
+      "return": "void",
+      "doc": "will limit the number of simultaneously running navmesh tile generation jobs to specified number.\n    @param MaxNumberOfJobs gets trimmed to be at least 1. You cannot use this function to pause navmesh generation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaxNumberOfJobs",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterNavigationInvoker",
+      "return": "void",
+      "doc": "Removes given actor from the list of active navigation enforcers.\n    @see RegisterNavigationInvoker for more details",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Invoker",
+          "type": "AActor"
+        }
+      ]
+    }
+  ]
+}

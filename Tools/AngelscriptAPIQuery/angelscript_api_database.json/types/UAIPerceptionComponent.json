@@ -1,0 +1,166 @@
+{
+  "name": "UAIPerceptionComponent",
+  "inherits": "UActorComponent",
+  "doc": "AIPerceptionComponent is used to register as stimuli listener in AIPerceptionSystem\nand gathers registered stimuli. UpdatePerception is called when component gets new stimuli (batched)",
+  "properties": {
+    "SensesConfig": [
+      "TArray<TObjectPtr<UAISenseConfig>>",
+      2,
+      ""
+    ],
+    "DominantSense": [
+      "TSubclassOf<UAISense>",
+      2,
+      "Indicated sense that takes precedence over other senses when determining sensed actor's location.\n    Should be set to one of the senses configured in SensesConfig, or None."
+    ],
+    "OnPerceptionUpdated": [
+      "FPerceptionUpdatedDelegate",
+      "Might want to move these to special \"BP_AIPerceptionComponent\""
+    ],
+    "OnTargetPerceptionForgotten": [
+      "FActorPerceptionForgetUpdatedDelegate",
+      "Notifies all bound delegates that the perception info has been forgotten for a given target.\nThe notification get broadcast when all stimuli of a given target expire. Note that this\nfunctionality requires the the actor forgetting must be enabled via AIPerceptionSystem.bForgetStaleActors.\n\n@param       SourceActor     Actor associated to the stimulus (can not be null)\n@param       Stimulus        Updated stimulus"
+    ],
+    "OnTargetPerceptionUpdated": [
+      "FActorPerceptionUpdatedDelegate",
+      "Notifies all bound objects that perception info has been updated for a given target.\nThe notification is broadcast for any received stimulus or on change of state\naccording to the stimulus configuration.\n\nNote - This delegate will not be called if source actor is no longer valid\nby the time a stimulus gets processed.\nUse OnTargetPerceptionInfoUpdated providing a source id to handle those cases.\n\n@param       SourceActor     Actor associated to the stimulus (can not be null)\n@param       Stimulus        Updated stimulus"
+    ],
+    "OnTargetPerceptionInfoUpdated": [
+      "FActorPerceptionInfoUpdatedDelegate",
+      "Notifies all bound objects that perception info has been updated for a given target.\nThe notification is broadcast for any received stimulus or on change of state\naccording to the stimulus configuration.\n\nNote - This delegate will be called even if source actor is no longer valid\nby the time a stimulus gets processed so it is better to use source id for bookkeeping.\n\n@param       UpdateInfo      Data structure providing information related to the updated perceptual data"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ForgetAll",
+      "return": "void",
+      "doc": "basically cleans up PerceptualData, resulting in loss of all previous perception",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetActorsPerception",
+      "return": "bool",
+      "doc": "Retrieves whatever has been sensed about given actor",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "Info",
+          "type": "FActorPerceptionBlueprintInfo&"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentlyPerceivedActors",
+      "return": "void",
+      "const": true,
+      "doc": "If SenseToUse is none all actors currently perceived in any way will get fetched",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SenseToUse",
+          "type": "TSubclassOf<UAISense>"
+        },
+        {
+          "name": "OutActors",
+          "type": "TArray<AActor>&"
+        }
+      ]
+    },
+    {
+      "name": "GetKnownPerceivedActors",
+      "return": "void",
+      "const": true,
+      "doc": "If SenseToUse is none all actors ever perceived in any way (and not forgotten yet) will get fetched",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SenseToUse",
+          "type": "TSubclassOf<UAISense>"
+        },
+        {
+          "name": "OutActors",
+          "type": "TArray<AActor>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPerceivedHostileActors",
+      "return": "void",
+      "const": true,
+      "doc": "blueprint interface",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutActors",
+          "type": "TArray<AActor>&"
+        }
+      ]
+    },
+    {
+      "name": "GetPerceivedHostileActorsBySense",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SenseToUse",
+          "type": "TSubclassOf<UAISense>"
+        },
+        {
+          "name": "OutActors",
+          "type": "TArray<AActor>&"
+        }
+      ]
+    },
+    {
+      "name": "IsSenseEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns if a sense is active. Note that this works only if given sense has been\n     already configured for this component instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SenseClass",
+          "type": "TSubclassOf<UAISense>"
+        }
+      ]
+    },
+    {
+      "name": "RequestStimuliListenerUpdate",
+      "return": "void",
+      "doc": "Notifies AIPerceptionSystem to update properties for this \"stimuli listener\"",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetSenseEnabled",
+      "return": "void",
+      "doc": "Note that this works only if given sense has been already configured for\n    this component instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SenseClass",
+          "type": "TSubclassOf<UAISense>"
+        },
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "FRigUnit_MultiFABRIK",
+  "isStruct": true,
+  "doc": "The FABRIK solver can solve multi chains within a root using multi effectors\nthe Forward and Backward Reaching Inverse Kinematics algorithm.\nFor now this node supports single effector chains only.",
+  "properties": {
+    "RootBone": [
+      "FName",
+      "The first bone in the chain to solve"
+    ],
+    "Effectors": [
+      "TArray<FRigUnit_MultiFABRIK_EndEffector>"
+    ],
+    "Precision": [
+      "float32",
+      1,
+      "The precision to use for the fabrik solver"
+    ],
+    "bPropagateToChildren": [
+      "bool",
+      "If set to true all of the global transforms of the children\nof this bone will be recalculated based on their local transforms.\nNote: This is computationally more expensive than turning it off."
+    ],
+    "MaxIterations": [
+      "int",
+      "The maximum number of iterations. Values between 4 and 16 are common."
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_MultiFABRIK&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_MultiFABRIK"
+        }
+      ]
+    }
+  ]
+}

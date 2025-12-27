@@ -1,0 +1,33 @@
+{
+  "name": "FNiagaraPlatformSet",
+  "isStruct": true,
+  "properties": {
+    "DeviceProfileStates": [
+      "TArray<FNiagaraDeviceProfileStateEntry>",
+      2,
+      "States of specific device profiles we've set."
+    ],
+    "CVarConditions": [
+      "TArray<FNiagaraPlatformSetCVarCondition>",
+      2,
+      "Set of CVars values we require for this platform set to be enabled. If any of the linked CVars don't have the required values then this platform set will not be enabled."
+    ],
+    "QualityLevelMask": [
+      "int",
+      2,
+      "Mask defining which effects qualities this set matches."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FNiagaraPlatformSet&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FNiagaraPlatformSet"
+        }
+      ]
+    }
+  ]
+}

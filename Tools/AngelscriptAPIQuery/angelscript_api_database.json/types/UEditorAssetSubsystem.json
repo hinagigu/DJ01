@@ -1,0 +1,602 @@
+{
+  "name": "UEditorAssetSubsystem",
+  "inherits": "UEditorSubsystem",
+  "doc": "UEditorAssetSubsystem\nSubsystem for exposing asset related utilities to scripts.\nAsset Paths can be represented in the following ways:\n             (Reference/Text Path)   StaticMesh'/Game/MyFolder/MyAsset.MyAsset'\n             (Full Name)                             StaticMesh /Game/MyFolder/MyAsset.MyAsset\n             (Path Name)                             /Game/MyFolder/MyAsset.MyAsset\n             (Package Name)                  /Game/MyFolder/MyAsset\nDirectory Paths can be represented in the following ways:\n             /Game/MyNewFolder/\n             /Game/MyNewFolder",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddOnExtractAssetFromFile",
+      "return": "void",
+      "doc": "Call this to add a callback to extract an asset from a file,\nfor example from a drag and drop operation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Delegate",
+          "default": "FOnExtractAssetFromFileDynamic__EditorAssetSubsystem ( )",
+          "type": "FOnExtractAssetFromFileDynamic__EditorAssetSubsystem"
+        }
+      ]
+    },
+    {
+      "name": "CheckoutAsset",
+      "return": "bool",
+      "doc": "Checkout an asset.\n@param       AssetToCheckout         Asset Path of the asset that we want to checkout.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetToCheckout",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "CheckoutDirectory",
+      "return": "bool",
+      "doc": "Checkout all assets in a directory. It will load the assets if needed.\nAll objects that are in the directory will be checked out. Assets will be loaded before being checked out.\n@param       DirectoryPath           Directory of the assets to be checked out.\n@param       bRecursive                      If the AssetPath is a folder, the search will be recursive and will checkout the assets in the sub folders.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DirectoryPath",
+          "type": "FString"
+        },
+        {
+          "name": "bRecursive",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CheckoutLoadedAsset",
+      "return": "bool",
+      "doc": "Checkout the asset corresponding to an object.\n@param       AssetToCheckout         Asset to checkout.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetToCheckout",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "CheckoutLoadedAssets",
+      "return": "bool",
+      "doc": "Checkout the assets.\n@param       AssetsToCheckout                Assets to checkout.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetsToCheckout",
+          "type": "TArray<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "ConsolidateAssets",
+      "return": "bool",
+      "doc": "Consolidates assets by replacing all references/uses of the provided AssetsToConsolidate with references to AssetToConsolidateTo.\nThis is useful when you want all references of assets to be replaced by a single asset.\nThe function first attempts to directly replace all relevant references located within objects that are already loaded and in memory.\nNext, it deletes the AssetsToConsolidate, leaving behind object redirectors to AssetToConsolidateTo.\n@param       AssetToConsolidateTo    Asset to which all references of the AssetsToConsolidate will instead refer to after this operation completes.\n@param       AssetsToConsolidate             All references to these assets will be modified to reference AssetToConsolidateTo instead.\n@note        The AssetsToConsolidate are DELETED by this function.\n@note        Modified objects will be saved if the operation succeeds.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetToConsolidateTo",
+          "type": "UObject"
+        },
+        {
+          "name": "AssetsToConsolidate",
+          "type": "TArray<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "DeleteAsset",
+      "return": "bool",
+      "doc": "Delete the package an asset is in. All objects in the package will be deleted.\nThis is a Force Delete. It does not check if the asset has references in other Levels or by Actors.\nIt will close all the asset editors and may clear the Transaction buffer (Undo History).\nWill try to mark the file as deleted. The Asset will be loaded before being deleted.\n@param       AssetPathToDelete               Asset Path of the asset to delete.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPathToDelete",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "DeleteDirectory",
+      "return": "bool",
+      "doc": "Delete the packages inside a directory. If the directory is then empty, delete the directory.\nThis is a Force Delete. It does not check if the assets have references in other Levels or by Actors.\nIt will close all the asset editors and may clear the Transaction buffer (Undo History).\nWill try to mark the file as deleted. Assets will be loaded before being deleted.\nThe search is always recursive. It will try to delete the sub folders.\n@param       DirectoryPath           Directory that will be marked for deletion and deleted.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DirectoryPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "DeleteLoadedAsset",
+      "return": "bool",
+      "doc": "Delete an asset that is already loaded.\nThis is a Force Delete. It does not check if the asset has references in other Levels or by Actors.\nIt will close all the asset editors and may clear the Transaction buffer (Undo History).\nWill try to mark the file as deleted.\n@param       AssetToDelete                   Asset to delete.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetToDelete",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "DeleteLoadedAssets",
+      "return": "bool",
+      "doc": "Delete assets that are already loaded.\nThis is a Force Delete. It does not check if the assets have references in other Levels or by Actors.\nIt will close all the asset editors and may clear the Transaction buffer (Undo History).\nWill try to mark the files as deleted.\n@param       AssetsToDelete                  Loaded assets to delete.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetsToDelete",
+          "type": "TArray<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "DoAssetsExist",
+      "return": "bool",
+      "doc": "Check if assets exist in the Asset Registry.\n@param       AssetPaths              Asset Paths of the assets to check for existence.\n@return      True if all assets exist and are valid.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPaths",
+          "type": "TArray<FString>"
+        }
+      ]
+    },
+    {
+      "name": "DoesAssetExist",
+      "return": "bool",
+      "doc": "Check if an asset exists in the Asset Registry.\n@param       AssetPath               Asset Path to check for existence.\n@return      True if the asset exists and is valid.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "DoesDirectoryContainAssets",
+      "return": "bool",
+      "doc": "Check if a directory contains any assets.\n@param       DirectoryPath           Long Path Name of the directory.\n@return      True if there is any assets.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DirectoryPath",
+          "type": "FString"
+        },
+        {
+          "name": "bRecursive",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DoesDirectoryExist",
+      "return": "bool",
+      "doc": "Check if a directory exists.\n@param        DirectoryPath           Long Path Name of the directory.\n@return       True if it does exist and it is valid.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DirectoryPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "DuplicateAsset",
+      "return": "UObject",
+      "doc": "Duplicate an asset. Will try to checkout the file. The Asset will be loaded before being duplicated.\n@param       SourceAssetPath                 Asset Path of the asset that we want to copy from.\n@param       DestinationAssetPath    Asset Path of the duplicated asset.\n@return      The duplicated object if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceAssetPath",
+          "type": "FString"
+        },
+        {
+          "name": "DestinationAssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "DuplicateDirectory",
+      "return": "bool",
+      "doc": "Duplicate a directory and the assets in it.\nWill try to checkout the files. The Assets will be loaded before being duplicated.\n@param       SourceDirectoryPath                     Directory of the assets that we want to duplicate from.\n@param       DestinationDirectoryPath        Directory of the duplicated asset.\n@return      The duplicated object if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceDirectoryPath",
+          "type": "FString"
+        },
+        {
+          "name": "DestinationDirectoryPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "DuplicateLoadedAsset",
+      "return": "UObject",
+      "doc": "Duplicate an asset that is already loaded. Will try to checkout the file.\n@param       SourceAsset                             Asset that we want to copy from.\n@param       DestinationAssetPath    Asset Path of the duplicated asset.\n@return      The duplicated object if the operation succeeds",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceAsset",
+          "type": "UObject"
+        },
+        {
+          "name": "DestinationAssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "FindAssetData",
+      "return": "FAssetData",
+      "doc": "Return the AssetData for the Asset that can then be used with AssetRegistryHelpers.\n@param       AssetPath       Asset Path to retrieve data from.\n@return      The AssetData found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "FindPackageReferencersForAsset",
+      "return": "TArray<FString>",
+      "doc": "Find Package Referencers for an asset. Only Soft and Hard dependencies will be looked for.\nSoft are dependencies which don't need to be loaded for the object to be used.\nHard are dependencies which are required for correct usage of the source asset and must be loaded at the same time.\nOther references may exist. The asset may be currently used in memory by another asset, by the editor or by code.\nPackage dependencies are cached with the asset. False positives can happen until all the assets are loaded and re-saved.\n@param       AssetPath                               Asset Path of the asset that we are looking for.\n@param       bLoadAssetsToConfirm    Whether the asset and any potential referencers will be loaded to confirm the dependencies.\n@return      The package paths of the referencers.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        },
+        {
+          "name": "bLoadAssetsToConfirm",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetMetadataTag",
+      "return": "FString",
+      "doc": "Get the value associated with the given tag of a loaded asset's metadata.\n@param  Object          The object from which to retrieve the metadata.\n@param  Tag                     The tag to find in the metadata.\n@return The string value associated with the tag.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "Tag",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetMetadataTagValues",
+      "return": "TMap<FName,FString>",
+      "doc": "Get all tags/values of a loaded asset's metadata.\n@param  Object          The object from which to retrieve the metadata.\n@return The list of all Tags and Values.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "GetPathNameForLoadedAsset",
+      "return": "FString",
+      "doc": "Return a valid AssetPath for a loaded asset.\nSimilar to GetPathName(). The format will be: /Game/MyFolder/MyAsset.MyAsset\n@param       LoadedAsset             The loaded asset to get the path of.\n@return      If valid, the asset Path of the loaded asset.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "LoadedAsset",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "GetTagValues",
+      "return": "TMap<FName,FString>",
+      "doc": "Gets all TagValues (from Asset Registry) associated with an (unloaded) asset as strings value.\n@param       AssetPath               Asset Path we are trying to find.\n@return      The list of all TagNames & TagValues.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ListAssets",
+      "return": "TArray<FString>",
+      "doc": "Return the list of all the assets found in the DirectoryPath.\n@param       DirectoryPath           Directory path of the asset we want the list from.\n@param       bRecursive                      The search will be recursive and will look in sub folders.\n@param       bIncludeFolder          The result will include folders name.\n@return      The list of assets found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DirectoryPath",
+          "type": "FString"
+        },
+        {
+          "name": "bRecursive",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bIncludeFolder",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ListAssetsByTagValue",
+      "return": "TArray<FString>",
+      "doc": "Return the list of all the assets that have the pair of Tag/Value.\n@param TagName       The tag associated with the assets requested.\n@param TagValue      The value associated with the assets requested.\n@return      The list of assets found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TagName",
+          "type": "FName"
+        },
+        {
+          "name": "TagValue",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "LoadAsset",
+      "return": "UObject",
+      "doc": "Load an asset. It will verify if the object is already loaded and only load it if it's necessary.\n@param       AssetPath               Asset Path of the asset to load\n@return      Found or loaded asset.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "LoadBlueprintClass",
+      "return": "UClass",
+      "doc": "Load a Blueprint asset and return its generated class. It will verify if the object is already loaded and only load it if it's necessary.\n@param       AssetPath               Asset Path of the Blueprint asset.\n@return      Found or loaded class.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "MakeDirectory",
+      "return": "bool",
+      "doc": "Create a directory on disk.\n@param       DirectoryPath           Long Path Name of the directory.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DirectoryPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RemoveMetadataTag",
+      "return": "void",
+      "doc": "Remove the given tag from a loaded asset's metadata.\n@param  Object          The object from which to retrieve the metadata.\n@param  Tag                     The tag to remove from the metadata.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "Tag",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RemoveOnExtractAssetFromFile",
+      "return": "void",
+      "doc": "Call this to remove a callback added with AddOnExtractAssetFromFile.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Delegate",
+          "default": "FOnExtractAssetFromFileDynamic__EditorAssetSubsystem ( )",
+          "type": "FOnExtractAssetFromFileDynamic__EditorAssetSubsystem"
+        }
+      ]
+    },
+    {
+      "name": "RenameAsset",
+      "return": "bool",
+      "doc": "Rename an asset. Equivalent to a Move operation.\nWill try to checkout the file. The Asset will be loaded before being renamed.\n@param       SourceAssetPath                 Asset Path of the asset that we want to copy from.\n@param       DestinationAssetPath    Asset Path of the renamed asset.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceAssetPath",
+          "type": "FString"
+        },
+        {
+          "name": "DestinationAssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RenameDirectory",
+      "return": "bool",
+      "doc": "Rename a directory. Equivalent to a Move operation moving all contained assets.\nWill try to checkout the files. The Assets will be loaded before being renamed.\n@param       SourceDirectoryPath                     Directory of the assets that we want to rename from.\n@param       DestinationDirectoryPath        Directory of the renamed asset.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceDirectoryPath",
+          "type": "FString"
+        },
+        {
+          "name": "DestinationDirectoryPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "RenameLoadedAsset",
+      "return": "bool",
+      "doc": "Rename an asset that is already loaded. Equivalent to a Move operation.\nWill try to checkout the file.\n@param       SourceAsset                             Asset that we want to copy from.\n@param       DestinationAssetPath    Asset Path of the duplicated asset.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceAsset",
+          "type": "UObject"
+        },
+        {
+          "name": "DestinationAssetPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "SaveAsset",
+      "return": "bool",
+      "doc": "Save the packages the assets live in. All objects that live in the package will be saved.\nWill try to checkout the file first. The Asset will be loaded before being saved.\n@param       AssetToSave             Asset Path of the asset that we want to save.\n@param       bOnlyIfIsDirty          Only checkout/save the asset if it's dirty.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetToSave",
+          "type": "FString"
+        },
+        {
+          "name": "bOnlyIfIsDirty",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SaveDirectory",
+      "return": "bool",
+      "doc": "Save the packages the assets live in inside the directory. All objects that are in the directory will be saved.\nWill try to checkout the file first. Assets will be loaded before being saved.\n@param       DirectoryPath           Directory that will be checked out and saved.\n@param       bOnlyIfIsDirty          Only checkout asset that are dirty.\n@param       bRecursive                      The search will be recursive and it will save the asset in the sub folders.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DirectoryPath",
+          "type": "FString"
+        },
+        {
+          "name": "bOnlyIfIsDirty",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bRecursive",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SaveLoadedAsset",
+      "return": "bool",
+      "doc": "Save the package the asset lives in. All objects that live in the package will be saved. Will try to checkout the file.\n@param       AssetToSave                     Asset that we want to save.\n@param       bOnlyIfIsDirty          Only checkout asset that are dirty.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetToSave",
+          "type": "UObject"
+        },
+        {
+          "name": "bOnlyIfIsDirty",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SaveLoadedAssets",
+      "return": "bool",
+      "doc": "Save the packages the assets live in. All objects that live in the packages will be saved. Will try to checkout the files.\n@param       AssetsToSave            Assets that we want to save.\n@param       bOnlyIfIsDirty          Only checkout asset that are dirty.\n@return      True if the operation succeeds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AssetsToSave",
+          "type": "TArray<UObject>"
+        },
+        {
+          "name": "bOnlyIfIsDirty",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetMetadataTag",
+      "return": "void",
+      "doc": "Set the value associated with a given tag of a loaded asset's metadata.\n@param  Object          The object from which to retrieve the metadata.\n@param  Tag                     The tag to set in the metadata.\n@param  Value           The string value to associate with the tag.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "Tag",
+          "type": "FName"
+        },
+        {
+          "name": "Value",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

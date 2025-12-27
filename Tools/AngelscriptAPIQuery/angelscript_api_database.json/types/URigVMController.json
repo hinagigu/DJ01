@@ -1,0 +1,3420 @@
+{
+  "name": "URigVMController",
+  "inherits": "UObject",
+  "doc": "The Controller is the sole authority to perform changes\non the Graph. The Controller itself is stateless.\nThe Controller offers a Modified event to subscribe to\nfor user interface views - so they can be informed about\nany change that's happening within the Graph.\nThe Controller routes all changes through the Graph itself,\nso you can have N Controllers performing edits on 1 Graph,\nand N Views subscribing to 1 Controller.\nIn Python you can also subscribe to this event to be\nable to react to topological changes of the Graph there.",
+  "properties": {
+    "ModifiedEvent": [
+      "FRigVMGraphModifiedDynamicEvent",
+      1,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddAggregatePin",
+      "return": "FString",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FString"
+        },
+        {
+          "name": "InPinName",
+          "type": "FString"
+        },
+        {
+          "name": "InDefaultValue",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddArrayNode",
+      "return": "URigVMNode",
+      "doc": "Adds a Array Node to the edited Graph.\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOpCode",
+          "type": "ERigVMOpCode"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObject",
+          "type": "UObject"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bIsPatching",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddArrayNodeFromObjectPath",
+      "return": "URigVMNode",
+      "doc": "Adds a Array Node to the edited Graph given a struct object path name.\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOpCode",
+          "type": "ERigVMOpCode"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObjectPath",
+          "type": "FString"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bIsPatching",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddArrayPin",
+      "return": "FString",
+      "doc": "Adds an array element pin to the end of an array pin.\nThis causes a PinArraySizeChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InArrayPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "InDefaultValue",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddBranchNode",
+      "return": "URigVMNode",
+      "doc": "Adds a branch node to the graph.\nBranch nodes can be used to split the execution of into multiple branches,\nallowing to drive behavior by logic.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddCommentNode",
+      "return": "URigVMCommentNode",
+      "doc": "Adds a Comment Node to the edited Graph.\nComments can be used to annotate the Graph.\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCommentText",
+          "type": "FString"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InSize",
+          "default": "FVector2D ( 400.000000 , 300.000000 )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InColor",
+          "default": "FLinearColor ( 0.000000 , 0.000000 , 0.000000 , 1.000000 )",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddDecorator",
+      "return": "FName",
+      "doc": "Adds a decorator to a node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "InDecoratorTypeObjectPath",
+          "type": "FName"
+        },
+        {
+          "name": "InDecoratorName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "InDefaultValue",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "InPinIndex",
+          "default": "- 1",
+          "type": "int"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddEnumNode",
+      "return": "URigVMEnumNode",
+      "doc": "Adds an enum node to the graph\nEnum nodes can be used to represent constant enum values within the graph",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCPPTypeObjectPath",
+          "type": "FName"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddExposedPin",
+      "return": "FName",
+      "doc": "Adds an exposed pin to the graph controlled by this",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinName",
+          "type": "FName"
+        },
+        {
+          "name": "InDirection",
+          "type": "ERigVMPinDirection"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObjectPath",
+          "type": "FName"
+        },
+        {
+          "name": "InDefaultValue",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddExternalFunctionReferenceNode",
+      "return": "URigVMFunctionReferenceNode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHostPath",
+          "type": "FString"
+        },
+        {
+          "name": "InFunctionName",
+          "type": "FName"
+        },
+        {
+          "name": "InNodePosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddFreeRerouteNode",
+      "return": "URigVMRerouteNode",
+      "doc": "Adds a free Reroute Node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObjectPath",
+          "type": "FName"
+        },
+        {
+          "name": "bIsConstant",
+          "type": "bool"
+        },
+        {
+          "name": "InCustomWidgetName",
+          "type": "FName"
+        },
+        {
+          "name": "InDefaultValue",
+          "type": "FString"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddFunctionReferenceNode",
+      "return": "URigVMFunctionReferenceNode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionDefinition",
+          "type": "URigVMLibraryNode"
+        },
+        {
+          "name": "InNodePosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddFunctionReferenceNodeFromDescription",
+      "return": "URigVMFunctionReferenceNode",
+      "doc": "Adds a function reference / invocation to the graph",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionDefinition",
+          "type": "FRigVMGraphFunctionHeader"
+        },
+        {
+          "name": "InNodePosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddFunctionToLibrary",
+      "return": "URigVMLibraryNode",
+      "doc": "Adds a function definition to a function library graph",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionName",
+          "type": "FName"
+        },
+        {
+          "name": "bMutable",
+          "type": "bool"
+        },
+        {
+          "name": "InNodePosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddIfNode",
+      "return": "URigVMNode",
+      "doc": "Adds an if node to the graph.\nIf nodes can be used to pick between two values based on a condition.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObjectPath",
+          "type": "FName"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddIfNodeFromStruct",
+      "return": "URigVMNode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InScriptStruct",
+          "type": "UScriptStruct"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddInjectedNode",
+      "return": "URigVMInjectionInfo",
+      "doc": "Adds a Function / Struct Node to the edited Graph as an injected node\nUnitNode represent a RIGVM_METHOD declaration on a USTRUCT.\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bAsInput",
+          "type": "bool"
+        },
+        {
+          "name": "InScriptStruct",
+          "type": "UScriptStruct"
+        },
+        {
+          "name": "InMethodName",
+          "type": "FName"
+        },
+        {
+          "name": "InInputPinName",
+          "type": "FName"
+        },
+        {
+          "name": "InOutputPinName",
+          "type": "FName"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddInjectedNodeFromStructPath",
+      "return": "URigVMInjectionInfo",
+      "doc": "Adds a Function / Struct Node to the edited Graph as an injected node\nUnitNode represent a RIGVM_METHOD declaration on a USTRUCT.\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bAsInput",
+          "type": "bool"
+        },
+        {
+          "name": "InScriptStructPath",
+          "type": "FString"
+        },
+        {
+          "name": "InMethodName",
+          "type": "FName"
+        },
+        {
+          "name": "InInputPinName",
+          "type": "FName"
+        },
+        {
+          "name": "InOutputPinName",
+          "type": "FName"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddInvokeEntryNode",
+      "return": "URigVMInvokeEntryNode",
+      "doc": "Adds an entry invocation node\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InEntryName",
+          "type": "FName"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddLink",
+      "return": "bool",
+      "doc": "Adds a link to the graph.\nThis causes a LinkAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOutputPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "InInputPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "InUserDirection",
+          "default": "ERigVMPinDirection :: Output",
+          "type": "ERigVMPinDirection"
+        },
+        {
+          "name": "bCreateCastNode",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalVariable",
+      "return": "FRigVMGraphVariableDescription",
+      "doc": "Add a local variable to the graph",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObject",
+          "type": "UObject"
+        },
+        {
+          "name": "InDefaultValue",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddLocalVariableFromObjectPath",
+      "return": "FRigVMGraphVariableDescription",
+      "doc": "Add a local variable to the graph given a struct object path name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObjectPath",
+          "type": "FString"
+        },
+        {
+          "name": "InDefaultValue",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddRerouteNodeOnLink",
+      "return": "URigVMRerouteNode",
+      "doc": "Adds a Reroute Node on an existing Link to the edited Graph.\nReroute Nodes can be used to visually improve the data flow,\nthey don't require any additional memory though and are purely\ncosmetic. This causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLink",
+          "type": "URigVMLink"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddRerouteNodeOnLinkPath",
+      "return": "URigVMRerouteNode",
+      "doc": "Adds a Reroute Node on an existing Link to the edited Graph given the Link's string representation.\nReroute Nodes can be used to visually improve the data flow,\nthey don't require any additional memory though and are purely\ncosmetic. This causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLinkPinPathRepresentation",
+          "type": "FString"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddRerouteNodeOnPin",
+      "return": "URigVMRerouteNode",
+      "doc": "Adds a Reroute Node on an existing Pin to the editor Graph.\nReroute Nodes can be used to visually improve the data flow,\nthey don't require any additional memory though and are purely\ncosmetic. This causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bAsInput",
+          "type": "bool"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddSelectNode",
+      "return": "URigVMNode",
+      "doc": "Adds a select node to the graph.\nSelect nodes can be used to pick between multiple values based on an index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObjectPath",
+          "type": "FName"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddSelectNodeFromStruct",
+      "return": "URigVMNode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InScriptStruct",
+          "type": "UScriptStruct"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddTemplateNode",
+      "return": "URigVMTemplateNode",
+      "doc": "Adds a template node to the graph.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNotation",
+          "type": "FName"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddUnitNode",
+      "return": "URigVMUnitNode",
+      "doc": "Adds a Function / Struct Node to the edited Graph.\nUnitNode represent a RIGVM_METHOD declaration on a USTRUCT.\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InScriptStruct",
+          "type": "UScriptStruct"
+        },
+        {
+          "name": "InMethodName",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddUnitNodeFromStructPath",
+      "return": "URigVMUnitNode",
+      "doc": "Adds a Function / Struct Node to the edited Graph given its struct object path name.\nUnitNode represent a RIGVM_METHOD declaration on a USTRUCT.\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InScriptStructPath",
+          "type": "FString"
+        },
+        {
+          "name": "InMethodName",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddUnitNodeWithDefaults",
+      "return": "URigVMUnitNode",
+      "doc": "Adds a Function / Struct Node to the edited Graph.\nUnitNode represent a RIGVM_METHOD declaration on a USTRUCT.\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InScriptStruct",
+          "type": "UScriptStruct"
+        },
+        {
+          "name": "InDefaults",
+          "type": "FString"
+        },
+        {
+          "name": "InMethodName",
+          "default": "FName ( \"\" )",
+          "type": "FName"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddVariableNode",
+      "return": "URigVMVariableNode",
+      "doc": "Adds a Variable Node to the edited Graph.\nVariables represent local work state for the function and\ncan be read from and written to.\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObject",
+          "type": "UObject"
+        },
+        {
+          "name": "bIsGetter",
+          "type": "bool"
+        },
+        {
+          "name": "InDefaultValue",
+          "type": "FString"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "AddVariableNodeFromObjectPath",
+      "return": "URigVMVariableNode",
+      "doc": "Adds a Variable Node to the edited Graph given a struct object path name.\nVariables represent local work state for the function and\ncan be read from (bIsGetter == true) or written to (bIsGetter == false).\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObjectPath",
+          "type": "FString"
+        },
+        {
+          "name": "bIsGetter",
+          "type": "bool"
+        },
+        {
+          "name": "InDefaultValue",
+          "type": "FString"
+        },
+        {
+          "name": "InPosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "InNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "BindPinToVariable",
+      "return": "bool",
+      "doc": "Binds a pin to a variable (or removes the binding given NAME_None)\nThis causes a PinBoundVariableChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "InNewBoundVariablePath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "BreakAllLinks",
+      "return": "bool",
+      "doc": "Removes all links on a given pin from the graph.\nThis might cause multiple LinkRemoved modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bAsInput",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "BreakLink",
+      "return": "bool",
+      "doc": "Removes a link from the graph.\nThis causes a LinkRemoved modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOutputPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "InInputPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CancelUndoBracket",
+      "return": "bool",
+      "doc": "Cancels an undo bracket / scoped transaction.\nThis is primarily useful for Python.\nThis causes a UndoBracketCanceled modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CanImportNodesFromText",
+      "return": "bool",
+      "doc": "Exports the given nodes as text",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ChangeExposedPinType",
+      "return": "bool",
+      "doc": "Changes the type of an exposed pin in the graph controlled by this",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinName",
+          "type": "FName"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObjectPath",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "type": "bool&"
+        },
+        {
+          "name": "bSetupOrphanPins",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClearArrayPin",
+      "return": "bool",
+      "doc": "Removes all (but one) array element pin from an array pin.\nThis causes a PinArraySizeChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InArrayPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ClearNodeSelection",
+      "return": "bool",
+      "doc": "Deselects all currently selected nodes in the graph.\nThis might cause several NodeDeselected modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CloseUndoBracket",
+      "return": "bool",
+      "doc": "Closes an undo bracket / scoped transaction.\nThis is primarily useful for Python.\nThis causes a UndoBracketClosed modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CollapseNodes",
+      "return": "URigVMCollapseNode",
+      "doc": "Turns a series of nodes into a Collapse node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "InCollapseNodeName",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bIsAggregate",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "DuplicateArrayPin",
+      "return": "FString",
+      "doc": "Duplicates an array element pin.\nThis causes a PinArraySizeChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InArrayElementPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "EjectNodeFromPin",
+      "return": "URigVMNode",
+      "doc": "Ejects the last injected node on a pin",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "EnableReporting",
+      "return": "void",
+      "doc": "Enables or disables the error reporting of this Controller.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bEnabled",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ExpandLibraryNode",
+      "return": "TArray<URigVMNode>",
+      "doc": "Turns a library node into its contained nodes",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ExportNodesToText",
+      "return": "FString",
+      "doc": "Exports the given nodes as text",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "bIncludeExteriorLinks",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ExportSelectedNodesToText",
+      "return": "FString",
+      "doc": "Exports the selected nodes as text",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIncludeExteriorLinks",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GeneratePythonCommands",
+      "return": "TArray<FString>",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetControllerForGraph",
+      "return": "URigVMController",
+      "const": true,
+      "doc": "Returns another controller for a given graph",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InGraph",
+          "type": "const URigVMGraph"
+        }
+      ]
+    },
+    {
+      "name": "GetGraph",
+      "return": "URigVMGraph",
+      "const": true,
+      "doc": "Returns the currently edited Graph of this controller.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPinDefaultValue",
+      "return": "FString",
+      "doc": "Returns the default value of a pin given its pinpath.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetSchema",
+      "return": "URigVMSchema",
+      "const": true,
+      "doc": "Returns the schema used by this controller",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTopLevelGraph",
+      "return": "URigVMGraph",
+      "const": true,
+      "doc": "Returns the top level graph",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ImportNodesFromText",
+      "return": "TArray<FName>",
+      "doc": "Exports the given nodes as text",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InText",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommands",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "InsertArrayPin",
+      "return": "FString",
+      "doc": "Inserts an array element pin into an array pin.\nThis causes a PinArraySizeChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InArrayPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "InIndex",
+          "default": "- 1",
+          "type": "int"
+        },
+        {
+          "name": "InDefaultValue",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "IsFunctionPublic",
+      "return": "bool",
+      "doc": "Returns true if a function is marked as public in the function library",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "IsReportingEnabled",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if reporting is enabled",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsTransacting",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if the controller is currently transacting",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "LocalizeFunction",
+      "return": "URigVMLibraryNode",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionDefinition",
+          "type": "FRigVMGraphFunctionIdentifier"
+        },
+        {
+          "name": "bLocalizeDependentPrivateFunctions",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LocalizeFunctionFromPath",
+      "return": "URigVMLibraryNode",
+      "doc": "Copies a function declaration into this graph's local function library",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InHostPath",
+          "type": "FString"
+        },
+        {
+          "name": "InFunctionName",
+          "type": "FName"
+        },
+        {
+          "name": "bLocalizeDependentPrivateFunctions",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "LocalizeFunctions",
+      "return": "TMap<FRigVMGraphFunctionIdentifier,URigVMLibraryNode>",
+      "doc": "Copies a series of function declaratioms into this graph's local function library",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionDefinitions",
+          "type": "TArray<FRigVMGraphFunctionIdentifier>"
+        },
+        {
+          "name": "bLocalizeDependentPrivateFunctions",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MakeBindingsFromVariableNode",
+      "return": "bool",
+      "doc": "Turns a variable node into one or more bindings",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MakeOptionsForWorkflow",
+      "return": "URigVMUserWorkflowOptions",
+      "doc": "creates the options struct for a given workflow",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSubject",
+          "type": "UObject"
+        },
+        {
+          "name": "InWorkflow",
+          "type": "FRigVMUserWorkflow"
+        }
+      ]
+    },
+    {
+      "name": "MakeVariableNodeFromBinding",
+      "return": "bool",
+      "doc": "Turns a binding to a variable node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "InNodePosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "MarkFunctionAsPublic",
+      "return": "bool",
+      "doc": "Mark a function as public/private in the function library",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionName",
+          "type": "FName"
+        },
+        {
+          "name": "bInIsPublic",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "OpenUndoBracket",
+      "return": "bool",
+      "doc": "Opens an undo bracket / scoped transaction for\na series of actions to be performed as one step on the\nUndo stack. This is primarily useful for Python.\nThis causes a UndoBracketOpened modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTitle",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "PerformUserWorkflow",
+      "return": "bool",
+      "doc": "performs all actions representing the workflow",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InWorkflow",
+          "type": "FRigVMUserWorkflow"
+        },
+        {
+          "name": "InOptions",
+          "type": "const URigVMUserWorkflowOptions"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PromoteCollapseNodeToFunctionReferenceNode",
+      "return": "FName",
+      "doc": "Turns a collapse node into a function node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "InExistingFunctionDefinitionPath",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "PromoteFunctionReferenceNodeToCollapseNode",
+      "return": "FName",
+      "doc": "Turns a collapse node into a function node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bRemoveFunctionDefinition",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PromotePinToVariable",
+      "return": "bool",
+      "doc": "Promotes a pin to a variable",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bCreateVariableNode",
+          "type": "bool"
+        },
+        {
+          "name": "InNodePosition",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Redo",
+      "return": "bool",
+      "doc": "Re-does the last action on the stack.\nNote: This should really only be used for unit tests,\nuse the GEditor's main Undo method instead.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RefreshVariableNode",
+      "return": "void",
+      "doc": "Refreshes the variable node with the new data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObject",
+          "type": "UObject"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupOrphanPins",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAggregatePin",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveArrayPin",
+      "return": "bool",
+      "doc": "Removes an array element pin from an array pin.\nThis causes a PinArraySizeChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InArrayElementPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveDecorator",
+      "return": "bool",
+      "doc": "Removes a decorator from a node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "InDecoratorName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveExposedPin",
+      "return": "bool",
+      "doc": "Removes an exposed pin from the graph controlled by this",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveFunctionFromLibrary",
+      "return": "bool",
+      "doc": "Removes a function from a function library graph",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveInjectedNode",
+      "return": "bool",
+      "doc": "Removes an injected node\nThis causes a NodeRemoved modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bAsInput",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLocalVariable",
+      "return": "bool",
+      "doc": "Remove a local variable from the graph",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveNode",
+      "return": "bool",
+      "doc": "Removes a node from the graph\nThis causes a NodeRemoved modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMNode"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveNodeByName",
+      "return": "bool",
+      "doc": "Removes a node from the graph given the node's name.\nThis causes a NodeRemoved modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveNodes",
+      "return": "bool",
+      "doc": "Removes a list of nodes from the graph\nThis causes a NodeRemoved modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodes",
+          "type": "TArray<URigVMNode>"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveNodesByName",
+      "return": "bool",
+      "doc": "Removes a list of nodes from the graph given the names\nThis causes a NodeRemoved modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RenameExposedPin",
+      "return": "bool",
+      "doc": "Renames an exposed pin in the graph controlled by this",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOldPinName",
+          "type": "FName"
+        },
+        {
+          "name": "InNewPinName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RenameFunction",
+      "return": "bool",
+      "doc": "Renames a function in the function library",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOldFunctionName",
+          "type": "FName"
+        },
+        {
+          "name": "InNewFunctionName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RenameLocalVariable",
+      "return": "bool",
+      "doc": "Rename a local variable from the graph",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InNewVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RenameNode",
+      "return": "bool",
+      "doc": "Renames a node in the graph\nThis causes a NodeRenamed modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMNode"
+        },
+        {
+          "name": "InNewName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceParameterNodeWithVariable",
+      "return": "URigVMVariableNode",
+      "doc": "Refreshes the variable node with the new data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObject",
+          "type": "UObject"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ResetPinDefaultValue",
+      "return": "bool",
+      "doc": "Resets the default value of a pin given its pinpath.\nThis causes a PinDefaultValueChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ResolveWildCardPin",
+      "return": "bool",
+      "doc": "Resolves a wildcard pin on any node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObjectPath",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SelectNode",
+      "return": "bool",
+      "doc": "Selects a single node in the graph.\nThis causes a NodeSelected / NodeDeselected modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMNode"
+        },
+        {
+          "name": "bSelect",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SelectNodeByName",
+      "return": "bool",
+      "doc": "Selects a single node in the graph by name.\nThis causes a NodeSelected / NodeDeselected modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "bSelect",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetArrayPinSize",
+      "return": "bool",
+      "doc": "Sets the size of the array pin\nThis causes a PinArraySizeChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InArrayPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "InSize",
+          "type": "int"
+        },
+        {
+          "name": "InDefaultValue",
+          "default": "\"\"",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCommentText",
+      "return": "bool",
+      "doc": "Sets the comment text and properties of a comment node in the graph.\nThis causes a CommentTextChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMNode"
+        },
+        {
+          "name": "InCommentText",
+          "type": "FString"
+        },
+        {
+          "name": "InCommentFontSize",
+          "type": "int"
+        },
+        {
+          "name": "bInCommentBubbleVisible",
+          "type": "bool"
+        },
+        {
+          "name": "bInCommentColorBubble",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetCommentTextByName",
+      "return": "bool",
+      "doc": "Sets the comment text and properties of a comment node in the graph by name.\nThis causes a CommentTextChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "InCommentText",
+          "type": "FString"
+        },
+        {
+          "name": "InCommentFontSize",
+          "type": "int"
+        },
+        {
+          "name": "bInCommentBubbleVisible",
+          "type": "bool"
+        },
+        {
+          "name": "bInCommentColorBubble",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetExposedPinIndex",
+      "return": "bool",
+      "doc": "Sets the index for an exposed pin. This can be used to move the pin up and down on the node.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinName",
+          "type": "FName"
+        },
+        {
+          "name": "InNewIndex",
+          "type": "int"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetIsRunningUnitTest",
+      "return": "void",
+      "doc": "Helper function to disable a series of checks that can be ignored during a unit test",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bIsRunning",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalVariableDefaultValue",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InDefaultValue",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalVariableType",
+      "return": "bool",
+      "doc": "Sets the type of the local variable",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObject",
+          "type": "UObject"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetLocalVariableTypeFromObjectPath",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InCPPType",
+          "type": "FString"
+        },
+        {
+          "name": "InCPPTypeObjectPath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeCategory",
+      "return": "bool",
+      "doc": "Sets the category of a node in the graph.\nThis causes a NodeCategoryChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMCollapseNode"
+        },
+        {
+          "name": "InCategory",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeCategoryByName",
+      "return": "bool",
+      "doc": "Sets the category of a node in the graph.\nThis causes a NodeCategoryChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "InCategory",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeColor",
+      "return": "bool",
+      "doc": "Sets the color of a node in the graph.\nThis causes a NodeColorChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMNode"
+        },
+        {
+          "name": "InColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeColorByName",
+      "return": "bool",
+      "doc": "Sets the color of a node in the graph by name.\nThis causes a NodeColorChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "InColor",
+          "type": "FLinearColor"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeDescription",
+      "return": "bool",
+      "doc": "Sets the function description of a node in the graph.\nThis causes a NodeDescriptionChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMCollapseNode"
+        },
+        {
+          "name": "InDescription",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeDescriptionByName",
+      "return": "bool",
+      "doc": "Sets the keywords of a node in the graph.\nThis causes a NodeDescriptionChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "InDescription",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeKeywords",
+      "return": "bool",
+      "doc": "Sets the keywords of a node in the graph.\nThis causes a NodeKeywordsChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMCollapseNode"
+        },
+        {
+          "name": "InKeywords",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeKeywordsByName",
+      "return": "bool",
+      "doc": "Sets the keywords of a node in the graph.\nThis causes a NodeKeywordsChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "InKeywords",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodePosition",
+      "return": "bool",
+      "doc": "Sets the position of a node in the graph.\nThis causes a NodePositionChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMNode"
+        },
+        {
+          "name": "InPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodePositionByName",
+      "return": "bool",
+      "doc": "Sets the position of a node in the graph by name.\nThis causes a NodePositionChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "InPosition",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeSelection",
+      "return": "bool",
+      "doc": "Selects the nodes given the selection\nThis might cause several NodeDeselected modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeSize",
+      "return": "bool",
+      "doc": "Sets the size of a node in the graph.\nThis causes a NodeSizeChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMNode"
+        },
+        {
+          "name": "InSize",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetNodeSizeByName",
+      "return": "bool",
+      "doc": "Sets the size of a node in the graph by name.\nThis causes a NodeSizeChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeName",
+          "type": "FName"
+        },
+        {
+          "name": "InSize",
+          "type": "FVector2D"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPinDefaultValue",
+      "return": "bool",
+      "doc": "Sets the default value of a pin given its pinpath.\nThis causes a PinDefaultValueChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "InDefaultValue",
+          "type": "FString"
+        },
+        {
+          "name": "bResizeArrays",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bMergeUndoAction",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        },
+        {
+          "name": "bSetValueOnLinkedPins",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPinExpansion",
+      "return": "bool",
+      "doc": "Sets the pin to be expanded or not\nThis causes a PinExpansionChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bIsExpanded",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPinIsWatched",
+      "return": "bool",
+      "doc": "Sets the pin to be watched (or not)\nThis causes a PinWatchedChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bIsWatched",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetRemappedVariable",
+      "return": "bool",
+      "doc": "Sets the remapped variable on a function reference node",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunctionRefNode",
+          "type": "URigVMFunctionReferenceNode"
+        },
+        {
+          "name": "InInnerVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "InOuterVariableName",
+          "type": "FName"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSchema",
+      "return": "void",
+      "doc": "Sets the schema on the controller",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSchema",
+          "type": "URigVMSchema"
+        }
+      ]
+    },
+    {
+      "name": "SetUnitNodeDefaults",
+      "return": "bool",
+      "doc": "Adds a Function / Struct Node to the edited Graph.\nUnitNode represent a RIGVM_METHOD declaration on a USTRUCT.\nThis causes a NodeAdded modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNode",
+          "type": "URigVMUnitNode"
+        },
+        {
+          "name": "InDefaults",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UnbindPinFromVariable",
+      "return": "bool",
+      "doc": "Removes the binging of a pin to a variable\nThis causes a PinBoundVariableChanged modified event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPinPath",
+          "type": "FString"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Undo",
+      "return": "bool",
+      "doc": "Un-does the last action on the stack.\nNote: This should really only be used for unit tests,\nuse the GEditor's main Undo method instead.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UnresolveTemplateNodes",
+      "return": "bool",
+      "doc": "Turns a resolved templated node(s) back into its template.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "UpgradeNodes",
+      "return": "TArray<URigVMNode>",
+      "doc": "Upgrades a set of nodes with each corresponding next known version",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNodeNames",
+          "type": "TArray<FName>"
+        },
+        {
+          "name": "bRecursive",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bSetupUndoRedo",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "bPrintPythonCommand",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

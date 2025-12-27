@@ -1,0 +1,245 @@
+{
+  "name": "UEnhancedInputUserSettings",
+  "inherits": "USaveGame",
+  "doc": "The Enhanced Input User Settings class is a place where you can put all of your Input Related settings\nthat you want your user to be able to change. Things like their key mappings, aim sensitivity, accessibility\nsettings, etc. This also provides a Registration point for Input Mappings Contexts (IMC) from possibly unloaded\nplugins (i.e. Game Feature Plugins). You can register your IMC from a Game Feature Action plugin here, and then\nhave access to all the key mappings available. This is very useful for building settings screens because you can\nnow access all the mappings in your game, even if the entire plugin isn't loaded yet.\n\nThe user settings are stored on each UEnhancedPlayerInput object, so each instance of the settings can represent\na single User or Local Player.\n\nTo customize this for your game, you can create a subclass of it and change the \"UserSettingsClass\" in the\nEnhanced Input Project Settings.",
+  "properties": {
+    "OnSettingsChanged": [
+      "FEnhancedInputUserSettingsChanged__EnhancedInputUserSettings"
+    ],
+    "OnSettingsApplied": [
+      "FEnhancedInputUserSettingsApplied__EnhancedInputUserSettings"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ApplySettings",
+      "return": "void",
+      "doc": "Apply any custom input settings to your user. By default, this will just broadcast the OnSettingsApplied delegate\nwhich is a useful hook to maybe rebuild some UI or do other user facing updates.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "AsyncSaveSettings",
+      "return": "void",
+      "doc": "Asynchronously save the settings to a hardcoded save game slot. This will work for simple games,\nbut if you need to integrate it into an advanced save system you should Serialize this object out with the rest of your save data.\n\nOnAsyncSaveComplete will be called upon save completion.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CreateNewKeyProfile",
+      "return": "UEnhancedPlayerMappableKeyProfile",
+      "doc": "Creates a new profile with this name and type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InArgs",
+          "type": "FPlayerMappableKeyProfileCreationArgs"
+        }
+      ]
+    },
+    {
+      "name": "FindMappingsInRow",
+      "return": "TSet<FPlayerKeyMapping>",
+      "const": true,
+      "doc": "Returns a set of all player key mappings for the given mapping name.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentKeyProfile",
+      "return": "UEnhancedPlayerMappableKeyProfile",
+      "const": true,
+      "doc": "Get the current key profile that the user has set",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentKeyProfileIdentifier",
+      "return": "FGameplayTag",
+      "const": true,
+      "doc": "Gets the currently selected key profile",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetKeyProfileWithIdentifier",
+      "return": "UEnhancedPlayerMappableKeyProfile",
+      "const": true,
+      "doc": "Returns the key profile with the given name if one exists. Null if one doesn't exist",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ProfileId",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "IsMappingContextRegistered",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this mapping context is currently registered with the settings",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "IMC",
+          "type": "const UInputMappingContext"
+        }
+      ]
+    },
+    {
+      "name": "MapPlayerKey",
+      "return": "void",
+      "doc": "Sets the player mapped key on the current key profile.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InArgs",
+          "type": "FMapPlayerKeyArgs"
+        },
+        {
+          "name": "FailureReason",
+          "type": "FGameplayTagContainer&"
+        }
+      ]
+    },
+    {
+      "name": "RegisterInputMappingContext",
+      "return": "bool",
+      "doc": "Registers this mapping context with the user settings. This will iterate all the key mappings\nin the context and create an initial Player Mappable Key for every mapping that is marked as mappable.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "IMC",
+          "type": "const UInputMappingContext"
+        }
+      ]
+    },
+    {
+      "name": "RegisterInputMappingContexts",
+      "return": "bool",
+      "doc": "Registers multiple mapping contexts with the settings",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingContexts",
+          "type": "TSet<UInputMappingContext>"
+        }
+      ]
+    },
+    {
+      "name": "ResetAllPlayerKeysInRow",
+      "return": "void",
+      "doc": "Resets each player mapped key to it's default value from the Input Mapping Context that it was registered from.\nIf a key did not come from an IMC (i.e. it was added additionally by the player) then it will be reset to EKeys::Invalid.\n\n@param InArgs                         Arguments that contain the mapping name and profile ID to find the mapping to reset.\n@param FailureReason          Populated with failure reasons if the operation fails.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InArgs",
+          "type": "FMapPlayerKeyArgs"
+        },
+        {
+          "name": "FailureReason",
+          "type": "FGameplayTagContainer&"
+        }
+      ]
+    },
+    {
+      "name": "ResetKeyProfileToDefault",
+      "return": "void",
+      "doc": "Resets the given key profile to default key mappings\n\n@param ProfileId             The ID of the key profile to reset\n@param FailureReason Populated with failure reasons if the operation fails.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ProfileId",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "FailureReason",
+          "type": "FGameplayTagContainer&"
+        }
+      ]
+    },
+    {
+      "name": "SaveSettings",
+      "return": "void",
+      "doc": "Synchronously save the settings to a hardcoded save game slot. This will work for simple games,\nbut if you need to integrate it into an advanced save system you should Serialize this object out with the rest of your save data.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetKeyProfile",
+      "return": "bool",
+      "doc": "Changes the currently active key profile to the one with the given name. Returns true if the operation was successful.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InProfileId",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "UnMapPlayerKey",
+      "return": "void",
+      "doc": "Unmaps a single player mapping that matches the given Mapping name, slot, and hardware device.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InArgs",
+          "type": "FMapPlayerKeyArgs"
+        },
+        {
+          "name": "FailureReason",
+          "type": "FGameplayTagContainer&"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterInputMappingContext",
+      "return": "bool",
+      "doc": "Removes this mapping context from the registered mapping contexts",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "IMC",
+          "type": "const UInputMappingContext"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterInputMappingContexts",
+      "return": "bool",
+      "doc": "Removes multiple mapping contexts from the registered mapping contexts",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingContexts",
+          "type": "TSet<UInputMappingContext>"
+        }
+      ]
+    }
+  ]
+}

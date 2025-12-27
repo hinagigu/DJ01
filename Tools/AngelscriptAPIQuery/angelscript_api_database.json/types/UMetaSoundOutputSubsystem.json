@@ -1,0 +1,40 @@
+{
+  "name": "UMetaSoundOutputSubsystem",
+  "inherits": "UTickableWorldSubsystem",
+  "doc": "Provides access to a playing Metasound generator's outputs",
+  "properties": {},
+  "methods": [
+    {
+      "name": "WatchOutput",
+      "return": "bool",
+      "doc": "Watch an output on a Metasound playing on a given audio component.\n\n@param AudioComponent - The audio component\n@param OutputName - The user-specified name of the output in the Metasound\n@param OnOutputValueChanged - The event to fire when the output's value changes\n@param AnalyzerName - (optional) The name of the analyzer to use on the output, defaults to a passthrough\n@param AnalyzerOutputName - (optional) The name of the output on the analyzer to watch, defaults to the passthrough output\n@returns true if the watch setup succeeded, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AudioComponent",
+          "type": "UAudioComponent"
+        },
+        {
+          "name": "OutputName",
+          "type": "FName"
+        },
+        {
+          "name": "OnOutputValueChanged",
+          "default": "FOnMetasoundOutputValueChanged ( )",
+          "type": "FOnMetasoundOutputValueChanged"
+        },
+        {
+          "name": "AnalyzerName",
+          "default": "NAME_None",
+          "type": "FName"
+        },
+        {
+          "name": "AnalyzerOutputName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

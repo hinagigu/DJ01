@@ -1,0 +1,206 @@
+{
+  "name": "USoundWave",
+  "inherits": "USoundBase",
+  "properties": {
+    "CompressionQuality": [
+      "int",
+      2,
+      "Platform agnostic compression quality. 1..100 with 1 being best compression and 100 being best quality. ADPCM and PCM sound asset compression types ignore this parameter."
+    ],
+    "SampleRateQuality": [
+      "ESoundwaveSampleRateSettings",
+      2,
+      "Determines the max sample rate to use if the platform enables \"Resampling For Device\" in project settings.\n     For example, if the platform enables Resampling For Device and specifies 32000 for High, then setting High here will\n     force the sound wave to be _at most_ 32000. Does nothing if Resampling For Device is disabled."
+    ],
+    "SoundGroup": [
+      "ESoundGroup",
+      2,
+      ""
+    ],
+    "OverrideSoundToUseForAnalysis": [
+      "USoundWave",
+      2,
+      "Specify a sound to use for the baked analysis. Will default to this USoundWave if not set."
+    ],
+    "FFTSize": [
+      "ESoundWaveFFTSize",
+      2,
+      "The FFT window size to use for fft analysis."
+    ],
+    "FFTAnalysisFrameSize": [
+      "int",
+      2,
+      "How many audio frames analyze at a time."
+    ],
+    "FFTAnalysisAttackTime": [
+      "int",
+      2,
+      "Attack time in milliseconds of the spectral envelope follower."
+    ],
+    "FFTAnalysisReleaseTime": [
+      "int",
+      2,
+      "Release time in milliseconds of the spectral envelope follower."
+    ],
+    "EnvelopeFollowerFrameSize": [
+      "int",
+      2,
+      "How many audio frames to average a new envelope value. Larger values use less memory for audio envelope data but will result in lower envelope accuracy."
+    ],
+    "EnvelopeFollowerAttackTime": [
+      "int",
+      2,
+      "The attack time in milliseconds. Describes how quickly the envelope analyzer responds to increasing amplitudes."
+    ],
+    "EnvelopeFollowerReleaseTime": [
+      "int",
+      2,
+      "The release time in milliseconds. Describes how quickly the envelope analyzer responds to decreasing amplitudes."
+    ],
+    "ModulationSettings": [
+      "FSoundModulationDefaultRoutingSettings",
+      "Modulation Settings"
+    ],
+    "FrequenciesToAnalyze": [
+      "TArray<float32>",
+      2,
+      "The frequencies (in hz) to analyze when doing baked FFT analysis."
+    ],
+    "LoadingBehavior": [
+      "ESoundWaveLoadingBehavior",
+      2,
+      "Specifies how and when compressed audio data is loaded for asset if stream caching is enabled."
+    ],
+    "SizeOfFirstAudioChunkInSeconds": [
+      "FPerPlatformFloat",
+      2,
+      "How much audio to add to First Audio Chunk (in seconds)"
+    ],
+    "SubtitlePriority": [
+      "float32",
+      "The priority of the subtitle."
+    ],
+    "Volume": [
+      "float32",
+      2,
+      "Playback volume of sound 0 to 1 - Default is 1.0."
+    ],
+    "Pitch": [
+      "float32",
+      2,
+      "Playback pitch for sound."
+    ],
+    "Subtitles": [
+      "TArray<FSubtitleCue>",
+      "Subtitle cues."
+    ],
+    "Comment": [
+      "FString",
+      2,
+      "Provides contextual information for the sound to the translator."
+    ],
+    "AssetImportData": [
+      "UAssetImportData",
+      2,
+      ""
+    ],
+    "Curves": [
+      "UCurveTable",
+      2,
+      "Curves associated with this sound wave"
+    ],
+    "PlatformSettings": [
+      "TMap<FGuid,FSoundWaveCloudStreamingPlatformSettings>",
+      2,
+      "Optionally disables cloud streaming per platform"
+    ],
+    "Transformations": [
+      "TArray<TObjectPtr<UWaveformTransformationBase>>",
+      2,
+      "Waveform edits to be applied to this SoundWave on cook (editing transformations will trigger a cook)"
+    ],
+    "bLooping": [
+      "bool",
+      "If set, when played directly (not through a sound cue) the wave will be played looping."
+    ],
+    "TreatFileAsLoopingForAnalysis": [
+      "bool",
+      "Whether or not we should treat the sound wave used for analysis (this or the override) as looping while performing analysis.\nA looping sound may include the end of the file for inclusion in analysis for envelope and FFT analysis."
+    ],
+    "bEnableBakedFFTAnalysis": [
+      "bool",
+      "Whether or not to enable cook-time baked FFT analysis."
+    ],
+    "bEnableAmplitudeEnvelopeAnalysis": [
+      "bool",
+      "Whether or not to enable cook-time amplitude envelope analysis."
+    ],
+    "bMature": [
+      "bool",
+      "If set to true if this sound is considered to contain mature/adult content."
+    ],
+    "bManualWordWrap": [
+      "bool",
+      "If set to true will disable automatic generation of line breaks - use if the subtitles have been split manually."
+    ],
+    "bSingleLine": [
+      "bool",
+      "If set to true the subtitles display as a sequence of single lines as opposed to multiline."
+    ],
+    "bIsAmbisonics": [
+      "bool",
+      "Whether or not this source is ambisonics file format. If set, sound always uses the\n'Master Ambisonics Submix' as set in the 'Audio' category of Project Settings'\nand ignores submix if provided locally or in the referenced SoundClass."
+    ],
+    "bEnableCloudStreaming": [
+      "bool",
+      "If enabled, this wave may be streamed from the cloud using the Opus format. Loading behavior must NOT be `Force Inline`. Requires a suitable support plugin to be installed."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCuePoints",
+      "return": "TArray<FSoundWaveCuePoint>",
+      "const": true,
+      "doc": "Filters for the cue points that are _not_ loop regions and returns those as a new array",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLoopRegions",
+      "return": "TArray<FSoundWaveCuePoint>",
+      "const": true,
+      "doc": "Filters for the cue points that _are_ loop regions and returns those as a new array",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSoundAssetCompressionType",
+      "return": "ESoundAssetCompressionType",
+      "const": true,
+      "doc": "Returns the sound's asset compression type.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetSoundAssetCompressionType",
+      "return": "void",
+      "doc": "Procedurally set the compression type.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSoundAssetCompressionType",
+          "type": "ESoundAssetCompressionType"
+        },
+        {
+          "name": "bMarkDirty",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

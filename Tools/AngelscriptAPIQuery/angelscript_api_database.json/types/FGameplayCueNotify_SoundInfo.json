@@ -1,0 +1,55 @@
+{
+  "name": "FGameplayCueNotify_SoundInfo",
+  "isStruct": true,
+  "doc": "FGameplayCueNotify_SoundInfo\n\n    Properties that specify how to play a sound effect.",
+  "properties": {
+    "SpawnConditionOverride": [
+      "FGameplayCueNotify_SpawnCondition",
+      "Condition to check before playing the sound."
+    ],
+    "PlacementInfoOverride": [
+      "FGameplayCueNotify_PlacementInfo",
+      "Defines how the sound will be placed."
+    ],
+    "Sound": [
+      "USoundBase",
+      "Sound to play."
+    ],
+    "LoopingFadeOutDuration": [
+      "float32",
+      "How long it should take to fade out.  Only used on looping gameplay cues."
+    ],
+    "LoopingFadeVolumeLevel": [
+      "float32",
+      "The volume level you want the sound to fade out to over the 'Looping Fade Out Duration' before stopping.\nThis value is irrelevant if the 'Looping Fade Out Duration' is zero.\nNOTE: If the fade out duration is positive and this value is not lower than the volume the sound is playing at, the sound will never stop!"
+    ],
+    "SoundParameterInterfaceInfo": [
+      "FGameplayCueNotify_SoundParameterInterfaceInfo",
+      "Defines how to interface with the sound."
+    ],
+    "bOverrideSpawnCondition": [
+      "bool",
+      "If enabled, use the spawn condition override and not the default one."
+    ],
+    "bOverridePlacementInfo": [
+      "bool",
+      "If enabled, use the placement info override and not the default one."
+    ],
+    "bUseSoundParameterInterface": [
+      "bool",
+      "If enabled, use the placement info override and not the default one."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayCueNotify_SoundInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayCueNotify_SoundInfo"
+        }
+      ]
+    }
+  ]
+}

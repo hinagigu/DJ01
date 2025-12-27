@@ -1,0 +1,350 @@
+{
+  "name": "__UAnimPoseExtensions",
+  "properties": {},
+  "methods": [
+    {
+      "name": "EvaluateAnimationBlueprintWithInputPose",
+      "return": "void",
+      "doc": "Evaluates an Animation Blueprint instance, using the provided Anim Pose and its Input Pose value, generating a valid Anim Pose using the result. Warning this function may cause performance issues.\n\n@param        InputPose                               Anim Pose used to populate the input pose node value inside of the Animation Blueprint\n@param        TargetSkeletalMesh              USkeletalMesh object used as the target skeletal mesh, should have same USkeleton as InputPose and Animation Blueprint\n@param        AnimationBlueprint              Animation Blueprint to generate an AnimInstance with, used to evaluate the output Anim Pose\n@param        OutPose                                 Anim pose to hold the data from evaluating the Animation Blueprint instance",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputPose",
+          "type": "FAnimPose"
+        },
+        {
+          "name": "TargetSkeletalMesh",
+          "type": "USkeletalMesh"
+        },
+        {
+          "name": "AnimationBlueprint",
+          "type": "UAnimBlueprint"
+        },
+        {
+          "name": "OutPose",
+          "type": "FAnimPose&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimPoseAtFrame",
+      "return": "void",
+      "doc": "Evaluates an Animation Sequence Base to generate a valid Anim Pose instance\n\n@param        AnimationSequenceBase   Animation sequence base to evaluate the pose from\n@param        FrameIndex                              Exact frame at which the pose should be evaluated\n@param        EvaluationOptions               Options determining the way the pose should be evaluated\n@param        Pose                                    Anim Pose to hold the evaluated data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "FrameIndex",
+          "type": "int"
+        },
+        {
+          "name": "EvaluationOptions",
+          "type": "FAnimPoseEvaluationOptions"
+        },
+        {
+          "name": "Pose",
+          "type": "FAnimPose&"
+        }
+      ]
+    },
+    {
+      "name": "GetAnimPoseAtTime",
+      "return": "void",
+      "doc": "Evaluates an Animation Sequence Base to generate a valid Anim Pose instance\n\n@param        AnimationSequenceBase   Animation sequence base to evaluate the pose from\n@param        Time                                    Time at which the pose should be evaluated\n@param        EvaluationOptions               Options determining the way the pose should be evaluated\n@param        Pose                                    Anim Pose to hold the evaluated data",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AnimationSequenceBase",
+          "type": "const UAnimSequenceBase"
+        },
+        {
+          "name": "Time",
+          "type": "float"
+        },
+        {
+          "name": "EvaluationOptions",
+          "type": "FAnimPoseEvaluationOptions"
+        },
+        {
+          "name": "Pose",
+          "type": "FAnimPose&"
+        }
+      ]
+    },
+    {
+      "name": "GetBoneNames",
+      "return": "void",
+      "doc": "Returns an array of bone names contained by the pose\n\n@param        Pose    Anim Pose to retrieve the names from\n@param        Bones   Array to be populated with the bone names",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose"
+        },
+        {
+          "name": "Bones",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetBonePose",
+      "return": "FTransform",
+      "doc": "Retrieves the transform for the provided bone name from a pose\n\n@param        Pose            Anim Pose to retrieve the transform from\n@param        BoneName        Name of the bone to retrieve\n@param        Space           Space in which the transform should be retrieved\n\n@return       Transform in requested space for bone if found, otherwise return identity transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EAnimPoseSpaces :: Local",
+          "type": "EAnimPoseSpaces"
+        }
+      ]
+    },
+    {
+      "name": "GetCurveNames",
+      "return": "void",
+      "doc": "Returns an array of curve names contained by the pose\n\n@param        Pose    Anim Pose to retrieve the names from\n@param        Curves  Array to be populated with the curve names",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose"
+        },
+        {
+          "name": "Curves",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetCurveWeight",
+      "return": "float32",
+      "doc": "Returns the weight of an evaluated curve - if found\n\n@param   Pose            Anim Pose to retrieve the value from\n@param   CurveName       Curve to retrieve the weight value for\n\n@return  Curve weight value, if found - 0.f otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose"
+        },
+        {
+          "name": "CurveName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetRefBonePose",
+      "return": "FTransform",
+      "doc": "Retrieves the reference pose transform for the provided bone name\n\n@param        Pose            Anim Pose to retrieve the transform from\n@param        BoneName        Name of the bone to retrieve\n@param        Space           Space in which the transform should be retrieved\n\n@return       Transform in requested space for bone if found, otherwise return identity transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EAnimPoseSpaces :: Local",
+          "type": "EAnimPoseSpaces"
+        }
+      ]
+    },
+    {
+      "name": "GetReferencePose",
+      "return": "void",
+      "doc": "Populates an Anim Pose with the reference poses stored for the provided USkeleton\n\n@param        Skeleton                                USkeleton object to retrieve the reference pose from\n@param        OutPose                                 Anim pose to hold the reference pose",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Skeleton",
+          "type": "USkeleton"
+        },
+        {
+          "name": "OutPose",
+          "type": "FAnimPose&"
+        }
+      ]
+    },
+    {
+      "name": "GetRefPoseRelativeTransform",
+      "return": "FTransform",
+      "doc": "Retrieves the relative transform for the reference pose between the two provided bone names\n\n@param        Pose                    Anim Pose to retrieve the transform from\n@param        FromBoneName    Name of the bone to retrieve the transform relative from\n@param        ToBoneName              Name of the bone to retrieve the transform relative to\n@param        Space                   Space in which the transform should be retrieved\n\n@return       Relative transform in requested space for bone if found, otherwise return identity transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose"
+        },
+        {
+          "name": "FromBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "ToBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EAnimPoseSpaces :: Local",
+          "type": "EAnimPoseSpaces"
+        }
+      ]
+    },
+    {
+      "name": "GetRelativeToRefPoseTransform",
+      "return": "FTransform",
+      "doc": "Retrieves the relative transform between reference and animated bone transform\n\n@param        Pose                    Anim Pose to retrieve the transform from\n@param        BoneName                Name of the bone to retrieve the relative transform for\n@param        Space                   Space in which the transform should be retrieved\n\n@return       Relative transform in requested space for bone if found, otherwise return identity transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EAnimPoseSpaces :: Local",
+          "type": "EAnimPoseSpaces"
+        }
+      ]
+    },
+    {
+      "name": "GetRelativeTransform",
+      "return": "FTransform",
+      "doc": "Retrieves the relative transform between the two provided bone names\n\n@param        Pose                    Anim Pose to retrieve the transform from\n@param        FromBoneName    Name of the bone to retrieve the transform relative from\n@param        ToBoneName              Name of the bone to retrieve the transform relative to\n@param        Space                   Space in which the transform should be retrieved\n\n@return       Relative transform in requested space for bone if found, otherwise return identity transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose"
+        },
+        {
+          "name": "FromBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "ToBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EAnimPoseSpaces :: Local",
+          "type": "EAnimPoseSpaces"
+        }
+      ]
+    },
+    {
+      "name": "GetSocketNames",
+      "return": "void",
+      "doc": "Returns an array of socket names contained by the pose\n\n@param        Pose    Anim Pose to retrieve the names from\n@param        Sockets Array to be populated with the socket names",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose"
+        },
+        {
+          "name": "Sockets",
+          "type": "TArray<FName>&"
+        }
+      ]
+    },
+    {
+      "name": "GetSocketPose",
+      "return": "FTransform",
+      "doc": "Retrieves the transform for the provided socket name from a pose\n\n@param        Pose            Anim Pose to retrieve the transform from\n@param        SocketName      Name of the socket to retrieve\n@param        Space           Space in which the transform should be retrieved\n\n@return       Transform in requested space for bone if found, otherwise return identity transform",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose"
+        },
+        {
+          "name": "SocketName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EAnimPoseSpaces :: Local",
+          "type": "EAnimPoseSpaces"
+        }
+      ]
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "doc": "Returns whether the Anim Pose contains valid data\n\n@param        Pose    Anim Pose to validate\n\n@return       Result of the validation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose"
+        }
+      ]
+    },
+    {
+      "name": "SetBonePose",
+      "return": "void",
+      "doc": "Sets the transform for the provided bone name for a pose\n\n@param        Pose            Anim Pose to set transform in\n@param        Transform       Transform to set the bone to\n@param        BoneName        Name of the bone to set\n@param        Space           Space in which the transform should be set",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Pose",
+          "type": "FAnimPose&"
+        },
+        {
+          "name": "Transform",
+          "type": "FTransform"
+        },
+        {
+          "name": "BoneName",
+          "type": "FName"
+        },
+        {
+          "name": "Space",
+          "default": "EAnimPoseSpaces :: Local",
+          "type": "EAnimPoseSpaces"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

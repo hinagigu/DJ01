@@ -1,0 +1,271 @@
+{
+  "name": "UVREditorInteractor",
+  "inherits": "UViewportInteractor",
+  "doc": "VREditor default interactor",
+  "properties": {
+    "bIsUndoRedoSwipeEnabled": [
+      "bool",
+      2,
+      "Whether swiping left/right on touchpad/joystick triggers undo/redo"
+    ],
+    "HandMeshComponent": [
+      "UStaticMeshComponent",
+      1,
+      "Access to the current handmesh. Use ReplaceHandMeshComponent() to update the entire StaticMeshComponent."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetControllerHandSide",
+      "return": "FName",
+      "const": true,
+      "doc": "Sets the EControllerHand for this motioncontroller",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetControllerSide",
+      "return": "EControllerHand",
+      "const": true,
+      "doc": "Get the side of the controller",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetControllerType",
+      "return": "EControllerType",
+      "const": true,
+      "doc": "Returns what controller type this is for asymmetric control schemes",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetHMDDeviceType",
+      "return": "FName",
+      "const": true,
+      "doc": "@return Returns the type of HMD we're dealing with",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLaserEnd",
+      "return": "FVector",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLaserStart",
+      "return": "FVector",
+      "const": true,
+      "doc": "Getters and setters",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLastTrackpadPosition",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Get the last position of the trackpad or analog stick",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMotionControllerComponent",
+      "return": "UMotionControllerComponent",
+      "const": true,
+      "doc": "Get the motioncontroller component of this interactor",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSelectAndMoveTriggerValue",
+      "return": "float32",
+      "const": true,
+      "doc": "Gets the trigger value",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSlideDelta",
+      "return": "float32",
+      "const": true,
+      "callable": false,
+      "doc": "Returns the slide delta for pushing and pulling objects. Needs to be implemented by derived classes (e.g. touchpad for vive controller or scrollweel for mouse )",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTeleportActor",
+      "return": "AVREditorTeleporter",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTrackpadPosition",
+      "return": "FVector2D",
+      "const": true,
+      "doc": "Get the current position of the trackpad or analog stick",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Init",
+      "return": "void",
+      "callable": false,
+      "doc": "Initialize default values",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVRMode",
+          "type": "UVREditorMode"
+        }
+      ]
+    },
+    {
+      "name": "IsClickingOnUI",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets if the interactor is clicking on any UI",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsHoveringOverUI",
+      "return": "bool",
+      "const": true,
+      "doc": "Gets if this interactor is hovering over UI",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsTouchingTrackpad",
+      "return": "bool",
+      "const": true,
+      "doc": "Check if the touchpad is currently touched",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ReplaceHandMeshComponent",
+      "return": "void",
+      "doc": "Replace the default VR controller mesh with a custom one.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "MeshScale",
+          "default": "FVector ( 1.000000 , 1.000000 , 1.000000 )",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "SetControllerHandSide",
+      "return": "void",
+      "doc": "Sets the EControllerHand for this motioncontroller",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControllerHandSide",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetControllerType",
+      "return": "void",
+      "doc": "Set what controller type this is for asymmetric control schemes",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControllerType",
+          "type": "EControllerType"
+        }
+      ]
+    },
+    {
+      "name": "SetForceLaserColor",
+      "return": "void",
+      "doc": "Next frame this will be used as color for the laser",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InColor",
+          "type": "FLinearColor"
+        }
+      ]
+    },
+    {
+      "name": "SetForceShowLaser",
+      "return": "void",
+      "doc": "Set if we want to force to show the laser",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInForceShow",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetupComponent",
+      "return": "void",
+      "callable": false,
+      "doc": "Sets up all components",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OwningActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "TryOverrideControllerType",
+      "return": "bool",
+      "doc": "Temporary set what controller type this is for asymmetric control schemes.\nYou can't override the controller type when there's already an override.\nRemove the temporary controller type with EControllerType::Unknown\n@return true if the controller type was changed",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InControllerType",
+          "type": "EControllerType"
+        }
+      ]
+    },
+    {
+      "name": "UpdateHandMeshRelativeTransform",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

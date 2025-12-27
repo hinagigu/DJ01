@@ -1,0 +1,67 @@
+{
+  "name": "FGeometry",
+  "isStruct": true,
+  "doc": "Represents the position, size, and absolute position of a Widget in Slate.\nThe absolute location of a geometry is usually screen space or\nwindow space depending on where the geometry originated.\nGeometries are usually paired with a SWidget pointer in order\nto provide information about a specific widget (see FArrangedWidget).\nA Geometry's parent is generally thought to be the Geometry of the\nthe corresponding parent widget.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetLocalSize",
+      "return": "FVector2D",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetAbsoluteSize",
+      "return": "FVector2D",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "AbsoluteToLocal",
+      "return": "FVector2D",
+      "const": true,
+      "args": [
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "LocalToAbsolute",
+      "return": "FVector2D",
+      "const": true,
+      "args": [
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "MakeChild",
+      "return": "FGeometry",
+      "const": true,
+      "args": [
+        {
+          "name": "Position",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Size",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "opAssign",
+      "return": "FGeometry&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGeometry"
+        }
+      ]
+    }
+  ]
+}

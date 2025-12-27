@@ -1,0 +1,73 @@
+{
+  "name": "UScaleBox",
+  "inherits": "UContentWidget",
+  "doc": "Allows you to place content with a desired size and have it scale to meet the constraints placed on this box's alloted area.  If\nyou needed to have a background image scale to fill an area but not become distorted with different aspect ratios, or if you need\nto auto fit some text to an area, this is the control for you.\n\n* Single Child\n* Aspect Ratio",
+  "properties": {
+    "Stretch": [
+      "EStretch",
+      "The stretching rule to apply when content is stretched"
+    ],
+    "StretchDirection": [
+      "EStretchDirection",
+      "Controls in what direction content can be scaled"
+    ],
+    "UserSpecifiedScale": [
+      "float32",
+      "Optional scale that can be specified by the User. Used only for UserSpecified stretching."
+    ],
+    "IgnoreInheritedScale": [
+      "bool",
+      "Optional bool to ignore the inherited scale. Applies inverse scaling to counteract parents before applying the local scale operation."
+    ]
+  },
+  "methods": [
+    {
+      "name": "SetIgnoreInheritedScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInIgnoreInheritedScale",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStretch",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStretch",
+          "type": "EStretch"
+        }
+      ]
+    },
+    {
+      "name": "SetStretchDirection",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStretchDirection",
+          "type": "EStretchDirection"
+        }
+      ]
+    },
+    {
+      "name": "SetUserSpecifiedScale",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InUserSpecifiedScale",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

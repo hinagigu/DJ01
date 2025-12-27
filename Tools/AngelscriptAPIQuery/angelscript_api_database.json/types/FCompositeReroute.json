@@ -1,0 +1,24 @@
+{
+  "name": "FCompositeReroute",
+  "isStruct": true,
+  "doc": "Collection of pins used for tunneling between graphs.\nUtilizes reroute expressions to ensure zero overhead in the compiled material.\n\n     _________________          _________________\n    |   INPUT BASE    |        |   OUTPUT BASE   |\n    +--------+--------+        +--------+--------+\n    |        |   (>)  |   ->   |  (>)   |        |\n    |        |   (>)  |        |  (>)   |        |\n    |        |   (>)  |        |  (>)   |        |\n    |        |   (>)  |        |  (>)   |        |\n    |        |        |        |        |        |\n    +--------+--------+        +--------+--------+\n    | NODE IN:  NONE  |        | NODE IN:  PINS  |\n    | NODE OUT: PINS  |        | NODE OUT: NONE  |\n    |_________________|        |_________________|",
+  "properties": {
+    "Name": [
+      "FName",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCompositeReroute&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCompositeReroute"
+        }
+      ]
+    }
+  ]
+}

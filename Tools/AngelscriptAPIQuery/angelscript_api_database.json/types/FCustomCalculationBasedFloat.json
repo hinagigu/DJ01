@@ -1,0 +1,44 @@
+{
+  "name": "FCustomCalculationBasedFloat",
+  "isStruct": true,
+  "doc": "Structure to encapsulate magnitudes that are calculated via custom calculation",
+  "properties": {
+    "CalculationClassMagnitude": [
+      "TSubclassOf<UGameplayModMagnitudeCalculation>",
+      2,
+      ""
+    ],
+    "Coefficient": [
+      "FScalableFloat",
+      2,
+      "Coefficient to the custom calculation"
+    ],
+    "PreMultiplyAdditiveValue": [
+      "FScalableFloat",
+      2,
+      "Additive value to the attribute calculation, added in before the coefficient applies"
+    ],
+    "PostMultiplyAdditiveValue": [
+      "FScalableFloat",
+      2,
+      "Additive value to the attribute calculation, added in after the coefficient applies"
+    ],
+    "FinalLookupCurve": [
+      "FCurveTableRowHandle",
+      2,
+      "If a curve table entry is specified, the OUTPUT of this custom class magnitude (including the pre and post additive values) lookup into the curve instead of using the attribute directly."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FCustomCalculationBasedFloat&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCustomCalculationBasedFloat"
+        }
+      ]
+    }
+  ]
+}

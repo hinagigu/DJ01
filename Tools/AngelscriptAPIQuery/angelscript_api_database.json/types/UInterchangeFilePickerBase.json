@@ -1,0 +1,51 @@
+{
+  "name": "UInterchangeFilePickerBase",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ScriptedFilePickerForTranslatorAssetType",
+      "return": "bool",
+      "doc": "Non-virtual helper that allows Blueprint to implement an event-based function to implement FilePickerForTranslatorAssetType().",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TranslatorAssetType",
+          "type": "EInterchangeTranslatorAssetType"
+        },
+        {
+          "name": "Parameters",
+          "type": "FInterchangeFilePickerParameters&"
+        },
+        {
+          "name": "OutFilenames",
+          "type": "TArray<FString>&"
+        }
+      ]
+    },
+    {
+      "name": "ScriptedFilePickerForTranslatorType",
+      "return": "bool",
+      "doc": "Non-virtual helper that allows Blueprint to implement an event-based function to implement FilePickerForTranslatorType().",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TranslatorType",
+          "type": "EInterchangeTranslatorType"
+        },
+        {
+          "name": "Parameters",
+          "type": "FInterchangeFilePickerParameters&"
+        },
+        {
+          "name": "OutFilenames",
+          "type": "TArray<FString>&"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ui_schema_v1.json",
+  "title": "UI Widget Schema",
+  "description": "用于定义 UE Widget 的 Schema 规范",
+  "type": "object",
+  
+  "required": ["name", "components"],
+  
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Schema 引用"
+    },
+    
+    "name": {
+      "type": "string",
+      "pattern": "^[A-Z][a-zA-Z0-9_]*$",
+      "description": "Widget 类名（不含 U 前缀）"
+    },
+    
+    "description": {
+      "type": "string",
+      "description": "Widget 描述"
+    },
+    
+    "author": {
+      "type": "string"
+    },
+    
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    
+    "parent_class": {
+      "type": "string",
+      "enum": ["UserWidget", "CommonUserWidget", "CommonActivatableWidget"],
+      "default": "CommonUserWidget",
+      "description": "父类"
+    },
+    
+    "output_path": {
+      "type": "string",
+      "description": "C++ 代码输出路径（相对于项目根目录）"
+    },
+    
+    "blueprint_path": {
+      "type": "string",
+      "description": "蓝图输出路径（UE 内容路径）"
+    },
+    
+    "components": {
+      "type": "array",
+      "description": "UI 组件树",
+      "items": {
+        "$ref": "#/definitions/component"
+      }
+    },
+    
+    "properties": {
+      "type": "array",
+      "description": "自定义属性",
+      "items": {
+        "$ref": "#/definitions/property"
+      }
+    },
+    
+    "functions": {
+      "type": "array",
+      "description": "自定义函数",
+      "items": {
+        "$ref": "#/definitions/function"
+      }
+    },
+    
+    "events": {
+      "type": "array",
+      "description": "事件/委托",
+      "items": {
+        "$ref": "#/definitions/event"
+      }
+    }
+  },
+  
+  "definitions": {
+    "component": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][a-zA-Z0-9_]*$",
+          "description": "组件变量名"
+        },
+        "type": {
+          "type": "string",
+          "description": "组件类型"
+        },
+        "comment": {
+          "type": "string",
+          "description": "注释"
+        },
+        "optional": {
+          "type": "boolean",
+          "default": false,
+          "description": "是否可选（BindWidgetOptional）"
+        },
+        "bind_percent": {
+          "type": "string",
+          "description": "绑定百分比属性（ProgressBar）"
+        },
+        "bind_text": {
+          "type": "string",
+          "description": "绑定文本属性（TextBlock）"
+        },
+        "bind_image": {
+          "type": "string",
+          "description": "绑定图片属性（Image）"
+        },
+        "width_override": {
+          "type": "number",
+          "description": "宽度覆盖（SizeBox）"
+        },
+        "height_override": {
+          "type": "number",
+          "description": "高度覆盖（SizeBox）"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/component"
+          },
+          "description": "子组件"
+        }
+      }
+    },
+    
+    "property": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][a-zA-Z0-9_]*$"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["float", "int32", "bool", "FText", "FString", "FLinearColor"]
+        },
+        "category": {
+          "type": "string",
+          "description": "在编辑器中的分类"
+        },
+        "default": {
+          "description": "默认值"
+        },
+        "description": {
+          "type": "string"
+        },
+        "blueprint_read_only": {
+          "type": "boolean",
+          "default": false
+        },
+        "replicated": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    
+    "function": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][a-zA-Z0-9_]*$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "return_type": {
+          "type": "string",
+          "default": "void"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "type"],
+            "properties": {
+              "name": {"type": "string"},
+              "type": {"type": "string"}
+            }
+          }
+        },
+        "blueprint_callable": {
+          "type": "boolean",
+          "default": true
+        },
+        "blueprint_implementable": {
+          "type": "boolean",
+          "default": false,
+          "description": "蓝图实现（BlueprintImplementableEvent）"
+        },
+        "body_hint": {
+          "type": "string",
+          "description": "函数体实现提示"
+        }
+      }
+    },
+    
+    "event": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^On[A-Z][a-zA-Z0-9_]*$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "type"],
+            "properties": {
+              "name": {"type": "string"},
+              "type": {"type": "string"}
+            }
+          }
+        },
+        "blueprint_assignable": {
+          "type": "boolean",
+          "default": true,
+          "description": "蓝图可绑定"
+        }
+      }
+    }
+  }
+}

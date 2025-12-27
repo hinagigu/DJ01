@@ -1,0 +1,334 @@
+{
+  "name": "__ProceduralMesh",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CalculateTangentsForMesh",
+      "return": "void",
+      "doc": "Automatically generate normals and tangent vectors for a mesh\nUVs are required for correct tangent generation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Vertices",
+          "type": "TArray<FVector>"
+        },
+        {
+          "name": "Triangles",
+          "type": "TArray<int>"
+        },
+        {
+          "name": "UVs",
+          "type": "TArray<FVector2D>"
+        },
+        {
+          "name": "Normals",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "Tangents",
+          "type": "TArray<FProcMeshTangent>&"
+        }
+      ]
+    },
+    {
+      "name": "ConvertQuadToTriangles",
+      "return": "void",
+      "doc": "Add a quad, specified by four indices, to a triangle index buffer as two triangles.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Triangles",
+          "type": "TArray<int>&"
+        },
+        {
+          "name": "Vert0",
+          "type": "int"
+        },
+        {
+          "name": "Vert1",
+          "type": "int"
+        },
+        {
+          "name": "Vert2",
+          "type": "int"
+        },
+        {
+          "name": "Vert3",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "CopyProceduralMeshFromStaticMeshComponent",
+      "return": "void",
+      "doc": "Copy materials from StaticMeshComponent to ProceduralMeshComponent.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "StaticMeshComponent",
+          "type": "UStaticMeshComponent"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "ProcMeshComponent",
+          "type": "UProceduralMeshComponent"
+        },
+        {
+          "name": "bCreateCollision",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "CreateGridMeshSplit",
+      "return": "void",
+      "doc": "Generate a vertex buffer, index buffer and UVs for a grid mesh where each quad is split, with standard 0-1 UVs on UV0 and point sampled texel center UVs for UV1.\n@param  NumX                    Number of vertices in X direction (must be >= 2)\n@param  NumY                    Number of vertices in y direction (must be >= 2)\n@out    Triangles               Output index buffer\n@out    Vertices                Output vertex buffer\n@out    UVs                             Out UVs\n@out    UV1s                    Out UV1s\n@param  GridSpacing             Size of each quad in world units",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumX",
+          "type": "int"
+        },
+        {
+          "name": "NumY",
+          "type": "int"
+        },
+        {
+          "name": "Triangles",
+          "type": "TArray<int>&"
+        },
+        {
+          "name": "Vertices",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "UVs",
+          "type": "TArray<FVector2D>&"
+        },
+        {
+          "name": "UV1s",
+          "type": "TArray<FVector2D>&"
+        },
+        {
+          "name": "GridSpacing",
+          "default": "16.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CreateGridMeshTriangles",
+      "return": "void",
+      "doc": "Generate an index buffer for a grid of quads.\n@param  NumX                    Number of vertices in X direction (must be >= 2)\n@param  NumY                    Number of vertices in y direction (must be >= 2)\n@param  bWinding                Reverses winding of indices generated for each quad\n@out    Triangles               Output index buffer",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumX",
+          "type": "int"
+        },
+        {
+          "name": "NumY",
+          "type": "int"
+        },
+        {
+          "name": "bWinding",
+          "type": "bool"
+        },
+        {
+          "name": "Triangles",
+          "type": "TArray<int>&"
+        }
+      ]
+    },
+    {
+      "name": "CreateGridMeshWelded",
+      "return": "void",
+      "doc": "Generate a vertex buffer, index buffer and UVs for a tessellated grid mesh.\n@param  NumX                    Number of vertices in X direction (must be >= 2)\n@param  NumY                    Number of vertices in y direction (must be >= 2)\n@out    Triangles               Output index buffer\n@out    Vertices                Output vertex buffer\n@out    UVs                             Out UVs\n@param  GridSpacing             Size of each quad in world units",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumX",
+          "type": "int"
+        },
+        {
+          "name": "NumY",
+          "type": "int"
+        },
+        {
+          "name": "Triangles",
+          "type": "TArray<int>&"
+        },
+        {
+          "name": "Vertices",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "UVs",
+          "type": "TArray<FVector2D>&"
+        },
+        {
+          "name": "GridSpacing",
+          "default": "16.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GenerateBoxMesh",
+      "return": "void",
+      "doc": "Generate vertex and index buffer for a simple box, given the supplied dimensions. Normals, UVs and tangents are also generated for each vertex.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "BoxRadius",
+          "type": "FVector"
+        },
+        {
+          "name": "Vertices",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "Triangles",
+          "type": "TArray<int>&"
+        },
+        {
+          "name": "Normals",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "UVs",
+          "type": "TArray<FVector2D>&"
+        },
+        {
+          "name": "Tangents",
+          "type": "TArray<FProcMeshTangent>&"
+        }
+      ]
+    },
+    {
+      "name": "GetSectionFromProceduralMesh",
+      "return": "void",
+      "doc": "Grab geometry data from a ProceduralMeshComponent.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InProcMesh",
+          "type": "UProceduralMeshComponent"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "Vertices",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "Triangles",
+          "type": "TArray<int>&"
+        },
+        {
+          "name": "Normals",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "UVs",
+          "type": "TArray<FVector2D>&"
+        },
+        {
+          "name": "Tangents",
+          "type": "TArray<FProcMeshTangent>&"
+        }
+      ]
+    },
+    {
+      "name": "GetSectionFromStaticMesh",
+      "return": "void",
+      "doc": "Grab geometry data from a StaticMesh asset.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMesh",
+          "type": "UStaticMesh"
+        },
+        {
+          "name": "LODIndex",
+          "type": "int"
+        },
+        {
+          "name": "SectionIndex",
+          "type": "int"
+        },
+        {
+          "name": "Vertices",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "Triangles",
+          "type": "TArray<int>&"
+        },
+        {
+          "name": "Normals",
+          "type": "TArray<FVector>&"
+        },
+        {
+          "name": "UVs",
+          "type": "TArray<FVector2D>&"
+        },
+        {
+          "name": "Tangents",
+          "type": "TArray<FProcMeshTangent>&"
+        }
+      ]
+    },
+    {
+      "name": "SliceProceduralMesh",
+      "return": "void",
+      "doc": "Slice the ProceduralMeshComponent (including simple convex collision) using a plane. Optionally create 'cap' geometry.\n@param  InProcMesh                              ProceduralMeshComponent to slice\n@param  PlanePosition                   Point on the plane to use for slicing, in world space\n@param  PlaneNormal                             Normal of plane used for slicing. Geometry on the positive side of the plane will be kept.\n@param  bCreateOtherHalf                If true, an additional ProceduralMeshComponent (OutOtherHalfProcMesh) will be created using the other half of the sliced geometry\n@param  OutOtherHalfProcMesh    If bCreateOtherHalf is set, this is the new component created. Its owner will be the same as the supplied InProcMesh.\n@param  CapOption                               If and how to create 'cap' geometry on the slicing plane\n@param  CapMaterial                             If creating a new section for the cap, assign this material to that section",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InProcMesh",
+          "type": "UProceduralMeshComponent"
+        },
+        {
+          "name": "PlanePosition",
+          "type": "FVector"
+        },
+        {
+          "name": "PlaneNormal",
+          "type": "FVector"
+        },
+        {
+          "name": "bCreateOtherHalf",
+          "type": "bool"
+        },
+        {
+          "name": "OutOtherHalfProcMesh",
+          "type": "UProceduralMeshComponent&"
+        },
+        {
+          "name": "CapOption",
+          "type": "EProcMeshSliceCapOption"
+        },
+        {
+          "name": "CapMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    }
+  ]
+}

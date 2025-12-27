@@ -1,0 +1,677 @@
+{
+  "name": "__AudioMixer",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddMasterSubmixEffect",
+      "return": "void",
+      "doc": "Adds a submix effect preset to the master submix.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SubmixEffectPreset",
+          "type": "USoundEffectSubmixPreset"
+        }
+      ]
+    },
+    {
+      "name": "AddSourceEffectToPresetChain",
+      "return": "void",
+      "doc": "Adds source effect entry to preset chain. Only effects the instance of the preset chain",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PresetChain",
+          "type": "USoundEffectSourcePresetChain"
+        },
+        {
+          "name": "Entry",
+          "type": "FSourceEffectChainEntry"
+        }
+      ]
+    },
+    {
+      "name": "AddSubmixEffect",
+      "return": "int",
+      "doc": "Adds a submix effect preset to the given submix at the end of its submix effect chain. Returns the number of submix effects.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoundSubmix",
+          "type": "USoundSubmix"
+        },
+        {
+          "name": "SubmixEffectPreset",
+          "type": "USoundEffectSubmixPreset"
+        }
+      ]
+    },
+    {
+      "name": "ClearMasterSubmixEffects",
+      "return": "void",
+      "doc": "Clears all master submix effects.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ClearSubmixEffectChainOverride",
+      "return": "void",
+      "doc": "Clears all submix effect overrides on the given submix and returns it to the default effect chain.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoundSubmix",
+          "type": "USoundSubmix"
+        },
+        {
+          "name": "FadeTimeSec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "ClearSubmixEffects",
+      "return": "void",
+      "doc": "Clears all submix effects on the given submix.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoundSubmix",
+          "type": "USoundSubmix"
+        }
+      ]
+    },
+    {
+      "name": "Conv_AudioOutputDeviceInfoToString",
+      "return": "FString",
+      "doc": "Returns the device info in a human readable format\n@param info - The audio device data to print\n@return The data in a string format",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Info",
+          "type": "FAudioOutputDeviceInfo"
+        }
+      ]
+    },
+    {
+      "name": "GetAvailableAudioOutputDevices",
+      "return": "void",
+      "doc": "Gets information about all audio output devices available in the system\n@param OnObtainDevicesEvent - the event to fire when the audio endpoint devices have been retrieved",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OnObtainDevicesEvent",
+          "default": "FOnAudioOutputDevicesObtained ( )",
+          "type": "FOnAudioOutputDevicesObtained"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentAudioOutputDeviceName",
+      "return": "void",
+      "doc": "Gets information about the currently used audio output device\n@param OnObtainCurrentDeviceEvent - the event to fire when the audio endpoint devices have been retrieved",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OnObtainCurrentDeviceEvent",
+          "default": "FOnMainAudioOutputDeviceObtained ( )",
+          "type": "FOnMainAudioOutputDeviceObtained"
+        }
+      ]
+    },
+    {
+      "name": "GetMagnitudeForFrequencies",
+      "return": "void",
+      "doc": "Retrieve the magnitudes for the given frequencies.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Frequencies",
+          "type": "TArray<float32>"
+        },
+        {
+          "name": "Magnitudes",
+          "type": "TArray<float32>&"
+        },
+        {
+          "name": "SubmixToAnalyze",
+          "default": "nullptr",
+          "type": "USoundSubmix"
+        }
+      ]
+    },
+    {
+      "name": "GetNumberOfEntriesInSourceEffectChain",
+      "return": "int",
+      "doc": "Returns the number of effect chain entries in the given source effect chain.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PresetChain",
+          "type": "USoundEffectSourcePresetChain"
+        }
+      ]
+    },
+    {
+      "name": "GetPhaseForFrequencies",
+      "return": "void",
+      "doc": "Retrieve the phases for the given frequencies.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Frequencies",
+          "type": "TArray<float32>"
+        },
+        {
+          "name": "Phases",
+          "type": "TArray<float32>&"
+        },
+        {
+          "name": "SubmixToAnalyze",
+          "default": "nullptr",
+          "type": "USoundSubmix"
+        }
+      ]
+    },
+    {
+      "name": "IsAudioBusActive",
+      "return": "bool",
+      "doc": "Queries if the given audio bus is active (and audio can be mixed to it).",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AudioBus",
+          "type": "UAudioBus"
+        }
+      ]
+    },
+    {
+      "name": "MakeFullSpectrumSpectralAnalysisBandSettings",
+      "return": "TArray<FSoundSubmixSpectralAnalysisBandSettings>",
+      "doc": "Make an array of logarithmically spaced bands.\n\n@param InNumBands - The number of bands to used to represent the spectrum.\n@param InMinimumFrequency - The center frequency of the first band.\n@param InMaximumFrequency - The center frequency of the last band.\n@param InAttackTimeMsec - The attack time (in milliseconds) to apply to each band's envelope tracker.\n@param InReleaseTimeMsec - The release time (in milliseconds) to apply to each band's envelope tracker.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNumBands",
+          "default": "30",
+          "type": "int"
+        },
+        {
+          "name": "InMinimumFrequency",
+          "default": "40.000000",
+          "type": "float32"
+        },
+        {
+          "name": "InMaximumFrequency",
+          "default": "16000.000000",
+          "type": "float32"
+        },
+        {
+          "name": "InAttackTimeMsec",
+          "default": "10",
+          "type": "int"
+        },
+        {
+          "name": "InReleaseTimeMsec",
+          "default": "10",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "MakeMusicalSpectralAnalysisBandSettings",
+      "return": "TArray<FSoundSubmixSpectralAnalysisBandSettings>",
+      "doc": "Make an array of musically spaced bands with ascending frequency.\n\n@param InNumSemitones - The number of semitones to represent.\n@param InStartingMuiscalNote - The name of the first note in the array.\n@param InStartingOctave - The octave of the first note in the array.\n@param InAttackTimeMsec - The attack time (in milliseconds) to apply to each band's envelope tracker.\n@param InReleaseTimeMsec - The release time (in milliseconds) to apply to each band's envelope tracker.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNumSemitones",
+          "default": "60",
+          "type": "int"
+        },
+        {
+          "name": "InStartingMusicalNote",
+          "default": "EMusicalNoteName :: C",
+          "type": "EMusicalNoteName"
+        },
+        {
+          "name": "InStartingOctave",
+          "default": "2",
+          "type": "int"
+        },
+        {
+          "name": "InAttackTimeMsec",
+          "default": "10",
+          "type": "int"
+        },
+        {
+          "name": "InReleaseTimeMsec",
+          "default": "10",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "MakePresetSpectralAnalysisBandSettings",
+      "return": "TArray<FSoundSubmixSpectralAnalysisBandSettings>",
+      "doc": "Make an array of bands which span the frequency range of a given EAudioSpectrumBandPresetType.\n\n@param InBandPresetType - The type audio content which the bands encompass.\n@param InNumBands - The number of bands used to represent the spectrum.\n@param InAttackTimeMsec - The attack time (in milliseconds) to apply to each band's envelope tracker.\n@param InReleaseTimeMsec - The release time (in milliseconds) to apply to each band's envelope tracker.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InBandPresetType",
+          "type": "EAudioSpectrumBandPresetType"
+        },
+        {
+          "name": "InNumBands",
+          "default": "10",
+          "type": "int"
+        },
+        {
+          "name": "InAttackTimeMsec",
+          "default": "10",
+          "type": "int"
+        },
+        {
+          "name": "InReleaseTimeMsec",
+          "default": "10",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "PauseRecordingOutput",
+      "return": "void",
+      "doc": "Pause recording audio, without finalizing the recording to disk. By leaving the Submix To Record field blank, you can record the master output of the game.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SubmixToPause",
+          "default": "nullptr",
+          "type": "USoundSubmix"
+        }
+      ]
+    },
+    {
+      "name": "PrimeSoundCueForPlayback",
+      "return": "void",
+      "doc": "Begin loading any sounds referenced by a sound cue into the cache so that it can be played immediately.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoundCue",
+          "type": "USoundCue"
+        }
+      ]
+    },
+    {
+      "name": "PrimeSoundForPlayback",
+      "return": "void",
+      "doc": "Begin loading a sound into the cache so that it can be played immediately.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoundWave",
+          "type": "USoundWave"
+        },
+        {
+          "name": "OnLoadCompletion",
+          "default": "FOnSoundLoadComplete ( )",
+          "type": "FOnSoundLoadComplete"
+        }
+      ]
+    },
+    {
+      "name": "RegisterAudioBusToSubmix",
+      "return": "void",
+      "doc": "Registers an audio bus to a submix so the submix output can be routed to the audiobus.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoundSubmix",
+          "type": "USoundSubmix"
+        },
+        {
+          "name": "AudioBus",
+          "type": "UAudioBus"
+        }
+      ]
+    },
+    {
+      "name": "RemoveMasterSubmixEffect",
+      "return": "void",
+      "doc": "Removes a submix effect preset from the master submix.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SubmixEffectPreset",
+          "type": "USoundEffectSubmixPreset"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSourceEffectFromPresetChain",
+      "return": "void",
+      "doc": "Removes source effect entry from preset chain. Only affects the instance of preset chain.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PresetChain",
+          "type": "USoundEffectSourcePresetChain"
+        },
+        {
+          "name": "EntryIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSubmixEffect",
+      "return": "void",
+      "doc": "Removes all instances of a submix effect preset from the given submix.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoundSubmix",
+          "type": "USoundSubmix"
+        },
+        {
+          "name": "SubmixEffectPreset",
+          "type": "USoundEffectSubmixPreset"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSubmixEffectAtIndex",
+      "return": "void",
+      "doc": "Removes the submix effect at the given submix chain index, if there is a submix effect at that index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoundSubmix",
+          "type": "USoundSubmix"
+        },
+        {
+          "name": "SubmixChainIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "ReplaceSubmixEffect",
+      "return": "void",
+      "doc": "Replaces the submix effect at the given submix chain index, adds the effect if there is none at that index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSoundSubmix",
+          "type": "USoundSubmix"
+        },
+        {
+          "name": "SubmixChainIndex",
+          "type": "int"
+        },
+        {
+          "name": "SubmixEffectPreset",
+          "type": "USoundEffectSubmixPreset"
+        }
+      ]
+    },
+    {
+      "name": "ResumeRecordingOutput",
+      "return": "void",
+      "doc": "Resume recording audio after pausing. By leaving the Submix To Pause field blank, you can record the master output of the game.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SubmixToPause",
+          "default": "nullptr",
+          "type": "USoundSubmix"
+        }
+      ]
+    },
+    {
+      "name": "SetBypassSourceEffectChainEntry",
+      "return": "void",
+      "doc": "Set whether or not to bypass the effect at the source effect chain index.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PresetChain",
+          "type": "USoundEffectSourcePresetChain"
+        },
+        {
+          "name": "EntryIndex",
+          "type": "int"
+        },
+        {
+          "name": "bBypassed",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetSubmixEffectChainOverride",
+      "return": "void",
+      "doc": "Sets a submix effect chain override on the given submix. The effect chain will cross fade from the base effect chain or current override to the new override.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoundSubmix",
+          "type": "USoundSubmix"
+        },
+        {
+          "name": "SubmixEffectPresetChain",
+          "type": "TArray<USoundEffectSubmixPreset>"
+        },
+        {
+          "name": "FadeTimeSec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "StartAnalyzingOutput",
+      "return": "void",
+      "doc": "Start spectrum analysis of the audio output. By leaving the Submix To Analyze blank, you can analyze the master output of the game.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SubmixToAnalyze",
+          "default": "nullptr",
+          "type": "USoundSubmix"
+        },
+        {
+          "name": "FFTSize",
+          "default": "EFFTSize :: DefaultSize",
+          "type": "EFFTSize"
+        },
+        {
+          "name": "InterpolationMethod",
+          "default": "EFFTPeakInterpolationMethod :: Linear",
+          "type": "EFFTPeakInterpolationMethod"
+        },
+        {
+          "name": "WindowType",
+          "default": "EFFTWindowType :: Hann",
+          "type": "EFFTWindowType"
+        },
+        {
+          "name": "HopSize",
+          "default": "0.000000",
+          "type": "float32"
+        },
+        {
+          "name": "SpectrumType",
+          "default": "EAudioSpectrumType :: MagnitudeSpectrum",
+          "type": "EAudioSpectrumType"
+        }
+      ]
+    },
+    {
+      "name": "StartAudioBus",
+      "return": "void",
+      "doc": "Starts the given audio bus.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AudioBus",
+          "type": "UAudioBus"
+        }
+      ]
+    },
+    {
+      "name": "StartRecordingOutput",
+      "return": "void",
+      "doc": "Start recording audio. By leaving the Submix To Record field blank, you can record the master output of the game.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExpectedDuration",
+          "type": "float32"
+        },
+        {
+          "name": "SubmixToRecord",
+          "default": "nullptr",
+          "type": "USoundSubmix"
+        }
+      ]
+    },
+    {
+      "name": "StopAnalyzingOutput",
+      "return": "void",
+      "doc": "Stop spectrum analysis.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SubmixToStopAnalyzing",
+          "default": "nullptr",
+          "type": "USoundSubmix"
+        }
+      ]
+    },
+    {
+      "name": "StopAudioBus",
+      "return": "void",
+      "doc": "Stops the given audio bus.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AudioBus",
+          "type": "UAudioBus"
+        }
+      ]
+    },
+    {
+      "name": "StopRecordingOutput",
+      "return": "USoundWave",
+      "doc": "Stop recording audio. Path can be absolute, or relative (to the /Saved/BouncedWavFiles folder). By leaving the Submix To Record field blank, you can record the master output of the game.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ExportType",
+          "type": "EAudioRecordingExportType"
+        },
+        {
+          "name": "Name",
+          "type": "FString"
+        },
+        {
+          "name": "Path",
+          "type": "FString"
+        },
+        {
+          "name": "SubmixToRecord",
+          "default": "nullptr",
+          "type": "USoundSubmix"
+        },
+        {
+          "name": "ExistingSoundWaveToOverwrite",
+          "default": "nullptr",
+          "type": "USoundWave"
+        }
+      ]
+    },
+    {
+      "name": "SwapAudioOutputDevice",
+      "return": "void",
+      "doc": "Hotswaps to the requested audio output device\n@param NewDeviceId - the device Id to swap to\n@param OnCompletedDeviceSwap - the event to fire when the audio endpoint devices have been retrieved",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewDeviceId",
+          "type": "FString"
+        },
+        {
+          "name": "OnCompletedDeviceSwap",
+          "default": "FOnCompletedDeviceSwap ( )",
+          "type": "FOnCompletedDeviceSwap"
+        }
+      ]
+    },
+    {
+      "name": "TrimAudioCache",
+      "return": "float32",
+      "doc": "Trim memory used by the audio cache. Returns the number of megabytes freed.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMegabytesToFree",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterAudioBusFromSubmix",
+      "return": "void",
+      "doc": "Unregisters an audio bus that could have been registered to a submix.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SoundSubmix",
+          "type": "USoundSubmix"
+        },
+        {
+          "name": "AudioBus",
+          "type": "UAudioBus"
+        }
+      ]
+    }
+  ]
+}

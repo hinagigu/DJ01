@@ -1,0 +1,153 @@
+{
+  "name": "USkinWeightModifier",
+  "inherits": "UObject",
+  "doc": "API used to modify skin weights on a Skeletal Mesh asset.\n\nTo use:\n1. Instantiate an instance of USkinWeightModifier\n2. Call \"SetSkeletalMesh(MyMeshAsset)\", passing in the skeletal mesh you want to edit weights on\n3. Use Get/Set weights functions, and Normalize/Prune to edit the weights as desired\n4. When ready to commit to the asset, call CommitWeightsToSkeletalMesh() and save the asset if desired\n\nThis API can be used from C++, Blueprint or Python. Here is a sample usage of the API in Python:\n\nimport unreal\n\n# create a weight modifier for a given skeletal mesh\nskel_mesh = unreal.EditorAssetLibrary().load_asset(\"/Game/Characters/Wolf/Meshes/SK_Wolf\")\nweight_modifier = unreal.SkinWeightModifier()\nweight_modifier.set_skeletal_mesh(skel_mesh)\n\n# get weight of vertex 1234\nvertex_weights = weight_modifier.get_vertex_weights(1234)\nprint(vertex_weights)\n\n# remove neck2 as an influence on this vertex\nvertex_weights.pop(\"neck2\")\nweight_modifier.set_vertex_weights(vertex_weights, True)\nprint(vertex_weights)\n\n# commit change to the skeletal mesh\nweight_modifier.commit_weights_to_skeletal_mesh()\n\nOUTPUT:\n{\"head\": 0.6, \"neck1\": 0.3, \"neck2\": 0.1}\n{\"head\": 0.6, \"neck1\": 0.3}\n\nIn Python, the per-vertex weights are stored as a dictionary mapping Bone Names to float weight values.\n\nThe \"SetVertexWeights()\" function expects the same data structure. You can add/remove/edit influences as needed.\nThe SetVertexWeights() function does not normalize the weights. So you can make multiple modifications\nand call NormalizeVertexWeights() or NormalizeAllWeights() as desired.\n\nThe PruneVertexWeights() and EnforceMaxInfluences() functions can be used to trim small influences\nand clamp the total number of influences per vertex as needed.\n\nNote that it is not required to normalize the weights by calling any of the normalize functions. Or manually before\ncalling SetVertexWeights(). Committing the weights to the skeletal mesh will always enforce normalization.\n\nThough it may be useful to normalize while editing.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CommitWeightsToSkeletalMesh",
+      "return": "bool",
+      "doc": "Actually applies the weight modifications to the skeletal mesh. This action creates an undo transaction.\nThe skeletal mesh asset will be dirtied, but it is up to the user to save the asset if required.\n@return true if weights were applied to a skeletal mesh, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EnforceMaxInfluences",
+      "return": "bool",
+      "doc": "Strips out smallest influences to ensure each vertex does not have weight on more influences than MaxInfluences.\nInfluences with the smallest weight are culled first.\n@param MaxInfluences The maximum number of influences to allow for each vertex in the mesh. If -1 is passed, will use the project-wide MaxInfluences amount.\n@return true if influences were removed, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaxInfluences",
+          "default": "- 1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetAllBoneNames",
+      "return": "TArray<FName>",
+      "doc": "Get an array of all bone names in the skeletal mesh.\n@return array of bone names",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumVertices",
+      "return": "int",
+      "doc": "Get the total number of vertices in the skeletal mesh.\n@return int, number of vertices",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSkeletalMesh",
+      "return": "USkeletalMesh",
+      "doc": "Get a reference to the skeletal mesh that was loaded\n@return USkeletalMesh* - the mesh that was loaded, or null",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetVertexWeights",
+      "return": "TMap<FName,float32>",
+      "doc": "Get all bone weights for a single vertex.\n@param VertexID the index of the vertex\n@return a map of Bone Name to weight values for all bones that influence the specified vertex.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "NormalizeAllWeights",
+      "return": "bool",
+      "doc": "Normalize weights on all vertices in the mesh.\n@return true if normalization was performed, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "NormalizeVertexWeights",
+      "return": "bool",
+      "doc": "Normalize weights on the specified vertex.\n@param VertexID the index of the vertex to normalize weights on\n@return true if normalization was performed, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "PruneAllWeights",
+      "return": "bool",
+      "doc": "Remove all weights below the given threshold value, on all vertices.\n@param WeightThreshold vertex weights below this value will be removed.\n@return true if influences were removed, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WeightThreshold",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "PruneVertexWeights",
+      "return": "bool",
+      "doc": "Remove all weights below the given threshold value, on the given vertex.\nInfluences that are pruned will no longer receive weight from normalization.\n@param VertexID the index of the vertex to prune weights on\n@param WeightThreshold vertex weights below this value will be removed.\n@return true if influences were removed, false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "int"
+        },
+        {
+          "name": "WeightThreshold",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetSkeletalMesh",
+      "return": "bool",
+      "doc": "Call this first to load the weights for a skeletal mesh for fast editing.\n@param InMesh - The skeletal mesh asset to load for weight editing\n@return bool - true if the mesh weights were successfully loaded.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMesh",
+          "type": "USkeletalMesh"
+        }
+      ]
+    },
+    {
+      "name": "SetVertexWeights",
+      "return": "bool",
+      "doc": "Set bone weights for a single vertex. The weights are stored as supplied and not normalized until\neither \"CommitWeightsToSkeletalMesh()\" or \"NormalizeVertexWeights()\" is called.\n@param VertexID the index of the vertex\n@param InWeights a map of Bone-Name to Weight for all bones that influence the specified vertex, ie {\"Head\": 0.6, \"Neck\": 0.4}\n@param bReplaceAll if true, all weights on this vertex will be replaced with the input weights. Default is false.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "VertexID",
+          "type": "int"
+        },
+        {
+          "name": "InWeights",
+          "type": "TMap<FName,float32>"
+        },
+        {
+          "name": "bReplaceAll",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "name": "__Plugin",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetAdditionalPluginSearchPaths",
+      "return": "TArray<FString>",
+      "doc": "Get the list of extra directories that are recursively searched for\nplugins (aside from the engine and project plugin directories).\n\n@return The additional filesystem plugin search paths.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAdditionalProjectPluginSearchPaths",
+      "return": "TArray<FString>",
+      "doc": "Get the list of extra directories added by the project that are\nrecursively searched for plugins.\n\n@return The additional project filesystem plugin search paths.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetEnabledPluginNames",
+      "return": "TArray<FString>",
+      "doc": "Get the names of all enabled plugins.\n\n@return The names of all enabled plugins.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPluginBaseDir",
+      "return": "bool",
+      "doc": "Get the filesystem path to a plugin's base directory.\n\n@param PluginName - Name of the plugin\n@param OutBaseDir - Filesystem path to the plugin's base directory, if found\n\n@return true if the named plugin was found and the plugin base directory\n        filesystem path was stored in OutBaseDir, or false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PluginName",
+          "type": "FString"
+        },
+        {
+          "name": "OutBaseDir",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetPluginContentDir",
+      "return": "bool",
+      "doc": "Get the filesystem path to a plugin's content directory.\n\n@param PluginName - Name of the plugin\n@param OutContentDir - Filesystem path to the plugin's content directory, if found\n\n@return true if the named plugin was found and the plugin content\n        directory filesystem path was stored in OutContentDir, or false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PluginName",
+          "type": "FString"
+        },
+        {
+          "name": "OutContentDir",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetPluginDescription",
+      "return": "bool",
+      "doc": "Get the description of a plugin.\n\n@param PluginName - Name of the plugin\n@param OutDescription - Description of the plugin, if found\n\n@return true if the named plugin was found and the plugin's description\n        was stored in OutDescription, or false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PluginName",
+          "type": "FString"
+        },
+        {
+          "name": "OutDescription",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetPluginDescriptorFilePath",
+      "return": "bool",
+      "doc": "Get the filesystem path to a plugin's descriptor.\n\n@param PluginName - Name of the plugin\n@param OutFilePath - Filesystem path to the plugin's descriptor, if found\n\n@return true if the named plugin was found and the plugin descriptor\n        filesystem path was stored in OutFilePath, or false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PluginName",
+          "type": "FString"
+        },
+        {
+          "name": "OutFilePath",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetPluginEditorCustomVirtualPath",
+      "return": "bool",
+      "doc": "Get the editor custom virtual path of a plugin.\n\n@param PluginName - Name of the plugin\n@param OutVirtualPath - Editor custom virtual path of the plugin, if found\n\n@return true if the named plugin was found and the plugin's editor\n        custom virtual path was stored in OutVirtualPath, or false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PluginName",
+          "type": "FString"
+        },
+        {
+          "name": "OutVirtualPath",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetPluginMountedAssetPath",
+      "return": "bool",
+      "doc": "Get the virtual root path for assets in a plugin.\n\n@param PluginName - Name of the plugin\n@param OutAssetPath - Virtual root path for the plugin's assets, if found\n\n@return true if the named plugin was found and the plugin's virtual\n        root path was stored in OutAssetPath, or false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PluginName",
+          "type": "FString"
+        },
+        {
+          "name": "OutAssetPath",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetPluginNameForObjectPath",
+      "return": "bool",
+      "doc": "Get the name of the plugin containing an object.\n\n@param ObjectPath - Path to the object\n@param OutPluginName - Name of the plugin containing the object, if found\n\n@return true if the object is contained within a plugin and the plugin\n        name was stored in OutPluginName, or false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectPath",
+          "type": "FSoftObjectPath"
+        },
+        {
+          "name": "OutPluginName",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "GetPluginVersion",
+      "return": "bool",
+      "doc": "Get the version number of a plugin.\n\n@param PluginName - Name of the plugin\n@param OutVersion - Version number of the plugin, if found\n\n@return true if the named plugin was found and the plugin's version\n        number was stored in OutVersion, or false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PluginName",
+          "type": "FString"
+        },
+        {
+          "name": "OutVersion",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "GetPluginVersionName",
+      "return": "bool",
+      "doc": "Get the version name of a plugin.\n\n@param PluginName - Name of the plugin\n@param OutVersionName - Version name of the plugin, if found\n\n@return true if the named plugin was found and the plugin's version\n        name was stored in OutVersionName, or false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PluginName",
+          "type": "FString"
+        },
+        {
+          "name": "OutVersionName",
+          "type": "FString&"
+        }
+      ]
+    },
+    {
+      "name": "IsPluginMounted",
+      "return": "bool",
+      "doc": "Determine whether a plugin is mounted.\n\n@param PluginName - Name of the plugin\n\n@return true if the named plugin is mounted, or false otherwise",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PluginName",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

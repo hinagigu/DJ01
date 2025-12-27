@@ -1,0 +1,42 @@
+{
+  "name": "UBakeInputMeshProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "properties": {
+    "TargetUVLayer": [
+      "FString",
+      2,
+      "UV channel to use for the target mesh"
+    ],
+    "bHideSourceMesh": [
+      "bool",
+      2,
+      "If true, hide the source mesh"
+    ],
+    "SourceNormalMap": [
+      "UTexture2D",
+      2,
+      "Source mesh normal map; if empty, the geometric normals will be used"
+    ],
+    "SourceNormalMapUVLayer": [
+      "FString",
+      2,
+      "UV channel to use for the source mesh normal map; only relevant if a source normal map is set"
+    ],
+    "SourceNormalSpace": [
+      "EBakeNormalSpace",
+      2,
+      "Normal space of the source mesh normal map."
+    ],
+    "ProjectionDistance": [
+      "float32",
+      2,
+      "Maximum allowed distance for the projection from target mesh to source mesh for the sample to be considered valid.\nThis is only relevant if a separate source mesh is provided."
+    ],
+    "bProjectionInWorldSpace": [
+      "bool",
+      2,
+      "If true, uses the world space positions for the projection from target mesh to source mesh, otherwise it uses their object space positions.\nThis is only relevant if a separate source mesh is provided."
+    ]
+  },
+  "methods": []
+}

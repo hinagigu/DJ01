@@ -1,0 +1,49 @@
+{
+  "name": "FGameplayModifierInfo",
+  "isStruct": true,
+  "doc": "FGameplayModifierInfo\n    Tells us \"Who/What we\" modify\n    Does not tell us how exactly",
+  "properties": {
+    "Attribute": [
+      "FGameplayAttribute",
+      2,
+      "The Attribute we modify or the GE we modify modifies."
+    ],
+    "ModifierOp": [
+      "EGameplayModOp",
+      2,
+      "The numeric operation of this modifier: Override, Add, Multiply, etc"
+    ],
+    "ModifierMagnitude": [
+      "FGameplayEffectModifierMagnitude",
+      2,
+      "Magnitude of the modifier"
+    ],
+    "EvaluationChannelSettings": [
+      "FGameplayModEvaluationChannelSettings",
+      2,
+      "Evaluation channel settings of the modifier"
+    ],
+    "SourceTags": [
+      "FGameplayTagRequirements",
+      2,
+      ""
+    ],
+    "TargetTags": [
+      "FGameplayTagRequirements",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FGameplayModifierInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayModifierInfo"
+        }
+      ]
+    }
+  ]
+}

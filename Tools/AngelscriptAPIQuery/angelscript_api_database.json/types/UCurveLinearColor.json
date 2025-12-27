@@ -1,0 +1,87 @@
+{
+  "name": "UCurveLinearColor",
+  "inherits": "UCurveBase",
+  "properties": {
+    "FloatCurves": [
+      "FRichCurve",
+      2,
+      "Keyframe data, one curve for red, green, blue, and alpha"
+    ],
+    "AdjustHue": [
+      "float32",
+      2,
+      "Properties for adjusting the color of the gradient"
+    ],
+    "AdjustSaturation": [
+      "float32",
+      2,
+      ""
+    ],
+    "AdjustBrightness": [
+      "float32",
+      2,
+      ""
+    ],
+    "AdjustBrightnessCurve": [
+      "float32",
+      2,
+      ""
+    ],
+    "AdjustVibrance": [
+      "float32",
+      2,
+      ""
+    ],
+    "AdjustMinAlpha": [
+      "float32",
+      2,
+      ""
+    ],
+    "AdjustMaxAlpha": [
+      "float32",
+      2,
+      ""
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetClampedLinearColorValue",
+      "return": "FLinearColor",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetLinearColorValue",
+      "return": "FLinearColor",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetUnadjustedLinearColorValue",
+      "return": "FLinearColor",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InTime",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

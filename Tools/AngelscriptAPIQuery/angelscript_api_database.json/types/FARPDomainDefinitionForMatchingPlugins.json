@@ -1,0 +1,48 @@
+{
+  "name": "FARPDomainDefinitionForMatchingPlugins",
+  "isStruct": true,
+  "properties": {
+    "DisplayName": [
+      "FText",
+      2,
+      "The display name of this rule (used in error message when attempting to reference content incorrectly)\nThe token {0} will be replaced with the plugin name"
+    ],
+    "ErrorMessageIfUsedElsewhere": [
+      "FText",
+      2,
+      "The error message if something that is not allowed to attempts to reference content from this domain"
+    ],
+    "MatchRule": [
+      "EARPPluginMatchMode",
+      2,
+      "Type of matching for this rule"
+    ],
+    "PluginPathPrefix": [
+      "FString",
+      2,
+      "If set, a plugin with the same rooted directory path will match this rule\n(use \"/FirstFolder/SecondFolder/\" to match a plugin like $YourProjectDir/Plugins/FirstFolder/SecondFolder/MyCoolPlugin/MyCoolPlugin.uplugin)"
+    ],
+    "PluginCategoryPrefix": [
+      "FString",
+      2,
+      "If set, a plugin with a matching Category will match this rule"
+    ],
+    "CanReferenceTheseDomains": [
+      "TArray<FString>",
+      2,
+      "The list of additional domains always visible from a plugin\n(EngineContent is always visible, as is content from other plugins that are explicitly referenced)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FARPDomainDefinitionForMatchingPlugins&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FARPDomainDefinitionForMatchingPlugins"
+        }
+      ]
+    }
+  ]
+}

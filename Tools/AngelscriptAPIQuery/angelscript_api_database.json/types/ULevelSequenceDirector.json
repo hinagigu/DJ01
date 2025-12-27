@@ -1,0 +1,100 @@
+{
+  "name": "ULevelSequenceDirector",
+  "inherits": "UObject",
+  "properties": {
+    "Player": [
+      "ULevelSequencePlayer",
+      1,
+      "Pointer to the player that's playing back this director's sequence. Only valid in game or in PIE/Simulate."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetBoundActor",
+      "return": "AActor",
+      "doc": "Resolve the first valid Actor binding inside this sub-sequence that relates to the specified ID\n@note: ObjectBinding should be constructed from the same sequence as this Sequence Director's owning Sequence (see the GetSequenceBinding node)\n\n@param ObjectBinding The ID for the object binding inside this sub-sequence or one of its children to resolve",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectBinding",
+          "type": "FMovieSceneObjectBindingID"
+        }
+      ]
+    },
+    {
+      "name": "GetBoundActors",
+      "return": "TArray<AActor>",
+      "doc": "Resolve the actor bindings inside this sub-sequence that relate to the specified ID\n@note: ObjectBinding should be constructed from the same sequence as this Sequence Director's owning Sequence (see the GetSequenceBinding node)\n\n@param ObjectBinding The ID for the object binding inside this sub-sequence or one of its children to resolve",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectBinding",
+          "type": "FMovieSceneObjectBindingID"
+        }
+      ]
+    },
+    {
+      "name": "GetBoundObject",
+      "return": "UObject",
+      "doc": "Resolve the first valid binding inside this sub-sequence that relates to the specified ID\n@note: ObjectBinding should be constructed from the same sequence as this Sequence Director's owning Sequence (see the GetSequenceBinding node)\n\n@param ObjectBinding The ID for the object binding inside this sub-sequence or one of its children to resolve",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectBinding",
+          "type": "FMovieSceneObjectBindingID"
+        }
+      ]
+    },
+    {
+      "name": "GetBoundObjects",
+      "return": "TArray<UObject>",
+      "doc": "Resolve the bindings inside this sub-sequence that relate to the specified ID\n@note: ObjectBinding should be constructed from the same sequence as this Sequence Director's owning Sequence (see the GetSequenceBinding node)\n\n@param ObjectBinding The ID for the object binding inside this sub-sequence or one of its children to resolve",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ObjectBinding",
+          "type": "FMovieSceneObjectBindingID"
+        }
+      ]
+    },
+    {
+      "name": "GetCurrentTime",
+      "return": "FQualifiedFrameTime",
+      "const": true,
+      "doc": "Get the current time for this director's sub-sequence (or the root sequence, if this is a root sequence director)\n@return The current playback position of this director's sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRootSequenceTime",
+      "return": "FQualifiedFrameTime",
+      "const": true,
+      "doc": "Get the current time for the outermost (root) sequence\n@return The current playback position of the outermost (root) sequence",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSequence",
+      "return": "UMovieSceneSequence",
+      "doc": "* Get the current sequence that this director is playing back within",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnCreated",
+      "return": "void",
+      "callable": false,
+      "doc": "Called when this director is created",
+      "event": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

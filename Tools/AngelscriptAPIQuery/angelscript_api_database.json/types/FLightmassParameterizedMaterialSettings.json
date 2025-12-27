@@ -1,0 +1,39 @@
+{
+  "name": "FLightmassParameterizedMaterialSettings",
+  "isStruct": true,
+  "doc": "Structure for 'parameterized' Lightmass settings",
+  "properties": {
+    "CastShadowAsMasked": [
+      "FLightmassBooleanParameterValue",
+      2,
+      "If true, forces translucency to cast static shadows as if the material were masked."
+    ],
+    "EmissiveBoost": [
+      "FLightmassScalarParameterValue",
+      2,
+      "Scales the emissive contribution of this material to static lighting."
+    ],
+    "DiffuseBoost": [
+      "FLightmassScalarParameterValue",
+      2,
+      "Scales the diffuse contribution of this material to static lighting."
+    ],
+    "ExportResolutionScale": [
+      "FLightmassScalarParameterValue",
+      2,
+      "Scales the resolution that this material's attributes were exported at.\nThis is useful for increasing material resolution when details are needed."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLightmassParameterizedMaterialSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLightmassParameterizedMaterialSettings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "name": "USkeleton",
+  "inherits": "UObject",
+  "doc": "USkeleton : that links between mesh and animation\n        - Bone hierarchy for animations\n        - Bone/track linkup between mesh and animation\n        - Retargetting related",
+  "properties": {
+    "CompatibleSkeletons": [
+      "TArray<TSoftObjectPtr<USkeleton>>",
+      "The list of compatible skeletons. This skeleton will be able to use animation data originating from skeletons within this array, such as animation sequences.\nThis property is not bi-directional.\n\nThis is an array of TSoftObjectPtr in order to prevent all skeletons to be loaded, as we only want to load things on demand.\nAs this is EditAnywhere and an array of TSoftObjectPtr, checking validity of pointers is needed."
+    ],
+    "AssetUserData": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the asset"
+    ],
+    "AssetUserDataEditorOnly": [
+      "TArray<TObjectPtr<UAssetUserData>>",
+      2,
+      "Array of user data stored with the asset"
+    ]
+  },
+  "methods": [
+    {
+      "name": "AddCompatibleSkeleton",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceSkeleton",
+          "type": "const USkeleton"
+        }
+      ]
+    },
+    {
+      "name": "AddCompatibleSkeletonSoft",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceSkeleton",
+          "type": "TSoftObjectPtr<USkeleton>"
+        }
+      ]
+    },
+    {
+      "name": "GetBlendProfile",
+      "return": "UBlendProfile",
+      "doc": "Get the specified blend profile by name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InProfileName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

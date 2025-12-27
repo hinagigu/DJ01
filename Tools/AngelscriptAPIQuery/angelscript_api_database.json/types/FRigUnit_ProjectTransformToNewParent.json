@@ -1,0 +1,48 @@
+{
+  "name": "FRigUnit_ProjectTransformToNewParent",
+  "isStruct": true,
+  "doc": "Gets the relative offset between the child and the old parent, then multiplies by new parent's transform.",
+  "properties": {
+    "Child": [
+      "FRigElementKey",
+      "The element to project between parents"
+    ],
+    "bChildInitial": [
+      "bool",
+      "If set to true the child will be retrieved in its initial transform"
+    ],
+    "OldParent": [
+      "FRigElementKey",
+      "The original parent of the child.\nCan be an actual parent in the hierarchy or any other\nitem you want to use to compute to offset against."
+    ],
+    "bOldParentInitial": [
+      "bool",
+      "If set to true the old parent will be retrieved in its initial transform"
+    ],
+    "NewParent": [
+      "FRigElementKey",
+      "The new parent of the child."
+    ],
+    "bNewParentInitial": [
+      "bool",
+      "If set to true the new parent will be retrieved in its initial transform"
+    ],
+    "Transform": [
+      "FTransform",
+      1,
+      "The resulting transform"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_ProjectTransformToNewParent&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_ProjectTransformToNewParent"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "name": "UPyTestObject",
+  "inherits": "UObject",
+  "doc": "Object to allow testing of the various UObject features that are exposed to Python wrapped types.",
+  "properties": {
+    "Bool": [
+      "bool"
+    ],
+    "Int": [
+      "int"
+    ],
+    "Float": [
+      "float32"
+    ],
+    "Enum": [
+      "EPyTestEnum"
+    ],
+    "String": [
+      "FString"
+    ],
+    "Text": [
+      "FText"
+    ],
+    "StringArray": [
+      "TArray<FString>"
+    ],
+    "StringSet": [
+      "TSet<FString>"
+    ],
+    "StringIntMap": [
+      "TMap<FString,int>"
+    ],
+    "Delegate": [
+      "FPyTestDelegate"
+    ],
+    "MulticastDelegate": [
+      "FPyTestMulticastDelegate"
+    ],
+    "Struct": [
+      "FPyTestStruct"
+    ],
+    "StructArray": [
+      "TArray<FPyTestStruct>"
+    ],
+    "ChildStruct": [
+      "FPyTestChildStruct"
+    ],
+    "BoolInstanceOnly": [
+      "bool",
+      2,
+      ""
+    ],
+    "BoolDefaultsOnly": [
+      "bool",
+      2,
+      ""
+    ],
+    "Name": [
+      "FName"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CallFuncBlueprintImplementable",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "CallFuncBlueprintImplementablePackedGetter",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValue",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "CallFuncBlueprintNative",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "CallFuncBlueprintNativeRef",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOutStruct",
+          "type": "FPyTestStruct&"
+        }
+      ]
+    },
+    {
+      "name": "DelegatePropertyCallback",
+      "return": "int",
+      "const": true,
+      "doc": "UHT couldn't parse any default value for the FieldPath.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "FuncBlueprintImplementable",
+      "return": "int",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "FuncBlueprintImplementablePackedGetter",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OutValue",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "FuncBlueprintNative",
+      "return": "int",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "FuncBlueprintNativeRef",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOutStruct",
+          "type": "FPyTestStruct&"
+        }
+      ]
+    },
+    {
+      "name": "FuncTakingPyTestChildStruct",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStruct",
+          "type": "FPyTestChildStruct"
+        }
+      ]
+    },
+    {
+      "name": "FuncTakingPyTestDelegate",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDelegate",
+          "type": "FPyTestDelegate"
+        },
+        {
+          "name": "InValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "FuncTakingPyTestStruct",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStruct",
+          "type": "FPyTestStruct"
+        }
+      ]
+    },
+    {
+      "name": "FuncTakingPyTestStructDefault",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStruct",
+          "type": "FPyTestStruct"
+        }
+      ]
+    },
+    {
+      "name": "MulticastDelegatePropertyCallback",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStr",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

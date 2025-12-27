@@ -1,0 +1,47 @@
+{
+  "name": "FRigUnit_AimConstraint",
+  "isStruct": true,
+  "properties": {
+    "Joint": [
+      "FName"
+    ],
+    "AimMode": [
+      "EAimMode",
+      "# How to perform an aim"
+    ],
+    "UpMode": [
+      "EAimMode",
+      "# How to perform an upvector stabilization"
+    ],
+    "AimVector": [
+      "FVector",
+      "# Vector in the space of Named joint which will be aligned to the aim target"
+    ],
+    "UpVector": [
+      "FVector",
+      "# Vector in the space of Named joint which will be aligned to the up target for stabilization"
+    ],
+    "AimTargets": [
+      "TArray<FAimTarget>"
+    ],
+    "UpTargets": [
+      "TArray<FAimTarget>"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_AimConstraint&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_AimConstraint"
+        }
+      ]
+    }
+  ]
+}

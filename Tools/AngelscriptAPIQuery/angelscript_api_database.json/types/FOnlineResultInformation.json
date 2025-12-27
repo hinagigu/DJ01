@@ -1,0 +1,34 @@
+{
+  "name": "FOnlineResultInformation",
+  "isStruct": true,
+  "doc": "Detailed information about the online error. Effectively a wrapper for FOnlineError.",
+  "properties": {
+    "bWasSuccessful": [
+      "bool",
+      1,
+      "Whether the operation was successful or not. If it was successful, the error fields of this struct will not contain extra information."
+    ],
+    "ErrorId": [
+      "FString",
+      1,
+      "The unique error id. Can be used to compare against specific handled errors."
+    ],
+    "ErrorText": [
+      "FText",
+      1,
+      "Error text to display to the user."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FOnlineResultInformation&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FOnlineResultInformation"
+        }
+      ]
+    }
+  ]
+}

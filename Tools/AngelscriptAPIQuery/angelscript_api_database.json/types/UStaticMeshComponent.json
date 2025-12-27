@@ -1,0 +1,243 @@
+{
+  "name": "UStaticMeshComponent",
+  "inherits": "UMeshComponent",
+  "doc": "StaticMeshComponent is used to create an instance of a UStaticMesh.\nA static mesh is a piece of geometry that consists of a static set of polygons.\n\n@see https://docs.unrealengine.com/latest/INT/Engine/Content/Types/StaticMeshes/\n@see UStaticMesh",
+  "properties": {
+    "MinLOD": [
+      "int",
+      "Specifies the smallest LOD that will be used for this component.\nThis is ignored if ForcedLodModel is enabled."
+    ],
+    "WireframeColorOverride": [
+      "FColor",
+      "Wireframe color to use if bOverrideWireframeColor is true"
+    ],
+    "OverriddenLightMapRes": [
+      "int",
+      "Light map resolution to use on this component, used if bOverrideLightMapRes is true and there is a valid StaticMesh."
+    ],
+    "DistanceFieldIndirectShadowMinVisibility": [
+      "float32",
+      "Controls how dark the dynamic indirect shadow can be."
+    ],
+    "StreamingDistanceMultiplier": [
+      "float32",
+      "Allows adjusting the desired resolution of streaming textures that uses UV 0.  1.0 is the default, whereas a higher value increases the streamed-in resolution."
+    ],
+    "LightmassSettings": [
+      "FLightmassPrimitiveSettings",
+      2,
+      "The Lightmass settings for this object."
+    ],
+    "ForcedLodModel": [
+      "int",
+      "If 0, auto-select LOD level. if >0, force to (ForcedLodModel-1)."
+    ],
+    "StaticMesh": [
+      "UStaticMesh"
+    ],
+    "bForceNaniteForMasked": [
+      "bool",
+      "Forces this component to always use Nanite for masked materials, even if FNaniteSettings::bAllowMaskedMaterials=false"
+    ],
+    "bDisallowNanite": [
+      "bool",
+      "Forces this component to use fallback mesh for rendering if Nanite is enabled on the mesh."
+    ],
+    "bEvaluateWorldPositionOffset": [
+      "bool",
+      "Whether to evaluate World Position Offset."
+    ],
+    "bWorldPositionOffsetWritesVelocity": [
+      "bool",
+      "Whether world position offset turns on velocity writes.\nIf the WPO isn't static then setting false may give incorrect motion vectors.\nBut if we know that the WPO is static then setting false may save performance."
+    ],
+    "bEvaluateWorldPositionOffsetInRayTracing": [
+      "bool",
+      "Whether to evaluate World Position Offset for ray tracing.\nThis is only used when running with r.RayTracing.Geometry.StaticMeshes.WPO=1"
+    ],
+    "WorldPositionOffsetDisableDistance": [
+      "int",
+      "Distance at which to disable World Position Offset for an entire instance (0 = Never disable WPO)."
+    ],
+    "bOverrideWireframeColor": [
+      "bool",
+      "If true, WireframeColorOverride will be used. If false, color is determined based on mobility and physics simulation settings"
+    ],
+    "bOverrideMinLOD": [
+      "bool",
+      "Whether to override the MinLOD setting of the static mesh asset with the MinLOD of this component."
+    ],
+    "bDisallowMeshPaintPerInstance": [
+      "bool",
+      "If true, mesh painting is disallowed on this instance. Set if vertex colors are overridden in a construction script."
+    ],
+    "bIgnoreInstanceForTextureStreaming": [
+      "bool",
+      "Ignore this instance of this static mesh when calculating streaming information.\nThis can be useful when doing things like applying character textures to static geometry,\nto avoid them using distance-based streaming."
+    ],
+    "bOverrideLightMapRes": [
+      "bool",
+      "Whether to override the lightmap resolution defined in the static mesh."
+    ],
+    "bCastDistanceFieldIndirectShadow": [
+      "bool",
+      "Whether to use the mesh distance field representation (when present) for shadowing indirect lighting (from lightmaps or skylight) on Movable components.\nThis works like capsule shadows on skeletal meshes, except using the mesh distance field so no physics asset is required.\nThe StaticMesh must have 'Generate Mesh Distance Field' enabled, or the project must have 'Generate Mesh Distance Fields' enabled for this feature to work."
+    ],
+    "bOverrideDistanceFieldSelfShadowBias": [
+      "bool",
+      "Whether to override the DistanceFieldSelfShadowBias setting of the static mesh asset with the DistanceFieldSelfShadowBias of this component."
+    ],
+    "bUseDefaultCollision": [
+      "bool",
+      "Use the collision profile specified in the StaticMesh asset."
+    ],
+    "bSortTriangles": [
+      "bool",
+      "Enable dynamic sort mesh's triangles to remove ordering issue when rendered with a translucent material"
+    ],
+    "bReverseCulling": [
+      "bool",
+      "Controls whether the static mesh component's backface culling should be reversed"
+    ],
+    "DistanceFieldSelfShadowBias": [
+      "float32",
+      "Useful for reducing self shadowing from distance field methods when using world position offset to animate the mesh's vertices."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetInitialEvaluateWorldPositionOffset",
+      "return": "bool",
+      "doc": "Get the initial value of bEvaluateWorldPositionOffset. This is the value when BeginPlay() was last called, or if UpdateInitialEvaluateWorldPositionOffset is called.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLocalBounds",
+      "return": "void",
+      "const": true,
+      "doc": "Get Local bounds",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Min",
+          "type": "FVector&"
+        },
+        {
+          "name": "Max",
+          "type": "FVector&"
+        }
+      ]
+    },
+    {
+      "name": "SetDistanceFieldSelfShadowBias",
+      "return": "void",
+      "doc": "Sets the component's DistanceFieldSelfShadowBias.  bOverrideDistanceFieldSelfShadowBias must be enabled for this to have an effect.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetEvaluateWorldPositionOffset",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetEvaluateWorldPositionOffsetInRayTracing",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetForceDisableNanite",
+      "return": "void",
+      "doc": "Force disabling of Nanite rendering. When true, Will swap to the the fallback mesh instead.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInForceDisableNanite",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetForcedLodModel",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewForcedLodModel",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetReverseCulling",
+      "return": "void",
+      "doc": "Set forced reverse culling",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ReverseCulling",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetStaticMesh",
+      "return": "bool",
+      "doc": "Change the StaticMesh used by this instance.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewMesh",
+          "type": "UStaticMesh"
+        }
+      ]
+    },
+    {
+      "name": "SetWorldPositionOffsetDisableDistance",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewValue",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "UpdateInitialEvaluateWorldPositionOffset",
+      "return": "void",
+      "doc": "This manually updates the initial value of bEvaluateWorldPositionOffset to be the current value.\n    This is useful if the default value of bEvaluateWorldPositionOffset is changed after constructing\n    the component.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

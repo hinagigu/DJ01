@@ -1,0 +1,47 @@
+{
+  "name": "UWeldMeshEdgesToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "properties": {
+    "Tolerance": [
+      "float32",
+      2,
+      "Edges are considered matching if both pairs of endpoint vertices are closer than this distance"
+    ],
+    "bOnlyUnique": [
+      "bool",
+      2,
+      "Only merge unambiguous pairs that have unique duplicate-edge matches"
+    ],
+    "bResolveTJunctions": [
+      "bool",
+      2,
+      "If enabled, after an initial attempt at Welding, attempt to resolve remaining open edges in T-junction configurations via edge splits, and then retry Weld"
+    ],
+    "AttrWeldingMode": [
+      "EWeldMeshEdgesAttributeUIMode",
+      2,
+      "Controls split-attribute welding performed after the Mesh weld.  Applies to normals, tangents, UVs and colors."
+    ],
+    "SplitNormalThreshold": [
+      "float32",
+      2,
+      "Threshold on the angle between normals used to determine if split normals should be merged"
+    ],
+    "SplitTangentsThreshold": [
+      "float32",
+      2,
+      "Threshold on the angle between tangent used to determine if split tangents should be merged"
+    ],
+    "SplitUVThreshold": [
+      "float32",
+      2,
+      "Threshold uv-distance used to determine if split UVs should be merged"
+    ],
+    "SplitColorThreshold": [
+      "float32",
+      2,
+      "Threshold color-distance used to determine if split colors should be merged"
+    ]
+  },
+  "methods": []
+}

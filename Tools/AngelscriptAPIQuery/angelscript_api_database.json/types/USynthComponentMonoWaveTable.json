@@ -1,0 +1,600 @@
+{
+  "name": "USynthComponentMonoWaveTable",
+  "inherits": "USynthComponent",
+  "properties": {
+    "OnTableAltered": [
+      "FOnTableAltered",
+      "Wave Table curve was edited"
+    ],
+    "OnNumTablesChanged": [
+      "FNumTablesChanged",
+      "Curve array altered"
+    ],
+    "CurrentPreset": [
+      "UMonoWaveTableSynthPreset",
+      2,
+      "The settings asset to use for this synth"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCurveTangent",
+      "return": "float32",
+      "doc": "Get the curve interpolation type (What the curve is doing between keyframes)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "GetKeyFrameValuesForTable",
+      "return": "TArray<float32>",
+      "const": true,
+      "doc": "Get an array of floats that represent the key frames in the requested curve",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableIndex",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetMaxTableIndex",
+      "return": "int",
+      "const": true,
+      "doc": "Get the number of curves in the wave table. (returns -1 if there is no asset)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumTableEntries",
+      "return": "int",
+      "doc": "Start BP functionality // Get the number of table elements from Blueprint",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "NoteOff",
+      "return": "void",
+      "doc": "Starts a new note (retrigs modulators, etc.)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMidiNote",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "NoteOn",
+      "return": "void",
+      "doc": "Starts a new note (retrigs modulators, etc.)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMidiNote",
+          "type": "float32"
+        },
+        {
+          "name": "InVelocity",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "RefreshAllWaveTables",
+      "return": "void",
+      "doc": "Refresh all wavetables (from Game Thread data)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RefreshWaveTable",
+      "return": "void",
+      "doc": "Refresh a particular wavetable (from Game Thread data)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetAmpEnvelopeAttackTime",
+      "return": "void",
+      "doc": "Set Amp envelope attack time (msec)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAttackTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAmpEnvelopeBiasDepth",
+      "return": "void",
+      "doc": "Set the bias depth of the the Amp envelope",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDepth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAmpEnvelopeBiasInvert",
+      "return": "void",
+      "doc": "Set whether or not the Amp envelope's bias is inverted",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInBiasInvert",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAmpEnvelopeDecayTime",
+      "return": "void",
+      "doc": "Set Amp envelope decay time (msec)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDecayTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAmpEnvelopeDepth",
+      "return": "void",
+      "doc": "Set the overall depth of the Amp envelope",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDepth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAmpEnvelopeInvert",
+      "return": "void",
+      "doc": "Set whether or not the Amp envelope is inverted",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInInvert",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetAmpEnvelopeReleaseTime",
+      "return": "void",
+      "doc": "Set Amp envelope release time (msec)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InReleaseTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetAmpEnvelopeSustainGain",
+      "return": "void",
+      "doc": "Set Amp envelope sustain gain [0.0, 1.0]",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSustainGain",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetCurveInterpolationType",
+      "return": "bool",
+      "doc": "Set the curve interpolation type (What the curve is doing between keyframes)\nThis should only be used for live-editing features! (changing the curves at runtime is expensive)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InterpolationType",
+          "type": "CurveInterpolationType"
+        },
+        {
+          "name": "TableIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetCurveTangent",
+      "return": "bool",
+      "doc": "Set the curve tangent (\"Curve depth\" between keyframes)\nThis should only be used for live-editing features! (changing the curves at runtime is expensive)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableIndex",
+          "type": "int"
+        },
+        {
+          "name": "InNewTangent",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetCurveValue",
+      "return": "bool",
+      "doc": "Set a Keyframe value given a Table number and Keyframe number.\n         Returns false if the request was invalid.\n         NewValue will be clamped from +/- 1.0",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TableIndex",
+          "type": "int"
+        },
+        {
+          "name": "KeyframeIndex",
+          "type": "int"
+        },
+        {
+          "name": "NewValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterEnvelopeAttackTime",
+      "return": "void",
+      "doc": "Set Low-Pass Filter envelope attack time (msec)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAttackTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterEnvelopeBiasDepth",
+      "return": "void",
+      "doc": "Set Low-Pass Filter envelope bias depth",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDepth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterEnvelopeBiasInvert",
+      "return": "void",
+      "doc": "Set Low-Pass Filter envelope bias inversion",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInBiasInvert",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterEnvelopeDepth",
+      "return": "void",
+      "doc": "Set Low-Pass Filter envelope depth",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDepth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterEnvelopeInvert",
+      "return": "void",
+      "doc": "Set Low-Pass Filter envelope inversion",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInInvert",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterEnvelopenDecayTime",
+      "return": "void",
+      "doc": "Set Low-Pass Filter envelope decay time (msec)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDecayTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterEnvelopeReleaseTime",
+      "return": "void",
+      "doc": "Set Low-Pass Filter envelope release time (msec)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InReleaseTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFilterEnvelopeSustainGain",
+      "return": "void",
+      "doc": "Set Low-Pass Filter envelope sustain gain",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSustainGain",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFrequency",
+      "return": "void",
+      "doc": "Sets the oscillator's frequency",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FrequencyHz",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFrequencyPitchBend",
+      "return": "void",
+      "doc": "Set a frequency offset in cents (for pitch modulation such as the Pitch Bend Wheel)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "FrequencyOffsetCents",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetFrequencyWithMidiNote",
+      "return": "void",
+      "doc": "Set the oscillator's frequency via midi note number",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMidiNote",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetLowPassFilterResonance",
+      "return": "void",
+      "doc": "Set the Cut-off frequency of the low-pass filter",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNewQ",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPositionEnvelopeAttackTime",
+      "return": "void",
+      "doc": "Set Position envelope attack time (msec)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAttackTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPositionEnvelopeBiasDepth",
+      "return": "void",
+      "doc": "Set Position envelope bias depth",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDepth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPositionEnvelopeBiasInvert",
+      "return": "void",
+      "doc": "Set Position envelope bias inversion",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInBiasInvert",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPositionEnvelopeDecayTime",
+      "return": "void",
+      "doc": "Set Position envelope decay time (msec)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDecayTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPositionEnvelopeDepth",
+      "return": "void",
+      "doc": "Set Position envelope envelope depth",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InDepth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPositionEnvelopeInvert",
+      "return": "void",
+      "doc": "Set Position envelope envelope inversion",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInInvert",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetPositionEnvelopeReleaseTime",
+      "return": "void",
+      "doc": "Set Position envelope release time (msec)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InReleaseTimeMsec",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPositionEnvelopeSustainGain",
+      "return": "void",
+      "doc": "Set Position envelope sustain gain",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSustainGain",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPosLfoDepth",
+      "return": "void",
+      "doc": "Set the Modulation depth of the Lfo controlling the Table Position around the current position value\n         0.0 = no modulation, 1.0 = current position +/- 0.5 (Lfo + Position result will clamp [0.0, 1.0])",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLfoDepth",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPosLfoFrequency",
+      "return": "void",
+      "doc": "Set frequency of LFO controlling Table Position (in Hz)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLfoFrequency",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetPosLfoType",
+      "return": "void",
+      "doc": "Set the shape of the Lfo controlling the position",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLfoType",
+          "type": "ESynthLFOType"
+        }
+      ]
+    },
+    {
+      "name": "SetSustainPedalState",
+      "return": "void",
+      "doc": "Inform the synth if the sustain pedal is pressed or not",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSustainPedalState",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "SetWaveTablePosition",
+      "return": "void",
+      "doc": "Sets the wavetable position. Expects a percentage between 0.0 and 1.0",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InPosition",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

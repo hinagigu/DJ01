@@ -1,0 +1,44 @@
+{
+  "name": "FDJ01AbilityTagRelationship",
+  "isStruct": true,
+  "doc": "Struct that defines the relationship between different ability tags",
+  "properties": {
+    "AbilityTag": [
+      "FGameplayTag",
+      2,
+      "The tag that this container relationship is about. Single tag, but abilities can have multiple of these"
+    ],
+    "AbilityTagsToBlock": [
+      "FGameplayTagContainer",
+      2,
+      "The other ability tags that will be blocked by any ability using this tag"
+    ],
+    "AbilityTagsToCancel": [
+      "FGameplayTagContainer",
+      2,
+      "The other ability tags that will be canceled by any ability using this tag"
+    ],
+    "ActivationRequiredTags": [
+      "FGameplayTagContainer",
+      2,
+      "If an ability has the tag, this is implicitly added to the activation required tags of the ability"
+    ],
+    "ActivationBlockedTags": [
+      "FGameplayTagContainer",
+      2,
+      "If an ability has the tag, this is implicitly added to the activation blocked tags of the ability"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDJ01AbilityTagRelationship&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDJ01AbilityTagRelationship"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "name": "FAnimNode_SequenceEvaluator",
+  "isStruct": true,
+  "doc": "Sequence evaluator node that can be used with constant folding",
+  "properties": {
+    "GroupName": [
+      "FName",
+      2,
+      "The group name that we synchronize with (NAME_None if it is not part of any group)."
+    ],
+    "GroupRole": [
+      "EAnimGroupRole",
+      2,
+      "The role this node can assume within the group (ignored if GroupName is not set)"
+    ],
+    "Method": [
+      "EAnimSyncMethod",
+      2,
+      "How this node will synchronize with other animations."
+    ],
+    "bIgnoreForRelevancyTest": [
+      "bool",
+      2,
+      "If true, \"Relevant anim\" nodes that look for the highest weighted animation in a state will ignore this node"
+    ],
+    "Sequence": [
+      "UAnimSequenceBase",
+      2,
+      "The animation sequence asset to evaluate"
+    ],
+    "ExplicitTime": [
+      "float32",
+      2,
+      "The time at which to evaluate the associated sequence"
+    ],
+    "bUseExplicitFrame": [
+      "bool",
+      2,
+      "Whether to use ExplicitFrame (true) or ExplicitTime (false) when evaluating the associated sequence"
+    ],
+    "ExplicitFrame": [
+      "int",
+      2,
+      "The frame at which to evaluate the associated sequence"
+    ],
+    "bShouldLoop": [
+      "bool",
+      2,
+      "This only works if bTeleportToExplicitTime is false OR this node is set to use SyncGroup"
+    ],
+    "bTeleportToExplicitTime": [
+      "bool",
+      2,
+      "If true, teleport to explicit time, does NOT advance time (does not trigger notifies, does not extract Root Motion, etc.)\n      If false, will advance time (will trigger notifies, extract root motion if applicable, etc.)\n      Note: using a sync group forces advancing time regardless of what this option is set to."
+    ],
+    "ReinitializationBehavior": [
+      "ESequenceEvalReinit",
+      2,
+      "What to do when SequenceEvaluator is reinitialized"
+    ],
+    "StartPosition": [
+      "float32",
+      2,
+      "The start up position, it only applies when ReinitializationBehavior == StartPosition. Only used when bTeleportToExplicitTime is false."
+    ],
+    "BlendWeight": [
+      "float32",
+      1,
+      "Last encountered blendweight for this node"
+    ],
+    "InternalTimeAccumulator": [
+      "float32",
+      1,
+      "Accumulated time used to reference the asset in this node"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAnimNode_SequenceEvaluator&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAnimNode_SequenceEvaluator"
+        }
+      ]
+    }
+  ]
+}

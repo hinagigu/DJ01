@@ -1,0 +1,85 @@
+{
+  "name": "__NiagaraDataChannel",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetDataChannelElementCount",
+      "return": "int",
+      "doc": "Returns the number of readable elements in the given data channel\n\n@param WorldContextObject    World to execute in\n@param Channel                               The channel to read from\n@param SearchParams                  Parameters used when retrieving a specific set of Data Channel Data to read or write like the islands data channel type.\n@param bReadPreviousFrame    True if this reader will read the previous frame's data. If false, we read the current frame.\n                                                             Reading the current frame allows for zero latency reads, but any data elements that are generated after this reader is used are missed.\n                                                             Reading the previous frame's data introduces a frame of latency but ensures we never miss any data as we have access to the whole frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Channel",
+          "type": "const UNiagaraDataChannelAsset"
+        },
+        {
+          "name": "SearchParams",
+          "type": "FNiagaraDataChannelSearchParameters"
+        },
+        {
+          "name": "bReadPreviousFrame",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ReadFromNiagaraDataChannel",
+      "return": "UNiagaraDataChannelReader",
+      "doc": "Initializes and returns the Niagara Data Channel reader for the given data channel.\n\n@param WorldContextObject    World to execute in\n@param Channel                               The channel to read from\n@param SearchParams                  Parameters used when retrieving a specific set of Data Channel Data to read or write like the islands data channel type.\n@param bReadPreviousFrame    True if this reader will read the previous frame's data. If false, we read the current frame.\n                                                             Reading the current frame allows for zero latency reads, but any data elements that are generated after this reader is used are missed.\n                                                             Reading the previous frame's data introduces a frame of latency but ensures we never miss any data as we have access to the whole frame.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Channel",
+          "type": "const UNiagaraDataChannelAsset"
+        },
+        {
+          "name": "SearchParams",
+          "type": "FNiagaraDataChannelSearchParameters"
+        },
+        {
+          "name": "bReadPreviousFrame",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "WriteToNiagaraDataChannel",
+      "return": "UNiagaraDataChannelWriter",
+      "doc": "Initializes and returns the Niagara Data Channel writer to write N elements to the given data channel.\n\n@param WorldContextObject    World to execute in\n@param Channel                               The channel to write to\n@param SearchParams                  Parameters used when retrieving a specific set of Data Channel Data to read or write like the islands data channel type.\n@param Count                                 The number of elements to write\n@param bVisibleToGame        If true, the data written to this data channel is visible to Blueprint and C++ logic reading from it\n@param bVisibleToCPU If true, the data written to this data channel is visible to Niagara CPU emitters\n@param bVisibleToGPU If true, the data written to this data channel is visible to Niagara GPU emitters\n@param DebugSource   Instigator for this write, used in the debug hud to track writes to the data channel from different sources",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Channel",
+          "type": "const UNiagaraDataChannelAsset"
+        },
+        {
+          "name": "SearchParams",
+          "type": "FNiagaraDataChannelSearchParameters"
+        },
+        {
+          "name": "Count",
+          "type": "int"
+        },
+        {
+          "name": "bVisibleToGame",
+          "type": "bool"
+        },
+        {
+          "name": "bVisibleToCPU",
+          "type": "bool"
+        },
+        {
+          "name": "bVisibleToGPU",
+          "type": "bool"
+        },
+        {
+          "name": "DebugSource",
+          "type": "FString"
+        }
+      ]
+    }
+  ]
+}

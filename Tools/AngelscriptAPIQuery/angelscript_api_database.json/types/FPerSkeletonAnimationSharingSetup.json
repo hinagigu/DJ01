@@ -1,0 +1,48 @@
+{
+  "name": "FPerSkeletonAnimationSharingSetup",
+  "isStruct": true,
+  "properties": {
+    "Skeleton": [
+      "USkeleton",
+      2,
+      "Skeleton compatible with the animation sharing setup"
+    ],
+    "SkeletalMesh": [
+      "USkeletalMesh",
+      2,
+      "Skeletal mesh used to setup skeletal mesh components"
+    ],
+    "BlendAnimBlueprint": [
+      "TSubclassOf<UAnimSharingTransitionInstance>",
+      2,
+      "Animation blueprint used to perform the blending between states"
+    ],
+    "AdditiveAnimBlueprint": [
+      "TSubclassOf<UAnimSharingAdditiveInstance>",
+      2,
+      "Animation blueprint used to apply additive animation on top of other states"
+    ],
+    "StateProcessorClass": [
+      "TSubclassOf<UAnimationSharingStateProcessor>",
+      2,
+      "Interface class used when determining which state an actor is in"
+    ],
+    "AnimationStates": [
+      "TArray<FAnimationStateEntry>",
+      2,
+      "Definition of different animation states"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FPerSkeletonAnimationSharingSetup&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPerSkeletonAnimationSharingSetup"
+        }
+      ]
+    }
+  ]
+}

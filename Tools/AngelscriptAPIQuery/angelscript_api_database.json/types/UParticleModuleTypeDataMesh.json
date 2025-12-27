@@ -1,0 +1,67 @@
+{
+  "name": "UParticleModuleTypeDataMesh",
+  "inherits": "UParticleModuleTypeDataBase",
+  "properties": {
+    "Mesh": [
+      "UStaticMesh",
+      2,
+      "The static mesh to render at the particle positions"
+    ],
+    "LODSizeScale": [
+      "float32",
+      2,
+      "use the static mesh's LOD setup and switch LODs based on largest particle's screen size"
+    ],
+    "MeshAlignment": [
+      "EMeshScreenAlignment",
+      2,
+      "The alignment to use on the meshes emitted.\nThe RequiredModule->ScreenAlignment MUST be set to PSA_TypeSpecific to use.\nOne of the following:\nPSMA_MeshFaceCameraWithRoll\n        Face the camera allowing for rotation around the mesh-to-camera FVector\n        (amount provided by the standard particle sprite rotation).\nPSMA_MeshFaceCameraWithSpin\n        Face the camera allowing for the mesh to rotate about the tangential axis.\nPSMA_MeshFaceCameraWithLockedAxis\n        Face the camera while maintaining the up FVector as the locked direction."
+    ],
+    "RollPitchYawRange": [
+      "FRawDistributionVector",
+      2,
+      "The 'pre' rotation pitch (in degrees) to apply to the static mesh used."
+    ],
+    "AxisLockOption": [
+      "EParticleAxisLock",
+      2,
+      "The axis to lock the mesh on. This overrides TypeSpecific mesh alignment as well as the LockAxis module.\n        EPAL_NONE                -      No locking to an axis.\n        EPAL_X                   -      Lock the mesh X-axis facing towards +X.\n        EPAL_Y                   -      Lock the mesh X-axis facing towards +Y.\n        EPAL_Z                   -      Lock the mesh X-axis facing towards +Z.\n        EPAL_NEGATIVE_X  -      Lock the mesh X-axis facing towards -X.\n        EPAL_NEGATIVE_Y  -      Lock the mesh X-axis facing towards -Y.\n        EPAL_NEGATIVE_Z  -      Lock the mesh X-axis facing towards -Z.\n        EPAL_ROTATE_X    -      Ignored for mesh emitters. Treated as EPAL_NONE.\n        EPAL_ROTATE_Y    -      Ignored for mesh emitters. Treated as EPAL_NONE.\n        EPAL_ROTATE_Z    -      Ignored for mesh emitters. Treated as EPAL_NONE."
+    ],
+    "CameraFacingOption": [
+      "EMeshCameraFacingOptions",
+      2,
+      "The camera facing option to use:\nAll camera facing options without locked axis assume X-axis will be facing the camera.\n        XAxisFacing_NoUp                                - X-axis camera facing, no attempt to face an axis up or down.\n        XAxisFacing_ZUp                                 - X-axis camera facing, Z-axis of the mesh should attempt to point up.\n        XAxisFacing_NegativeZUp                 - X-axis camera facing, Z-axis of the mesh should attempt to point down.\n        XAxisFacing_YUp                                 - X-axis camera facing, Y-axis of the mesh should attempt to point up.\n        XAxisFacing_NegativeYUp                 - X-axis camera facing, Y-axis of the mesh should attempt to point down.\nAll axis-locked camera facing options assume the AxisLockOption is set. EPAL_NONE will be treated as EPAL_X.\n        LockedAxis_ZAxisFacing                  - X-axis locked on AxisLockOption axis, rotate Z-axis of the mesh to face towards camera.\n        LockedAxis_NegativeZAxisFacing  - X-axis locked on AxisLockOption axis, rotate Z-axis of the mesh to face away from camera.\n        LockedAxis_YAxisFacing                  - X-axis locked on AxisLockOption axis, rotate Y-axis of the mesh to face towards camera.\n        LockedAxis_NegativeYAxisFacing  - X-axis locked on AxisLockOption axis, rotate Y-axis of the mesh to face away from camera.\nAll velocity-aligned options do NOT require the ScreenAlignment be set to PSA_Velocity.\nDoing so will result in additional work being performed... (it will orient the mesh twice).\n        VelocityAligned_ZAxisFacing         - X-axis aligned to the velocity, rotate the Z-axis of the mesh to face towards camera.\n        VelocityAligned_NegativeZAxisFacing - X-axis aligned to the velocity, rotate the Z-axis of the mesh to face away from camera.\n        VelocityAligned_YAxisFacing         - X-axis aligned to the velocity, rotate the Y-axis of the mesh to face towards camera.\n        VelocityAligned_NegativeYAxisFacing - X-axis aligned to the velocity, rotate the Y-axis of the mesh to face away from camera."
+    ],
+    "bUseStaticMeshLODs": [
+      "bool",
+      "use the static mesh's LOD setup and switch LODs based on largest particle's screen size"
+    ],
+    "bOverrideMaterial": [
+      "bool",
+      "If true, use the emitter material when rendering rather than the one applied\nto the static mesh model."
+    ],
+    "bOverrideDefaultMotionBlurSettings": [
+      "bool"
+    ],
+    "bEnableMotionBlur": [
+      "bool"
+    ],
+    "bCameraFacing": [
+      "bool",
+      "If true, then point the X-axis of the mesh towards the camera.\nWhen set, AxisLockOption as well as all other locked axis/screen alignment settings are ignored."
+    ],
+    "bApplyParticleRotationAsSpin": [
+      "bool",
+      "If true, apply 'sprite' particle rotation about the orientation axis (direction mesh is pointing).\nIf false, apply 'sprite' particle rotation about the camera facing axis."
+    ],
+    "bFaceCameraDirectionRatherThanPosition": [
+      "bool",
+      "If true, all camera facing options will point the mesh against the camera's view direction rather than pointing at the cameras location.\nIf false, the camera facing will point to the cameras position as normal."
+    ],
+    "bCollisionsConsiderPartilceSize": [
+      "bool",
+      "If true, all collisions for mesh particle on this emitter will take the particle size into account.\nIf false, particle size will be ignored in collision checks."
+    ]
+  },
+  "methods": []
+}

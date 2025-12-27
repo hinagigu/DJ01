@@ -1,0 +1,58 @@
+{
+  "name": "__URigVMController",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetRegisteredTemplates",
+      "return": "TArray<FString>",
+      "doc": "Returns all registered template notations",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetRegisteredUnitStructs",
+      "return": "TArray<UScriptStruct>",
+      "doc": "Returns all registered unit structs",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTemplateForUnitStruct",
+      "return": "FString",
+      "doc": "Returns the template for a given function (or an empty string)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InFunction",
+          "type": "UScriptStruct"
+        },
+        {
+          "name": "InMethodName",
+          "default": "\"Execute\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetUnitStructsForTemplate",
+      "return": "TArray<UScriptStruct>",
+      "doc": "Returns all supported unit structs for a given template notation",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InNotation",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

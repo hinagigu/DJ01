@@ -1,0 +1,123 @@
+{
+  "name": "UCommonUserInfo",
+  "inherits": "UObject",
+  "doc": "Logical representation of an individual user, one of these will exist for all initialized local players",
+  "properties": {
+    "PrimaryInputDevice": [
+      "FInputDeviceId",
+      1,
+      "Primary controller input device for this user, they could also have additional secondary devices"
+    ],
+    "PlatformUser": [
+      "FPlatformUserId",
+      1,
+      "Specifies the logical user on the local platform, guest users will point to the primary user"
+    ],
+    "LocalPlayerIndex": [
+      "int",
+      1,
+      "If this user is assigned a LocalPlayer, this will match the index in the GameInstance localplayers array once it is fully created"
+    ],
+    "bCanBeGuest": [
+      "bool",
+      1,
+      "If true, this user is allowed to be a guest"
+    ],
+    "bIsGuest": [
+      "bool",
+      1,
+      "If true, this is a guest user attached to primary user 0"
+    ],
+    "InitializationState": [
+      "ECommonUserInitializationState",
+      1,
+      "Overall state of the user's initialization process"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCachedPrivilegeResult",
+      "return": "ECommonUserPrivilegeResult",
+      "const": true,
+      "doc": "Returns the most recently queries result for a specific privilege, will return unknown if never queried",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Privilege",
+          "type": "ECommonUserPrivilege"
+        },
+        {
+          "name": "Context",
+          "default": "ECommonUserOnlineContext :: Game",
+          "type": "ECommonUserOnlineContext"
+        }
+      ]
+    },
+    {
+      "name": "GetDebugString",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns an internal debug string for this player",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNetId",
+      "return": "FUniqueNetIdRepl",
+      "const": true,
+      "doc": "Returns the net id for the given context",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "default": "ECommonUserOnlineContext :: Game",
+          "type": "ECommonUserOnlineContext"
+        }
+      ]
+    },
+    {
+      "name": "GetNickname",
+      "return": "FString",
+      "const": true,
+      "doc": "Returns the user's human readable nickname",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPrivilegeAvailability",
+      "return": "ECommonUserAvailability",
+      "const": true,
+      "doc": "Ask about the general availability of a feature, this combines cached results with state",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Privilege",
+          "type": "ECommonUserPrivilege"
+        }
+      ]
+    },
+    {
+      "name": "IsDoingLogin",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this user is in the middle of logging in",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLoggedIn",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns true if this user has successfully logged in",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

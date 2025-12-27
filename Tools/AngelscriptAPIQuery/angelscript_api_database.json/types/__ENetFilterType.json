@@ -1,0 +1,19 @@
+{
+  "name": "__ENetFilterType",
+  "isEnum": true,
+  "doc": "This configures when a filter gets executed inside PreSendUpdate and what data it has access to.",
+  "properties": {
+    "PrePoll_Raw": [
+      "ENetFilterType",
+      "The default setting of filters.\nThis type of filter is applied before we poll objects and copy their data into network fragments.\nThus a filter cannot operate on fragment data during it's operation, only whatever it stored or is accessing directly from the object.\nThe benefit is that objects not relevant to any connection will get culled from being polled and forced to copy their dirty state for nothing."
+    ],
+    "PostPoll_FragmentBased": [
+      "ENetFilterType",
+      "When set to FragmentBased, the filter gets access to the up to date fragment data of an object when it executes.\nThose objects will always be polled and have their dirty state copied even if not relevant."
+    ],
+    "ENetFilterType_MAX": [
+      "ENetFilterType"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,168 @@
+{
+  "name": "UClothingSimulationInteractor",
+  "inherits": "UObject",
+  "doc": "If a clothing simulation is able to be interacted with at runtime then a derived\ninteractor should be created, and at least the basic API implemented for that\nsimulation.\nOnly write to the simulation and context during the call to Sync, as that is\nguaranteed to be a safe place to access this data.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "ClothConfigUpdated",
+      "return": "void",
+      "doc": "Called to update the cloth config without restarting the simulation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "DisableGravityOverride",
+      "return": "void",
+      "doc": "Disable any currently set gravity override.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "EnableGravityOverride",
+      "return": "void",
+      "doc": "Set a new gravity override and enable the override.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InVector",
+          "type": "FVector"
+        }
+      ]
+    },
+    {
+      "name": "GetClothingInteractor",
+      "return": "UClothingInteractor",
+      "const": true,
+      "doc": "Return a cloth interactor for this simulation.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ClothingAssetName",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetNumCloths",
+      "return": "int",
+      "const": true,
+      "doc": "Return the number of cloths run by the simulation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumDynamicParticles",
+      "return": "int",
+      "const": true,
+      "doc": "Return the number of dynamic (simulated) particles.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumIterations",
+      "return": "int",
+      "const": true,
+      "doc": "Return the solver number of iterations.\nThis could be different from the number set if the simulation hasn't updated yet.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumKinematicParticles",
+      "return": "int",
+      "const": true,
+      "doc": "Return the number of kinematic (animated) particles.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNumSubsteps",
+      "return": "int",
+      "const": true,
+      "doc": "Return the solver number of subdivisions./\nThis could be different from the number set if the simulation hasn't updated yet.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSimulationTime",
+      "return": "float32",
+      "const": true,
+      "doc": "Return the instant average simulation time in ms.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PhysicsAssetUpdated",
+      "return": "void",
+      "doc": "Called to update collision status without restarting the simulation.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAnimDriveSpringStiffness",
+      "return": "void",
+      "doc": "Set the stiffness of the spring force for the animation drive.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InStiffness",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetMaxNumIterations",
+      "return": "void",
+      "doc": "Set the maximum number of solver iterations.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "MaxNumIterations",
+          "default": "10",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetNumIterations",
+      "return": "void",
+      "doc": "Set the number of time dependent solver iterations.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumIterations",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetNumSubsteps",
+      "return": "void",
+      "doc": "Set the number of substeps or subdivisions.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NumSubsteps",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    }
+  ]
+}

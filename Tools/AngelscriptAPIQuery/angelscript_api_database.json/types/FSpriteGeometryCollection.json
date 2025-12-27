@@ -1,0 +1,58 @@
+{
+  "name": "FSpriteGeometryCollection",
+  "isStruct": true,
+  "properties": {
+    "Shapes": [
+      "TArray<FSpriteGeometryShape>",
+      2,
+      "List of shapes"
+    ],
+    "GeometryType": [
+      "ESpritePolygonMode",
+      2,
+      "The geometry type (automatic / manual)"
+    ],
+    "PixelsPerSubdivisionX": [
+      "int",
+      2,
+      "Size of a single subdivision (in pixels) in X (for Diced mode)"
+    ],
+    "PixelsPerSubdivisionY": [
+      "int",
+      2,
+      "Size of a single subdivision (in pixels) in Y (for Diced mode)"
+    ],
+    "bAvoidVertexMerging": [
+      "bool",
+      2,
+      "Experimental: Hint to the triangulation routine that extra vertices should be preserved"
+    ],
+    "AlphaThreshold": [
+      "float32",
+      2,
+      "Alpha threshold for a transparent pixel (range 0..1, anything equal or below this value will be considered unimportant)"
+    ],
+    "DetailAmount": [
+      "float32",
+      2,
+      "Amount to detail to consider when shrink-wrapping (range 0..1, 0 = low detail, 1 = high detail)"
+    ],
+    "SimplifyEpsilon": [
+      "float32",
+      2,
+      "This is the threshold below which multiple vertices will be merged together when doing shrink-wrapping.  Higher values result in fewer vertices."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSpriteGeometryCollection&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSpriteGeometryCollection"
+        }
+      ]
+    }
+  ]
+}

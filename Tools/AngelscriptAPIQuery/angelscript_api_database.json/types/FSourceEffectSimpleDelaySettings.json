@@ -1,0 +1,46 @@
+{
+  "name": "FSourceEffectSimpleDelaySettings",
+  "isStruct": true,
+  "properties": {
+    "SpeedOfSound": [
+      "float32",
+      "Speed of sound in meters per second when using distance-based delay"
+    ],
+    "DelayAmount": [
+      "float32",
+      "Delay amount in seconds"
+    ],
+    "DryAmount": [
+      "float32",
+      "Gain stage on dry (non-delayed signal)"
+    ],
+    "WetAmount": [
+      "float32",
+      "Gain stage on wet (delayed) signal"
+    ],
+    "Feedback": [
+      "float32",
+      "Amount to feedback into the delay line (because why not)"
+    ],
+    "bDelayBasedOnDistance": [
+      "bool",
+      "Whether or not to delay the audio based on the distance to the listener or use manual delay"
+    ],
+    "bUseDistanceOverride": [
+      "bool",
+      "Whether or not to allow the attenuation distance override value vs the distance to listener to be used for distance-based delay."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FSourceEffectSimpleDelaySettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSourceEffectSimpleDelaySettings"
+        }
+      ]
+    }
+  ]
+}

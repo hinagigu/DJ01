@@ -1,0 +1,29 @@
+{
+  "name": "FAIDataProviderValue",
+  "isStruct": true,
+  "doc": "AIDataProvider is an object that can provide collection of properties\nassociated with bound pawn owner or request Id.\n\nEditable properties are used to set up provider instance,\ncreating additional filters or ways of accessing data (e.g. gameplay tag of ability)\n\nNon editable properties are holding data",
+  "properties": {
+    "DataBinding": [
+      "UAIDataProvider",
+      2,
+      "(optional) provider for dynamic data binding"
+    ],
+    "DataField": [
+      "FName",
+      2,
+      "name of provider's value property"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAIDataProviderValue&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAIDataProviderValue"
+        }
+      ]
+    }
+  ]
+}

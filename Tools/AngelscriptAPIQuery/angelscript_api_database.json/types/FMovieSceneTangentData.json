@@ -1,0 +1,44 @@
+{
+  "name": "FMovieSceneTangentData",
+  "isStruct": true,
+  "doc": "Tangents for curve channel control points.",
+  "properties": {
+    "ArriveTangent": [
+      "float32",
+      2,
+      "If RCIM_Cubic, the arriving tangent at this key"
+    ],
+    "LeaveTangent": [
+      "float32",
+      2,
+      "If RCIM_Cubic, the leaving tangent at this key"
+    ],
+    "ArriveTangentWeight": [
+      "float32",
+      2,
+      "If RCTWM_WeightedArrive or RCTWM_WeightedBoth, the weight of the left tangent"
+    ],
+    "LeaveTangentWeight": [
+      "float32",
+      2,
+      "If RCTWM_WeightedLeave or RCTWM_WeightedBoth, the weight of the right tangent"
+    ],
+    "TangentWeightMode": [
+      "ERichCurveTangentWeightMode",
+      2,
+      "If RCIM_Cubic, the tangent weight mode"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMovieSceneTangentData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMovieSceneTangentData"
+        }
+      ]
+    }
+  ]
+}

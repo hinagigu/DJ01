@@ -1,0 +1,31 @@
+{
+  "name": "UMaterialExpressionTextureSample",
+  "inherits": "UMaterialExpressionTextureBase",
+  "properties": {
+    "MipValueMode": [
+      "ETextureMipValueMode",
+      2,
+      "Defines how the MipValue property is applied to the texture lookup"
+    ],
+    "SamplerSource": [
+      "ESamplerSourceMode",
+      2,
+      "Controls where the sampler for this texture lookup will come from.\nChoose 'from texture asset' to make use of the UTexture addressing settings,\nOtherwise use one of the global samplers, which will not consume a sampler slot.\nThis allows materials to use more than 16 unique textures on SM5 platforms."
+    ],
+    "ConstCoordinate": [
+      "uint8",
+      2,
+      "only used if Coordinates is not hooked up"
+    ],
+    "ConstMipValue": [
+      "int",
+      2,
+      "only used if MipValue is not hooked up"
+    ],
+    "AutomaticViewMipBias": [
+      "bool",
+      "Whether the texture should be sampled with per view mip biasing for sharper output with Temporal AA."
+    ]
+  },
+  "methods": []
+}

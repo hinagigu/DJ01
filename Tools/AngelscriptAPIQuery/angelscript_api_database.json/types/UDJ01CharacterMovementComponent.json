@@ -1,0 +1,16 @@
+{
+  "name": "UDJ01CharacterMovementComponent",
+  "inherits": "UCharacterMovementComponent",
+  "doc": "UDJ01CharacterMovementComponent\n\n为 RPG 项目优化的角色移动组件\n\n功能特性：\n- 基础移动（走/跑/跳跃）\n- 地面信息检测（用于播放地面特效和音效）\n- 预留 GAS 集成接口（用于技能系统控制移动）\n\n设计理念：\n- 简化的实现，适合 RPG 游戏的移动需求\n- 相比 Lyra 移除了复杂的网络优化（RPG 通常移动较慢）\n- 保留可扩展性，便于后续添加冲刺、翻滚等功能",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetGroundInfo",
+      "return": "FDJ01CharacterGroundInfo",
+      "doc": "获取当前地面信息\n会自动缓存结果，同一帧内多次调用不会重复检测\n\n使用场景：\n- 脚步声系统：根据地面材质播放不同声音\n- 粒子特效：根据地面类型生成灰尘、水花等\n- 游戏逻辑：检测角色是否在特殊地面上（岩浆、冰面等）",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

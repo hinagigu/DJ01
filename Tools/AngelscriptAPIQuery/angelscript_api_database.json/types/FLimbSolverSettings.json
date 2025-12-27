@@ -1,0 +1,68 @@
+{
+  "name": "FLimbSolverSettings",
+  "isStruct": true,
+  "properties": {
+    "ReachPrecision": [
+      "float32",
+      2,
+      "Precision (distance to the target)"
+    ],
+    "HingeRotationAxis": [
+      "EAxis",
+      2,
+      "Hinge Bones Rotation Axis. This is essentially the plane normal for (hip - knee - foot)."
+    ],
+    "MaxIterations": [
+      "int",
+      2,
+      "Number of Max Iterations to reach the target"
+    ],
+    "bEnableLimit": [
+      "bool",
+      2,
+      "Enable/Disable rotational limits"
+    ],
+    "MinRotationAngle": [
+      "float32",
+      2,
+      "Only used if bEnableRotationLimit is enabled. Prevents the leg from folding onto itself,\nand forces at least this angle between Parent and Child bone."
+    ],
+    "bAveragePull": [
+      "bool",
+      2,
+      "Pull averaging only has a visual impact when we have more than 2 bones (3 links)."
+    ],
+    "PullDistribution": [
+      "float32",
+      2,
+      "Re-position limb to distribute pull: 0 = foot, 0.5 = balanced, 1.f = hip"
+    ],
+    "ReachStepAlpha": [
+      "float32",
+      2,
+      "Move end effector towards target. If we are compressing the chain, limit displacement."
+    ],
+    "bEnableTwistCorrection": [
+      "bool",
+      2,
+      "Enable Knee Twist correction, by comparing Foot FK with Foot IK orientation."
+    ],
+    "EndBoneForwardAxis": [
+      "EAxis",
+      2,
+      "Forward Axis for Foot bone."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FLimbSolverSettings&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FLimbSolverSettings"
+        }
+      ]
+    }
+  ]
+}

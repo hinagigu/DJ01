@@ -1,0 +1,33 @@
+{
+  "name": "UVoxelMorphologyMeshesToolProperties",
+  "inherits": "UInteractiveToolPropertySet",
+  "doc": "Properties of the morphology tool",
+  "properties": {
+    "Operation": [
+      "EMorphologyOperation",
+      2,
+      "Which offset (or morphology) operation to apply"
+    ],
+    "Distance": [
+      "float",
+      2,
+      "Distance to offset the mesh"
+    ],
+    "bVoxWrap": [
+      "bool",
+      2,
+      "Apply a \"VoxWrap\" operation to input mesh(es) before computing the morphology.  Fixes results for inputs with holes and/or self-intersections."
+    ],
+    "bRemoveInternalsAfterVoxWrap": [
+      "bool",
+      2,
+      "Remove internal surfaces from the VoxWrap output, before computing the morphology."
+    ],
+    "ThickenShells": [
+      "float",
+      2,
+      "Thicken open-boundary surfaces (extrude them inwards) before VoxWrapping them. Units are in world space. If 0, no extrusion is applied."
+    ]
+  },
+  "methods": []
+}

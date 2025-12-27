@@ -1,0 +1,23 @@
+{
+  "name": "__EVirtualizationMode",
+  "isEnum": true,
+  "doc": "Method of virtualization when a sound is stopped due to playback constraints\n(i.e. by concurrency, priority, and/or MaxChannelCount)\nfor a given sound.",
+  "properties": {
+    "Disabled": [
+      "EVirtualizationMode",
+      "Virtualization is disabled"
+    ],
+    "PlayWhenSilent": [
+      "EVirtualizationMode",
+      "Sound continues to play when silent and not virtualize, continuing to use a voice. If\nsound is looping and stopped due to concurrency or channel limit/priority, sound will\nrestart on realization. If any SoundWave referenced in a SoundCue's waveplayer is set\nto 'PlayWhenSilent', entire SoundCue will be overridden to 'PlayWhenSilent' (to maintain\ntiming over all wave players)."
+    ],
+    "Restart": [
+      "EVirtualizationMode",
+      "If sound is looping, sound restarts from beginning upon realization from being virtual"
+    ],
+    "EVirtualizationMode_MAX": [
+      "EVirtualizationMode"
+    ]
+  },
+  "methods": []
+}

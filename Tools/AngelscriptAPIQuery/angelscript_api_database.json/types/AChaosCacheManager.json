@@ -1,0 +1,141 @@
+{
+  "name": "AChaosCacheManager",
+  "inherits": "AActor",
+  "properties": {
+    "CacheMode": [
+      "ECacheMode",
+      2,
+      "How to use the cache - playback or record"
+    ],
+    "StartMode": [
+      "EStartMode",
+      2,
+      "How to trigger the cache record or playback, timed will start counting at BeginPlay, Triggered will begin\ncounting from when the owning cache manager is requested to trigger the cache action\n@see AChaosCacheManager::TriggerObservedComponent"
+    ],
+    "StartTime": [
+      "float32",
+      "Defines the (random access) time that represents the rest pose of the components managed by this cache.\nWhen in Play mode, the components are set to the state provided by the caches at this evaluated time."
+    ],
+    "ObservedComponents": [
+      "TArray<FObservedComponent>",
+      2,
+      "List of observed objects and their caches"
+    ]
+  },
+  "methods": [
+    {
+      "name": "EnablePlayback",
+      "return": "void",
+      "doc": "Enable playback for a specific component using its index in the list of observed component",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Index",
+          "type": "int"
+        },
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "EnablePlaybackByCache",
+      "return": "void",
+      "doc": "Enable playback for a specific component using its cache name",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCacheName",
+          "type": "FName"
+        },
+        {
+          "name": "bEnable",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ResetAllComponentTransforms",
+      "return": "void",
+      "doc": "Resets all components back to the world space transform they had when the cache for them was originally recorded\nif one is available",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ResetSingleTransform",
+      "return": "void",
+      "doc": "Resets the component at the specified index in the observed list back to the world space transform it had when the\ncache for it was originally recorded if one is available\n@param InIndex Index of the component to reset",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetCacheCollection",
+      "return": "void",
+      "doc": "change the cache collection for this player\nif the cache is playing or recording this will have no effect",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCacheCollection",
+          "type": "UChaosCacheCollection"
+        }
+      ]
+    },
+    {
+      "name": "SetCurrentTime",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CurrentTime",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "TriggerAll",
+      "return": "void",
+      "doc": "Triggers the recording or playback of all observed components",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "TriggerComponent",
+      "return": "void",
+      "doc": "Triggers a component to play or record.\nIf the cache manager has an observed component entry for InComponent and it is a triggered entry\nthis will begin the playback or record for that component, otherwise no action is taken.\n@param InComponent Component to trigger",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InComponent",
+          "type": "UPrimitiveComponent"
+        }
+      ]
+    },
+    {
+      "name": "TriggerComponentByCache",
+      "return": "void",
+      "doc": "Triggers a component to play or record.\nSearches the observed component list for an entry matching InCacheName and triggers the\nplayback or recording of the linked observed component\n@param InCacheName Cache name to trigger",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InCacheName",
+          "type": "FName"
+        }
+      ]
+    }
+  ]
+}

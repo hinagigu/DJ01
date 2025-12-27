@@ -1,0 +1,62 @@
+{
+  "name": "UInputDeviceProperty",
+  "inherits": "UObject",
+  "doc": "Base class that represents a single Input Device Property. An Input Device Property\nrepresents a feature that can be set on an input device. Things like what color a\nlight is, advanced rumble patterns, or trigger haptics.\n\nThis top level object can then be evaluated at a specific time to create a lower level\nFInputDeviceProperty, which the IInputInterface implementation can interpret however it desires.\n\nThe behavior of device properties can vary depending on the current platform. Some platforms may not\nsupport certain device properties. An older gamepad may not have any advanced trigger haptics for\nexample.",
+  "properties": {
+    "PropertyDuration": [
+      "float32",
+      1,
+      "The duration that this device property should last. Override this if your property has any dynamic curves\nto be the max time range.\n\nA duration of 0 means that the device property will be treated as a \"One Shot\" effect, being applied once\nbefore being removed by the Input Device Subsystem."
+    ]
+  },
+  "methods": [
+    {
+      "name": "EvaluateDeviceProperty",
+      "return": "void",
+      "callable": false,
+      "doc": "Evaluate this device property for a given duration.\nIf overriding in Blueprints, make sure to call the parent function!\n\n@param PlatformUser           The platform user that should receive this device property change\n@param DeltaTime                      Delta time\n@param Duration                       The number of seconds that this property has been active. Use this to get things like curve data over time.\n@return                                       A pointer to the evaluated input device property.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlatformUser",
+          "type": "FPlatformUserId"
+        },
+        {
+          "name": "DeviceId",
+          "type": "FInputDeviceId"
+        },
+        {
+          "name": "DeltaTime",
+          "type": "float"
+        },
+        {
+          "name": "Duration",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "ResetDeviceProperty",
+      "return": "void",
+      "callable": false,
+      "doc": "Reset the current device property. Provides an opportunity to reset device state after evaluation is complete.\nIf overriding in Blueprints, make sure to call the parent function!\n\n@param PlatformUser           The platform user that should receive this device property change",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PlatformUser",
+          "type": "FPlatformUserId"
+        },
+        {
+          "name": "DeviceId",
+          "type": "FInputDeviceId"
+        },
+        {
+          "name": "bForceReset",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

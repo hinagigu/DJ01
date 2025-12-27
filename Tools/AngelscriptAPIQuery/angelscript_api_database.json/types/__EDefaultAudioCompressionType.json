@@ -1,0 +1,35 @@
+{
+  "name": "__EDefaultAudioCompressionType",
+  "isEnum": true,
+  "doc": "The sound asset compression type to use for assets using the compression type \"project defined\".",
+  "properties": {
+    "BinkAudio": [
+      "EDefaultAudioCompressionType",
+      "Perceptual-based codec which supports all features across all platforms."
+    ],
+    "ADPCM": [
+      "EDefaultAudioCompressionType",
+      "Will encode the asset using ADPCM, a time-domain codec that has fixed-sized quality and about ~4x compression ratio, but is relatively cheap to decode."
+    ],
+    "PCM": [
+      "EDefaultAudioCompressionType",
+      "Uncompressed audio. Large memory usage (streamed chunks contain less audio per chunk) but extremely cheap to decode and supports all features."
+    ],
+    "Opus": [
+      "EDefaultAudioCompressionType",
+      "Opus is a highly versatile audio codec. It is primarily designed for interactive speech and music transmission over the Internet, but is also applicable to storage and streaming applications."
+    ],
+    "PlatformSpecific": [
+      "EDefaultAudioCompressionType",
+      "Encodes the asset to a platform specific format and will be different depending on the platform. It does not currently support seeking."
+    ],
+    "RADAudio": [
+      "EDefaultAudioCompressionType",
+      "As BinkAudio, except better quality. Comparable CPU usage on newer platforms, higher CPU on older platforms."
+    ],
+    "EDefaultAudioCompressionType_MAX": [
+      "EDefaultAudioCompressionType"
+    ]
+  },
+  "methods": []
+}

@@ -1,0 +1,7 @@
+{
+  "name": "UWorldMetricsActorTracker",
+  "inherits": "UWorldMetricsExtension",
+  "doc": "Actor tracker class\n\nThis class provides a tracking context for actors added and removed from the world. For an actor to be considered\nadded to the world, it must have all its components registered. This class provides two ways of usage:\n- Polling mode: accessible through ForEachActorInWorld.\n- Subscriber mode: this mode is enabled through acquire/release semantics. When acquired, the actor tracker\nsubscribes to the world's PostRegisterAllActorComponents and PreUnregisterAllActorComponentsRegistered events\ntracking all unique actors. In addition, metrics implementing IWorldMetricsActorTrackerSubscriber receive actor\naddition and removal notifications.",
+  "properties": {},
+  "methods": []
+}

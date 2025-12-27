@@ -1,0 +1,73 @@
+{
+  "name": "UMaterialInstanceConstant",
+  "inherits": "UMaterialInstance",
+  "doc": "Material Instances may be used to change the appearance of a material without incurring an expensive recompilation of the material.\nGeneral modification of the material cannot be supported without recompilation, so the instances are limited to changing the values of\npredefined material parameters. The parameters are statically defined in the compiled material by a unique name, type and default value.",
+  "properties": {
+    "PhysMaterialMask": [
+      "UPhysicalMaterialMask",
+      2,
+      "Physical material mask to use for this graphics material. Used for sounds, effects etc."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetScalarParameterValue",
+      "return": "float32",
+      "doc": "Get the scalar (float) parameter value from an MIC",
+      "ufunction": true,
+      "unrealname": "K2_GetScalarParameterValue",
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetTextureParameterValue",
+      "return": "UTexture",
+      "doc": "Get the MIC texture parameter value",
+      "ufunction": true,
+      "unrealname": "K2_GetTextureParameterValue",
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetVectorParameterValue",
+      "return": "FLinearColor",
+      "doc": "Get the MIC vector parameter value",
+      "ufunction": true,
+      "unrealname": "K2_GetVectorParameterValue",
+      "meta": null,
+      "args": [
+        {
+          "name": "ParameterName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetNaniteOverrideMaterial",
+      "return": "void",
+      "doc": "Set an override material which will be used when rendering with nanite.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "bInEnableOverride",
+          "type": "bool"
+        },
+        {
+          "name": "InOverrideMaterial",
+          "type": "UMaterialInterface"
+        }
+      ]
+    }
+  ]
+}

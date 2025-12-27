@@ -1,0 +1,81 @@
+{
+  "name": "UCanvasRenderTarget2D",
+  "inherits": "UTextureRenderTarget2D",
+  "doc": "CanvasRenderTarget2D is 2D render target which exposes a Canvas interface to allow you to draw elements onto\nit directly.  Use CreateCanvasRenderTarget2D() to create a render target texture by unique name, then\nbind a function to the OnCanvasRenderTargetUpdate delegate which will be called when the render target is\nupdated.  If you need to repaint your canvas every single frame, simply call UpdateResource() on it from a Tick\nfunction.  Also, remember to hold onto your new canvas render target with a reference so that it doesn't get\ngarbage collected.",
+  "properties": {
+    "OnCanvasRenderTargetUpdate": [
+      "FOnCanvasRenderTargetUpdate",
+      "Called when this Canvas Render Target is asked to update its texture resource."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetSampleCount",
+      "return": "ETextureRenderTargetSampleCount",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSize",
+      "return": "void",
+      "doc": "Gets a specific render target's size from the global map of canvas render targets.\n\n@param       Width   Output variable for the render target's width\n@param       Height  Output variable for the render target's height",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Width",
+          "type": "int&"
+        },
+        {
+          "name": "Height",
+          "type": "int&"
+        }
+      ]
+    },
+    {
+      "name": "Update",
+      "return": "void",
+      "callable": false,
+      "doc": "Allows a Blueprint to implement how this Canvas Render Target 2D should be updated.\n\n@param       Canvas                          Canvas object that can be used to paint to the render target\n@param       Width                           Width of the render target.\n@param       Height                          Height of the render target.",
+      "event": true,
+      "unrealname": "ReceiveUpdate",
+      "meta": null,
+      "args": [
+        {
+          "name": "Canvas",
+          "type": "UCanvas"
+        },
+        {
+          "name": "Width",
+          "type": "int"
+        },
+        {
+          "name": "Height",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetSampleCount",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InSampleCount",
+          "type": "ETextureRenderTargetSampleCount"
+        }
+      ]
+    },
+    {
+      "name": "UpdateResource",
+      "return": "void",
+      "doc": "Updates the the canvas render target texture's resource. This is where the render target will create or\nfind a canvas object to use.  It also calls UpdateResourceImmediate() to clear the render target texture\nfrom the deferred rendering list, to stop the texture from being cleared the next frame. From there it\nwill ask the rendering thread to set up the RHI viewport. The canvas is then set up for rendering and\nthen the user's update delegate is called.  The canvas is then flushed and the RHI resolves the\ntexture to make it available for rendering.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

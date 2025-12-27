@@ -1,0 +1,22 @@
+{
+  "name": "USystemTimeTimecodeProvider",
+  "inherits": "UTimecodeProvider",
+  "doc": "Converts the current system time to timecode, relative to a provided frame rate.",
+  "properties": {
+    "bGenerateFullFrame": [
+      "bool",
+      2,
+      "When generating frame time, should we generate full frame without subframe value."
+    ],
+    "bUseHighPerformanceClock": [
+      "bool",
+      2,
+      "Use the high performance clock instead of the system time to generate the timecode value.\nUsing the high performance clock is faster but will make the value drift over time."
+    ],
+    "FrameRate": [
+      "FFrameRate",
+      "The frame rate at which the timecode value will be generated."
+    ]
+  },
+  "methods": []
+}

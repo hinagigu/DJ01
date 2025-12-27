@@ -1,0 +1,368 @@
+{
+  "name": "__AnimGraph",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CalculateDirection",
+      "return": "float32",
+      "doc": "Returns degree of the angle between Velocity and Rotation forward vector\nThe range of return will be from [-180, 180]. Useful for feeding directional blendspaces.\n@param       Velocity                The velocity to use as direction relative to BaseRotation\n@param       BaseRotation    The base rotation, e.g. of a pawn",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Velocity",
+          "type": "FVector"
+        },
+        {
+          "name": "BaseRotation",
+          "type": "FRotator"
+        }
+      ]
+    },
+    {
+      "name": "CalculateVelocityFromPositionHistory",
+      "return": "float32",
+      "doc": "This function calculates the velocity of a position changing over time.\nYou need to hook up a valid PositionHistory variable to this for storage.\n\n@param DeltaSeconds The time passed in seconds\n@param Position The position to track over time.\n@param History The history to use for storage.\n@param NumberOfSamples The number of samples to use for the history. The higher the number of samples - the smoother the velocity changes.\n@param VelocityMin The minimum velocity to use for normalization (if both min and max are set to 0, normalization is turned off)\n@param VelocityMax The maximum velocity to use for normalization (if both min and max are set to 0, normalization is turned off)",
+      "ufunction": true,
+      "unrealname": "K2_CalculateVelocityFromPositionHistory",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "Position",
+          "type": "FVector"
+        },
+        {
+          "name": "History",
+          "type": "FPositionHistory&"
+        },
+        {
+          "name": "NumberOfSamples",
+          "type": "int"
+        },
+        {
+          "name": "VelocityMin",
+          "type": "float32"
+        },
+        {
+          "name": "VelocityMax",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "CalculateVelocityFromSockets",
+      "return": "float32",
+      "doc": "This function calculates the velocity of an offset position on a bone / socket over time.\nThe bone's / socket's motion can be expressed within a reference frame (another bone / socket).\nYou need to hook up a valid PositionHistory variable to this for storage.\n\n@param DeltaSeconds The time passed in seconds\n@param Component The skeletal component to look for the bones / sockets\n@param SocketOrBoneName The name of the bone / socket to track.\n@param ReferenceSocketOrBone The name of the bone / socket to use as a frame of reference (or None if no frame of reference == world space).\n@param SocketSpace The space to use for the two sockets / bones\n@param OffsetInBoneSpace The relative position in the space of the bone / socket to track over time.\n@param History The history to use for storage.\n@param NumberOfSamples The number of samples to use for the history. The higher the number of samples - the smoother the velocity changes.\n@param VelocityMin The minimum velocity to use for normalization (if both min and max are set to 0, normalization is turned off)\n@param VelocityMax The maximum velocity to use for normalization (if both min and max are set to 0, normalization is turned off)\n@param EasingType The easing function to use\n@param CustomCurve The curve to use if the easing type is \"Custom\"",
+      "ufunction": true,
+      "unrealname": "K2_CalculateVelocityFromSockets",
+      "meta": null,
+      "args": [
+        {
+          "name": "DeltaSeconds",
+          "type": "float32"
+        },
+        {
+          "name": "Component",
+          "type": "USkeletalMeshComponent"
+        },
+        {
+          "name": "SocketOrBoneName",
+          "type": "FName"
+        },
+        {
+          "name": "ReferenceSocketOrBone",
+          "type": "FName"
+        },
+        {
+          "name": "SocketSpace",
+          "type": "ERelativeTransformSpace"
+        },
+        {
+          "name": "OffsetInBoneSpace",
+          "type": "FVector"
+        },
+        {
+          "name": "History",
+          "type": "FPositionHistory&"
+        },
+        {
+          "name": "NumberOfSamples",
+          "type": "int"
+        },
+        {
+          "name": "VelocityMin",
+          "type": "float32"
+        },
+        {
+          "name": "VelocityMax",
+          "type": "float32"
+        },
+        {
+          "name": "EasingType",
+          "type": "EEasingFuncType"
+        },
+        {
+          "name": "CustomCurve",
+          "type": "FRuntimeFloatCurve"
+        }
+      ]
+    },
+    {
+      "name": "DirectionBetweenSockets",
+      "return": "FVector",
+      "doc": "Computes the direction between two bones / sockets.\n\n@param Component The skeletal component to look for the sockets / bones within\n@param SocketOrBoneNameFrom The name of the first socket / bone\n@param SocketOrBoneNameTo The name of the second socket / bone",
+      "ufunction": true,
+      "unrealname": "K2_DirectionBetweenSockets",
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "const USkeletalMeshComponent"
+        },
+        {
+          "name": "SocketOrBoneNameFrom",
+          "type": "FName"
+        },
+        {
+          "name": "SocketOrBoneNameTo",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "DistanceBetweenSockets",
+      "return": "float32",
+      "doc": "Computes the distance between two bones / sockets and can remap the range.\n\n@param Component The skeletal component to look for the sockets / bones within\n@param SocketOrBoneNameA The name of the first socket / bone\n@param SocketSpaceA The space for the first socket / bone\n@param SocketOrBoneNameB The name of the second socket / bone\n@param SocketSpaceB The space for the second socket / bone\n@param bRemapRange If set to true, the distance will be remapped using the range parameters\n@param InRangeMin The minimum for the input range (commonly == 0.0)\n@param InRangeMax The maximum for the input range (the max expected distance)\n@param OutRangeMin The minimum for the output range (commonly == 0.0)\n@param OutRangeMax The maximum for the output range (commonly == 1.0)",
+      "ufunction": true,
+      "unrealname": "K2_DistanceBetweenTwoSocketsAndMapRange",
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "const USkeletalMeshComponent"
+        },
+        {
+          "name": "SocketOrBoneNameA",
+          "type": "FName"
+        },
+        {
+          "name": "SocketSpaceA",
+          "type": "ERelativeTransformSpace"
+        },
+        {
+          "name": "SocketOrBoneNameB",
+          "type": "FName"
+        },
+        {
+          "name": "SocketSpaceB",
+          "type": "ERelativeTransformSpace"
+        },
+        {
+          "name": "bRemapRange",
+          "type": "bool"
+        },
+        {
+          "name": "InRangeMin",
+          "type": "float32"
+        },
+        {
+          "name": "InRangeMax",
+          "type": "float32"
+        },
+        {
+          "name": "OutRangeMin",
+          "type": "float32"
+        },
+        {
+          "name": "OutRangeMax",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "EndProfilingTimer",
+      "return": "float32",
+      "doc": "This function ends measuring a profiling bracket and optionally logs the result\n\n@param bLog If set to true the result is logged to the OutputLog\n@param LogPrefix A prefix to use for the log\n@result The time spent in milliseconds",
+      "ufunction": true,
+      "unrealname": "K2_EndProfilingTimer",
+      "meta": null,
+      "args": [
+        {
+          "name": "bLog",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "LogPrefix",
+          "default": "\"\"",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "LookAt",
+      "return": "FTransform",
+      "doc": "Computes the transform which is \"looking\" at target position with a local axis.\n\n@param CurrentTransform The input transform to modify\n@param TargetPosition The position this transform should look at\n@param LookAtVector The local vector to align with the target\n@param bUseUpVector If set to true the lookat will also perform a twist rotation\n@param UpVector The position to use for the upvector target (only used is bUseUpVector is turned on)\n@param ClampConeInDegree A limit for only allowing the lookat to rotate as much as defined by the float value",
+      "ufunction": true,
+      "unrealname": "K2_LookAt",
+      "meta": null,
+      "args": [
+        {
+          "name": "CurrentTransform",
+          "type": "FTransform"
+        },
+        {
+          "name": "TargetPosition",
+          "type": "FVector"
+        },
+        {
+          "name": "LookAtVector",
+          "type": "FVector"
+        },
+        {
+          "name": "bUseUpVector",
+          "type": "bool"
+        },
+        {
+          "name": "UpVector",
+          "type": "FVector"
+        },
+        {
+          "name": "ClampConeInDegree",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "MakeFloatFromPerlinNoise",
+      "return": "float32",
+      "doc": "This function creates perlin noise for a single float and then range map to RangeOut\n\n@param Value The input value for the noise function\n@param RangeOutMin The minimum for the output range\n@param RangeOutMax The maximum for the output range",
+      "ufunction": true,
+      "unrealname": "K2_MakePerlinNoiseAndRemap",
+      "meta": null,
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        },
+        {
+          "name": "RangeOutMin",
+          "type": "float32"
+        },
+        {
+          "name": "RangeOutMax",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "MakeVectorFromPerlinNoise",
+      "return": "FVector",
+      "doc": "This function creates perlin noise from input X, Y, Z, and then range map to RangeOut, and out put to OutX, OutY, OutZ\n\n@param X The x component for the input position of the noise\n@param Y The y component for the input position of the noise\n@param Z The z component for the input position of the noise\n@param RangeOutMinX The minimum for the output range for the x component\n@param RangeOutMaxX The maximum for the output range for the x component\n@param RangeOutMinY The minimum for the output range for the y component\n@param RangeOutMaxY The maximum for the output range for the y component\n@param RangeOutMinZ The minimum for the output range for the z component\n@param RangeOutMaxZ The maximum for the output range for the z component",
+      "ufunction": true,
+      "unrealname": "K2_MakePerlinNoiseVectorAndRemap",
+      "meta": null,
+      "args": [
+        {
+          "name": "X",
+          "type": "float32"
+        },
+        {
+          "name": "Y",
+          "type": "float32"
+        },
+        {
+          "name": "Z",
+          "type": "float32"
+        },
+        {
+          "name": "RangeOutMinX",
+          "type": "float32"
+        },
+        {
+          "name": "RangeOutMaxX",
+          "type": "float32"
+        },
+        {
+          "name": "RangeOutMinY",
+          "type": "float32"
+        },
+        {
+          "name": "RangeOutMaxY",
+          "type": "float32"
+        },
+        {
+          "name": "RangeOutMinZ",
+          "type": "float32"
+        },
+        {
+          "name": "RangeOutMaxZ",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "StartProfilingTimer",
+      "return": "void",
+      "doc": "This function starts measuring the time for a profiling bracket",
+      "ufunction": true,
+      "unrealname": "K2_StartProfilingTimer",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "TwoBoneIK",
+      "return": "void",
+      "doc": "Computes the transform for two bones using inverse kinematics.\n\n@param RootPos The input root position of the two bone chain\n@param JointPos The input center (elbow) position of the two bone chain\n@param EndPos The input end (wrist) position of the two bone chain\n@param JointTarget The IK target for the write to reach\n@param Effector The position of the target effector for the IK Chain.\n@param OutJointPos The resulting position for the center (elbow)\n@param OutEndPos The resulting position for the end (wrist)\n@param bAllowStretching If set to true the bones are allowed to stretch\n@param StartStretchRatio The ratio at which the bones should start to stretch. The higher the value, the later the stretching wil start.\n@param MaxStretchScale The maximum multiplier for the stretch to reach.",
+      "ufunction": true,
+      "unrealname": "K2_TwoBoneIK",
+      "meta": null,
+      "args": [
+        {
+          "name": "RootPos",
+          "type": "FVector"
+        },
+        {
+          "name": "JointPos",
+          "type": "FVector"
+        },
+        {
+          "name": "EndPos",
+          "type": "FVector"
+        },
+        {
+          "name": "JointTarget",
+          "type": "FVector"
+        },
+        {
+          "name": "Effector",
+          "type": "FVector"
+        },
+        {
+          "name": "OutJointPos",
+          "type": "FVector&"
+        },
+        {
+          "name": "OutEndPos",
+          "type": "FVector&"
+        },
+        {
+          "name": "bAllowStretching",
+          "type": "bool"
+        },
+        {
+          "name": "StartStretchRatio",
+          "type": "float32"
+        },
+        {
+          "name": "MaxStretchScale",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

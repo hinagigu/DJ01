@@ -1,0 +1,31 @@
+{
+  "name": "FRigUnit_SetDefaultParent",
+  "isStruct": true,
+  "doc": "Changes the default parent for an item - this removes all other current parents.",
+  "properties": {
+    "Child": [
+      "FRigElementKey",
+      "* The child to be parented under the new default parent"
+    ],
+    "Parent": [
+      "FRigElementKey",
+      "* The default parent to be used for the child"
+    ],
+    "ExecuteContext": [
+      "FControlRigExecuteContext",
+      "* This property is used to chain multiple mutable units together"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FRigUnit_SetDefaultParent&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigUnit_SetDefaultParent"
+        }
+      ]
+    }
+  ]
+}

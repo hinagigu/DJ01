@@ -1,0 +1,30 @@
+{
+  "name": "__EPSCPoolMethod",
+  "isEnum": true,
+  "properties": {
+    "None": [
+      "EPSCPoolMethod",
+      "PSC is will be created fresh and not allocated from the pool."
+    ],
+    "AutoRelease": [
+      "EPSCPoolMethod",
+      "PSC is allocated from the pool and will be automatically released back to it.\nUser need not handle this any more that other PSCs but interaction with the PSC after the tick it's spawned in are unsafe.\nThis method is useful for one-shot fx that you don't need to keep a reference to and can fire and forget."
+    ],
+    "ManualRelease": [
+      "EPSCPoolMethod",
+      "PSC is allocated from the pool but will NOT be automatically released back to it. User has ownership of the PSC and must call ReleaseToPool when finished with it otherwise the PSC will leak.\nInteraction with the PSC after it has been released are unsafe.\nThis method is useful for persistent FX that you need to modify parameters upon etc over it's lifetime."
+    ],
+    "ManualRelease_OnComplete": [
+      "EPSCPoolMethod",
+      "Special entry allowing manual release PSCs to be manually released but wait until completion to be returned to the pool."
+    ],
+    "FreeInPool": [
+      "EPSCPoolMethod",
+      "Special entry that marks a PSC as having been returned to the pool. All PSCs currently in the pool are marked this way."
+    ],
+    "EPSCPoolMethod_MAX": [
+      "EPSCPoolMethod"
+    ]
+  },
+  "methods": []
+}

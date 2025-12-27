@@ -1,0 +1,46 @@
+{
+  "name": "FStreamingSourceShape",
+  "isStruct": true,
+  "properties": {
+    "bUseGridLoadingRange": [
+      "bool",
+      "If True, streaming source shape radius is bound to loading range radius."
+    ],
+    "LoadingRangeScale": [
+      "float32",
+      "Applies a scale to the grid's loading range (used if bUseGridLoadingRange is True)."
+    ],
+    "Radius": [
+      "float32",
+      "Custom streaming source shape radius (not used if bUseGridLoadingRange is True)."
+    ],
+    "bIsSector": [
+      "bool",
+      "Whether the source shape is a spherical sector instead of a regular sphere source."
+    ],
+    "SectorAngle": [
+      "float32",
+      "Shape's spherical sector angle in degree (not used if bIsSector is False)."
+    ],
+    "Location": [
+      "FVector",
+      "Streaming source shape location (local to streaming source)."
+    ],
+    "Rotation": [
+      "FRotator",
+      "Streaming source shape rotation (local to streaming source)."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FStreamingSourceShape&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FStreamingSourceShape"
+        }
+      ]
+    }
+  ]
+}
