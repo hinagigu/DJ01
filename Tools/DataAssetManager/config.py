@@ -38,7 +38,7 @@ os.makedirs(OPTIONS_DIR, exist_ok=True)
 CONFIG_FILES = {
     # Schema 文件
     "schema_dir": SCHEMA_DIR,
-    "schema_common": os.path.join(SCHEMA_DIR, "_common.json"),
+    "schema_common": os.path.join(SCHEMA_DIR, "common.json"),
     
     # Options 目录
     "options_dir": OPTIONS_DIR,

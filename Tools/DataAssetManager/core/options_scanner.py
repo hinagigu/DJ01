@@ -374,6 +374,7 @@ class OptionsScanner:
             "input_mapping_contexts": self._update_input_mapping_contexts(),
             "gameplay_abilities": self._update_gameplay_abilities(),
             "attribute_sets": self._update_attribute_sets(),
+            "gameplay_effects": self._update_gameplay_effects(),
             "widget_classes": self._update_widget_classes(),
             "activatable_widgets": self._update_activatable_widgets(),
             "ui_layer_tags": self._update_ui_layer_tags(),
@@ -612,7 +613,64 @@ class OptionsScanner:
             
             self._scan_blueprint_assets_recursive(full_path, content_path, prefixes, items, "技能")
         
+        # 3. 扫描 AngelScript 脚本路径
+        for script_path in config.get("script_paths", []):
+            script_items = self._scan_angelscript_classes(script_path, prefixes, "GameplayAbility")
+            items.extend(script_items)
+        
         return self._update_options_list("gameplay_abilities", items)
+    
+    def _scan_angelscript_classes(self, relative_path: str, prefixes: tuple, base_class: str) -> List[Dict[str, str]]:
+        """扫描 AngelScript 脚本类"""
+        import re
+        items = []
+        
+        full_path = os.path.join(self.project_root, relative_path)
+        if not os.path.exists(full_path):
+            return items
+        
+        # 匹配 AngelScript 类定义: class ClassName : ParentClass
+        class_pattern = re.compile(
+            r'class\s+(U?\w+)\s*:\s*(U?\w+)'
+        )
+        
+        for root, dirs, files in os.walk(full_path):
+            for filename in files:
+                if not filename.endswith('.as'):
+                    continue
+                
+                file_path = os.path.join(root, filename)
+                try:
+                    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                        content = f.read()
+                    
+                    for match in class_pattern.finditer(content):
+                        class_name = match.group(1)
+                        parent_class = match.group(2)
+                        
+                        # 检查前缀（支持带 U 前缀和不带 U 前缀）
+                        # UGA_xxx 匹配 GA_ 前缀，GA_xxx 也匹配 GA_ 前缀
+                        check_name = class_name
+                        if class_name.startswith('U'):
+                            check_name = class_name[1:]  # 去掉 U 前缀再检查
+                        
+                        if prefixes and not check_name.startswith(prefixes):
+                            continue
+                        
+                        # 计算相对路径
+                        rel_file_path = os.path.relpath(file_path, self.project_root)
+                        script_path = rel_file_path.replace('\\', '/').replace('.as', '')
+                        
+                        items.append({
+                            "name": f"/Script/DJ01.{class_name}",
+                            "display_name": f"{class_name} (AngelScript)",
+                            "description": f"继承自 {parent_class}",
+                            "script_path": script_path
+                        })
+                except Exception as e:
+                    pass
+        
+        return items
     
     def _scan_cpp_ability_classes(self, relative_path: str) -> List[Dict[str, str]]:
         """扫描 C++ 技能类"""
@@ -699,6 +757,50 @@ class OptionsScanner:
     def get_attribute_set_options(self) -> List[Dict[str, str]]:
         """获取所有 AttributeSet 选项"""
         return self.options_data.get("attribute_sets", {}).get("items", [])
+    
+    def _update_gameplay_effects(self) -> int:
+        """扫描并更新 GameplayEffect 选项"""
+        items = []
+        config = self.get_scan_config("gameplay_effects")
+        prefixes = tuple(config.get("prefixes", ["GE_", "Effect_"]))
+        
+        # 扫描蓝图路径
+        for bp_path in config.get("blueprint_paths", []):
+            content_path = bp_path.replace("Content/", "") if bp_path.startswith("Content/") else bp_path
+            full_path = os.path.join(self.project_root, "Content", content_path)
+            
+            if not os.path.exists(full_path):
+                continue
+            
+            self._scan_blueprint_assets_recursive(full_path, content_path, prefixes, items, "GameplayEffect")
+        
+        return self._update_options_list("gameplay_effects", items)
+    
+    def get_gameplay_effect_options(self) -> List[Dict[str, str]]:
+        """获取所有 GameplayEffect 选项"""
+        return self.options_data.get("gameplay_effects", {}).get("items", [])
+    
+    def _update_gameplay_effects(self) -> int:
+        """扫描并更新 GameplayEffect 选项"""
+        items = []
+        config = self.get_scan_config("gameplay_effects")
+        prefixes = tuple(config.get("prefixes", ["GE_", "Effect_"]))
+        
+        # 扫描蓝图路径
+        for bp_path in config.get("blueprint_paths", []):
+            content_path = bp_path.replace("Content/", "") if bp_path.startswith("Content/") else bp_path
+            full_path = os.path.join(self.project_root, "Content", content_path)
+            
+            if not os.path.exists(full_path):
+                continue
+            
+            self._scan_blueprint_assets_recursive(full_path, content_path, prefixes, items, "GameplayEffect")
+        
+        return self._update_options_list("gameplay_effects", items)
+    
+    def get_gameplay_effect_options(self) -> List[Dict[str, str]]:
+        """获取所有 GameplayEffect 选项"""
+        return self.options_data.get("gameplay_effects", {}).get("items", [])
     
     def _update_widget_classes(self) -> int:
         """扫描并更新 Widget 类选项"""

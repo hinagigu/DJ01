@@ -79,6 +79,7 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
         """为所有表格绑定 Delete 快捷键删除功能"""
         trees = [
             (self.capture_tree, self._delete_capture),
+            (self.sbc_tree, self._delete_setbycaller),
             (self.tag_tree, self._delete_tag_cond),
             (self.output_tree, self._delete_output),
         ]
@@ -149,8 +150,8 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
         self._create_formula_panel(formula_frame)
     
     def _create_config_panel(self, parent):
-        """创建配置面板（捕获属性 + Tag捕获 + 输出属性）"""
-        # 使用水平 PanedWindow 放置三个表格
+        """创建配置面板（捕获属性 + SetByCaller + Tag捕获 + 输出属性）"""
+        # 使用水平 PanedWindow 放置四个表格
         config_paned = ttk.PanedWindow(parent, orient=tk.HORIZONTAL)
         config_paned.pack(fill=tk.BOTH, expand=True)
         
@@ -158,6 +159,11 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
         cap_frame = ttk.LabelFrame(config_paned, text="捕获属性 (输入)")
         config_paned.add(cap_frame, weight=2)
         self._create_capture_table(cap_frame)
+        
+        # SetByCaller 参数
+        sbc_frame = ttk.LabelFrame(config_paned, text="技能参数 (SetByCaller)")
+        config_paned.add(sbc_frame, weight=2)
+        self._create_setbycaller_table(sbc_frame)
         
         # Tag 捕获
         tag_frame = ttk.LabelFrame(config_paned, text="Tag 捕获")
@@ -211,6 +217,32 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
         btn_frame.pack(fill=tk.X, padx=2, pady=2)
         ttk.Button(btn_frame, text="+S", width=3, command=lambda: self._add_tag_cond('Source')).pack(side=tk.LEFT)
         ttk.Button(btn_frame, text="+T", width=3, command=lambda: self._add_tag_cond('Target')).pack(side=tk.LEFT)
+    
+    def _create_setbycaller_table(self, parent):
+        """创建 SetByCaller 参数表格"""
+        cols = ("tag", "var_name", "default")
+        self.sbc_tree = ttk.Treeview(parent, columns=cols, show='headings', height=6)
+        self.sbc_tree.heading("tag", text="Tag")
+        self.sbc_tree.heading("var_name", text="变量名")
+        self.sbc_tree.heading("default", text="默认值")
+        
+        self.sbc_tree.column("tag", width=120)
+        self.sbc_tree.column("var_name", width=100)
+        self.sbc_tree.column("default", width=60)
+        
+        self.sbc_tree.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
+        self.sbc_tree.bind('<Button-1>', lambda e: self._on_tree_click(e, self.sbc_tree, 'setbycaller'))
+        self.bind_context_menu(self.sbc_tree, on_delete=lambda w, item: self._delete_tree_item(w, item))
+        
+        btn_frame = ttk.Frame(parent)
+        btn_frame.pack(fill=tk.X, padx=2, pady=2)
+        ttk.Button(btn_frame, text="+", width=3, command=self._add_setbycaller).pack(side=tk.LEFT)
+        
+        # 添加常用参数的快捷按钮
+        ttk.Button(btn_frame, text="+伤害", width=6, 
+                   command=lambda: self._add_setbycaller_preset("Damage")).pack(side=tk.LEFT, padx=1)
+        ttk.Button(btn_frame, text="+系数", width=6, 
+                   command=lambda: self._add_setbycaller_preset("Coefficient")).pack(side=tk.LEFT, padx=1)
     
     def _create_output_table(self, parent):
         """创建输出属性表格"""
@@ -327,8 +359,20 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
             else:
                 source_vars.append(var_info)
         
-        if not source_vars and not target_vars:
-            ttk.Label(self.source_var_frame, text="(添加捕获属性/Tag后显示变量)", 
+        # 获取 SetByCaller 参数变量
+        sbc_vars = []
+        for item in self.sbc_tree.get_children():
+            values = self.sbc_tree.item(item, 'values')
+            var_name = values[1] if len(values) > 1 else ''
+            tag = values[0] if len(values) > 0 else ''
+            default = values[2] if len(values) > 2 else '0.0'
+            
+            if var_name:
+                desc = f"技能参数: {tag}\n默认值: {default}"
+                sbc_vars.append((var_name, var_name, desc, "sbc"))
+        
+        if not source_vars and not target_vars and not sbc_vars:
+            ttk.Label(self.source_var_frame, text="(添加捕获属性/SetByCaller/Tag后显示变量)", 
                       foreground="gray").pack(side=tk.LEFT)
             return
         
@@ -361,6 +405,17 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
             ttk.Label(self.target_var_frame, text="Target:", foreground="gray", 
                       width=8).pack(side=tk.LEFT)
             ttk.Label(self.target_var_frame, text="(无)", foreground="gray").pack(side=tk.LEFT)
+        
+        # SetByCaller 参数行（放在 Source 后面）
+        if sbc_vars:
+            sbc_label_frame = ttk.Frame(self.source_var_frame)
+            sbc_label_frame.pack(side=tk.LEFT, padx=(10, 0))
+            ttk.Label(sbc_label_frame, text="Skill:", foreground="purple").pack(side=tk.LEFT)
+            for display_name, insert_text, desc, var_type in sbc_vars:
+                btn = ttk.Button(sbc_label_frame, text=display_name,
+                                command=lambda t=insert_text: self._insert_variable(t))
+                btn.pack(side=tk.LEFT, padx=1)
+                self._create_tooltip(btn, desc)
         
         # 输出行
         ttk.Label(self.output_var_frame, text="Output:", foreground="green", 
@@ -441,6 +496,16 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
                 'source': values[0], 'set': values[1], 'attr': values[2], 'layer': values[3]
             })
         
+        # 保存 SetByCaller 参数
+        self.current_exe.setbycaller_params = []
+        for item in self.sbc_tree.get_children():
+            values = self.sbc_tree.item(item, 'values')
+            self.current_exe.setbycaller_params.append({
+                'tag': values[0], 
+                'var_name': values[1], 
+                'default': float(values[2]) if values[2] else 0.0
+            })
+        
         # 保存输出属性
         self.current_exe.outputs = []
         for item in self.output_tree.get_children():
@@ -480,6 +545,7 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
     def _display_exec(self, exe):
         """显示 Execution"""
         self.capture_tree.delete(*self.capture_tree.get_children())
+        self.sbc_tree.delete(*self.sbc_tree.get_children())
         self.output_tree.delete(*self.output_tree.get_children())
         self.tag_tree.delete(*self.tag_tree.get_children())
         self.formula_text.delete('1.0', tk.END)
@@ -494,6 +560,14 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
             self.capture_tree.insert('', tk.END, values=(
                 cap.get('source', 'Source'), cap.get('set', ''),
                 cap.get('attr', ''), cap.get('layer', 'Total')
+            ))
+        
+        # 显示 SetByCaller 参数
+        for param in getattr(exe, 'setbycaller_params', []):
+            self.sbc_tree.insert('', tk.END, values=(
+                param.get('tag', ''), 
+                param.get('var_name', ''),
+                str(param.get('default', 0.0))
             ))
         
         for out in exe.outputs:
@@ -565,6 +639,28 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
     def _delete_output(self):
         """删除输出属性（由按钮调用）"""
         self._on_delete_key(self.output_tree, None)
+    
+    def _add_setbycaller(self):
+        """添加 SetByCaller 参数"""
+        self.sbc_tree.insert('', tk.END, values=(
+            'Data.Param.Value', 'ParamValue', '0.0'
+        ))
+        self._refresh_variable_hints()
+    
+    def _add_setbycaller_preset(self, preset_type):
+        """添加预设的 SetByCaller 参数"""
+        presets = {
+            'Damage': ('Data.Damage.Base', 'SkillBaseDamage', '0.0'),
+            'Coefficient': ('Data.Damage.Coefficient', 'SkillCoefficient', '1.0'),
+        }
+        if preset_type in presets:
+            values = presets[preset_type]
+            self.sbc_tree.insert('', tk.END, values=values)
+            self._refresh_variable_hints()
+    
+    def _delete_setbycaller(self):
+        """删除 SetByCaller 参数（由按钮调用）"""
+        self._on_delete_key(self.sbc_tree, None)
     
     def _add_tag_cond(self, source='Target'):
         """添加 Tag 捕获"""
@@ -644,6 +740,8 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
             self._edit_output_cell(tree, item, col_idx, x, y, w, h, current_values)
         elif tree_type == 'tag':
             self._edit_tag_cell(tree, item, col_idx, x, y, w, h, current_values)
+        elif tree_type == 'setbycaller':
+            self._edit_setbycaller_cell(tree, item, col_idx, x, y, w, h, current_values)
     
     def _edit_capture_cell(self, tree, item, col_idx, x, y, w, h, current_values):
         """编辑捕获属性单元格"""
@@ -673,6 +771,53 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
             self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, attrs)
         elif col_idx == 2:  # op
             self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, OUTPUT_OPS)
+    
+    def _edit_setbycaller_cell(self, tree, item, col_idx, x, y, w, h, current_values):
+        """编辑 SetByCaller 参数单元格"""
+        # 列: tag(0), var_name(1), default(2)
+        if col_idx == 0:  # tag - 提供预设选项，也可手动输入
+            presets = [
+                'Data.Damage.Base',
+                'Data.Damage.Coefficient',
+                'Data.Damage.Bonus',
+                'Data.Heal.Base',
+                'Data.Heal.Coefficient',
+                'Data.Effect.Duration',
+                'Data.Effect.Stacks',
+            ]
+            self._create_cell_combo(tree, item, col_idx, x, y, w, h, current_values, 
+                                    presets, on_change=lambda: self._on_sbc_tag_change(tree, item))
+        elif col_idx == 1:  # var_name - 文本编辑
+            self._create_cell_entry(tree, item, col_idx, x, y, w, h, current_values, 
+                                    str, on_change=self._refresh_variable_hints)
+        elif col_idx == 2:  # default - 数值编辑
+            self._create_cell_entry(tree, item, col_idx, x, y, w, h, current_values, str)
+    
+    def _on_sbc_tag_change(self, tree, item):
+        """当 SetByCaller Tag 改变时，自动生成变量名"""
+        current_values = list(tree.item(item, 'values'))
+        tag = current_values[0] if len(current_values) > 0 else ''
+        
+        # 根据 Tag 生成变量名建议
+        if tag:
+            # 取最后两个部分作为变量名，如 Data.Damage.Base -> DamageBase
+            parts = tag.split('.')
+            if len(parts) >= 2:
+                var_name = parts[-2] + parts[-1]  # 如 DamageBase
+            else:
+                var_name = parts[-1]
+            
+            # 首字母大写处理
+            var_name = ''.join(word.capitalize() for word in var_name.replace('.', ' ').replace('_', ' ').split())
+            
+            # 添加 Skill 前缀
+            if not var_name.startswith('Skill'):
+                var_name = 'Skill' + var_name
+            
+            current_values[1] = var_name
+            tree.item(item, values=current_values)
+        
+        self._refresh_variable_hints()
     
     def _edit_tag_cell(self, tree, item, col_idx, x, y, w, h, current_values):
         """编辑 Tag 捕获单元格（三列：来源、分类、Tag）"""

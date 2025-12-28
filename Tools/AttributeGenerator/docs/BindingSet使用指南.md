@@ -331,13 +331,13 @@ Source/DJ01/GAS/Generated/BindingSets/
 
 - BindingSet 使用委托监听，只在值变化时触发
 - 避免在 `Tick` 中轮询，直接读取绑定变量即可
-- 对于不再需要的绑定，调用 `DJ01_CLEANUP_BINDING_SET` 清理
+- 对于不再需要的绑定，调用 `CleanupBindingSet_XXX(ASC)` 清理
 
 ### 4. 调试技巧
 
 ```cpp
 // 在初始化后打印绑定的值
-DJ01_INIT_BINDING_SET(Test, ASC)
+InitBindingSet_Test(ASC);
 UE_LOG(LogTemp, Log, TEXT("BindingSet initialized: Health=%.1f, bStunned=%d"), 
        CurrentHealth, bStunned);
 ```
@@ -346,7 +346,7 @@ UE_LOG(LogTemp, Log, TEXT("BindingSet initialized: Health=%.1f, bStunned=%d"),
 
 ### Q: 为什么变量没有更新？
 
-1. 确认已调用 `DJ01_INIT_BINDING_SET`
+1. 确认已调用 `InitBindingSet_XXX(ASC)` 函数
 2. 确认 ASC 指针有效
 3. 确认属性/Tag 的名称与配置匹配
 

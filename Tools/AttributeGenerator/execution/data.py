@@ -14,6 +14,7 @@ class ExecutionData:
         self.captures = []  # [{"source": "Source", "set": "StatSet", "attr": "AttackPower", "layer": "Total"}]
         self.outputs = []   # [{"set": "ResourceSet", "attr": "Health", "op": "Additive"}]
         self.tag_conditions = []  # [{"source": "Target", "tag": "Immunity.Fire", "effect": "Skip", "value": 0}]
+        self.setbycaller_params = []  # [{"tag": "Data.Damage.Base", "var_name": "BaseDamage", "default": 0.0}]
         self.formula = ""
 
     def to_dict(self):
@@ -23,6 +24,7 @@ class ExecutionData:
             'Captures': self.captures,
             'Outputs': self.outputs,
             'TagConditions': self.tag_conditions,
+            'SetByCallerParams': self.setbycaller_params,
             'Formula': self.formula
         }
 
@@ -32,5 +34,6 @@ class ExecutionData:
         exe.captures = d.get('Captures', [])
         exe.outputs = d.get('Outputs', [])
         exe.tag_conditions = d.get('TagConditions', [])
+        exe.setbycaller_params = d.get('SetByCallerParams', [])
         exe.formula = d.get('Formula', '')
         return exe

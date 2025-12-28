@@ -53,8 +53,8 @@ class SchemaLoader:
         SchemaLoader._schema = {}
         
         try:
-            # 先加载 _common.json（如果存在）
-            common_file = os.path.join(dir_path, "_common.json")
+            # 先加载 common.json（如果存在）
+            common_file = os.path.join(dir_path, "common.json")
             if os.path.exists(common_file):
                 self._load_and_merge(common_file)
             

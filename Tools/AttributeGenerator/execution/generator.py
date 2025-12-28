@@ -199,6 +199,10 @@ class ExecutionCodeGenerator:
         if exe.tag_conditions:
             ExecutionCodeGenerator._generate_tag_captures(lines, exe.tag_conditions)
         
+        # SetByCaller 参数
+        if exe.setbycaller_params:
+            ExecutionCodeGenerator._generate_setbycaller_params(lines, exe.setbycaller_params)
+        
         lines.append("    // ========== 获取属性值 ==========")
         
         processed = set()
@@ -260,6 +264,27 @@ class ExecutionCodeGenerator:
             lines.append(f"            {attr_class}::Get{out['attr']}Attribute(), EGameplayModOp::{op}, FinalValue));")
             lines.append(f"    }}")
         lines.append("}")
+        lines.append("")
+    
+    @staticmethod
+    def _generate_setbycaller_params(lines, setbycaller_params):
+        """生成 SetByCaller 参数读取代码"""
+        lines.append("    // ========== SetByCaller 参数（技能传入） ==========")
+        
+        for param in setbycaller_params:
+            tag = param.get('tag', '')
+            var_name = param.get('var_name', '')
+            default = param.get('default', 0.0)
+            
+            if not tag or not var_name:
+                continue
+            
+            # 转换 Tag 为 C++ 变量名格式
+            tag_native = tag.replace('.', '_')
+            
+            lines.append(f"    const float {var_name} = Spec.GetSetByCallerMagnitude(")
+            lines.append(f"        DJ01GameplayTags::{tag_native}, false, {default}f);")
+        
         lines.append("")
     
     @staticmethod
