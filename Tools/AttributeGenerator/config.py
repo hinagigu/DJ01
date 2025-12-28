@@ -53,10 +53,11 @@ TAGS_HEADER = PROJECT_ROOT / "Source/DJ01/System/Public/DJ01GameplayTags.h"
 TAGS_SOURCE = PROJECT_ROOT / "Source/DJ01/System/Private/DJ01GameplayTags.cpp"
 
 # Tag CSV 字段
-TAGS_CSV_FIELDS = ['Category', 'Tag', 'VariableName', 'Description', 'AnimVar']
+TAGS_CSV_FIELDS = ['Category', 'Tag', 'VariableName', 'Description']
 
-# AnimInstance 生成配置
-ANIM_INSTANCE_HEADER = PROJECT_ROOT / "Source/DJ01/Animation/Generated/DJ01AnimInstanceVars.h"
+# BindingSet 配置
+BINDINGSET_CONFIG = PROJECT_ROOT / "Source/DJ01/GAS/Config/BindingSetDefinitions.json"
+BINDINGSET_OUTPUT = PROJECT_ROOT / "Source/DJ01/GAS/Generated/BindingSets"
 
 # ========== MMC 配置 ==========
 MMC_CONFIG = PROJECT_ROOT / "Source/DJ01/AbilitySystem/MMC/Config/MMCDefinitions.json"

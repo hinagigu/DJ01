@@ -97,10 +97,16 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
         # 绑定删除列的点击事件
         self.attr_tree.bind('<ButtonRelease-1>', self._on_tree_click)
         
+        # 右键菜单
+        self.bind_context_menu(
+            self.attr_tree,
+            on_delete=lambda w, item: self._delete_attr_by_item(item),
+            on_rename=lambda w, item: self._rename_attr_by_item(item)
+        )
+        
         # 底部按钮
         self.button_bar = BottomButtonBar(middle_frame, buttons=[
             ("+ 添加属性", self._add_attribute, None),
-            ("- 删除属性", self._delete_attribute, None),
         ])
         self.button_bar.add_button("[生成代码]", self.generate_code, side=tk.RIGHT)
         self.button_bar.add_button("重新加载", self.load_data, side=tk.RIGHT)
@@ -873,12 +879,32 @@ class AttributeEditorUI(BaseEditorUI, InlineEditorMixin):
     def _on_rename_attr(self, event):
         selection = self.attr_tree.selection()
         if selection:
-            idx = int(selection[0])
-            attr = self.attributes[idx]
-            new_name = simpledialog.askstring("重命名", "新名称:", initialvalue=attr.name)
-            if new_name:
-                attr.name = new_name
+            self._rename_attr_by_item(selection[0])
+    
+    def _rename_attr_by_item(self, item: str):
+        """通过 item id 重命名属性"""
+        try:
+            idx = int(item)
+            if idx < len(self.attributes):
+                attr = self.attributes[idx]
+                new_name = simpledialog.askstring("重命名", "新名称:", initialvalue=attr.name)
+                if new_name:
+                    attr.name = new_name
+                    self._refresh_attr_list()
+        except (ValueError, IndexError):
+            pass
+    
+    def _delete_attr_by_item(self, item: str):
+        """通过 item id 删除属性（右键菜单调用）"""
+        try:
+            idx = int(item)
+            if idx < len(self.attributes):
+                del self.attributes[idx]
+                self._last_selected_idx = None
                 self._refresh_attr_list()
+                self._refresh_set_list()
+        except (ValueError, IndexError):
+            pass
     
     def _on_inline_edit_refresh(self, idx):
         """单击编辑后刷新表格"""

@@ -185,11 +185,11 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
         
         self.capture_tree.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
         self.capture_tree.bind('<Button-1>', lambda e: self._on_tree_click(e, self.capture_tree, 'capture'))
+        self.bind_context_menu(self.capture_tree, on_delete=lambda w, item: self._delete_tree_item(w, item))
         
         btn_frame = ttk.Frame(parent)
         btn_frame.pack(fill=tk.X, padx=2, pady=2)
         ttk.Button(btn_frame, text="+", width=3, command=self._add_capture).pack(side=tk.LEFT)
-        ttk.Button(btn_frame, text="-", width=3, command=self._delete_capture).pack(side=tk.LEFT)
     
     def _create_tag_table(self, parent):
         """创建 Tag 捕获表格（三列：来源、分类、Tag）"""
@@ -205,12 +205,12 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
         
         self.tag_tree.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
         self.tag_tree.bind('<Button-1>', lambda e: self._on_tree_click(e, self.tag_tree, 'tag'))
+        self.bind_context_menu(self.tag_tree, on_delete=lambda w, item: self._delete_tree_item(w, item))
         
         btn_frame = ttk.Frame(parent)
         btn_frame.pack(fill=tk.X, padx=2, pady=2)
         ttk.Button(btn_frame, text="+S", width=3, command=lambda: self._add_tag_cond('Source')).pack(side=tk.LEFT)
         ttk.Button(btn_frame, text="+T", width=3, command=lambda: self._add_tag_cond('Target')).pack(side=tk.LEFT)
-        ttk.Button(btn_frame, text="-", width=3, command=self._delete_tag_cond).pack(side=tk.LEFT)
     
     def _create_output_table(self, parent):
         """创建输出属性表格"""
@@ -226,11 +226,11 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
         
         self.output_tree.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
         self.output_tree.bind('<Button-1>', lambda e: self._on_tree_click(e, self.output_tree, 'output'))
+        self.bind_context_menu(self.output_tree, on_delete=lambda w, item: self._delete_tree_item(w, item))
         
         btn_frame = ttk.Frame(parent)
         btn_frame.pack(fill=tk.X, padx=2, pady=2)
         ttk.Button(btn_frame, text="+", width=3, command=self._add_output).pack(side=tk.LEFT)
-        ttk.Button(btn_frame, text="-", width=3, command=self._delete_output).pack(side=tk.LEFT)
     
     def _create_formula_panel(self, parent):
         """创建公式编辑面板"""
@@ -592,6 +592,12 @@ class ExecutionEditorUI(BaseEditorUI, InlineEditorMixin):
     def _delete_tag_cond(self):
         """删除 Tag 捕获（由按钮调用）"""
         self._on_delete_key(self.tag_tree, None)
+    
+    def _delete_tree_item(self, tree: ttk.Treeview, item: str):
+        """通用删除方法（右键菜单调用）"""
+        if item:
+            tree.delete(item)
+            self._refresh_variable_hints()
     
     # ========== 单击编辑功能 ==========
     

@@ -17,13 +17,11 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from config import (
     TAGS_CONFIG, TAGS_CONFIG_CSV, TAGS_CONFIG_JSON, 
-    TAGS_HEADER, TAGS_SOURCE, TAG_CATEGORIES, TAGS_CSV_FIELDS,
-    ANIM_INSTANCE_HEADER
+    TAGS_HEADER, TAGS_SOURCE, TAG_CATEGORIES, TAGS_CSV_FIELDS
 )
 from ui_base import BaseEditorUI, GroupListWidget, BottomButtonBar, InlineEditorMixin
 from tag.data import TagData
 from tag.generator import TagCodeGenerator
-from tag.anim_generator import AnimInstanceVarGenerator
 
 
 class TagEditorUI(BaseEditorUI, InlineEditorMixin):
@@ -59,16 +57,14 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
         
         ttk.Label(middle_frame, text="Tag 列表", font=("", 12, "bold")).pack(pady=5)
         
-        columns = ('tag', 'variable', 'description', 'animvar')
+        columns = ('tag', 'variable', 'description')
         self.tag_tree = ttk.Treeview(middle_frame, columns=columns, show='headings', height=15)
         self.tag_tree.heading('tag', text='Tag')
         self.tag_tree.heading('variable', text='变量名')
         self.tag_tree.heading('description', text='描述')
-        self.tag_tree.heading('animvar', text='AnimVar')
-        self.tag_tree.column('tag', width=180)
-        self.tag_tree.column('variable', width=140)
-        self.tag_tree.column('description', width=180)
-        self.tag_tree.column('animvar', width=100)
+        self.tag_tree.column('tag', width=220)
+        self.tag_tree.column('variable', width=180)
+        self.tag_tree.column('description', width=250)
         self.tag_tree.pack(fill=tk.BOTH, expand=True)
         
         # 绑定 Delete/BackSpace 删除（自动选中上/下行）
@@ -76,10 +72,15 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
         # 绑定单击编辑
         self.tag_tree.bind('<Button-1>', self._on_tree_click)
         
+        # 右键菜单
+        self.bind_context_menu(
+            self.tag_tree,
+            on_delete=lambda w, item: self._delete_tag_by_item(item)
+        )
+        
         # 底部按钮
         self.button_bar = BottomButtonBar(middle_frame, buttons=[
             ("+ 添加 Tag", self._add_tag, None),
-            ("- 删除 Tag", self._delete_tag, None),
         ])
         self.button_bar.add_button("[生成代码]", self.generate_code, side=tk.RIGHT)
         self.button_bar.add_button("重新加载", self.load_data, side=tk.RIGHT)
@@ -111,8 +112,7 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
                     category=row.get('Category', ''),
                     tag=row.get('Tag', ''),
                     variable_name=row.get('VariableName', ''),
-                    description=row.get('Description', ''),
-                    anim_var=row.get('AnimVar', '')
+                    description=row.get('Description', '')
                 ))
     
     def _load_from_json(self):
@@ -137,8 +137,7 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
                         'Category': tag.category,
                         'Tag': tag.tag,
                         'VariableName': tag.variable_name,
-                        'Description': tag.description,
-                        'AnimVar': tag.anim_var
+                        'Description': tag.description
                     })
             
             return True
@@ -164,7 +163,7 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
         for i, tag in enumerate(self.tags):
             if tag.category == self.current_category:
                 self.tag_tree.insert('', 'end', iid=str(i), values=(
-                    tag.tag, tag.variable_name, tag.description, tag.anim_var))
+                    tag.tag, tag.variable_name, tag.description))
     
     def _on_cat_select(self, idx, value):
         self.current_category = value
@@ -222,6 +221,17 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
         self._refresh_tag_list()
         self._refresh_cat_list()
     
+    def _delete_tag_by_item(self, item: str):
+        """通过 item id 删除 Tag（右键菜单调用）"""
+        try:
+            idx = int(item)
+            if idx < len(self.tags):
+                del self.tags[idx]
+                self._refresh_tag_list()
+                self._refresh_cat_list()
+        except (ValueError, IndexError):
+            pass
+    
     def get_tags_by_category(self):
         """获取按分类分组的 tags"""
         result = OrderedDict()
@@ -266,15 +276,13 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
         tag = self.tags[tag_idx]
         current_values = list(self.tag_tree.item(item, 'values'))
         
-        # 列: tag(0), variable(1), description(2), animvar(3)
+        # 列: tag(0), variable(1), description(2)
         if col_idx == 0:  # tag 名
             self._create_tag_entry(item, col_idx, x, y, w, h, current_values, tag, 'tag')
         elif col_idx == 1:  # variable_name - 只读，显示自动生成提示
             pass  # 变量名自动生成，不可编辑
         elif col_idx == 2:  # description
             self._create_tag_entry(item, col_idx, x, y, w, h, current_values, tag, 'description')
-        elif col_idx == 3:  # animvar - 可编辑
-            self._create_tag_entry(item, col_idx, x, y, w, h, current_values, tag, 'anim_var')
     
     def _create_tag_entry(self, item, col_idx, x, y, w, h, current_values, tag, field_name):
         """创建文本框编辑器"""
@@ -301,9 +309,6 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
             elif field_name == 'description':
                 tag.description = new_value
                 current_values[2] = new_value
-            elif field_name == 'anim_var':
-                tag.anim_var = new_value
-                current_values[3] = new_value
             
             self.tag_tree.item(item, values=current_values)
             self._destroy_active_editor()
@@ -332,12 +337,6 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
         header = TagCodeGenerator.generate_header(tags_by_cat, timestamp)
         source = TagCodeGenerator.generate_source(tags_by_cat, timestamp)
         
-        # 收集带有 AnimVar 的 tags
-        anim_tags = [t for t in self.tags if t.anim_var]
-        anim_header = ""
-        if anim_tags:
-            anim_header = AnimInstanceVarGenerator.generate_header(anim_tags, timestamp)
-        
         try:
             TAGS_HEADER.parent.mkdir(parents=True, exist_ok=True)
             TAGS_SOURCE.parent.mkdir(parents=True, exist_ok=True)
@@ -347,20 +346,9 @@ class TagEditorUI(BaseEditorUI, InlineEditorMixin):
             with open(TAGS_SOURCE, 'w', encoding='utf-8') as f:
                 f.write(source)
             
-            # 生成 AnimInstance 变量头文件
-            anim_count = 0
-            if anim_tags:
-                ANIM_INSTANCE_HEADER.parent.mkdir(parents=True, exist_ok=True)
-                with open(ANIM_INSTANCE_HEADER, 'w', encoding='utf-8') as f:
-                    f.write(anim_header)
-                anim_count = len(anim_tags)
-            
             self.save_config()
             
             total = sum(len(tags) for tags in tags_by_cat.values())
-            msg = f"已生成 {total} 个 Tag"
-            if anim_count > 0:
-                msg += f"\n已生成 {anim_count} 个 AnimInstance 变量"
-            messagebox.showinfo("成功", msg)
+            messagebox.showinfo("成功", f"已生成 {total} 个 Tag")
         except Exception as e:
             messagebox.showerror("错误", f"生成失败: {e}")

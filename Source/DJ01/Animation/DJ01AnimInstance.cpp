@@ -24,6 +24,10 @@ void UDJ01AnimInstance::InitializeWithAbilitySystem(UAbilitySystemComponent* ASC
 {
 	check(ASC);
 
+	// 解析属性引用（此时类信息已完整）
+	GameplayTagPropertyMap.ResolveProperties(GetClass());
+	
+	// 初始化映射
 	GameplayTagPropertyMap.Initialize(this, ASC);
 	
 	UE_LOG(LogTemp, Log, TEXT("DJ01AnimInstance: Initialized %d tag-to-property mappings"), 

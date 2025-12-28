@@ -84,13 +84,13 @@ class MMCEditorUI(BaseEditorUI, InlineEditorMixin):
         self.capture_tree.heading("attr", text="属性")
         self.capture_tree.heading("layer", text="层级")
         self.capture_tree.pack(fill=tk.BOTH, expand=True, side=tk.LEFT)
-        # 绑定 Delete 键
+        # 绑定 Delete 键和右键菜单
         self._bind_tree_delete_key(self.capture_tree)
+        self.bind_context_menu(self.capture_tree, on_delete=lambda w, item: self._delete_capture_by_item(item))
         
         cap_btn = ttk.Frame(cap_frame)
         cap_btn.pack(side=tk.RIGHT, padx=5)
         ttk.Button(cap_btn, text="➕", width=3, command=self._add_capture).pack(pady=2)
-        ttk.Button(cap_btn, text="➖", width=3, command=self._delete_capture).pack(pady=2)
         
         # SetByCaller
         sbc_frame = ttk.LabelFrame(parent, text="SetByCaller")
@@ -102,13 +102,13 @@ class MMCEditorUI(BaseEditorUI, InlineEditorMixin):
         self.sbc_tree.heading("default", text="默认值")
         self.sbc_tree.heading("description", text="描述")
         self.sbc_tree.pack(fill=tk.BOTH, expand=True, side=tk.LEFT)
-        # 绑定 Delete 键
+        # 绑定 Delete 键和右键菜单
         self._bind_tree_delete_key(self.sbc_tree)
+        self.bind_context_menu(self.sbc_tree, on_delete=lambda w, item: self._delete_sbc_by_item(item))
         
         sbc_btn = ttk.Frame(sbc_frame)
         sbc_btn.pack(side=tk.RIGHT, padx=5)
         ttk.Button(sbc_btn, text="➕", width=3, command=self._add_sbc).pack(pady=2)
-        ttk.Button(sbc_btn, text="➖", width=3, command=self._delete_sbc).pack(pady=2)
         
         # 公式
         formula_frame = ttk.LabelFrame(parent, text="计算公式 (返回 float)")
@@ -242,12 +242,22 @@ class MMCEditorUI(BaseEditorUI, InlineEditorMixin):
         """删除选中的捕获属性"""
         self._handle_tree_delete(self.capture_tree)
     
+    def _delete_capture_by_item(self, item: str):
+        """通过 item id 删除捕获属性（右键菜单调用）"""
+        if item:
+            self.capture_tree.delete(item)
+    
     def _add_sbc(self):
         self.sbc_tree.insert('', tk.END, values=('Data.Value', '0', ''))
     
     def _delete_sbc(self):
         """删除选中的 SetByCaller"""
         self._handle_tree_delete(self.sbc_tree)
+    
+    def _delete_sbc_by_item(self, item: str):
+        """通过 item id 删除 SetByCaller（右键菜单调用）"""
+        if item:
+            self.sbc_tree.delete(item)
     
     def generate_code(self):
         self._save_current_to_data()

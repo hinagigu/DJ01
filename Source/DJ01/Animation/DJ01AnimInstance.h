@@ -6,8 +6,8 @@
 #include "Animation/AnimInstance.h"
 #include "DJ01GameplayTagPropertyMap.h"
 
-// 包含自动生成的动画变量和映射初始化宏（必须在 .generated.h 之前）
-#include "Generated/DJ01AnimInstanceVars.h"
+// AnimTagSet 系统：按需包含对应的 TagSet 头文件
+// 例如: #include "Animation/AnimTagSets/AnimTagSet_CommonStatus.h"
 
 #include "DJ01AnimInstance.generated.h"
 
@@ -75,11 +75,13 @@ protected:
 	float GroundDistance = -1.0f;
 
 	//========================================
-	// 逻辑状态数据 (由 GameplayTagPropertyMap 自动映射)
-	// 在动画蓝图的 Class Defaults 中配置 Tag 映射
+	// 逻辑状态数据 (由 AnimTagSet 系统管理)
+	// 使用 AnimTagSet 编辑器创建 TagSet，然后在此处使用宏引入
 	//========================================
 	
-	// 自动生成的动画状态变量 - 由 Tag Manager 生成
-	// 在 Tag Manager 中配置 AnimVar 列来添加/修改这些变量
-	DJ01_ANIM_INSTANCE_GENERATED_VARS
+	// AnimTagSet 使用示例:
+	// DJ01_ANIM_TAG_SET_COMMONSTATUS_VARS()  // 变量声明
+	// 
+	// 并在 InitializeWithAbilitySystem 中调用:
+	// DJ01_ANIM_TAG_SET_COMMONSTATUS_REGISTER(ASC)  // 注册回调
 };

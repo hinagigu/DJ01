@@ -8,6 +8,7 @@ DJ01 GAS 代码生成器 - 编辑器基类
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 from abc import ABC, abstractmethod
+from typing import Callable, Optional, List, Dict
 
 
 class BaseEditorUI(ABC):
@@ -34,6 +35,7 @@ class BaseEditorUI(ABC):
         self.parent = parent
         self.app = app
         self._edit_widget = None  # 当前编辑控件
+        self._context_menus: Dict[tk.Widget, tk.Menu] = {}  # 存储右键菜单
         self._bind_shortcuts()
     
     def _bind_shortcuts(self):
@@ -256,6 +258,106 @@ class BaseEditorUI(ABC):
     def save_current_edit(self):
         """保存当前编辑（Ctrl+S 调用）"""
         pass
+    
+    # ===== 右键菜单支持 =====
+    
+    def bind_context_menu(self, widget: tk.Widget, 
+                          on_delete: Optional[Callable] = None,
+                          on_rename: Optional[Callable] = None,
+                          extra_items: Optional[List[tuple]] = None):
+        """
+        为控件绑定右键上下文菜单
+        
+        Args:
+            widget: Treeview 或 Listbox 控件
+            on_delete: 删除回调函数，接收 (widget, selected_item) 参数
+            on_rename: 重命名回调函数，接收 (widget, selected_item) 参数
+            extra_items: 额外的菜单项列表，格式为 [(label, callback), ...]
+                         callback 接收 (widget, selected_item) 参数
+                         如果 label 为 "-"，则添加分隔线
+        
+        使用示例:
+            self.bind_context_menu(
+                self.my_tree,
+                on_delete=lambda w, item: self._delete_item(item),
+                on_rename=lambda w, item: self._rename_item(item),
+                extra_items=[
+                    ("复制", lambda w, item: self._copy_item(item)),
+                    ("-", None),  # 分隔线
+                    ("移动到...", lambda w, item: self._move_item(item)),
+                ]
+            )
+        """
+        menu = tk.Menu(widget, tearoff=0)
+        
+        # 重命名选项
+        if on_rename:
+            menu.add_command(label="重命名 (F2)", 
+                           command=lambda: self._execute_context_action(widget, on_rename))
+        
+        # 删除选项
+        if on_delete:
+            menu.add_command(label="删除 (Del)", 
+                           command=lambda: self._execute_context_action(widget, on_delete))
+        
+        # 额外的菜单项
+        if extra_items:
+            if on_delete or on_rename:
+                menu.add_separator()
+            for item in extra_items:
+                label, callback = item
+                if label == "-":
+                    menu.add_separator()
+                elif callback:
+                    menu.add_command(label=label,
+                                   command=lambda cb=callback: self._execute_context_action(widget, cb))
+        
+        # 存储菜单引用
+        self._context_menus[widget] = menu
+        
+        # 绑定右键事件（同时支持 Windows 和 macOS）
+        widget.bind('<Button-3>', lambda e: self._show_context_menu(e, widget, menu))  # Windows/Linux
+        widget.bind('<Button-2>', lambda e: self._show_context_menu(e, widget, menu))  # macOS
+    
+    def _show_context_menu(self, event, widget: tk.Widget, menu: tk.Menu):
+        """显示右键菜单"""
+        # 先选中点击的项目
+        if isinstance(widget, ttk.Treeview):
+            item = widget.identify_row(event.y)
+            if item:
+                widget.selection_set(item)
+                widget.focus(item)
+            else:
+                return  # 没有点击到项目，不显示菜单
+        elif isinstance(widget, tk.Listbox):
+            index = widget.nearest(event.y)
+            if index >= 0:
+                widget.selection_clear(0, tk.END)
+                widget.selection_set(index)
+                widget.activate(index)
+            else:
+                return
+        
+        # 显示菜单
+        try:
+            menu.tk_popup(event.x_root, event.y_root)
+        finally:
+            menu.grab_release()
+    
+    def _execute_context_action(self, widget: tk.Widget, callback: Callable):
+        """执行右键菜单动作"""
+        selected = None
+        if isinstance(widget, ttk.Treeview):
+            selection = widget.selection()
+            if selection:
+                selected = selection[0]
+        elif isinstance(widget, tk.Listbox):
+            selection = widget.curselection()
+            if selection:
+                selected = selection[0]
+        
+        if selected is not None and callback:
+            callback(widget, selected)
     
     # ===== 工具方法 =====
     

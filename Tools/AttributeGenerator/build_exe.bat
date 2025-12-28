@@ -27,13 +27,14 @@ if exist "dist" rd /s /q "dist"
 if exist "DJ01_GAS_Generator.spec" del /q "DJ01_GAS_Generator.spec"
 
 echo [3/4] Building exe...
-echo       Including modules: main, config, ui_base, attribute, execution, mmc, tag
+echo       Including modules: main, config, ui_base, attribute, execution, mmc, tag, bindingset
 pyinstaller --onefile --windowed --name "DJ01_GAS_Generator" ^
     --collect-submodules=ui_base ^
     --collect-submodules=attribute ^
     --collect-submodules=execution ^
     --collect-submodules=mmc ^
     --collect-submodules=tag ^
+    --collect-submodules=bindingset ^
     --hidden-import=config ^
     main.py
 
