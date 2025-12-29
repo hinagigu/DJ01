@@ -963,6 +963,438 @@
           "type": "TMap<FGameplayTag,float32>"
         }
       ]
+    },
+    {
+      "name": "AddGameplayCueWithEffectContext",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "AddGameplayCueWithParameters",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "GameplayCueParameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "AddLooseGameplayTag",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Count",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "AddLooseGameplayTags",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "Count",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "AddReplicatedLooseGameplayTag",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "AddReplicatedLooseGameplayTags",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "AddSpawnedAttribute",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Attribute",
+          "type": "UAttributeSet"
+        }
+      ]
+    },
+    {
+      "name": "AreAbilityTagsBlocked",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Tags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "ExecuteGameplayCueWithEffectContext",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "ExecuteGameplayCueWithParameters",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "GameplayCueParameters",
+          "type": "FGameplayCueParameters"
+        }
+      ]
+    },
+    {
+      "name": "FindAbilitySpecFromClass",
+      "return": "bool",
+      "meta": null,
+      "args": [
+        {
+          "name": "InAbilityClass",
+          "type": "TSubclassOf<UGameplayAbility>"
+        },
+        {
+          "name": "OutSpec",
+          "type": "FGameplayAbilitySpec&"
+        }
+      ]
+    },
+    {
+      "name": "FindAbilitySpecFromGEHandle",
+      "return": "bool",
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FActiveGameplayEffectHandle"
+        },
+        {
+          "name": "OutSpec",
+          "type": "FGameplayAbilitySpec&"
+        }
+      ]
+    },
+    {
+      "name": "FindAbilitySpecFromHandle",
+      "return": "bool",
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "OutSpec",
+          "type": "FGameplayAbilitySpec&"
+        }
+      ]
+    },
+    {
+      "name": "FindAbilitySpecFromInputID",
+      "return": "bool",
+      "meta": null,
+      "args": [
+        {
+          "name": "InputID",
+          "type": "int"
+        },
+        {
+          "name": "OutSpec",
+          "type": "FGameplayAbilitySpec&"
+        }
+      ]
+    },
+    {
+      "name": "GetOwnedGameplayTags",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TagContainer",
+          "type": "FGameplayTagContainer&"
+        }
+      ]
+    },
+    {
+      "name": "GetSpawnedAttributes",
+      "return": "TArray<UAttributeSet>",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GiveAbility",
+      "return": "FGameplayAbilitySpecHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "Spec",
+          "type": "FGameplayAbilitySpec"
+        }
+      ]
+    },
+    {
+      "name": "GiveAbilityAndActivateOnce",
+      "return": "FGameplayAbilitySpecHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "Spec",
+          "type": "FGameplayAbilitySpec&"
+        }
+      ]
+    },
+    {
+      "name": "GiveAbilityAndActivateOnceWithEventData",
+      "return": "FGameplayAbilitySpecHandle",
+      "meta": null,
+      "args": [
+        {
+          "name": "Spec",
+          "type": "FGameplayAbilitySpec&"
+        },
+        {
+          "name": "EventData",
+          "type": "FGameplayEventData"
+        }
+      ]
+    },
+    {
+      "name": "InitDefaultGameplayCueParameters",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parameters",
+          "type": "FGameplayCueParameters&"
+        }
+      ]
+    },
+    {
+      "name": "MarkAbilitySpecDirty",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Spec",
+          "type": "FGameplayAbilitySpec&"
+        },
+        {
+          "name": "bWasAddOrRemove",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllGameplayCues",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveAllSpawnedAttributes",
+      "return": "void",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RemoveGameplayCue",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayCueTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLooseGameplayTag",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Count",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLooseGameplayTags",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "Count",
+          "default": "1",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveReplicatedLooseGameplayTag",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "RemoveReplicatedLooseGameplayTags",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "RemoveSpawnedAttribute",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Attribute",
+          "type": "UAttributeSet"
+        }
+      ]
+    },
+    {
+      "name": "SendGameplayEvent",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "EventTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Payload",
+          "type": "FGameplayEventData"
+        }
+      ]
+    },
+    {
+      "name": "SetLooseGameplayTagCount",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "NewCount",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "SetReplicatedLooseGameplayTagCount",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "NewCount",
+          "type": "int"
+        }
+      ]
     }
   ]
 }

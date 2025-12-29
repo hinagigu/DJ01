@@ -2,8 +2,359 @@
   "name": "FGameplayEffectSpec",
   "isStruct": true,
   "doc": "GameplayEffect Specification. Tells us:\n    -What UGameplayEffect (const data)\n    -What Level\n -Who instigated\n\nFGameplayEffectSpec is modifiable. We start with initial conditions and modifications be applied to it. In this sense, it is stateful/mutable but it\nis still distinct from an FActiveGameplayEffect which in an applied instance of an FGameplayEffectSpec.",
-  "properties": {},
+  "properties": {
+    "Def": [
+      "const UGameplayEffect"
+    ],
+    "SetByCallerNameMagnitudes": [
+      "TMap<FName,float32>"
+    ],
+    "SetByCallerTagMagnitudes": [
+      "TMap<FGameplayTag,float32>"
+    ]
+  },
   "methods": [
+    {
+      "name": "AddDynamicAssetTag",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TagToAdd",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "AppendDynamicAssetTags",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ContainerToAdd",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "ApplyExecutorModifiersForDefinition",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CalculationClass",
+          "type": "UClass"
+        },
+        {
+          "name": "InCaptureDef",
+          "type": "FGameplayEffectAttributeCaptureDefinition"
+        },
+        {
+          "name": "ValueToModify",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "CalculateModifiedDuration",
+      "return": "float32",
+      "doc": "Helper function that returns the duration after applying relevant modifiers from the source and target ability system components",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CalculateModifierMagnitudes",
+      "return": "void",
+      "doc": "Fills out the modifier magnitudes inside the Modifier Specs",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CaptureAttributeDataFromTarget",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetAbilitySystemComponent",
+          "type": "UAbilitySystemComponent"
+        }
+      ]
+    },
+    {
+      "name": "GetAllAssetTags",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAllGrantedTags",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCapturedSourceTags",
+      "return": "FAngelscriptTagContainerAggregator",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCapturedTargetTags",
+      "return": "FAngelscriptTagContainerAggregator",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetChanceToApplyToTarget",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCompletedSourceAttributeCapture",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCompletedTargetAttributeCapture",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetContext",
+      "return": "FGameplayEffectContextHandle",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDuration",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDurationLocked",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDynamicAssetTags",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetDynamicGrantedTags",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetGrantedAbilitySpecs",
+      "return": "TArray<FGameplayAbilitySpecDef>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetLevel",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetModifiedAttributeMagnitude",
+      "return": "float32",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        }
+      ]
+    },
+    {
+      "name": "GetModifierMagnitude",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ModifierIdx",
+          "type": "int"
+        },
+        {
+          "name": "bFactorInStackCount",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetPeriod",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSetByCallerMagnitude",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "bWarnIfNotFound",
+          "default": "true",
+          "type": "bool"
+        },
+        {
+          "name": "DefaultIfNotFound",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetStackCount",
+      "return": "int",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "PrintAll",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "RecaptureAttributeDataForClone",
+      "return": "void",
+      "doc": "Recapture attributes from source and target for cloning",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OriginalASC",
+          "type": "UAbilitySystemComponent"
+        },
+        {
+          "name": "NewASC",
+          "type": "UAbilitySystemComponent"
+        }
+      ]
+    },
+    {
+      "name": "RecaptureSourceActorTags",
+      "return": "void",
+      "doc": "Recaptures source actor tags of this spec without modifying anything else",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetByCallerMagnitude",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Magnitude",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetContext",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewEffectContextHandle",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "SetLevel",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InLevel",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "SetupAttributeCaptureDefinitions",
+      "return": "void",
+      "doc": "Helper function to initialize all of the capture definitions required by the spec",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ToSimpleString",
+      "return": "FString",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
     {
       "name": "opAssign",
       "return": "FGameplayEffectSpec&",

@@ -614,14 +614,113 @@ class OptionsScanner:
             self._scan_blueprint_assets_recursive(full_path, content_path, prefixes, items, "技能")
         
         # 3. 扫描 AngelScript 脚本路径
-        for script_path in config.get("script_paths", []):
-            script_items = self._scan_angelscript_classes(script_path, prefixes, "GameplayAbility")
+        for script_path in config.get("script_paths", ["Script"]):
+            script_items = self._scan_angelscript_ability_classes(script_path, prefixes)
             items.extend(script_items)
         
         return self._update_options_list("gameplay_abilities", items)
     
+    def _scan_angelscript_ability_classes(self, relative_path: str, prefixes: tuple) -> List[Dict[str, str]]:
+        """
+        扫描 AngelScript 技能类
+        
+        AngelScript 类的特点:
+        1. 类名通常带 U 前缀 (如 UGA_CastStone)
+        2. 继承自 UGameplayAbility 或其子类 (如 UDJ01GameplayAbility)
+        3. 使用 UFUNCTION(BlueprintOverride) 覆盖 ActivateAbility 等事件
+        
+        重要说明:
+        - AngelScript 类在运行时由 AngelScript 插件动态生成 UASClass
+        - 类路径格式为 /Script/AngelscriptCode.ClassName (不含 U 前缀)
+        - 在 AbilitySet 中引用时，需使用正确的类路径
+        """
+        import re
+        items = []
+        
+        full_path = os.path.join(self.project_root, relative_path)
+        if not os.path.exists(full_path):
+            return items
+        
+        # 匹配 AngelScript 类定义: class ClassName : ParentClass
+        # 支持多行和各种空白字符
+        class_pattern = re.compile(
+            r'class\s+(U?\w+)\s*:\s*(U?\w+)',
+            re.MULTILINE
+        )
+        
+        # 检查是否是技能类的父类关键字
+        ability_parent_keywords = [
+            'GameplayAbility',
+            'DJ01GameplayAbility', 
+            'LyraGameplayAbility',
+            'Ability'
+        ]
+        
+        for root, dirs, files in os.walk(full_path):
+            for filename in files:
+                if not filename.endswith('.as'):
+                    continue
+                
+                file_path = os.path.join(root, filename)
+                try:
+                    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                        content = f.read()
+                    
+                    for match in class_pattern.finditer(content):
+                        class_name = match.group(1)
+                        parent_class = match.group(2)
+                        
+                        # 检查是否是技能类（通过父类名判断）
+                        is_ability_class = any(
+                            kw in parent_class for kw in ability_parent_keywords
+                        )
+                        if not is_ability_class:
+                            continue
+                        
+                        # 检查前缀（支持带 U 前缀和不带 U 前缀）
+                        # UGA_xxx 匹配 GA_ 前缀，GA_xxx 也匹配 GA_ 前缀
+                        check_name = class_name
+                        if class_name.startswith('U'):
+                            check_name = class_name[1:]  # 去掉 U 前缀再检查
+                        
+                        if prefixes and not check_name.startswith(prefixes):
+                            continue
+                        
+                        # 计算相对路径（用于显示）
+                        rel_file_path = os.path.relpath(file_path, self.project_root)
+                        script_display_path = rel_file_path.replace('\\', '/')
+                        
+                        # AngelScript 类路径格式:
+                        # 实际加载路径: /Script/Angelscript.ClassName
+                        # 软引用格式: /Script/AngelscriptCode.ASClass'/Script/Angelscript.ClassName'
+                        # 
+                        # 为了兼容性，我们存储软引用格式，load_class_from_path 会自动提取内部路径
+                        class_name_without_u = class_name[1:] if class_name.startswith('U') else class_name
+                        as_class_path = f"/Script/AngelscriptCode.ASClass'/Script/Angelscript.{class_name_without_u}'"
+                        
+                        items.append({
+                            "name": as_class_path,
+                            "display_name": f"{class_name} (AngelScript)",
+                            "description": f"继承自 {parent_class} | 脚本: {script_display_path}",
+                            "script_path": script_display_path,
+                            "class_name": class_name,
+                            "parent_class": parent_class,
+                            "source_type": "angelscript"
+                        })
+                except Exception as e:
+                    print(f"扫描 AngelScript 文件失败: {file_path}, 错误: {e}")
+        
+        return items
+    
     def _scan_angelscript_classes(self, relative_path: str, prefixes: tuple, base_class: str) -> List[Dict[str, str]]:
-        """扫描 AngelScript 脚本类"""
+        """
+        通用 AngelScript 类扫描方法
+        
+        Args:
+            relative_path: 相对于项目根目录的脚本路径
+            prefixes: 类名前缀过滤
+            base_class: 基类名称关键字（用于过滤）
+        """
         import re
         items = []
         
@@ -631,7 +730,8 @@ class OptionsScanner:
         
         # 匹配 AngelScript 类定义: class ClassName : ParentClass
         class_pattern = re.compile(
-            r'class\s+(U?\w+)\s*:\s*(U?\w+)'
+            r'class\s+(U?\w+)\s*:\s*(U?\w+)',
+            re.MULTILINE
         )
         
         for root, dirs, files in os.walk(full_path):
@@ -648,24 +748,33 @@ class OptionsScanner:
                         class_name = match.group(1)
                         parent_class = match.group(2)
                         
-                        # 检查前缀（支持带 U 前缀和不带 U 前缀）
-                        # UGA_xxx 匹配 GA_ 前缀，GA_xxx 也匹配 GA_ 前缀
+                        # 检查是否匹配基类
+                        if base_class and base_class not in parent_class:
+                            continue
+                        
+                        # 检查前缀
                         check_name = class_name
                         if class_name.startswith('U'):
-                            check_name = class_name[1:]  # 去掉 U 前缀再检查
+                            check_name = class_name[1:]
                         
                         if prefixes and not check_name.startswith(prefixes):
                             continue
                         
                         # 计算相对路径
                         rel_file_path = os.path.relpath(file_path, self.project_root)
-                        script_path = rel_file_path.replace('\\', '/').replace('.as', '')
+                        script_path = rel_file_path.replace('\\', '/')
+                        
+                        # AngelScript 类路径格式:
+                        # 软引用: /Script/AngelscriptCode.ASClass'/Script/Angelscript.ClassName'
+                        class_name_without_u = class_name[1:] if class_name.startswith('U') else class_name
+                        as_class_path = f"/Script/AngelscriptCode.ASClass'/Script/Angelscript.{class_name_without_u}'"
                         
                         items.append({
-                            "name": f"/Script/DJ01.{class_name}",
+                            "name": as_class_path,
                             "display_name": f"{class_name} (AngelScript)",
                             "description": f"继承自 {parent_class}",
-                            "script_path": script_path
+                            "script_path": script_path,
+                            "source_type": "angelscript"
                         })
                 except Exception as e:
                     pass
@@ -673,7 +782,13 @@ class OptionsScanner:
         return items
     
     def _scan_cpp_ability_classes(self, relative_path: str) -> List[Dict[str, str]]:
-        """扫描 C++ 技能类"""
+        """
+        扫描 C++ 技能类
+        
+        C++ 类的特点:
+        1. 类名带 U 前缀 (如 UDJ01GameplayAbility)
+        2. UE 类引用路径不含 U 前缀: /Script/DJ01.DJ01GameplayAbility
+        """
         import re
         items = []
         
@@ -697,13 +812,17 @@ class OptionsScanner:
                         content = f.read()
                     
                     for match in class_pattern.finditer(content):
-                        class_name = match.group(1)
+                        class_name = match.group(1)  # e.g., UDJ01GameplayAbility
                         parent_class = match.group(2)
                         
+                        # UE 类引用路径不含 U 前缀
+                        class_path_name = class_name[1:] if class_name.startswith('U') else class_name
+                        
                         items.append({
-                            "name": f"/Script/DJ01.{class_name}",
+                            "name": f"/Script/DJ01.{class_path_name}",
                             "display_name": f"{class_name} (C++)",
-                            "description": f"继承自 {parent_class}"
+                            "description": f"继承自 {parent_class}",
+                            "source_type": "cpp"
                         })
                 except Exception as e:
                     pass
@@ -717,10 +836,38 @@ class OptionsScanner:
     def _update_attribute_sets(self) -> int:
         """扫描并更新 AttributeSet 选项"""
         import re
+        import csv
         items = []
         config = self.get_scan_config("attribute_sets")
         
-        # 扫描 C++ 路径
+        # 1. 从 AttributeDefinitions.csv 读取 SetName 列表
+        csv_config = config.get("csv_config")
+        if csv_config:
+            csv_path = os.path.join(self.project_root, csv_config)
+            if os.path.exists(csv_path):
+                try:
+                    set_names = set()
+                    with open(csv_path, 'r', encoding='utf-8') as f:
+                        reader = csv.DictReader(f)
+                        for row in reader:
+                            set_name = row.get('SetName', '').strip()
+                            if set_name:
+                                set_names.add(set_name)
+                    
+                    for set_name in sorted(set_names):
+                        # 生成类名：SetName -> DJ01{SetName}
+                        # 注意：UE 类路径不包含 U 前缀，但实际 C++ 类名是 UDJ01{SetName}
+                        class_path_name = f"DJ01{set_name}"
+                        display_name = f"UDJ01{set_name}"
+                        items.append({
+                            "name": f"/Script/DJ01.{class_path_name}",
+                            "display_name": display_name,
+                            "description": f"属性集 (来自 AttributeDefinitions.csv)"
+                        })
+                except Exception as e:
+                    print(f"读取 AttributeDefinitions.csv 失败: {e}")
+        
+        # 2. 扫描 C++ 路径（作为补充）
         for cpp_path in config.get("cpp_paths", []):
             full_path = os.path.join(self.project_root, cpp_path)
             if not os.path.exists(full_path):
@@ -742,13 +889,20 @@ class OptionsScanner:
                             content = f.read()
                         
                         for match in class_pattern.finditer(content):
-                            class_name = match.group(1)
+                            class_name = match.group(1)  # e.g., UDJ01StatSet
                             
-                            items.append({
-                                "name": f"/Script/DJ01.{class_name}",
-                                "display_name": f"{class_name}",
-                                "description": "属性集"
-                            })
+                            # UE 类路径不包含 U 前缀
+                            class_path_name = class_name[1:] if class_name.startswith('U') else class_name
+                            
+                            # 避免重复添加
+                            existing_names = {item["name"] for item in items}
+                            item_name = f"/Script/DJ01.{class_path_name}"
+                            if item_name not in existing_names:
+                                items.append({
+                                    "name": item_name,
+                                    "display_name": class_name,
+                                    "description": "属性集 (C++)"
+                                })
                     except Exception as e:
                         pass
         

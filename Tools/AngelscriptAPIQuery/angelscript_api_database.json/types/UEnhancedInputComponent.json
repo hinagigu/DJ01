@@ -3,5 +3,203 @@
   "inherits": "UInputComponent",
   "doc": "Implement an Actor component for input bindings.\n\nAn Enhanced Input Component is a transient component that enables an Actor to bind enhanced actions to delegate functions, or monitor those actions.\nInput components are processed from a stack managed by the PlayerController and processed by the PlayerInput.\nThese bindings will not consume input events, but this behaviour can be replicated using UInputMappingContext::Priority.\n\n@see https://docs.unrealengine.com/latest/INT/Gameplay/Input/index.html",
   "properties": {},
-  "methods": []
+  "methods": [
+    {
+      "name": "SetShouldFireDelegatesInEditor",
+      "return": "void",
+      "args": [
+        {
+          "name": "bInNewValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ShouldFireDelegatesInEditor",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "HasBindings",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ClearActionEventBindings",
+      "return": "void",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ClearActionValueBindings",
+      "return": "void",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ClearDebugKeyBindings",
+      "return": "void",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ClearActionBindings",
+      "return": "void",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ClearBindingsForObject",
+      "return": "void",
+      "args": [
+        {
+          "name": "InOwner",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActionEventBinding",
+      "return": "bool",
+      "args": [
+        {
+          "name": "BindingIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveDebugKeyBinding",
+      "return": "bool",
+      "args": [
+        {
+          "name": "BindingIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveActionValueBinding",
+      "return": "bool",
+      "args": [
+        {
+          "name": "BindingIndex",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "name": "RemoveBindingByHandle",
+      "return": "bool",
+      "args": [
+        {
+          "name": "BindingIndex",
+          "type": "uint"
+        }
+      ]
+    },
+    {
+      "name": "RemoveBinding",
+      "return": "bool",
+      "args": [
+        {
+          "name": "BindingToRemove",
+          "type": "FInputBindingHandle"
+        }
+      ]
+    },
+    {
+      "name": "RemoveBinding",
+      "return": "bool",
+      "args": [
+        {
+          "name": "BindingToRemove",
+          "type": "FEnhancedInputActionEventBinding"
+        }
+      ]
+    },
+    {
+      "name": "RemoveBinding",
+      "return": "bool",
+      "args": [
+        {
+          "name": "BindingToRemove",
+          "type": "FEnhancedInputActionValueBinding"
+        }
+      ]
+    },
+    {
+      "name": "RemoveBinding",
+      "return": "bool",
+      "args": [
+        {
+          "name": "BindingToRemove",
+          "type": "FInputDebugKeyBinding"
+        }
+      ]
+    },
+    {
+      "name": "BindAction",
+      "return": "FEnhancedInputActionEventBinding&",
+      "args": [
+        {
+          "name": "Action",
+          "type": "const UInputAction"
+        },
+        {
+          "name": "TriggerEvent",
+          "type": "ETriggerEvent"
+        },
+        {
+          "name": "Delegate",
+          "type": "FEnhancedInputActionHandlerDynamicSignature"
+        }
+      ]
+    },
+    {
+      "name": "BindActionValue",
+      "return": "FEnhancedInputActionValueBinding&",
+      "args": [
+        {
+          "name": "Action",
+          "type": "const UInputAction"
+        }
+      ]
+    },
+    {
+      "name": "BindDebugKey",
+      "return": "FInputDebugKeyBinding&",
+      "args": [
+        {
+          "name": "Chord",
+          "type": "FInputChord"
+        },
+        {
+          "name": "KeyEvent",
+          "type": "EInputEvent"
+        },
+        {
+          "name": "Delegate",
+          "type": "FInputDebugKeyHandlerDynamicSignature"
+        },
+        {
+          "name": "bExecuteWhenPaused",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetBoundActionValue",
+      "return": "FInputActionValue",
+      "args": [
+        {
+          "name": "Action",
+          "type": "const UInputAction"
+        }
+      ]
+    }
+  ]
 }

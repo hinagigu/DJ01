@@ -201,15 +201,15 @@ def create_experience_blueprint(name: str, config: dict):
         else:
             unreal.log_warning(f"  无法加载 PawnData: {pawn_data_path}")
     
-    # 设置 GameFeaturesToEnable
+    # 设置 GameFeaturesToEnable（始终设置，包括空数组以支持清空）
     game_features = config.get("GameFeaturesToEnable") or config.get("game_features", [])
     try:
-        cdo.set_editor_property("GameFeaturesToEnable", game_features if game_features else [])
-        unreal.log(f"  设置 GameFeatures: {game_features}")
+        cdo.set_editor_property("GameFeaturesToEnable", game_features)
+        unreal.log(f"  设置 GameFeatures: {len(game_features)} 个")
     except Exception as e:
         unreal.log_warning(f"  设置 GameFeatures 失败: {e}")
     
-    # 设置 ActionSets
+    # 设置 ActionSets（始终设置，包括空数组以支持清空）
     action_set_names = config.get("ActionSets") or config.get("action_sets", [])
     action_sets = []
     for set_name in action_set_names:
@@ -219,8 +219,7 @@ def create_experience_blueprint(name: str, config: dict):
             action_sets.append(action_set)
     try:
         cdo.set_editor_property("ActionSets", action_sets)
-        if action_sets:
-            unreal.log(f"  设置 ActionSets: {len(action_sets)} 个")
+        unreal.log(f"  设置 ActionSets: {len(action_sets)} 个")
     except Exception as e:
         unreal.log_warning(f"  设置 ActionSets 失败: {e}")
     
@@ -301,18 +300,19 @@ def create_pawn_data(name: str, config: dict):
         else:
             unreal.log_warning(f"  无法加载 InputConfig: {input_config_path}")
     
-    # 设置 AbilitySets
+    # 设置 AbilitySets（始终设置，包括空数组以支持清空）
     ability_set_names = config.get("AbilitySets") or config.get("ability_sets", [])
-    if ability_set_names:
-        ability_sets = []
-        for set_name in ability_set_names:
-            set_path = resolve_asset_path(set_name, "ability_set")
-            ability_set = unreal.load_asset(set_path)
-            if ability_set:
-                ability_sets.append(ability_set)
-        if ability_sets:
-            pawn_data.set_editor_property("AbilitySets", ability_sets)
-            unreal.log(f"  设置 AbilitySets: {len(ability_sets)} 个")
+    ability_sets = []
+    for set_name in ability_set_names:
+        set_path = resolve_asset_path(set_name, "ability_set")
+        ability_set = unreal.load_asset(set_path)
+        if ability_set:
+            ability_sets.append(ability_set)
+    try:
+        pawn_data.set_editor_property("AbilitySets", ability_sets)
+        unreal.log(f"  设置 AbilitySets: {len(ability_sets)} 个")
+    except Exception as e:
+        unreal.log_warning(f"  设置 AbilitySets 失败: {e}")
     
     # 设置 DefaultCameraMode
     camera_mode_name = config.get("DefaultCameraMode") or config.get("default_camera_mode")
@@ -332,43 +332,231 @@ def create_pawn_data(name: str, config: dict):
     return pawn_data
 
 
+def extract_class_path_for_import(class_path: str) -> str:
+    """
+    从类路径中提取用于 import_text 的路径格式
+    
+    输入格式:
+    - C++: /Script/DJ01.DJ01GameplayAbility
+    - Blueprint: /Game/.../BP_xxx.BP_xxx_C
+    - AngelScript 软引用: /Script/AngelscriptCode.ASClass'/Script/Angelscript.GA_xxx'
+    
+    输出格式 (用于 import_text):
+    - C++: /Script/DJ01.DJ01GameplayAbility
+    - Blueprint: /Game/.../BP_xxx.BP_xxx_C
+    - AngelScript: /Script/Angelscript.GA_xxx (提取内部路径)
+    """
+    if not class_path:
+        return ""
+    
+    # AngelScript 软引用格式: 提取单引号内的路径
+    if "ASClass'" in class_path and "'" in class_path:
+        parts = class_path.split("'")
+        if len(parts) >= 2:
+            return parts[1]  # 返回 /Script/Angelscript.ClassName
+    
+    return class_path
+
+
+def load_class_from_path(class_path: str):
+    """
+    从路径加载类，支持多种格式：
+    - C++: /Script/DJ01.DJ01GameplayAbility
+    - Blueprint: /Game/.../BP_xxx.BP_xxx_C
+    - AngelScript: /Script/AngelscriptCode.ASClass'/Script/Angelscript.GA_xxx'
+                   或直接 /Script/Angelscript.GA_xxx
+    """
+    if not class_path:
+        return None
+    
+    # 提取实际路径
+    actual_path = extract_class_path_for_import(class_path)
+    
+    try:
+        loaded_class = unreal.load_class(None, actual_path)
+        if loaded_class:
+            return loaded_class
+    except Exception as e:
+        unreal.log_warning(f"  加载类失败: {actual_path}, {e}")
+    
+    return None
+
+
 def create_ability_set(name: str, config: dict):
-    """创建 AbilitySet DataAsset"""
+    """
+    创建或更新 AbilitySet DataAsset
+    
+    支持配置结构:
+    {
+        "GrantedGameplayAbilities": [
+            {"Ability": "/Script/AngelscriptCode.ASClass'/Script/Angelscript.GA_xxx'", "AbilityLevel": 1, "InputTag": "InputTag.xxx"},
+            ...
+        ],
+        "GrantedGameplayEffects": [
+            {"GameplayEffect": "/Script/DJ01.GE_xxx", "EffectLevel": 1.0},
+            ...
+        ],
+        "GrantedAttributes": [
+            {"AttributeSet": "/Script/DJ01.DJ01StatSet"},
+            ...
+        ]
+    }
+    """
     asset_tools = unreal.AssetToolsHelpers.get_asset_tools()
     editor_asset_lib = unreal.EditorAssetLibrary
     
     base_path = ASSET_PATHS["ability_set"]
     package_path = f"{base_path}/{name}"
     
+    is_new = False
+    ability_set = None
+    
+    # 检查是否已存在
     if editor_asset_lib.does_asset_exist(package_path):
-        unreal.log_warning(f"AbilitySet '{name}' 已存在，跳过创建")
-        return None
-    
-    ability_set_class = unreal.load_class(None, "/Script/DJ01.DJ01AbilitySet")
-    if not ability_set_class:
-        unreal.log_error("无法加载 DJ01AbilitySet 类!")
-        return None
-    
-    factory = unreal.DataAssetFactory()
-    factory.set_editor_property("data_asset_class", ability_set_class)
-    
-    ability_set = asset_tools.create_asset(
-        asset_name=name,
-        package_path=base_path,
-        asset_class=None,
-        factory=factory
-    )
+        ability_set = unreal.load_asset(package_path)
+        unreal.log(f"AbilitySet '{name}' 已存在，进行更新")
+    else:
+        is_new = True
+        ability_set_class = unreal.load_class(None, "/Script/DJ01.DJ01AbilitySet")
+        if not ability_set_class:
+            unreal.log_error("无法加载 DJ01AbilitySet 类!")
+            return None
+        
+        factory = unreal.DataAssetFactory()
+        factory.set_editor_property("data_asset_class", ability_set_class)
+        
+        ability_set = asset_tools.create_asset(
+            asset_name=name,
+            package_path=base_path,
+            asset_class=None,
+            factory=factory
+        )
     
     if not ability_set:
-        unreal.log_error(f"创建 AbilitySet 失败: {name}")
+        unreal.log_error(f"创建/加载 AbilitySet 失败: {name}")
         return None
     
-    # TODO: AbilitySet 的复杂结构体设置
-    # GrantedGameplayAbilities, GrantedGameplayEffects, GrantedAttributes
-    # 这些需要创建 UE 结构体实例，建议在编辑器中手动配置
+    # ========== 设置 GrantedGameplayAbilities ==========
+    granted_abilities_config = config.get("GrantedGameplayAbilities", [])
+    abilities_array = []
     
+    for ability_entry in granted_abilities_config:
+        ability_path = ability_entry.get("Ability", "")
+        ability_level = ability_entry.get("AbilityLevel", 1)
+        input_tag_str = ability_entry.get("InputTag", "")
+        
+        if not ability_path:
+            unreal.log_warning("  跳过空的 Ability 配置")
+            continue
+        
+        # 提取用于 import_text 的路径
+        import_path = extract_class_path_for_import(ability_path)
+        
+        # 构建 import_text 字符串
+        # 格式: (Ability=/Script/xxx.ClassName,AbilityLevel=1,InputTag=(TagName="xxx"))
+        tag_part = f',InputTag=(TagName="{input_tag_str}")' if input_tag_str else ',InputTag=(TagName="")'
+        import_str = f'(Ability={import_path},AbilityLevel={int(ability_level)}{tag_part})'
+        
+        try:
+            struct_instance = unreal.DJ01AbilitySet_GameplayAbility()
+            struct_instance.import_text(import_str)
+            abilities_array.append(struct_instance)
+            
+            # 获取类名用于日志
+            ability_class = load_class_from_path(ability_path)
+            class_name = ability_class.get_name() if ability_class else import_path
+            unreal.log(f"  添加技能: {class_name} (Lv.{ability_level})")
+            
+        except Exception as e:
+            unreal.log_warning(f"  创建技能结构体失败: {ability_path}")
+            unreal.log_warning(f"    import_text: {import_str}")
+            unreal.log_warning(f"    错误: {e}")
+            continue
+    
+    # 始终设置数组（包括空数组，以支持清空操作）
+    try:
+        ability_set.set_editor_property("GrantedGameplayAbilities", abilities_array)
+        unreal.log(f"  GrantedGameplayAbilities: {len(abilities_array)} 个技能")
+    except Exception as e:
+        unreal.log_error(f"  设置 GrantedGameplayAbilities 失败: {e}")
+    
+    # ========== 设置 GrantedGameplayEffects ==========
+    granted_effects_config = config.get("GrantedGameplayEffects", [])
+    effects_array = []
+    
+    for effect_entry in granted_effects_config:
+        effect_path = effect_entry.get("GameplayEffect", "")
+        effect_level = effect_entry.get("EffectLevel", 1.0)
+        
+        if not effect_path:
+            continue
+        
+        # 提取用于 import_text 的路径
+        import_path = extract_class_path_for_import(effect_path)
+        
+        # 构建 import_text 字符串
+        import_str = f'(GameplayEffect={import_path},EffectLevel={float(effect_level)})'
+        
+        try:
+            struct_instance = unreal.DJ01AbilitySet_GameplayEffect()
+            struct_instance.import_text(import_str)
+            effects_array.append(struct_instance)
+            
+            effect_class = load_class_from_path(effect_path)
+            class_name = effect_class.get_name() if effect_class else import_path
+            unreal.log(f"  添加效果: {class_name} (Lv.{effect_level})")
+            
+        except Exception as e:
+            unreal.log_warning(f"  创建效果结构体失败: {effect_path}, {e}")
+            continue
+    
+    # 始终设置数组（包括空数组，以支持清空操作）
+    try:
+        ability_set.set_editor_property("GrantedGameplayEffects", effects_array)
+        unreal.log(f"  GrantedGameplayEffects: {len(effects_array)} 个效果")
+    except Exception as e:
+        unreal.log_error(f"  设置 GrantedGameplayEffects 失败: {e}")
+    
+    # ========== 设置 GrantedAttributes ==========
+    granted_attributes_config = config.get("GrantedAttributes", [])
+    attributes_array = []
+    
+    for attr_entry in granted_attributes_config:
+        attr_path = attr_entry.get("AttributeSet", "")
+        
+        if not attr_path:
+            continue
+        
+        # 提取用于 import_text 的路径
+        import_path = extract_class_path_for_import(attr_path)
+        
+        # 构建 import_text 字符串
+        import_str = f'(AttributeSet={import_path})'
+        
+        try:
+            struct_instance = unreal.DJ01AbilitySet_AttributeSet()
+            struct_instance.import_text(import_str)
+            attributes_array.append(struct_instance)
+            
+            attr_class = load_class_from_path(attr_path)
+            class_name = attr_class.get_name() if attr_class else import_path
+            unreal.log(f"  添加属性集: {class_name}")
+            
+        except Exception as e:
+            unreal.log_warning(f"  创建属性集结构体失败: {attr_path}, {e}")
+            continue
+    
+    # 始终设置数组（包括空数组，以支持清空操作）
+    try:
+        ability_set.set_editor_property("GrantedAttributes", attributes_array)
+        unreal.log(f"  GrantedAttributes: {len(attributes_array)} 个属性集")
+    except Exception as e:
+        unreal.log_error(f"  设置 GrantedAttributes 失败: {e}")
+    
+    # 保存资产
     unreal.EditorAssetLibrary.save_asset(package_path)
-    unreal.log(f"✅ 成功创建 AbilitySet: {name} -> {package_path}")
+    action = "创建" if is_new else "更新"
+    unreal.log(f"✅ 成功{action} AbilitySet: {name} -> {package_path}")
     return ability_set
 
 
@@ -482,11 +670,10 @@ def create_input_config(name: str, config: dict):
         except Exception as e:
             unreal.log_warning(f"  创建 NativeInputAction 失败: {e}")
     
-    # 设置属性
+    # 设置属性（始终设置，包括空数组以支持清空）
     try:
         input_config.set_editor_property("NativeInputActions", native_array)
-        if native_array:
-            unreal.log(f"  NativeInputActions 已设置: {len(native_array)} 项")
+        unreal.log(f"  NativeInputActions 已设置: {len(native_array)} 项")
     except Exception as e:
         unreal.log_warning(f"  设置 NativeInputActions 失败: {e}")
     
@@ -522,11 +709,10 @@ def create_input_config(name: str, config: dict):
         except Exception as e:
             unreal.log_warning(f"  创建 DJ01InputAction 失败: {e}")
     
-    # 设置属性
+    # 设置属性（始终设置，包括空数组以支持清空）
     try:
         input_config.set_editor_property("AbilityInputActions", ability_array)
-        if ability_array:
-            unreal.log(f"  AbilityInputActions 已设置: {len(ability_array)} 项")
+        unreal.log(f"  AbilityInputActions 已设置: {len(ability_array)} 项")
     except Exception as e:
         unreal.log_warning(f"  设置 AbilityInputActions 失败: {e}")
     
@@ -576,12 +762,11 @@ def create_action_set(name: str, config: dict):
         unreal.log_error(f"创建/加载 ActionSet 失败: {name}")
         return None
     
-    # 设置 GameFeaturesToEnable
+    # 设置 GameFeaturesToEnable（始终设置，包括空数组以支持清空）
     game_features = config.get("GameFeaturesToEnable") or config.get("game_features", [])
     try:
-        action_set.set_editor_property("GameFeaturesToEnable", game_features if game_features else [])
-        if game_features:
-            unreal.log(f"  设置 GameFeatures: {game_features}")
+        action_set.set_editor_property("GameFeaturesToEnable", game_features)
+        unreal.log(f"  设置 GameFeatures: {len(game_features)} 个")
     except Exception as e:
         unreal.log_warning(f"  设置 GameFeatures 失败: {e}")
     

@@ -108,16 +108,6 @@ void Normalize()
 bool ContainsNaN()
 ```
 
-### ToColorString
-```angelscript
-FString ToColorString()
-```
-
-### InitFromString
-```angelscript
-bool InitFromString(FString SourceString)
-```
-
 ### Vector
 ```angelscript
 FVector Vector()
@@ -141,6 +131,16 @@ FVector RotateVector(FVector V)
 ### UnrotateVector
 ```angelscript
 FVector UnrotateVector(FVector V)
+```
+
+### ToColorString
+```angelscript
+FString ToColorString()
+```
+
+### InitFromString
+```angelscript
+bool InitFromString(FString SourceString)
 ```
 
 ### ToString

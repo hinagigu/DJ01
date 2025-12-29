@@ -12,6 +12,16 @@ to bind the delegate and it's address could change causing an invalid binding.
 
 ## 方法
 
+### Initialize
+```angelscript
+void Initialize(UObject Owner, UAbilitySystemComponent ASC)
+```
+
+### ApplyCurrentTags
+```angelscript
+void ApplyCurrentTags()
+```
+
 ### opAssign
 ```angelscript
 FGameplayTagBlueprintPropertyMap& opAssign(FGameplayTagBlueprintPropertyMap Other)

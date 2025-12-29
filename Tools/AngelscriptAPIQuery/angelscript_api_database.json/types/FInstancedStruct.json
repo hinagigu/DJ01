@@ -5,6 +5,53 @@
   "properties": {},
   "methods": [
     {
+      "name": "opEquals",
+      "return": "bool",
+      "const": true,
+      "doc": "Comparison operators. Deep compares the struct instance when identical.",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInstancedStruct"
+        }
+      ]
+    },
+    {
+      "name": "InitializeAs",
+      "return": "void",
+      "doc": "Initializes from struct type and emplace construct.",
+      "args": [
+        {
+          "name": "Struct",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "Get",
+      "return": "void",
+      "const": true,
+      "doc": "Returns a copy of the struct. This getter assumes that all data is valid.",
+      "args": [
+        {
+          "name": "Struct",
+          "type": "?"
+        }
+      ]
+    },
+    {
+      "name": "Reset",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "IsValid",
+      "return": "bool",
+      "const": true,
+      "doc": "Returns True if the struct is valid.",
+      "args": []
+    },
+    {
       "name": "opAssign",
       "return": "FInstancedStruct&",
       "args": [

@@ -48,26 +48,6 @@
       1,
       "Normal of impact that caused cue"
     ],
-    "Instigator": [
-      "TWeakObjectPtr<AActor>",
-      1,
-      "Instigator actor, the actor that owns the ability system component"
-    ],
-    "EffectCauser": [
-      "TWeakObjectPtr<AActor>",
-      1,
-      "The physical actor that actually did the damage, can be a weapon or projectile"
-    ],
-    "SourceObject": [
-      "TWeakObjectPtr<const UObject>",
-      1,
-      "Object this effect was created from, can be an actor or static object. Useful to bind an effect to a gameplay object"
-    ],
-    "PhysicalMaterial": [
-      "TWeakObjectPtr<const UPhysicalMaterial>",
-      1,
-      "PhysMat of the hit, if there was a hit."
-    ],
     "GameplayEffectLevel": [
       "int",
       1,
@@ -78,11 +58,6 @@
       1,
       "If originating from an ability, this will be the level of that ability"
     ],
-    "TargetAttachComponent": [
-      "TWeakObjectPtr<USceneComponent>",
-      1,
-      "Could be used to say \"attach FX to this component always\""
-    ],
     "bReplicateLocationWhenUsingMinimalRepProxy": [
       "bool",
       1,
@@ -90,6 +65,106 @@
     ]
   },
   "methods": [
+    {
+      "name": "GetEffectCauser",
+      "return": "AActor",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetInstigator",
+      "return": "AActor",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPhysicalMaterial",
+      "return": "const UPhysicalMaterial",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSourceObject",
+      "return": "const UObject",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTargetAttachComponent",
+      "return": "USceneComponent",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetEffectCauser",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectCauser",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetInstigator",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Instigator",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetPhysicalMaterial",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PhysicalMaterial",
+          "type": "const UPhysicalMaterial"
+        }
+      ]
+    },
+    {
+      "name": "SetSourceObject",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "SourceObject",
+          "type": "const UObject"
+        }
+      ]
+    },
+    {
+      "name": "SetTargetAttachComponent",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetAttachComponent",
+          "type": "USceneComponent"
+        }
+      ]
+    },
     {
       "name": "opAssign",
       "return": "FGameplayCueParameters&",

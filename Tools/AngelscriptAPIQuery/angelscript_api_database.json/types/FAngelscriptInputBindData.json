@@ -1,0 +1,39 @@
+{
+  "name": "FAngelscriptInputBindData",
+  "isStruct": true,
+  "doc": "It's a shame we have to wrap. But it's not a hot path, and it's better than doing an engine mod. Best would of course be if AS type binds were made aware to UHT so binding worked here.",
+  "properties": {
+    "ConfirmTargetCommand": [
+      "FName",
+      "Defines command string that will be bound to Confirm Targeting"
+    ],
+    "CancelTargetCommand": [
+      "FName",
+      "Defines command string that will be bound to Cancel Targeting"
+    ],
+    "EnumName": [
+      "FTopLevelAssetPath",
+      "Returns enum to use for ability binds. E.g., \"Ability1\"-\"Ability9\" input commands will be bound to ability activations inside the AbiltiySystemComponent"
+    ],
+    "ConfirmTargetInputID": [
+      "int",
+      "If >=0, Confirm is bound to an entry in the enum"
+    ],
+    "CancelTargetInputID": [
+      "int",
+      "If >=0, Cancel is bound to an entry in the enum"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FAngelscriptInputBindData&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAngelscriptInputBindData"
+        }
+      ]
+    }
+  ]
+}

@@ -6,7 +6,7 @@ DJ01 DataAsset Manager - 选择器控件
 
 import tkinter as tk
 from tkinter import ttk
-from typing import Any, List, Callable
+from typing import Any, List, Dict, Callable
 import os
 import sys
 
@@ -20,12 +20,47 @@ from core.schema import PropertyDef
 
 
 class ComboBoxWidget(PropertyWidget):
-    """下拉选择控件"""
+    """
+    下拉选择控件
+    
+    支持两种选项格式:
+    1. 简单字符串列表: ["option1", "option2"]
+    2. 字典列表（带 name 和 display_name）: [{"name": "/Script/...", "display_name": "类名 (C++)"}]
+    
+    当使用字典列表时，显示 display_name，但 get_value() 返回 name
+    """
     
     def __init__(self, parent: tk.Widget, prop_def: PropertyDef,
-                 options: List[str] = None, on_change: Callable = None):
-        self.options = options or []
+                 options: List[Any] = None, on_change: Callable = None):
+        """
+        Args:
+            options: 可以是字符串列表或字典列表
+        """
+        self._raw_options = options or []
+        self._name_to_display: Dict[str, str] = {}  # name -> display_name
+        self._display_to_name: Dict[str, str] = {}  # display_name -> name
+        self.options: List[str] = []  # 用于显示的选项列表
+        self._process_options()
         super().__init__(parent, prop_def, on_change)
+    
+    def _process_options(self):
+        """处理选项，构建名称映射"""
+        self._name_to_display.clear()
+        self._display_to_name.clear()
+        self.options = []
+        
+        for opt in self._raw_options:
+            if isinstance(opt, dict):
+                # 字典格式: {"name": "...", "display_name": "..."}
+                name = opt.get("name", "")
+                display_name = opt.get("display_name", name)
+                if name:
+                    self._name_to_display[name] = display_name
+                    self._display_to_name[display_name] = name
+                    self.options.append(display_name)
+            else:
+                # 简单字符串
+                self.options.append(str(opt))
     
     def _create_widget(self):
         self._create_label().pack(side=tk.LEFT, padx=5)
@@ -34,7 +69,7 @@ class ComboBoxWidget(PropertyWidget):
         
         # 如果允许空值，添加空选项
         display_options = self.options.copy()
-        if self.prop_def.allow_empty and "" not in display_options:
+        if self.prop_def.allow_empty and "(无)" not in display_options:
             display_options = ["(无)"] + display_options
         
         self.combo = ttk.Combobox(
@@ -47,8 +82,8 @@ class ComboBoxWidget(PropertyWidget):
         self.combo.pack(side=tk.LEFT, padx=5, fill=tk.X, expand=True)
         
         # 设置默认值
-        if self.prop_def.default and self.prop_def.default in self.options:
-            self.var.set(self.prop_def.default)
+        if self.prop_def.default:
+            self.set_value(self.prop_def.default)
         elif self.options and not self.prop_def.allow_empty:
             self.var.set(self.options[0])
         elif self.prop_def.allow_empty:
@@ -61,20 +96,39 @@ class ComboBoxWidget(PropertyWidget):
             ttk.Label(self.frame, text="(无可用选项)", 
                       foreground="gray", font=("", 8)).pack(side=tk.LEFT, padx=5)
     
-    def set_options(self, options: List[str]):
-        self.options = options
-        display_options = options.copy()
+    def set_options(self, options: List[Any]):
+        """更新选项列表"""
+        self._raw_options = options
+        self._process_options()
+        
+        display_options = self.options.copy()
         if self.prop_def.allow_empty and "(无)" not in display_options:
             display_options = ["(无)"] + display_options
         self.combo['values'] = display_options
     
     def get_value(self) -> str:
-        val = self.var.get()
-        return "" if val == "(无)" else val
+        """获取选中的值（返回 name，而非 display_name）"""
+        display_val = self.var.get()
+        if display_val == "(无)" or not display_val:
+            return ""
+        # 如果有映射，返回 name；否则直接返回显示值
+        return self._display_to_name.get(display_val, display_val)
     
     def set_value(self, value: Any):
-        if value and str(value) in self.options:
-            self.var.set(str(value))
+        """设置值（可以传入 name 或 display_name）"""
+        if not value:
+            if self.prop_def.allow_empty:
+                self.var.set("(无)")
+            return
+        
+        value_str = str(value)
+        
+        # 检查是否是 name
+        if value_str in self._name_to_display:
+            self.var.set(self._name_to_display[value_str])
+        # 检查是否已经是 display_name
+        elif value_str in self.options:
+            self.var.set(value_str)
         elif self.prop_def.allow_empty:
             self.var.set("(无)")
 

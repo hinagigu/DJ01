@@ -40,22 +40,6 @@ Metadata about a gameplay cue execution
 - **类型**: `FVector`
 - **描述**: Normal of impact that caused cue
 
-### Instigator
-- **类型**: `TWeakObjectPtr<AActor>`
-- **描述**: Instigator actor, the actor that owns the ability system component
-
-### EffectCauser
-- **类型**: `TWeakObjectPtr<AActor>`
-- **描述**: The physical actor that actually did the damage, can be a weapon or projectile
-
-### SourceObject
-- **类型**: `TWeakObjectPtr<const UObject>`
-- **描述**: Object this effect was created from, can be an actor or static object. Useful to bind an effect to a gameplay object
-
-### PhysicalMaterial
-- **类型**: `TWeakObjectPtr<const UPhysicalMaterial>`
-- **描述**: PhysMat of the hit, if there was a hit.
-
 ### GameplayEffectLevel
 - **类型**: `int`
 - **描述**: If originating from a GameplayEffect, the level of that GameplayEffect
@@ -64,15 +48,61 @@ Metadata about a gameplay cue execution
 - **类型**: `int`
 - **描述**: If originating from an ability, this will be the level of that ability
 
-### TargetAttachComponent
-- **类型**: `TWeakObjectPtr<USceneComponent>`
-- **描述**: Could be used to say "attach FX to this component always"
-
 ### bReplicateLocationWhenUsingMinimalRepProxy
 - **类型**: `bool`
 - **描述**: If we're using a minimal replication proxy, should we replicate location for this cue
 
 ## 方法
+
+### GetEffectCauser
+```angelscript
+AActor GetEffectCauser()
+```
+
+### GetInstigator
+```angelscript
+AActor GetInstigator()
+```
+
+### GetPhysicalMaterial
+```angelscript
+const UPhysicalMaterial GetPhysicalMaterial()
+```
+
+### GetSourceObject
+```angelscript
+const UObject GetSourceObject()
+```
+
+### GetTargetAttachComponent
+```angelscript
+USceneComponent GetTargetAttachComponent()
+```
+
+### SetEffectCauser
+```angelscript
+void SetEffectCauser(AActor EffectCauser)
+```
+
+### SetInstigator
+```angelscript
+void SetInstigator(AActor Instigator)
+```
+
+### SetPhysicalMaterial
+```angelscript
+void SetPhysicalMaterial(const UPhysicalMaterial PhysicalMaterial)
+```
+
+### SetSourceObject
+```angelscript
+void SetSourceObject(const UObject SourceObject)
+```
+
+### SetTargetAttachComponent
+```angelscript
+void SetTargetAttachComponent(USceneComponent TargetAttachComponent)
+```
 
 ### opAssign
 ```angelscript

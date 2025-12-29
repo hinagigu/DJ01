@@ -1,0 +1,688 @@
+{
+  "name": "UAngelscriptAbilitySystemComponent",
+  "inherits": "UAbilitySystemComponent",
+  "properties": {
+    "OnInitAbilityActorInfo": [
+      "FInitAbilityActorInfoDelegate",
+      "Called for all changes occurring on self"
+    ],
+    "OnAbilityGiven": [
+      "FAbilityGivenDelegate"
+    ],
+    "OnAbilityRemoved": [
+      "FAbilityRemovedDelegate"
+    ],
+    "OnAttributeChanged": [
+      "FAttributeChangedDelegate"
+    ],
+    "OnOwnedTagUpdated": [
+      "FOwnedTagUpdatedDelegate"
+    ]
+  },
+  "methods": [
+    {
+      "name": "ActivateAbilitiesUsingTags",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTagContainer",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "bAllowRemoteActivation",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "BindInput",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InputComponent",
+          "type": "UInputComponent"
+        },
+        {
+          "name": "BindData",
+          "type": "FAngelscriptInputBindData"
+        }
+      ]
+    },
+    {
+      "name": "GiveAbility",
+      "return": "FGameplayAbilitySpecHandle",
+      "doc": "Ability functions",
+      "ufunction": true,
+      "unrealname": "BP_GiveAbility",
+      "meta": null,
+      "args": [
+        {
+          "name": "InAbilityClass",
+          "type": "TSubclassOf<UGameplayAbility>"
+        },
+        {
+          "name": "Level",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "OptionalInputID",
+          "default": "- 1",
+          "type": "int"
+        },
+        {
+          "name": "OptionalSourceObject",
+          "default": "nullptr",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "GiveAbilityAndActivateOnce",
+      "return": "FGameplayAbilitySpecHandle",
+      "ufunction": true,
+      "unrealname": "BP_GiveAbilityAndActivateOnce",
+      "meta": null,
+      "args": [
+        {
+          "name": "InAbilityClass",
+          "type": "TSubclassOf<UGameplayAbility>"
+        },
+        {
+          "name": "Level",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "OptionalInputID",
+          "default": "- 1",
+          "type": "int"
+        },
+        {
+          "name": "OptionalSourceObject",
+          "default": "nullptr",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "InitAbilityActorInfo",
+      "return": "void",
+      "ufunction": true,
+      "unrealname": "BP_InitAbilityActorInfo",
+      "meta": null,
+      "args": [
+        {
+          "name": "InOwnerActor",
+          "type": "AActor"
+        },
+        {
+          "name": "InAvatarActor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetRemoveAbilityOnEnd",
+      "return": "void",
+      "ufunction": true,
+      "unrealname": "BP_SetRemoveAbilityOnEnd",
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilitySpecHandle",
+          "type": "FGameplayAbilitySpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "CanActivateAbilityByClass",
+      "return": "bool",
+      "const": true,
+      "doc": "Check if ability of class can be activated",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAbilityToActivate",
+          "type": "TSubclassOf<UGameplayAbility>"
+        }
+      ]
+    },
+    {
+      "name": "CanActivateAbilitySpec",
+      "return": "bool",
+      "const": true,
+      "doc": "Check if ability can be activated",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilitySpecHandle",
+          "type": "FGameplayAbilitySpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "CancelAbilitiesByTags",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WithTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "WithoutTags",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "Ignore",
+          "default": "nullptr",
+          "type": "UGameplayAbility"
+        }
+      ]
+    },
+    {
+      "name": "CancelAbility",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAbilityClass",
+          "type": "TSubclassOf<UGameplayAbility>"
+        }
+      ]
+    },
+    {
+      "name": "CancelAbilityByHandle",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilityHandle",
+          "type": "FGameplayAbilitySpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetAbilityActorInfo",
+      "return": "FGameplayAbilityActorInfo&",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAbilitySpecSourceObject",
+      "return": "UObject",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilitySpecHandle",
+          "type": "FGameplayAbilitySpecHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveAbilitiesWithTags",
+      "return": "void",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayTagContainer",
+          "type": "FGameplayTagContainer"
+        },
+        {
+          "name": "ActiveAbilities",
+          "type": "TArray<UGameplayAbility>&"
+        }
+      ]
+    },
+    {
+      "name": "GetAndRegisterAttributeChangedCallback",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "CallbackObject",
+          "type": "UObject"
+        },
+        {
+          "name": "CallbackFunctionName_FAngelscriptAttributeChangedData",
+          "type": "FName"
+        },
+        {
+          "name": "OutCurrentValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetAndRegisterCallbackForAttribute",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "OutCurrentValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetAttributeBaseValue",
+      "return": "float32",
+      "const": true,
+      "doc": "If attribute doesn't exist will return DefaultValue(which is by default 0.f)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetAttributeBaseValueChecked",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetAttributeCurrentValue",
+      "return": "float32",
+      "const": true,
+      "doc": "If attribute doesn't exist will return DefaultValue(which is by default 0.f)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "DefaultValue",
+          "default": "0.000000",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GetAttributeCurrentValueChecked",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetAvatar",
+      "return": "AActor",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCooldownTimeRemaining",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAbilityClass",
+          "type": "TSubclassOf<UGameplayAbility>"
+        }
+      ]
+    },
+    {
+      "name": "GetPlayerController",
+      "return": "APlayerController",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasAbility",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAbilityClass",
+          "type": "TSubclassOf<UGameplayAbility>"
+        }
+      ]
+    },
+    {
+      "name": "HasAllGameplayTags",
+      "return": "bool",
+      "const": true,
+      "doc": "HasAllMatchingGameplayTags, but cannot have the same name so adding \"Owned\"",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TagContainer",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "HasAnyGameplayTags",
+      "return": "bool",
+      "const": true,
+      "doc": "HasAnyMatchingGameplayTags, but cannot have the same name so adding \"Owned\"",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TagContainer",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
+    {
+      "name": "HasGameplayTag",
+      "return": "bool",
+      "const": true,
+      "doc": "Tag functions",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TagToCheck",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "IsAbilityActive",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InAbilityClass",
+          "type": "TSubclassOf<UGameplayAbility>"
+        }
+      ]
+    },
+    {
+      "name": "ModAttributeUnsafe",
+      "return": "void",
+      "doc": "This function will apply an attribute change without invoking all the callbacks! Do not use unless you have to and know what you are doing! It can be useful for clamping attribute values to max values for example. For all other scenarios, use the SetAttribute set of functions!",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "GameplayAttribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "ModifierOp",
+          "type": "EGameplayModOp"
+        },
+        {
+          "name": "ModifierMagnitude",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "OnAttributeSetRegistered",
+      "return": "void",
+      "doc": "This could be called multiple times if we register attribute sets late. This needs to be a function so we can handle late adds.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InObject",
+          "type": "UObject"
+        },
+        {
+          "name": "InFunctionName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RegisterAttributeChangedCallback",
+      "return": "void",
+      "doc": "Use these to register callbacks to individual attributes. As the CallbackFunctionName_FAngelscriptAttributeChangedData parameter name suggests, the callback function should take a single FAngelscriptAttributeChangedData as its parameter to bind correctly.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "CallbackObject",
+          "type": "UObject"
+        },
+        {
+          "name": "CallbackFunctionName_FAngelscriptAttributeChangedData",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RegisterAttributeSet",
+      "return": "UAngelscriptAttributeSet",
+      "doc": "Adds the attribute set type to the actor that owns this component. Ensures that attribute sets are never added twice.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        }
+      ]
+    },
+    {
+      "name": "RegisterCallbackForAttribute",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetAbilitySpecSourceObject",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AbilitySpecHandle",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "NewSourceObject",
+          "type": "UObject"
+        }
+      ]
+    },
+    {
+      "name": "SetAttributeBaseValue",
+      "return": "void",
+      "doc": "Requires the attribute to actually exist",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "NewBaseValue",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "TryActivateAbilitySpec",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Handle",
+          "type": "FGameplayAbilitySpecHandle"
+        },
+        {
+          "name": "bAllowRemoteActivation",
+          "default": "true",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "TryGetAttributeBaseValue",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "OutBaseValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "TryGetAttributeCurrentValue",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "OutCurrentValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "TrySetAttributeBaseValue",
+      "return": "bool",
+      "doc": "Use these functions when you are not sure if the attribute exists",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "NewBaseValue",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "name": "UAngelscriptAttributeSet",
+  "inherits": "UAttributeSet",
+  "properties": {
+    "ReplicatedAttributeBlackList": [
+      "TArray<FName>",
+      "The default behavior of the attribute set is to replicate all attributes for the entire lifetime of the set. If you don't want an attribute to be replicated, add its name to this list."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetActorInfo",
+      "return": "FGameplayAbilityActorInfo&",
+      "const": true,
+      "ufunction": true,
+      "unrealname": "BP_GetActorInfo",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningAbilitySystemComponent",
+      "return": "UAngelscriptAbilitySystemComponent",
+      "const": true,
+      "ufunction": true,
+      "unrealname": "BP_GetOwningAbilitySystemComponent",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningActor",
+      "return": "AActor",
+      "ufunction": true,
+      "unrealname": "BP_GetOwningActor",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnInitFromMetaDataTable",
+      "return": "bool",
+      "callable": false,
+      "doc": "Return true if you could load the data. False if you want to use the default loading function",
+      "event": true,
+      "unrealname": "BP_OnInitFromMetaDataTable",
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTable",
+          "type": "const UDataTable"
+        }
+      ]
+    },
+    {
+      "name": "PostAttributeBaseChange",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_PostAttributeBaseChange",
+      "meta": null,
+      "args": [
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "OldValue",
+          "type": "float"
+        },
+        {
+          "name": "NewValue",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "PostAttributeChange",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_PostAttributeChange",
+      "meta": null,
+      "args": [
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "OldValue",
+          "type": "float"
+        },
+        {
+          "name": "NewValue",
+          "type": "float"
+        }
+      ]
+    },
+    {
+      "name": "PostGameplayEffectExecute",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_PostGameplayEffectExecute",
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpec",
+          "type": "FGameplayEffectSpec"
+        },
+        {
+          "name": "EvaluatedData",
+          "type": "FGameplayModifierEvaluatedData&"
+        },
+        {
+          "name": "AbilitySystemComponent",
+          "type": "UAngelscriptAbilitySystemComponent"
+        }
+      ]
+    },
+    {
+      "name": "PreAttributeBaseChange",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_PreAttributeBaseChange",
+      "meta": null,
+      "args": [
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "NewValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "PreAttributeChange",
+      "return": "void",
+      "callable": false,
+      "event": true,
+      "unrealname": "BP_PreAttributeChange",
+      "meta": null,
+      "args": [
+        {
+          "name": "Attribute",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "NewValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "PreGameplayEffectExecute",
+      "return": "bool",
+      "callable": false,
+      "doc": "Return true if you want to allow the effect to execute",
+      "event": true,
+      "unrealname": "BP_PreGameplayEffectExecute",
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectSpec",
+          "type": "FGameplayEffectSpec"
+        },
+        {
+          "name": "EvaluatedData",
+          "type": "FGameplayModifierEvaluatedData&"
+        },
+        {
+          "name": "AbilitySystemComponent",
+          "type": "UAngelscriptAbilitySystemComponent"
+        }
+      ]
+    },
+    {
+      "name": "InitFromMetaDataTable",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "DataTable",
+          "type": "const UDataTable"
+        }
+      ]
+    },
+    {
+      "name": "OnRep_Attribute",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OldAttributeData",
+          "type": "FAngelscriptGameplayAttributeData&"
+        }
+      ]
+    },
+    {
+      "name": "TryGetAttributeBaseValue",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "OutBaseValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "TryGetAttributeCurrentValue",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "OutCurrentValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "TrySetAttributeBaseValue",
+      "return": "bool",
+      "doc": "Use these functions when you are not sure if the attribute you are trying to manipulate will exist on the set.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "NewBaseValue",
+          "type": "float32"
+        }
+      ]
+    }
+  ]
+}

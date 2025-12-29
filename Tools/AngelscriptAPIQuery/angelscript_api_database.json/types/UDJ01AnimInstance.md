@@ -14,10 +14,10 @@ DJ01项目的基础动画实例类
 ## 属性
 
 ### GameplayTagPropertyMap
-- **类型**: `FGameplayTagBlueprintPropertyMap`
+- **类型**: `FDJ01GameplayTagPropertyMap`
 - **描述**: GameplayTag到蓝图变量的映射配置
 当对应的Tag添加或移除时，映射的变量会自动更新
-应使用此映射而非手动查询GameplayTag
+映射在构造函数中自动配置，由 Tag Manager 生成
 
 ### GroundSpeed
 - **类型**: `float32`
@@ -27,16 +27,4 @@ DJ01项目的基础动画实例类
 ### GroundDistance
 - **类型**: `float32`
 - **描述**: 角色到地面的距离，用于跳跃/降落动画控制
-
-### bIsGrounded
-- **类型**: `bool`
-- **描述**: 是否在地面上 (映射自 Status.Movement.Grounded)
-
-### bIsAttacking
-- **类型**: `bool`
-- **描述**: 是否在攻击中 (映射自 Status.Action.Attacking)
-
-### bIsStunned
-- **类型**: `bool`
-- **描述**: 是否被眩晕 (映射自 Status.Condition.Stunned)
 

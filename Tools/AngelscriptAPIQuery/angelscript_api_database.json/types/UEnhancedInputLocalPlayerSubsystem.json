@@ -8,5 +8,316 @@
       "Blueprint Event that is called at the end of any frame that Control Mappings have been rebuilt."
     ]
   },
-  "methods": []
+  "methods": [
+    {
+      "name": "AddMappingContext",
+      "return": "void",
+      "doc": "Add a control mapping context.\n@param MappingContext                A set of key to action mappings to apply to this player\n@param Priority                              Higher priority mappings will be applied first and, if they consume input, will block lower priority mappings.\n@param Options                               Options to consider when adding this mapping context.",
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingContext",
+          "type": "const UInputMappingContext"
+        },
+        {
+          "name": "Priority",
+          "type": "int"
+        },
+        {
+          "name": "Options",
+          "type": "FModifyContextOptions"
+        }
+      ]
+    },
+    {
+      "name": "AddPlayerMappableConfig",
+      "return": "void",
+      "doc": "Adds all the input mapping contexts inside of this mappable config.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Config",
+          "type": "const UPlayerMappableInputConfig"
+        },
+        {
+          "name": "Options",
+          "type": "FModifyContextOptions"
+        }
+      ]
+    },
+    {
+      "name": "AddPlayerMappedKey",
+      "return": "int",
+      "doc": "Replace any currently applied mappings to this key mapping with the given new one.\nRequests a rebuild of the player mappings.\n\n@return The number of mappings that have been replaced",
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingName",
+          "type": "FName"
+        },
+        {
+          "name": "NewKey",
+          "type": "FKey"
+        },
+        {
+          "name": "Options",
+          "type": "FModifyContextOptions"
+        }
+      ]
+    },
+    {
+      "name": "AddPlayerMappedKeyInSlot",
+      "return": "int",
+      "doc": "Emplace or replace any currently applied key in KeySlot for mapping of MappingName.\nRequests a rebuild of the player mappings.\n\n@return The number of mappings that have been replaced",
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingName",
+          "type": "FName"
+        },
+        {
+          "name": "NewKey",
+          "type": "FKey"
+        },
+        {
+          "name": "KeySlot",
+          "type": "FPlayerMappableKeySlot"
+        },
+        {
+          "name": "Options",
+          "type": "FModifyContextOptions"
+        }
+      ]
+    },
+    {
+      "name": "ClearAllMappings",
+      "return": "void",
+      "doc": "Remove all applied mapping contexts.",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlayerInput",
+      "return": "UEnhancedPlayerInput",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "HasMappingContext",
+      "return": "bool",
+      "doc": "Check if a mapping context is applied to this subsystem's owner.\n        // TODO: BlueprintPure would be nicer. Move into library?",
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingContext",
+          "type": "const UInputMappingContext"
+        }
+      ]
+    },
+    {
+      "name": "InjectInputForAction",
+      "return": "void",
+      "doc": "Input simulation via injection. Runs modifiers and triggers delegates as if the input had come through the underlying input system as FKeys.\nApplies action modifiers and triggers on top.\n\n@param Action                The Input Action to set inject input for\n@param RawValue              The value to set the action to\n@param Modifiers             The modifiers to apply to the injected input.\n@param Triggers              The triggers to apply to the injected input.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Action",
+          "type": "const UInputAction"
+        },
+        {
+          "name": "RawValue",
+          "type": "FInputActionValue"
+        },
+        {
+          "name": "Modifiers",
+          "type": "TArray<UInputModifier>"
+        },
+        {
+          "name": "Triggers",
+          "type": "TArray<UInputTrigger>"
+        }
+      ]
+    },
+    {
+      "name": "InjectInputVectorForAction",
+      "return": "void",
+      "doc": "Input simulation via injection. Runs modifiers and triggers delegates as if the input had come through the underlying input system as FKeys.\nApplies action modifiers and triggers on top.\n\n@param Action                The Input Action to set inject input for\n@param Value                 The value to set the action to (the type will be controlled by the Action)\n@param Modifiers             The modifiers to apply to the injected input.\n@param Triggers              The triggers to apply to the injected input.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Action",
+          "type": "const UInputAction"
+        },
+        {
+          "name": "Value",
+          "type": "FVector"
+        },
+        {
+          "name": "Modifiers",
+          "type": "TArray<UInputModifier>"
+        },
+        {
+          "name": "Triggers",
+          "type": "TArray<UInputTrigger>"
+        }
+      ]
+    },
+    {
+      "name": "QueryKeysMappedToAction",
+      "return": "TArray<FKey>",
+      "doc": "Returns the keys mapped to the given action in the active input mapping contexts.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Action",
+          "type": "const UInputAction"
+        }
+      ]
+    },
+    {
+      "name": "QueryMapKeyInActiveContextSet",
+      "return": "EMappingQueryResult",
+      "doc": "= DefaultMappingIssues::StandardFatal",
+      "meta": null,
+      "args": [
+        {
+          "name": "InputContext",
+          "type": "const UInputMappingContext"
+        },
+        {
+          "name": "Action",
+          "type": "const UInputAction"
+        },
+        {
+          "name": "Key",
+          "type": "FKey"
+        },
+        {
+          "name": "OutIssues",
+          "type": "TArray<FMappingQueryIssue>&"
+        },
+        {
+          "name": "BlockingIssues",
+          "type": "EMappingQueryIssue"
+        }
+      ]
+    },
+    {
+      "name": "QueryMapKeyInContextSet",
+      "return": "EMappingQueryResult",
+      "doc": "= DefaultMappingIssues::StandardFatal",
+      "meta": null,
+      "args": [
+        {
+          "name": "PrioritizedActiveContexts",
+          "type": "TArray<UInputMappingContext>"
+        },
+        {
+          "name": "InputContext",
+          "type": "const UInputMappingContext"
+        },
+        {
+          "name": "Action",
+          "type": "const UInputAction"
+        },
+        {
+          "name": "Key",
+          "type": "FKey"
+        },
+        {
+          "name": "OutIssues",
+          "type": "TArray<FMappingQueryIssue>&"
+        },
+        {
+          "name": "BlockingIssues",
+          "type": "EMappingQueryIssue"
+        }
+      ]
+    },
+    {
+      "name": "RemoveMappingContext",
+      "return": "void",
+      "doc": "Remove a specific control context.\nThis is safe to call even if the context is not applied.\n@param MappingContext         Context to remove from the player\n@param Options                        Options to consider when removing this input mapping context",
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingContext",
+          "type": "const UInputMappingContext"
+        },
+        {
+          "name": "Options",
+          "type": "FModifyContextOptions"
+        }
+      ]
+    },
+    {
+      "name": "RemovePlayerMappableConfig",
+      "return": "void",
+      "doc": "Removes all the input mapping contexts inside of this mappable config.",
+      "meta": null,
+      "args": [
+        {
+          "name": "Config",
+          "type": "const UPlayerMappableInputConfig"
+        },
+        {
+          "name": "Options",
+          "type": "FModifyContextOptions"
+        }
+      ]
+    },
+    {
+      "name": "RemovePlayerMappedKey",
+      "return": "int",
+      "doc": "Remove any player mappings with to the given action\nRequests a rebuild of the player mappings.\n\n@return The number of mappings that have been removed",
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingName",
+          "type": "FName"
+        },
+        {
+          "name": "Options",
+          "type": "FModifyContextOptions"
+        }
+      ]
+    },
+    {
+      "name": "RemovePlayerMappedKeyInSlot",
+      "return": "int",
+      "doc": "Removes player mapped key in the KeySlot for mapping of MappingName.\nRequests a rebuild of the player mappings.\n\n@return The number of mappings that have been removed",
+      "meta": null,
+      "args": [
+        {
+          "name": "MappingName",
+          "type": "FName"
+        },
+        {
+          "name": "KeySlot",
+          "type": "FPlayerMappableKeySlot"
+        },
+        {
+          "name": "Options",
+          "type": "FModifyContextOptions"
+        }
+      ]
+    },
+    {
+      "name": "RequestRebuildControlMappings",
+      "return": "void",
+      "doc": "Flag player for reapplication of all mapping contexts at the end of this frame.\nThis is called automatically when adding or removing mappings contexts.\n\n@param Options                Options to consider when removing this input mapping context",
+      "meta": null,
+      "args": [
+        {
+          "name": "Options",
+          "type": "FModifyContextOptions"
+        },
+        {
+          "name": "RebuildType",
+          "default": "EInputMappingRebuildType :: Rebuild",
+          "type": "EInputMappingRebuildType"
+        }
+      ]
+    }
+  ]
 }

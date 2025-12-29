@@ -4,6 +4,16 @@ Allows blueprints to generate a GameplayEffectSpec once and then reference it by
 
 ## 方法
 
+### GetSpec
+```angelscript
+FGameplayEffectSpec& GetSpec()
+```
+
+### IsValid
+```angelscript
+bool IsValid()
+```
+
 ### opAssign
 ```angelscript
 FGameplayEffectSpecHandle& opAssign(FGameplayEffectSpecHandle Other)

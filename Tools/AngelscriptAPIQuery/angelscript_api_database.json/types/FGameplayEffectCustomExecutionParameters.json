@@ -5,6 +5,158 @@
   "properties": {},
   "methods": [
     {
+      "name": "AttemptCalculateCapturedAttributeBaseValue",
+      "return": "bool",
+      "const": true,
+      "doc": "Attempts to calculate the base value of a captured attribute given the specified parameters. Can fail if the gameplay spec doesn't have\na valid capture for the attribute.\n\n@param InCaptureDef  Attribute definition to attempt to calculate the base value of\n@param OutBaseValue  [OUT] Computed base value\n\n@return True if the base value was successfully calculated, false if it was not",
+      "meta": null,
+      "args": [
+        {
+          "name": "InCaptureDef",
+          "type": "FGameplayEffectAttributeCaptureDefinition"
+        },
+        {
+          "name": "OutBaseValue",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "AttemptCalculateCapturedAttributeBonusMagnitude",
+      "return": "bool",
+      "const": true,
+      "doc": "Attempts to calculate the bonus magnitude of a captured attribute given the specified parameters. Can fail if the gameplay spec doesn't have\na valid capture for the attribute.\n\n@param InCaptureDef          Attribute definition to attempt to calculate the bonus magnitude of\n@param InEvalParams          Parameters to evaluate the attribute under\n@param OutBonusMagnitude     [OUT] Computed bonus magnitude\n\n@return True if the bonus magnitude was successfully calculated, false if it was not",
+      "meta": null,
+      "args": [
+        {
+          "name": "InCaptureDef",
+          "type": "FGameplayEffectAttributeCaptureDefinition"
+        },
+        {
+          "name": "InParams",
+          "type": "FGameplayEffectExecutionParameters"
+        },
+        {
+          "name": "OutBonusMagnitude",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "AttemptCalculateCapturedAttributeMagnitude",
+      "return": "bool",
+      "const": true,
+      "doc": "Attempts to calculate the magnitude of a captured attribute given the specified parameters. Can fail if the gameplay spec doesn't have\na valid capture for the attribute.\n\n@param InCaptureDef  Attribute definition to attempt to calculate the magnitude of\n@param InEvalParams  Parameters to evaluate the attribute under\n@param OutMagnitude  [OUT] Computed magnitude\n\n@return True if the magnitude was successfully calculated, false if it was not",
+      "meta": null,
+      "args": [
+        {
+          "name": "InCaptureDef",
+          "type": "FGameplayEffectAttributeCaptureDefinition"
+        },
+        {
+          "name": "InParams",
+          "type": "FGameplayEffectExecutionParameters"
+        },
+        {
+          "name": "OutMagnitude",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "AttemptCalculateCapturedAttributeMagnitudeWithBase",
+      "return": "bool",
+      "const": true,
+      "doc": "Attempts to calculate the magnitude of a captured attribute given the specified parameters, including a starting base value.\nCan fail if the gameplay spec doesn't have a valid capture for the attribute.\n\n@param InCaptureDef  Attribute definition to attempt to calculate the magnitude of\n@param InEvalParams  Parameters to evaluate the attribute under\n@param InBaseValue   Base value to evaluate the attribute under\n@param OutMagnitude  [OUT] Computed magnitude\n\n@return True if the magnitude was successfully calculated, false if it was not",
+      "meta": null,
+      "args": [
+        {
+          "name": "InCaptureDef",
+          "type": "FGameplayEffectAttributeCaptureDefinition"
+        },
+        {
+          "name": "InParams",
+          "type": "FGameplayEffectExecutionParameters"
+        },
+        {
+          "name": "InBaseValue",
+          "type": "float32"
+        },
+        {
+          "name": "OutMagnitude",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "AttemptCalculateTransientAggregatorMagnitude",
+      "return": "void",
+      "const": true,
+      "doc": "Attempts to calculate the magnitude of a transient aggregator given the specified parameters.\n\n@param InAggregatorIdentifier Tag identifying the transient aggregator to attempt to calculate the magnitude of\n@param InParams                               Parameters to evaluate the aggregator under\n@param OutMagnitude                   [OUT] Computed magnitude",
+      "meta": null,
+      "args": [
+        {
+          "name": "InAggregatorIdentifier",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "InParams",
+          "type": "FGameplayEffectExecutionParameters"
+        },
+        {
+          "name": "OutMagnitude",
+          "type": "float32&"
+        }
+      ]
+    },
+    {
+      "name": "GetIgnoreHandles",
+      "return": "TArray<FActiveGameplayEffectHandle>",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningSpec",
+      "return": "FGameplayEffectSpec",
+      "const": true,
+      "doc": "Simple accessor to owning gameplay spec",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningSpecForPreExecuteMod",
+      "return": "FGameplayEffectSpec&",
+      "const": true,
+      "doc": "Non const access. Be careful with this, especially when modifying a spec after attribute capture.",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPassedInTags",
+      "return": "FGameplayTagContainer",
+      "const": true,
+      "doc": "Simple accessor to the Passed In Tags to this execution",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSourceAbilitySystemComponent",
+      "return": "UAbilitySystemComponent",
+      "const": true,
+      "doc": "Simple accessor to source ability system component (could be null!)",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTargetAbilitySystemComponent",
+      "return": "UAbilitySystemComponent",
+      "const": true,
+      "doc": "Simple accessor to target ability system component",
+      "meta": null,
+      "args": []
+    },
+    {
       "name": "opAssign",
       "return": "FGameplayEffectCustomExecutionParameters&",
       "args": [

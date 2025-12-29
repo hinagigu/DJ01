@@ -1,0 +1,341 @@
+{
+  "_comment": "通用类型和结构体定义",
+  "_version": "1.0",
+  
+  "common_types": {
+    "FGameplayTag": {
+      "type": "string",
+      "description": "Gameplay 标签",
+      "widget": "tag_selector"
+    },
+    "TSoftClassPtr": {
+      "type": "string",
+      "description": "软类引用",
+      "widget": "class_picker",
+      "format": "/Script/ModuleName.ClassName"
+    },
+    "TSoftObjectPtr": {
+      "type": "string",
+      "description": "软资产引用",
+      "widget": "asset_picker",
+      "format": "/Game/Path/To/Asset"
+    },
+    "TSubclassOf": {
+      "type": "string",
+      "description": "类引用",
+      "widget": "class_picker"
+    },
+    "TObjectPtr": {
+      "type": "string",
+      "description": "对象引用",
+      "widget": "asset_picker"
+    }
+  },
+  
+  "structs": {
+    "FGameFeatureAbilitiesEntry": {
+      "description": "GameFeature 中添加 Abilities 的配置条目",
+      "properties": {
+        "ActorClass": {
+          "type": "TSoftClassPtr<AActor>",
+          "display_name": "目标 Actor 类",
+          "description": "要授予技能的 Actor 类（通常是 Pawn/Character）",
+          "widget": "combobox",
+          "options_source": "pawn_classes",
+          "required": true
+        },
+        "GrantedAbilities": {
+          "type": "array",
+          "item_type": "string",
+          "display_name": "授予的技能",
+          "description": "要授予的 GameplayAbility 类列表",
+          "widget": "checkbox_list",
+          "options_source": "gameplay_abilities"
+        },
+        "GrantedAttributes": {
+          "type": "array",
+          "item_type": "string",
+          "display_name": "授予的属性集",
+          "description": "要授予的 AttributeSet 类列表",
+          "widget": "checkbox_list",
+          "options_source": "attribute_sets"
+        },
+        "GrantedAbilitySets": {
+          "type": "array",
+          "item_type": "TSoftObjectPtr<UDJ01AbilitySet>",
+          "display_name": "授予的 AbilitySet",
+          "description": "要授予的 AbilitySet 资产列表",
+          "widget": "checkbox_list",
+          "options_source": "ability_sets"
+        }
+      }
+    },
+    
+    "FDJ01AbilityGrant": {
+      "description": "单个技能授予配置",
+      "properties": {
+        "AbilityType": {
+          "type": "TSoftClassPtr<UGameplayAbility>",
+          "display_name": "技能类",
+          "widget": "combobox",
+          "options_source": "gameplay_abilities",
+          "required": true
+        }
+      }
+    },
+    
+    "FDJ01AttributeSetGrant": {
+      "description": "单个属性集授予配置",
+      "properties": {
+        "AttributeSetType": {
+          "type": "TSoftClassPtr<UAttributeSet>",
+          "display_name": "属性集类",
+          "widget": "combobox",
+          "options_source": "attribute_sets",
+          "required": true
+        },
+        "AttributeSetTag": {
+          "type": "FGameplayTag",
+          "display_name": "属性集标签",
+          "widget": "combobox",
+          "options_source": "attribute_set_tags"
+        },
+        "InitializationData": {
+          "type": "TSoftObjectPtr<UDataTable>",
+          "display_name": "初始化数据表",
+          "widget": "text_input"
+        }
+      }
+    },
+    
+    "FInputMappingContextAndPriority": {
+      "description": "输入映射上下文配置",
+      "properties": {
+        "InputMapping": {
+          "type": "TSoftObjectPtr<UInputMappingContext>",
+          "display_name": "输入映射",
+          "widget": "combobox",
+          "options_source": "input_mapping_contexts",
+          "required": true
+        },
+        "Priority": {
+          "type": "int32",
+          "display_name": "优先级",
+          "widget": "spin_box",
+          "default": 0
+        },
+        "bRegisterWithSettings": {
+          "type": "bool",
+          "display_name": "注册到设置",
+          "widget": "checkbox",
+          "default": true
+        }
+      }
+    },
+    
+    "FDJ01HUDLayoutRequest": {
+      "description": "HUD 布局配置",
+      "properties": {
+        "LayoutClass": {
+          "type": "TSoftClassPtr<UCommonActivatableWidget>",
+          "display_name": "布局类",
+          "description": "要显示的布局 Widget 蓝图类",
+          "widget": "combobox",
+          "options_source": "activatable_widgets",
+          "required": true
+        },
+        "LayerID": {
+          "type": "FGameplayTag",
+          "display_name": "UI 层级",
+          "description": "Widget 显示的 UI 层级（如 UI.Layer.Game, UI.Layer.Menu）",
+          "widget": "combobox",
+          "options_source": "ui_layer_tags"
+        }
+      }
+    },
+    
+    "FDJ01HUDElementEntry": {
+      "description": "HUD 元素配置",
+      "properties": {
+        "WidgetClass": {
+          "type": "TSoftClassPtr<UUserWidget>",
+          "display_name": "Widget 类",
+          "description": "要显示的 Widget 蓝图类",
+          "widget": "combobox",
+          "options_source": "widget_classes",
+          "required": true
+        },
+        "SlotID": {
+          "type": "FGameplayTag",
+          "display_name": "插槽 ID",
+          "description": "Widget 显示的 UI 插槽位置",
+          "widget": "combobox",
+          "options_source": "ui_slot_tags"
+        }
+      }
+    },
+    
+    "FDJ01InputAction": {
+      "description": "输入动作映射到 Gameplay 标签",
+      "properties": {
+        "InputAction": {
+          "type": "TObjectPtr<UInputAction>",
+          "display_name": "输入动作",
+          "widget": "combobox",
+          "options_source": "input_actions",
+          "required": true
+        },
+        "InputTag": {
+          "type": "FGameplayTag",
+          "display_name": "输入标签",
+          "widget": "combobox",
+          "options_source": "input_tags",
+          "required": true
+        }
+      }
+    },
+    
+    "FDJ01AbilitySet_GameplayAbility": {
+      "description": "技能集中的技能配置",
+      "properties": {
+        "Ability": {
+          "type": "TSubclassOf<UDJ01GameplayAbility>",
+          "display_name": "技能类",
+          "widget": "combobox",
+          "options_source": "gameplay_abilities",
+          "base_class": "DJ01GameplayAbility",
+          "required": true
+        },
+        "AbilityLevel": {
+          "type": "int32",
+          "display_name": "技能等级",
+          "widget": "spin_box",
+          "default": 1,
+          "min": 1,
+          "max": 99
+        },
+        "InputTag": {
+          "type": "FGameplayTag",
+          "display_name": "输入标签",
+          "widget": "combobox",
+          "options_source": "input_tags"
+        }
+      }
+    },
+    
+    "FDJ01AbilitySet_GameplayEffect": {
+      "description": "技能集中的效果配置",
+      "properties": {
+        "GameplayEffect": {
+          "type": "TSubclassOf<UGameplayEffect>",
+          "display_name": "效果类",
+          "widget": "combobox",
+          "options_source": "gameplay_effects",
+          "base_class": "GameplayEffect",
+          "required": true
+        },
+        "EffectLevel": {
+          "type": "float",
+          "display_name": "效果等级",
+          "widget": "spin_box",
+          "default": 1.0,
+          "min": 0.0
+        }
+      }
+    },
+    
+    "FDJ01AbilitySet_AttributeSet": {
+      "description": "技能集中的属性集配置",
+      "properties": {
+        "AttributeSet": {
+          "type": "TSubclassOf<UAttributeSet>",
+          "display_name": "属性集类",
+          "widget": "combobox",
+          "options_source": "attribute_sets",
+          "base_class": "AttributeSet",
+          "required": true
+        }
+      }
+    }
+  },
+  
+  "gamefeature_actions": {
+    "_comment": "GameFeature Action 类型定义",
+    
+    "UGameFeatureAction_AddAbilities": {
+      "display_name": "添加技能 (Add Abilities)",
+      "description": "向指定 Actor 授予技能、属性集和 AbilitySet",
+      "properties": {
+        "AbilitiesList": {
+          "type": "array",
+          "item_type": "FGameFeatureAbilitiesEntry",
+          "display_name": "技能配置列表",
+          "widget": "struct_array_editor",
+          "struct_type": "FGameFeatureAbilitiesEntry"
+        }
+      }
+    },
+    
+    "UGameFeatureAction_AddInputBinding": {
+      "display_name": "添加输入绑定 (Add Input Binds)",
+      "description": "为 Pawn 添加输入配置绑定",
+      "properties": {
+        "InputConfigs": {
+          "type": "array",
+          "item_type": "TSoftObjectPtr<UDJ01InputConfig>",
+          "display_name": "输入配置列表",
+          "widget": "checkbox_list",
+          "options_source": "input_configs"
+        }
+      }
+    },
+    
+    "UGameFeatureAction_AddInputContextMapping": {
+      "display_name": "添加输入映射 (Add Input Mapping)",
+      "description": "为玩家添加输入映射上下文",
+      "properties": {
+        "InputMappings": {
+          "type": "array",
+          "item_type": "FInputMappingContextAndPriority",
+          "display_name": "输入映射配置",
+          "widget": "struct_array_editor",
+          "struct_type": "FInputMappingContextAndPriority"
+        }
+      }
+    },
+    
+    "UGameFeatureAction_AddWidgets": {
+      "display_name": "添加 UI 组件 (Add Widgets)",
+      "description": "向 HUD 添加布局和 Widget",
+      "properties": {
+        "Layout": {
+          "type": "array",
+          "item_type": "FDJ01HUDLayoutRequest",
+          "display_name": "HUD 布局",
+          "widget": "struct_array_editor",
+          "struct_type": "FDJ01HUDLayoutRequest"
+        },
+        "Widgets": {
+          "type": "array",
+          "item_type": "FDJ01HUDElementEntry",
+          "display_name": "HUD 元素",
+          "widget": "struct_array_editor",
+          "struct_type": "FDJ01HUDElementEntry"
+        }
+      }
+    }
+  },
+  
+  "widget_types": {
+    "text_input": "单行文本输入",
+    "text_area": "多行文本输入",
+    "spin_box": "数值输入",
+    "checkbox": "复选框",
+    "combobox": "下拉选择（单选）",
+    "checkbox_list": "多选列表",
+    "tag_selector": "Gameplay 标签选择器",
+    "class_picker": "类选择器",
+    "asset_picker": "资产选择器",
+    "struct_array_editor": "结构体数组编辑器"
+  }
+}

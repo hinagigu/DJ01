@@ -2,49 +2,206 @@
   "name": "FGameplayAbilityActorInfo",
   "isStruct": true,
   "doc": "FGameplayAbilityActorInfo\n\nCached data associated with an Actor using an Ability.\n        -Initialized from an AActor* in InitFromActor\n        -Abilities use this to know what to actor upon. E.g., instead of being coupled to a specific actor class.\n        -These are generally passed around as pointers to support polymorphism.\n        -Projects can override UAbilitySystemGlobals::AllocAbilityActorInfo to override the default struct type that is created.",
-  "properties": {
-    "OwnerActor": [
-      "TWeakObjectPtr<AActor>",
-      1,
-      "The actor that owns the abilities, shouldn't be null"
-    ],
-    "AvatarActor": [
-      "TWeakObjectPtr<AActor>",
-      1,
-      "The physical representation of the owner, used for targeting and animation. This will often be null!"
-    ],
-    "PlayerController": [
-      "TWeakObjectPtr<APlayerController>",
-      1,
-      "PlayerController associated with the owning actor. This will often be null!"
-    ],
-    "AbilitySystemComponent": [
-      "TWeakObjectPtr<UAbilitySystemComponent>",
-      1,
-      "Ability System component associated with the owner actor, shouldn't be null"
-    ],
-    "SkeletalMeshComponent": [
-      "TWeakObjectPtr<USkeletalMeshComponent>",
-      1,
-      "Skeletal mesh of the avatar actor. Often null"
-    ],
-    "AnimInstance": [
-      "TWeakObjectPtr<UAnimInstance>",
-      1,
-      "Anim instance of the avatar actor. Often null"
-    ],
-    "MovementComponent": [
-      "TWeakObjectPtr<UMovementComponent>",
-      1,
-      "Movement component of the avatar actor. Often null"
-    ],
-    "AffectedAnimInstanceTag": [
-      "FName",
-      1,
-      "The linked Anim Instance that this component will play montages in. Use NAME_None for the main anim instance."
-    ]
-  },
+  "properties": {},
   "methods": [
+    {
+      "name": "ClearActorInfo",
+      "return": "void",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAbilitySystemComponent",
+      "return": "UAbilitySystemComponent",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAffectedAnimInstanceTag",
+      "return": "FName",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAnimInstance",
+      "return": "UAnimInstance",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAnimInstanceFromSkeletalMesh",
+      "return": "UAnimInstance",
+      "const": true,
+      "meta": null,
+      "args": [],
+      "isProperty": false
+    },
+    {
+      "name": "GetAvatarActor",
+      "return": "AActor",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMovementComponent",
+      "return": "UMovementComponent",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwnerActor",
+      "return": "AActor",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPlayerController",
+      "return": "APlayerController",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetSkeletalMeshComponent",
+      "return": "USkeletalMeshComponent",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InitFromActor",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "OwnerActor",
+          "type": "AActor"
+        },
+        {
+          "name": "AvatarActor",
+          "type": "AActor"
+        },
+        {
+          "name": "InAbilitySystemComponent",
+          "type": "UAbilitySystemComponent"
+        }
+      ]
+    },
+    {
+      "name": "IsLocallyControlled",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsLocallyControlledPlayer",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsNetAuthority",
+      "return": "bool",
+      "const": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetAbilitySystemComponent",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "UAbilitySystemComponent"
+        }
+      ]
+    },
+    {
+      "name": "SetAffectedAnimInstanceTag",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Name",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "SetAnimInstance",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UAnimInstance"
+        }
+      ]
+    },
+    {
+      "name": "SetAvatarActor",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetMovementComponent",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Instance",
+          "type": "UMovementComponent"
+        }
+      ]
+    },
+    {
+      "name": "SetOwnerActor",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        }
+      ]
+    },
+    {
+      "name": "SetPlayerController",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Controller",
+          "type": "APlayerController"
+        }
+      ]
+    },
+    {
+      "name": "SetSkeletalMeshComponent",
+      "return": "void",
+      "meta": null,
+      "args": [
+        {
+          "name": "Component",
+          "type": "USkeletalMeshComponent"
+        }
+      ]
+    },
     {
       "name": "opAssign",
       "return": "FGameplayAbilityActorInfo&",

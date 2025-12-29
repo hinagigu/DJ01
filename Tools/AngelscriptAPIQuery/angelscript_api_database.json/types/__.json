@@ -135,28 +135,63 @@
   },
   "methods": [
     {
-      "name": "FCollisionQueryParams",
-      "return": "FCollisionQueryParams",
+      "name": "FSphere3f",
+      "return": "FSphere3f",
       "args": [],
       "isConstructor": true
     },
     {
-      "name": "FCollisionQueryParams",
-      "return": "FCollisionQueryParams",
+      "name": "FSphere3f",
+      "return": "FSphere3f",
       "args": [
         {
-          "name": "InTraceTag",
-          "type": "FName"
+          "name": "InV",
+          "type": "FVector3f"
         },
         {
-          "name": "bInTraceComplex",
-          "type": "bool"
-        },
-        {
-          "name": "InIgnoreActor",
-          "type": "const AActor"
+          "name": "InW",
+          "type": "float32"
         }
       ],
+      "isConstructor": true
+    },
+    {
+      "name": "FSphere3f",
+      "return": "FSphere3f",
+      "args": [
+        {
+          "name": "Sphere",
+          "type": "FSphere3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FSphere3f",
+      "return": "FSphere3f",
+      "args": [
+        {
+          "name": "Sphere",
+          "type": "FSphere"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FSphere3f",
+      "return": "FSphere3f",
+      "args": [
+        {
+          "name": "Points",
+          "type": "TArray<FVector3f>"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FCollisionShape",
+      "return": "FCollisionShape",
+      "args": [],
       "isConstructor": true
     },
     {
@@ -188,78 +223,30 @@
       "isConstructor": true
     },
     {
-      "name": "FQuat",
-      "return": "FQuat",
+      "name": "TOptional",
+      "return": "TOptional",
       "args": [],
       "isConstructor": true
     },
     {
-      "name": "FQuat",
-      "return": "FQuat",
+      "name": "TOptional",
+      "return": "TOptional",
+      "doc": "Initialize the optional with a valid value.\n",
       "args": [
         {
-          "name": "Q",
-          "type": "FQuat"
+          "name": "Other",
+          "type": "T"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FQuat",
-      "return": "FQuat",
+      "name": "TOptional",
+      "return": "TOptional",
       "args": [
         {
-          "name": "X",
-          "type": "float"
-        },
-        {
-          "name": "Y",
-          "type": "float"
-        },
-        {
-          "name": "Z",
-          "type": "float"
-        },
-        {
-          "name": "W",
-          "type": "float"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FQuat",
-      "return": "FQuat",
-      "args": [
-        {
-          "name": "R",
-          "type": "FRotator"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FQuat",
-      "return": "FQuat",
-      "args": [
-        {
-          "name": "Axis",
-          "type": "FVector"
-        },
-        {
-          "name": "AngleRad",
-          "type": "float"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FQuat",
-      "return": "FQuat",
-      "args": [
-        {
-          "name": "Quat",
-          "type": "FQuat4f"
+          "name": "Other",
+          "type": "TOptional<T>"
         }
       ],
       "isConstructor": true
@@ -284,6 +271,34 @@
     {
       "name": "TObjectPtr",
       "return": "TObjectPtr",
+      "args": [
+        {
+          "name": "Object",
+          "type": "T"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "TWeakObjectPtr",
+      "return": "TWeakObjectPtr",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "TWeakObjectPtr",
+      "return": "TWeakObjectPtr",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TWeakObjectPtr<T>"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "TWeakObjectPtr",
+      "return": "TWeakObjectPtr",
       "args": [
         {
           "name": "Object",
@@ -370,29 +385,18 @@
       "isConstructor": true
     },
     {
-      "name": "TWeakObjectPtr",
-      "return": "TWeakObjectPtr",
+      "name": "FEnhancedInputActionValueBinding",
+      "return": "FEnhancedInputActionValueBinding",
       "args": [],
       "isConstructor": true
     },
     {
-      "name": "TWeakObjectPtr",
-      "return": "TWeakObjectPtr",
+      "name": "FEnhancedInputActionValueBinding",
+      "return": "FEnhancedInputActionValueBinding",
       "args": [
         {
-          "name": "Other",
-          "type": "TWeakObjectPtr<T>"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "TWeakObjectPtr",
-      "return": "TWeakObjectPtr",
-      "args": [
-        {
-          "name": "Object",
-          "type": "T"
+          "name": "InAction",
+          "type": "const UInputAction"
         }
       ],
       "isConstructor": true
@@ -426,236 +430,139 @@
       "isConstructor": true
     },
     {
-      "name": "FCollisionObjectQueryParams",
-      "return": "FCollisionObjectQueryParams",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FCollisionObjectQueryParams",
-      "return": "FCollisionObjectQueryParams",
+      "name": "FRotator",
+      "return": "FRotator",
       "args": [
         {
-          "name": "QueryChannel",
-          "type": "ECollisionChannel"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FCollisionObjectQueryParams",
-      "return": "FCollisionObjectQueryParams",
-      "args": [
-        {
-          "name": "ObjectTypes",
-          "type": "TArray<EObjectTypeQuery>"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FCollisionObjectQueryParams",
-      "return": "FCollisionObjectQueryParams",
-      "args": [
-        {
-          "name": "QueryType",
-          "type": "ECollisionObjectQueryInitType"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FCollisionObjectQueryParams",
-      "return": "FCollisionObjectQueryParams",
-      "args": [
-        {
-          "name": "InObjectTypesToQuery",
-          "type": "int"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FNumberFormattingOptions",
-      "return": "FNumberFormattingOptions",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FSphere3f",
-      "return": "FSphere3f",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FSphere3f",
-      "return": "FSphere3f",
-      "args": [
-        {
-          "name": "InV",
-          "type": "FVector3f"
+          "name": "Pitch",
+          "type": "float"
         },
         {
-          "name": "InW",
-          "type": "float32"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FSphere3f",
-      "return": "FSphere3f",
-      "args": [
-        {
-          "name": "Sphere",
-          "type": "FSphere3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FSphere3f",
-      "return": "FSphere3f",
-      "args": [
-        {
-          "name": "Sphere",
-          "type": "FSphere"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FSphere3f",
-      "return": "FSphere3f",
-      "args": [
-        {
-          "name": "Points",
-          "type": "TArray<FVector3f>"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FIntVector2",
-      "return": "FIntVector2",
-      "args": [
-        {
-          "name": "X",
-          "type": "int"
+          "name": "Yaw",
+          "type": "float"
         },
         {
-          "name": "Y",
-          "type": "int"
+          "name": "Roll",
+          "type": "float"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FIntVector2",
-      "return": "FIntVector2",
+      "name": "FRotator",
+      "return": "FRotator",
       "args": [],
       "isConstructor": true
     },
     {
-      "name": "FIntVector2",
-      "return": "FIntVector2",
+      "name": "FRotator",
+      "return": "FRotator",
       "args": [
         {
           "name": "F",
-          "type": "int"
+          "type": "float"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FIntVector2",
-      "return": "FIntVector2",
+      "name": "FRotator",
+      "return": "FRotator",
       "args": [
         {
           "name": "Other",
-          "type": "FIntVector2"
+          "type": "FRotator"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FString",
-      "return": "FString",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FString",
-      "return": "FString",
+      "name": "FRotator",
+      "return": "FRotator",
       "args": [
         {
-          "name": "Other",
-          "type": "FString"
+          "name": "Quat",
+          "type": "FQuat"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FString",
-      "return": "FString",
+      "name": "FRotator",
+      "return": "FRotator",
       "args": [
         {
-          "name": "Value",
-          "type": "FName"
+          "name": "Rotator",
+          "type": "FRotator3f"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FSphere",
-      "return": "FSphere",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FSphere",
-      "return": "FSphere",
+      "name": "FRotator3f",
+      "return": "FRotator3f",
       "args": [
         {
-          "name": "InV",
-          "type": "FVector"
+          "name": "Pitch",
+          "type": "float32"
         },
         {
-          "name": "InW",
+          "name": "Yaw",
+          "type": "float32"
+        },
+        {
+          "name": "Roll",
           "type": "float32"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FSphere",
-      "return": "FSphere",
+      "name": "FRotator3f",
+      "return": "FRotator3f",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FRotator3f",
+      "return": "FRotator3f",
       "args": [
         {
-          "name": "Sphere",
-          "type": "FSphere"
+          "name": "F",
+          "type": "float32"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FSphere",
-      "return": "FSphere",
+      "name": "FRotator3f",
+      "return": "FRotator3f",
       "args": [
         {
-          "name": "Sphere",
-          "type": "FSphere3f"
+          "name": "Other",
+          "type": "FRotator3f"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FSphere",
-      "return": "FSphere",
+      "name": "FRotator3f",
+      "return": "FRotator3f",
       "args": [
         {
-          "name": "Points",
-          "type": "TArray<FVector>"
+          "name": "Quat",
+          "type": "FQuat4f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FRotator3f",
+      "return": "FRotator3f",
+      "args": [
+        {
+          "name": "Rotator",
+          "type": "FRotator"
         }
       ],
       "isConstructor": true
@@ -6675,121 +6582,6 @@
       "isConstructor": true
     },
     {
-      "name": "FRigVMPeformUserWorkflowDynamicDelegate",
-      "return": "FRigVMPeformUserWorkflowDynamicDelegate",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FRigVMPeformUserWorkflowDynamicDelegate",
-      "return": "FRigVMPeformUserWorkflowDynamicDelegate",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FRigVMPeformUserWorkflowDynamicDelegate"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRigVMPeformUserWorkflowDynamicDelegate",
-      "return": "FRigVMPeformUserWorkflowDynamicDelegate",
-      "args": [
-        {
-          "name": "Object",
-          "type": "UObject"
-        },
-        {
-          "name": "FunctionName",
-          "type": "FName"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRigVMGraphModifiedDynamicEvent",
-      "return": "FRigVMGraphModifiedDynamicEvent",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FRigVMGraphModifiedDynamicEvent",
-      "return": "FRigVMGraphModifiedDynamicEvent",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FRigVMGraphModifiedDynamicEvent"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRigVMUserWorkflowProvider",
-      "return": "FRigVMUserWorkflowProvider",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FRigVMUserWorkflowProvider",
-      "return": "FRigVMUserWorkflowProvider",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FRigVMUserWorkflowProvider"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRigVMUserWorkflowProvider",
-      "return": "FRigVMUserWorkflowProvider",
-      "args": [
-        {
-          "name": "Object",
-          "type": "UObject"
-        },
-        {
-          "name": "FunctionName",
-          "type": "FName"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FControlRigComponentDelegate",
-      "return": "FControlRigComponentDelegate",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FControlRigComponentDelegate",
-      "return": "FControlRigComponentDelegate",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FControlRigComponentDelegate"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRigHierarchyModifiedDynamicEvent",
-      "return": "FRigHierarchyModifiedDynamicEvent",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FRigHierarchyModifiedDynamicEvent",
-      "return": "FRigHierarchyModifiedDynamicEvent",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FRigHierarchyModifiedDynamicEvent"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
       "name": "FOnTakeRecorderCancelled",
       "return": "FOnTakeRecorderCancelled",
       "args": [],
@@ -7180,6 +6972,121 @@
       "isConstructor": true
     },
     {
+      "name": "FRigVMPeformUserWorkflowDynamicDelegate",
+      "return": "FRigVMPeformUserWorkflowDynamicDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FRigVMPeformUserWorkflowDynamicDelegate",
+      "return": "FRigVMPeformUserWorkflowDynamicDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigVMPeformUserWorkflowDynamicDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FRigVMPeformUserWorkflowDynamicDelegate",
+      "return": "FRigVMPeformUserWorkflowDynamicDelegate",
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "FunctionName",
+          "type": "FName"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FRigVMGraphModifiedDynamicEvent",
+      "return": "FRigVMGraphModifiedDynamicEvent",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FRigVMGraphModifiedDynamicEvent",
+      "return": "FRigVMGraphModifiedDynamicEvent",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigVMGraphModifiedDynamicEvent"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FRigVMUserWorkflowProvider",
+      "return": "FRigVMUserWorkflowProvider",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FRigVMUserWorkflowProvider",
+      "return": "FRigVMUserWorkflowProvider",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigVMUserWorkflowProvider"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FRigVMUserWorkflowProvider",
+      "return": "FRigVMUserWorkflowProvider",
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "FunctionName",
+          "type": "FName"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FControlRigComponentDelegate",
+      "return": "FControlRigComponentDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FControlRigComponentDelegate",
+      "return": "FControlRigComponentDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FControlRigComponentDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FRigHierarchyModifiedDynamicEvent",
+      "return": "FRigHierarchyModifiedDynamicEvent",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FRigHierarchyModifiedDynamicEvent",
+      "return": "FRigHierarchyModifiedDynamicEvent",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FRigHierarchyModifiedDynamicEvent"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
       "name": "FRigVMAssetDataFilterDynamic",
       "return": "FRigVMAssetDataFilterDynamic",
       "args": [],
@@ -7407,23 +7314,6 @@
         {
           "name": "Other",
           "type": "FOnExportImageAsyncComplete"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FFlipbookFinishedPlaySignature",
-      "return": "FFlipbookFinishedPlaySignature",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FFlipbookFinishedPlaySignature",
-      "return": "FFlipbookFinishedPlaySignature",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FFlipbookFinishedPlaySignature"
         }
       ],
       "isConstructor": true
@@ -8835,6 +8725,23 @@
       "isConstructor": true
     },
     {
+      "name": "FFlipbookFinishedPlaySignature",
+      "return": "FFlipbookFinishedPlaySignature",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FFlipbookFinishedPlaySignature",
+      "return": "FFlipbookFinishedPlaySignature",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FFlipbookFinishedPlaySignature"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
       "name": "FNumTablesChanged",
       "return": "FNumTablesChanged",
       "args": [],
@@ -10071,6 +9978,300 @@
       "isConstructor": true
     },
     {
+      "name": "FAsyncLoadGameFromSlotDynamicDelegate",
+      "return": "FAsyncLoadGameFromSlotDynamicDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAsyncLoadGameFromSlotDynamicDelegate",
+      "return": "FAsyncLoadGameFromSlotDynamicDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAsyncLoadGameFromSlotDynamicDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAsyncLoadGameFromSlotDynamicDelegate",
+      "return": "FAsyncLoadGameFromSlotDynamicDelegate",
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "FunctionName",
+          "type": "FName"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAsyncSaveGameToSlotDynamicDelegate",
+      "return": "FAsyncSaveGameToSlotDynamicDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAsyncSaveGameToSlotDynamicDelegate",
+      "return": "FAsyncSaveGameToSlotDynamicDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAsyncSaveGameToSlotDynamicDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAsyncSaveGameToSlotDynamicDelegate",
+      "return": "FAsyncSaveGameToSlotDynamicDelegate",
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "FunctionName",
+          "type": "FName"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FOnSoftClassLoaded",
+      "return": "FOnSoftClassLoaded",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FOnSoftClassLoaded",
+      "return": "FOnSoftClassLoaded",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FOnSoftClassLoaded"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FOnSoftClassLoaded",
+      "return": "FOnSoftClassLoaded",
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "FunctionName",
+          "type": "FName"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FOnSoftObjectLoaded",
+      "return": "FOnSoftObjectLoaded",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FOnSoftObjectLoaded",
+      "return": "FOnSoftObjectLoaded",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FOnSoftObjectLoaded"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FOnSoftObjectLoaded",
+      "return": "FOnSoftObjectLoaded",
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "FunctionName",
+          "type": "FName"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FScriptOverlapDelegate",
+      "return": "FScriptOverlapDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FScriptOverlapDelegate",
+      "return": "FScriptOverlapDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FScriptOverlapDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FScriptOverlapDelegate",
+      "return": "FScriptOverlapDelegate",
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "FunctionName",
+          "type": "FName"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FScriptTraceDelegate",
+      "return": "FScriptTraceDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FScriptTraceDelegate",
+      "return": "FScriptTraceDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FScriptTraceDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FScriptTraceDelegate",
+      "return": "FScriptTraceDelegate",
+      "args": [
+        {
+          "name": "Object",
+          "type": "UObject"
+        },
+        {
+          "name": "FunctionName",
+          "type": "FName"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAbilityGivenDelegate",
+      "return": "FAbilityGivenDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAbilityGivenDelegate",
+      "return": "FAbilityGivenDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAbilityGivenDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAbilityRemovedDelegate",
+      "return": "FAbilityRemovedDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAbilityRemovedDelegate",
+      "return": "FAbilityRemovedDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAbilityRemovedDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAttributeChangedDelegate",
+      "return": "FAttributeChangedDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAttributeChangedDelegate",
+      "return": "FAttributeChangedDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAttributeChangedDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAttributeSetRegisteredDelegate",
+      "return": "FAttributeSetRegisteredDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAttributeSetRegisteredDelegate",
+      "return": "FAttributeSetRegisteredDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAttributeSetRegisteredDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FInitAbilityActorInfoDelegate",
+      "return": "FInitAbilityActorInfoDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FInitAbilityActorInfoDelegate",
+      "return": "FInitAbilityActorInfoDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInitAbilityActorInfoDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FOwnedTagUpdatedDelegate",
+      "return": "FOwnedTagUpdatedDelegate",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FOwnedTagUpdatedDelegate",
+      "return": "FOwnedTagUpdatedDelegate",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FOwnedTagUpdatedDelegate"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
       "name": "FOnDynamicMeshModifiedBP",
       "return": "FOnDynamicMeshModifiedBP",
       "args": [],
@@ -10301,198 +10502,6 @@
     {
       "name": "FOnRequestContentSucceeded",
       "return": "FOnRequestContentSucceeded",
-      "args": [
-        {
-          "name": "Object",
-          "type": "UObject"
-        },
-        {
-          "name": "FunctionName",
-          "type": "FName"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FAsyncLoadGameFromSlotDynamicDelegate",
-      "return": "FAsyncLoadGameFromSlotDynamicDelegate",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FAsyncLoadGameFromSlotDynamicDelegate",
-      "return": "FAsyncLoadGameFromSlotDynamicDelegate",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FAsyncLoadGameFromSlotDynamicDelegate"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FAsyncLoadGameFromSlotDynamicDelegate",
-      "return": "FAsyncLoadGameFromSlotDynamicDelegate",
-      "args": [
-        {
-          "name": "Object",
-          "type": "UObject"
-        },
-        {
-          "name": "FunctionName",
-          "type": "FName"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FAsyncSaveGameToSlotDynamicDelegate",
-      "return": "FAsyncSaveGameToSlotDynamicDelegate",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FAsyncSaveGameToSlotDynamicDelegate",
-      "return": "FAsyncSaveGameToSlotDynamicDelegate",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FAsyncSaveGameToSlotDynamicDelegate"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FAsyncSaveGameToSlotDynamicDelegate",
-      "return": "FAsyncSaveGameToSlotDynamicDelegate",
-      "args": [
-        {
-          "name": "Object",
-          "type": "UObject"
-        },
-        {
-          "name": "FunctionName",
-          "type": "FName"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FOnSoftClassLoaded",
-      "return": "FOnSoftClassLoaded",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FOnSoftClassLoaded",
-      "return": "FOnSoftClassLoaded",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FOnSoftClassLoaded"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FOnSoftClassLoaded",
-      "return": "FOnSoftClassLoaded",
-      "args": [
-        {
-          "name": "Object",
-          "type": "UObject"
-        },
-        {
-          "name": "FunctionName",
-          "type": "FName"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FOnSoftObjectLoaded",
-      "return": "FOnSoftObjectLoaded",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FOnSoftObjectLoaded",
-      "return": "FOnSoftObjectLoaded",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FOnSoftObjectLoaded"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FOnSoftObjectLoaded",
-      "return": "FOnSoftObjectLoaded",
-      "args": [
-        {
-          "name": "Object",
-          "type": "UObject"
-        },
-        {
-          "name": "FunctionName",
-          "type": "FName"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FScriptOverlapDelegate",
-      "return": "FScriptOverlapDelegate",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FScriptOverlapDelegate",
-      "return": "FScriptOverlapDelegate",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FScriptOverlapDelegate"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FScriptOverlapDelegate",
-      "return": "FScriptOverlapDelegate",
-      "args": [
-        {
-          "name": "Object",
-          "type": "UObject"
-        },
-        {
-          "name": "FunctionName",
-          "type": "FName"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FScriptTraceDelegate",
-      "return": "FScriptTraceDelegate",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FScriptTraceDelegate",
-      "return": "FScriptTraceDelegate",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FScriptTraceDelegate"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FScriptTraceDelegate",
-      "return": "FScriptTraceDelegate",
       "args": [
         {
           "name": "Object",
@@ -10758,168 +10767,104 @@
       "isConstructor": true
     },
     {
-      "name": "FIntVector4",
-      "return": "FIntVector4",
-      "args": [
-        {
-          "name": "X",
-          "type": "int"
-        },
-        {
-          "name": "Y",
-          "type": "int"
-        },
-        {
-          "name": "Z",
-          "type": "int"
-        },
-        {
-          "name": "W",
-          "type": "int"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FIntVector4",
-      "return": "FIntVector4",
+      "name": "FSphere",
+      "return": "FSphere",
       "args": [],
       "isConstructor": true
     },
     {
-      "name": "FIntVector4",
-      "return": "FIntVector4",
+      "name": "FSphere",
+      "return": "FSphere",
       "args": [
         {
-          "name": "F",
-          "type": "int"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FIntVector4",
-      "return": "FIntVector4",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FIntVector4"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRotator",
-      "return": "FRotator",
-      "args": [
-        {
-          "name": "Pitch",
-          "type": "float"
+          "name": "InV",
+          "type": "FVector"
         },
         {
-          "name": "Yaw",
-          "type": "float"
-        },
-        {
-          "name": "Roll",
-          "type": "float"
+          "name": "InW",
+          "type": "float32"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FRotator",
-      "return": "FRotator",
+      "name": "FSphere",
+      "return": "FSphere",
+      "args": [
+        {
+          "name": "Sphere",
+          "type": "FSphere"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FSphere",
+      "return": "FSphere",
+      "args": [
+        {
+          "name": "Sphere",
+          "type": "FSphere3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FSphere",
+      "return": "FSphere",
+      "args": [
+        {
+          "name": "Points",
+          "type": "TArray<FVector>"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBox",
+      "return": "FBox",
       "args": [],
       "isConstructor": true
     },
     {
-      "name": "FRotator",
-      "return": "FRotator",
+      "name": "FBox",
+      "return": "FBox",
       "args": [
         {
-          "name": "F",
-          "type": "float"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRotator",
-      "return": "FRotator",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FRotator"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRotator",
-      "return": "FRotator",
-      "args": [
-        {
-          "name": "Quat",
-          "type": "FQuat"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRotator",
-      "return": "FRotator",
-      "args": [
-        {
-          "name": "Rotator",
-          "type": "FRotator3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FIntVector",
-      "return": "FIntVector",
-      "args": [
-        {
-          "name": "X",
-          "type": "int"
+          "name": "InMin",
+          "type": "FVector"
         },
         {
-          "name": "Y",
-          "type": "int"
-        },
-        {
-          "name": "Z",
-          "type": "int"
+          "name": "InMax",
+          "type": "FVector"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FIntVector",
-      "return": "FIntVector",
+      "name": "FBox",
+      "return": "FBox",
+      "args": [
+        {
+          "name": "Box",
+          "type": "FBox3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTraceHandle",
+      "return": "FTraceHandle",
       "args": [],
       "isConstructor": true
     },
     {
-      "name": "FIntVector",
-      "return": "FIntVector",
+      "name": "FTraceHandle",
+      "return": "FTraceHandle",
       "args": [
         {
-          "name": "F",
-          "type": "int"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FIntVector",
-      "return": "FIntVector",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FIntVector"
+          "name": "InHandle",
+          "type": "uint64"
         }
       ],
       "isConstructor": true
@@ -10957,6 +10902,174 @@
       "isConstructor": true
     },
     {
+      "name": "FBoxSphereBounds",
+      "return": "FBoxSphereBounds",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds",
+      "return": "FBoxSphereBounds",
+      "args": [
+        {
+          "name": "InOrigin",
+          "type": "FVector"
+        },
+        {
+          "name": "InBoxExtent",
+          "type": "FVector"
+        },
+        {
+          "name": "InSphereRadius",
+          "type": "float"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds",
+      "return": "FBoxSphereBounds",
+      "args": [
+        {
+          "name": "Box",
+          "type": "FBox"
+        },
+        {
+          "name": "Sphere",
+          "type": "FSphere"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds",
+      "return": "FBoxSphereBounds",
+      "args": [
+        {
+          "name": "Bounds",
+          "type": "FBoxSphereBounds3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds",
+      "return": "FBoxSphereBounds",
+      "args": [
+        {
+          "name": "Box",
+          "type": "FBox"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds",
+      "return": "FBoxSphereBounds",
+      "args": [
+        {
+          "name": "Sphere",
+          "type": "FSphere"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds",
+      "return": "FBoxSphereBounds",
+      "args": [
+        {
+          "name": "Points",
+          "type": "TArray<FVector>"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds3f",
+      "return": "FBoxSphereBounds3f",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds3f",
+      "return": "FBoxSphereBounds3f",
+      "args": [
+        {
+          "name": "InOrigin",
+          "type": "FVector3f"
+        },
+        {
+          "name": "InBoxExtent",
+          "type": "FVector3f"
+        },
+        {
+          "name": "InSphereRadius",
+          "type": "float32"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds3f",
+      "return": "FBoxSphereBounds3f",
+      "args": [
+        {
+          "name": "Bounds",
+          "type": "FBoxSphereBounds"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds3f",
+      "return": "FBoxSphereBounds3f",
+      "args": [
+        {
+          "name": "Box",
+          "type": "FBox3f"
+        },
+        {
+          "name": "Sphere",
+          "type": "FSphere3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds3f",
+      "return": "FBoxSphereBounds3f",
+      "args": [
+        {
+          "name": "Box",
+          "type": "FBox3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds3f",
+      "return": "FBoxSphereBounds3f",
+      "args": [
+        {
+          "name": "Sphere",
+          "type": "FSphere3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoxSphereBounds3f",
+      "return": "FBoxSphereBounds3f",
+      "args": [
+        {
+          "name": "Points",
+          "type": "TArray<FVector3f>"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
       "name": "TArray",
       "return": "TArray",
       "args": [],
@@ -10980,6 +11093,203 @@
         {
           "name": "Other",
           "type": "TArrayConstIterator<T>"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FCollisionQueryParams",
+      "return": "FCollisionQueryParams",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FCollisionQueryParams",
+      "return": "FCollisionQueryParams",
+      "args": [
+        {
+          "name": "InTraceTag",
+          "type": "FName"
+        },
+        {
+          "name": "bInTraceComplex",
+          "type": "bool"
+        },
+        {
+          "name": "InIgnoreActor",
+          "type": "const AActor"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FString",
+      "return": "FString",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FString",
+      "return": "FString",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FString"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FString",
+      "return": "FString",
+      "args": [
+        {
+          "name": "Value",
+          "type": "FName"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FCollisionResponseParams",
+      "return": "FCollisionResponseParams",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FCollisionResponseParams",
+      "return": "FCollisionResponseParams",
+      "args": [
+        {
+          "name": "DefaultResponse",
+          "type": "ECollisionResponse"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FCollisionResponseParams",
+      "return": "FCollisionResponseParams",
+      "args": [
+        {
+          "name": "ResponseContainer",
+          "type": "FCollisionResponseContainer"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FIntVector2",
+      "return": "FIntVector2",
+      "args": [
+        {
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Y",
+          "type": "int"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FIntVector2",
+      "return": "FIntVector2",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FIntVector2",
+      "return": "FIntVector2",
+      "args": [
+        {
+          "name": "F",
+          "type": "int"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FIntVector2",
+      "return": "FIntVector2",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FIntVector2"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FCollisionObjectQueryParams",
+      "return": "FCollisionObjectQueryParams",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FCollisionObjectQueryParams",
+      "return": "FCollisionObjectQueryParams",
+      "args": [
+        {
+          "name": "QueryChannel",
+          "type": "ECollisionChannel"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FCollisionObjectQueryParams",
+      "return": "FCollisionObjectQueryParams",
+      "args": [
+        {
+          "name": "ObjectTypes",
+          "type": "TArray<EObjectTypeQuery>"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FCollisionObjectQueryParams",
+      "return": "FCollisionObjectQueryParams",
+      "args": [
+        {
+          "name": "QueryType",
+          "type": "ECollisionObjectQueryInitType"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FCollisionObjectQueryParams",
+      "return": "FCollisionObjectQueryParams",
+      "args": [
+        {
+          "name": "InObjectTypesToQuery",
+          "type": "int"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FNumberFormattingOptions",
+      "return": "FNumberFormattingOptions",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FText",
+      "return": "FText",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FText",
+      "return": "FText",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FText"
         }
       ],
       "isConstructor": true
@@ -11074,168 +11384,74 @@
       "isConstructor": true
     },
     {
-      "name": "FBoxSphereBounds3f",
-      "return": "FBoxSphereBounds3f",
+      "name": "FQuat",
+      "return": "FQuat",
       "args": [],
       "isConstructor": true
     },
     {
-      "name": "FBoxSphereBounds3f",
-      "return": "FBoxSphereBounds3f",
+      "name": "FQuat",
+      "return": "FQuat",
       "args": [
         {
-          "name": "InOrigin",
-          "type": "FVector3f"
+          "name": "Q",
+          "type": "FQuat"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FQuat",
+      "return": "FQuat",
+      "args": [
+        {
+          "name": "X",
+          "type": "float"
         },
         {
-          "name": "InBoxExtent",
-          "type": "FVector3f"
+          "name": "Y",
+          "type": "float"
         },
         {
-          "name": "InSphereRadius",
-          "type": "float32"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FBoxSphereBounds3f",
-      "return": "FBoxSphereBounds3f",
-      "args": [
-        {
-          "name": "Bounds",
-          "type": "FBoxSphereBounds"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FBoxSphereBounds3f",
-      "return": "FBoxSphereBounds3f",
-      "args": [
-        {
-          "name": "Box",
-          "type": "FBox3f"
+          "name": "Z",
+          "type": "float"
         },
         {
-          "name": "Sphere",
-          "type": "FSphere3f"
+          "name": "W",
+          "type": "float"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FBoxSphereBounds3f",
-      "return": "FBoxSphereBounds3f",
+      "name": "FQuat",
+      "return": "FQuat",
       "args": [
         {
-          "name": "Box",
-          "type": "FBox3f"
+          "name": "R",
+          "type": "FRotator"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FBoxSphereBounds3f",
-      "return": "FBoxSphereBounds3f",
+      "name": "FQuat",
+      "return": "FQuat",
       "args": [
         {
-          "name": "Sphere",
-          "type": "FSphere3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FBoxSphereBounds3f",
-      "return": "FBoxSphereBounds3f",
-      "args": [
-        {
-          "name": "Points",
-          "type": "TArray<FVector3f>"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "TOptional",
-      "return": "TOptional",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "TOptional",
-      "return": "TOptional",
-      "doc": "Initialize the optional with a valid value.\n",
-      "args": [
-        {
-          "name": "Other",
-          "type": "T"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "TOptional",
-      "return": "TOptional",
-      "args": [
-        {
-          "name": "Other",
-          "type": "TOptional<T>"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRotator3f",
-      "return": "FRotator3f",
-      "args": [
-        {
-          "name": "Pitch",
-          "type": "float32"
+          "name": "Axis",
+          "type": "FVector"
         },
         {
-          "name": "Yaw",
-          "type": "float32"
-        },
-        {
-          "name": "Roll",
-          "type": "float32"
+          "name": "AngleRad",
+          "type": "float"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FRotator3f",
-      "return": "FRotator3f",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FRotator3f",
-      "return": "FRotator3f",
-      "args": [
-        {
-          "name": "F",
-          "type": "float32"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRotator3f",
-      "return": "FRotator3f",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FRotator3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FRotator3f",
-      "return": "FRotator3f",
+      "name": "FQuat",
+      "return": "FQuat",
       "args": [
         {
           "name": "Quat",
@@ -11245,89 +11461,176 @@
       "isConstructor": true
     },
     {
-      "name": "FRotator3f",
-      "return": "FRotator3f",
+      "name": "FIntVector4",
+      "return": "FIntVector4",
       "args": [
         {
-          "name": "Rotator",
+          "name": "X",
+          "type": "int"
+        },
+        {
+          "name": "Y",
+          "type": "int"
+        },
+        {
+          "name": "Z",
+          "type": "int"
+        },
+        {
+          "name": "W",
+          "type": "int"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FIntVector4",
+      "return": "FIntVector4",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FIntVector4",
+      "return": "FIntVector4",
+      "args": [
+        {
+          "name": "F",
+          "type": "int"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FIntVector4",
+      "return": "FIntVector4",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FIntVector4"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform",
+      "return": "FTransform",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform",
+      "return": "FTransform",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTransform"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform",
+      "return": "FTransform",
+      "args": [
+        {
+          "name": "InTranslation",
+          "type": "FVector"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform",
+      "return": "FTransform",
+      "args": [
+        {
+          "name": "InRotation",
+          "type": "FQuat"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform",
+      "return": "FTransform",
+      "args": [
+        {
+          "name": "InRotation",
           "type": "FRotator"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FBox",
-      "return": "FBox",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FBox",
-      "return": "FBox",
+      "name": "FTransform",
+      "return": "FTransform",
       "args": [
         {
-          "name": "InMin",
+          "name": "InRotation",
+          "type": "FQuat"
+        },
+        {
+          "name": "InTranslation",
           "type": "FVector"
         },
         {
-          "name": "InMax",
+          "name": "InScale3D",
+          "default": "FVector :: OneVector",
           "type": "FVector"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FBox",
-      "return": "FBox",
+      "name": "FTransform",
+      "return": "FTransform",
       "args": [
         {
-          "name": "Box",
-          "type": "FBox3f"
+          "name": "InRotation",
+          "type": "FRotator"
+        },
+        {
+          "name": "InTranslation",
+          "type": "FVector"
+        },
+        {
+          "name": "InScale3D",
+          "default": "FVector :: OneVector",
+          "type": "FVector"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FCollisionResponseParams",
-      "return": "FCollisionResponseParams",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FCollisionResponseParams",
-      "return": "FCollisionResponseParams",
+      "name": "FTransform",
+      "return": "FTransform",
       "args": [
         {
-          "name": "DefaultResponse",
-          "type": "ECollisionResponse"
+          "name": "InX",
+          "type": "FVector"
+        },
+        {
+          "name": "InY",
+          "type": "FVector"
+        },
+        {
+          "name": "InZ",
+          "type": "FVector"
+        },
+        {
+          "name": "InTranslation",
+          "type": "FVector"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FCollisionResponseParams",
-      "return": "FCollisionResponseParams",
+      "name": "FTransform",
+      "return": "FTransform",
       "args": [
         {
-          "name": "ResponseContainer",
-          "type": "FCollisionResponseContainer"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTraceHandle",
-      "return": "FTraceHandle",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTraceHandle",
-      "return": "FTraceHandle",
-      "args": [
-        {
-          "name": "InHandle",
-          "type": "uint64"
+          "name": "Transform",
+          "type": "FTransform3f"
         }
       ],
       "isConstructor": true
@@ -11467,93 +11770,268 @@
       "isConstructor": true
     },
     {
-      "name": "FBoxSphereBounds",
-      "return": "FBoxSphereBounds",
+      "name": "FTransform3f",
+      "return": "FTransform3f",
       "args": [],
       "isConstructor": true
     },
     {
-      "name": "FBoxSphereBounds",
-      "return": "FBoxSphereBounds",
+      "name": "FTransform3f",
+      "return": "FTransform3f",
       "args": [
         {
-          "name": "InOrigin",
-          "type": "FVector"
+          "name": "Other",
+          "type": "FTransform3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform3f",
+      "return": "FTransform3f",
+      "args": [
+        {
+          "name": "InTranslation",
+          "type": "FVector3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform3f",
+      "return": "FTransform3f",
+      "args": [
+        {
+          "name": "InRotation",
+          "type": "FQuat4f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform3f",
+      "return": "FTransform3f",
+      "args": [
+        {
+          "name": "InRotation",
+          "type": "FRotator3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform3f",
+      "return": "FTransform3f",
+      "args": [
+        {
+          "name": "InRotation",
+          "type": "FQuat4f"
         },
         {
-          "name": "InBoxExtent",
-          "type": "FVector"
+          "name": "InTranslation",
+          "type": "FVector3f"
         },
         {
-          "name": "InSphereRadius",
+          "name": "InScale3D",
+          "default": "FVector3f :: OneVector",
+          "type": "FVector3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform3f",
+      "return": "FTransform3f",
+      "args": [
+        {
+          "name": "InRotation",
+          "type": "FRotator3f"
+        },
+        {
+          "name": "InTranslation",
+          "type": "FVector3f"
+        },
+        {
+          "name": "InScale3D",
+          "default": "FVector3f :: OneVector",
+          "type": "FVector3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform3f",
+      "return": "FTransform3f",
+      "args": [
+        {
+          "name": "InX",
+          "type": "FVector3f"
+        },
+        {
+          "name": "InY",
+          "type": "FVector3f"
+        },
+        {
+          "name": "InZ",
+          "type": "FVector3f"
+        },
+        {
+          "name": "InTranslation",
+          "type": "FVector3f"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTransform3f",
+      "return": "FTransform3f",
+      "args": [
+        {
+          "name": "Transform",
+          "type": "FTransform"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FFormatArgumentValue",
+      "return": "FFormatArgumentValue",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FFormatArgumentValue",
+      "return": "FFormatArgumentValue",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FFormatArgumentValue",
+      "return": "FFormatArgumentValue",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FFormatArgumentValue",
+      "return": "FFormatArgumentValue",
+      "args": [
+        {
+          "name": "Value",
+          "type": "int64"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FFormatArgumentValue",
+      "return": "FFormatArgumentValue",
+      "args": [
+        {
+          "name": "Value",
+          "type": "uint64"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FFormatArgumentValue",
+      "return": "FFormatArgumentValue",
+      "args": [
+        {
+          "name": "Value",
+          "type": "float32"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FFormatArgumentValue",
+      "return": "FFormatArgumentValue",
+      "args": [
+        {
+          "name": "Value",
           "type": "float"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FBoxSphereBounds",
-      "return": "FBoxSphereBounds",
+      "name": "FFormatArgumentValue",
+      "return": "FFormatArgumentValue",
       "args": [
         {
-          "name": "Box",
-          "type": "FBox"
+          "name": "Value",
+          "type": "FText"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FFormatArgumentValue",
+      "return": "FFormatArgumentValue",
+      "args": [
+        {
+          "name": "Value",
+          "type": "ETextGender"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FIntVector",
+      "return": "FIntVector",
+      "args": [
+        {
+          "name": "X",
+          "type": "int"
         },
         {
-          "name": "Sphere",
-          "type": "FSphere"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FBoxSphereBounds",
-      "return": "FBoxSphereBounds",
-      "args": [
+          "name": "Y",
+          "type": "int"
+        },
         {
-          "name": "Bounds",
-          "type": "FBoxSphereBounds3f"
+          "name": "Z",
+          "type": "int"
         }
       ],
       "isConstructor": true
     },
     {
-      "name": "FBoxSphereBounds",
-      "return": "FBoxSphereBounds",
-      "args": [
-        {
-          "name": "Box",
-          "type": "FBox"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FBoxSphereBounds",
-      "return": "FBoxSphereBounds",
-      "args": [
-        {
-          "name": "Sphere",
-          "type": "FSphere"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FBoxSphereBounds",
-      "return": "FBoxSphereBounds",
-      "args": [
-        {
-          "name": "Points",
-          "type": "TArray<FVector>"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FCollisionShape",
-      "return": "FCollisionShape",
+      "name": "FIntVector",
+      "return": "FIntVector",
       "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FIntVector",
+      "return": "FIntVector",
+      "args": [
+        {
+          "name": "F",
+          "type": "int"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FIntVector",
+      "return": "FIntVector",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FIntVector"
+        }
+      ],
       "isConstructor": true
     },
     {
@@ -11831,421 +12309,6 @@
         {
           "name": "Other",
           "type": "FVector3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FFormatArgumentValue",
-      "return": "FFormatArgumentValue",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FFormatArgumentValue",
-      "return": "FFormatArgumentValue",
-      "args": [
-        {
-          "name": "Value",
-          "type": "int"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FFormatArgumentValue",
-      "return": "FFormatArgumentValue",
-      "args": [
-        {
-          "name": "Value",
-          "type": "uint"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FFormatArgumentValue",
-      "return": "FFormatArgumentValue",
-      "args": [
-        {
-          "name": "Value",
-          "type": "int64"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FFormatArgumentValue",
-      "return": "FFormatArgumentValue",
-      "args": [
-        {
-          "name": "Value",
-          "type": "uint64"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FFormatArgumentValue",
-      "return": "FFormatArgumentValue",
-      "args": [
-        {
-          "name": "Value",
-          "type": "float32"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FFormatArgumentValue",
-      "return": "FFormatArgumentValue",
-      "args": [
-        {
-          "name": "Value",
-          "type": "float"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FFormatArgumentValue",
-      "return": "FFormatArgumentValue",
-      "args": [
-        {
-          "name": "Value",
-          "type": "FText"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FFormatArgumentValue",
-      "return": "FFormatArgumentValue",
-      "args": [
-        {
-          "name": "Value",
-          "type": "ETextGender"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform3f",
-      "return": "FTransform3f",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform3f",
-      "return": "FTransform3f",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTransform3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform3f",
-      "return": "FTransform3f",
-      "args": [
-        {
-          "name": "InTranslation",
-          "type": "FVector3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform3f",
-      "return": "FTransform3f",
-      "args": [
-        {
-          "name": "InRotation",
-          "type": "FQuat4f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform3f",
-      "return": "FTransform3f",
-      "args": [
-        {
-          "name": "InRotation",
-          "type": "FRotator3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform3f",
-      "return": "FTransform3f",
-      "args": [
-        {
-          "name": "InRotation",
-          "type": "FQuat4f"
-        },
-        {
-          "name": "InTranslation",
-          "type": "FVector3f"
-        },
-        {
-          "name": "InScale3D",
-          "default": "FVector3f :: OneVector",
-          "type": "FVector3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform3f",
-      "return": "FTransform3f",
-      "args": [
-        {
-          "name": "InRotation",
-          "type": "FRotator3f"
-        },
-        {
-          "name": "InTranslation",
-          "type": "FVector3f"
-        },
-        {
-          "name": "InScale3D",
-          "default": "FVector3f :: OneVector",
-          "type": "FVector3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform3f",
-      "return": "FTransform3f",
-      "args": [
-        {
-          "name": "InX",
-          "type": "FVector3f"
-        },
-        {
-          "name": "InY",
-          "type": "FVector3f"
-        },
-        {
-          "name": "InZ",
-          "type": "FVector3f"
-        },
-        {
-          "name": "InTranslation",
-          "type": "FVector3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform3f",
-      "return": "FTransform3f",
-      "args": [
-        {
-          "name": "Transform",
-          "type": "FTransform"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform",
-      "return": "FTransform",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform",
-      "return": "FTransform",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTransform"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform",
-      "return": "FTransform",
-      "args": [
-        {
-          "name": "InTranslation",
-          "type": "FVector"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform",
-      "return": "FTransform",
-      "args": [
-        {
-          "name": "InRotation",
-          "type": "FQuat"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform",
-      "return": "FTransform",
-      "args": [
-        {
-          "name": "InRotation",
-          "type": "FRotator"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform",
-      "return": "FTransform",
-      "args": [
-        {
-          "name": "InRotation",
-          "type": "FQuat"
-        },
-        {
-          "name": "InTranslation",
-          "type": "FVector"
-        },
-        {
-          "name": "InScale3D",
-          "default": "FVector :: OneVector",
-          "type": "FVector"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform",
-      "return": "FTransform",
-      "args": [
-        {
-          "name": "InRotation",
-          "type": "FRotator"
-        },
-        {
-          "name": "InTranslation",
-          "type": "FVector"
-        },
-        {
-          "name": "InScale3D",
-          "default": "FVector :: OneVector",
-          "type": "FVector"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform",
-      "return": "FTransform",
-      "args": [
-        {
-          "name": "InX",
-          "type": "FVector"
-        },
-        {
-          "name": "InY",
-          "type": "FVector"
-        },
-        {
-          "name": "InZ",
-          "type": "FVector"
-        },
-        {
-          "name": "InTranslation",
-          "type": "FVector"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTransform",
-      "return": "FTransform",
-      "args": [
-        {
-          "name": "Transform",
-          "type": "FTransform3f"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FText",
-      "return": "FText",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FText",
-      "return": "FText",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FText"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "TMap",
-      "return": "TMap",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "TMapIterator",
-      "return": "TMapIterator",
-      "args": [
-        {
-          "name": "Other",
-          "type": "TMapIterator<K,V>"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "TMapConstIterator",
-      "return": "TMapConstIterator",
-      "args": [
-        {
-          "name": "Other",
-          "type": "TMapConstIterator<K,V>"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FName",
-      "return": "FName",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FName",
-      "return": "FName",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FName"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FName",
-      "return": "FName",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FString"
         }
       ],
       "isConstructor": true
@@ -33276,6 +33339,57 @@
       "isConstructor": true
     },
     {
+      "name": "FInAppPurchaseProductRequest2",
+      "return": "FInAppPurchaseProductRequest2",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FInAppPurchaseProductRequest2",
+      "return": "FInAppPurchaseProductRequest2",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInAppPurchaseProductRequest2"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FInAppPurchaseProductInfo2",
+      "return": "FInAppPurchaseProductInfo2",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FInAppPurchaseProductInfo2",
+      "return": "FInAppPurchaseProductInfo2",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInAppPurchaseProductInfo2"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FPIELoginSettingsInternal",
+      "return": "FPIELoginSettingsInternal",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FPIELoginSettingsInternal",
+      "return": "FPIELoginSettingsInternal",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPIELoginSettingsInternal"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
       "name": "FVariantDependency",
       "return": "FVariantDependency",
       "args": [],
@@ -33441,227 +33555,6 @@
         {
           "name": "Other",
           "type": "FGLTFOverrideMaterialBakeSettings"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FInAppPurchaseProductRequest2",
-      "return": "FInAppPurchaseProductRequest2",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FInAppPurchaseProductRequest2",
-      "return": "FInAppPurchaseProductRequest2",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FInAppPurchaseProductRequest2"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FInAppPurchaseProductInfo2",
-      "return": "FInAppPurchaseProductInfo2",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FInAppPurchaseProductInfo2",
-      "return": "FInAppPurchaseProductInfo2",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FInAppPurchaseProductInfo2"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FPIELoginSettingsInternal",
-      "return": "FPIELoginSettingsInternal",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FPIELoginSettingsInternal",
-      "return": "FPIELoginSettingsInternal",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FPIELoginSettingsInternal"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServiceTerminateLaunchedProcess",
-      "return": "FTargetDeviceServiceTerminateLaunchedProcess",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServiceTerminateLaunchedProcess",
-      "return": "FTargetDeviceServiceTerminateLaunchedProcess",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTargetDeviceServiceTerminateLaunchedProcess"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceClaimDenied",
-      "return": "FTargetDeviceClaimDenied",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceClaimDenied",
-      "return": "FTargetDeviceClaimDenied",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTargetDeviceClaimDenied"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceClaimed",
-      "return": "FTargetDeviceClaimed",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceClaimed",
-      "return": "FTargetDeviceClaimed",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTargetDeviceClaimed"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceUnclaimed",
-      "return": "FTargetDeviceUnclaimed",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceUnclaimed",
-      "return": "FTargetDeviceUnclaimed",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTargetDeviceUnclaimed"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServicePing",
-      "return": "FTargetDeviceServicePing",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServicePing",
-      "return": "FTargetDeviceServicePing",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTargetDeviceServicePing"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceVariant",
-      "return": "FTargetDeviceVariant",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceVariant",
-      "return": "FTargetDeviceVariant",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTargetDeviceVariant"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServicePong",
-      "return": "FTargetDeviceServicePong",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServicePong",
-      "return": "FTargetDeviceServicePong",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTargetDeviceServicePong"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServicePowerOff",
-      "return": "FTargetDeviceServicePowerOff",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServicePowerOff",
-      "return": "FTargetDeviceServicePowerOff",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTargetDeviceServicePowerOff"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServicePowerOn",
-      "return": "FTargetDeviceServicePowerOn",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServicePowerOn",
-      "return": "FTargetDeviceServicePowerOn",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTargetDeviceServicePowerOn"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServiceReboot",
-      "return": "FTargetDeviceServiceReboot",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTargetDeviceServiceReboot",
-      "return": "FTargetDeviceServiceReboot",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTargetDeviceServiceReboot"
         }
       ],
       "isConstructor": true
@@ -34478,6 +34371,54 @@
         {
           "name": "Other",
           "type": "FClothConstraintSetupNv"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FInputActionValue",
+      "return": "FInputActionValue",
+      "args": [
+        {
+          "name": "InValue",
+          "type": "float32"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FInputActionValue",
+      "return": "FInputActionValue",
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FVector2D"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FInputActionValue",
+      "return": "FInputActionValue",
+      "args": [
+        {
+          "name": "InValue",
+          "type": "FVector"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FInputActionValue",
+      "return": "FInputActionValue",
+      "args": [
+        {
+          "name": "InValueType",
+          "type": "EInputActionValueType"
+        },
+        {
+          "name": "InValue",
+          "type": "FVector"
         }
       ],
       "isConstructor": true
@@ -37102,6 +37043,227 @@
         {
           "name": "Other",
           "type": "FCurveParameterPair"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FMovieSceneNiagaraCacheParams",
+      "return": "FMovieSceneNiagaraCacheParams",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FMovieSceneNiagaraCacheParams",
+      "return": "FMovieSceneNiagaraCacheParams",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMovieSceneNiagaraCacheParams"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FActorRecordedProperty",
+      "return": "FActorRecordedProperty",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FActorRecordedProperty",
+      "return": "FActorRecordedProperty",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FActorRecordedProperty"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAudioInputDeviceInfoProperty",
+      "return": "FAudioInputDeviceInfoProperty",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAudioInputDeviceInfoProperty",
+      "return": "FAudioInputDeviceInfoProperty",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAudioInputDeviceInfoProperty"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAudioInputDeviceProperty",
+      "return": "FAudioInputDeviceProperty",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAudioInputDeviceProperty",
+      "return": "FAudioInputDeviceProperty",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAudioInputDeviceProperty"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAudioInputDeviceChannelProperty",
+      "return": "FAudioInputDeviceChannelProperty",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAudioInputDeviceChannelProperty",
+      "return": "FAudioInputDeviceChannelProperty",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAudioInputDeviceChannelProperty"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTakeRecorderPropertyTrackSettings",
+      "return": "FTakeRecorderPropertyTrackSettings",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FTakeRecorderPropertyTrackSettings",
+      "return": "FTakeRecorderPropertyTrackSettings",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTakeRecorderPropertyTrackSettings"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTakeRecorderTrackSettings",
+      "return": "FTakeRecorderTrackSettings",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FTakeRecorderTrackSettings",
+      "return": "FTakeRecorderTrackSettings",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTakeRecorderTrackSettings"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTakeRecorderUserParameters",
+      "return": "FTakeRecorderUserParameters",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FTakeRecorderUserParameters",
+      "return": "FTakeRecorderUserParameters",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTakeRecorderUserParameters"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTakeRecorderProjectParameters",
+      "return": "FTakeRecorderProjectParameters",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FTakeRecorderProjectParameters",
+      "return": "FTakeRecorderProjectParameters",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTakeRecorderProjectParameters"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FTakeRecorderParameters",
+      "return": "FTakeRecorderParameters",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FTakeRecorderParameters",
+      "return": "FTakeRecorderParameters",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FTakeRecorderParameters"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FCacheRecorderUserParameters",
+      "return": "FCacheRecorderUserParameters",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FCacheRecorderUserParameters",
+      "return": "FCacheRecorderUserParameters",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCacheRecorderUserParameters"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FCacheRecorderProjectParameters",
+      "return": "FCacheRecorderProjectParameters",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FCacheRecorderProjectParameters",
+      "return": "FCacheRecorderProjectParameters",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCacheRecorderProjectParameters"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FCacheRecorderParameters",
+      "return": "FCacheRecorderParameters",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FCacheRecorderParameters",
+      "return": "FCacheRecorderParameters",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCacheRecorderParameters"
         }
       ],
       "isConstructor": true
@@ -52288,227 +52450,6 @@
       "isConstructor": true
     },
     {
-      "name": "FMovieSceneNiagaraCacheParams",
-      "return": "FMovieSceneNiagaraCacheParams",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FMovieSceneNiagaraCacheParams",
-      "return": "FMovieSceneNiagaraCacheParams",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FMovieSceneNiagaraCacheParams"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FActorRecordedProperty",
-      "return": "FActorRecordedProperty",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FActorRecordedProperty",
-      "return": "FActorRecordedProperty",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FActorRecordedProperty"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FAudioInputDeviceInfoProperty",
-      "return": "FAudioInputDeviceInfoProperty",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FAudioInputDeviceInfoProperty",
-      "return": "FAudioInputDeviceInfoProperty",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FAudioInputDeviceInfoProperty"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FAudioInputDeviceProperty",
-      "return": "FAudioInputDeviceProperty",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FAudioInputDeviceProperty",
-      "return": "FAudioInputDeviceProperty",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FAudioInputDeviceProperty"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FAudioInputDeviceChannelProperty",
-      "return": "FAudioInputDeviceChannelProperty",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FAudioInputDeviceChannelProperty",
-      "return": "FAudioInputDeviceChannelProperty",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FAudioInputDeviceChannelProperty"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTakeRecorderPropertyTrackSettings",
-      "return": "FTakeRecorderPropertyTrackSettings",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTakeRecorderPropertyTrackSettings",
-      "return": "FTakeRecorderPropertyTrackSettings",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTakeRecorderPropertyTrackSettings"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTakeRecorderTrackSettings",
-      "return": "FTakeRecorderTrackSettings",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTakeRecorderTrackSettings",
-      "return": "FTakeRecorderTrackSettings",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTakeRecorderTrackSettings"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTakeRecorderUserParameters",
-      "return": "FTakeRecorderUserParameters",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTakeRecorderUserParameters",
-      "return": "FTakeRecorderUserParameters",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTakeRecorderUserParameters"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTakeRecorderProjectParameters",
-      "return": "FTakeRecorderProjectParameters",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTakeRecorderProjectParameters",
-      "return": "FTakeRecorderProjectParameters",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTakeRecorderProjectParameters"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FTakeRecorderParameters",
-      "return": "FTakeRecorderParameters",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FTakeRecorderParameters",
-      "return": "FTakeRecorderParameters",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FTakeRecorderParameters"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FCacheRecorderUserParameters",
-      "return": "FCacheRecorderUserParameters",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FCacheRecorderUserParameters",
-      "return": "FCacheRecorderUserParameters",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FCacheRecorderUserParameters"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FCacheRecorderProjectParameters",
-      "return": "FCacheRecorderProjectParameters",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FCacheRecorderProjectParameters",
-      "return": "FCacheRecorderProjectParameters",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FCacheRecorderProjectParameters"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FCacheRecorderParameters",
-      "return": "FCacheRecorderParameters",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FCacheRecorderParameters",
-      "return": "FCacheRecorderParameters",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FCacheRecorderParameters"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
       "name": "FInterchangeAnimationPayLoadKey",
       "return": "FInterchangeAnimationPayLoadKey",
       "args": [],
@@ -53399,176 +53340,6 @@
       "isConstructor": true
     },
     {
-      "name": "FIntMargin",
-      "return": "FIntMargin",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FIntMargin",
-      "return": "FIntMargin",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FIntMargin"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FSpriteGeometryShape",
-      "return": "FSpriteGeometryShape",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FSpriteGeometryShape",
-      "return": "FSpriteGeometryShape",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FSpriteGeometryShape"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FSpriteGeometryCollection",
-      "return": "FSpriteGeometryCollection",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FSpriteGeometryCollection",
-      "return": "FSpriteGeometryCollection",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FSpriteGeometryCollection"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperFlipbookKeyFrame",
-      "return": "FPaperFlipbookKeyFrame",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperFlipbookKeyFrame",
-      "return": "FPaperFlipbookKeyFrame",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FPaperFlipbookKeyFrame"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FSpriteInstanceData",
-      "return": "FSpriteInstanceData",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FSpriteInstanceData",
-      "return": "FSpriteInstanceData",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FSpriteInstanceData"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperSpriteSocket",
-      "return": "FPaperSpriteSocket",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperSpriteSocket",
-      "return": "FPaperSpriteSocket",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FPaperSpriteSocket"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperTileInfo",
-      "return": "FPaperTileInfo",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperTileInfo",
-      "return": "FPaperTileInfo",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FPaperTileInfo"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperTileMetadata",
-      "return": "FPaperTileMetadata",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperTileMetadata",
-      "return": "FPaperTileMetadata",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FPaperTileMetadata"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperTileSetTerrain",
-      "return": "FPaperTileSetTerrain",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperTileSetTerrain",
-      "return": "FPaperTileSetTerrain",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FPaperTileSetTerrain"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperTerrainMaterialRule",
-      "return": "FPaperTerrainMaterialRule",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FPaperTerrainMaterialRule",
-      "return": "FPaperTerrainMaterialRule",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FPaperTerrainMaterialRule"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
       "name": "FFBIKBoneLimit",
       "return": "FFBIKBoneLimit",
       "args": [],
@@ -54047,6 +53818,41 @@
     {
       "name": "FGameplayEffectSpec",
       "return": "FGameplayEffectSpec",
+      "args": [
+        {
+          "name": "InDef",
+          "type": "const UGameplayEffect"
+        },
+        {
+          "name": "InEffectContext",
+          "type": "FGameplayEffectContextHandle"
+        },
+        {
+          "name": "Level",
+          "default": "- 1.f",
+          "type": "float32"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FGameplayEffectSpec",
+      "return": "FGameplayEffectSpec",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayEffectSpec"
+        },
+        {
+          "name": "InEffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FGameplayEffectSpec",
+      "return": "FGameplayEffectSpec",
       "args": [],
       "isConstructor": true
     },
@@ -54363,6 +54169,78 @@
         {
           "name": "Other",
           "type": "FGameplayAbilitySpecContainer"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FGameplayAbilitySpec",
+      "return": "FGameplayAbilitySpec",
+      "args": [
+        {
+          "name": "InAbilityClass",
+          "type": "TSubclassOf<UGameplayAbility>"
+        },
+        {
+          "name": "InLevel",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "InInputID",
+          "default": "- 1",
+          "type": "int"
+        },
+        {
+          "name": "InSourceObject",
+          "default": "nullptr",
+          "type": "UObject"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FGameplayAbilitySpec",
+      "return": "FGameplayAbilitySpec",
+      "args": [
+        {
+          "name": "InAbility",
+          "type": "UGameplayAbility"
+        },
+        {
+          "name": "InLevel",
+          "default": "1",
+          "type": "int"
+        },
+        {
+          "name": "InInputID",
+          "default": "- 1",
+          "type": "int"
+        },
+        {
+          "name": "InSourceObject",
+          "default": "nullptr",
+          "type": "UObject"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FGameplayAbilitySpec",
+      "return": "FGameplayAbilitySpec",
+      "args": [
+        {
+          "name": "InDef",
+          "type": "FGameplayAbilitySpecDef&"
+        },
+        {
+          "name": "InGameplayEffectLevel",
+          "type": "int"
+        },
+        {
+          "name": "InGameplayEffectHandle",
+          "default": "FActiveGameplayEffectHandle ( )",
+          "type": "FActiveGameplayEffectHandle"
         }
       ],
       "isConstructor": true
@@ -56119,6 +55997,176 @@
       "isConstructor": true
     },
     {
+      "name": "FIntMargin",
+      "return": "FIntMargin",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FIntMargin",
+      "return": "FIntMargin",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FIntMargin"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FSpriteGeometryShape",
+      "return": "FSpriteGeometryShape",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FSpriteGeometryShape",
+      "return": "FSpriteGeometryShape",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSpriteGeometryShape"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FSpriteGeometryCollection",
+      "return": "FSpriteGeometryCollection",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FSpriteGeometryCollection",
+      "return": "FSpriteGeometryCollection",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSpriteGeometryCollection"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperFlipbookKeyFrame",
+      "return": "FPaperFlipbookKeyFrame",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperFlipbookKeyFrame",
+      "return": "FPaperFlipbookKeyFrame",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPaperFlipbookKeyFrame"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FSpriteInstanceData",
+      "return": "FSpriteInstanceData",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FSpriteInstanceData",
+      "return": "FSpriteInstanceData",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FSpriteInstanceData"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperSpriteSocket",
+      "return": "FPaperSpriteSocket",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperSpriteSocket",
+      "return": "FPaperSpriteSocket",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPaperSpriteSocket"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperTileInfo",
+      "return": "FPaperTileInfo",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperTileInfo",
+      "return": "FPaperTileInfo",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPaperTileInfo"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperTileMetadata",
+      "return": "FPaperTileMetadata",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperTileMetadata",
+      "return": "FPaperTileMetadata",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPaperTileMetadata"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperTileSetTerrain",
+      "return": "FPaperTileSetTerrain",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperTileSetTerrain",
+      "return": "FPaperTileSetTerrain",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPaperTileSetTerrain"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperTerrainMaterialRule",
+      "return": "FPaperTerrainMaterialRule",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FPaperTerrainMaterialRule",
+      "return": "FPaperTerrainMaterialRule",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FPaperTerrainMaterialRule"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
       "name": "FSynth1PatchCable",
       "return": "FSynth1PatchCable",
       "args": [],
@@ -57394,6 +57442,23 @@
       "isConstructor": true
     },
     {
+      "name": "FDJ01GameplayTagPropertyMap",
+      "return": "FDJ01GameplayTagPropertyMap",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FDJ01GameplayTagPropertyMap",
+      "return": "FDJ01GameplayTagPropertyMap",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDJ01GameplayTagPropertyMap"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
       "name": "FDJ01PenetrationAvoidanceFeeler",
       "return": "FDJ01PenetrationAvoidanceFeeler",
       "args": [],
@@ -57632,6 +57697,125 @@
       "isConstructor": true
     },
     {
+      "name": "FCurveKeyHandle",
+      "return": "FCurveKeyHandle",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FCurveKeyHandle",
+      "return": "FCurveKeyHandle",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FCurveKeyHandle"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAngelscriptModifiedAttribute",
+      "return": "FAngelscriptModifiedAttribute",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAngelscriptModifiedAttribute",
+      "return": "FAngelscriptModifiedAttribute",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAngelscriptModifiedAttribute"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAngelscriptInputBindData",
+      "return": "FAngelscriptInputBindData",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAngelscriptInputBindData",
+      "return": "FAngelscriptInputBindData",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAngelscriptInputBindData"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAngelscriptAttributeChangedData",
+      "return": "FAngelscriptAttributeChangedData",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAngelscriptAttributeChangedData",
+      "return": "FAngelscriptAttributeChangedData",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAngelscriptAttributeChangedData"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAngelscriptGameplayAttributeData",
+      "return": "FAngelscriptGameplayAttributeData",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAngelscriptGameplayAttributeData",
+      "return": "FAngelscriptGameplayAttributeData",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAngelscriptGameplayAttributeData"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FGameplayEffectExecutionParameters",
+      "return": "FGameplayEffectExecutionParameters",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FGameplayEffectExecutionParameters",
+      "return": "FGameplayEffectExecutionParameters",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FGameplayEffectExecutionParameters"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FAngelscriptTagContainerAggregator",
+      "return": "FAngelscriptTagContainerAggregator",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FAngelscriptTagContainerAggregator",
+      "return": "FAngelscriptTagContainerAggregator",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FAngelscriptTagContainerAggregator"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
       "name": "FDynamicMeshChangeInfo",
       "return": "FDynamicMeshChangeInfo",
       "args": [],
@@ -57768,6 +57952,91 @@
       "isConstructor": true
     },
     {
+      "name": "FBoneReferencePair",
+      "return": "FBoneReferencePair",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FBoneReferencePair",
+      "return": "FBoneReferencePair",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FBoneReferencePair"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FEncodeRootBoneWeightedBone",
+      "return": "FEncodeRootBoneWeightedBone",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FEncodeRootBoneWeightedBone",
+      "return": "FEncodeRootBoneWeightedBone",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FEncodeRootBoneWeightedBone"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FEncodeRootBoneWeightedBoneAxis",
+      "return": "FEncodeRootBoneWeightedBoneAxis",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FEncodeRootBoneWeightedBoneAxis",
+      "return": "FEncodeRootBoneWeightedBoneAxis",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FEncodeRootBoneWeightedBoneAxis"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FFootDefinition",
+      "return": "FFootDefinition",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FFootDefinition",
+      "return": "FFootDefinition",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FFootDefinition"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FInterchangeTestFunction",
+      "return": "FInterchangeTestFunction",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FInterchangeTestFunction",
+      "return": "FInterchangeTestFunction",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FInterchangeTestFunction"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
       "name": "FNiagaraGeometryCacheReference",
       "return": "FNiagaraGeometryCacheReference",
       "args": [],
@@ -57899,91 +58168,6 @@
         {
           "name": "Other",
           "type": "FAbcGeometryCacheSettings"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FBoneReferencePair",
-      "return": "FBoneReferencePair",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FBoneReferencePair",
-      "return": "FBoneReferencePair",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FBoneReferencePair"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FEncodeRootBoneWeightedBone",
-      "return": "FEncodeRootBoneWeightedBone",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FEncodeRootBoneWeightedBone",
-      "return": "FEncodeRootBoneWeightedBone",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FEncodeRootBoneWeightedBone"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FEncodeRootBoneWeightedBoneAxis",
-      "return": "FEncodeRootBoneWeightedBoneAxis",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FEncodeRootBoneWeightedBoneAxis",
-      "return": "FEncodeRootBoneWeightedBoneAxis",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FEncodeRootBoneWeightedBoneAxis"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FFootDefinition",
-      "return": "FFootDefinition",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FFootDefinition",
-      "return": "FFootDefinition",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FFootDefinition"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FInterchangeTestFunction",
-      "return": "FInterchangeTestFunction",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FInterchangeTestFunction",
-      "return": "FInterchangeTestFunction",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FInterchangeTestFunction"
         }
       ],
       "isConstructor": true
@@ -64109,23 +64293,6 @@
       "isConstructor": true
     },
     {
-      "name": "FCurveKeyHandle",
-      "return": "FCurveKeyHandle",
-      "args": [],
-      "isConstructor": true
-    },
-    {
-      "name": "FCurveKeyHandle",
-      "return": "FCurveKeyHandle",
-      "args": [
-        {
-          "name": "Other",
-          "type": "FCurveKeyHandle"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
       "name": "FScriptEditorPromptOptions",
       "return": "FScriptEditorPromptOptions",
       "args": [],
@@ -64166,6 +64333,62 @@
         {
           "name": "Other",
           "type": "TSetConstIterator<T>"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "TMap",
+      "return": "TMap",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "TMapIterator",
+      "return": "TMapIterator",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TMapIterator<K,V>"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "TMapConstIterator",
+      "return": "TMapConstIterator",
+      "args": [
+        {
+          "name": "Other",
+          "type": "TMapConstIterator<K,V>"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FName",
+      "return": "FName",
+      "args": [],
+      "isConstructor": true
+    },
+    {
+      "name": "FName",
+      "return": "FName",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FName"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
+      "name": "FName",
+      "return": "FName",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FString"
         }
       ],
       "isConstructor": true
@@ -64220,6 +64443,21 @@
       "isConstructor": true
     },
     {
+      "name": "FConsoleCommand",
+      "return": "FConsoleCommand",
+      "args": [
+        {
+          "name": "Name",
+          "type": "FString"
+        },
+        {
+          "name": "FunctionName",
+          "type": "FName"
+        }
+      ],
+      "isConstructor": true
+    },
+    {
       "name": "FConsoleVariable",
       "return": "FConsoleVariable",
       "args": [
@@ -64255,21 +64493,6 @@
           "name": "Help",
           "default": "\"\"",
           "type": "FString"
-        }
-      ],
-      "isConstructor": true
-    },
-    {
-      "name": "FConsoleCommand",
-      "return": "FConsoleCommand",
-      "args": [
-        {
-          "name": "Name",
-          "type": "FString"
-        },
-        {
-          "name": "FunctionName",
-          "type": "FName"
         }
       ],
       "isConstructor": true
@@ -64313,103 +64536,6 @@
         }
       ],
       "isConstructor": true
-    },
-    {
-      "name": "DebugBreak",
-      "return": "void",
-      "args": []
-    },
-    {
-      "name": "ensure",
-      "return": "bool",
-      "args": [
-        {
-          "name": "Condition",
-          "type": "bool"
-        }
-      ]
-    },
-    {
-      "name": "ensure",
-      "return": "bool",
-      "args": [
-        {
-          "name": "Condition",
-          "type": "bool"
-        },
-        {
-          "name": "Message",
-          "type": "FString"
-        }
-      ]
-    },
-    {
-      "name": "ensureAlways",
-      "return": "bool",
-      "args": [
-        {
-          "name": "Condition",
-          "type": "bool"
-        }
-      ]
-    },
-    {
-      "name": "ensureAlways",
-      "return": "bool",
-      "args": [
-        {
-          "name": "Condition",
-          "type": "bool"
-        },
-        {
-          "name": "Message",
-          "type": "FString"
-        }
-      ]
-    },
-    {
-      "name": "check",
-      "return": "void",
-      "args": [
-        {
-          "name": "Condition",
-          "type": "bool"
-        }
-      ]
-    },
-    {
-      "name": "check",
-      "return": "void",
-      "args": [
-        {
-          "name": "Condition",
-          "type": "bool"
-        },
-        {
-          "name": "Message",
-          "type": "FString"
-        }
-      ]
-    },
-    {
-      "name": "throw",
-      "return": "void",
-      "args": [
-        {
-          "name": "Message",
-          "type": "FString"
-        }
-      ]
-    },
-    {
-      "name": "GetAngelscriptCallstack",
-      "return": "TArray<FString>",
-      "args": []
-    },
-    {
-      "name": "FormatAngelscriptCallstack",
-      "return": "FString",
-      "args": []
     },
     {
       "name": "Log",
@@ -64818,6 +64944,103 @@
           "type": "FLinearColor"
         }
       ]
+    },
+    {
+      "name": "DebugBreak",
+      "return": "void",
+      "args": []
+    },
+    {
+      "name": "ensure",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Condition",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ensure",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Condition",
+          "type": "bool"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "ensureAlways",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Condition",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ensureAlways",
+      "return": "bool",
+      "args": [
+        {
+          "name": "Condition",
+          "type": "bool"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "check",
+      "return": "void",
+      "args": [
+        {
+          "name": "Condition",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "check",
+      "return": "void",
+      "args": [
+        {
+          "name": "Condition",
+          "type": "bool"
+        },
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "throw",
+      "return": "void",
+      "args": [
+        {
+          "name": "Message",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "GetAngelscriptCallstack",
+      "return": "TArray<FString>",
+      "args": []
+    },
+    {
+      "name": "FormatAngelscriptCallstack",
+      "return": "FString",
+      "args": []
     },
     {
       "name": "IsValid",

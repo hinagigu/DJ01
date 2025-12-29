@@ -53,24 +53,27 @@
   },
   
   "gameplay_abilities": {
-    "description": "Gameplay 技能类扫描配置（递归扫描）",
+    "description": "Gameplay 技能类扫描配置",
     "cpp_paths": [
       "Source/DJ01/AbilitySystem/Abilities"
     ],
     "blueprint_paths": [
-      "Content/Gameplay/Abilities/GA_Blueprints"
+      "Content/Gameplay/Abilities/GA_Blueprints",
+      "Content/Gameplay/Abilities/GameAbilityBlueprints"
     ],
     "script_paths": [
-      "Script/GameAbilityAS"
+      "Script"
     ],
-    "prefixes": ["GA_", "Ability_"]
+    "prefixes": ["GA_", "GABP_", "Ability_"],
+    "_note_angelscript": "AngelScript 类会自动扫描 Script 目录，类路径格式为 /Script/AngelscriptCode.ASClass'/Script/Angelscript.ClassName'"
   },
   
   "attribute_sets": {
     "description": "属性集类扫描配置",
     "cpp_paths": [
       "Source/DJ01/AbilitySystem/Attributes"
-    ]
+    ],
+    "csv_config": "Source/DJ01/AbilitySystem/Attributes/Config/AttributeDefinitions.csv"
   },
   
   "gameplay_effects": {

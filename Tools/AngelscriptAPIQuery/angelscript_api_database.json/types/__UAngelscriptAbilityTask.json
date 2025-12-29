@@ -1,0 +1,55 @@
+{
+  "name": "__UAngelscriptAbilityTask",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CreateAbilityTask",
+      "return": "UAngelscriptAbilityTask",
+      "doc": "If you create a task using this function from AS, you must start it manually using ReadyForActivation. This is useful if you want to set up properties on the task before you run it.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TaskType",
+          "type": "TSubclassOf<UAngelscriptAbilityTask>"
+        },
+        {
+          "name": "ThisAbility",
+          "type": "UGameplayAbility"
+        },
+        {
+          "name": "NewInstanceName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CreateAbilityTaskAndRunIt",
+      "return": "UAngelscriptAbilityTask",
+      "doc": "This method will both create the task and call ReadyForActivation on it for you immediately.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TaskType",
+          "type": "TSubclassOf<UAngelscriptAbilityTask>"
+        },
+        {
+          "name": "ThisAbility",
+          "type": "UGameplayAbility"
+        },
+        {
+          "name": "NewInstanceName",
+          "default": "NAME_None",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

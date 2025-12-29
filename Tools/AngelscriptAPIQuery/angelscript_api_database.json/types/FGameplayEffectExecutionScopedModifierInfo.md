@@ -27,6 +27,21 @@ folded into a calculation only for the extent of the calculation and never perma
 
 ## 方法
 
+### GetAggregatorType
+```angelscript
+EGameplayEffectScopedModifierAggregatorType& GetAggregatorType()
+```
+
+### GetCapturedAttribute
+```angelscript
+FGameplayEffectAttributeCaptureDefinition& GetCapturedAttribute()
+```
+
+### GetTransientAggregatorIdentifier
+```angelscript
+FGameplayTag& GetTransientAggregatorIdentifier()
+```
+
 ### opAssign
 ```angelscript
 FGameplayEffectExecutionScopedModifierInfo& opAssign(FGameplayEffectExecutionScopedModifierInfo Other)

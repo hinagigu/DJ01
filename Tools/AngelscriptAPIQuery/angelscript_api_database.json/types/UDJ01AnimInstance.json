@@ -4,9 +4,9 @@
   "doc": "UDJ01AnimInstance\n\nDJ01项目的基础动画实例类\n\n功能特性：\n- 与GAS（Gameplay Ability System）集成\n- 支持GameplayTag到蓝图变量的自动映射\n- 提供地面距离信息用于动画状态控制",
   "properties": {
     "GameplayTagPropertyMap": [
-      "FGameplayTagBlueprintPropertyMap",
+      "FDJ01GameplayTagPropertyMap",
       2,
-      "GameplayTag到蓝图变量的映射配置\n当对应的Tag添加或移除时，映射的变量会自动更新\n应使用此映射而非手动查询GameplayTag"
+      "GameplayTag到蓝图变量的映射配置\n当对应的Tag添加或移除时，映射的变量会自动更新\n映射在构造函数中自动配置，由 Tag Manager 生成"
     ],
     "GroundSpeed": [
       "float32",
@@ -17,21 +17,6 @@
       "float32",
       1,
       "角色到地面的距离，用于跳跃/降落动画控制"
-    ],
-    "bIsGrounded": [
-      "bool",
-      1,
-      "是否在地面上 (映射自 Status.Movement.Grounded)"
-    ],
-    "bIsAttacking": [
-      "bool",
-      1,
-      "是否在攻击中 (映射自 Status.Action.Attacking)"
-    ],
-    "bIsStunned": [
-      "bool",
-      1,
-      "是否被眩晕 (映射自 Status.Condition.Stunned)"
     ]
   },
   "methods": []

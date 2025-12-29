@@ -1,0 +1,66 @@
+{
+  "name": "__UAngelscriptAttributeSet",
+  "properties": {},
+  "methods": [
+    {
+      "name": "CompareGameplayAttributes",
+      "return": "bool",
+      "doc": "Comapre two gameplay attributes whether or not they are equal",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "First",
+          "type": "FGameplayAttribute"
+        },
+        {
+          "name": "Second",
+          "type": "FGameplayAttribute"
+        }
+      ]
+    },
+    {
+      "name": "GetGameplayAttribute",
+      "return": "FGameplayAttribute",
+      "doc": "Get an attribute on an attribute set that you expects will exist and want to assert if it for whatever reason does not.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "TryGetGameplayAttribute",
+      "return": "bool",
+      "doc": "Attempt to find a gameplay attribute. This is useful with for example dynamic attributes where you are not sure if the attribute exists.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "AttributeSetClass",
+          "type": "TSubclassOf<UAngelscriptAttributeSet>"
+        },
+        {
+          "name": "AttributeName",
+          "type": "FName"
+        },
+        {
+          "name": "OutGameplayAttribute",
+          "type": "FGameplayAttribute&"
+        }
+      ]
+    },
+    {
+      "name": "StaticClass",
+      "return": "UClass",
+      "args": []
+    }
+  ]
+}

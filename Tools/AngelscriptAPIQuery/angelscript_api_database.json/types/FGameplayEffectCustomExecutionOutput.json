@@ -5,6 +5,74 @@
   "properties": {},
   "methods": [
     {
+      "name": "AddOutputModifier",
+      "return": "void",
+      "doc": "Add the specified evaluated data to the execution's output modifiers",
+      "meta": null,
+      "args": [
+        {
+          "name": "InOutputMod",
+          "type": "FGameplayModifierEvaluatedData"
+        }
+      ]
+    },
+    {
+      "name": "AreGameplayCuesHandledManually",
+      "return": "bool",
+      "doc": "Accessor for determining if GameplayCue events have already been handled",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOutputModifiers",
+      "return": "TArray<FGameplayModifierEvaluatedData>",
+      "doc": "Simple accessor to output modifiers of the execution",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOutputModifiersRef",
+      "return": "TArray<FGameplayModifierEvaluatedData>&",
+      "doc": "Returns direct access to output modifiers of the execution (avoid copy)",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsStackCountHandledManually",
+      "return": "bool",
+      "doc": "Simple accessor for determining whether the execution has manually handled the stack count or not",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "MarkConditionalGameplayEffectsToTrigger",
+      "return": "void",
+      "doc": "Mark that the execution wants conditional gameplay effects to trigger",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "MarkGameplayCuesHandledManually",
+      "return": "void",
+      "doc": "Mark that the execution wants conditional gameplay effects to trigger",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "MarkStackCountHandledManually",
+      "return": "void",
+      "doc": "Mark that the execution has manually handled the stack count and the GE system should not attempt to automatically act upon it for emitted modifiers",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "ShouldTriggerConditionalGameplayEffects",
+      "return": "bool",
+      "doc": "Simple accessor for determining whether the execution wants conditional gameplay effects to trigger or not",
+      "meta": null,
+      "args": []
+    },
+    {
       "name": "opAssign",
       "return": "FGameplayEffectCustomExecutionOutput&",
       "args": [

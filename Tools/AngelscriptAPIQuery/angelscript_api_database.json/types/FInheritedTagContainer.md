@@ -16,6 +16,16 @@ Structure that is used to combine tags from parent and child blueprints in a saf
 
 ## 方法
 
+### AddTag
+```angelscript
+void AddTag(FGameplayTag TagToAdd)
+```
+
+### RemoveTag
+```angelscript
+void RemoveTag(FGameplayTag TagToRemove)
+```
+
 ### opAssign
 ```angelscript
 FInheritedTagContainer& opAssign(FInheritedTagContainer Other)

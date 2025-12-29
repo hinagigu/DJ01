@@ -15,3 +15,8 @@ void EndAction()
 ```
 Explicitly end the action, will disable any callbacks and allow action to be destroyed
 
+### Activate
+```angelscript
+void Activate()
+```
+

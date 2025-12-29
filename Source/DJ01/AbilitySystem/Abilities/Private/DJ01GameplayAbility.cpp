@@ -18,6 +18,7 @@
 #include "DJ01/Physics//PhysicalMaterialWithTags.h"
 #include "GameFramework/PlayerState.h"
 #include "DJ01/Camera/Public/DJ01CameraMode.h"
+#include "ClassGenerator/ASClass.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(DJ01GameplayAbility)
 
@@ -47,6 +48,44 @@ UDJ01GameplayAbility::UDJ01GameplayAbility(const FObjectInitializer& ObjectIniti
 	bLogCancelation = false;
 
 	ActiveCameraMode = nullptr;
+
+	// AngelScript 集成：检测 AS 类是否覆盖了 K2_ 开头的蓝图事件
+	// 这段逻辑来自 UAngelscriptGASAbility，确保 AS 能力能够正确激活
+	auto ImplementedInAS = [](const UFunction* Func) -> bool {
+		return Func && ensure(Func->GetOuter()) && Func->GetOuter()->IsA(UASClass::StaticClass());
+	};
+
+	if (!bHasBlueprintShouldAbilityRespondToEvent)
+	{		
+		static FName FuncName = FName(TEXT("K2_ShouldAbilityRespondToEvent"));
+		UFunction* ShouldRespondFunction = GetClass()->FindFunctionByName(FuncName);
+		bHasBlueprintShouldAbilityRespondToEvent = ImplementedInAS(ShouldRespondFunction);
+	}
+
+	if (!bHasBlueprintCanUse)
+	{
+		static FName FuncName = FName(TEXT("K2_CanActivateAbility"));
+		UFunction* CanActivateFunction = GetClass()->FindFunctionByName(FuncName);
+		bHasBlueprintCanUse = ImplementedInAS(CanActivateFunction);
+	}
+
+	if (!bHasBlueprintActivate)
+	{
+		static FName FuncName = FName(TEXT("K2_ActivateAbility"));
+		UFunction* ActivateFunction = GetClass()->FindFunctionByName(FuncName);
+		// 与 UAngelscriptGASAbility 相同的安全检查
+		if (ActivateFunction && (HasAnyFlags(RF_ClassDefaultObject) || ActivateFunction->IsValidLowLevelFast()))
+		{
+			bHasBlueprintActivate = ImplementedInAS(ActivateFunction);
+		}
+	}
+
+	if (!bHasBlueprintActivateFromEvent)
+	{
+		static FName FuncName = FName(TEXT("K2_ActivateAbilityFromEvent"));
+		UFunction* ActivateFunction = GetClass()->FindFunctionByName(FuncName);
+		bHasBlueprintActivateFromEvent = ImplementedInAS(ActivateFunction);
+	}
 }
 
 UDJ01AbilitySystemComponent* UDJ01GameplayAbility::GetDJ01AbilitySystemComponentFromActorInfo() const

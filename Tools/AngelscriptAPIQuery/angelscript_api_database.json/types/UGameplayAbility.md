@@ -440,3 +440,8 @@ void SetShouldBlockOtherAbilities(bool bShouldBlockAbilities)
 ```
 Sets rather ability block flags are enabled or disabled. Only valid on instanced abilities
 
+### GetSourceObject
+```angelscript
+UObject GetSourceObject(FGameplayAbilitySpecHandle Handle, FGameplayAbilityActorInfo ActorInfo)
+```
+

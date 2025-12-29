@@ -10,6 +10,16 @@ Describes a FGameplayAttributeData or float property inside an attribute set. Us
 
 ## 方法
 
+### IsValid
+```angelscript
+bool IsValid()
+```
+
+### GetAttributeSetClass
+```angelscript
+UClass GetAttributeSetClass()
+```
+
 ### opAssign
 ```angelscript
 FGameplayAttribute& opAssign(FGameplayAttribute Other)

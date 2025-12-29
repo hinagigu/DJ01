@@ -113,8 +113,13 @@ class WidgetFactory:
             # 默认文本输入
             return TextInputWidget(parent, prop, on_change)
     
-    def _get_options_from_source(self, source: str) -> List[str]:
-        """从选项源获取下拉选项"""
+    def _get_options_from_source(self, source: str) -> List[Dict[str, str]]:
+        """
+        从选项源获取下拉选项
+        
+        返回字典列表，包含 name 和 display_name
+        ComboBoxWidget 会使用 display_name 显示，但返回 name 作为值
+        """
         if not self.options_scanner or not source:
             return []
         
@@ -140,9 +145,7 @@ class WidgetFactory:
         
         getter = options_map.get(source)
         if getter:
-            items = getter()
-            # 返回 display_name 或 name
-            return [item.get("display_name", item.get("name", "")) for item in items]
+            return getter()  # 直接返回字典列表
         return []
     
     def _get_options_for_checkbox_list(self, source: str) -> List[Dict[str, str]]:

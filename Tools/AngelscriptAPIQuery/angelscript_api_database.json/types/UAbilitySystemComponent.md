@@ -444,3 +444,163 @@ void UpdateActiveGameplayEffectSetByCallerMagnitudes(FActiveGameplayEffectHandle
 ```
 Dynamically update multiple set-by-caller magnitudes for an active gameplay effect
 
+### AddGameplayCueWithEffectContext
+```angelscript
+void AddGameplayCueWithEffectContext(FGameplayTag GameplayCueTag, FGameplayEffectContextHandle EffectContext)
+```
+
+### AddGameplayCueWithParameters
+```angelscript
+void AddGameplayCueWithParameters(FGameplayTag GameplayCueTag, FGameplayCueParameters GameplayCueParameters)
+```
+
+### AddLooseGameplayTag
+```angelscript
+void AddLooseGameplayTag(FGameplayTag GameplayTag, int Count)
+```
+
+### AddLooseGameplayTags
+```angelscript
+void AddLooseGameplayTags(FGameplayTagContainer GameplayTags, int Count)
+```
+
+### AddReplicatedLooseGameplayTag
+```angelscript
+void AddReplicatedLooseGameplayTag(FGameplayTag GameplayTag)
+```
+
+### AddReplicatedLooseGameplayTags
+```angelscript
+void AddReplicatedLooseGameplayTags(FGameplayTagContainer GameplayTags)
+```
+
+### AddSpawnedAttribute
+```angelscript
+void AddSpawnedAttribute(UAttributeSet Attribute)
+```
+
+### AreAbilityTagsBlocked
+```angelscript
+bool AreAbilityTagsBlocked(FGameplayTagContainer Tags)
+```
+
+### ExecuteGameplayCueWithEffectContext
+```angelscript
+void ExecuteGameplayCueWithEffectContext(FGameplayTag GameplayCueTag, FGameplayEffectContextHandle EffectContext)
+```
+
+### ExecuteGameplayCueWithParameters
+```angelscript
+void ExecuteGameplayCueWithParameters(FGameplayTag GameplayCueTag, FGameplayCueParameters GameplayCueParameters)
+```
+
+### FindAbilitySpecFromClass
+```angelscript
+bool FindAbilitySpecFromClass(TSubclassOf<UGameplayAbility> InAbilityClass, FGameplayAbilitySpec& OutSpec)
+```
+
+### FindAbilitySpecFromGEHandle
+```angelscript
+bool FindAbilitySpecFromGEHandle(FActiveGameplayEffectHandle Handle, FGameplayAbilitySpec& OutSpec)
+```
+
+### FindAbilitySpecFromHandle
+```angelscript
+bool FindAbilitySpecFromHandle(FGameplayAbilitySpecHandle Handle, FGameplayAbilitySpec& OutSpec)
+```
+
+### FindAbilitySpecFromInputID
+```angelscript
+bool FindAbilitySpecFromInputID(int InputID, FGameplayAbilitySpec& OutSpec)
+```
+
+### GetOwnedGameplayTags
+```angelscript
+void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer)
+```
+
+### GetSpawnedAttributes
+```angelscript
+TArray<UAttributeSet> GetSpawnedAttributes()
+```
+
+### GiveAbility
+```angelscript
+FGameplayAbilitySpecHandle GiveAbility(FGameplayAbilitySpec Spec)
+```
+
+### GiveAbilityAndActivateOnce
+```angelscript
+FGameplayAbilitySpecHandle GiveAbilityAndActivateOnce(FGameplayAbilitySpec& Spec)
+```
+
+### GiveAbilityAndActivateOnceWithEventData
+```angelscript
+FGameplayAbilitySpecHandle GiveAbilityAndActivateOnceWithEventData(FGameplayAbilitySpec& Spec, FGameplayEventData EventData)
+```
+
+### InitDefaultGameplayCueParameters
+```angelscript
+void InitDefaultGameplayCueParameters(FGameplayCueParameters& Parameters)
+```
+
+### MarkAbilitySpecDirty
+```angelscript
+void MarkAbilitySpecDirty(FGameplayAbilitySpec& Spec, bool bWasAddOrRemove)
+```
+
+### RemoveAllGameplayCues
+```angelscript
+void RemoveAllGameplayCues()
+```
+
+### RemoveAllSpawnedAttributes
+```angelscript
+void RemoveAllSpawnedAttributes()
+```
+
+### RemoveGameplayCue
+```angelscript
+void RemoveGameplayCue(FGameplayTag GameplayCueTag)
+```
+
+### RemoveLooseGameplayTag
+```angelscript
+void RemoveLooseGameplayTag(FGameplayTag GameplayTag, int Count)
+```
+
+### RemoveLooseGameplayTags
+```angelscript
+void RemoveLooseGameplayTags(FGameplayTagContainer GameplayTags, int Count)
+```
+
+### RemoveReplicatedLooseGameplayTag
+```angelscript
+void RemoveReplicatedLooseGameplayTag(FGameplayTag GameplayTag)
+```
+
+### RemoveReplicatedLooseGameplayTags
+```angelscript
+void RemoveReplicatedLooseGameplayTags(FGameplayTagContainer GameplayTags)
+```
+
+### RemoveSpawnedAttribute
+```angelscript
+void RemoveSpawnedAttribute(UAttributeSet Attribute)
+```
+
+### SendGameplayEvent
+```angelscript
+void SendGameplayEvent(FGameplayTag EventTag, FGameplayEventData Payload)
+```
+
+### SetLooseGameplayTagCount
+```angelscript
+void SetLooseGameplayTagCount(FGameplayTag GameplayTag, int NewCount)
+```
+
+### SetReplicatedLooseGameplayTagCount
+```angelscript
+void SetReplicatedLooseGameplayTagCount(FGameplayTag GameplayTag, int NewCount)
+```
+

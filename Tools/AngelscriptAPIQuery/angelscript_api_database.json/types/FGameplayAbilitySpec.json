@@ -2,8 +2,158 @@
   "name": "FGameplayAbilitySpec",
   "isStruct": true,
   "doc": "An activatable ability spec, hosted on the ability system component. This defines both what the ability is (what class, what level, input binding etc)\nand also holds runtime state that must be kept outside of the ability being instanced/activated.",
-  "properties": {},
+  "properties": {
+    "Handle": [
+      "FGameplayAbilitySpecHandle"
+    ],
+    "Ability": [
+      "UGameplayAbility"
+    ],
+    "Level": [
+      "int"
+    ],
+    "InputID": [
+      "int"
+    ],
+    "SourceObject": [
+      "TWeakObjectPtr<UObject>"
+    ],
+    "ActiveCount": [
+      "uint8"
+    ],
+    "ActivationInfo": [
+      "FGameplayAbilityActivationInfo"
+    ],
+    "DynamicAbilityTags": [
+      "FGameplayTagContainer"
+    ],
+    "NonReplicatedInstances": [
+      "TArray<TObjectPtr<UGameplayAbility>>"
+    ],
+    "ReplicatedInstances": [
+      "TArray<TObjectPtr<UGameplayAbility>>"
+    ],
+    "GameplayEffectHandle": [
+      "FActiveGameplayEffectHandle"
+    ],
+    "SetByCallerTagMagnitudes": [
+      "TMap<FGameplayTag,float32>"
+    ]
+  },
   "methods": [
+    {
+      "name": "GetbInputPressed",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetbInputPressed",
+      "return": "void",
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetbRemoveAfterActivation",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetbRemoveAfterActivation",
+      "return": "void",
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetbPendingRemove",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetbPendingRemove",
+      "return": "void",
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetbActivateOnce",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "SetbActivateOnce",
+      "return": "void",
+      "args": [
+        {
+          "name": "bValue",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetPrimaryInstance",
+      "return": "UGameplayAbility",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "ShouldReplicateAbilitySpec",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "GetAbilityInstances",
+      "return": "TArray<UGameplayAbility>",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "IsActive",
+      "return": "bool",
+      "const": true,
+      "args": []
+    },
+    {
+      "name": "PreReplicatedRemoved",
+      "return": "void",
+      "args": [
+        {
+          "name": "InArraySerializer",
+          "type": "FGameplayAbilitySpecContainer"
+        }
+      ]
+    },
+    {
+      "name": "PostReplicatedAdd",
+      "return": "void",
+      "args": [
+        {
+          "name": "InArraySerializer",
+          "type": "FGameplayAbilitySpecContainer"
+        }
+      ]
+    },
+    {
+      "name": "GetDebugString",
+      "return": "FString",
+      "args": []
+    },
     {
       "name": "opAssign",
       "return": "FGameplayAbilitySpec&",

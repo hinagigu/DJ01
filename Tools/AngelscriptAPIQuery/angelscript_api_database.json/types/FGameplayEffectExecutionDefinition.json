@@ -2,29 +2,108 @@
   "name": "FGameplayEffectExecutionDefinition",
   "isStruct": true,
   "doc": "Struct representing the definition of a custom execution for a gameplay effect.\nCustom executions run special logic from an outside class each time the gameplay effect executes.",
-  "properties": {
-    "CalculationClass": [
-      "TSubclassOf<UGameplayEffectExecutionCalculation>",
-      2,
-      "Custom execution calculation class to run when the gameplay effect executes"
-    ],
-    "PassedInTags": [
-      "FGameplayTagContainer",
-      2,
-      "These tags are passed into the execution as is, and may be used to do conditional logic"
-    ],
-    "CalculationModifiers": [
-      "TArray<FGameplayEffectExecutionScopedModifierInfo>",
-      2,
-      "Modifiers that are applied \"in place\" during the execution calculation"
-    ],
-    "ConditionalGameplayEffects": [
-      "TArray<FConditionalGameplayEffect>",
-      2,
-      "Other Gameplay Effects that will be applied to the target of this execution if the execution is successful. Note if no execution class is selected, these will always apply."
-    ]
-  },
+  "properties": {},
   "methods": [
+    {
+      "name": "AddCalculationModifier",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CalculationModifier",
+          "type": "FGameplayEffectExecutionScopedModifierInfo"
+        }
+      ]
+    },
+    {
+      "name": "AddConditionalGameplayEffect",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ConditionalGameplayEffect",
+          "type": "FConditionalGameplayEffect"
+        }
+      ]
+    },
+    {
+      "name": "GetCalculationClass",
+      "return": "TSubclassOf<UGameplayEffectExecutionCalculation>&",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCalculationModifiers",
+      "return": "TArray<FGameplayEffectExecutionScopedModifierInfo>&",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetConditionalGameplayEffects",
+      "return": "TArray<FConditionalGameplayEffect>&",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPassedInTags",
+      "return": "FGameplayTagContainer&",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SetCalculationClass",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CalculationClass",
+          "type": "TSubclassOf<UGameplayEffectExecutionCalculation>"
+        }
+      ]
+    },
+    {
+      "name": "SetCalculationModifiers",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CalculationModifiers",
+          "type": "TArray<FGameplayEffectExecutionScopedModifierInfo>"
+        }
+      ]
+    },
+    {
+      "name": "SetConditionalGameplayEffects",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ConditionalGameplayEffects",
+          "type": "TArray<FConditionalGameplayEffect>"
+        }
+      ]
+    },
+    {
+      "name": "SetPassedInTags",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "PassedInTags",
+          "type": "FGameplayTagContainer"
+        }
+      ]
+    },
     {
       "name": "opAssign",
       "return": "FGameplayEffectExecutionDefinition&",

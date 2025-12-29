@@ -13,3 +13,8 @@ Called explicitly to end the task (usually by the task itself). Calls OnDestroy.
     If you don't the task will still be in an "active" state while the event receivers may
     assume it's already "finished"
 
+### ReadyForActivation
+```angelscript
+void ReadyForActivation()
+```
+
