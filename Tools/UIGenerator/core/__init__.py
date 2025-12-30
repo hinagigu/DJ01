@@ -1,9 +1,5 @@
 """
-UI Generator Core Module
-Schema 驱动的 UI 生成工具核心模块
+UI Generator - Core Module
 """
-
-from .schema_validator import SchemaValidator
-from .cpp_generator import CppGenerator
-
-__all__ = ['SchemaValidator', 'CppGenerator']
+# 不在此处导入，避免 PyInstaller 打包问题
+# 使用时直接: from core.cpp_generator import CppGenerator

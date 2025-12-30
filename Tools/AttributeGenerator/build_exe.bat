@@ -36,6 +36,17 @@ pyinstaller --onefile --windowed --name "DJ01_GAS_Generator" ^
     --collect-submodules=tag ^
     --collect-submodules=bindingset ^
     --hidden-import=config ^
+    --hidden-import=bindingset ^
+    --hidden-import=bindingset.data ^
+    --hidden-import=bindingset.generator ^
+    --hidden-import=bindingset.ui ^
+    --hidden-import=bindingset.class_scanner ^
+    --hidden-import=ui_base ^
+    --hidden-import=ui_base.base_editor ^
+    --hidden-import=ui_base.dialogs ^
+    --hidden-import=ui_base.helpers ^
+    --hidden-import=ui_base.inline_editor ^
+    --hidden-import=ui_base.widgets ^
     main.py
 
 echo [4/4] Finalizing...

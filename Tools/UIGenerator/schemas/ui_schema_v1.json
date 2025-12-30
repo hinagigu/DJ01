@@ -35,9 +35,60 @@
     
     "parent_class": {
       "type": "string",
-      "enum": ["UserWidget", "CommonUserWidget", "CommonActivatableWidget"],
+      "enum": ["UserWidget", "CommonUserWidget", "CommonActivatableWidget", "CommonActivatableStackWidget"],
       "default": "CommonUserWidget",
       "description": "父类"
+    },
+    
+    "layer": {
+      "type": "string",
+      "description": "UI Layer GameplayTag（仅 ActivatableWidget）"
+    },
+    
+    "input_config": {
+      "type": "object",
+      "description": "CommonUI 输入配置（仅 ActivatableWidget）",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["Game", "Menu", "All"],
+          "default": "Menu",
+          "description": "输入模式"
+        },
+        "mouse_capture": {
+          "type": "string",
+          "enum": ["NoCapture", "CapturePermanently", "CapturePermanentlyIncludingInitialMouseDown", "CaptureDuringMouseDown", "CaptureDuringRightMouseDown"],
+          "default": "NoCapture",
+          "description": "鼠标捕获模式"
+        },
+        "hide_cursor_during_capture": {
+          "type": "boolean",
+          "default": false,
+          "description": "捕获时隐藏光标"
+        }
+      }
+    },
+    
+    "activation": {
+      "type": "object",
+      "description": "激活设置（仅 ActivatableWidget）",
+      "properties": {
+        "auto_activate": {
+          "type": "boolean",
+          "default": true,
+          "description": "添加到视口时自动激活"
+        },
+        "is_back_handler": {
+          "type": "boolean",
+          "default": true,
+          "description": "处理返回操作"
+        },
+        "is_back_action_displayed_in_action_bar": {
+          "type": "boolean",
+          "default": true,
+          "description": "在操作栏显示返回操作"
+        }
+      }
     },
     
     "output_path": {
@@ -79,6 +130,55 @@
       "description": "事件/委托",
       "items": {
         "$ref": "#/definitions/event"
+      }
+    },
+    
+    "binding_set": {
+      "type": "object",
+      "description": "BindingSet 集成配置 - 属性统一来自 BindingSet，无需重复定义",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "BindingSet 名称（必须在 BindingSetDefinitions.json 中定义）"
+        },
+        "component_bindings": {
+          "type": "array",
+          "description": "组件到 BindingSet 属性的绑定",
+          "items": {
+            "type": "object",
+            "required": ["component", "property", "source"],
+            "properties": {
+              "component": {
+                "type": "string",
+                "description": "UI 组件名称"
+              },
+              "property": {
+                "type": "string",
+                "enum": ["Percent", "Text", "Visibility", "ColorAndOpacity"],
+                "description": "组件属性"
+              },
+              "source": {
+                "type": "string",
+                "description": "BindingSet 变量名（如 CurrentHealth, bStunned）"
+              },
+              "transform": {
+                "type": "string",
+                "enum": ["Direct", "HealthToPercent", "HealthToText", "BoolToVisibility", "InverseBool"],
+                "default": "Direct",
+                "description": "值转换方式"
+              }
+            }
+          }
+        }
+      },
+      "required": ["name"]
+    },
+    
+    "derived_properties": {
+      "type": "array",
+      "description": "派生属性 - 由代码计算的额外属性，不来自 BindingSet",
+      "items": {
+        "$ref": "#/definitions/property"
       }
     }
   },

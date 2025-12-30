@@ -71,7 +71,7 @@ BindingSet 是 DJ01 项目中的一个代码生成系统，用于自动化 GAS�
 3. 点击 `添加 BindingSet`
 
 工具会自动：
-- 添加 `#include "DJ01/GAS/Generated/BindingSets/BindingSets.h"`
+- 添加 `#include "DJ01/AbilitySystem/Attributes/BindingSets/Generated/BindingSets.h"`
 - 在 `GENERATED_BODY()` 后插入 `DJ01_DECLARE_BINDING_SET(PlayerHUD)`
 
 ### 3. 初始化绑定
@@ -243,11 +243,13 @@ void CleanupBindingSet_Test(UAbilitySystemComponent* InASC) { ... }
 ### 目录结构
 
 ```
-Source/DJ01/GAS/Generated/BindingSets/
-├── BindingSets.h           # 统一入口，包含所有 BindingSet 和通用宏
-├── BindingSet_Test.h       # Test BindingSet 的具体实现
-├── BindingSet_PlayerHUD.h  # PlayerHUD BindingSet 的具体实现
-└── ...
+Source/DJ01/AbilitySystem/Attributes/BindingSets/
+├── Config/
+│   └── BindingSetDefinitions.json  # 配置存储
+└── Generated/
+    ├── BindingSets.h               # 统一入口，包含所有 BindingSet 和通用宏
+    ├── BindingSet_Test.h           # Test BindingSet 的具体实现
+    └── BindingSet_PlayerHUD.h      # PlayerHUD BindingSet 的具体实现
 ```
 
 ### BindingSet_XXX.h 内容
@@ -352,7 +354,7 @@ UE_LOG(LogTemp, Log, TEXT("BindingSet initialized: Health=%.1f, bStunned=%d"),
 
 ### Q: 编译错误：未定义的宏？
 
-1. 确认已添加 `#include "DJ01/GAS/Generated/BindingSets/BindingSets.h"`
+1. 确认已添加 `#include "DJ01/AbilitySystem/Attributes/BindingSets/Generated/BindingSets.h"`
 2. 确认已生成代码（点击工具中的"生成代码"按钮）
 
 ### Q: 如何添加新的 BindingSet？
@@ -369,5 +371,5 @@ UE_LOG(LogTemp, Log, TEXT("BindingSet initialized: Health=%.1f, bStunned=%d"),
 | `Tools/AttributeGenerator/bindingset/` | BindingSet 编辑器模块 |
 | `Tools/AttributeGenerator/bindingset/generator.py` | 代码生成器 |
 | `Tools/AttributeGenerator/bindingset/class_scanner.py` | 类扫描和代码注入 |
-| `Source/DJ01/GAS/Config/BindingSetDefinitions.json` | 配置存储 |
-| `Source/DJ01/GAS/Generated/BindingSets/` | 生成的头文件 |
+| `Source/DJ01/AbilitySystem/Attributes/BindingSets/Config/BindingSetDefinitions.json` | 配置存储 |
+| `Source/DJ01/AbilitySystem/Attributes/BindingSets/Generated/` | 生成的头文件 |

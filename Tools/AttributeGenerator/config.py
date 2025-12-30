@@ -56,8 +56,8 @@ TAGS_SOURCE = PROJECT_ROOT / "Source/DJ01/System/Private/DJ01GameplayTags.cpp"
 TAGS_CSV_FIELDS = ['Category', 'Tag', 'VariableName', 'Description']
 
 # BindingSet 配置
-BINDINGSET_CONFIG = PROJECT_ROOT / "Source/DJ01/GAS/Config/BindingSetDefinitions.json"
-BINDINGSET_OUTPUT = PROJECT_ROOT / "Source/DJ01/GAS/Generated/BindingSets"
+BINDINGSET_CONFIG = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Attributes/BindingSets/Config/BindingSetDefinitions.json"
+BINDINGSET_OUTPUT = PROJECT_ROOT / "Source/DJ01/AbilitySystem/Attributes/BindingSets/Generated"
 
 # ========== MMC 配置 ==========
 MMC_CONFIG = PROJECT_ROOT / "Source/DJ01/AbilitySystem/MMC/Config/MMCDefinitions.json"

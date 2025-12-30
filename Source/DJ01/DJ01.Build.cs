@@ -23,6 +23,10 @@ public class DJ01 : ModuleRules
 			"GameplayMessageRuntime",  // 游戏消息路由系统
 			"UMG",  // UI相关
 			"CommonUI", // CommonUI插件
+			"ModelViewViewModel", // MVVM 视图模型插件
+			"FieldNotification", // 字段变更通知系统
+			"ModelViewViewModel", // MVVM 插件
+			"FieldNotification", // 字段通知系统
 			"CommonInput",
 			"CommonUser",  // CommonUser插件（用于会话管理）
 			"NetCore",  // 网络复制支持

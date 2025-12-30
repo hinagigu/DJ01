@@ -40,11 +40,8 @@ class BindingSetGenerator:
             includes.add('"DJ01/System/Public/DJ01GameplayTags.h"')
         
         if bindingset.has_attribute_bindings:
-            # 收集所有用到的 AttributeSet
-            attr_sets = set(b.attribute_set for b in bindingset.attribute_bindings)
-            for attr_set in attr_sets:
-                # 使用正确的模块路径
-                includes.add(f'"DJ01/AbilitySystem/Attributes/Public/{attr_set}.h"')
+            # 所有 AttributeSet 都定义在 DJ01GeneratedAttributes.h 中
+            includes.add('"DJ01/AbilitySystem/Attributes/Public/DJ01GeneratedAttributes.h"')
         
         for inc in sorted(includes):
             lines.append(f"#include {inc}")
@@ -67,10 +64,12 @@ class BindingSetGenerator:
             default_val = "false" if var_type == "bool" else "0"
             all_vars.append((var_type, binding.variable_name, default_val, f"Bindings|Tags|{bindingset.name}"))
         
-        # Attribute 变量
+        # Attribute 变量（每个值类型生成一个变量）
         for binding in bindingset.attribute_bindings:
             default_val = "0.0f" if binding.var_type == "float" else "0"
-            all_vars.append((binding.var_type, binding.variable_name, default_val, f"Bindings|Attributes|{bindingset.name}"))
+            for vt in binding.value_types:
+                var_name = binding.get_generated_variable_name(vt)
+                all_vars.append((binding.var_type, var_name, default_val, f"Bindings|Attributes|{bindingset.name}"))
         
         for i, (var_type, var_name, default_val, category) in enumerate(all_vars):
             line = f"\tUPROPERTY(BlueprintReadOnly, Category = \"{category}\") \\"
@@ -103,45 +102,46 @@ class BindingSetGenerator:
                 body = f"{binding.variable_name} = NewCount;"
             all_callbacks.append(f"\tvoid {binding.callback_name}(const FGameplayTag Tag, int32 NewCount) {{ {body} }}")
         
-        # Attribute 回调
+        # Attribute 回调（每个值类型生成一个回调）
         from .data import VALUE_TYPE_CURRENT, VALUE_TYPE_BASE, VALUE_TYPE_FLAT, VALUE_TYPE_PERCENT, VALUE_TYPE_TOTAL, VALUE_TYPE_EXTRA, VALUE_TYPE_MAX
         
         for binding in bindingset.attribute_bindings:
-            vt = binding.value_type
             attr_set = binding.attribute_set
             attr_name = binding.attribute_name
-            var_name = binding.variable_name
             
-            # 计算型值（Total/Extra/Max）需要从 ASC 重新获取
-            if vt == VALUE_TYPE_TOTAL:
-                # Total = GetTotalXxx()，但回调时 ASC 可能还未更新，需要手动计算
-                getter_call = f"Cast<U{attr_set}>(Data.Attribute.GetAttributeSetChecked())->GetTotal{attr_name}()"
-                if binding.var_type == "int32":
-                    body = f"{var_name} = FMath::RoundToInt({getter_call});"
+            for vt in binding.value_types:
+                var_name = binding.get_generated_variable_name(vt)
+                callback_name = binding.get_callback_name(vt)
+                
+                # 计算型值（Total/Extra/Max）需要从 ASC 重新获取
+                if vt == VALUE_TYPE_TOTAL:
+                    getter_call = f"Cast<UDJ01{attr_set}>(Data.Attribute.GetAttributeSetChecked())->GetTotal{attr_name}()"
+                    if binding.var_type == "int32":
+                        body = f"{var_name} = FMath::RoundToInt({getter_call});"
+                    else:
+                        body = f"{var_name} = {getter_call};"
+                elif vt == VALUE_TYPE_EXTRA:
+                    getter_call = f"Cast<UDJ01{attr_set}>(Data.Attribute.GetAttributeSetChecked())->GetExtra{attr_name}()"
+                    if binding.var_type == "int32":
+                        body = f"{var_name} = FMath::RoundToInt({getter_call});"
+                    else:
+                        body = f"{var_name} = {getter_call};"
+                elif vt == VALUE_TYPE_MAX:
+                    getter_call = f"Cast<UDJ01{attr_set}>(Data.Attribute.GetAttributeSetChecked())->GetTotalMax{attr_name}()"
+                    if binding.var_type == "int32":
+                        body = f"{var_name} = FMath::RoundToInt({getter_call});"
+                    else:
+                        body = f"{var_name} = {getter_call};"
                 else:
-                    body = f"{var_name} = {getter_call};"
-            elif vt == VALUE_TYPE_EXTRA:
-                getter_call = f"Cast<U{attr_set}>(Data.Attribute.GetAttributeSetChecked())->GetExtra{attr_name}()"
-                if binding.var_type == "int32":
-                    body = f"{var_name} = FMath::RoundToInt({getter_call});"
-                else:
-                    body = f"{var_name} = {getter_call};"
-            elif vt == VALUE_TYPE_MAX:
-                getter_call = f"Cast<U{attr_set}>(Data.Attribute.GetAttributeSetChecked())->GetTotalMax{attr_name}()"
-                if binding.var_type == "int32":
-                    body = f"{var_name} = FMath::RoundToInt({getter_call});"
-                else:
-                    body = f"{var_name} = {getter_call};"
-            else:
-                # 直接值（Current/Base/Flat/Percent）
-                if binding.var_type == "float":
-                    body = f"{var_name} = Data.NewValue.GetCurrentValue();"
-                elif binding.var_type == "int32":
-                    body = f"{var_name} = FMath::RoundToInt(Data.NewValue.GetCurrentValue());"
-                else:
-                    body = f"{var_name} = Data.NewValue;"
-            
-            all_callbacks.append(f"\tvoid {binding.callback_name}(const FOnAttributeChangeData& Data) {{ {body} }}")
+                    # 直接值（Current/Base/Flat/Percent）
+                    if binding.var_type == "float":
+                        body = f"{var_name} = Data.NewValue;"
+                    elif binding.var_type == "int32":
+                        body = f"{var_name} = FMath::RoundToInt(Data.NewValue);"
+                    else:
+                        body = f"{var_name} = Data.NewValue;"
+                
+                all_callbacks.append(f"\tvoid {callback_name}(const FOnAttributeChangeData& Data) {{ {body} }}")
         
         for i, callback in enumerate(all_callbacks):
             line = callback
@@ -172,37 +172,39 @@ class BindingSetGenerator:
                 f".AddUObject(this, &ThisClass::{binding.callback_name});"
             )
         
-        # Attribute 注册
+        # Attribute 注册（每个值类型注册对应的监听）
         from .data import VALUE_TYPE_TOTAL, VALUE_TYPE_EXTRA, VALUE_TYPE_MAX
         
         for binding in bindingset.attribute_bindings:
-            vt = binding.value_type
             attr_set = binding.attribute_set
             attr_name = binding.attribute_name
-            callback = binding.callback_name
             
-            if vt in [VALUE_TYPE_TOTAL, VALUE_TYPE_EXTRA]:
-                # 计算型值需要监听三层属性
-                for prefix in ["Base", "Flat", "Percent"]:
-                    getter = f"U{attr_set}::Get{prefix}{attr_name}Attribute"
+            for vt in binding.value_types:
+                callback = binding.get_callback_name(vt)
+                
+                if vt in [VALUE_TYPE_TOTAL, VALUE_TYPE_EXTRA]:
+                    # 计算型值需要监听三层属性
+                    for prefix in ["Base", "Flat", "Percent"]:
+                        getter = f"UDJ01{attr_set}::Get{prefix}{attr_name}Attribute"
+                        all_registers.append(
+                            f"\tInASC->GetGameplayAttributeValueChangeDelegate({getter}())"
+                            f".AddUObject(this, &ThisClass::{callback});"
+                        )
+                elif vt == VALUE_TYPE_MAX:
+                    # Max 资源型需要监听三层 Max 属性
+                    for prefix in ["Base", "Flat", "Percent"]:
+                        getter = f"UDJ01{attr_set}::Get{prefix}Max{attr_name}Attribute"
+                        all_registers.append(
+                            f"\tInASC->GetGameplayAttributeValueChangeDelegate({getter}())"
+                            f".AddUObject(this, &ThisClass::{callback});"
+                        )
+                else:
+                    # 直接属性监听
+                    getter = binding.get_attribute_getter_name(vt)
                     all_registers.append(
                         f"\tInASC->GetGameplayAttributeValueChangeDelegate({getter}())"
                         f".AddUObject(this, &ThisClass::{callback});"
                     )
-            elif vt == VALUE_TYPE_MAX:
-                # Max 资源型需要监听三层 Max 属性
-                for prefix in ["Base", "Flat", "Percent"]:
-                    getter = f"U{attr_set}::Get{prefix}Max{attr_name}Attribute"
-                    all_registers.append(
-                        f"\tInASC->GetGameplayAttributeValueChangeDelegate({getter}())"
-                        f".AddUObject(this, &ThisClass::{callback});"
-                    )
-            else:
-                # 直接属性监听
-                all_registers.append(
-                    f"\tInASC->GetGameplayAttributeValueChangeDelegate({binding.attribute_getter_name}())"
-                    f".AddUObject(this, &ThisClass::{callback});"
-                )
         
         for i, reg in enumerate(all_registers):
             line = reg
@@ -233,34 +235,35 @@ class BindingSetGenerator:
                 f"EGameplayTagEventType::NewOrRemoved).RemoveAll(this);"
             )
         
-        # Attribute 解除注册
+        # Attribute 解除注册（每个值类型解除对应的监听）
         for binding in bindingset.attribute_bindings:
-            vt = binding.value_type
             attr_set = binding.attribute_set
             attr_name = binding.attribute_name
             
-            if vt in [VALUE_TYPE_TOTAL, VALUE_TYPE_EXTRA]:
-                # 计算型值需要解除三层属性的监听
-                for prefix in ["Base", "Flat", "Percent"]:
-                    getter = f"U{attr_set}::Get{prefix}{attr_name}Attribute"
+            for vt in binding.value_types:
+                if vt in [VALUE_TYPE_TOTAL, VALUE_TYPE_EXTRA]:
+                    # 计算型值需要解除三层属性的监听
+                    for prefix in ["Base", "Flat", "Percent"]:
+                        getter = f"UDJ01{attr_set}::Get{prefix}{attr_name}Attribute"
+                        all_unregisters.append(
+                            f"\t\tInASC->GetGameplayAttributeValueChangeDelegate({getter}())"
+                            f".RemoveAll(this);"
+                        )
+                elif vt == VALUE_TYPE_MAX:
+                    # Max 资源型需要解除三层 Max 属性的监听
+                    for prefix in ["Base", "Flat", "Percent"]:
+                        getter = f"UDJ01{attr_set}::Get{prefix}Max{attr_name}Attribute"
+                        all_unregisters.append(
+                            f"\t\tInASC->GetGameplayAttributeValueChangeDelegate({getter}())"
+                            f".RemoveAll(this);"
+                        )
+                else:
+                    # 直接属性解除监听
+                    getter = binding.get_attribute_getter_name(vt)
                     all_unregisters.append(
                         f"\t\tInASC->GetGameplayAttributeValueChangeDelegate({getter}())"
                         f".RemoveAll(this);"
                     )
-            elif vt == VALUE_TYPE_MAX:
-                # Max 资源型需要解除三层 Max 属性的监听
-                for prefix in ["Base", "Flat", "Percent"]:
-                    getter = f"U{attr_set}::Get{prefix}Max{attr_name}Attribute"
-                    all_unregisters.append(
-                        f"\t\tInASC->GetGameplayAttributeValueChangeDelegate({getter}())"
-                        f".RemoveAll(this);"
-                    )
-            else:
-                # 直接属性解除监听
-                all_unregisters.append(
-                    f"\t\tInASC->GetGameplayAttributeValueChangeDelegate({binding.attribute_getter_name}())"
-                    f".RemoveAll(this);"
-                )
         
         for i, unreg in enumerate(all_unregisters):
             line = unreg
@@ -283,32 +286,34 @@ class BindingSetGenerator:
         
         init_lines = []
         
-        # Attribute 初始化
+        # Attribute 初始化（每个值类型初始化对应的变量）
         for binding in bindingset.attribute_bindings:
-            vt = binding.value_type
             attr_set = binding.attribute_set
             attr_name = binding.attribute_name
-            var_name = binding.variable_name
             var_type = binding.var_type
             
-            # 根据 value_type 生成正确的初始化代码
-            if vt == VALUE_TYPE_TOTAL:
-                getter_call = f"Cast<U{attr_set}>(InASC->GetAttributeSet(U{attr_set}::StaticClass()))->GetTotal{attr_name}()"
-            elif vt == VALUE_TYPE_EXTRA:
-                getter_call = f"Cast<U{attr_set}>(InASC->GetAttributeSet(U{attr_set}::StaticClass()))->GetExtra{attr_name}()"
-            elif vt == VALUE_TYPE_MAX:
-                getter_call = f"Cast<U{attr_set}>(InASC->GetAttributeSet(U{attr_set}::StaticClass()))->GetTotalMax{attr_name}()"
-            elif vt == VALUE_TYPE_CURRENT:
-                getter_call = f"InASC->GetNumericAttribute({binding.attribute_getter_name}())"
-            else:
-                # Base/Flat/Percent - 直接从层属性获取
-                actual_getter = f"U{attr_set}::Get{binding.actual_attribute_name}Attribute"
-                getter_call = f"InASC->GetNumericAttribute({actual_getter}())"
-            
-            if var_type == "int32":
-                init_lines.append(f"\t{var_name} = FMath::RoundToInt({getter_call});")
-            else:
-                init_lines.append(f"\t{var_name} = {getter_call};")
+            for vt in binding.value_types:
+                var_name = binding.get_generated_variable_name(vt)
+                
+                # 根据 value_type 生成正确的初始化代码
+                if vt == VALUE_TYPE_TOTAL:
+                    getter_call = f"Cast<UDJ01{attr_set}>(InASC->GetAttributeSet(UDJ01{attr_set}::StaticClass()))->GetTotal{attr_name}()"
+                elif vt == VALUE_TYPE_EXTRA:
+                    getter_call = f"Cast<UDJ01{attr_set}>(InASC->GetAttributeSet(UDJ01{attr_set}::StaticClass()))->GetExtra{attr_name}()"
+                elif vt == VALUE_TYPE_MAX:
+                    getter_call = f"Cast<UDJ01{attr_set}>(InASC->GetAttributeSet(UDJ01{attr_set}::StaticClass()))->GetTotalMax{attr_name}()"
+                elif vt == VALUE_TYPE_CURRENT:
+                    getter = binding.get_attribute_getter_name(vt)
+                    getter_call = f"InASC->GetNumericAttribute({getter}())"
+                else:
+                    # Base/Flat/Percent - 直接从层属性获取
+                    getter = binding.get_attribute_getter_name(vt)
+                    getter_call = f"InASC->GetNumericAttribute({getter}())"
+                
+                if var_type == "int32":
+                    init_lines.append(f"\t{var_name} = FMath::RoundToInt({getter_call});")
+                else:
+                    init_lines.append(f"\t{var_name} = {getter_call};")
         
         # Tag 初始化（检查当前状态）
         for binding in bindingset.tag_bindings:

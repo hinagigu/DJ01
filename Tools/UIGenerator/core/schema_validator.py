@@ -94,6 +94,43 @@ class SchemaValidator:
             self.errors.append(
                 f"无效的父类: {parent}，有效值: {self.valid_base_classes}"
             )
+        
+        # 检查 ActivatableWidget 特有配置
+        is_activatable = parent in ['CommonActivatableWidget', 'CommonActivatableStackWidget']
+        
+        if 'input_config' in schema and not is_activatable:
+            self.warnings.append(
+                "input_config 仅对 CommonActivatableWidget 有效"
+            )
+        
+        if 'activation' in schema and not is_activatable:
+            self.warnings.append(
+                "activation 配置仅对 CommonActivatableWidget 有效"
+            )
+        
+        if 'layer' in schema and not is_activatable:
+            self.warnings.append(
+                "layer 配置仅对 CommonActivatableWidget 有效"
+            )
+        
+        # 验证 input_config
+        if 'input_config' in schema:
+            input_config = schema['input_config']
+            valid_modes = ['Game', 'Menu', 'All']
+            if input_config.get('mode') and input_config['mode'] not in valid_modes:
+                self.errors.append(
+                    f"无效的 input_config.mode: {input_config['mode']}，有效值: {valid_modes}"
+                )
+            
+            valid_captures = [
+                'NoCapture', 'CapturePermanently', 
+                'CapturePermanentlyIncludingInitialMouseDown',
+                'CaptureDuringMouseDown', 'CaptureDuringRightMouseDown'
+            ]
+            if input_config.get('mouse_capture') and input_config['mouse_capture'] not in valid_captures:
+                self.errors.append(
+                    f"无效的 input_config.mouse_capture: {input_config['mouse_capture']}"
+                )
     
     def _check_components(self, components: List[Dict], path: str):
         """递归检查组件"""

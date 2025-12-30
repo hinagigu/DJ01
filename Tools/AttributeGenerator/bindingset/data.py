@@ -6,7 +6,7 @@ BindingSet 数据模型
 """
 
 from dataclasses import dataclass, field
-from typing import List, Literal
+from typing import List, Literal, Optional
 
 
 # ============================================================
@@ -102,17 +102,18 @@ VALID_VALUE_TYPES = [
 
 @dataclass
 class AttributeBinding:
-    """单个 Attribute 到变量的绑定"""
-    attribute_set: str = ""          # AttributeSet 名称（如 DJ01ResourceSet）
+    """单个 Attribute 到变量的绑定（支持多选值类型）"""
+    attribute_set: str = ""          # AttributeSet 名称（如 ResourceSet）
     attribute_name: str = ""         # 属性名（如 Health, AttackPower）
-    variable_name: str = ""          # 变量名（如 CurrentHealth, TotalAttackPower）
-    var_type: str = "float"          # 变量类型: float, int32, FGameplayAttributeData
-    value_type: str = "Current"      # 值类型: Current/Base/Flat/Percent/Total/Extra/Max
+    variable_name: str = ""          # 变量名前缀（如 Health），会根据 value_types 自动加前缀
+    var_type: str = "float"          # 变量类型: float, int32
+    value_types: List[str] = field(default_factory=lambda: ["Current"])  # 值类型列表（多选）
     description: str = ""            # 描述
     
-    # 兼容旧版本（deprecated，建议使用 value_type）
-    listen_current: bool = True      # 是否监听 CurrentValue 变化（废弃）
-    listen_base: bool = False        # 是否监听 BaseValue 变化（废弃）
+    # 兼容旧版本（deprecated）
+    value_type: str = ""             # 旧版单选，已废弃
+    listen_current: bool = True      # 废弃
+    listen_base: bool = False        # 废弃
     
     @property
     def binding_type(self) -> str:
@@ -123,16 +124,37 @@ class AttributeBinding:
         """完整属性名: SetName.AttributeName"""
         return f"{self.attribute_set}.{self.attribute_name}"
     
-    @property
-    def callback_name(self) -> str:
-        """生成回调函数名"""
-        return f"On{self.attribute_name}Changed"
+    def get_generated_variable_name(self, vt: str) -> str:
+        """根据值类型生成变量名（如 CurrentHealth, MaxHealth）"""
+        # Current 类型特殊处理，不加前缀或加 Current 前缀
+        if vt == VALUE_TYPE_CURRENT:
+            return f"Current{self.variable_name}" if len(self.value_types) > 1 else self.variable_name
+        return f"{vt}{self.variable_name}"
     
-    @property
-    def attribute_getter_name(self) -> str:
-        """生成属性 Getter 宏名（如 UCharacterAttributeSet::GetHealthAttribute）"""
-        # 对于层属性，返回实际的层属性 Getter
-        return f"U{self.attribute_set}::Get{self.actual_attribute_name}Attribute"
+    def get_callback_name(self, vt: str) -> str:
+        """根据值类型生成回调函数名"""
+        if vt == VALUE_TYPE_CURRENT:
+            return f"On{self.variable_name}Changed"
+        return f"On{vt}{self.variable_name}Changed"
+    
+    def get_attribute_getter_name(self, vt: str) -> str:
+        """生成属性 Getter 宏名（如 UDJ01ResourceSet::GetHealthAttribute）"""
+        actual_attr = self.get_actual_attribute_name(vt)
+        return f"UDJ01{self.attribute_set}::Get{actual_attr}Attribute"
+    
+    def get_actual_attribute_name(self, vt: str) -> str:
+        """获取实际的 GAS 属性名（考虑三层属性前缀）"""
+        if vt == VALUE_TYPE_CURRENT:
+            return self.attribute_name
+        elif vt in [VALUE_TYPE_BASE, VALUE_TYPE_TOTAL, VALUE_TYPE_EXTRA]:
+            return f"Base{self.attribute_name}"
+        elif vt == VALUE_TYPE_FLAT:
+            return f"Flat{self.attribute_name}"
+        elif vt == VALUE_TYPE_PERCENT:
+            return f"Percent{self.attribute_name}"
+        elif vt == VALUE_TYPE_MAX:
+            return f"BaseMax{self.attribute_name}"
+        return self.attribute_name
     
     def to_dict(self) -> dict:
         return {
@@ -141,63 +163,45 @@ class AttributeBinding:
             'AttributeName': self.attribute_name,
             'VariableName': self.variable_name,
             'VarType': self.var_type,
-            'ValueType': self.value_type,
+            'ValueTypes': self.value_types,  # 新格式：列表
             'Description': self.description
         }
     
     @staticmethod
     def from_dict(d: dict) -> 'AttributeBinding':
         # 兼容旧数据格式
-        value_type = d.get('ValueType', '')
-        if not value_type:
-            # 旧格式兼容：根据 ListenBase/ListenCurrent 推断
-            if d.get('ListenBase', False):
-                value_type = VALUE_TYPE_BASE
+        value_types = d.get('ValueTypes', [])
+        
+        if not value_types:
+            # 旧格式兼容：ValueType 是单个字符串
+            old_value_type = d.get('ValueType', '')
+            if old_value_type:
+                value_types = [old_value_type]
+            elif d.get('ListenBase', False):
+                value_types = [VALUE_TYPE_BASE]
             else:
-                value_type = VALUE_TYPE_CURRENT
+                value_types = [VALUE_TYPE_CURRENT]
         
         return AttributeBinding(
             attribute_set=d.get('AttributeSet', ''),
             attribute_name=d.get('AttributeName', ''),
             variable_name=d.get('VariableName', ''),
             var_type=d.get('VarType', 'float'),
-            value_type=value_type,
+            value_types=value_types,
             description=d.get('Description', ''),
             listen_current=d.get('ListenCurrent', True),
             listen_base=d.get('ListenBase', False)
         )
     
-    @property
-    def is_layered_attribute(self) -> bool:
+    @staticmethod
+    def is_layered_value_type(vt: str) -> bool:
         """是否是三层属性（需要监听 Base/Flat/Percent 中的某一层）"""
-        return self.value_type in [VALUE_TYPE_BASE, VALUE_TYPE_FLAT, VALUE_TYPE_PERCENT]
+        return vt in [VALUE_TYPE_BASE, VALUE_TYPE_FLAT, VALUE_TYPE_PERCENT]
     
-    @property
-    def is_computed_value(self) -> bool:
+    @staticmethod
+    def is_computed_value_type(vt: str) -> bool:
         """是否是计算值（Total/Extra/Max，不直接监听，需要在任意层变化时重算）"""
-        return self.value_type in [VALUE_TYPE_TOTAL, VALUE_TYPE_EXTRA, VALUE_TYPE_MAX]
-    
-    @property
-    def actual_attribute_name(self) -> str:
-        """
-        获取实际的 GAS 属性名（考虑三层属性前缀）
-        
-        例如：
-        - value_type=Current, attribute_name=Health -> Health
-        - value_type=Base, attribute_name=AttackPower -> BaseAttackPower
-        - value_type=Total, attribute_name=AttackPower -> 需要监听 BaseAttackPower
-        """
-        if self.value_type == VALUE_TYPE_CURRENT:
-            return self.attribute_name
-        elif self.value_type in [VALUE_TYPE_BASE, VALUE_TYPE_TOTAL, VALUE_TYPE_EXTRA]:
-            return f"Base{self.attribute_name}"
-        elif self.value_type == VALUE_TYPE_FLAT:
-            return f"Flat{self.attribute_name}"
-        elif self.value_type == VALUE_TYPE_PERCENT:
-            return f"Percent{self.attribute_name}"
-        elif self.value_type == VALUE_TYPE_MAX:
-            return f"BaseMax{self.attribute_name}"
-        return self.attribute_name
+        return vt in [VALUE_TYPE_TOTAL, VALUE_TYPE_EXTRA, VALUE_TYPE_MAX]
 
 
 # ============================================================

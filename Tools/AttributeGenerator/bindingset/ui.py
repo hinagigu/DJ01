@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from config import PROJECT_ROOT
+from config import PROJECT_ROOT, BINDINGSET_CONFIG, BINDINGSET_OUTPUT
 from ui_base import (
     BaseEditorUI, GroupListWidget, BottomButtonBar, InlineEditorMixin,
     show_selection_dialog, show_search_list_dialog, SearchListDialog, DialogBase
@@ -24,11 +24,6 @@ from ui_base import (
 from .data import BindingSetData, TagBinding, AttributeBinding
 from .generator import BindingSetGenerator
 from .class_scanner import ClassScanner, BindingSetInjector, UClassInfo
-
-
-# 配置路径
-BINDINGSET_CONFIG = PROJECT_ROOT / "Source/DJ01/GAS/Config/BindingSetDefinitions.json"
-BINDINGSET_OUTPUT = PROJECT_ROOT / "Source/DJ01/GAS/Generated/BindingSets"
 
 # Attribute 绑定的变量类型选项
 ATTRIBUTE_VAR_TYPES = ["float", "int32", "FGameplayAttributeData"]
@@ -241,7 +236,10 @@ class BindingSetEditorUI(BaseEditorUI, InlineEditorMixin):
         self._update_preview()
     
     def _get_listen_mode_display(self, binding: AttributeBinding) -> str:
-        """获取监听模式的显示文本（基于 value_type）"""
+        """获取监听模式的显示文本（基于 value_types 列表）"""
+        if hasattr(binding, 'value_types') and binding.value_types:
+            return ", ".join(binding.value_types)
+        # 兼容旧数据
         return binding.value_type if binding.value_type else "Current"
     
     def _update_preview(self):
@@ -561,9 +559,9 @@ class BindingSetEditorUI(BaseEditorUI, InlineEditorMixin):
         # 转换为显示列表
         display_items = [f"{s}.{n}" for s, n, t, d in available_attrs]
         
-        # 变量类型和值类型
+        # 变量类型和值类型（多选）
         var_type_var = tk.StringVar(value="float")
-        value_type_var = tk.StringVar(value="Current")
+        value_type_vars = {}  # 每个值类型对应一个 BooleanVar
         
         from .data import VALID_VALUE_TYPES
         
@@ -576,19 +574,24 @@ class BindingSetEditorUI(BaseEditorUI, InlineEditorMixin):
             type_frame = ttk.Frame(config_frame)
             type_frame.pack(fill=tk.X, pady=2)
             ttk.Label(type_frame, text="变量类型:").pack(side=tk.LEFT)
-            for vtype in ATTRIBUTE_VAR_TYPES:
+            for vtype in ATTRIBUTE_VAR_TYPES[:2]:  # 只显示 float 和 int32
                 ttk.Radiobutton(type_frame, text=vtype, variable=var_type_var, value=vtype).pack(side=tk.LEFT, padx=5)
             
-            # 值类型（三层属性系统）
+            # 值类型（多选复选框）
             value_frame = ttk.Frame(config_frame)
             value_frame.pack(fill=tk.X, pady=2)
             ttk.Label(value_frame, text="值类型:").pack(side=tk.LEFT)
-            value_combo = ttk.Combobox(value_frame, textvariable=value_type_var, 
-                                       values=VALID_VALUE_TYPES, state='readonly', width=12)
-            value_combo.pack(side=tk.LEFT, padx=5)
+            
+            for vt in VALID_VALUE_TYPES:
+                var = tk.BooleanVar(value=(vt == "Current"))  # 默认选中 Current
+                value_type_vars[vt] = var
+                cb = ttk.Checkbutton(value_frame, text=vt, variable=var)
+                cb.pack(side=tk.LEFT, padx=3)
             
             # 值类型说明
-            hint_label = ttk.Label(value_frame, text="(Current=资源型, Total=计算总值, Base/Flat/Percent=三层属性)", 
+            hint_frame = ttk.Frame(config_frame)
+            hint_frame.pack(fill=tk.X, pady=2)
+            hint_label = ttk.Label(hint_frame, text="提示: Current=当前值, Max=最大值, Total=计算总值, Base/Flat/Percent=三层属性", 
                                    foreground='gray')
             hint_label.pack(side=tk.LEFT, padx=5)
         
@@ -607,7 +610,11 @@ class BindingSetEditorUI(BaseEditorUI, InlineEditorMixin):
         
         added = 0
         var_type = var_type_var.get()
-        value_type = value_type_var.get()
+        
+        # 收集选中的值类型
+        selected_value_types = [vt for vt, var in value_type_vars.items() if var.get()]
+        if not selected_value_types:
+            selected_value_types = ["Current"]  # 默认至少选中 Current
         
         for item in selected_items:
             # 解析 SetName.AttributeName
@@ -625,27 +632,37 @@ class BindingSetEditorUI(BaseEditorUI, InlineEditorMixin):
                     attr_type = t
                     break
             
-            # 智能选择默认值类型
-            effective_value_type = value_type
-            if attr_type == "Meta":
-                # Meta 属性不应绑定，跳过
-                continue
-            elif attr_type == "Resource" and value_type in ["Base", "Flat", "Percent", "Total", "Extra"]:
-                # Resource 类型只有 Current 和 Max
-                effective_value_type = "Current"
-            elif attr_type == "Simple" and value_type not in ["Current"]:
-                # Simple 类型只有 Current
-                effective_value_type = "Current"
+            # 根据属性类型过滤有效的值类型
+            effective_value_types = []
+            for vt in selected_value_types:
+                if attr_type == "Meta":
+                    # Meta 属性不应绑定，跳过
+                    continue
+                elif attr_type == "Resource":
+                    # Resource 类型只有 Current 和 Max
+                    if vt in ["Current", "Max"]:
+                        effective_value_types.append(vt)
+                elif attr_type == "Simple":
+                    # Simple 类型只有 Current
+                    if vt == "Current":
+                        effective_value_types.append(vt)
+                else:
+                    # Layered 类型支持所有（除了 Current 和 Max）
+                    if vt not in ["Current", "Max"]:
+                        effective_value_types.append(vt)
             
-            # 根据值类型生成变量名
-            var_name = f"{effective_value_type}{attr_name}"
+            if not effective_value_types:
+                continue
+            
+            # 变量名使用属性名作为基础（前缀由生成器根据值类型添加）
+            var_name = attr_name
             
             binding = AttributeBinding(
                 attribute_set=set_name,
                 attribute_name=attr_name,
                 variable_name=var_name,
                 var_type=var_type,
-                value_type=value_type,
+                value_types=effective_value_types,
                 description=desc
             )
             self.current_bindingset.attribute_bindings.append(binding)
@@ -711,9 +728,9 @@ class BindingSetEditorUI(BaseEditorUI, InlineEditorMixin):
                 binding = AttributeBinding(
                     attribute_set=set_name,
                     attribute_name=attr_name,
-                    variable_name=f"Current{attr_name}",
+                    variable_name=attr_name,
                     var_type="float",
-                    value_type="Current",
+                    value_types=["Current"],
                     description=desc
                 )
                 self.current_bindingset.attribute_bindings.append(binding)
@@ -1011,7 +1028,7 @@ class BindingSetEditorUI(BaseEditorUI, InlineEditorMixin):
             self._create_binding_entry(self.attr_tree, item, col_idx, x, y, w, h, current_values, binding, 'attribute_name')
             return
         
-        display_items = [f"{s}.{n}" for s, n, d in all_attrs]
+        display_items = [f"{s}.{n}" for s, n, t, d in all_attrs]
         
         combo = ttk.Combobox(self.attr_tree, values=display_items, width=max(5, w // 8))
         combo.set(current_values[col_idx])
@@ -1082,41 +1099,73 @@ class BindingSetEditorUI(BaseEditorUI, InlineEditorMixin):
         combo.after(250, lambda: setattr(self, '_editor_ready', True))
     
     def _create_listen_mode_combo(self, item, col_idx, x, y, w, h, current_values, binding):
-        """创建值类型下拉框（支持三层属性系统）"""
+        """创建值类型多选弹出框"""
         self._destroy_active_editor()
         
         from .data import VALID_VALUE_TYPES
         
-        combo = ttk.Combobox(self.attr_tree, values=VALID_VALUE_TYPES, 
-                            state='readonly', width=max(5, w // 10))
-        combo.set(current_values[col_idx])
-        combo.place(x=x, y=y, width=w, height=h)
-        self._active_editor = combo
+        # 创建一个弹出窗口用于多选
+        popup = tk.Toplevel(self.attr_tree)
+        popup.wm_overrideredirect(True)  # 无边框
+        popup.wm_geometry(f"+{self.attr_tree.winfo_rootx() + x}+{self.attr_tree.winfo_rooty() + y + h}")
+        
+        self._active_editor = popup
         self._editor_ready = False
         
-        def on_select(event=None):
-            if self._active_editor != combo:
+        # 获取当前选中的值类型
+        current_types = binding.value_types if hasattr(binding, 'value_types') and binding.value_types else [binding.value_type or "Current"]
+        
+        # 创建复选框
+        check_vars = {}
+        frame = ttk.Frame(popup, relief='solid', borderwidth=1)
+        frame.pack(fill=tk.BOTH, expand=True)
+        
+        for vt in VALID_VALUE_TYPES:
+            var = tk.BooleanVar(value=(vt in current_types))
+            check_vars[vt] = var
+            cb = ttk.Checkbutton(frame, text=vt, variable=var)
+            cb.pack(anchor='w', padx=5, pady=1)
+        
+        # 确认按钮
+        def on_confirm():
+            if self._active_editor != popup:
                 return
-            new_value = combo.get()
             
-            # 更新 value_type
-            binding.value_type = new_value
+            # 收集选中的值类型
+            selected = [vt for vt, var in check_vars.items() if var.get()]
+            if not selected:
+                selected = ["Current"]
             
-            current_values[col_idx] = new_value
+            # 更新 binding
+            binding.value_types = selected
+            
+            # 更新显示
+            current_values[col_idx] = ", ".join(selected)
             self.attr_tree.item(item, values=current_values)
+            
             self._destroy_active_editor()
             self._update_preview()
         
+        btn_frame = ttk.Frame(frame)
+        btn_frame.pack(fill=tk.X, padx=5, pady=3)
+        ttk.Button(btn_frame, text="确定", command=on_confirm, width=6).pack(side=tk.LEFT, padx=2)
+        ttk.Button(btn_frame, text="取消", command=self._destroy_active_editor, width=6).pack(side=tk.LEFT, padx=2)
+        
+        # 点击外部关闭
         def on_focus_out(event):
-            if self._editor_ready and self._active_editor == combo:
-                self.attr_tree.after(50, on_select)
+            # 检查焦点是否仍在弹出窗口内
+            try:
+                if popup.focus_get() and str(popup.focus_get()).startswith(str(popup)):
+                    return
+            except:
+                pass
+            popup.after(100, self._destroy_active_editor)
         
-        combo.bind('<<ComboboxSelected>>', on_select)
-        combo.bind('<FocusOut>', on_focus_out)
-        combo.bind('<Escape>', lambda e: self._destroy_active_editor())
+        popup.bind('<FocusOut>', on_focus_out)
+        popup.bind('<Escape>', lambda e: self._destroy_active_editor())
         
-        combo.focus_set()
-        combo.after(250, lambda: setattr(self, '_editor_ready', True))
+        popup.focus_set()
+        popup.after(250, lambda: setattr(self, '_editor_ready', True))
 
     # ========== 应用到类 ==========
     
@@ -1138,14 +1187,36 @@ class BindingSetEditorUI(BaseEditorUI, InlineEditorMixin):
     def generate_code(self):
         """生成代码"""
         valid_sets = [bs for bs in self.bindingsets if bs.name and bs.total_bindings > 0]
-        if not valid_sets:
-            messagebox.showwarning("提示", "没有可生成的 BindingSet")
-            return
         
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
         try:
             BINDINGSET_OUTPUT.mkdir(parents=True, exist_ok=True)
+            
+            # 清理旧的生成文件
+            valid_filenames = {bs.header_filename for bs in valid_sets}
+            valid_filenames.add("BindingSets.h")  # 保留汇总文件
+            
+            deleted_count = 0
+            for old_file in BINDINGSET_OUTPUT.glob("BindingSet_*.h"):
+                if old_file.name not in valid_filenames:
+                    old_file.unlink()
+                    deleted_count += 1
+            
+            if not valid_sets:
+                # 没有有效的 BindingSet，清理汇总文件
+                index_file = BINDINGSET_OUTPUT / "BindingSets.h"
+                if index_file.exists():
+                    index_file.unlink()
+                    deleted_count += 1
+                
+                self.save_config()
+                
+                if deleted_count > 0:
+                    messagebox.showinfo("完成", f"已清理 {deleted_count} 个旧文件\n当前没有 BindingSet 需要生成")
+                else:
+                    messagebox.showinfo("提示", "没有可生成的 BindingSet")
+                return
             
             # 生成每个 BindingSet 的头文件
             for bindingset in valid_sets:
@@ -1162,9 +1233,10 @@ class BindingSetEditorUI(BaseEditorUI, InlineEditorMixin):
             self.save_config()
             
             total_bindings = sum(bs.total_bindings for bs in valid_sets)
-            messagebox.showinfo("成功", 
-                f"已生成 {len(valid_sets)} 个 BindingSet\n"
-                f"共 {total_bindings} 个绑定 (Tag + Attribute)")
+            msg = f"已生成 {len(valid_sets)} 个 BindingSet\n共 {total_bindings} 个绑定 (Tag + Attribute)"
+            if deleted_count > 0:
+                msg += f"\n已清理 {deleted_count} 个旧文件"
+            messagebox.showinfo("成功", msg)
             
         except Exception as e:
             messagebox.showerror("错误", f"生成失败: {e}")
