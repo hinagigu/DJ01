@@ -222,11 +222,22 @@ class SchemaValidator:
                 )
     
     def _check_binding_references(self, schema: Dict):
-        """检查绑定引用是否存在对应的属性"""
+        """检查绑定引用是否存在对应的属性或 BindingSet 变量"""
         # 收集所有属性名
-        property_names = set()
+        valid_bindings = set()
+        
+        # 1. Schema 中定义的 properties
         for prop in schema.get('properties', []):
-            property_names.add(prop.get('name', ''))
+            valid_bindings.add(prop.get('name', ''))
+        
+        # 2. BindingSet 提供的变量（从项目配置加载）
+        binding_set = schema.get('binding_set', {})
+        binding_set_name = binding_set.get('name', '') if binding_set else ''
+        
+        if binding_set_name:
+            # 尝试加载 BindingSet 定义
+            binding_set_vars = self._get_binding_set_variables(binding_set_name)
+            valid_bindings.update(binding_set_vars)
         
         # 检查组件中的绑定
         def check_component_bindings(components: List[Dict]):
@@ -234,14 +245,64 @@ class SchemaValidator:
                 for key in ['bind_percent', 'bind_text', 'bind_image']:
                     if key in comp:
                         bind_target = comp[key]
-                        if bind_target not in property_names:
-                            self.errors.append(
-                                f"组件 {comp['name']} 的 {key} 引用了不存在的属性: {bind_target}"
+                        if bind_target and bind_target not in valid_bindings:
+                            # 只显示警告而非错误，因为可能是自定义绑定
+                            self.warnings.append(
+                                f"组件 {comp['name']} 的 {key} 引用了 '{bind_target}'，"
+                                f"不在已知属性或 BindingSet 变量中"
                             )
                 if 'children' in comp:
                     check_component_bindings(comp['children'])
         
         check_component_bindings(schema.get('components', []))
+    
+    def _get_binding_set_variables(self, binding_set_name: str) -> set:
+        """获取 BindingSet 提供的变量名列表"""
+        variables = set()
+        
+        # 尝试查找 BindingSetDefinitions.json
+        try:
+            # 从 widget_types_path 推算项目根目录
+            # widget_types.json 在 Tools/UIGenerator/configs/
+            import os
+            config_dir = os.path.dirname(os.path.abspath(__file__))  # core/
+            ui_generator_dir = os.path.dirname(config_dir)           # UIGenerator/
+            tools_dir = os.path.dirname(ui_generator_dir)            # Tools/
+            project_root = os.path.dirname(tools_dir)                # DJ01/
+            
+            binding_defs_path = os.path.join(
+                project_root, "Source", "DJ01", "AbilitySystem", "Attributes",
+                "BindingSets", "Config", "BindingSetDefinitions.json"
+            )
+            
+            if os.path.exists(binding_defs_path):
+                with open(binding_defs_path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                
+                for bs in data.get("BindingSets", []):
+                    if bs.get("Name") == binding_set_name:
+                        # 提取属性绑定变量
+                        for attr in bs.get("AttributeBindings", []):
+                            var_name = attr.get("VariableName", attr.get("AttributeName", ""))
+                            for vt in attr.get("ValueTypes", ["Current"]):
+                                if vt == "Current":
+                                    variables.add(f"Current{var_name}")
+                                elif vt == "Max":
+                                    variables.add(f"Max{var_name}")
+                                else:
+                                    variables.add(f"{vt}{var_name}")
+                        
+                        # 提取 Tag 绑定变量
+                        for tag in bs.get("TagBindings", []):
+                            var_name = tag.get("VariableName", "")
+                            if var_name:
+                                variables.add(var_name)
+                        break
+        except Exception as e:
+            # 静默失败，不影响验证
+            pass
+        
+        return variables
 
 
 def load_and_validate(schema_path: str, widget_types_path: str) -> Tuple[Optional[Dict], List[str], List[str]]:

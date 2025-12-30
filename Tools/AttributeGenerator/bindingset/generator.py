@@ -55,6 +55,8 @@ class BindingSetGenerator:
         lines.append(f"// 变量声明宏 - 放在类定义中 (AnimInstance, Widget, etc.)")
         lines.append(f"// ============================================================")
         lines.append(f"#define DJ01_BINDING_SET_{macro_prefix}_VARS() \\")
+        # ASC 弱引用（用于在回调中访问 AttributeSet）
+        lines.append(f"\tTWeakObjectPtr<UAbilitySystemComponent> BindingSet_{bindingset.name}_ASC; \\")
         
         all_vars = []
         
@@ -113,27 +115,18 @@ class BindingSetGenerator:
                 var_name = binding.get_generated_variable_name(vt)
                 callback_name = binding.get_callback_name(vt)
                 
-                # 计算型值（Total/Extra/Max）需要从 ASC 重新获取
+                # 计算型值（Total/Extra/Max）需要重新从 ASC 获取计算值
+                # 使用保存的 ASC 弱引用来获取 AttributeSet
+                asc_ref = f"BindingSet_{bindingset.name}_ASC"
                 if vt == VALUE_TYPE_TOTAL:
-                    getter_call = f"Cast<UDJ01{attr_set}>(Data.Attribute.GetAttributeSetChecked())->GetTotal{attr_name}()"
-                    if binding.var_type == "int32":
-                        body = f"{var_name} = FMath::RoundToInt({getter_call});"
-                    else:
-                        body = f"{var_name} = {getter_call};"
+                    # Total 是计算值，需要从 AttributeSet 获取
+                    body = f"if (auto* ASC = {asc_ref}.Get()) {{ if (auto* Set = ASC->GetSet<UDJ01{attr_set}>()) {{ {var_name} = Set->GetTotal{attr_name}(); }} }}"
                 elif vt == VALUE_TYPE_EXTRA:
-                    getter_call = f"Cast<UDJ01{attr_set}>(Data.Attribute.GetAttributeSetChecked())->GetExtra{attr_name}()"
-                    if binding.var_type == "int32":
-                        body = f"{var_name} = FMath::RoundToInt({getter_call});"
-                    else:
-                        body = f"{var_name} = {getter_call};"
+                    body = f"if (auto* ASC = {asc_ref}.Get()) {{ if (auto* Set = ASC->GetSet<UDJ01{attr_set}>()) {{ {var_name} = Set->GetExtra{attr_name}(); }} }}"
                 elif vt == VALUE_TYPE_MAX:
-                    getter_call = f"Cast<UDJ01{attr_set}>(Data.Attribute.GetAttributeSetChecked())->GetTotalMax{attr_name}()"
-                    if binding.var_type == "int32":
-                        body = f"{var_name} = FMath::RoundToInt({getter_call});"
-                    else:
-                        body = f"{var_name} = {getter_call};"
+                    body = f"if (auto* ASC = {asc_ref}.Get()) {{ if (auto* Set = ASC->GetSet<UDJ01{attr_set}>()) {{ {var_name} = Set->GetTotalMax{attr_name}(); }} }}"
                 else:
-                    # 直接值（Current/Base/Flat/Percent）
+                    # 直接值（Current/Base/Flat/Percent）- 从 Data.NewValue 获取
                     if binding.var_type == "float":
                         body = f"{var_name} = Data.NewValue;"
                     elif binding.var_type == "int32":
@@ -349,6 +342,7 @@ class BindingSetGenerator:
         lines.append(f"\tvoid InitBindingSet_{bindingset.name}(UAbilitySystemComponent* InASC) \\")
         lines.append(f"\t{{ \\")
         lines.append(f"\t\tif (!InASC) return; \\")
+        lines.append(f"\t\tBindingSet_{bindingset.name}_ASC = InASC; \\")
         lines.append(f"\t\tDJ01_BINDING_SET_{macro_prefix}_REGISTER(InASC) \\")
         lines.append(f"\t\tDJ01_BINDING_SET_{macro_prefix}_INIT_VALUES(InASC) \\")
         lines.append(f"\t}}")
@@ -365,6 +359,7 @@ class BindingSetGenerator:
         lines.append(f"\tvoid CleanupBindingSet_{bindingset.name}(UAbilitySystemComponent* InASC) \\")
         lines.append(f"\t{{ \\")
         lines.append(f"\t\tDJ01_BINDING_SET_{macro_prefix}_UNREGISTER(InASC) \\")
+        lines.append(f"\t\tBindingSet_{bindingset.name}_ASC.Reset(); \\")
         lines.append(f"\t}}")
         lines.append("")
         

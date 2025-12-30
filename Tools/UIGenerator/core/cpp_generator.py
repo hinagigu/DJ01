@@ -692,14 +692,27 @@ class CppGenerator:
                     value_expr = f"TransformHealthToText({source})"
                 elif transform == 'BoolToVisibility':
                     value_expr = f"TransformBoolToVisibility({source})"
+                elif transform == 'FloatToText':
+                    value_expr = f"FText::AsNumber({source})"
+                elif transform == 'IntToText':
+                    value_expr = f"FText::AsNumber({source})"
                 else:
                     value_expr = source
                 
-                # 设置属性
+                # 设置属性 - 对 Text 类型自动处理类型转换
                 if prop == 'Percent':
                     lines.append(f"\t{comp_name}->SetPercent({value_expr});")
                 elif prop == 'Text':
-                    lines.append(f"\t{comp_name}->SetText({value_expr});")
+                    # 如果 transform 是 Direct 且 source 是数值类型变量，需要自动转换
+                    if transform == 'Direct':
+                        # 判断是否是数值类型的 BindingSet 变量
+                        source_is_numeric = self._is_numeric_binding_source(binding_set.get('name', ''), source)
+                        if source_is_numeric:
+                            lines.append(f"\t{comp_name}->SetText(FText::AsNumber({value_expr}));")
+                        else:
+                            lines.append(f"\t{comp_name}->SetText({value_expr});")
+                    else:
+                        lines.append(f"\t{comp_name}->SetText({value_expr});")
                 elif prop == 'Visibility':
                     lines.append(f"\t{comp_name}->SetVisibility({value_expr});")
                 elif prop == 'ColorAndOpacity':
@@ -709,24 +722,65 @@ class CppGenerator:
         
         # 兼容旧的 bind_percent/bind_text 语法
         for comp in self._collect_all_components(schema.get('components', [])):
+            comp_type = comp.get('type', '')
+            comp_name = comp['name']
+            
             if 'bind_percent' in comp:
                 prop_name = comp['bind_percent']
-                lines.append(f"if ({comp['name']})")
+                lines.append(f"if ({comp_name})")
                 lines.append("{")
-                lines.append(f"\t{comp['name']}->SetPercent({prop_name});")
+                # 根据组件类型选择正确的方法
+                if comp_type == 'ProgressBar':
+                    lines.append(f"\t{comp_name}->SetPercent({prop_name});")
+                elif comp_type == 'TextBlock':
+                    # TextBlock 没有 SetPercent，使用 SetText 并格式化为百分比
+                    lines.append(f"\t{comp_name}->SetText(FText::AsPercent({prop_name}));")
+                else:
+                    # 默认尝试 SetPercent
+                    lines.append(f"\t{comp_name}->SetPercent({prop_name});")
                 lines.append("}")
             
             if 'bind_text' in comp:
                 prop_name = comp['bind_text']
-                lines.append(f"if ({comp['name']})")
+                lines.append(f"if ({comp_name})")
                 lines.append("{")
-                lines.append(f"\t{comp['name']}->SetText({prop_name});")
+                # bind_text 需要根据组件类型和数据类型转换
+                if comp_type == 'TextBlock':
+                    lines.append(f"\t{comp_name}->SetText(FText::AsNumber({prop_name}));")
+                else:
+                    # 其他类型可能接受 FText 或 FString
+                    lines.append(f"\t{comp_name}->SetText(FText::AsNumber({prop_name}));")
                 lines.append("}")
         
         if not lines:
             lines.append("// 在此添加绑定更新逻辑")
         
         return lines
+    
+    def _is_numeric_binding_source(self, bs_name: str, source_var: str) -> bool:
+        """检查 BindingSet 中的变量是否是数值类型"""
+        if not bs_name or bs_name not in self.binding_sets:
+            return True  # 默认假设是数值类型，更安全
+        
+        bs = self.binding_sets[bs_name]
+        
+        # 检查 Attribute 绑定
+        for attr in bs.get('AttributeBindings', []):
+            var_type = attr.get('VarType', 'float')
+            base_name = attr.get('VariableName', '')
+            value_types = attr.get('ValueTypes', ['Current'])
+            
+            for vt in value_types:
+                var_name = f"{vt}{base_name}"
+                if var_name == source_var:
+                    return var_type in ('float', 'int', 'int32', 'double')
+        
+        # 检查 Tag 绑定 (bool 也需要转换)
+        for tag in bs.get('TagBindings', []):
+            if tag.get('VariableName', '') == source_var:
+                return True  # bool -> text 也需要转换
+        
+        return True  # 默认假设需要转换
     
     def _generate_viewmodel_setter(self, schema: Dict, class_name: str) -> List[str]:
         """生成 SetViewModel 函数实现"""

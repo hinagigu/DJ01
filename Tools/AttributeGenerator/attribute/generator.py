@@ -84,10 +84,30 @@ class AttributeCodeGenerator:
     
     @staticmethod
     def _expand_resource_attribute_decl(class_name: str, attr_name: str) -> list:
-        """展开资源属性声明 (Max + Current)"""
+        """展开资源属性声明 (Max + Current + Percent)
+        
+        生成：
+        - MaxXxx: 三层属性 (BaseMaxXxx, FlatMaxXxx, PercentMaxXxx) + GetTotalMaxXxx()
+        - Xxx: 当前值（简单属性）
+        - PercentXxx: 百分比属性 (Current/Max)，用于 BindingSet 监听
+        """
         lines = AttributeCodeGenerator._expand_layered_attribute_decl(class_name, f"Max{attr_name}")
         lines.append("")
         lines.extend(AttributeCodeGenerator._expand_simple_attribute_decl(class_name, attr_name))
+        lines.append("")
+        # 添加 PercentXxx 属性（百分比 = Current / Max）
+        lines.append(f'    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Percent{attr_name}, Category = "DJ01|{attr_name}", Meta = (AllowPrivateAccess = true))')
+        lines.append(f"    FGameplayAttributeData Percent{attr_name};")
+        lines.append(f"    ATTRIBUTE_ACCESSORS({class_name}, Percent{attr_name})")
+        lines.append("")
+        # 辅助函数：更新百分比
+        lines.append(f'    /** 更新 {attr_name} 百分比（Current / Max），内部调用 */')
+        lines.append(f"    void Update{attr_name}Percent()")
+        lines.append("    {")
+        lines.append(f"        const float MaxVal = GetTotalMax{attr_name}();")
+        lines.append(f"        const float NewPercent = (MaxVal > 0.f) ? (Get{attr_name}() / MaxVal) : 0.f;")
+        lines.append(f"        SetPercent{attr_name}(NewPercent);")
+        lines.append("    }")
         return lines
     
     @staticmethod
@@ -118,9 +138,10 @@ class AttributeCodeGenerator:
     
     @staticmethod
     def _expand_resource_onrep_decl(attr_name: str) -> list:
-        """展开资源属性 OnRep 声明"""
+        """展开资源属性 OnRep 声明 (Max + Current + Percent)"""
         lines = AttributeCodeGenerator._expand_layered_onrep_decl(f"Max{attr_name}")
         lines.extend(AttributeCodeGenerator._expand_simple_onrep_decl(attr_name))
+        lines.extend(AttributeCodeGenerator._expand_simple_onrep_decl(f"Percent{attr_name}"))
         return lines
 
     @staticmethod
@@ -417,7 +438,7 @@ class AttributeCodeGenerator:
             mode = attr.resource_config.max_change_mode
             
             # 监听 BaseMaxXxx, FlatMaxXxx, PercentMaxXxx 中任一变化
-            lines.append(f"    // ===== Max{attr.name} 变化时联动调整 {attr.name} =====")
+            lines.append(f"    // ===== Max{attr.name} 变化时联动调整 {attr.name} 和 Percent{attr.name} =====")
             lines.append(f"    if (Attribute == GetBaseMax{attr.name}Attribute() ||")
             lines.append(f"        Attribute == GetFlatMax{attr.name}Attribute() ||")
             lines.append(f"        Attribute == GetPercentMax{attr.name}Attribute())")
@@ -449,6 +470,18 @@ class AttributeCodeGenerator:
                 lines.append(f"            Set{attr.name}(NewMax);")
                 lines.append("        }")
             
+            # 更新百分比
+            lines.append(f"        // 更新百分比属性")
+            lines.append(f"        Update{attr.name}Percent();")
+            
+            lines.append("    }")
+            lines.append("")
+            
+            # 监听 Current 值变化，更新百分比
+            lines.append(f"    // ===== {attr.name} (Current) 变化时更新 Percent{attr.name} =====")
+            lines.append(f"    if (Attribute == Get{attr.name}Attribute())")
+            lines.append("    {")
+            lines.append(f"        Update{attr.name}Percent();")
             lines.append("    }")
             lines.append("")
         

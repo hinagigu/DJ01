@@ -1,7 +1,7 @@
 // ============================================================
 // DJ01 Generated Attributes
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-29 21:46:21
+// 生成时间: 2025-12-30 20:12:09
 // ============================================================
 
 #include "DJ01/AbilitySystem/Attributes/Public/DJ01GeneratedAttributes.h"
@@ -138,7 +138,7 @@ void UDJ01ResourceSet::PostAttributeChange(const FGameplayAttribute& Attribute, 
 {
     Super::PostAttributeChange(Attribute, OldValue, NewValue);
 
-    // ===== MaxHealth 变化时联动调整 Health =====
+    // ===== MaxHealth 变化时联动调整 Health 和 PercentHealth =====
     if (Attribute == GetBaseMaxHealthAttribute() ||
         Attribute == GetFlatMaxHealthAttribute() ||
         Attribute == GetPercentMaxHealthAttribute())
@@ -150,9 +150,17 @@ void UDJ01ResourceSet::PostAttributeChange(const FGameplayAttribute& Attribute, 
         {
             SetHealth(NewMax);
         }
+        // 更新百分比属性
+        UpdateHealthPercent();
     }
 
-    // ===== MaxMana 变化时联动调整 Mana =====
+    // ===== Health (Current) 变化时更新 PercentHealth =====
+    if (Attribute == GetHealthAttribute())
+    {
+        UpdateHealthPercent();
+    }
+
+    // ===== MaxMana 变化时联动调整 Mana 和 PercentMana =====
     if (Attribute == GetBaseMaxManaAttribute() ||
         Attribute == GetFlatMaxManaAttribute() ||
         Attribute == GetPercentMaxManaAttribute())
@@ -164,6 +172,14 @@ void UDJ01ResourceSet::PostAttributeChange(const FGameplayAttribute& Attribute, 
         {
             SetMana(NewMax);
         }
+        // 更新百分比属性
+        UpdateManaPercent();
+    }
+
+    // ===== Mana (Current) 变化时更新 PercentMana =====
+    if (Attribute == GetManaAttribute())
+    {
+        UpdateManaPercent();
     }
 
     // ===== Health 变化处理 =====

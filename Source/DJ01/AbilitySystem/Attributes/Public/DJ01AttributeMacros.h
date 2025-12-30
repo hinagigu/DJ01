@@ -210,39 +210,56 @@
 
 
 // ============================================================
-// 资源型属性宏 (Max + Current 配对)
+// 资源型属性宏 (Max + Current + Percent 配对)
 // ============================================================
 
 /**
  * DECLARE_RESOURCE_ATTRIBUTE
  * 
- * 声明资源型配对属性：MaxXxx (Layered) + Xxx (Simple)
+ * 声明资源型配对属性：MaxXxx (Layered) + Xxx (Simple) + PercentXxx (百分比)
  * 
  * 例如 DECLARE_RESOURCE_ATTRIBUTE(UMySet, Health) 生成:
  *   - BaseMaxHealth, FlatMaxHealth, PercentMaxHealth (Layered)
  *   - Health (Simple, 当前值)
+ *   - PercentHealth (Simple, 百分比 = Health / MaxHealth)
  *   - GetTotalMaxHealth(), GetExtraMaxHealth() (计算函数)
+ *   - UpdateHealthPercent() (更新百分比的函数)
  * 
  * @param ClassName - 所在类名
- * @param AttrName - 属性名（如 Health，会生成 MaxHealth + Health）
+ * @param AttrName - 属性名（如 Health，会生成 MaxHealth + Health + PercentHealth）
  */
 #define DECLARE_RESOURCE_ATTRIBUTE(ClassName, AttrName) \
     /* Max 属性 - Layered (支持基础/额外/百分比加成) */ \
     DECLARE_LAYERED_ATTRIBUTE(ClassName, Max##AttrName) \
     /* Current 属性 - Simple (当前值，直接修改) */ \
-    DECLARE_SIMPLE_ATTRIBUTE(ClassName, AttrName)
+    DECLARE_SIMPLE_ATTRIBUTE(ClassName, AttrName) \
+    /* Percent 属性 - 百分比 (Current / Max)，用于 UI 绑定 */ \
+    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Percent##AttrName, Category = "DJ01|"#AttrName, Meta = (AllowPrivateAccess = true)) \
+    FGameplayAttributeData Percent##AttrName; \
+    ATTRIBUTE_ACCESSORS(ClassName, Percent##AttrName) \
+    \
+    /** 更新百分比属性 (Current / Max)，在 Current 或 Max 变化后调用 */ \
+    void Update##AttrName##Percent() \
+    { \
+        const float MaxVal = GetTotalMax##AttrName(); \
+        const float NewPercent = (MaxVal > 0.f) ? (Get##AttrName() / MaxVal) : 0.f; \
+        SetPercent##AttrName(NewPercent); \
+    }
 
 #define DECLARE_RESOURCE_ATTRIBUTE_ONREP(AttrName) \
     DECLARE_LAYERED_ATTRIBUTE_ONREP(Max##AttrName) \
-    DECLARE_SIMPLE_ATTRIBUTE_ONREP(AttrName)
+    DECLARE_SIMPLE_ATTRIBUTE_ONREP(AttrName) \
+    DECLARE_SIMPLE_ATTRIBUTE_ONREP(Percent##AttrName)
 
 #define IMPLEMENT_RESOURCE_ATTRIBUTE_ONREP(ClassName, AttrName) \
     IMPLEMENT_LAYERED_ATTRIBUTE_ONREP(ClassName, Max##AttrName) \
-    IMPLEMENT_SIMPLE_ATTRIBUTE_ONREP(ClassName, AttrName)
+    IMPLEMENT_SIMPLE_ATTRIBUTE_ONREP(ClassName, AttrName) \
+    IMPLEMENT_SIMPLE_ATTRIBUTE_ONREP(ClassName, Percent##AttrName)
 
 #define REGISTER_RESOURCE_ATTRIBUTE_REPLICATION(ClassName, AttrName) \
     REGISTER_LAYERED_ATTRIBUTE_REPLICATION(ClassName, Max##AttrName) \
-    REGISTER_SIMPLE_ATTRIBUTE_REPLICATION(ClassName, AttrName)
+    REGISTER_SIMPLE_ATTRIBUTE_REPLICATION(ClassName, AttrName) \
+    REGISTER_SIMPLE_ATTRIBUTE_REPLICATION(ClassName, Percent##AttrName)
 
 
 // ============================================================

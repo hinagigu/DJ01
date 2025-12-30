@@ -1,7 +1,7 @@
 // ============================================================
 // DJ01 Generated Attributes
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-29 21:46:21
+// 生成时间: 2025-12-30 20:12:09
 // ============================================================
 
 #pragma once
@@ -370,7 +370,19 @@ public:
     FGameplayAttributeData Health;
     ATTRIBUTE_ACCESSORS(UDJ01ResourceSet, Health)
 
-    /** 新属性 */
+    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_PercentHealth, Category = "DJ01|Health", Meta = (AllowPrivateAccess = true))
+    FGameplayAttributeData PercentHealth;
+    ATTRIBUTE_ACCESSORS(UDJ01ResourceSet, PercentHealth)
+
+    /** 更新 Health 百分比（Current / Max），内部调用 */
+    void UpdateHealthPercent()
+    {
+        const float MaxVal = GetTotalMaxHealth();
+        const float NewPercent = (MaxVal > 0.f) ? (GetHealth() / MaxVal) : 0.f;
+        SetPercentHealth(NewPercent);
+    }
+
+    /** 法力值 */
     UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_BaseMaxMana, Category = "DJ01|MaxMana", Meta = (AllowPrivateAccess = true))
     FGameplayAttributeData BaseMaxMana;
     ATTRIBUTE_ACCESSORS(UDJ01ResourceSet, BaseMaxMana)
@@ -399,6 +411,18 @@ public:
     FGameplayAttributeData Mana;
     ATTRIBUTE_ACCESSORS(UDJ01ResourceSet, Mana)
 
+    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_PercentMana, Category = "DJ01|Mana", Meta = (AllowPrivateAccess = true))
+    FGameplayAttributeData PercentMana;
+    ATTRIBUTE_ACCESSORS(UDJ01ResourceSet, PercentMana)
+
+    /** 更新 Mana 百分比（Current / Max），内部调用 */
+    void UpdateManaPercent()
+    {
+        const float MaxVal = GetTotalMaxMana();
+        const float NewPercent = (MaxVal > 0.f) ? (GetMana() / MaxVal) : 0.f;
+        SetPercentMana(NewPercent);
+    }
+
     // ---------- 属性变化委托 ----------
     /** Health 减少委托 */
     FDJ01AttributeEvent OnHealthDecreased;
@@ -413,6 +437,8 @@ protected:
     UFUNCTION()
     void OnRep_Health(const FGameplayAttributeData& OldValue);
     UFUNCTION()
+    void OnRep_PercentHealth(const FGameplayAttributeData& OldValue);
+    UFUNCTION()
     void OnRep_BaseMaxMana(const FGameplayAttributeData& OldValue);
     UFUNCTION()
     void OnRep_FlatMaxMana(const FGameplayAttributeData& OldValue);
@@ -420,6 +446,8 @@ protected:
     void OnRep_PercentMaxMana(const FGameplayAttributeData& OldValue);
     UFUNCTION()
     void OnRep_Mana(const FGameplayAttributeData& OldValue);
+    UFUNCTION()
+    void OnRep_PercentMana(const FGameplayAttributeData& OldValue);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
     virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
