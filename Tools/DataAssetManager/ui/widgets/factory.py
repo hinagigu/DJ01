@@ -23,6 +23,7 @@ from ui.widgets.picker import ComboBoxWidget, TagSelectorWidget, AssetPickerWidg
 from ui.widgets.struct_array import StructArrayEditorWidget
 from ui.widgets.checkbox_list import CheckboxListWidget
 from ui.widgets.instanced_array import InstancedArrayEditorWidget
+from ui_base.property_widgets import MultiSelectDropdownWidget
 
 from core.schema import PropertyDef, StructDef
 from core.schema_loader import SchemaLoader
@@ -75,6 +76,16 @@ class WidgetFactory:
             # 多选列表控件
             options = self._get_options_for_checkbox_list(prop.options_source)
             return CheckboxListWidget(parent, prop, on_change, options)
+        
+        elif widget_type == "multi_select_dropdown":
+            # 多选下拉控件（支持 JSON 同步）
+            options = self._get_options_from_source(prop.options_source)
+            return MultiSelectDropdownWidget(
+                parent, prop,
+                options=options,
+                on_change=on_change,
+                json_source=prop.options_source
+            )
         
         elif widget_type == "tag_selector":
             tags = self._get_tags(prop.categories)

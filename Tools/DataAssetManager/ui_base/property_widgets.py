@@ -578,3 +578,220 @@ class StructArrayEditorWidget(PropertyWidget):
     def set_value(self, value: Any):
         self.items = list(value) if value else []
         self._refresh_list()
+
+
+class MultiSelectDropdownWidget(PropertyWidget):
+    """
+    多选下拉控件
+    
+    功能：
+    - 点击下拉展开选择弹窗
+    - 支持多选、搜索过滤
+    - 🔄 按钮从 JSON 配置同步选项
+    """
+    
+    def __init__(self, parent: tk.Widget, prop_def: PropertyDef,
+                 options: List[dict] = None, on_change: Callable = None,
+                 json_source: str = None):
+        """
+        Args:
+            options: 选项列表 [{"name": "...", "display_name": "..."}]
+            json_source: JSON 数据源类型 (如 "ability_sets")
+        """
+        self.options = options or []
+        self.json_source = json_source
+        self.selected_items: List[str] = []
+        self._name_to_display: dict = {}
+        self._display_to_name: dict = {}
+        self._process_options()
+        super().__init__(parent, prop_def, on_change)
+    
+    def _process_options(self):
+        """处理选项，构建名称映射"""
+        self._name_to_display.clear()
+        self._display_to_name.clear()
+        
+        for opt in self.options:
+            if isinstance(opt, dict):
+                name = opt.get("name", "")
+                display_name = opt.get("display_name", name)
+                if name:
+                    self._name_to_display[name] = display_name
+                    self._display_to_name[display_name] = name
+            else:
+                name = str(opt)
+                self._name_to_display[name] = name
+                self._display_to_name[name] = name
+    
+    def _create_widget(self):
+        """创建控件"""
+        # 标题行
+        header = ttk.Frame(self.frame)
+        header.pack(fill=tk.X, pady=(0, 3))
+        
+        ttk.Label(header, text=self.prop_def.display_name + ":").pack(side=tk.LEFT, padx=5)
+        ttk.Button(header, text="🔄 同步", width=8,
+                   command=self._refresh_from_json).pack(side=tk.RIGHT, padx=2)
+        
+        # 下拉选择区域
+        select_frame = ttk.Frame(self.frame)
+        select_frame.pack(fill=tk.X, padx=5, pady=2)
+        
+        self.display_var = tk.StringVar(value="(点击选择...)")
+        self.combo = ttk.Combobox(select_frame, textvariable=self.display_var,
+                                   state='readonly', width=35)
+        self.combo.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 5))
+        self.combo.bind('<Button-1>', self._show_popup)
+        
+        ttk.Button(select_frame, text="清空", width=6,
+                   command=self._clear_selection).pack(side=tk.LEFT)
+        
+        # 已选显示区
+        self.selected_frame = ttk.Frame(self.frame)
+        self.selected_frame.pack(fill=tk.X, padx=5, pady=2)
+        self._update_display()
+    
+    def _show_popup(self, event=None):
+        """显示选择弹窗"""
+        popup = tk.Toplevel(self.frame)
+        popup.title(f"选择 {self.prop_def.display_name}")
+        popup.geometry("400x400")
+        popup.minsize(350, 300)
+        popup.transient(self.frame)
+        popup.grab_set()
+        
+        # 搜索框
+        search_frame = ttk.Frame(popup)
+        search_frame.pack(fill=tk.X, padx=10, pady=5)
+        ttk.Label(search_frame, text="🔍").pack(side=tk.LEFT)
+        search_var = tk.StringVar()
+        ttk.Entry(search_frame, textvariable=search_var).pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5)
+        
+        # 选项列表（带滚动）
+        list_frame = ttk.Frame(popup)
+        list_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
+        
+        canvas = tk.Canvas(list_frame, highlightthickness=0)
+        scrollbar = ttk.Scrollbar(list_frame, orient="vertical", command=canvas.yview)
+        options_frame = ttk.Frame(canvas)
+        
+        canvas.configure(yscrollcommand=scrollbar.set)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        canvas_window = canvas.create_window((0, 0), window=options_frame, anchor="nw")
+        
+        options_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+        canvas.bind("<Configure>", lambda e: canvas.itemconfig(canvas_window, width=e.width))
+        popup.bind("<MouseWheel>", lambda e: canvas.yview_scroll(int(-1*(e.delta/120)), "units"))
+        
+        # 复选框
+        checkbox_vars = {}
+        
+        def create_checkboxes(filter_text=""):
+            for w in options_frame.winfo_children():
+                w.destroy()
+            
+            filter_lower = filter_text.lower()
+            for name, display in self._name_to_display.items():
+                if filter_lower and filter_lower not in display.lower() and filter_lower not in name.lower():
+                    continue
+                if name not in checkbox_vars:
+                    checkbox_vars[name] = tk.BooleanVar(value=name in self.selected_items)
+                ttk.Checkbutton(options_frame, text=display, 
+                               variable=checkbox_vars[name]).pack(fill=tk.X, anchor=tk.W, pady=1)
+            
+            if not options_frame.winfo_children():
+                ttk.Label(options_frame, text="(无匹配选项)", foreground="gray").pack(pady=10)
+        
+        create_checkboxes()
+        search_var.trace_add('write', lambda *a: create_checkboxes(search_var.get()))
+        
+        # 按钮
+        btn_frame = ttk.Frame(popup)
+        btn_frame.pack(fill=tk.X, padx=10, pady=10)
+        
+        def confirm():
+            self.selected_items = [n for n, v in checkbox_vars.items() if v.get()]
+            self._update_display()
+            self._notify_change()
+            popup.destroy()
+        
+        ttk.Button(btn_frame, text="全选", width=6,
+                   command=lambda: [v.set(True) for v in checkbox_vars.values()]).pack(side=tk.LEFT, padx=2)
+        ttk.Button(btn_frame, text="清空", width=6,
+                   command=lambda: [v.set(False) for v in checkbox_vars.values()]).pack(side=tk.LEFT, padx=2)
+        ttk.Button(btn_frame, text="确定", width=8, command=confirm).pack(side=tk.RIGHT, padx=2)
+        ttk.Button(btn_frame, text="取消", width=8, command=popup.destroy).pack(side=tk.RIGHT, padx=2)
+        
+        # 定位
+        popup.update_idletasks()
+        popup.geometry(f"+{self.frame.winfo_rootx()+30}+{self.frame.winfo_rooty()+20}")
+    
+    def _update_display(self):
+        """更新已选显示"""
+        for w in self.selected_frame.winfo_children():
+            w.destroy()
+        
+        if not self.selected_items:
+            self.display_var.set("(未选择)")
+            ttk.Label(self.selected_frame, text="未选择任何项目", 
+                      foreground="gray", font=("", 8)).pack(anchor=tk.W)
+        else:
+            self.display_var.set(f"已选择 {len(self.selected_items)} 项")
+            for name in self.selected_items:
+                display = self._name_to_display.get(name, name)
+                ttk.Label(self.selected_frame, text=f"  ✓ {display}", 
+                          foreground="green", font=("", 9)).pack(anchor=tk.W)
+    
+    def _clear_selection(self):
+        """清空选择"""
+        self.selected_items = []
+        self._update_display()
+        self._notify_change()
+    
+    def _refresh_from_json(self):
+        """从 JSON 同步选项"""
+        import os, json
+        if not self.json_source:
+            return
+        
+        try:
+            # 查找配置文件
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            config_path = os.path.join(base_dir, "configs", f"{self.json_source}.json")
+            
+            if os.path.exists(config_path):
+                with open(config_path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                
+                new_options = []
+                # ability_sets.json: {"abilityset": {"Name": {...}}}
+                if "abilityset" in data:
+                    for name in data["abilityset"].keys():
+                        new_options.append({"name": name, "display_name": name})
+                # 通用格式: {"items": [...]}
+                elif "items" in data:
+                    new_options = data["items"]
+                
+                if new_options:
+                    self.update_options(new_options)
+                    messagebox.showinfo("同步成功", f"已同步 {len(new_options)} 个选项")
+        except Exception as e:
+            messagebox.showerror("同步失败", str(e))
+    
+    def update_options(self, options: List[dict]):
+        """更新选项"""
+        current = self.selected_items.copy()
+        self.options = options
+        self._process_options()
+        self.selected_items = [s for s in current if s in self._name_to_display]
+        self._update_display()
+    
+    def get_value(self) -> List[str]:
+        return self.selected_items.copy()
+    
+    def set_value(self, value: Any):
+        if not isinstance(value, list):
+            value = [value] if value else []
+        self.selected_items = [v for v in value if v in self._name_to_display]
+        self._update_display()

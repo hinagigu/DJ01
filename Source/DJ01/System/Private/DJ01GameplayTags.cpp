@@ -1,7 +1,7 @@
 // ============================================================
 // DJ01 Generated GameplayTags
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-27 21:51:06
+// 生成时间: 2025-12-29 21:43:32
 // ============================================================
 
 #include "DJ01/System/Public/DJ01GameplayTags.h"
@@ -90,5 +90,8 @@ namespace DJ01GameplayTags
     // ========== Cheat ==========
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Cheat_GodMode, "Cheat.GodMode", "God mode - makes the player invincible");
     UE_DEFINE_GAMEPLAY_TAG_COMMENT(Cheat_UnlimitedHealth, "Cheat.UnlimitedHealth", "Unlimited health - health cannot drop below 1");
+
+    // ========== Cooldown ==========
+    UE_DEFINE_GAMEPLAY_TAG_COMMENT(Cooldown_Skill_CastStone, "Cooldown.Skill.CastStone", "Caststone的CD");
 
 }

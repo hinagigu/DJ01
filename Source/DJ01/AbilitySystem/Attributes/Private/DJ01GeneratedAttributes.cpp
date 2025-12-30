@@ -1,7 +1,7 @@
 // ============================================================
 // DJ01 Generated Attributes
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-21 20:09:41
+// 生成时间: 2025-12-29 21:46:21
 // ============================================================
 
 #include "DJ01/AbilitySystem/Attributes/Public/DJ01GeneratedAttributes.h"
@@ -164,6 +164,17 @@ void UDJ01ResourceSet::PostAttributeChange(const FGameplayAttribute& Attribute, 
         {
             SetMana(NewMax);
         }
+    }
+
+    // ===== Health 变化处理 =====
+    if (Attribute == GetHealthAttribute())
+    {
+        // 减少时广播
+        if (NewValue < OldValue)
+        {
+            OnHealthDecreased.Broadcast(nullptr, nullptr, nullptr, OldValue - NewValue, OldValue, NewValue);
+        }
+
     }
 
 }

@@ -1,7 +1,7 @@
 // ============================================================
 // DJ01 Generated Attributes
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-21 20:09:41
+// 生成时间: 2025-12-29 21:46:21
 // ============================================================
 
 #pragma once
@@ -398,6 +398,10 @@ public:
     UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Mana, Category = "DJ01|Attributes", Meta = (AllowPrivateAccess = true))
     FGameplayAttributeData Mana;
     ATTRIBUTE_ACCESSORS(UDJ01ResourceSet, Mana)
+
+    // ---------- 属性变化委托 ----------
+    /** Health 减少委托 */
+    FDJ01AttributeEvent OnHealthDecreased;
 
 protected:
     UFUNCTION()

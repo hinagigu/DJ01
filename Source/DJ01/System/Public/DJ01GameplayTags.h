@@ -1,7 +1,7 @@
 // ============================================================
 // DJ01 Generated GameplayTags
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-27 21:51:06
+// 生成时间: 2025-12-29 21:43:32
 // ============================================================
 
 #pragma once
@@ -92,5 +92,8 @@ namespace DJ01GameplayTags
     // ========== Cheat ==========
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Cheat_GodMode);
     DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Cheat_UnlimitedHealth);
+
+    // ========== Cooldown ==========
+    DJ01_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Cooldown_Skill_CastStone);
 
 }

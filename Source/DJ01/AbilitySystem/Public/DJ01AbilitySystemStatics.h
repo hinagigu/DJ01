@@ -31,13 +31,13 @@ public:
 	 * 从 Actor 获取 AbilitySystemComponent
 	 * 支持直接实现 IAbilitySystemInterface 的 Actor 或通过 PlayerState 持有 ASC 的 Pawn
 	 */
-	UFUNCTION(BlueprintPure, Category = "DJ01|AbilitySystem", meta = (DefaultToSelf = "Actor"))
+	UFUNCTION(BlueprintPure, Category = "DJ01|AbilitySystem", meta = (DefaultToSelf = "Actor", ScriptCallable))
 	static UAbilitySystemComponent* GetAbilitySystemComponent(AActor* Actor);
 
 	/**
 	 * 从 Actor 获取 DJ01AbilitySystemComponent
 	 */
-	UFUNCTION(BlueprintPure, Category = "DJ01|AbilitySystem", meta = (DefaultToSelf = "Actor"))
+	UFUNCTION(BlueprintPure, Category = "DJ01|AbilitySystem", meta = (DefaultToSelf = "Actor", ScriptCallable))
 	static UDJ01AbilitySystemComponent* GetDJ01AbilitySystemComponent(AActor* Actor);
 	
 	//~============================================================================
@@ -50,12 +50,12 @@ public:
 	 * @param AttributeSetTag - 属性集的标识 Tag（如 AttributeSet.Health）
 	 * @return 对应的属性集实例，如果不存在则返回 nullptr
 	 */
-	UFUNCTION(BlueprintPure, Category = "DJ01|AbilitySystem|Attributes", meta = (DefaultToSelf = "Actor"))
+	UFUNCTION(BlueprintPure, Category = "DJ01|AbilitySystem|Attributes", meta = (DefaultToSelf = "Actor", ScriptCallable))
 	static const UAttributeSet* GetAttributeSetByTag(AActor* Actor, FGameplayTag AttributeSetTag);
 
 	/**
 	 * 通过 Tag 从 ASC 获取属性集
 	 */
-	UFUNCTION(BlueprintPure, Category = "DJ01|AbilitySystem|Attributes")
+	UFUNCTION(BlueprintPure, Category = "DJ01|AbilitySystem|Attributes", meta = (ScriptCallable))
 	static const UAttributeSet* GetAttributeSetByTagFromASC(UDJ01AbilitySystemComponent* ASC, FGameplayTag AttributeSetTag);
 };

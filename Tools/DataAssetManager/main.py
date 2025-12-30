@@ -387,7 +387,7 @@ class DataAssetManagerApp:
     
     def _generate_to_ue(self):
         """生成资产到 UE（通过远程执行）"""
-        script_path = os.path.join(os.path.dirname(__file__), "ue_scripts", "generate_experience.py")
+        script_path = os.path.join(os.path.dirname(__file__), "ue_scripts", "generate_all.py")
         
         # 检查 UE 是否运行
         if not self.ue_executor.is_ue_running():
@@ -418,7 +418,7 @@ class DataAssetManagerApp:
     
     def _copy_generate_command(self):
         """复制生成命令到剪贴板"""
-        script_path = os.path.join(os.path.dirname(__file__), "ue_scripts", "generate_experience.py")
+        script_path = os.path.join(os.path.dirname(__file__), "ue_scripts", "generate_all.py")
         command = f'py "{script_path}"'
         
         self.root.clipboard_clear()
