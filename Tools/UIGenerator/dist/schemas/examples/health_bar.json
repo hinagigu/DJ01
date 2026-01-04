@@ -1,0 +1,96 @@
+{
+  "$schema": "../ui_schema_v1.json",
+  "name": "DJ01HealthBar",
+  "description": "玩家血条 UI - 显示当前生命值和最大生命值，属性来自 BindingSet",
+  "author": "AI Generator",
+  "version": "2.0.0",
+  
+  "parent_class": "CommonUserWidget",
+  "output_path": "Source/DJ01/UI/Widgets",
+  "blueprint_path": "/Game/UI/HUD",
+  
+  "binding_set": {
+    "name": "Test",
+    "component_bindings": [
+      { 
+        "component": "HealthBar", 
+        "property": "Percent", 
+        "source": "CurrentHealth", 
+        "transform": "HealthToPercent" 
+      },
+      { 
+        "component": "HealthText", 
+        "property": "Text", 
+        "source": "CurrentHealth", 
+        "transform": "HealthToText" 
+      }
+    ]
+  },
+  
+  "components": [
+    {
+      "name": "RootCanvas",
+      "type": "CanvasPanel",
+      "children": [
+        {
+          "name": "ContentBox",
+          "type": "HorizontalBox",
+          "children": [
+            {
+              "name": "HealthIcon",
+              "type": "Image",
+              "comment": "血条图标"
+            },
+            {
+              "name": "BarContainer",
+              "type": "SizeBox",
+              "width_override": 200,
+              "height_override": 24,
+              "children": [
+                {
+                  "name": "HealthBar",
+                  "type": "ProgressBar",
+                  "comment": "血量进度条 - 自动绑定到 CurrentHealth"
+                }
+              ]
+            },
+            {
+              "name": "HealthText",
+              "type": "TextBlock",
+              "comment": "血量文字 - 自动绑定到 CurrentHealth"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  
+  "derived_properties": [
+    {
+      "name": "MaxHealth",
+      "type": "float",
+      "default": 100.0,
+      "description": "最大血量 (TODO: 待 BindingSet 支持 MaxHealth)"
+    }
+  ],
+  
+  "functions": [
+    {
+      "name": "PlayDamageAnimation",
+      "description": "播放受伤动画",
+      "blueprint_implementable": true
+    }
+  ],
+  
+  "events": [
+    {
+      "name": "OnHealthChanged",
+      "description": "血量变化时触发",
+      "parameters": [
+        {"name": "OldHealth", "type": "float"},
+        {"name": "NewHealth", "type": "float"}
+      ],
+      "blueprint_assignable": true
+    }
+  ]
+}

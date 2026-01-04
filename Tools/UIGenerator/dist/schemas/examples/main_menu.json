@@ -1,0 +1,46 @@
+{
+  "$schema": "../ui_schema_v1.json",
+  "name": "DJ01MainMenu",
+  "description": "主菜单界面",
+  "parent_class": "CommonActivatableWidget",
+  "layer": "UI.Layer.Menu",
+  
+  "input_config": {
+    "mode": "Menu",
+    "mouse_capture": "NoCapture"
+  },
+  
+  "components": [
+    {
+      "name": "RootCanvas",
+      "type": "CanvasPanel",
+      "children": [
+        { 
+          "name": "TitleText", 
+          "type": "CommonTextBlock",
+          "text_style": "Header1",
+          "bind_text": "TitleDisplayText"
+        },
+        {
+          "name": "ButtonContainer",
+          "type": "VerticalBox",
+          "children": [
+            { "name": "StartButton", "type": "CommonButtonBase", "action": "OnStartClicked" },
+            { "name": "SettingsButton", "type": "CommonButtonBase", "action": "OnSettingsClicked" },
+            { "name": "ExitButton", "type": "CommonButtonBase", "action": "OnExitClicked" }
+          ]
+        }
+      ]
+    }
+  ],
+  
+  "properties": [
+    { "name": "TitleDisplayText", "type": "FText", "default": "Game Title" }
+  ],
+  
+  "events": [
+    { "name": "OnStartClicked", "description": "点击开始按钮" },
+    { "name": "OnSettingsClicked", "description": "点击设置按钮" },
+    { "name": "OnExitClicked", "description": "点击退出按钮" }
+  ]
+}

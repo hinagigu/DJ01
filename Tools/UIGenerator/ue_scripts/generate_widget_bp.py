@@ -4,14 +4,32 @@
 
 核心功能：
 1. 创建继承 C++ 基类的 Widget Blueprint
-2. 通过 WidgetTree 操作自动添加组件
+2. 通过 DJ01WidgetBlueprintLibrary C++ Bridge 操作 WidgetTree
 3. 设置组件层级关系和基本属性
+
+使用方式：
+    py "D:/UnrealProjects/DJ01/Tools/UIGenerator/ue_scripts/generate_widget_bp.py"
+    
+或者在 Python 中：
+    from generate_widget_bp import generate_from_schema
+    generate_from_schema("path/to/schema.json")
 """
 
 import unreal
 import json
 import os
 from typing import Dict, List, Optional, Any
+
+
+# =============== 获取 C++ Bridge ===============
+def get_widget_lib():
+    """获取 DJ01WidgetBlueprintLibrary C++ Bridge"""
+    try:
+        return unreal.DJ01WidgetBlueprintLibrary
+    except AttributeError:
+        unreal.log_error("[UIGenerator] ❌ DJ01WidgetBlueprintLibrary 不可用!")
+        unreal.log_error("[UIGenerator] 请确保 DJ01Editor 模块已正确编译")
+        return None
 
 
 # =============== 组件类型映射 ===============
@@ -60,7 +78,7 @@ WIDGET_CLASS_MAP = {
 
 
 class WidgetBlueprintGenerator:
-    """Widget Blueprint 生成器"""
+    """Widget Blueprint 生成器 - 使用 DJ01WidgetBlueprintLibrary C++ Bridge"""
     
     def __init__(self, schema: Dict):
         self.schema = schema
@@ -69,12 +87,19 @@ class WidgetBlueprintGenerator:
         self.base_class_name = f"{self.name}Base"
         self.widget_bp = None
         self.created_widgets = {}  # name -> widget 映射
+        self.lib = None  # C++ Bridge
         
     def generate(self) -> bool:
         """执行生成流程"""
         unreal.log(f"[UIGenerator] ========================================")
         unreal.log(f"[UIGenerator] 开始创建 Widget Blueprint: {self.name}")
         unreal.log(f"[UIGenerator] ========================================")
+        
+        # 步骤 0: 获取 C++ Bridge
+        self.lib = get_widget_lib()
+        if not self.lib:
+            return False
+        unreal.log(f"[UIGenerator] ✓ C++ Bridge 已就绪")
         
         # 步骤 1: 查找基类
         if not self._find_base_class():
@@ -161,30 +186,42 @@ class WidgetBlueprintGenerator:
             return False
     
     def _add_component_tree(self) -> bool:
-        """添加组件树到 Widget Blueprint"""
+        """添加组件树到 Widget Blueprint（使用 C++ Bridge）"""
         components = self.schema.get('components', [])
         if not components:
             unreal.log_warning("[UIGenerator] ⚠️ Schema 中没有定义组件")
             return True
         
         try:
-            # 获取 WidgetTree
-            widget_tree = self.widget_bp.get_editor_property("widget_tree")
+            # 通过 C++ Bridge 获取 WidgetTree
+            widget_tree = self.lib.get_widget_tree(self.widget_bp)
             if not widget_tree:
                 unreal.log_error("[UIGenerator] ❌ 无法获取 WidgetTree")
                 return False
             
             unreal.log("[UIGenerator] 开始添加组件...")
             
+            # 清除现有控件（如果是更新模式）
+            existing_root = self.lib.get_root_widget(self.widget_bp)
+            if existing_root:
+                unreal.log("[UIGenerator] ⚠️ 检测到现有根控件，将重新创建")
+                # 注意：这里可能需要先删除现有控件，暂时跳过
+            
             # 递归添加组件
-            for comp in components:
-                self._add_widget_recursive(widget_tree, comp, None)
+            root_widget = None
+            for idx, comp in enumerate(components):
+                widget = self._add_widget_recursive(comp, None)
+                if idx == 0 and widget:
+                    root_widget = widget
             
             # 设置根组件
-            if components and components[0]['name'] in self.created_widgets:
-                root_widget = self.created_widgets[components[0]['name']]
-                widget_tree.set_editor_property("root_widget", root_widget)
-                unreal.log(f"[UIGenerator] ✓ 设置根组件: {components[0]['name']}")
+            if root_widget:
+                success = self.lib.set_root_widget(self.widget_bp, root_widget)
+                if success:
+                    unreal.log(f"[UIGenerator] ✓ 设置根组件: {components[0]['name']}")
+                else:
+                    unreal.log_error("[UIGenerator] ❌ 设置根组件失败")
+                    return False
             
             return True
             
@@ -197,8 +234,8 @@ class WidgetBlueprintGenerator:
             self._print_manual_guide()
             return True  # 仍返回 True，允许手动完成
     
-    def _add_widget_recursive(self, widget_tree, comp_def: Dict, parent_widget) -> Optional[Any]:
-        """递归添加 Widget"""
+    def _add_widget_recursive(self, comp_def: Dict, parent_widget) -> Optional[Any]:
+        """递归添加 Widget（使用 C++ Bridge）"""
         comp_name = comp_def['name']
         comp_type = comp_def['type']
         
@@ -209,20 +246,25 @@ class WidgetBlueprintGenerator:
             return None
         
         try:
-            # 查找 Widget 类
-            widget_class = unreal.find_class(f"/Script/UMG.{ue_class_name}")
-            if not widget_class:
-                # 尝试 CommonUI
-                widget_class = unreal.find_class(f"/Script/CommonUI.{ue_class_name}")
+            # 使用 C++ Bridge 创建特定类型的 Widget
+            widget = None
             
-            if not widget_class:
-                unreal.log_warning(f"[UIGenerator] ⚠️ 找不到 Widget 类: {ue_class_name}")
-                return None
+            if comp_type == "CanvasPanel":
+                widget = self.lib.create_canvas_panel(self.widget_bp, comp_name)
+            elif comp_type == "ProgressBar":
+                widget = self.lib.create_progress_bar(self.widget_bp, comp_name)
+            elif comp_type == "TextBlock":
+                widget = self.lib.create_text_block(self.widget_bp, comp_name)
+            elif comp_type == "Image":
+                widget = self.lib.create_image(self.widget_bp, comp_name)
+            else:
+                # 使用通用创建方法
+                widget_class = self._find_widget_class(ue_class_name)
+                if widget_class:
+                    widget = self.lib.create_widget(self.widget_bp, widget_class, comp_name)
             
-            # 创建 Widget
-            widget = widget_tree.construct_widget(widget_class, comp_name)
             if not widget:
-                unreal.log_warning(f"[UIGenerator] ⚠️ 创建 Widget 失败: {comp_name}")
+                unreal.log_warning(f"[UIGenerator] ⚠️ 创建 Widget 失败: {comp_name} ({comp_type})")
                 return None
             
             self.created_widgets[comp_name] = widget
@@ -230,54 +272,87 @@ class WidgetBlueprintGenerator:
             
             # 如果有父组件，添加到父组件
             if parent_widget:
-                try:
-                    # 尝试作为子组件添加
-                    if hasattr(parent_widget, 'add_child'):
-                        parent_widget.add_child(widget)
-                    elif hasattr(parent_widget, 'add_child_to_overlay'):
-                        parent_widget.add_child_to_overlay(widget)
-                    elif hasattr(parent_widget, 'add_child_to_canvas'):
-                        slot = parent_widget.add_child_to_canvas(widget)
-                        if slot:
-                            # 设置 Canvas 默认布局
-                            slot.set_editor_property("anchors", unreal.Anchors(
-                                minimum=unreal.Vector2D(0.5, 0.5),
-                                maximum=unreal.Vector2D(0.5, 0.5)
-                            ))
-                except Exception as add_e:
-                    unreal.log_warning(f"[UIGenerator] ⚠️ 添加到父组件失败: {add_e}")
+                self._add_to_parent(parent_widget, widget, comp_def)
             
             # 递归处理子组件
             if 'children' in comp_def:
                 for child_def in comp_def['children']:
-                    self._add_widget_recursive(widget_tree, child_def, widget)
+                    self._add_widget_recursive(child_def, widget)
             
             return widget
             
         except Exception as e:
             unreal.log_warning(f"[UIGenerator] ⚠️ 处理组件 {comp_name} 时出错: {e}")
+            import traceback
+            unreal.log_warning(traceback.format_exc())
             return None
     
-    def _compile_and_save(self) -> bool:
-        """编译并保存 Blueprint"""
+    def _find_widget_class(self, class_name: str):
+        """查找 Widget 类"""
+        # 尝试 UMG 模块
+        widget_class = getattr(unreal, class_name, None)
+        if widget_class:
+            return widget_class
+        
+        # 尝试 CommonUI 模块
+        common_class_name = f"Common{class_name}"
+        widget_class = getattr(unreal, common_class_name, None)
+        if widget_class:
+            return widget_class
+        
+        return None
+    
+    def _add_to_parent(self, parent_widget, child_widget, comp_def: Dict):
+        """将子控件添加到父控件"""
+        # 获取布局属性
+        position = comp_def.get('position', {'x': 0, 'y': 0})
+        size = comp_def.get('size', {'width': 100, 'height': 32})
+        
+        pos_vec = unreal.Vector2D(position.get('x', 0), position.get('y', 0))
+        size_vec = unreal.Vector2D(size.get('width', 100), size.get('height', 32))
+        
+        # 检查父控件类型
+        parent_type = type(parent_widget).__name__
+        
         try:
-            asset_path = f"{self.blueprint_path}/WBP_{self.name}"
-            
+            if parent_type == "CanvasPanel":
+                # 使用 C++ Bridge 添加到 Canvas
+                success = self.lib.add_child_to_canvas(parent_widget, child_widget, pos_vec, size_vec)
+                if not success:
+                    # 回退到直接方法
+                    self.lib.add_child_to_panel(parent_widget, child_widget)
+            else:
+                # 其他面板类型
+                self.lib.add_child_to_panel(parent_widget, child_widget)
+        except Exception as e:
+            unreal.log_warning(f"[UIGenerator] ⚠️ 添加子控件失败: {e}")
+    
+    def _compile_and_save(self) -> bool:
+        """编译并保存 Blueprint（使用 C++ Bridge）"""
+        try:
             # 标记为脏
-            self.widget_bp.modify()
+            self.lib.mark_dirty(self.widget_bp)
             
             # 编译 Blueprint
-            unreal.BlueprintEditorLibrary.compile_blueprint(self.widget_bp)
-            unreal.log("[UIGenerator] ✓ Blueprint 编译完成")
+            try:
+                unreal.BlueprintEditorLibrary.compile_blueprint(self.widget_bp)
+                unreal.log("[UIGenerator] ✓ Blueprint 编译完成")
+            except Exception as compile_e:
+                unreal.log_warning(f"[UIGenerator] ⚠️ 编译警告: {compile_e}")
             
-            # 保存
-            unreal.EditorAssetLibrary.save_asset(asset_path)
-            unreal.log("[UIGenerator] ✓ 资产已保存")
-            
-            return True
+            # 使用 C++ Bridge 保存
+            success = self.lib.save_widget_blueprint(self.widget_bp)
+            if success:
+                unreal.log("[UIGenerator] ✓ 资产已保存")
+                return True
+            else:
+                unreal.log_error("[UIGenerator] ❌ 保存失败")
+                return False
             
         except Exception as e:
             unreal.log_error(f"[UIGenerator] ❌ 编译/保存失败: {e}")
+            import traceback
+            unreal.log_error(traceback.format_exc())
             return False
     
     def _print_manual_guide(self):

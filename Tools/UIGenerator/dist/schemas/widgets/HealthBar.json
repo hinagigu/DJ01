@@ -1,0 +1,108 @@
+{
+  "$schema": "../ui_schema_v1.json",
+  "name": "DJ01HealthBar",
+  "description": "玩家血条 UI - 显示当前生命值和最大生命值（通过 BindingSet 自动同步 GAS 属性）",
+  "author": "AI Generator",
+  "version": "2.0.0",
+  
+  "parent_class": "CommonUserWidget",
+  "output_path": "Source/DJ01/UI/Generated",
+  "blueprint_path": "/Game/UI/HUD",
+  
+  "binding_set": {
+    "name": "ResourceHUD",
+    "comment": "使用 BindingSet 自动同步 GAS 属性到 UI",
+    "component_bindings": [
+      {
+        "source": "CurrentHealth",
+        "component": "HealthBar",
+        "property": "Percent",
+        "transform": "HealthToPercent",
+        "comment": "CurrentHealth -> 进度条百分比"
+      },
+      {
+        "source": "CurrentHealth",
+        "component": "HealthText",
+        "property": "Text",
+        "transform": "HealthToText",
+        "comment": "CurrentHealth/MaxHealth -> 文字显示"
+      }
+    ]
+  },
+  
+  "components": [
+    {
+      "name": "RootCanvas",
+      "type": "CanvasPanel",
+      "children": [
+        {
+          "name": "ContentBox",
+          "type": "HorizontalBox",
+          "children": [
+            {
+              "name": "HealthIcon",
+              "type": "Image",
+              "optional": true,
+              "comment": "血条图标"
+            },
+            {
+              "name": "BarContainer",
+              "type": "SizeBox",
+              "width_override": 200,
+              "height_override": 24,
+              "children": [
+                {
+                  "name": "HealthBar",
+                  "type": "ProgressBar",
+                  "comment": "血量进度条 - 由 BindingSet 自动更新"
+                }
+              ]
+            },
+            {
+              "name": "HealthText",
+              "type": "TextBlock",
+              "comment": "血量文字 - 由 BindingSet 自动更新"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  
+  "properties": [
+    {
+      "name": "HealthPercent",
+      "type": "float",
+      "category": "Health",
+      "default": 1.0,
+      "description": "当前血量百分比 0-1（派生自 CurrentHealth/MaxHealth）"
+    },
+    {
+      "name": "HealthDisplayText",
+      "type": "FText",
+      "category": "Health",
+      "description": "血量显示文本（派生自 CurrentHealth/MaxHealth）"
+    }
+  ],
+  
+  "functions": [
+    {
+      "name": "PlayDamageAnimation",
+      "description": "播放受伤动画",
+      "blueprint_implementable": true,
+      "comment": "蓝图中实现具体动画效果"
+    }
+  ],
+  
+  "events": [
+    {
+      "name": "OnHealthChanged",
+      "description": "血量变化时触发",
+      "parameters": [
+        {"name": "OldHealth", "type": "float"},
+        {"name": "NewHealth", "type": "float"}
+      ],
+      "blueprint_assignable": true
+    }
+  ]
+}

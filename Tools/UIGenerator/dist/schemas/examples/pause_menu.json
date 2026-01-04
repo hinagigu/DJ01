@@ -1,0 +1,97 @@
+{
+  "$schema": "../ui_schema_v1.json",
+  "name": "DJ01PauseMenu",
+  "description": "游戏暂停菜单",
+  "parent_class": "CommonActivatableWidget",
+  "output_path": "Source/DJ01/UI/Generated",
+  "blueprint_path": "/Game/UI/Menus",
+  
+  "layer": "UI.Layer.Menu",
+  
+  "input_config": {
+    "mode": "Menu",
+    "mouse_capture": "NoCapture",
+    "hide_cursor_during_capture": false
+  },
+  
+  "activation": {
+    "auto_activate": true,
+    "is_back_handler": true,
+    "is_back_action_displayed_in_action_bar": true
+  },
+  
+  "components": [
+    {
+      "name": "RootCanvas",
+      "type": "CanvasPanel",
+      "children": [
+        {
+          "name": "BackgroundBlur",
+          "type": "Border",
+          "comment": "背景模糊/遮罩"
+        },
+        {
+          "name": "MenuPanel",
+          "type": "VerticalBox",
+          "children": [
+            {
+              "name": "TitleText",
+              "type": "TextBlock",
+              "bind_text": "MenuTitle",
+              "comment": "菜单标题"
+            },
+            {
+              "name": "ButtonContainer",
+              "type": "VerticalBox",
+              "children": [
+                { "name": "ResumeButton", "type": "Button", "comment": "继续游戏" },
+                { "name": "SettingsButton", "type": "Button", "comment": "设置" },
+                { "name": "MainMenuButton", "type": "Button", "comment": "返回主菜单" },
+                { "name": "QuitButton", "type": "Button", "comment": "退出游戏" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  
+  "properties": [
+    {
+      "name": "MenuTitle",
+      "type": "FText",
+      "category": "Display",
+      "description": "菜单标题文本"
+    }
+  ],
+  
+  "functions": [
+    {
+      "name": "OnResumeClicked",
+      "description": "点击继续游戏",
+      "blueprint_implementable": true
+    },
+    {
+      "name": "OnSettingsClicked",
+      "description": "点击设置",
+      "blueprint_implementable": true
+    },
+    {
+      "name": "OnMainMenuClicked",
+      "description": "点击返回主菜单",
+      "blueprint_implementable": true
+    },
+    {
+      "name": "OnQuitClicked",
+      "description": "点击退出游戏",
+      "blueprint_implementable": true
+    }
+  ],
+  
+  "events": [
+    {
+      "name": "OnMenuClosed",
+      "description": "菜单关闭事件"
+    }
+  ]
+}

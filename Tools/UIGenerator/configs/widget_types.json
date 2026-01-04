@@ -1,0 +1,373 @@
+{
+  "$comment": "UI Generator 组件类型配置",
+  
+  "common_base_classes": {
+    "UserWidget": {
+      "ue_class": "UUserWidget",
+      "header": "Blueprint/UserWidget.h",
+      "description": "基础 UserWidget"
+    },
+    "CommonUserWidget": {
+      "ue_class": "UCommonUserWidget",
+      "header": "CommonUserWidget.h",
+      "description": "CommonUI 基础 Widget"
+    },
+    "CommonActivatableWidget": {
+      "ue_class": "UCommonActivatableWidget",
+      "header": "CommonActivatableWidget.h",
+      "description": "可激活的 Widget，支持 InputConfig 和生命周期",
+      "supports_input_config": true,
+      "supports_activation": true
+    },
+    "CommonActivatableStackWidget": {
+      "ue_class": "UCommonActivatableWidget",
+      "header": "CommonActivatableWidget.h",
+      "description": "栈式可激活 Widget",
+      "supports_input_config": true,
+      "supports_activation": true
+    }
+  },
+  
+  "widget_types": {
+    "CanvasPanel": {
+      "ue_class": "UCanvasPanel",
+      "header": "Components/CanvasPanel.h",
+      "is_panel": true,
+      "description": "画布面板"
+    },
+    "VerticalBox": {
+      "ue_class": "UVerticalBox",
+      "header": "Components/VerticalBox.h",
+      "is_panel": true,
+      "description": "垂直布局"
+    },
+    "HorizontalBox": {
+      "ue_class": "UHorizontalBox",
+      "header": "Components/HorizontalBox.h",
+      "is_panel": true,
+      "description": "水平布局"
+    },
+    "Overlay": {
+      "ue_class": "UOverlay",
+      "header": "Components/Overlay.h",
+      "is_panel": true,
+      "description": "层叠面板"
+    },
+    "SizeBox": {
+      "ue_class": "USizeBox",
+      "header": "Components/SizeBox.h",
+      "is_panel": true,
+      "description": "尺寸盒"
+    },
+    "ScaleBox": {
+      "ue_class": "UScaleBox",
+      "header": "Components/ScaleBox.h",
+      "is_panel": true,
+      "description": "缩放盒"
+    },
+    "ScrollBox": {
+      "ue_class": "UScrollBox",
+      "header": "Components/ScrollBox.h",
+      "is_panel": true,
+      "description": "滚动盒"
+    },
+    "WidgetSwitcher": {
+      "ue_class": "UWidgetSwitcher",
+      "header": "Components/WidgetSwitcher.h",
+      "is_panel": true,
+      "description": "Widget 切换器"
+    },
+    "Border": {
+      "ue_class": "UBorder",
+      "header": "Components/Border.h",
+      "is_panel": true,
+      "description": "边框"
+    },
+    "GridPanel": {
+      "ue_class": "UGridPanel",
+      "header": "Components/GridPanel.h",
+      "is_panel": true,
+      "description": "网格面板"
+    },
+    "UniformGridPanel": {
+      "ue_class": "UUniformGridPanel",
+      "header": "Components/UniformGridPanel.h",
+      "is_panel": true,
+      "description": "均匀网格面板"
+    },
+    "WrapBox": {
+      "ue_class": "UWrapBox",
+      "header": "Components/WrapBox.h",
+      "is_panel": true,
+      "description": "自动换行盒"
+    },
+    
+    "TextBlock": {
+      "ue_class": "UTextBlock",
+      "header": "Components/TextBlock.h",
+      "is_panel": false,
+      "description": "文本块"
+    },
+    "RichTextBlock": {
+      "ue_class": "URichTextBlock",
+      "header": "Components/RichTextBlock.h",
+      "is_panel": false,
+      "description": "富文本块"
+    },
+    "Image": {
+      "ue_class": "UImage",
+      "header": "Components/Image.h",
+      "is_panel": false,
+      "description": "图片"
+    },
+    "ProgressBar": {
+      "ue_class": "UProgressBar",
+      "header": "Components/ProgressBar.h",
+      "is_panel": false,
+      "description": "进度条"
+    },
+    "Slider": {
+      "ue_class": "USlider",
+      "header": "Components/Slider.h",
+      "is_panel": false,
+      "description": "滑块"
+    },
+    "Button": {
+      "ue_class": "UButton",
+      "header": "Components/Button.h",
+      "is_panel": true,
+      "description": "按钮"
+    },
+    "CheckBox": {
+      "ue_class": "UCheckBox",
+      "header": "Components/CheckBox.h",
+      "is_panel": false,
+      "description": "复选框"
+    },
+    "EditableText": {
+      "ue_class": "UEditableText",
+      "header": "Components/EditableText.h",
+      "is_panel": false,
+      "description": "可编辑文本"
+    },
+    "EditableTextBox": {
+      "ue_class": "UEditableTextBox",
+      "header": "Components/EditableTextBox.h",
+      "is_panel": false,
+      "description": "可编辑文本框"
+    },
+    "MultiLineEditableText": {
+      "ue_class": "UMultiLineEditableText",
+      "header": "Components/MultiLineEditableText.h",
+      "is_panel": false,
+      "description": "多行可编辑文本"
+    },
+    "ComboBox": {
+      "ue_class": "UComboBoxString",
+      "header": "Components/ComboBoxString.h",
+      "is_panel": false,
+      "description": "下拉框"
+    },
+    "SpinBox": {
+      "ue_class": "USpinBox",
+      "header": "Components/SpinBox.h",
+      "is_panel": false,
+      "description": "数值调节框"
+    },
+    "Spacer": {
+      "ue_class": "USpacer",
+      "header": "Components/Spacer.h",
+      "is_panel": false,
+      "description": "间隔"
+    },
+    "Throbber": {
+      "ue_class": "UThrobber",
+      "header": "Components/Throbber.h",
+      "is_panel": false,
+      "description": "加载动画"
+    },
+    "CircularThrobber": {
+      "ue_class": "UCircularThrobber",
+      "header": "Components/CircularThrobber.h",
+      "is_panel": false,
+      "description": "圆形加载动画"
+    },
+    "ListView": {
+      "ue_class": "UListView",
+      "header": "Components/ListView.h",
+      "is_panel": false,
+      "description": "列表视图"
+    },
+    "TileView": {
+      "ue_class": "UTileView",
+      "header": "Components/TileView.h",
+      "is_panel": false,
+      "description": "瓦片视图"
+    },
+    "TreeView": {
+      "ue_class": "UTreeView",
+      "header": "Components/TreeView.h",
+      "is_panel": false,
+      "description": "树视图"
+    },
+    
+    "CommonTextBlock": {
+      "ue_class": "UCommonTextBlock",
+      "header": "CommonTextBlock.h",
+      "is_panel": false,
+      "is_common_ui": true,
+      "description": "CommonUI 文本块"
+    },
+    "CommonRichTextBlock": {
+      "ue_class": "UCommonRichTextBlock",
+      "header": "CommonRichTextBlock.h",
+      "is_panel": false,
+      "is_common_ui": true,
+      "description": "CommonUI 富文本块"
+    },
+    "CommonButtonBase": {
+      "ue_class": "UCommonButtonBase",
+      "header": "CommonButtonBase.h",
+      "is_panel": false,
+      "is_common_ui": true,
+      "description": "CommonUI 按钮基类"
+    },
+    "CommonActionWidget": {
+      "ue_class": "UCommonActionWidget",
+      "header": "CommonActionWidget.h",
+      "is_panel": false,
+      "is_common_ui": true,
+      "description": "CommonUI 操作提示 Widget"
+    },
+    "CommonBorder": {
+      "ue_class": "UCommonBorder",
+      "header": "CommonBorder.h",
+      "is_panel": true,
+      "is_common_ui": true,
+      "description": "CommonUI 边框"
+    },
+    "CommonVisibilitySwitcher": {
+      "ue_class": "UCommonVisibilitySwitcher",
+      "header": "CommonVisibilitySwitcher.h",
+      "is_panel": true,
+      "is_common_ui": true,
+      "description": "CommonUI 可见性切换器"
+    },
+    "CommonLazyImage": {
+      "ue_class": "UCommonLazyImage",
+      "header": "CommonLazyImage.h",
+      "is_panel": false,
+      "is_common_ui": true,
+      "description": "CommonUI 延迟加载图片"
+    },
+    "CommonNumericTextBlock": {
+      "ue_class": "UCommonNumericTextBlock",
+      "header": "CommonNumericTextBlock.h",
+      "is_panel": false,
+      "is_common_ui": true,
+      "description": "CommonUI 数字文本块"
+    },
+    "CommonActivatableWidgetContainer": {
+      "ue_class": "UCommonActivatableWidgetContainerBase",
+      "header": "Widgets/CommonActivatableWidgetContainerBase.h",
+      "is_panel": true,
+      "is_common_ui": true,
+      "description": "CommonUI 可激活 Widget 容器"
+    },
+    "CommonActivatableWidgetStack": {
+      "ue_class": "UCommonActivatableWidgetStack",
+      "header": "Widgets/CommonActivatableWidgetContainerBase.h",
+      "is_panel": true,
+      "is_common_ui": true,
+      "description": "CommonUI 可激活 Widget 栈"
+    },
+    "CommonActivatableWidgetQueue": {
+      "ue_class": "UCommonActivatableWidgetQueue",
+      "header": "Widgets/CommonActivatableWidgetContainerBase.h",
+      "is_panel": true,
+      "is_common_ui": true,
+      "description": "CommonUI 可激活 Widget 队列"
+    }
+  },
+  
+  "property_types": {
+    "float": {
+      "cpp_type": "float",
+      "default_value": "0.0f"
+    },
+    "int32": {
+      "cpp_type": "int32",
+      "default_value": "0"
+    },
+    "bool": {
+      "cpp_type": "bool",
+      "default_value": "false"
+    },
+    "FText": {
+      "cpp_type": "FText",
+      "default_value": "FText::GetEmpty()"
+    },
+    "FString": {
+      "cpp_type": "FString",
+      "default_value": "TEXT(\"\")"
+    },
+    "FLinearColor": {
+      "cpp_type": "FLinearColor",
+      "default_value": "FLinearColor::White"
+    },
+    "FSlateColor": {
+      "cpp_type": "FSlateColor",
+      "default_value": "FSlateColor()"
+    },
+    "FSlateBrush": {
+      "cpp_type": "FSlateBrush",
+      "default_value": "FSlateBrush()"
+    },
+    "UTexture2D*": {
+      "cpp_type": "TObjectPtr<UTexture2D>",
+      "default_value": "nullptr"
+    },
+    "UMaterialInterface*": {
+      "cpp_type": "TObjectPtr<UMaterialInterface>",
+      "default_value": "nullptr"
+    }
+  },
+  
+  "input_modes": {
+    "Game": {
+      "enum_value": "ECommonInputMode::Game",
+      "description": "游戏模式 - 输入直接传递给游戏"
+    },
+    "Menu": {
+      "enum_value": "ECommonInputMode::Menu",
+      "description": "菜单模式 - 输入传递给 UI"
+    },
+    "All": {
+      "enum_value": "ECommonInputMode::All",
+      "description": "同时接收游戏和菜单输入"
+    }
+  },
+  
+  "mouse_capture_modes": {
+    "NoCapture": {
+      "enum_value": "EMouseCaptureMode::NoCapture",
+      "description": "不捕获鼠标"
+    },
+    "CapturePermanently": {
+      "enum_value": "EMouseCaptureMode::CapturePermanently",
+      "description": "永久捕获鼠标"
+    },
+    "CapturePermanentlyIncludingInitialMouseDown": {
+      "enum_value": "EMouseCaptureMode::CapturePermanentlyIncludingInitialMouseDown",
+      "description": "永久捕获鼠标（包含初始点击）"
+    },
+    "CaptureDuringMouseDown": {
+      "enum_value": "EMouseCaptureMode::CaptureDuringMouseDown",
+      "description": "按下时捕获鼠标"
+    },
+    "CaptureDuringRightMouseDown": {
+      "enum_value": "EMouseCaptureMode::CaptureDuringRightMouseDown",
+      "description": "右键按下时捕获鼠标"
+    }
+  }
+}
