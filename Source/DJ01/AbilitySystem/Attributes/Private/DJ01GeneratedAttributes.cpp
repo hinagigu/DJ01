@@ -1,7 +1,7 @@
 // ============================================================
 // DJ01 Generated Attributes
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-30 20:12:09
+// 生成时间: 2026-01-05 10:24:22
 // ============================================================
 
 #include "DJ01/AbilitySystem/Attributes/Public/DJ01GeneratedAttributes.h"
@@ -40,6 +40,9 @@ UDJ01StatSet::UDJ01StatSet()
     InitBaseAttackSpeed(1.0f);
     InitFlatAttackSpeed(0.0f);
     InitPercentAttackSpeed(0.0f);
+    InitBaseHealingBonus(0.0f);
+    InitFlatHealingBonus(0.0f);
+    InitPercentHealingBonus(0.0f);
 }
 
 void UDJ01StatSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -52,6 +55,7 @@ void UDJ01StatSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLife
     REGISTER_LAYERED_ATTRIBUTE_REPLICATION(UDJ01StatSet, CriticalRate)
     REGISTER_LAYERED_ATTRIBUTE_REPLICATION(UDJ01StatSet, CriticalDamage)
     REGISTER_LAYERED_ATTRIBUTE_REPLICATION(UDJ01StatSet, AttackSpeed)
+    REGISTER_LAYERED_ATTRIBUTE_REPLICATION(UDJ01StatSet, HealingBonus)
 }
 
 IMPLEMENT_LAYERED_ATTRIBUTE_ONREP(UDJ01StatSet, AttackPower)
@@ -61,6 +65,7 @@ IMPLEMENT_LAYERED_ATTRIBUTE_ONREP(UDJ01StatSet, MagicDefense)
 IMPLEMENT_LAYERED_ATTRIBUTE_ONREP(UDJ01StatSet, CriticalRate)
 IMPLEMENT_LAYERED_ATTRIBUTE_ONREP(UDJ01StatSet, CriticalDamage)
 IMPLEMENT_LAYERED_ATTRIBUTE_ONREP(UDJ01StatSet, AttackSpeed)
+IMPLEMENT_LAYERED_ATTRIBUTE_ONREP(UDJ01StatSet, HealingBonus)
 
 
 // ##########################################################
@@ -203,6 +208,7 @@ void UDJ01ResourceSet::PostAttributeChange(const FGameplayAttribute& Attribute, 
 UDJ01MetaAttributes::UDJ01MetaAttributes()
 {
     InitDamageIncoming(0.0f);
+    InitHealIncoming(0.0f);
 }
 
 void UDJ01MetaAttributes::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -236,6 +242,23 @@ void UDJ01MetaAttributes::PostGameplayEffectExecute(const FGameplayEffectModCall
 
         // 重置 Meta 属性
         SetDamageIncoming(0.0f);
+    }
+
+    // ===== Meta 属性: HealIncoming =====
+    if (Data.EvaluatedData.Attribute == GetHealIncomingAttribute())
+    {
+        // 获取 Meta 属性的值
+        const float LocalValue = GetHealIncoming();
+
+        // TODO: 在这里处理 HealIncoming 的逻辑
+        // 示例: 将伤害应用到 Health
+        // if (LocalValue != 0.0f)
+        // {
+        //     SetHealth(GetHealth() + LocalValue);
+        // }
+
+        // 重置 Meta 属性
+        SetHealIncoming(0.0f);
     }
 
 }

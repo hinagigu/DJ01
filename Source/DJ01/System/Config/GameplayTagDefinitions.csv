@@ -1,4 +1,13 @@
 Category,Tag,VariableName,Description
+Combat,Combat.State.Attacking,Combat_State_Attacking,攻击状态 - 角色正在进行攻击
+Combat,Combat.Combo.ATK1,Combat_Combo_ATK1,连招第1段
+Combat,Combat.Combo.ATK2,Combat_Combo_ATK2,连招第2段
+Combat,Combat.Combo.ATK3,Combat_Combo_ATK3,连招第3段
+Combat,Combat.State.Blocking,Combat_State_Blocking,格挡状态 - 角色正在格挡
+Combat,Combat.State.Dodging,Combat_State_Dodging,闪避状态 - 角色正在闪避
+Combat,Combat.Input.LightAttack,Combat_Input_LightAttack,输入标签 - 轻攻击
+Combat,Combat.Input.HeavyAttack,Combat_Input_HeavyAttack,输入标签 - 重攻击
+Ability,Ability.Weapon.Katana.LightAttack,Ability_Weapon_Katana_LightAttack,技能标签 - 太刀轻攻击连招
 InitState,InitState.Spawned,InitState_Spawned,1: Actor/component has initially spawned and can be extended
 InitState,InitState.DataAvailable,InitState_DataAvailable,2: All required data has been loaded/replicated and is ready for initialization
 InitState,InitState.DataInitialized,InitState_DataInitialized,3: The available data has been initialized for this actor/component but not ready for full gameplay
@@ -16,14 +25,14 @@ Ability,Ability.Attack.Heavy,Ability_Attack_Heavy,Heavy attack ability
 Ability,Ability.Dodge,Ability_Dodge,Dodge/roll ability
 Ability,Ability.Block,Ability_Block,Block/parry ability
 Ability,Ability.Test.CastStone,Ability_Test_CastStone,测试技能 扔个石头
-Event,Event.Animation.ComboWindow,Event_Animation_ComboWindow,Combo window opened - can chain to next attack
-Event,Event.Animation.ComboWindowEnd,Event_Animation_ComboWindowEnd,Combo window closed
 Event,Event.Animation.DamageFrame,Event_Animation_DamageFrame,Damage frame - perform hit detection
 Status,Status.Death,Status_Death,Target is dead
 Status,Status.AutoRunning,Status_AutoRunning,Character is auto-running
 Status,Status.Movement.Grounded,Status_Movement_Grounded,Character is on the ground
 Status,Status.Movement.InAir,Status_Movement_InAir,Character is in the air (jumping/falling)
+Status,Status.Movement.Jumping,Status_Movement_Jumping,Character has actively jumped (not falling)
 Status,Status.Movement.Sprinting,Status_Movement_Sprinting,Character is sprinting
+Status,Status.Movement.Crouching,Status_Movement_Crouching,Character is crouching
 Status,Status.Action.Attacking,Status_Action_Attacking,Character is performing an attack
 Status,Status.Action.Blocking,Status_Action_Blocking,Character is blocking
 Status,Status.Action.Dodging,Status_Action_Dodging,Character is dodging/rolling
@@ -34,6 +43,8 @@ Status,Status.Condition.Silenced,Status_Condition_Silenced,Character is silenced
 Status,Status.Condition.Slowed,Status_Condition_Slowed,Character is slowed - reduced movement speed
 Status,Status.Condition.Hasted,Status_Condition_Hasted,Character is hasted - increased movement speed
 Status,Status.Immunity.Damage,Status_Immunity_Damage,Character will immunity damage
+Status,Status.Immunity.Heal,Status_Immunity_Heal,Character will immunity healing effects
+Status,Status.Debuff.GrievousWounds,Status_Debuff_GrievousWounds,Grievous Wounds - reduces healing received by 50%
 Damage,Damage.Type.Physical,Damage_Type_Physical,Physical damage - reduced by Defense
 Damage,Damage.Type.Magical,Damage_Type_Magical,Magical damage - reduced by MagicDefense
 Damage,Damage.Type.True,Damage_Type_True,True damage - ignores all defenses
@@ -54,10 +65,10 @@ Weakness,Weakness.Element.Dark,Weakness_Element_Dark,Weak to Dark - takes +50% d
 GameplayCue,GameplayCue.Damage,GameplayCue_Damage,Generic damage feedback cue
 GameplayCue,GameplayCue.Damage.Weakness,GameplayCue_Damage_Weakness,Weakness hit damage feedback cue (extra visual/audio)
 GameplayCue,GameplayCue.Heal,GameplayCue_Heal,Heal feedback cue
-State,State.Combo.WindowOpen,State_Combo_WindowOpen,Combo window is currently open - can chain to next attack
-State,State.Combo.Chain.Light,State_Combo_Chain_Light,Currently in light attack combo chain
-State,State.Combo.Chain.Heavy,State_Combo_Chain_Heavy,Currently in heavy attack combo chain
-State,State.Combo.Chain.Special,State_Combo_Chain_Special,Currently in special attack combo chain
 Cheat,Cheat.GodMode,Cheat_GodMode,God mode - makes the player invincible
 Cheat,Cheat.UnlimitedHealth,Cheat_UnlimitedHealth,Unlimited health - health cannot drop below 1
 Cooldown,Cooldown.Skill.CastStone,Cooldown_Skill_CastStone,Caststone的CD
+SetByCaller,SetByCaller.Damage.Raw,SetByCaller_Damage_Raw,Pre-calculated raw damage from ability
+SetByCaller,SetByCaller.Damage.Type,SetByCaller_Damage_Type,Damage type: 0=Physical 1=Magical 2=True
+SetByCaller,SetByCaller.Heal.Raw,SetByCaller_Heal_Raw,Pre-calculated raw healing from ability
+InputTag,InputTag.Attack.Light,InputTag_Attack_Light,轻攻击

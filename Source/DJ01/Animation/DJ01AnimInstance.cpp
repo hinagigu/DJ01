@@ -15,11 +15,41 @@
 UDJ01AnimInstance::UDJ01AnimInstance(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	// 仅从 Montage 提取 Root Motion
+	// 普通移动动画使用 CharacterMovement，攻击/技能 Montage 使用 Root Motion
+	RootMotionMode = ERootMotionMode::RootMotionFromMontagesOnly;
+}
+
+void UDJ01AnimInstance::TryInitializeGASBindings()
+{
+	if (bGASBindingsInitialized)
+	{
+		return;
+	}
+
+	AActor* OwningActor = GetOwningActor();
+	if (!OwningActor)
+	{
+		return;
+	}
+
+	UAbilitySystemComponent* ASC = UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(OwningActor);
+	if (!ASC)
+	{
+		return; // ASC 还没准备好，下次再试
+	}
+
+	InitializeWithAbilitySystem(ASC);
+	bGASBindingsInitialized = true;
 }
 
 void UDJ01AnimInstance::InitializeWithAbilitySystem(UAbilitySystemComponent* ASC)
 {
 	check(ASC);
+
+	// 初始化 BindingSet - 自动注册 GAS 监听并同步初始值
+	// 注意：宏内部已包含安全检查，AttributeSet 不存在时会使用默认值
+	InitBindingSet_AnimState(ASC);
 
 	// 解析属性引用（此时类信息已完整）
 	GameplayTagPropertyMap.ResolveProperties(GetClass());
@@ -27,7 +57,7 @@ void UDJ01AnimInstance::InitializeWithAbilitySystem(UAbilitySystemComponent* ASC
 	// 初始化映射
 	GameplayTagPropertyMap.Initialize(this, ASC);
 	
-	UE_LOG(LogTemp, Log, TEXT("DJ01AnimInstance: Initialized %d tag-to-property mappings"), 
+	UE_LOG(LogTemp, Log, TEXT("DJ01AnimInstance: Initialized AnimState BindingSet + %d tag-to-property mappings"), 
 		GameplayTagPropertyMap.GetMappingCount());
 }
 
@@ -46,18 +76,19 @@ void UDJ01AnimInstance::NativeInitializeAnimation()
 {
 	Super::NativeInitializeAnimation();
 
-	if (AActor* OwningActor = GetOwningActor())
-	{
-		if (UAbilitySystemComponent* ASC = UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(OwningActor))
-		{
-			InitializeWithAbilitySystem(ASC);
-		}
-	}
+	// 尝试初始化 GAS 绑定（可能会失败，因为 ASC 可能还没准备好）
+	TryInitializeGASBindings();
 }
 
 void UDJ01AnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {
 	Super::NativeUpdateAnimation(DeltaSeconds);
+
+	// 懒初始化：如果之前初始化失败，在这里重试
+	if (!bGASBindingsInitialized)
+	{
+		TryInitializeGASBindings();
+	}
 
 	const ADJ01Character* Character = Cast<ADJ01Character>(GetOwningActor());
 	if (!Character)
@@ -78,8 +109,35 @@ void UDJ01AnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	// 移动速度 (XY平面)
 	GroundSpeed = CharMoveComp->Velocity.Size2D();
 	
+	// 移动方向 (相对于角色朝向)
+	if (GroundSpeed > 1.0f)
+	{
+		const FVector Velocity = CharMoveComp->Velocity;
+		const FRotator ActorRotation = Character->GetActorRotation();
+		MoveDirection = CalculateDirection(Velocity, ActorRotation);
+	}
+	// 速度太低时保持上一帧的方向，避免抖动
+	
 	//========================================
-	// 逻辑状态 - 由 GameplayTagPropertyMap 自动处理
-	// 无需在此手动更新，Tag 变化时会自动同步到对应变量
+	// 空中物理状态
+	//========================================
+	
+	const bool bWasFalling = bIsFalling;
+	bIsFalling = CharMoveComp->IsFalling();
+	
+	// 空中计时
+	if (bIsFalling)
+	{
+		TimeInAir += DeltaSeconds;
+	}
+	else if (bWasFalling)
+	{
+		// 刚落地时重置
+		TimeInAir = 0.0f;
+	}
+	
+	//========================================
+	// 逻辑状态 - 由 BindingSet 自动处理
+	// bHasJumped, bIsInAir 等由 GAS Tag 变化时自动同步
 	//========================================
 }

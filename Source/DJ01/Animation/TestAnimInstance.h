@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "DJ01/AbilitySystem/Attributes/BindingSets/Generated/BindingSets.h"
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
 #include "TestAnimInstance.generated.h"
@@ -18,6 +19,12 @@ UCLASS(Config = Game)
 class DJ01_API UTestAnimInstance : public UAnimInstance
 {
 	GENERATED_BODY()
+
+
+
+
+
+
 
 public:
 

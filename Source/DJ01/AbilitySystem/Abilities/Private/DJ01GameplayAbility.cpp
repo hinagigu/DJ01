@@ -32,7 +32,7 @@
 }
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_ABILITY_SIMPLE_FAILURE_MESSAGE, "Ability.UserFacingSimpleActivateFail.Message");
-UE_DEFINE_GAMEPLAY_TAG(TAG_ABILITY_PLAY_MONTAGE_FAILURE_MESSAGE, "Ability.PlayMontageOnActivateFail.Message");
+UE_DEFINE_GAMEPLAY_TAG(TAG_ABILITY_PLAY_MONTAGE_FAILURE_MESSAGE, "A bility.PlayMontageOnActivateFail.Message");
 
 UDJ01GameplayAbility::UDJ01GameplayAbility(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -185,8 +185,15 @@ bool UDJ01GameplayAbility::CanActivateAbility(const FGameplayAbilitySpecHandle H
 
 	//@TODO Possibly remove after setting up tag relationships
 	UDJ01AbilitySystemComponent* DJ01ASC = CastChecked<UDJ01AbilitySystemComponent>(ActorInfo->AbilitySystemComponent.Get());
-	if (DJ01ASC->IsActivationGroupBlocked(ActivationGroup))
+	
+	// 调试日志
+	const bool bIsBlocked = DJ01ASC->IsActivationGroupBlocked(ActivationGroup);
+	UE_LOG(LogTemp, Warning, TEXT("[GAS] CanActivateAbility - %s, ActivationGroup: %d, IsBlocked: %s"), 
+		*GetName(), (int32)ActivationGroup, bIsBlocked ? TEXT("YES") : TEXT("NO"));
+	
+	if (bIsBlocked)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("[GAS] CanActivateAbility - %s BLOCKED!"), *GetName());
 		if (OptionalRelevantTags)
 		{
 			OptionalRelevantTags->AddTag(DJ01GameplayTags::Ability_ActivateFail_ActivationGroup);
@@ -228,10 +235,35 @@ void UDJ01GameplayAbility::OnRemoveAbility(const FGameplayAbilityActorInfo* Acto
 void UDJ01GameplayAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+
+	// ========== 启动阶段状态机 ==========
+	if (bUsePhaseStateMachine)
+	{
+		CreatePhaseStateMachine();
+		
+		if (PhaseStateMachine)
+		{
+			PhaseStateMachine->Start();
+		}
+	}
 }
 
 void UDJ01GameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled)
 {
+	// ========== 清理阶段状态机 ==========
+	if (PhaseStateMachine)
+	{
+		// 如果尚未结束，触发结束阶段
+		EDJ01AbilityPhase CurrentPhase = PhaseStateMachine->GetCurrentPhase();
+		if (CurrentPhase != EDJ01AbilityPhase::Ended && CurrentPhase != EDJ01AbilityPhase::None)
+		{
+			PhaseStateMachine->TransitionToPhase(EDJ01AbilityPhase::Ended, true);
+		}
+		
+		PhaseStateMachine->Shutdown();
+		PhaseStateMachine = nullptr;
+	}
+
 	ClearCameraMode();
 
 	Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
@@ -264,6 +296,8 @@ void UDJ01GameplayAbility::ApplyCost(const FGameplayAbilitySpecHandle Handle, co
 	Super::ApplyCost(Handle, ActorInfo, ActivationInfo);
 
 	check(ActorInfo);
+
+	// 效果触发现在由阶段状态机管理（OnPhaseEnter）
 
 	// Used to determine if the ability actually hit a target (as some costs are only spent on successful attempts)
 	auto DetermineIfAbilityHitTarget = [&]()
@@ -583,4 +617,259 @@ void UDJ01GameplayAbility::ClearCameraMode()
 	}
 }
 
+// ========== 阶段状态机实现 ==========
 
+void UDJ01GameplayAbility::CreatePhaseStateMachine()
+{
+	// 如果已经存在，先清理
+	if (PhaseStateMachine)
+	{
+		PhaseStateMachine->Shutdown();
+		PhaseStateMachine = nullptr;
+	}
+
+	// 创建状态机实例
+	PhaseStateMachine = NewObject<UDJ01AbilityPhaseStateMachine>(this);
+	PhaseStateMachine->Initialize(this, PhaseConfig);
+
+	// 绑定委托
+	PhaseStateMachine->OnPhaseEnter.AddDynamic(this, &UDJ01GameplayAbility::HandleStateMachinePhaseEnter);
+	PhaseStateMachine->OnPhaseExit.AddDynamic(this, &UDJ01GameplayAbility::HandleStateMachinePhaseExit);
+	PhaseStateMachine->OnFinished.AddDynamic(this, &UDJ01GameplayAbility::HandleStateMachineFinished);
+
+	UE_LOG(LogDJ01AbilitySystem, Verbose, 
+		TEXT("Ability [%s]: Created phase state machine"), *GetName());
+}
+
+EDJ01AbilityPhase UDJ01GameplayAbility::GetCurrentPhase() const
+{
+	if (PhaseStateMachine)
+	{
+		return PhaseStateMachine->GetCurrentPhase();
+	}
+	return EDJ01AbilityPhase::None;
+}
+
+bool UDJ01GameplayAbility::TransitionToPhase(EDJ01AbilityPhase NewPhase, bool bForce)
+{
+	if (!PhaseStateMachine)
+	{
+		UE_LOG(LogDJ01AbilitySystem, Warning, 
+			TEXT("Ability [%s]: Cannot transition phase - state machine not created"), *GetName());
+		return false;
+	}
+
+	return PhaseStateMachine->TransitionToPhase(NewPhase, bForce);
+}
+
+bool UDJ01GameplayAbility::CanCurrentPhaseBeInterrupted() const
+{
+	if (PhaseStateMachine)
+	{
+		return PhaseStateMachine->CanCurrentPhaseBeInterrupted();
+	}
+	return true; // 默认可打断
+}
+
+bool UDJ01GameplayAbility::CanCurrentPhaseCancelInto() const
+{
+	if (PhaseStateMachine)
+	{
+		return PhaseStateMachine->CanCurrentPhaseCancelInto();
+	}
+	return false; // 默认不可取消到其他技能
+}
+
+void UDJ01GameplayAbility::SkipCurrentPhase()
+{
+	if (PhaseStateMachine)
+	{
+		PhaseStateMachine->SkipCurrentPhase();
+	}
+}
+
+float UDJ01GameplayAbility::GetCurrentPhaseRemainingTime() const
+{
+	if (PhaseStateMachine)
+	{
+		return PhaseStateMachine->GetCurrentPhaseRemainingTime();
+	}
+	return 0.0f;
+}
+
+void UDJ01GameplayAbility::HandleStateMachinePhaseEnter(EDJ01AbilityPhase Phase)
+{
+	// 自动播放阶段对应的 Montage
+	const FDJ01AbilityPhaseInfo* PhaseInfo = PhaseConfig.GetPhaseInfo(Phase);
+	if (PhaseInfo && PhaseInfo->HasMontage())
+	{
+		PlayPhaseMontage(*PhaseInfo);
+	}
+
+	// 调用可重写的蓝图事件
+	OnPhaseEnter(Phase);
+}
+
+void UDJ01GameplayAbility::PlayPhaseMontage(const FDJ01AbilityPhaseInfo& PhaseInfo)
+{
+	if (!PhaseInfo.Montage)
+	{
+		return;
+	}
+
+	// 获取角色
+	ADJ01Character* Character = GetDJ01CharacterFromActorInfo();
+	if (!Character)
+	{
+		UE_LOG(LogDJ01AbilitySystem, Warning, 
+			TEXT("Ability [%s]: Cannot play phase montage - no character"), *GetName());
+		return;
+	}
+
+	// 获取 Mesh 和 AnimInstance
+	USkeletalMeshComponent* MeshComp = Character->GetMesh();
+	if (!MeshComp)
+	{
+		return;
+	}
+
+	UAnimInstance* AnimInstance = MeshComp->GetAnimInstance();
+	if (!AnimInstance)
+	{
+		return;
+	}
+
+	// 播放 Montage
+	const float PlayRate = FMath::Max(PhaseInfo.MontagePlayRate, 0.1f);
+	AnimInstance->Montage_Play(PhaseInfo.Montage, PlayRate);
+
+	// 如果指定了起始 Section，跳转到该 Section
+	if (PhaseInfo.MontageStartSection != NAME_None)
+	{
+		AnimInstance->Montage_JumpToSection(PhaseInfo.MontageStartSection, PhaseInfo.Montage);
+	}
+
+	UE_LOG(LogDJ01AbilitySystem, Verbose, 
+		TEXT("Ability [%s]: Playing phase montage [%s] at rate %.2f"), 
+		*GetName(), *PhaseInfo.Montage->GetName(), PlayRate);
+}
+
+void UDJ01GameplayAbility::HandleStateMachinePhaseExit(EDJ01AbilityPhase Phase)
+{
+	// 调用可重写的蓝图事件
+	OnPhaseExit(Phase);
+}
+
+void UDJ01GameplayAbility::HandleStateMachineFinished()
+{
+	// 状态机完成，结束技能
+	UE_LOG(LogDJ01AbilitySystem, Verbose, 
+		TEXT("Ability [%s]: Phase state machine finished, ending ability"), *GetName());
+	
+	K2_EndAbility();
+}
+
+void UDJ01GameplayAbility::OnPhaseEnter_Implementation(EDJ01AbilityPhase Phase)
+{
+	UE_LOG(LogDJ01AbilitySystem, Verbose, 
+		TEXT("Ability [%s]: Entered phase %s"), *GetName(), *GetAbilityPhaseName(Phase));
+
+	// ========== 触发对应阶段的 Effects ==========
+	EDJ01EffectPhase EffectPhase = MapPhaseToEffectPhase(Phase);
+	// OnAnimEvent 由动画事件触发, Manual 由代码手动触发
+	if (EffectPhase != EDJ01EffectPhase::OnAnimEvent && EffectPhase != EDJ01EffectPhase::Manual)
+	{
+		TriggerEffects(EffectPhase, TArray<AActor*>());
+	}
+}
+
+void UDJ01GameplayAbility::OnPhaseExit_Implementation(EDJ01AbilityPhase Phase)
+{
+	UE_LOG(LogDJ01AbilitySystem, Verbose, 
+		TEXT("Ability [%s]: Exited phase %s"), *GetName(), *GetAbilityPhaseName(Phase));
+	
+	// Tag 管理已由状态机处理，此处无需额外逻辑
+}
+
+EDJ01EffectPhase UDJ01GameplayAbility::MapPhaseToEffectPhase(EDJ01AbilityPhase Phase) const
+{
+	switch (Phase)
+	{
+	case EDJ01AbilityPhase::Startup:
+		return EDJ01EffectPhase::OnActivate; // 前摇触发 OnActivate 效果
+	case EDJ01AbilityPhase::Active:
+		return EDJ01EffectPhase::OnCommit;   // 激活阶段触发 OnCommit 效果
+	case EDJ01AbilityPhase::Ended:
+		return EDJ01EffectPhase::OnEnd;      // 仅结束阶段触发 OnEnd 效果
+	case EDJ01AbilityPhase::Recovery:
+	default:
+		return EDJ01EffectPhase::Manual;     // Recovery 和其他阶段不自动触发
+	}
+}
+
+// ========== 效果系统实现 ==========
+
+void UDJ01GameplayAbility::TriggerEffects(EDJ01EffectPhase Phase, const TArray<AActor*>& Targets)
+{
+	TriggerEffectsInternal(Phase, FGameplayTag(), Targets);
+}
+
+void UDJ01GameplayAbility::TriggerEffectsByEvent(FGameplayTag EventTag, const TArray<AActor*>& Targets)
+{
+	TriggerEffectsInternal(EDJ01EffectPhase::OnAnimEvent, EventTag, Targets);
+}
+
+void UDJ01GameplayAbility::TriggerEffectsInternal(EDJ01EffectPhase Phase, const FGameplayTag& EventTag, const TArray<AActor*>& Targets)
+{
+	if (Effects.Num() == 0)
+	{
+		return;
+	}
+
+	// 构建执行上下文
+	FDJ01EffectContext Context = BuildEffectContext(Targets);
+	Context.EventTag = EventTag;
+
+	// 遍历所有效果条目，触发匹配的效果
+	for (const FDJ01AbilityEffectEntry& Entry : Effects)
+	{
+		if (Entry.ShouldTrigger(Phase, EventTag))
+		{
+			if (Entry.Effect)
+			{
+				Entry.Effect->Execute(Context);
+			}
+		}
+	}
+}
+
+FDJ01EffectContext UDJ01GameplayAbility::BuildEffectContext(const TArray<AActor*>& Targets) const
+{
+	FDJ01EffectContext Context;
+
+	// 设置施法者 ASC
+	if (CurrentActorInfo && CurrentActorInfo->AbilitySystemComponent.IsValid())
+	{
+		Context.InstigatorASC = CurrentActorInfo->AbilitySystemComponent.Get();
+	}
+
+	// 设置技能等级
+	Context.AbilityLevel = GetAbilityLevel();
+
+	// 设置技能实例
+	Context.SourceAbility = const_cast<UDJ01GameplayAbility*>(this);
+
+	// 收集目标 ASC
+	for (AActor* TargetActor : Targets)
+	{
+		if (TargetActor)
+		{
+			if (UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor))
+			{
+				Context.TargetASCs.Add(TargetASC);
+			}
+		}
+	}
+
+	return Context;
+}

@@ -33,6 +33,26 @@ bool FDJ01GameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* M
 	// Not serialized for post-activation use:
 	// CartridgeID
 
+	//~============================================================================
+	// ComboGraph 兼容 - 序列化 Cue 参数
+	//~============================================================================
+	
+	uint8 bHasCueParamsObjects = (CueParamsObjects.Num() > 0) ? 1 : 0;
+	uint8 bHasCueParamsPaths = (CueParamsObjectsPaths.Num() > 0) ? 1 : 0;
+	
+	Ar.SerializeBits(&bHasCueParamsObjects, 1);
+	Ar.SerializeBits(&bHasCueParamsPaths, 1);
+	
+	if (bHasCueParamsObjects)
+	{
+		SafeNetSerializeTArray_Default<31>(Ar, CueParamsObjects);
+	}
+	
+	if (bHasCueParamsPaths)
+	{
+		SafeNetSerializeTArray_Default<31>(Ar, CueParamsObjectsPaths);
+	}
+
 	return true;
 }
 

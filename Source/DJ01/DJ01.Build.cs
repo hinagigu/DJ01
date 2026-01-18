@@ -45,7 +45,8 @@ public class DJ01 : ModuleRules
 			"CommonGame",
 			"UIExtension",
 			"EngineSettings",  // 用于 UGameMapsSettings
-			"AngelscriptCode"  // AngelScript 集成 - 用于检测 AS 类覆盖的 K2 函数
+			"AngelscriptCode",  // AngelScript 集成 - 用于检测 AS 类覆盖的 K2 函数
+			"ComboGraph"  // ComboGraph 连招系统插件
 		});
 
 		// Uncomment if you are using online features

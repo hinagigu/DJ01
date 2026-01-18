@@ -55,7 +55,7 @@ void UDJ01HeroComponent::OnRegister()
 			static const FText Message = NSLOCTEXT("DJ01HeroComponent", "NotOnPawnError", "has been added to a blueprint whose base class is not a Pawn. To use this component, it MUST be placed on a Pawn Blueprint. This will cause a crash if you PIE!");
 			static const FName HeroMessageLogName = TEXT("DJ01HeroComponent");
 			
-			FMessageLog(HeroMessageLogName).Error()
+			FMessageLog(HeroMessageLogName).Error() 
 				->AddToken(FUObjectToken::Create(this, FText::FromString(GetNameSafe(this))))
 				->AddToken(FTextToken::Create(Message));
 				

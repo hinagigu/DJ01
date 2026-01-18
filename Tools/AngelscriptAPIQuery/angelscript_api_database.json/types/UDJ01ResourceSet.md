@@ -19,9 +19,12 @@ ResourceSet - 包含 2 个属性
 ### Health
 - **类型**: `FGameplayAttributeData`
 
+### PercentHealth
+- **类型**: `FGameplayAttributeData`
+
 ### BaseMaxMana
 - **类型**: `FGameplayAttributeData`
-- **描述**: 新属性
+- **描述**: 法力值
 
 ### FlatMaxMana
 - **类型**: `FGameplayAttributeData`
@@ -30,6 +33,9 @@ ResourceSet - 包含 2 个属性
 - **类型**: `FGameplayAttributeData`
 
 ### Mana
+- **类型**: `FGameplayAttributeData`
+
+### PercentMana
 - **类型**: `FGameplayAttributeData`
 
 ## 方法

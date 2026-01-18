@@ -30,6 +30,15 @@ UDJ01GameplayAbility
 - **类型**: `bool`
 - **描述**: If true, extra information should be logged when this ability is canceled. This is temporary, used for tracking a bug.
 
+### bUsePhaseStateMachine
+- **类型**: `bool`
+
+### PhaseConfig
+- **类型**: `FDJ01AbilityPhaseConfig`
+
+### Effects
+- **类型**: `TArray<FDJ01AbilityEffectEntry>`
+
 ## 方法
 
 ### CanChangeActivationGroup
@@ -37,6 +46,18 @@ UDJ01GameplayAbility
 bool CanChangeActivationGroup(EDJ01AbilityActivationGroup NewGroup)
 ```
 Returns true if the requested activation group is a valid transition.
+
+### CanCurrentPhaseBeInterrupted
+```angelscript
+bool CanCurrentPhaseBeInterrupted()
+```
+当前阶段是否可被打断
+
+### CanCurrentPhaseCancelInto
+```angelscript
+bool CanCurrentPhaseCancelInto()
+```
+当前阶段是否可取消到其他技能
 
 ### ChangeActivationGroup
 ```angelscript
@@ -54,6 +75,18 @@ Clears the ability's camera mode.  Automatically called if needed when the abili
 ```angelscript
 AController GetControllerFromActorInfo()
 ```
+
+### GetCurrentPhase
+```angelscript
+EDJ01AbilityPhase GetCurrentPhase()
+```
+获取当前阶段
+
+### GetCurrentPhaseRemainingTime
+```angelscript
+float32 GetCurrentPhaseRemainingTime()
+```
+获取当前阶段剩余时间
 
 ### GetDJ01AbilitySystemComponentFromActorInfo
 ```angelscript
@@ -75,6 +108,12 @@ ADJ01PlayerController GetDJ01PlayerControllerFromActorInfo()
 UDJ01HeroComponent GetHeroComponentFromActorInfo()
 ```
 
+### GetPhaseStateMachine
+```angelscript
+UDJ01AbilityPhaseStateMachine GetPhaseStateMachine()
+```
+获取阶段状态机
+
 ### OnAbilityAdded
 ```angelscript
 void OnAbilityAdded()
@@ -93,6 +132,18 @@ void OnPawnAvatarSet()
 ```
 Called when the ability system is initialized with a pawn avatar.
 
+### OnPhaseEnter
+```angelscript
+void OnPhaseEnter(EDJ01AbilityPhase Phase)
+```
+阶段进入回调 - 子类可重写
+
+### OnPhaseExit
+```angelscript
+void OnPhaseExit(EDJ01AbilityPhase Phase)
+```
+阶段退出回调 - 子类可重写
+
 ### ScriptOnAbilityFailedToActivate
 ```angelscript
 void ScriptOnAbilityFailedToActivate(FGameplayTagContainer FailedReason)
@@ -104,4 +155,32 @@ Called when the ability fails to activate
 void SetCameraMode(TSubclassOf<UDJ01CameraMode> CameraMode)
 ```
 Sets the ability's camera mode.
+
+### SkipCurrentPhase
+```angelscript
+void SkipCurrentPhase()
+```
+跳过当前阶段（立即进入下一阶段）
+
+### TransitionToPhase
+```angelscript
+bool TransitionToPhase(EDJ01AbilityPhase NewPhase, bool bForce)
+```
+切换到指定阶段
+
+### TriggerEffects
+```angelscript
+void TriggerEffects(EDJ01EffectPhase Phase, TArray<AActor> Targets)
+```
+触发指定阶段的所有效果
+@param Phase - 触发阶段
+@param Targets - 目标 Actor 列表
+
+### TriggerEffectsByEvent
+```angelscript
+void TriggerEffectsByEvent(FGameplayTag EventTag, TArray<AActor> Targets)
+```
+触发动画事件效果
+@param EventTag - 动画事件 Tag
+@param Targets - 目标 Actor 列表
 

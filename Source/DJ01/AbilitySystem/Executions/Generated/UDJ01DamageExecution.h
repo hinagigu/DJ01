@@ -1,7 +1,7 @@
 // ============================================================
 // UDJ01DamageExecution
 // 自动生成，可根据需要修改计算逻辑
-// 生成时间: 2025-12-21 20:07:26
+// 生成时间: 2026-01-05 10:24:53
 // ============================================================
 
 #pragma once
@@ -10,7 +10,7 @@
 #include "GameplayEffectExecutionCalculation.h"
 #include "UDJ01DamageExecution.generated.h"
 
-/** Damage 计算 */
+/** 通用伤害计算 - 接收技能层计算的原始伤害，应用护甲/魔抗减伤 */
 UCLASS()
 class DJ01_API UDJ01DamageExecution : public UGameplayEffectExecutionCalculation
 {

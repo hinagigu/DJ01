@@ -8,7 +8,7 @@ C++ 类扫描器
 import re
 from pathlib import Path
 from dataclasses import dataclass, field
-from typing import List, Optional, Set
+from typing import List, Optional, Set, Tuple
 import sys
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -151,7 +151,14 @@ class ClassScanner:
 class BindingSetInjector:
     """BindingSet 代码注入器"""
     
-    BINDINGSETS_INCLUDE = '#include "DJ01/GAS/Generated/BindingSets/BindingSets.h"'
+    # 正确的 include 路径
+    BINDINGSETS_INCLUDE = '#include "DJ01/AbilitySystem/Attributes/BindingSets/Generated/BindingSets.h"'
+    
+    # 旧的错误 include 路径（用于检测和修复）
+    OLD_BINDINGSETS_INCLUDES = [
+        '#include "DJ01/GAS/Generated/BindingSets/BindingSets.h"',
+        'DJ01/GAS/Generated/BindingSets/BindingSets.h',
+    ]
     
     GENERATED_BODY_PATTERN = re.compile(r'GENERATED_BODY\s*\(\s*\)', re.MULTILINE)
     GENERATED_INCLUDE_PATTERN = re.compile(r'^(#include\s+["\'][^"\']+\.generated\.h["\'])', re.MULTILINE)
@@ -159,10 +166,28 @@ class BindingSetInjector:
     # 匹配第一个 #include
     FIRST_INCLUDE_PATTERN = re.compile(r'^#include\s+', re.MULTILINE)
     
+    # 匹配 InitializeWithAbilitySystem 函数（用于注入初始化调用）
+    INIT_WITH_ASC_PATTERN = re.compile(
+        r'void\s+(\w+)::InitializeWithAbilitySystem\s*\(\s*UAbilitySystemComponent\s*\*\s*(\w+)\s*\)\s*\{',
+        re.MULTILINE
+    )
+    
+    @staticmethod
+    def _fix_old_include(content: str) -> str:
+        """修复旧的错误 include 路径"""
+        for old_include in BindingSetInjector.OLD_BINDINGSETS_INCLUDES:
+            if old_include in content:
+                content = content.replace(old_include, BindingSetInjector.BINDINGSETS_INCLUDE.replace('#include ', '').strip('"'))
+        return content
+    
     @staticmethod
     def _add_include_if_needed(content: str) -> str:
         """如果需要，添加 BindingSets.h 的 include（在第一个 #include 之前）"""
-        if 'BindingSets/BindingSets.h' in content or 'BindingSets.h' in content:
+        # 首先修复旧的 include 路径
+        content = BindingSetInjector._fix_old_include(content)
+        
+        # 检查正确的路径是否已存在
+        if 'AbilitySystem/Attributes/BindingSets/Generated/BindingSets.h' in content:
             return content
         
         # 找到第一个 #include，在其前面插入
@@ -188,8 +213,90 @@ class BindingSetInjector:
         return pattern.sub('', content)
     
     @staticmethod
+    def _find_cpp_file(header_path: Path) -> Optional[Path]:
+        """根据头文件路径查找对应的 .cpp 文件"""
+        # 尝试常见的 cpp 文件位置
+        cpp_candidates = [
+            header_path.with_suffix('.cpp'),  # 同目录
+            header_path.parent.parent / 'Private' / header_path.with_suffix('.cpp').name,  # Private 目录
+            header_path.parent.parent.parent / 'Private' / header_path.parent.name / header_path.with_suffix('.cpp').name,
+        ]
+        
+        for cpp_path in cpp_candidates:
+            if cpp_path.exists():
+                return cpp_path
+        
+        # 递归查找同名 .cpp 文件
+        cpp_name = header_path.with_suffix('.cpp').name
+        for cpp_file in header_path.parent.parent.parent.rglob(cpp_name):
+            return cpp_file
+        
+        return None
+    
+    @staticmethod
+    def _add_init_call_to_cpp(cpp_path: Path, class_name: str, binding_set_name: str) -> tuple:
+        """在 .cpp 文件的 InitializeWithAbilitySystem 函数中添加初始化调用"""
+        if not cpp_path or not cpp_path.exists():
+            return False, "未找到对应的 .cpp 文件"
+        
+        try:
+            content = cpp_path.read_text(encoding='utf-8')
+        except Exception as e:
+            return False, f"读取 .cpp 文件失败: {e}"
+        
+        init_call = f"InitBindingSet_{binding_set_name}"
+        
+        # 检查是否已经有此调用
+        if init_call in content:
+            return True, "初始化调用已存在"
+        
+        # 查找 InitializeWithAbilitySystem 函数
+        match = BindingSetInjector.INIT_WITH_ASC_PATTERN.search(content)
+        if not match:
+            # 如果没找到标准函数，尝试查找 NativeInitializeAnimation
+            native_init_pattern = re.compile(
+                r'void\s+' + re.escape(class_name) + r'::NativeInitializeAnimation\s*\(\s*\)\s*\{[^}]*?'
+                r'(InitializeWithAbilitySystem\s*\(\s*(\w+)\s*\))',
+                re.MULTILINE | re.DOTALL
+            )
+            native_match = native_init_pattern.search(content)
+            if native_match:
+                # 在现有的 InitializeWithAbilitySystem 调用后添加
+                insert_pos = native_match.end(1)
+                asc_var = native_match.group(2)
+                new_call = f"\n\t\t{init_call}({asc_var});"
+                new_content = content[:insert_pos] + new_call + content[insert_pos:]
+            else:
+                return False, f"未找到 InitializeWithAbilitySystem 函数在 {cpp_path.name}"
+        else:
+            # 找到了 InitializeWithAbilitySystem 函数
+            asc_param = match.group(2)  # ASC 参数名
+            func_start = match.end()
+            
+            # 查找函数体内的 check(ASC) 语句，在其后插入
+            check_pattern = re.compile(rf'check\s*\(\s*{asc_param}\s*\)\s*;', re.MULTILINE)
+            check_match = check_pattern.search(content, func_start)
+            
+            if check_match:
+                # 在 check(ASC) 后插入
+                insert_pos = check_match.end()
+                new_call = f"\n\n\t// 初始化 BindingSet - 自动注册 GAS 监听并同步初始值\n\t{init_call}({asc_param});"
+            else:
+                # 没有 check，在函数开头插入
+                insert_pos = func_start
+                new_call = f"\n\tcheck({asc_param});\n\n\t// 初始化 BindingSet - 自动注册 GAS 监听并同步初始值\n\t{init_call}({asc_param});\n"
+            
+            new_content = content[:insert_pos] + new_call + content[insert_pos:]
+        
+        try:
+            cpp_path.write_text(new_content, encoding='utf-8')
+            return True, f"已在 {cpp_path.name} 中添加 {init_call} 调用"
+        except Exception as e:
+            return False, f"写入 .cpp 文件失败: {e}"
+    
+    @staticmethod
     def add_binding_set(class_info: UClassInfo, binding_set_name: str) -> tuple:
-        """向类中添加 BindingSet 声明（包括必要的 #include）"""
+        """向类中添加 BindingSet 声明（包括必要的 #include 和 .cpp 初始化调用）"""
         if binding_set_name in class_info.binding_sets:
             return False, f"BindingSet '{binding_set_name}' 已存在于 {class_info.class_name}"
         
@@ -198,7 +305,7 @@ class BindingSetInjector:
         except Exception as e:
             return False, f"读取文件失败: {e}"
         
-        # 添加 #include
+        # 添加 #include（同时修复旧路径）
         content = BindingSetInjector._add_include_if_needed(content)
         
         # 在 GENERATED_BODY() 后面添加宏声明
@@ -214,13 +321,69 @@ class BindingSetInjector:
         try:
             class_info.file_path.write_text(new_content, encoding='utf-8')
             class_info.binding_sets.append(binding_set_name)
-            return True, f"已添加 BindingSet '{binding_set_name}' 到 {class_info.class_name}（含 #include）"
         except Exception as e:
             return False, f"写入文件失败: {e}"
+        
+        # 尝试在 .cpp 文件中添加初始化调用
+        cpp_path = BindingSetInjector._find_cpp_file(class_info.file_path)
+        cpp_result = ""
+        if cpp_path:
+            success, cpp_msg = BindingSetInjector._add_init_call_to_cpp(
+                cpp_path, class_info.class_name, binding_set_name
+            )
+            if success:
+                cpp_result = f"\n{cpp_msg}"
+            else:
+                cpp_result = f"\n⚠️ {cpp_msg}（请手动添加初始化调用）"
+        else:
+            cpp_result = "\n⚠️ 未找到 .cpp 文件，请手动添加 InitBindingSet_" + binding_set_name + "(ASC) 调用"
+        
+        return True, f"已添加 BindingSet '{binding_set_name}' 到 {class_info.class_name}（含 #include）{cpp_result}"
+    
+    @staticmethod
+    def _remove_init_call_from_cpp(cpp_path: Path, binding_set_name: str) -> tuple:
+        """从 .cpp 文件中移除初始化调用"""
+        if not cpp_path or not cpp_path.exists():
+            return True, ""  # 没有 cpp 文件就不需要移除
+        
+        try:
+            content = cpp_path.read_text(encoding='utf-8')
+        except Exception as e:
+            return False, f"读取 .cpp 文件失败: {e}"
+        
+        init_call = f"InitBindingSet_{binding_set_name}"
+        
+        if init_call not in content:
+            return True, ""  # 没有此调用，无需移除
+        
+        # 移除初始化调用（包括注释行）- 使用更精确的正则
+        # 先尝试移除带注释的完整块
+        pattern1 = re.compile(
+            rf'(\t*)// 初始化 BindingSet[^\n]*\n\1{init_call}\s*\([^)]*\)\s*;\s*\n',
+            re.MULTILINE
+        )
+        new_content, count = pattern1.subn('', content)
+        
+        if count == 0:
+            # 只移除调用行本身（保留换行）
+            pattern2 = re.compile(
+                rf'^(\s*){init_call}\s*\([^)]*\)\s*;\s*\n',
+                re.MULTILINE
+            )
+            new_content, count = pattern2.subn('', content)
+        
+        if count == 0:
+            return True, ""  # 没找到匹配的模式
+        
+        try:
+            cpp_path.write_text(new_content, encoding='utf-8')
+            return True, f"已从 {cpp_path.name} 移除 {init_call} 调用"
+        except Exception as e:
+            return False, f"写入 .cpp 文件失败: {e}"
     
     @staticmethod
     def remove_binding_set(class_info: UClassInfo, binding_set_name: str) -> tuple:
-        """从类中移除 BindingSet 声明"""
+        """从类中移除 BindingSet 声明（包括 .cpp 中的初始化调用）"""
         if binding_set_name not in class_info.binding_sets:
             return False, f"BindingSet '{binding_set_name}' 不存在于 {class_info.class_name}"
         
@@ -229,20 +392,31 @@ class BindingSetInjector:
         except Exception as e:
             return False, f"读取文件失败: {e}"
         
-        # 匹配要移除的代码
+        # 匹配要移除的代码（更精确的正则，保留格式）
+        # 先尝试匹配完整的带注释块
         pattern = re.compile(
-            rf'\n*\s*// BindingSet: {re.escape(binding_set_name)}\s*\n'
-            rf'\s*DJ01_DECLARE_BINDING_SET\s*\(\s*{re.escape(binding_set_name)}\s*\)\s*\n?',
+            rf'\n\t// BindingSet: {re.escape(binding_set_name)}\n'
+            rf'\tDJ01_DECLARE_BINDING_SET\({re.escape(binding_set_name)}\)\n',
             re.MULTILINE
         )
-        new_content, count = pattern.subn('', content)
+        new_content, count = pattern.subn('\n', content)
         
         if count == 0:
+            # 尝试更宽松的模式
             pattern2 = re.compile(
-                rf'\s*DJ01_DECLARE_BINDING_SET\s*\(\s*{re.escape(binding_set_name)}\s*\)\s*;?\s*\n?',
+                rf'(\n\s*)// BindingSet: {re.escape(binding_set_name)}\s*\n'
+                rf'\s*DJ01_DECLARE_BINDING_SET\s*\(\s*{re.escape(binding_set_name)}\s*\)\s*\n',
                 re.MULTILINE
             )
-            new_content, count = pattern2.subn('', content)
+            new_content, count = pattern2.subn(r'\1', content)
+        
+        if count == 0:
+            # 只匹配宏声明行
+            pattern3 = re.compile(
+                rf'^\s*DJ01_DECLARE_BINDING_SET\s*\(\s*{re.escape(binding_set_name)}\s*\)\s*\n',
+                re.MULTILINE
+            )
+            new_content, count = pattern3.subn('', content)
         
         if count == 0:
             return False, f"未能找到并移除 BindingSet '{binding_set_name}'"
@@ -253,6 +427,15 @@ class BindingSetInjector:
         try:
             class_info.file_path.write_text(new_content, encoding='utf-8')
             class_info.binding_sets.remove(binding_set_name)
-            return True, f"已从 {class_info.class_name} 移除 BindingSet '{binding_set_name}'"
         except Exception as e:
             return False, f"写入文件失败: {e}"
+        
+        # 尝试从 .cpp 文件中移除初始化调用
+        cpp_path = BindingSetInjector._find_cpp_file(class_info.file_path)
+        cpp_result = ""
+        if cpp_path:
+            success, cpp_msg = BindingSetInjector._remove_init_call_from_cpp(cpp_path, binding_set_name)
+            if cpp_msg:
+                cpp_result = f"\n{cpp_msg}"
+        
+        return True, f"已从 {class_info.class_name} 移除 BindingSet '{binding_set_name}'{cpp_result}"

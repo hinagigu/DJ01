@@ -2,7 +2,7 @@
   "BindingSets": [
     {
       "Name": "ReSources",
-      "Description": "ReSources 绑定集",
+      "Description": "ReSources 绑定集 - 资源相关属性",
       "TagBindings": [],
       "AttributeBindings": [
         {
@@ -30,6 +30,141 @@
             "Max"
           ],
           "Description": "法力值"
+        }
+      ]
+    },
+    {
+      "Name": "AnimState",
+      "Description": "动画状态绑定集 - 用于 AnimInstance 同步 GAS 状态",
+      "TagBindings": [
+        {
+          "Type": "Tag",
+          "Tag": "Status.Death",
+          "VariableName": "bIsDead",
+          "EventType": "NewOrRemoved",
+          "Description": "是否死亡"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Movement.Grounded",
+          "VariableName": "bIsGrounded",
+          "EventType": "NewOrRemoved",
+          "Description": "是否在地面"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Movement.InAir",
+          "VariableName": "bIsInAir",
+          "EventType": "NewOrRemoved",
+          "Description": "是否在空中"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Movement.Jumping",
+          "VariableName": "bHasJumped",
+          "EventType": "NewOrRemoved",
+          "Description": "是否主动跳跃 (区分跳跃和坠落)"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Movement.Sprinting",
+          "VariableName": "bIsSprinting",
+          "EventType": "NewOrRemoved",
+          "Description": "是否冲刺"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Movement.Crouching",
+          "VariableName": "bIsCrouching",
+          "EventType": "NewOrRemoved",
+          "Description": "是否蹲伏"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Action.Attacking",
+          "VariableName": "bIsAttacking",
+          "EventType": "NewOrRemoved",
+          "Description": "是否正在攻击"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Action.Blocking",
+          "VariableName": "bIsBlocking",
+          "EventType": "NewOrRemoved",
+          "Description": "是否正在格挡"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Action.Dodging",
+          "VariableName": "bIsDodging",
+          "EventType": "NewOrRemoved",
+          "Description": "是否正在闪避"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Action.Casting",
+          "VariableName": "bIsCasting",
+          "EventType": "NewOrRemoved",
+          "Description": "是否正在施法"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Condition.Stunned",
+          "VariableName": "bIsStunned",
+          "EventType": "NewOrRemoved",
+          "Description": "是否眩晕"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Condition.Rooted",
+          "VariableName": "bIsRooted",
+          "EventType": "NewOrRemoved",
+          "Description": "是否定身"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Condition.Silenced",
+          "VariableName": "bIsSilenced",
+          "EventType": "NewOrRemoved",
+          "Description": "是否沉默"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Condition.Slowed",
+          "VariableName": "bIsSlowed",
+          "EventType": "NewOrRemoved",
+          "Description": "是否减速"
+        },
+        {
+          "Type": "Tag",
+          "Tag": "Status.Condition.Hasted",
+          "VariableName": "bIsHasted",
+          "EventType": "NewOrRemoved",
+          "Description": "是否加速"
+        }
+      ],
+      "AttributeBindings": [
+        {
+          "Type": "Attribute",
+          "AttributeSet": "MoveMent",
+          "AttributeName": "Speed",
+          "VariableName": "MoveSpeed",
+          "VarType": "float",
+          "ValueTypes": [
+            "Total"
+          ],
+          "Description": "移动速度总值"
+        },
+        {
+          "Type": "Attribute",
+          "AttributeSet": "StatSet",
+          "AttributeName": "AttackSpeed",
+          "VariableName": "AttackSpeed",
+          "VarType": "float",
+          "ValueTypes": [
+            "Total"
+          ],
+          "Description": "攻击速度倍率"
         }
       ]
     }

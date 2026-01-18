@@ -1,7 +1,7 @@
 // ============================================================
 // DJ01 Generated Attributes
 // 自动生成的文件，请勿手动修改！
-// 生成时间: 2025-12-30 20:12:09
+// 生成时间: 2026-01-05 10:24:22
 // ============================================================
 
 #pragma once
@@ -15,7 +15,7 @@
 // ##########################################################
 // UDJ01StatSet
 // ##########################################################
-/** StatSet - 包含 7 个属性 */
+/** StatSet - 包含 8 个属性 */
 UCLASS(BlueprintType)
 class DJ01_API UDJ01StatSet : public UDJ01AttributeSet
 {
@@ -200,6 +200,31 @@ public:
         return GetTotalAttackSpeed() - GetBaseAttackSpeed();
     }
 
+    /** 治疗增益百分比(0.2=+20%治疗效果) */
+    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_BaseHealingBonus, Category = "DJ01|HealingBonus", Meta = (AllowPrivateAccess = true))
+    FGameplayAttributeData BaseHealingBonus;
+    ATTRIBUTE_ACCESSORS(UDJ01StatSet, BaseHealingBonus)
+
+    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_FlatHealingBonus, Category = "DJ01|HealingBonus", Meta = (AllowPrivateAccess = true))
+    FGameplayAttributeData FlatHealingBonus;
+    ATTRIBUTE_ACCESSORS(UDJ01StatSet, FlatHealingBonus)
+
+    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_PercentHealingBonus, Category = "DJ01|HealingBonus", Meta = (AllowPrivateAccess = true))
+    FGameplayAttributeData PercentHealingBonus;
+    ATTRIBUTE_ACCESSORS(UDJ01StatSet, PercentHealingBonus)
+
+    UFUNCTION(BlueprintPure, Category = "DJ01|Attributes")
+    float GetTotalHealingBonus() const
+    {
+        return (GetBaseHealingBonus() + GetFlatHealingBonus()) * (1.f + GetPercentHealingBonus());
+    }
+
+    UFUNCTION(BlueprintPure, Category = "DJ01|Attributes")
+    float GetExtraHealingBonus() const
+    {
+        return GetTotalHealingBonus() - GetBaseHealingBonus();
+    }
+
 protected:
     UFUNCTION()
     void OnRep_BaseAttackPower(const FGameplayAttributeData& OldValue);
@@ -243,6 +268,12 @@ protected:
     void OnRep_FlatAttackSpeed(const FGameplayAttributeData& OldValue);
     UFUNCTION()
     void OnRep_PercentAttackSpeed(const FGameplayAttributeData& OldValue);
+    UFUNCTION()
+    void OnRep_BaseHealingBonus(const FGameplayAttributeData& OldValue);
+    UFUNCTION()
+    void OnRep_FlatHealingBonus(const FGameplayAttributeData& OldValue);
+    UFUNCTION()
+    void OnRep_PercentHealingBonus(const FGameplayAttributeData& OldValue);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 };
@@ -457,7 +488,7 @@ protected:
 // ##########################################################
 // UDJ01MetaAttributes
 // ##########################################################
-/** MetaAttributes - 包含 1 个属性 */
+/** MetaAttributes - 包含 2 个属性 */
 UCLASS(BlueprintType)
 class DJ01_API UDJ01MetaAttributes : public UDJ01AttributeSet
 {
@@ -467,10 +498,15 @@ public:
     UDJ01MetaAttributes();
 
     // ---------- Combat ----------
-    /** 伤害属性 */
+    /** 伤害元属性(受到伤害时的临时值) */
     UPROPERTY(BlueprintReadOnly, Category = "DJ01|Meta", Meta = (HideFromModifiers, AllowPrivateAccess = true))
     FGameplayAttributeData DamageIncoming;
     ATTRIBUTE_ACCESSORS(UDJ01MetaAttributes, DamageIncoming)
+
+    /** 治疗元属性(受到治疗时的临时值) */
+    UPROPERTY(BlueprintReadOnly, Category = "DJ01|Meta", Meta = (HideFromModifiers, AllowPrivateAccess = true))
+    FGameplayAttributeData HealIncoming;
+    ATTRIBUTE_ACCESSORS(UDJ01MetaAttributes, HealIncoming)
 
 protected:
 

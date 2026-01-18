@@ -2,7 +2,7 @@
 
 **继承自**: `UDJ01AttributeSet`
 
-StatSet - 包含 7 个属性
+StatSet - 包含 8 个属性
 
 ## 属性
 
@@ -76,6 +76,16 @@ StatSet - 包含 7 个属性
 ### PercentAttackSpeed
 - **类型**: `FGameplayAttributeData`
 
+### BaseHealingBonus
+- **类型**: `FGameplayAttributeData`
+- **描述**: 治疗增益百分比(0.2=+20%治疗效果)
+
+### FlatHealingBonus
+- **类型**: `FGameplayAttributeData`
+
+### PercentHealingBonus
+- **类型**: `FGameplayAttributeData`
+
 ## 方法
 
 ### GetExtraAttackPower
@@ -101,6 +111,11 @@ float32 GetExtraCriticalRate()
 ### GetExtraDefense
 ```angelscript
 float32 GetExtraDefense()
+```
+
+### GetExtraHealingBonus
+```angelscript
+float32 GetExtraHealingBonus()
 ```
 
 ### GetExtraMagicDefense
@@ -136,6 +151,11 @@ float32 GetTotalCriticalRate()
 ### GetTotalDefense
 ```angelscript
 float32 GetTotalDefense()
+```
+
+### GetTotalHealingBonus
+```angelscript
+float32 GetTotalHealingBonus()
 ```
 
 ### GetTotalMagicDefense

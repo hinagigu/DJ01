@@ -1,7 +1,7 @@
 {
   "name": "UDJ01StatSet",
   "inherits": "UDJ01AttributeSet",
-  "doc": "StatSet - 包含 7 个属性",
+  "doc": "StatSet - 包含 8 个属性",
   "properties": {
     "BaseAttackPower": [
       "FGameplayAttributeData",
@@ -107,6 +107,21 @@
       "FGameplayAttributeData",
       1,
       ""
+    ],
+    "BaseHealingBonus": [
+      "FGameplayAttributeData",
+      1,
+      "治疗增益百分比(0.2=+20%治疗效果)"
+    ],
+    "FlatHealingBonus": [
+      "FGameplayAttributeData",
+      1,
+      ""
+    ],
+    "PercentHealingBonus": [
+      "FGameplayAttributeData",
+      1,
+      ""
     ]
   },
   "methods": [
@@ -144,6 +159,14 @@
     },
     {
       "name": "GetExtraDefense",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetExtraHealingBonus",
       "return": "float32",
       "const": true,
       "ufunction": true,
@@ -200,6 +223,14 @@
     },
     {
       "name": "GetTotalDefense",
+      "return": "float32",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetTotalHealingBonus",
       "return": "float32",
       "const": true,
       "ufunction": true,

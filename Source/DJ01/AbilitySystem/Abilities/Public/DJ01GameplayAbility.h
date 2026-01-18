@@ -3,8 +3,12 @@
 #pragma once
 
 #include "Abilities/GameplayAbility.h"
+#include "DJ01AbilityEffect.h"
+#include "DJ01AbilityPhase.h"
+#include "DJ01AbilityPhaseStateMachine.h"
 
 #include "DJ01GameplayAbility.generated.h"
+
 
 struct FGameplayAbilityActivationInfo;
 struct FGameplayAbilitySpec;
@@ -210,5 +214,121 @@ protected:
 
 	// Current camera mode set by the ability.
 	TSubclassOf<UDJ01CameraMode> ActiveCameraMode;
+
+	// ========== 阶段状态机 ==========
+
+	/** 是否使用阶段状态机（禁用后需要手动管理阶段） */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "DJ01|Phase")
+	bool bUsePhaseStateMachine = true;
+
+	/** 阶段配置 */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "DJ01|Phase", 
+		meta = (EditCondition = "bUsePhaseStateMachine"))
+	FDJ01AbilityPhaseConfig PhaseConfig;
+
+	/** 阶段状态机实例 */
+	UPROPERTY(Transient)
+	TObjectPtr<UDJ01AbilityPhaseStateMachine> PhaseStateMachine;
+
+public:
+	// ========== 阶段控制方法 ==========
+
+	/** 获取阶段状态机 */
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DJ01|Phase")
+	UDJ01AbilityPhaseStateMachine* GetPhaseStateMachine() const { return PhaseStateMachine; }
+
+	/** 获取当前阶段 */
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DJ01|Phase")
+	EDJ01AbilityPhase GetCurrentPhase() const;
+
+	/** 切换到指定阶段 */
+	UFUNCTION(BlueprintCallable, Category = "DJ01|Phase")
+	bool TransitionToPhase(EDJ01AbilityPhase NewPhase, bool bForce = false);
+
+	/** 当前阶段是否可被打断 */
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DJ01|Phase")
+	bool CanCurrentPhaseBeInterrupted() const;
+
+	/** 当前阶段是否可取消到其他技能 */
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DJ01|Phase")
+	bool CanCurrentPhaseCancelInto() const;
+
+	/** 跳过当前阶段（立即进入下一阶段） */
+	UFUNCTION(BlueprintCallable, Category = "DJ01|Phase")
+	void SkipCurrentPhase();
+
+	/** 获取当前阶段剩余时间 */
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DJ01|Phase")
+	float GetCurrentPhaseRemainingTime() const;
+
+protected:
+	/** 创建状态机实例 */
+	virtual void CreatePhaseStateMachine();
+
+	/** 播放阶段对应的 Montage (如果配置了) */
+	void PlayPhaseMontage(const FDJ01AbilityPhaseInfo& PhaseInfo);
+
+	/** 状态机阶段进入回调 */
+	UFUNCTION()
+	void HandleStateMachinePhaseEnter(EDJ01AbilityPhase Phase);
+
+	/** 状态机阶段退出回调 */
+	UFUNCTION()
+	void HandleStateMachinePhaseExit(EDJ01AbilityPhase Phase);
+
+	/** 状态机完成回调 */
+	UFUNCTION()
+	void HandleStateMachineFinished();
+
+	/** 阶段进入回调 - 子类可重写 */
+	UFUNCTION(BlueprintNativeEvent, Category = "DJ01|Phase")
+	void OnPhaseEnter(EDJ01AbilityPhase Phase);
+	virtual void OnPhaseEnter_Implementation(EDJ01AbilityPhase Phase);
+
+	/** 阶段退出回调 - 子类可重写 */
+	UFUNCTION(BlueprintNativeEvent, Category = "DJ01|Phase")
+	void OnPhaseExit(EDJ01AbilityPhase Phase);
+	virtual void OnPhaseExit_Implementation(EDJ01AbilityPhase Phase);
+
+	/** 将阶段映射到效果触发阶段 */
+	EDJ01EffectPhase MapPhaseToEffectPhase(EDJ01AbilityPhase Phase) const;
+
+	// ========== 效果系统 ==========
+
+	/** 
+	 * 效果列表
+	 * 每个效果绑定到特定的触发阶段
+	 */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "DJ01|Effects", 
+		meta = (TitleProperty = "Phase: {Phase} - {Effect}"))
+	TArray<FDJ01AbilityEffectEntry> Effects;
+
+public:
+	// ========== 效果触发方法 ==========
+
+	/**
+	 * 触发指定阶段的所有效果
+	 * @param Phase - 触发阶段
+	 * @param Targets - 目标 Actor 列表
+	 */
+	UFUNCTION(BlueprintCallable, Category = "DJ01|Effects")
+	void TriggerEffects(EDJ01EffectPhase Phase, const TArray<AActor*>& Targets);
+
+	/**
+	 * 触发动画事件效果
+	 * @param EventTag - 动画事件 Tag
+	 * @param Targets - 目标 Actor 列表
+	 */
+	UFUNCTION(BlueprintCallable, Category = "DJ01|Effects")
+	void TriggerEffectsByEvent(FGameplayTag EventTag, const TArray<AActor*>& Targets);
+
+	/**
+	 * 触发效果（内部使用）
+	 */
+	void TriggerEffectsInternal(EDJ01EffectPhase Phase, const FGameplayTag& EventTag, const TArray<AActor*>& Targets);
+
+protected:
+	/** 构建效果执行上下文 */
+	FDJ01EffectContext BuildEffectContext(const TArray<AActor*>& Targets) const;
 };
 

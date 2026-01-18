@@ -2,18 +2,18 @@
   "Executions": [
     {
       "Name": "Damage",
-      "Description": "Damage 计算",
+      "Description": "通用伤害计算 - 接收技能层计算的原始伤害，应用护甲/魔抗减伤",
       "Captures": [
         {
-          "source": "Source",
+          "source": "Target",
           "set": "StatSet",
-          "attr": "AttackPower",
+          "attr": "Defense",
           "layer": "Total"
         },
         {
           "source": "Target",
           "set": "StatSet",
-          "attr": "Defense",
+          "attr": "MagicDefense",
           "layer": "Total"
         }
       ],
@@ -31,7 +31,58 @@
           "tag": "Status.Immunity.Damage"
         }
       ],
-      "Formula": "float FinalValue = 0.0f;\nFinalValue = FMath::Max(AttackPowerValue - Defense_TargetValue, 0);\nif (bTarget_Status_Immunity_Damage){\nFinalValue = 0;\n}"
+      "SetByCallerParams": [
+        {
+          "tag": "SetByCaller.Damage.Raw",
+          "var_name": "RawDamage",
+          "default": 0.0
+        },
+        {
+          "tag": "SetByCaller.Damage.Type",
+          "var_name": "DamageType",
+          "default": 0.0
+        }
+      ],
+      "Formula": "// RawDamage: 技能层计算的原始伤害\n// DamageType: 0=物理, 1=魔法, 2=真实\n\nfloat FinalValue = 0.0f;\nconst int32 DamageTypeInt = FMath::RoundToInt(DamageType);\n\nif (!bTarget_Status_Immunity_Damage && RawDamage > 0.f)\n{\n    if (DamageTypeInt == 0) // 物理\n    {\n        // 护甲减伤: Damage * 100 / (100 + Armor)\n        FinalValue = RawDamage * 100.f / (100.f + FMath::Max(Defense_TargetValue, 0.f));\n    }\n    else if (DamageTypeInt == 1) // 魔法\n    {\n        FinalValue = RawDamage * 100.f / (100.f + FMath::Max(MagicDefense_TargetValue, 0.f));\n    }\n    else // 真实伤害\n    {\n        FinalValue = RawDamage;\n    }\n}"
+    },
+    {
+      "Name": "Heal",
+      "Description": "通用治疗计算 - 接收技能层计算的原始治疗量，可应用治疗增益/减益效果",
+      "Captures": [
+        {
+          "source": "Target",
+          "set": "StatSet",
+          "attr": "HealingBonus",
+          "layer": "Total"
+        }
+      ],
+      "Outputs": [
+        {
+          "set": "MetaAttributes",
+          "attr": "HealIncoming",
+          "op": "Additive"
+        }
+      ],
+      "TagConditions": [
+        {
+          "source": "Target",
+          "category": "Status",
+          "tag": "Status.Immunity.Heal"
+        },
+        {
+          "source": "Target",
+          "category": "Status",
+          "tag": "Status.Debuff.GrievousWounds"
+        }
+      ],
+      "SetByCallerParams": [
+        {
+          "tag": "SetByCaller.Heal.Raw",
+          "var_name": "RawHeal",
+          "default": 0.0
+        }
+      ],
+      "Formula": "// RawHeal: 技能层计算的原始治疗量\n// HealingBonus: 治疗增益百分比 (如 0.2 = +20% 治疗效果)\n// Status.Immunity.Heal: 治疗免疫状态\n// Status.Debuff.GrievousWounds: 重伤效果 (减少50%治疗)\n\nfloat FinalValue = 0.0f;\n\nif (!bTarget_Status_Immunity_Heal && RawHeal > 0.f)\n{\n    // 应用治疗增益\n    FinalValue = RawHeal * (1.0f + FMath::Max(HealingBonus_TargetValue, 0.f));\n    \n    // 重伤效果: 减少50%治疗\n    if (bTarget_Status_Debuff_GrievousWounds)\n    {\n        FinalValue *= 0.5f;\n    }\n}"
     }
   ]
 }

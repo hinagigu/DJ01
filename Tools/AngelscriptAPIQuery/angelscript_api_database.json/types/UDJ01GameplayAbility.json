@@ -30,6 +30,18 @@
       "bool",
       2,
       "If true, extra information should be logged when this ability is canceled. This is temporary, used for tracking a bug."
+    ],
+    "bUsePhaseStateMachine": [
+      "bool",
+      "是否使用阶段状态机（禁用后需要手动管理阶段）"
+    ],
+    "PhaseConfig": [
+      "FDJ01AbilityPhaseConfig",
+      "阶段配置"
+    ],
+    "Effects": [
+      "TArray<FDJ01AbilityEffectEntry>",
+      "效果列表\n每个效果绑定到特定的触发阶段"
     ]
   },
   "methods": [
@@ -46,6 +58,24 @@
           "type": "EDJ01AbilityActivationGroup"
         }
       ]
+    },
+    {
+      "name": "CanCurrentPhaseBeInterrupted",
+      "return": "bool",
+      "const": true,
+      "doc": "当前阶段是否可被打断",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CanCurrentPhaseCancelInto",
+      "return": "bool",
+      "const": true,
+      "doc": "当前阶段是否可取消到其他技能",
+      "ufunction": true,
+      "meta": null,
+      "args": []
     },
     {
       "name": "ChangeActivationGroup",
@@ -72,6 +102,24 @@
       "name": "GetControllerFromActorInfo",
       "return": "AController",
       "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentPhase",
+      "return": "EDJ01AbilityPhase",
+      "const": true,
+      "doc": "获取当前阶段",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentPhaseRemainingTime",
+      "return": "float32",
+      "const": true,
+      "doc": "获取当前阶段剩余时间",
       "ufunction": true,
       "meta": null,
       "args": []
@@ -109,6 +157,15 @@
       "args": []
     },
     {
+      "name": "GetPhaseStateMachine",
+      "return": "UDJ01AbilityPhaseStateMachine",
+      "const": true,
+      "doc": "获取阶段状态机",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
       "name": "OnAbilityAdded",
       "return": "void",
       "callable": false,
@@ -139,6 +196,34 @@
       "args": []
     },
     {
+      "name": "OnPhaseEnter",
+      "return": "void",
+      "callable": false,
+      "doc": "阶段进入回调 - 子类可重写",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Phase",
+          "type": "EDJ01AbilityPhase"
+        }
+      ]
+    },
+    {
+      "name": "OnPhaseExit",
+      "return": "void",
+      "callable": false,
+      "doc": "阶段退出回调 - 子类可重写",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Phase",
+          "type": "EDJ01AbilityPhase"
+        }
+      ]
+    },
+    {
       "name": "ScriptOnAbilityFailedToActivate",
       "return": "void",
       "const": true,
@@ -163,6 +248,66 @@
         {
           "name": "CameraMode",
           "type": "TSubclassOf<UDJ01CameraMode>"
+        }
+      ]
+    },
+    {
+      "name": "SkipCurrentPhase",
+      "return": "void",
+      "doc": "跳过当前阶段（立即进入下一阶段）",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "TransitionToPhase",
+      "return": "bool",
+      "doc": "切换到指定阶段",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPhase",
+          "type": "EDJ01AbilityPhase"
+        },
+        {
+          "name": "bForce",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "TriggerEffects",
+      "return": "void",
+      "doc": "触发指定阶段的所有效果\n@param Phase - 触发阶段\n@param Targets - 目标 Actor 列表",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Phase",
+          "type": "EDJ01EffectPhase"
+        },
+        {
+          "name": "Targets",
+          "type": "TArray<AActor>"
+        }
+      ]
+    },
+    {
+      "name": "TriggerEffectsByEvent",
+      "return": "void",
+      "doc": "触发动画事件效果\n@param EventTag - 动画事件 Tag\n@param Targets - 目标 Actor 列表",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EventTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Targets",
+          "type": "TArray<AActor>"
         }
       ]
     }

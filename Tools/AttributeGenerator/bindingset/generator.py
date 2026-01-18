@@ -116,15 +116,15 @@ class BindingSetGenerator:
                 callback_name = binding.get_callback_name(vt)
                 
                 # 计算型值（Total/Extra/Max）需要重新从 ASC 获取计算值
-                # 使用保存的 ASC 弱引用来获取 AttributeSet
+                # 使用保存的 ASC 弱引用来获取 AttributeSet（带安全检查）
                 asc_ref = f"BindingSet_{bindingset.name}_ASC"
                 if vt == VALUE_TYPE_TOTAL:
                     # Total 是计算值，需要从 AttributeSet 获取
-                    body = f"if (auto* ASC = {asc_ref}.Get()) {{ if (auto* Set = ASC->GetSet<UDJ01{attr_set}>()) {{ {var_name} = Set->GetTotal{attr_name}(); }} }}"
+                    body = f"if (auto* ASC = {asc_ref}.Get()) {{ if (const auto* Set = ASC->GetSet<UDJ01{attr_set}>()) {{ {var_name} = Set->GetTotal{attr_name}(); }} }}"
                 elif vt == VALUE_TYPE_EXTRA:
-                    body = f"if (auto* ASC = {asc_ref}.Get()) {{ if (auto* Set = ASC->GetSet<UDJ01{attr_set}>()) {{ {var_name} = Set->GetExtra{attr_name}(); }} }}"
+                    body = f"if (auto* ASC = {asc_ref}.Get()) {{ if (const auto* Set = ASC->GetSet<UDJ01{attr_set}>()) {{ {var_name} = Set->GetExtra{attr_name}(); }} }}"
                 elif vt == VALUE_TYPE_MAX:
-                    body = f"if (auto* ASC = {asc_ref}.Get()) {{ if (auto* Set = ASC->GetSet<UDJ01{attr_set}>()) {{ {var_name} = Set->GetTotalMax{attr_name}(); }} }}"
+                    body = f"if (auto* ASC = {asc_ref}.Get()) {{ if (const auto* Set = ASC->GetSet<UDJ01{attr_set}>()) {{ {var_name} = Set->GetTotalMax{attr_name}(); }} }}"
                 else:
                     # 直接值（Current/Base/Flat/Percent）- 从 Data.NewValue 获取
                     if binding.var_type == "float":
@@ -275,26 +275,37 @@ class BindingSetGenerator:
         lines.append(f"// ============================================================")
         lines.append(f"// 初始化值宏 - 内部使用")
         lines.append(f"// ============================================================")
-        lines.append(f"#define DJ01_BINDING_SET_{macro_prefix}_INIT_VALUES(ASC) \\")
+        lines.append(f"#define DJ01_BINDING_SET_{macro_prefix}_INIT_VALUES(InASC) \\")
         
         init_lines = []
         
-        # Attribute 初始化（每个值类型初始化对应的变量）
+        # 收集所有需要的 AttributeSet 类型
+        required_attr_sets: Set[str] = set()
+        for binding in bindingset.attribute_bindings:
+            required_attr_sets.add(binding.attribute_set)
+        
+        # 为每个 AttributeSet 生成安全的初始化代码块
+        for attr_set in sorted(required_attr_sets):
+            set_var = f"BindingSet_{bindingset.name}_{attr_set}"
+            init_lines.append(f"\tconst UDJ01{attr_set}* {set_var} = InASC->GetSet<UDJ01{attr_set}>();")
+        
+        # Attribute 初始化（每个值类型初始化对应的变量）- 使用安全检查
         for binding in bindingset.attribute_bindings:
             attr_set = binding.attribute_set
             attr_name = binding.attribute_name
             var_type = binding.var_type
+            set_var = f"BindingSet_{bindingset.name}_{attr_set}"
             
             for vt in binding.value_types:
                 var_name = binding.get_generated_variable_name(vt)
                 
-                # 根据 value_type 生成正确的初始化代码
+                # 根据 value_type 生成正确的初始化代码（带安全检查）
                 if vt == VALUE_TYPE_TOTAL:
-                    getter_call = f"Cast<UDJ01{attr_set}>(InASC->GetAttributeSet(UDJ01{attr_set}::StaticClass()))->GetTotal{attr_name}()"
+                    getter_call = f"{set_var} ? {set_var}->GetTotal{attr_name}() : 0.0f"
                 elif vt == VALUE_TYPE_EXTRA:
-                    getter_call = f"Cast<UDJ01{attr_set}>(InASC->GetAttributeSet(UDJ01{attr_set}::StaticClass()))->GetExtra{attr_name}()"
+                    getter_call = f"{set_var} ? {set_var}->GetExtra{attr_name}() : 0.0f"
                 elif vt == VALUE_TYPE_MAX:
-                    getter_call = f"Cast<UDJ01{attr_set}>(InASC->GetAttributeSet(UDJ01{attr_set}::StaticClass()))->GetTotalMax{attr_name}()"
+                    getter_call = f"{set_var} ? {set_var}->GetTotalMax{attr_name}() : 0.0f"
                 elif vt == VALUE_TYPE_CURRENT:
                     getter = binding.get_attribute_getter_name(vt)
                     getter_call = f"InASC->GetNumericAttribute({getter}())"

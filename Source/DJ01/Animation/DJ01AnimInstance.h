@@ -2,8 +2,10 @@
 
 #pragma once
 
+#include "DJ01/AbilitySystem/Attributes/BindingSets/Generated/BindingSets.h"
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
+#include "DJ01AnimationTypes.h"
 #include "DJ01GameplayTagPropertyMap.h"
 
 // AnimTagSet 系统：按需包含对应的 TagSet 头文件
@@ -29,6 +31,16 @@ class DJ01_API UDJ01AnimInstance : public UAnimInstance
 {
 	GENERATED_BODY()
 
+	// BindingSet: AnimState
+	DJ01_DECLARE_BINDING_SET(AnimState)
+
+
+
+
+
+
+
+
 public:
 
 	UDJ01AnimInstance(const FObjectInitializer& ObjectInitializer);
@@ -39,6 +51,9 @@ public:
 	 */
 	virtual void InitializeWithAbilitySystem(UAbilitySystemComponent* ASC);
 
+	/** 尝试初始化 GAS 绑定，如果 ASC 还没准备好则跳过 */
+	void TryInitializeGASBindings();
+
 protected:
 
 #if WITH_EDITOR
@@ -47,6 +62,10 @@ protected:
 
 	virtual void NativeInitializeAnimation() override;
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
+
+private:
+	/** 标记 GAS 绑定是否已初始化 */
+	bool bGASBindingsInitialized = false;
 
 protected:
 
@@ -70,9 +89,36 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Physics")
 	float GroundSpeed = 0.0f;
 	
+	/** 
+	 * 移动方向 (相对于角色朝向，-180 到 180)
+	 * 用于 2D BlendSpace 的方向轴
+	 * 0=前进, ±90=左右, ±180=后退
+	 */
+	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Physics")
+	float MoveDirection = 0.0f;
+	
 	/** 角色到地面的距离，用于跳跃/降落动画控制 */
 	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Physics")
 	float GroundDistance = -1.0f;
+
+	/** 是否在空中 (物理状态，来自 CharacterMovement::IsFalling) */
+	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Physics")
+	bool bIsFalling = false;
+
+	/** 在空中的持续时间 (秒)，用于判断轻/重落地 */
+	UPROPERTY(BlueprintReadOnly, Category = "Character State Data|Physics")
+	float TimeInAir = 0.0f;
+
+	//========================================
+	// 动画层类型 (决定使用哪个动画层接口)
+	//========================================
+	
+	/** 
+	 * 当前动画层类型
+	 * 决定状态机调用哪个接口的函数
+	 */
+	UPROPERTY(BlueprintReadWrite, Category = "Character State Data|AnimLayer")
+	EAnimLayerType AnimLayerType = EAnimLayerType::Melee;
 
 	//========================================
 	// 逻辑状态数据 (由 AnimTagSet 系统管理)
