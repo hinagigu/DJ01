@@ -1,0 +1,35 @@
+{
+  "name": "FDJ01AbilityPhaseInfo",
+  "isStruct": true,
+  "doc": "FDJ01AbilityPhaseInfo\n阶段配置信息",
+  "properties": {
+    "Duration": [
+      "float32",
+      "阶段持续时间（0 表示瞬时或由动画控制）"
+    ],
+    "bCanBeInterrupted": [
+      "bool",
+      "该阶段是否可被打断"
+    ],
+    "bCanCancelInto": [
+      "bool",
+      "该阶段是否可取消到其他技能"
+    ],
+    "PhaseTags": [
+      "FGameplayTagContainer",
+      "进入此阶段时添加的 Tag"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDJ01AbilityPhaseInfo&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDJ01AbilityPhaseInfo"
+        }
+      ]
+    }
+  ]
+}

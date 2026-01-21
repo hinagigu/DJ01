@@ -1,0 +1,79 @@
+{
+  "$schema": "../ui_schema_v1.json",
+  "name": "DJ01DamagePopup",
+  "description": "伤害飘字Widget - 显示伤害/治疗数值，带上飘+淡出动画",
+  "parent_class": "CommonUserWidget",
+  "output_path": "Source/DJ01/UI/Generated",
+  "blueprint_path": "/Game/UI/Generated",
+  "components": [
+    {
+      "name": "RootCanvas",
+      "type": "CanvasPanel",
+      "children": [
+        {
+          "name": "DamageText",
+          "type": "TextBlock",
+          "comment": "伤害数字"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "DamageColor",
+      "type": "FLinearColor",
+      "category": "Style",
+      "description": "伤害颜色(红)"
+    },
+    {
+      "name": "HealColor",
+      "type": "FLinearColor",
+      "category": "Style",
+      "description": "治疗颜色(绿)"
+    },
+    {
+      "name": "CriticalColor",
+      "type": "FLinearColor",
+      "category": "Style",
+      "description": "暴击颜色(金)"
+    },
+    {
+      "name": "AnimationDuration",
+      "type": "float",
+      "default": 1.0,
+      "category": "Animation",
+      "description": "动画持续时间(秒)"
+    },
+    {
+      "name": "FloatUpDistance",
+      "type": "float",
+      "default": 80.0,
+      "category": "Animation",
+      "description": "上飘距离(像素)"
+    }
+  ],
+  "functions": [
+    {
+      "name": "ShowDamage",
+      "description": "显示伤害数值",
+      "parameters": [
+        {"name": "DamageAmount", "type": "float"},
+        {"name": "bIsCritical", "type": "bool"}
+      ],
+      "body_hint": "设置文字颜色和内容，播放动画"
+    },
+    {
+      "name": "ShowHeal",
+      "description": "显示治疗数值",
+      "parameters": [
+        {"name": "HealAmount", "type": "float"}
+      ],
+      "body_hint": "设置绿色文字，播放动画"
+    },
+    {
+      "name": "PlayPopupAnimation",
+      "description": "播放飘字动画(蓝图实现上飘+淡出，动画结束后RemoveFromParent)",
+      "blueprint_implementable": true
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "UDJ01DamageEffect",
+  "inherits": "UDJ01AbilityEffect",
+  "doc": "UDJ01DamageEffect\n\n伤害效果 - 计算并应用伤害\n支持基础伤害 + 属性缩放",
+  "properties": {
+    "BaseDamage": [
+      "float32",
+      "基础伤害值"
+    ],
+    "DamageType": [
+      "EDJ01DamageType",
+      "伤害类型"
+    ],
+    "AttributeScalings": [
+      "TArray<FDJ01AttributeScaling>",
+      "属性缩放列表"
+    ],
+    "DamageGameplayEffect": [
+      "TSubclassOf<UGameplayEffect>",
+      "用于应用伤害的 GameplayEffect"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CalculateRawDamage",
+      "return": "float32",
+      "const": true,
+      "doc": "计算最终的原始伤害",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FDJ01EffectContext"
+        }
+      ]
+    }
+  ]
+}

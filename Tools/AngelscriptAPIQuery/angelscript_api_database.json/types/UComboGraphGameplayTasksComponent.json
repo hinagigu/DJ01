@@ -1,0 +1,46 @@
+{
+  "name": "UComboGraphGameplayTasksComponent",
+  "inherits": "UGameplayTasksComponent",
+  "doc": "Internal helper actor component spawned from Combo Graph task mainly to handle sending replicated gameplay event\nto transition from a node to another on input press.\n\nThis component shouldn't be Blueprintable nor BlueprintSpawnableComponent, child class can however.",
+  "properties": {},
+  "methods": [
+    {
+      "name": "SendGameplayEventReplicated",
+      "return": "void",
+      "doc": "This function is functionally the same as SendGameplayEventToActor (from Ability System Blueprint Library),\nexcept it can be used to also replicate the event on server.\n\n@param EventTag Gameplay Tag to use for the Event\n@param Payload Gameplay Event Data to send along the event\n@param bSendOnlyOnAuthority Whether to send the event only on server or on both server and local client",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EventTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Payload",
+          "type": "FGameplayEventData"
+        },
+        {
+          "name": "bSendOnlyOnAuthority",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "ServerSendGameplayEvent",
+      "return": "void",
+      "callable": false,
+      "meta": null,
+      "args": [
+        {
+          "name": "EventTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Payload",
+          "type": "FGameplayEventData"
+        }
+      ]
+    }
+  ]
+}

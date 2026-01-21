@@ -1,0 +1,49 @@
+{
+  "name": "UDJ01ViewModelBase",
+  "inherits": "UMVVMViewModelBase",
+  "doc": "DJ01 ViewModel 基类\n\n所有游戏 ViewModel 的基类，提供：\n- 与 GAS 属性系统的集成（通过 BindingSet）\n- 玩家上下文获取\n- 通用的初始化/清理逻辑\n\n使用方式：\n1. 继承此类创建具体的 ViewModel\n2. 使用 DJ01_DECLARE_BINDING_SET(Name) 声明需要的绑定\n3. 在 InitializeViewModel_Implementation 中调用 DJ01_INIT_BINDING_SET\n4. 在 UninitializeViewModel_Implementation 中调用 DJ01_CLEANUP_BINDING_SET\n\n@see DJ01HealthViewModel 完整使用示例",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetAbilitySystemComponent",
+      "return": "UAbilitySystemComponent",
+      "const": true,
+      "doc": "获取绑定的 ASC",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InitializeViewModel",
+      "return": "void",
+      "doc": "初始化 ViewModel\n子类应重写此函数以调用 DJ01_INIT_BINDING_SET",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ASC",
+          "type": "UAbilitySystemComponent"
+        }
+      ]
+    },
+    {
+      "name": "IsInitialized",
+      "return": "bool",
+      "const": true,
+      "doc": "检查 ViewModel 是否已初始化",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UninitializeViewModel",
+      "return": "void",
+      "doc": "清理 ViewModel\n子类应重写此函数以调用 DJ01_CLEANUP_BINDING_SET",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

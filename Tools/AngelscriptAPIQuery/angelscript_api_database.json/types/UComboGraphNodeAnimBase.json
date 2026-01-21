@@ -1,0 +1,274 @@
+{
+  "name": "UComboGraphNodeAnimBase",
+  "inherits": "UComboGraphNodeBase",
+  "doc": "Base Class for all Anim related Combo Graph nodes (montage or sequence)\n\nHolds runtime properties for animation and effects / cues containers.",
+  "properties": {
+    "MontagePlayRate": [
+      "float32",
+      "Anim montage play rate"
+    ],
+    "RootMotionScale": [
+      "float32",
+      "Sets scale to apply to root motion translation on the animating character"
+    ],
+    "bStopAnimationWhenAbilityEnds": [
+      "bool",
+      "If true, this montage will be aborted if the ability ends normally. It is always stopped when the ability is explicitly cancelled.\n\nThis value is passed down to the ability task playing the montage, and corresponds to bStopWhenAbilityEnds parameter value of the PlayMontageAndWait ability task."
+    ],
+    "DamageHandlingMethod": [
+      "EComboGraphDamageHandlingMethod",
+      "Specify which method to use to handle Effects Containers\n\nWhen using Gameplay Abilities, you should use `AbilitySystem` method and go through Gameplay Effects to modify your Attributes.\n\nNon Gameplay Abilities user can fallback to Unreal's Damage System."
+    ],
+    "EffectsContainerMap": [
+      "TMap<FGameplayTag,FComboGraphGameplayEffectContainer>",
+      "Map of gameplay tags we're listening to gameplay effect containers"
+    ],
+    "DamagesContainerMap": [
+      "TMap<FGameplayTag,FComboGraphDamageSystemContainer>",
+      "Map of gameplay tags we're listening to damage containers"
+    ],
+    "CostGameplayEffect": [
+      "TSubclassOf<UGameplayEffect>",
+      "This GameplayEffect represents the cost (mana, stamina, etc) of the combo node. It will be applied when the node is committed."
+    ],
+    "EventTags": [
+      "FGameplayTagContainer",
+      "This tag container can be used to define Gameplay Tags to listen to with the underlying \"Play Montage and Wait For Event\" task.\n\nWhile the animation is playing, if a gameplay event with one of those tags is sent to the owning actor, the \"EventReceived\" delegate\nfor the \"StartComboGraph\" task will be called with the Gameplay Tag for the event and Gameplay Event Data structure."
+    ],
+    "CuesContainerMap": [
+      "TMap<FGameplayTag,FComboGraphCueContainer>",
+      "Map of gameplay tags we're listening to to gameplay cues containers"
+    ],
+    "NotifyStatesOverrides": [
+      "TMap<TSoftClassPtr<UAnimNotifyState>,FComboGraphNotifyStateAutoSetup>",
+      "Notify states overrides for Auto Setup.\n\nBefore going through play montage task, adds all items from this map to plugin settings map (if any keys are in both, the value from the node map wins).\n\nIf animation asset (montage or sequence) being played is using one of the AnimNotifyState, the auto setup for this notify is ignored (notifies in anim assets win)."
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetAvatarActor",
+      "return": "AActor",
+      "const": true,
+      "doc": "Returns the direct parent node that this node was transitioned from.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAvatarAsCharacter",
+      "return": "ACharacter",
+      "const": true,
+      "doc": "Returns the direct parent node that this node was transitioned from.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAvatarAsPawn",
+      "return": "APawn",
+      "const": true,
+      "doc": "Returns the direct parent node that this node was transitioned from.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetMagnitudeForContainer",
+      "return": "float32",
+      "const": true,
+      "callable": false,
+      "doc": "Used by Combo Graph Task to calculate Damage Container damage to apply or Effect Container set by caller magnitudes before being applied via Effects.\n\nCan be overridden in Blueprint, and should return the new computed magnitude value (default native implementation simply return the Container Magnitude value)\n\n@param OriginalMagnitude Original magnitude or base damage value defined in Combo Node for the Effect or Damage Container (depends on DamageHandlingMethod)\n@param ElapsedSeconds Time in seconds returned by the Enhanced Input system. Total time the action has been evaluating triggering (Ongoing & Triggered)\n@param TriggeredSeconds Time in seconds returned by the Enhanced Input system. Time the action has been actively triggered (Triggered only)\n@param AnimationLength Total animation play time with section time defined by StartSection on montage node subtracted from the result. If no StartSection is defined (None), total animation play time is used\n@param MontagePlayTime Actual Play time in seconds for the montage at the time the container is applied\n@param InputMagnitude Normalized magnitude value ranging from 0 to 1 based on Enhanced Input Elapsed Time and Animation Length (1 means Elapsed Time is at or above the total animation length)\n@param ContainerTag Gameplay Tag key for the Effect or Damage container (depends on DamageHandlingMethod). Can be used to get back original container from DamagesContainerMap or EffectsContainerMap\n@return New adjusted magnitude value",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "OriginalMagnitude",
+          "type": "float"
+        },
+        {
+          "name": "ElapsedSeconds",
+          "type": "float"
+        },
+        {
+          "name": "TriggeredSeconds",
+          "type": "float"
+        },
+        {
+          "name": "AnimationLength",
+          "type": "float"
+        },
+        {
+          "name": "MontagePlayTime",
+          "type": "float"
+        },
+        {
+          "name": "InputMagnitude",
+          "type": "float"
+        },
+        {
+          "name": "ContainerTag",
+          "type": "FGameplayTag"
+        }
+      ]
+    },
+    {
+      "name": "GetOwnerActor",
+      "return": "AActor",
+      "const": true,
+      "doc": "Returns the direct parent node that this node was transitioned from.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CanActivateNode",
+      "return": "bool",
+      "const": true,
+      "callable": false,
+      "doc": "Returns true if this node can be activated right now. Has no side effects.",
+      "event": true,
+      "unrealname": "K2_CanActivateNode",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAnimationAsset",
+      "return": "UAnimSequenceBase",
+      "const": true,
+      "doc": "Returns the animation asset defined in editor for the node. Can be either a sequence or montage.",
+      "ufunction": true,
+      "unrealname": "K2_GetAnimationAsset",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetAnimationClass",
+      "return": "UClass",
+      "const": true,
+      "doc": "Returns the type as text of underlying animation asset for the node. Can be either a sequence or montage.\n\nEffectively just calling AnimationAsset->GetClass();",
+      "ufunction": true,
+      "unrealname": "K2_GetAnimationClass",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetChildren",
+      "return": "TArray<UComboGraphNodeAnimBase>",
+      "const": true,
+      "doc": "Returns the list of children nodes for this node, that is direct descendant in the graph hierarchy.",
+      "ufunction": true,
+      "unrealname": "K2_GetChildren",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetNodeTitle",
+      "return": "FText",
+      "const": true,
+      "doc": "Returns title for the node as displayed in the editor (either name of the animation asset or if defined the NodeTitle property)",
+      "ufunction": true,
+      "unrealname": "K2_GetNodeTitle",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningAbility",
+      "return": "UGameplayAbility",
+      "const": true,
+      "doc": "Returns the owning gameplay ability this node currently being played in. Should only return valid instance if the ability is currently active / running.",
+      "ufunction": true,
+      "unrealname": "K2_GetOwningAbility",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningGraph",
+      "return": "UComboGraph",
+      "const": true,
+      "doc": "Returns the ComboGraph UObject this node is part of.",
+      "ufunction": true,
+      "unrealname": "K2_GetOwningGraph",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetOwningTask",
+      "return": "UComboGraphAbilityTask_StartGraph",
+      "const": true,
+      "doc": "Returns the owning ability task this node currently being played in. Should only return valid instance if the task is currently active / running.",
+      "ufunction": true,
+      "unrealname": "K2_GetOwningTask",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPreviousNode",
+      "return": "UComboGraphNodeAnimBase",
+      "const": true,
+      "doc": "Returns the direct parent node that this node was transitioned from.",
+      "ufunction": true,
+      "unrealname": "K2_GetPreviousNode",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnActivated",
+      "return": "void",
+      "callable": false,
+      "doc": "Event triggered when the node is activated and transitioned to in the owning graph.\n\nThis only triggers if checks (CanActivateNode / Cost commit) have been successful and not preventing execution.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnDeactivated",
+      "return": "void",
+      "callable": false,
+      "doc": "Event triggered when the node is ending and owning graph is transitioning to the next node (or ending the graph).",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnEventReceived",
+      "return": "void",
+      "callable": false,
+      "doc": "Event triggered when the actor owning the combo graph this node is part of is receiving a gameplay event this node listens to\n(either with the EventTags property or if it is defining Gameplay Effects or Cues Containers).",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EventTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "EventData",
+          "type": "FGameplayEventData"
+        }
+      ]
+    },
+    {
+      "name": "OnInitialized",
+      "return": "void",
+      "callable": false,
+      "doc": "Event triggered when the node is activated and transitioned to in the owning graph, before CanActivateNode checks / cost commit and activation.",
+      "event": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnMontagePlay",
+      "return": "void",
+      "callable": false,
+      "doc": "Event triggered when the animation asset for this node is played as an anim montage in the owning ability task and gameplay ability.",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Montage",
+          "type": "UAnimMontage"
+        }
+      ]
+    }
+  ]
+}

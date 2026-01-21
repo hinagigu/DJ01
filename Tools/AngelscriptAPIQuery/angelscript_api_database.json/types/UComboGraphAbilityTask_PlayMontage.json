@@ -1,0 +1,37 @@
+{
+  "name": "UComboGraphAbilityTask_PlayMontage",
+  "inherits": "UAbilityTask",
+  "doc": "This task is a variation of PlayMontageAndWaitForEvent that combines PlayMontageAndWait and WaitForEvent into one task.\n\nThe added functionality here is that it is a ticking task to optionally trigger AnimNotifyStates Begin and End event, without having\nthem actually registered in the Animation Asset (Sequence or Montage)",
+  "properties": {
+    "OnCompleted": [
+      "FComboGraphPlayMontageEventDelegate",
+      "The montage completely finished playing"
+    ],
+    "OnBlendOut": [
+      "FComboGraphPlayMontageEventDelegate",
+      "The montage started blending out"
+    ],
+    "OnInterrupted": [
+      "FComboGraphPlayMontageEventDelegate",
+      "The montage was interrupted"
+    ],
+    "OnCancelled": [
+      "FComboGraphPlayMontageEventDelegate",
+      "The ability task was explicitly cancelled by another ability"
+    ],
+    "EventReceived": [
+      "FComboGraphPlayMontageEventDelegate",
+      "One of the triggering gameplay events happened"
+    ]
+  },
+  "methods": [
+    {
+      "name": "UnbindAllDelegate",
+      "return": "void",
+      "doc": "Unbinds all animation delegate on this Ability Task (except OnCanceled)",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

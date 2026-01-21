@@ -1,0 +1,80 @@
+{
+  "name": "UMVVMSubsystem",
+  "inherits": "UEngineSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "DoesWidgetTreeContainedWidget",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetTree",
+          "type": "const UWidgetTree"
+        },
+        {
+          "name": "ViewWidget",
+          "type": "const UWidget"
+        }
+      ]
+    },
+    {
+      "name": "GetAvailableBinding",
+      "return": "FMVVMAvailableBinding",
+      "const": true,
+      "doc": "@return The AvailableBinding from a BindingName.",
+      "ufunction": true,
+      "unrealname": "K2_GetAvailableBinding",
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "const UClass"
+        },
+        {
+          "name": "BindingName",
+          "type": "FMVVMBindingName"
+        },
+        {
+          "name": "Accessor",
+          "type": "const UClass"
+        }
+      ]
+    },
+    {
+      "name": "GetAvailableBindings",
+      "return": "TArray<FMVVMAvailableBinding>",
+      "const": true,
+      "doc": "@return The list of all the AvailableBindings that are available for the Class.",
+      "ufunction": true,
+      "unrealname": "K2_GetAvailableBindings",
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "const UClass"
+        },
+        {
+          "name": "Accessor",
+          "type": "const UClass"
+        }
+      ]
+    },
+    {
+      "name": "GetViewFromUserWidget",
+      "return": "UMVVMView",
+      "const": true,
+      "ufunction": true,
+      "unrealname": "K2_GetViewFromUserWidget",
+      "meta": null,
+      "args": [
+        {
+          "name": "UserWidget",
+          "type": "const UUserWidget"
+        }
+      ]
+    }
+  ]
+}

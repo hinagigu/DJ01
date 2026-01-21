@@ -1,0 +1,154 @@
+{
+  "$schema": "../ui_schema_v1.json",
+  "name": "DJ01PlayerHUD",
+  "description": "玩家主HUD - 血条、蓝条、伤害飘字容器",
+  "parent_class": "CommonUserWidget",
+  "output_path": "Source/DJ01/UI/Generated",
+  "blueprint_path": "/Game/UI/Generated",
+  "components": [
+    {
+      "name": "RootCanvas",
+      "type": "CanvasPanel",
+      "children": [
+        {
+          "name": "StatusContainer",
+          "type": "VerticalBox",
+          "comment": "状态栏容器(左上角)",
+          "children": [
+            {
+              "name": "HealthBarContainer",
+              "type": "SizeBox",
+              "width_override": 250,
+              "height_override": 24,
+              "children": [
+                {
+                  "name": "HealthBarOverlay",
+                  "type": "Overlay",
+                  "children": [
+                    {
+                      "name": "HealthBarBg",
+                      "type": "Image",
+                      "comment": "血条背景(深红)"
+                    },
+                    {
+                      "name": "HealthBar",
+                      "type": "ProgressBar",
+                      "comment": "血条进度",
+                      "bind_percent": "PercentHealth"
+                    },
+                    {
+                      "name": "HealthText",
+                      "type": "TextBlock",
+                      "comment": "血量数字"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "ManaBarContainer",
+              "type": "SizeBox",
+              "width_override": 200,
+              "height_override": 16,
+              "children": [
+                {
+                  "name": "ManaBarOverlay",
+                  "type": "Overlay",
+                  "children": [
+                    {
+                      "name": "ManaBarBg",
+                      "type": "Image",
+                      "comment": "蓝条背景(深蓝)"
+                    },
+                    {
+                      "name": "ManaBar",
+                      "type": "ProgressBar",
+                      "comment": "蓝条进度",
+                      "bind_percent": "PercentMana"
+                    },
+                    {
+                      "name": "ManaText",
+                      "type": "TextBlock",
+                      "comment": "蓝量数字"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "DamagePopupContainer",
+          "type": "CanvasPanel",
+          "comment": "伤害飘字容器(全屏)",
+          "optional": true
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "DamagePopupClass",
+      "type": "TSubclassOf<UUserWidget>",
+      "category": "Popup",
+      "description": "伤害飘字Widget类"
+    }
+  ],
+  "derived_properties": [
+    {
+      "name": "HealthDisplayText",
+      "type": "FText",
+      "category": "Display",
+      "description": "格式化的血量文字 (当前/最大)"
+    },
+    {
+      "name": "ManaDisplayText",
+      "type": "FText",
+      "category": "Display",
+      "description": "格式化的蓝量文字 (当前/最大)"
+    },
+    {
+      "name": "LastHealth",
+      "type": "float",
+      "default": -1.0,
+      "category": "Internal",
+      "description": "上次血量值(用于计算伤害差值)"
+    }
+  ],
+  "functions": [
+    {
+      "name": "ShowDamagePopup",
+      "description": "在屏幕指定位置显示伤害飘字",
+      "parameters": [
+        {"name": "DamageAmount", "type": "float"},
+        {"name": "ScreenPosition", "type": "FVector2D"},
+        {"name": "bIsCritical", "type": "bool"}
+      ]
+    },
+    {
+      "name": "ShowHealPopup",
+      "description": "显示治疗飘字",
+      "parameters": [
+        {"name": "HealAmount", "type": "float"},
+        {"name": "ScreenPosition", "type": "FVector2D"}
+      ]
+    },
+    {
+      "name": "HandleHealthDelta",
+      "description": "处理血量变化差值 - 计算并显示飘字",
+      "parameters": [
+        {"name": "NewHealth", "type": "float"}
+      ]
+    }
+  ],
+  "binding_set": {
+    "name": "ReSources",
+    "component_bindings": []
+  },
+  
+  "gamefeature": {
+    "is_layout": false,
+    "slot": "UI.Slot.MainHUD",
+    "auto_activate": true
+  }
+}

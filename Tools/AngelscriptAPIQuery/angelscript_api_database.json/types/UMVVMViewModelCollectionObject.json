@@ -1,0 +1,74 @@
+{
+  "name": "UMVVMViewModelCollectionObject",
+  "inherits": "UObject",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddViewModelInstance",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FMVVMViewModelContext"
+        },
+        {
+          "name": "ViewModel",
+          "type": "UMVVMViewModelBase"
+        }
+      ]
+    },
+    {
+      "name": "FindFirstViewModelInstanceOfType",
+      "return": "UMVVMViewModelBase",
+      "const": true,
+      "doc": "Finds a View Model of the given type.\nIf the collection contains multiple instances of the same type then this will return the first one found.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ViewModelClass",
+          "type": "TSubclassOf<UMVVMViewModelBase>"
+        }
+      ]
+    },
+    {
+      "name": "FindViewModelInstance",
+      "return": "UMVVMViewModelBase",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FMVVMViewModelContext"
+        }
+      ]
+    },
+    {
+      "name": "RemoveAllViewModelInstance",
+      "return": "int",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "ViewModel",
+          "type": "UMVVMViewModelBase"
+        }
+      ]
+    },
+    {
+      "name": "RemoveViewModel",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FMVVMViewModelContext"
+        }
+      ]
+    }
+  ]
+}

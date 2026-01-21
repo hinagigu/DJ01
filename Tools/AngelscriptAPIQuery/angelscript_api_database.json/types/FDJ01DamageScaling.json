@@ -1,0 +1,39 @@
+{
+  "name": "FDJ01DamageScaling",
+  "isStruct": true,
+  "doc": "单个伤害加成配置\n\n示例配置:\n- \"+80% Total AD\": Layer=Total, AttributeSetClass=UDJ01StatSet, AttributeName=\"AttackPower\", Ratio=0.8\n- \"+10% Target MaxHP\": Layer=Total, AttributeName=\"MaxHealth\", bFromTarget=true, Ratio=0.1",
+  "properties": {
+    "AttributeSetClass": [
+      "TSubclassOf<UAttributeSet>",
+      "属性集类 (如 UDJ01StatSet, UDJ01ResourceSet)\n留空则使用 AttributeName 在所有 AttributeSet 中查找"
+    ],
+    "AttributeName": [
+      "FName",
+      "属性名称 (如 \"AttackPower\", \"MagicPower\", \"MaxHealth\")\n必须是 AttributeGenerator 生成的属性名"
+    ],
+    "Layer": [
+      "EDJ01AttributeLayer",
+      "属性层级 (Base/Bonus/Total)"
+    ],
+    "Ratio": [
+      "float32",
+      "加成比例 (0.8 = 80%)"
+    ],
+    "bFromTarget": [
+      "bool",
+      "是否从目标获取 (false = 从自身/施法者获取)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDJ01DamageScaling&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDJ01DamageScaling"
+        }
+      ]
+    }
+  ]
+}

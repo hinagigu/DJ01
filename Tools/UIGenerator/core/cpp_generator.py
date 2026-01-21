@@ -206,11 +206,14 @@ class CppGenerator:
         binding_set = schema.get('binding_set')
         if binding_set:
             bs_name = binding_set.get('name', '')
+            # BindingSet 宏包含 UFUNCTION(BlueprintCallable)，必须在 public: 区域
+            lines.append("public:")
             lines.append(f"\t// ===== BindingSet: {bs_name} =====")
             lines.append(f"\t// 以下变量和函数由 DJ01_DECLARE_BINDING_SET({bs_name}) 自动生成")
             lines.append(f"\tDJ01_DECLARE_BINDING_SET({bs_name})")
             lines.append("")
             
+            lines.append("protected:")
             lines.append("\t/** ASC 弱引用 */")
             lines.append("\tTWeakObjectPtr<UAbilitySystemComponent> BoundASC;")
             lines.append("")
@@ -303,6 +306,14 @@ class CppGenerator:
                 lines.append(self._generate_property_declaration(prop))
             lines.append("")
         
+        # 派生属性（由代码计算，不来自 BindingSet）
+        derived_properties = schema.get('derived_properties', [])
+        if derived_properties:
+            lines.append("\t// ===== 派生属性 (代码计算) =====")
+            for prop in derived_properties:
+                lines.append(self._generate_property_declaration(prop, is_derived=True))
+            lines.append("")
+        
         # 事件
         events = schema.get('events', [])
         if events:
@@ -345,6 +356,17 @@ class CppGenerator:
         lines.append('#include "Components/ProgressBar.h"')
         lines.append('#include "Components/TextBlock.h"')
         lines.append('#include "Components/Image.h"')
+        lines.append('#include "Components/CanvasPanelSlot.h"')
+        lines.append('#include "Components/CanvasPanel.h"')
+        
+        # 检查是否需要 DamagePopup 的 include（检查函数名）
+        needs_damage_popup = False
+        for func in schema.get('functions', []):
+            if func.get('name') in ['ShowDamagePopup', 'ShowHealPopup']:
+                needs_damage_popup = True
+                break
+        if needs_damage_popup:
+            lines.append('#include "DJ01DamagePopupBase.h"')
         lines.append("")
         
         # 构造函数
@@ -593,16 +615,25 @@ class CppGenerator:
         
         return f"\tUPROPERTY(BlueprintReadWrite, meta = ({meta}))\n\tTObjectPtr<{ue_class}> {comp['name']};{comment_str}"
     
-    def _generate_property_declaration(self, prop: Dict) -> str:
+    def _generate_property_declaration(self, prop: Dict, is_derived: bool = False) -> str:
         """生成属性声明"""
         prop_type = prop['type']
-        type_info = self.widget_types['property_types'].get(prop_type, {})
-        cpp_type = type_info.get('cpp_type', prop_type)
+        
+        # 处理 TSubclassOf<ClassName> 模板类型
+        if prop_type.startswith('TSubclassOf<'):
+            cpp_type = prop_type  # 直接使用，如 TSubclassOf<UUserWidget>
+        else:
+            type_info = self.widget_types['property_types'].get(prop_type, {})
+            cpp_type = type_info.get('cpp_type', prop_type)
         
         # UPROPERTY 说明符
-        specifiers = ["EditAnywhere", "BlueprintReadWrite"]
-        if prop.get('blueprint_read_only', False):
-            specifiers = ["VisibleAnywhere", "BlueprintReadOnly"]
+        if is_derived:
+            # 派生属性默认 BlueprintReadOnly，不在编辑器显示
+            specifiers = ["BlueprintReadOnly"]
+        else:
+            specifiers = ["EditAnywhere", "BlueprintReadWrite"]
+            if prop.get('blueprint_read_only', False):
+                specifiers = ["VisibleAnywhere", "BlueprintReadOnly"]
         
         category = prop.get('category', 'Default')
         specifiers.append(f'Category = "{category}"')
@@ -617,6 +648,9 @@ class CppGenerator:
                 default_str = f" = {'true' if default else 'false'}"
             elif isinstance(default, (int, float)):
                 default_str = f" = {default}f" if isinstance(default, float) else f" = {default}"
+            elif isinstance(default, str) and default.startswith('(') and default.endswith(')'):
+                # FLinearColor 等结构体的默认值格式: "(R=1.0,G=0.2,B=0.2,A=1.0)"
+                default_str = f" = FLinearColor{default}"
         
         # 注释
         desc = prop.get('description', '')
@@ -830,16 +864,110 @@ class CppGenerator:
         return_type = func.get('return_type', 'void')
         params = func.get('parameters', [])
         param_str = ", ".join([f"{p['type']} {p['name']}" for p in params])
+        func_name = func['name']
         
-        lines.append(f"{return_type} {class_name}::{func['name']}({param_str})")
+        lines.append(f"{return_type} {class_name}::{func_name}({param_str})")
         lines.append("{")
         
-        # 根据 body_hint 生成基本实现
-        body_hint = func.get('body_hint', '')
-        if body_hint:
-            lines.append(f"\t// TODO: {body_hint}")
+        # 根据函数名生成特定实现
+        if func_name == 'ShowDamage':
+            lines.append("\tif (!DamageText) return;")
+            lines.append("")
+            lines.append("\t// 设置颜色")
+            lines.append("\tFSlateColor TextColor = bIsCritical ? FSlateColor(CriticalColor) : FSlateColor(DamageColor);")
+            lines.append("\tDamageText->SetColorAndOpacity(TextColor);")
+            lines.append("")
+            lines.append("\t// 设置文字（暴击加感叹号）")
+            lines.append("\tFString DamageStr = bIsCritical ? FString::Printf(TEXT(\"%.0f!\"), DamageAmount) : FString::Printf(TEXT(\"%.0f\"), DamageAmount);")
+            lines.append("\tDamageText->SetText(FText::FromString(DamageStr));")
+            lines.append("")
+            lines.append("\t// 播放动画")
+            lines.append("\tPlayPopupAnimation();")
+        elif func_name == 'ShowHeal':
+            lines.append("\tif (!DamageText) return;")
+            lines.append("")
+            lines.append("\t// 设置绿色")
+            lines.append("\tDamageText->SetColorAndOpacity(FSlateColor(HealColor));")
+            lines.append("")
+            lines.append("\t// 设置文字（+号前缀）")
+            lines.append("\tFString HealStr = FString::Printf(TEXT(\"+%.0f\"), HealAmount);")
+            lines.append("\tDamageText->SetText(FText::FromString(HealStr));")
+            lines.append("")
+            lines.append("\t// 播放动画")
+            lines.append("\tPlayPopupAnimation();")
+        elif func_name == 'ShowDamagePopup':
+            lines.append("\tif (!DamagePopupClass || !DamagePopupContainer) return;")
+            lines.append("")
+            lines.append("\t// 创建伤害飘字")
+            lines.append("\tUUserWidget* PopupWidget = CreateWidget<UUserWidget>(GetOwningPlayer(), DamagePopupClass);")
+            lines.append("\tif (PopupWidget)")
+            lines.append("\t{")
+            lines.append("\t\t// 添加到容器并设置位置")
+            lines.append("\t\tUCanvasPanelSlot* PanelSlot = Cast<UCanvasPanelSlot>(DamagePopupContainer->AddChild(PopupWidget));")
+            lines.append("\t\tif (PanelSlot)")
+            lines.append("\t\t{")
+            lines.append("\t\t\tPanelSlot->SetPosition(ScreenPosition);")
+            lines.append("\t\t\tPanelSlot->SetAutoSize(true);")
+            lines.append("\t\t}")
+            lines.append("\t\t// 调用蓝图实现的显示函数")
+            lines.append("\t\tif (UDJ01DamagePopupBase* DamagePopup = Cast<UDJ01DamagePopupBase>(PopupWidget))")
+            lines.append("\t\t{")
+            lines.append("\t\t\tDamagePopup->ShowDamage(DamageAmount, bIsCritical);")
+            lines.append("\t\t}")
+            lines.append("\t}")
+        elif func_name == 'ShowHealPopup':
+            lines.append("\tif (!DamagePopupClass || !DamagePopupContainer) return;")
+            lines.append("")
+            lines.append("\t// 创建治疗飘字")
+            lines.append("\tUUserWidget* PopupWidget = CreateWidget<UUserWidget>(GetOwningPlayer(), DamagePopupClass);")
+            lines.append("\tif (PopupWidget)")
+            lines.append("\t{")
+            lines.append("\t\tUCanvasPanelSlot* PanelSlot = Cast<UCanvasPanelSlot>(DamagePopupContainer->AddChild(PopupWidget));")
+            lines.append("\t\tif (PanelSlot)")
+            lines.append("\t\t{")
+            lines.append("\t\t\tPanelSlot->SetPosition(ScreenPosition);")
+            lines.append("\t\t\tPanelSlot->SetAutoSize(true);")
+            lines.append("\t\t}")
+            lines.append("\t\t// 调用蓝图实现的显示函数")
+            lines.append("\t\tif (UDJ01DamagePopupBase* DamagePopup = Cast<UDJ01DamagePopupBase>(PopupWidget))")
+            lines.append("\t\t{")
+            lines.append("\t\t\tDamagePopup->ShowHeal(HealAmount);")
+            lines.append("\t\t}")
+            lines.append("\t}")
+        elif func_name == 'HandleHealthDelta':
+            lines.append("\t// 计算伤害/治疗差值")
+            lines.append("\tif (LastHealth < 0.0f)")
+            lines.append("\t{")
+            lines.append("\t\t// 首次初始化，不显示飘字")
+            lines.append("\t\tLastHealth = NewHealth;")
+            lines.append("\t\treturn;")
+            lines.append("\t}")
+            lines.append("")
+            lines.append("\tfloat Delta = NewHealth - LastHealth;")
+            lines.append("\tLastHealth = NewHealth;")
+            lines.append("")
+            lines.append("\tif (FMath::Abs(Delta) < 0.01f) return;")
+            lines.append("")
+            lines.append("\t// 获取屏幕中心位置作为飘字起点")
+            lines.append("\tFVector2D ScreenPos = FVector2D(400.0f, 300.0f); // TODO: 使用实际位置")
+            lines.append("")
+            lines.append("\tif (Delta < 0.0f)")
+            lines.append("\t{")
+            lines.append("\t\t// 受到伤害")
+            lines.append("\t\tShowDamagePopup(FMath::Abs(Delta), ScreenPos, false);")
+            lines.append("\t}")
+            lines.append("\telse")
+            lines.append("\t{")
+            lines.append("\t\t// 受到治疗")
+            lines.append("\t\tShowHealPopup(Delta, ScreenPos);")
+            lines.append("\t}")
+        else:
+            # 默认实现
+            body_hint = func.get('body_hint', '')
+            if body_hint:
+                lines.append(f"\t// TODO: {body_hint}")
+            lines.append("\tUpdateBindings();")
         
-        lines.append("\tUpdateBindings();")
         lines.append("}")
         
         return lines

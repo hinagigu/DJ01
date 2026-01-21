@@ -1,0 +1,35 @@
+{
+  "name": "UComboGraphTargetType",
+  "inherits": "UObject",
+  "doc": "Class that is used to determine targeting for abilities\n\nIt is meant to be blueprinted to run target logic\n\nThis does not subclass GameplayAbilityTargetActor because this class is never instanced into the world\n\nThis can be used as a basis for a game-specific targeting blueprint. If your targeting is more complicated\nyou may need to instance into the world once or as a pooled actor",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetTargets",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "doc": "Called to determine targets to apply gameplay effects to",
+      "event": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "TargetingActor",
+          "type": "AActor"
+        },
+        {
+          "name": "EventData",
+          "type": "FGameplayEventData"
+        },
+        {
+          "name": "OutHitResults",
+          "type": "TArray<FHitResult>&"
+        },
+        {
+          "name": "OutActors",
+          "type": "TArray<AActor>&"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "UComboGraphSystemComponent",
+  "inherits": "UComboGraphGameplayTasksComponent",
+  "doc": "Gameplay Task Actor Component designed to be added in Blueprints to Actors that wants to run Start Graph Gameplay Task outside of the regular GAS route and Gameplay Abilities.\n\nIt is meant to be used for Actors not implementing IAbilitySystemInterface. On BeginPlay, this component will check owners for a valid Ability System Component\n(either via the interface, or through component search) and if none is found, will spawn and register an ASC at runtime.\n\nOnce done, this component will grant a generic internal ability UComboGraphNativeAbility (which is also not Blueprintable) that the gameplay task can use to run a specific combo graph.\nUComboGraphNativeAbility provides a basic implementation of a typical gameplay ability to run a combo graph via the ability task, pulling the combo graph asset from Gameplay Event Data.",
+  "properties": {},
+  "methods": []
+}

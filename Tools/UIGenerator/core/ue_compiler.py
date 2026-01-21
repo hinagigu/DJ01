@@ -1,10 +1,14 @@
 """
 Unreal Engine 编译器集成
+支持两种编译模式:
+1. 外部编译 (UE 关闭时) - 使用 Build.bat
+2. Live Coding (UE 打开时) - 通过 UE Python 触发
 """
 import os
 import json
 import subprocess
 import threading
+import ctypes
 from typing import Optional, Dict, Callable, List
 
 try:
@@ -135,9 +139,45 @@ class UECompiler:
     
     def compile_async(self, target: str = "DJ01Editor", 
                       platform: str = "Win64",
-                      configuration: str = "Development"):
-        """异步编译项目"""
+                      configuration: str = "Development",
+                      force_external: bool = False):
+        """
+        异步编译项目
+        
+        自动检测 UE 状态:
+        - UE 运行中 → 使用 Live Coding
+        - UE 关闭   → 使用外部编译
+        
+        Args:
+            force_external: 强制使用外部编译（会提示关闭 UE）
+        """
         if self.is_compiling:
+            return False
+        
+        # 检测 UE 是否运行
+        ue_running = UECommandSender.is_ue_running()
+        
+        if ue_running and not force_external:
+            # UE 运行中，使用 Live Coding
+            if self.on_output:
+                self.on_output("🔄 检测到 UE 编辑器运行中，使用 Live Coding 编译...")
+            
+            if UECommandSender.trigger_live_coding():
+                if self.on_output:
+                    self.on_output("✓ Live Coding 命令已发送")
+                    self.on_output("⚠️ 请在 UE 编辑器中查看编译结果")
+                if self.on_success:
+                    self.on_success()
+                return True
+            else:
+                if self.on_error:
+                    self.on_error("发送 Live Coding 命令失败")
+                return False
+        
+        # 外部编译
+        if ue_running and force_external:
+            if self.on_error:
+                self.on_error("⚠️ 请先关闭 UE 编辑器再进行外部编译")
             return False
         
         if not self.can_compile():
@@ -160,6 +200,9 @@ class UECompiler:
         
         def run():
             try:
+                if self.on_output:
+                    self.on_output("🔧 开始外部编译...")
+                
                 process = subprocess.Popen(
                     cmd,
                     stdout=subprocess.PIPE,
@@ -198,6 +241,15 @@ class UECompiler:
         thread = threading.Thread(target=run, daemon=True)
         thread.start()
         return True
+    
+    def get_compile_mode_info(self) -> Dict[str, any]:
+        """获取当前编译模式信息"""
+        ue_running = UECommandSender.is_ue_running()
+        return {
+            'ue_running': ue_running,
+            'mode': 'Live Coding' if ue_running else '外部编译',
+            'description': '在 UE 内增量编译' if ue_running else '完整项目编译'
+        }
     
     def get_compile_command(self) -> List[str]:
         """获取编译命令（用于显示）"""
@@ -245,3 +297,60 @@ result = generate_all_from_directory(r'{schemas_dir}')
 print(f"生成结果: 成功 {{len(result['success'])}}, 失败 {{len(result['failed'])}}")
 """
         return UECommandSender.send(code)
+    
+    @staticmethod
+    def trigger_live_coding() -> bool:
+        """触发 UE Live Coding 编译 (Ctrl+Alt+F11)"""
+        code = """
+import unreal
+# 触发 Live Coding 编译
+try:
+    # 方法1: 使用 LiveCoding 模块
+    if hasattr(unreal, 'LiveCodingSubsystem'):
+        live_coding = unreal.get_engine_subsystem(unreal.LiveCodingSubsystem)
+        if live_coding:
+            live_coding.start_live_coding_session()
+            unreal.log("[UIGenerator] ✓ 已触发 Live Coding 编译")
+        else:
+            unreal.log_warning("[UIGenerator] LiveCodingSubsystem 不可用")
+    else:
+        # 方法2: 使用编辑器命令
+        unreal.SystemLibrary.execute_console_command(None, "LiveCoding.Compile")
+        unreal.log("[UIGenerator] ✓ 已发送 Live Coding 编译命令")
+except Exception as e:
+    unreal.log_error(f"[UIGenerator] Live Coding 失败: {e}")
+"""
+        return UECommandSender.send(code)
+    
+    @staticmethod
+    def is_ue_running() -> bool:
+        """检测 UE 编辑器是否正在运行"""
+        try:
+            import psutil
+            for proc in psutil.process_iter(['name']):
+                if proc.info['name'] and 'UnrealEditor' in proc.info['name']:
+                    return True
+        except ImportError:
+            # 没有 psutil，使用 Windows API
+            try:
+                # 尝试查找 Live Coding mutex
+                kernel32 = ctypes.windll.kernel32
+                mutex_name = "Global\\LiveCoding_D++UE5.4+UnrealEngine-Angelscript-5.4.2+Engine+Binaries+Win64+UnrealEditor.exe"
+                handle = kernel32.OpenMutexW(0x00100000, False, mutex_name)
+                if handle:
+                    kernel32.CloseHandle(handle)
+                    return True
+            except:
+                pass
+            
+            # 备用方法：检查窗口
+            try:
+                result = subprocess.run(
+                    ['tasklist', '/FI', 'IMAGENAME eq UnrealEditor.exe', '/NH'],
+                    capture_output=True, text=True, creationflags=subprocess.CREATE_NO_WINDOW
+                )
+                return 'UnrealEditor.exe' in result.stdout
+            except:
+                pass
+        
+        return False

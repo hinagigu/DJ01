@@ -6,6 +6,7 @@ import json
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog, scrolledtext
 from typing import Optional
+from datetime import datetime
 
 from utils.paths import paths
 from utils.logger import Logger
@@ -233,19 +234,20 @@ class UIGeneratorApp:
         
         ttk.Separator(left, orient=tk.VERTICAL).pack(side=tk.LEFT, fill=tk.Y, padx=10)
         
-        # 步骤按钮
-        self.btn_cpp = ttk.Button(left, text="① 生成C++", command=self._generate_cpp)
+        # 步骤按钮 - 根据文件状态智能控制
+        self.btn_cpp = ttk.Button(left, text="生成C++", command=self._generate_cpp)
         self.btn_cpp.pack(side=tk.LEFT, padx=2)
         
-        self.btn_compile = ttk.Button(left, text="② 编译", command=self._compile_project, state=tk.DISABLED)
+        self.btn_compile = ttk.Button(left, text="编译", command=self._compile_project)
         self.btn_compile.pack(side=tk.LEFT, padx=2)
         
-        self.btn_bp = ttk.Button(left, text="③ 生成蓝图", command=self._generate_blueprint, state=tk.DISABLED)
+        self.btn_bp = ttk.Button(left, text="生成蓝图", command=self._generate_blueprint)
         self.btn_bp.pack(side=tk.LEFT, padx=2)
         
         ttk.Separator(left, orient=tk.VERTICAL).pack(side=tk.LEFT, fill=tk.Y, padx=10)
         
         ttk.Button(left, text="🚀 全部生成C++", command=self._generate_all_cpp).pack(side=tk.LEFT, padx=2)
+        ttk.Button(left, text="🎮 生成GF配置", command=self._generate_gamefeature_config).pack(side=tk.LEFT, padx=2)
         
         # 状态标签
         self.status_var = tk.StringVar(value="就绪")
@@ -260,17 +262,45 @@ class UIGeneratorApp:
         """状态变化处理"""
         time_str = self.state.cpp_generated_time.strftime('%H:%M:%S') if self.state.cpp_generated_time else ""
         self.flow_panel.update_stage(stage, time_str, self.state.pending_schemas)
+        # 按钮状态现在由 _update_button_states 智能控制
+        self._update_button_states()
+    
+    def _update_button_states(self):
+        """根据当前 Schema 的文件状态更新按钮"""
+        # 更新编译按钮模式
+        self._update_compile_button_mode()
         
-        # 更新按钮状态
-        if stage == GenerationStage.IDLE:
-            self.btn_compile.config(state=tk.DISABLED)
-            self.btn_bp.config(state=tk.DISABLED)
-        elif stage == GenerationStage.CPP_GENERATED:
-            self.btn_compile.config(state=tk.NORMAL)
-            self.btn_bp.config(state=tk.DISABLED)
-        elif stage == GenerationStage.READY_FOR_BLUEPRINT:
-            self.btn_compile.config(state=tk.DISABLED)
-            self.btn_bp.config(state=tk.NORMAL)
+        if not hasattr(self, 'current_schema') or not self.current_schema:
+            self.btn_cpp.config(text="生成C++")
+            self.btn_bp.config(text="生成蓝图")
+            return
+        
+        schema_name = self.current_schema.get('name', '')
+        output_path = self.current_schema.get('output_path', 'Source/DJ01/UI/Generated')
+        
+        # 检测 C++ 文件是否存在
+        cpp_header = os.path.join(paths.project_root, output_path, f"{schema_name}Base.h")
+        cpp_source = os.path.join(paths.project_root, output_path, f"{schema_name}Base.cpp")
+        cpp_exists = os.path.exists(cpp_header) and os.path.exists(cpp_source)
+        
+        if cpp_exists:
+            cpp_mtime = os.path.getmtime(cpp_header)
+            cpp_time_str = datetime.fromtimestamp(cpp_mtime).strftime('%H:%M')
+            self.btn_cpp.config(text=f"生成C++ ✓{cpp_time_str}")
+            self.btn_bp.config(text="生成蓝图")
+        else:
+            self.btn_cpp.config(text="生成C++")
+            self.btn_bp.config(text="生成蓝图 (需C++)")
+    
+    def _update_compile_button_mode(self):
+        """更新编译按钮显示当前模式"""
+        try:
+            if UECommandSender.is_ue_running():
+                self.btn_compile.config(text="编译 (Live)")
+            else:
+                self.btn_compile.config(text="编译")
+        except:
+            self.btn_compile.config(text="编译")
     
     # ==================== Schema 操作 ====================
     
@@ -322,6 +352,7 @@ class UIGeneratorApp:
                 self.current_schema = self.visual_editor.get_schema()
                 self.status_var.set(f"Loaded: {os.path.basename(file_path)}")
                 self.logger.success(f"Loaded: {os.path.basename(file_path)}")
+                self._update_button_states()  # 更新按钮状态
             else:
                 self.logger.error(f"Load failed: {file_path}")
         else:
@@ -331,6 +362,7 @@ class UIGeneratorApp:
                 self.current_schema = schema
                 self.status_var.set(f"Loaded: {os.path.basename(file_path)}")
                 self.logger.success(f"Loaded: {os.path.basename(file_path)}")
+                self._update_button_states()  # 更新按钮状态
             else:
                 self.logger.error(f"Load failed: {file_path}")
     
@@ -496,6 +528,82 @@ class UIGeneratorApp:
                 {"name": "OnConfirmed", "description": "Fired when confirm button clicked"},
                 {"name": "OnCancelled", "description": "Fired when cancel button clicked"}
             ]
+        },
+        "GameFeature HUD": {
+            "$schema": "../ui_schema_v1.json",
+            "name": "MyGameFeatureHUD",
+            "description": "HUD Widget for GameFeature integration (Lyra-style)",
+            "parent_class": "CommonUserWidget",
+            "output_path": "Source/DJ01/UI/Generated",
+            "blueprint_path": "/Game/UI/HUD",
+            "gamefeature": {
+                "is_layout": False,
+                "slot": "UI.Slot.MainHUD",
+                "auto_activate": True
+            },
+            "components": [
+                {
+                    "name": "RootCanvas",
+                    "type": "CanvasPanel",
+                    "children": [
+                        {
+                            "name": "ContentBox",
+                            "type": "VerticalBox",
+                            "children": [
+                                {"name": "StatusBar", "type": "HorizontalBox", "children": []},
+                                {"name": "ActionBar", "type": "HorizontalBox", "children": []}
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "properties": []
+        },
+        "Primary Game Layout": {
+            "$schema": "../ui_schema_v1.json",
+            "name": "MyPrimaryGameLayout",
+            "description": "Primary UI Layout with CommonUI Layers (Lyra-style)",
+            "parent_class": "CommonActivatableWidget",
+            "output_path": "Source/DJ01/UI/Generated",
+            "blueprint_path": "/Game/UI/Layout",
+            "gamefeature": {
+                "is_layout": True,
+                "layer": "UI.Layer.Game",
+                "auto_activate": True
+            },
+            "input_config": {
+                "mode": "Game",
+                "mouse_capture": "NoCapture"
+            },
+            "components": [
+                {
+                    "name": "RootCanvas",
+                    "type": "CanvasPanel",
+                    "children": [
+                        {
+                            "name": "GameLayer",
+                            "type": "CommonActivatableWidgetStack",
+                            "comment": "UI.Layer.Game - HUD elements"
+                        },
+                        {
+                            "name": "GameMenuLayer",
+                            "type": "CommonActivatableWidgetStack",
+                            "comment": "UI.Layer.GameMenu - In-game menus"
+                        },
+                        {
+                            "name": "MenuLayer",
+                            "type": "CommonActivatableWidgetStack",
+                            "comment": "UI.Layer.Menu - Full screen menus"
+                        },
+                        {
+                            "name": "ModalLayer",
+                            "type": "CommonActivatableWidgetStack",
+                            "comment": "UI.Layer.Modal - Modal dialogs"
+                        }
+                    ]
+                }
+            ],
+            "properties": []
         }
     }
     
@@ -620,8 +728,14 @@ class UIGeneratorApp:
             return
         
         output_dir = paths.get_output_dir(self.current_schema)
+        has_gamefeature = self.current_schema.get('gamefeature') is not None
         
-        if not messagebox.askyesno("生成 C++", f"将生成到:\n{output_dir}\n\n继续？"):
+        msg = f"将生成到:\n{output_dir}"
+        if has_gamefeature:
+            msg += "\n\n检测到 GameFeature 配置，将同时更新 UI Tags 和配置"
+        msg += "\n\n继续？"
+        
+        if not messagebox.askyesno("生成 C++", msg):
             return
         
         try:
@@ -632,6 +746,10 @@ class UIGeneratorApp:
             self.logger.success("C++ 生成成功！")
             self.logger.info(f"  → {result['header']}")
             self.logger.info(f"  → {result['source']}")
+            
+            # 如果有 GameFeature 配置，自动更新
+            if has_gamefeature:
+                self._update_gamefeature_config_silent([self.current_schema])
             
             # 获取当前文件路径
             mode = self.edit_mode.get()
@@ -668,6 +786,7 @@ class UIGeneratorApp:
         
         success, failed = 0, 0
         generated = []
+        gf_schemas = []  # 收集有 GameFeature 配置的 Schema
         
         for file_path in schema_files:
             try:
@@ -679,6 +798,9 @@ class UIGeneratorApp:
                     self.logger.success(f"✅ {os.path.basename(file_path)}")
                     success += 1
                     generated.append(file_path)
+                    # 收集有 GameFeature 配置的 Schema
+                    if schema.get('gamefeature'):
+                        gf_schemas.append(schema)
                 else:
                     self.logger.error(f"❌ {os.path.basename(file_path)}: {errors}")
                     failed += 1
@@ -688,6 +810,10 @@ class UIGeneratorApp:
         
         self.logger.separator()
         self.logger.info(f"完成: 成功 {success}, 失败 {failed}")
+        
+        # 自动更新 GameFeature 配置
+        if gf_schemas:
+            self._update_gamefeature_config_silent(gf_schemas)
         
         if success > 0:
             self.state.set_pending_schemas(generated)
@@ -701,11 +827,7 @@ class UIGeneratorApp:
     # ==================== 编译操作 ====================
     
     def _compile_project(self):
-        """编译项目"""
-        if self.state.stage != GenerationStage.CPP_GENERATED:
-            self.logger.warning("当前状态不需要编译")
-            return
-        
+        """编译项目 - 支持外部编译和 Live Coding"""
         # 检测引擎路径
         ue_paths = self.compiler.detect_engine_paths()
         
@@ -783,12 +905,22 @@ class UIGeneratorApp:
     
     def _generate_blueprint(self):
         """生成当前蓝图"""
-        if self.state.stage == GenerationStage.CPP_GENERATED:
-            messagebox.showwarning("需要编译", "请先编译项目")
-            return
-        
         if not self.current_schema:
             self.logger.error("请先加载 Schema")
+            return
+        
+        schema_name = self.current_schema.get('name', '')
+        output_path = self.current_schema.get('output_path', 'Source/DJ01/UI/Generated')
+        
+        # 检测 C++ 文件是否存在
+        cpp_header = os.path.join(paths.project_root, output_path, f"{schema_name}Base.h")
+        cpp_source = os.path.join(paths.project_root, output_path, f"{schema_name}Base.cpp")
+        
+        if not os.path.exists(cpp_header) or not os.path.exists(cpp_source):
+            self.logger.error(f"C++ 基类不存在，请先生成 C++ 代码")
+            self.logger.info(f"  期望文件: {cpp_header}")
+            messagebox.showwarning("需要生成 C++", 
+                f"找不到 C++ 基类文件:\n{schema_name}Base.h\n\n请先点击 '生成C++' 按钮")
             return
         
         # 保存临时 Schema
@@ -804,14 +936,121 @@ from generate_widget_bp import generate_from_schema
 generate_from_schema(r'{temp_path}')
 """
         
+        self.logger.info(f"📤 发送蓝图生成命令: {schema_name}")
+        self.logger.info(f"   基类: U{schema_name}Base (C++ 文件存在 ✓)")
+        
         if UECommandSender.send(code):
             self.logger.success("📤 蓝图生成命令已发送到 UE")
+            self.logger.info("   ⚠️ 如果 UE 找不到基类，请确保已编译项目")
         else:
-            self.logger.error("发送命令失败")
+            self.logger.error("发送命令失败，请确保 UE 编辑器已打开")
         
+        # 重置状态（如果之前处于等待蓝图状态）
         if self.state.stage == GenerationStage.READY_FOR_BLUEPRINT:
             self.state.reset()
             self.state.save()
+    
+    # ==================== GameFeature 配置生成 ====================
+    
+    def _update_gamefeature_config_silent(self, schemas: list):
+        """静默更新 GameFeature 配置（在 C++ 生成时自动调用）"""
+        try:
+            from core.gamefeature_generator import GameFeatureUIGenerator
+            generator = GameFeatureUIGenerator(paths.widget_types_config)
+            
+            # 生成 Tags
+            tags_path = os.path.join(paths.project_root, "Config", "Tags", "UITags.ini")
+            generator.generate_gameplay_tags_ini(tags_path)
+            self.logger.info(f"  → 更新 UI Tags")
+            
+            # 生成配置 JSON
+            config_path = os.path.join(paths.project_root, "Config", "UIConfig.json")
+            generator.generate_gamefeature_ui_config(schemas, config_path)
+            self.logger.info(f"  → 更新 UIConfig.json")
+            
+        except Exception as e:
+            self.logger.warning(f"GameFeature 配置更新失败: {e}")
+    
+    def _generate_gamefeature_config(self):
+        """生成 GameFeature UI 配置"""
+        from core.gamefeature_generator import GameFeatureUIGenerator
+        
+        schema_files = self.schema_list.get_all_files()
+        if not schema_files:
+            self.logger.warning("没有找到 Schema 文件")
+            return
+        
+        # 收集所有包含 gamefeature 配置的 Schema
+        gf_schemas = []
+        for file_path in schema_files:
+            try:
+                schema, errors, _ = load_and_validate(file_path, paths.widget_types_config)
+                if schema and schema.get('gamefeature'):
+                    gf_schemas.append(schema)
+            except Exception as e:
+                self.logger.warning(f"跳过 {os.path.basename(file_path)}: {e}")
+        
+        if not gf_schemas:
+            self.logger.warning("没有找到包含 gamefeature 配置的 Schema")
+            messagebox.showinfo("提示", "没有 Schema 配置了 GameFeature 集成。\n请在 Schema 中添加 'gamefeature' 字段。")
+            return
+        
+        if not messagebox.askyesno(
+            "生成 GameFeature 配置",
+            f"将为 {len(gf_schemas)} 个 Widget 生成 GameFeature 配置:\n\n"
+            "• UI Tags (Config/Tags/UITags.ini)\n"
+            "• UI 配置 JSON (Config/UIConfig.json)\n"
+            "• PrimaryGameLayout 基类 (可选)\n\n"
+            "继续？"
+        ):
+            return
+        
+        try:
+            generator = GameFeatureUIGenerator(paths.widget_types_config)
+            
+            self.logger.separator()
+            self.logger.info("🎮 开始生成 GameFeature UI 配置...")
+            
+            # 1. 生成 GameplayTags
+            tags_path = os.path.join(paths.project_root, "Config", "Tags", "UITags.ini")
+            generator.generate_gameplay_tags_ini(tags_path)
+            self.logger.success(f"✅ 生成 UI Tags: {tags_path}")
+            
+            # 2. 生成 UI 配置 JSON
+            config_path = os.path.join(paths.project_root, "Config", "UIConfig.json")
+            generator.generate_gamefeature_ui_config(gf_schemas, config_path)
+            self.logger.success(f"✅ 生成 UI 配置: {config_path}")
+            
+            # 3. 询问是否生成 PrimaryGameLayout
+            if messagebox.askyesno(
+                "生成 PrimaryGameLayout",
+                "是否生成 PrimaryGameLayout C++ 基类？\n\n"
+                "这是 Lyra 风格 UI 的核心布局 Widget，用于管理 UI Layers。"
+            ):
+                layout_dir = os.path.join(paths.project_root, "Source", "DJ01", "UI", "Generated")
+                result = generator.generate_primary_layout_header(layout_dir)
+                self.logger.success(f"✅ 生成 PrimaryGameLayout:")
+                self.logger.info(f"   → {result['header']}")
+                self.logger.info(f"   → {result['source']}")
+            
+            self.logger.separator()
+            self.logger.success("GameFeature UI 配置生成完成！")
+            
+            # 提示后续步骤
+            messagebox.showinfo(
+                "完成",
+                "GameFeature UI 配置已生成！\n\n"
+                "后续步骤：\n"
+                "1. 重新编译项目\n"
+                "2. 创建 WBP_PrimaryGameLayout 蓝图\n"
+                "3. 在 GameFeatureData 中添加 'Add Widgets' Action\n"
+                "4. 配置 Widget 对应的 Layer/Slot"
+            )
+            
+        except Exception as e:
+            self.logger.error(f"生成失败: {e}")
+            import traceback
+            self.logger.error(traceback.format_exc())
     
     def _generate_all_blueprints(self):
         """生成所有待处理蓝图"""

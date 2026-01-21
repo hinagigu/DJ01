@@ -1,0 +1,143 @@
+{
+  "name": "UDJ01AbilityPhaseStateMachine",
+  "inherits": "UObject",
+  "doc": "技能阶段状态机\n\n独立于技能类的状态机实现，负责管理技能的执行阶段。\n技能类持有状态机实例，通过委托接收阶段变化通知。\n\n使用方式：\n1. 技能激活时调用 Initialize()\n2. 状态机自动按配置推进阶段\n3. 技能可以手动调用 TransitionToPhase() 控制阶段\n4. 技能结束时调用 Shutdown()",
+  "properties": {
+    "OnPhaseChanged": [
+      "FOnAbilityPhaseChanged",
+      "阶段变化时触发"
+    ],
+    "OnPhaseEnter": [
+      "FOnAbilityPhaseEnter",
+      "进入阶段时触发"
+    ],
+    "OnPhaseExit": [
+      "FOnAbilityPhaseExit",
+      "退出阶段时触发"
+    ],
+    "OnFinished": [
+      "FOnPhaseStateMachineFinished",
+      "状态机运行结束时触发"
+    ],
+    "Config": [
+      "FDJ01AbilityPhaseConfig",
+      1,
+      "阶段配置"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CanCurrentPhaseBeInterrupted",
+      "return": "bool",
+      "const": true,
+      "doc": "当前阶段是否可被打断",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "CanCurrentPhaseCancelInto",
+      "return": "bool",
+      "const": true,
+      "doc": "当前阶段是否可取消到其他技能",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentPhase",
+      "return": "EDJ01AbilityPhase",
+      "const": true,
+      "doc": "获取当前阶段",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetCurrentPhaseRemainingTime",
+      "return": "float32",
+      "const": true,
+      "doc": "获取当前阶段剩余时间",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPreviousPhase",
+      "return": "EDJ01AbilityPhase",
+      "const": true,
+      "doc": "获取上一个阶段",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Initialize",
+      "return": "void",
+      "doc": "初始化状态机\n@param InOwnerAbility - 拥有此状态机的技能\n@param InConfig - 阶段配置",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InOwnerAbility",
+          "type": "UDJ01GameplayAbility"
+        },
+        {
+          "name": "InConfig",
+          "type": "FDJ01AbilityPhaseConfig"
+        }
+      ]
+    },
+    {
+      "name": "IsRunning",
+      "return": "bool",
+      "const": true,
+      "doc": "状态机是否正在运行",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Shutdown",
+      "return": "void",
+      "doc": "关闭状态机（清理资源）",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "SkipCurrentPhase",
+      "return": "void",
+      "doc": "跳过当前阶段（立即进入下一阶段）",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "Start",
+      "return": "void",
+      "doc": "启动状态机（进入第一个阶段）",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "TransitionToPhase",
+      "return": "bool",
+      "doc": "切换到指定阶段\n@param NewPhase - 目标阶段\n@param bForce - 是否强制转换（忽略验证）\n@return 是否成功切换",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "NewPhase",
+          "type": "EDJ01AbilityPhase"
+        },
+        {
+          "name": "bForce",
+          "default": "false",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

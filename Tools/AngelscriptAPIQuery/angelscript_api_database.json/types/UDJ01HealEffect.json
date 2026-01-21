@@ -1,0 +1,39 @@
+{
+  "name": "UDJ01HealEffect",
+  "inherits": "UDJ01AbilityEffect",
+  "doc": "UDJ01HealEffect\n\n治疗效果 - 计算并应用治疗\n支持基础治疗 + 属性缩放",
+  "properties": {
+    "BaseHeal": [
+      "float32",
+      "基础治疗量"
+    ],
+    "AttributeScalings": [
+      "TArray<FDJ01AttributeScaling>",
+      "属性缩放列表"
+    ],
+    "bHealSelf": [
+      "bool",
+      "是否治疗自己（否则治疗目标）"
+    ],
+    "HealGameplayEffect": [
+      "TSubclassOf<UGameplayEffect>",
+      "用于应用治疗的 GameplayEffect"
+    ]
+  },
+  "methods": [
+    {
+      "name": "CalculateRawHeal",
+      "return": "float32",
+      "const": true,
+      "doc": "计算最终的原始治疗量",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FDJ01EffectContext"
+        }
+      ]
+    }
+  ]
+}

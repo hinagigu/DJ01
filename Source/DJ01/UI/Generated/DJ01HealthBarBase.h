@@ -2,7 +2,7 @@
 // DJ01HealthBarBase - 自动生成的 Widget 基类
 // 
 // 描述: 
-// 生成时间: 2025-12-30 20:12:25
+// 生成时间: 2026-01-21 13:10:07
 // 
 // ⚠️ 此文件由 UI Generator 自动生成，请勿手动修改
 // =============================================================================
@@ -45,10 +45,12 @@ protected:
 	virtual void NativeDestruct() override;
 	//~ End UUserWidget Interface
 
+public:
 	// ===== BindingSet: ReSources =====
 	// 以下变量和函数由 DJ01_DECLARE_BINDING_SET(ReSources) 自动生成
 	DJ01_DECLARE_BINDING_SET(ReSources)
 
+protected:
 	/** ASC 弱引用 */
 	TWeakObjectPtr<UAbilitySystemComponent> BoundASC;
 

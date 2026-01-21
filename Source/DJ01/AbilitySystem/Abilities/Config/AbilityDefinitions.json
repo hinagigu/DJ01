@@ -1,0 +1,187 @@
+{
+  "Version": "1.0.0",
+  "Description": "技能效果配置 - 定义技能的效果组合、触发时机和条件逻辑",
+
+  "Abilities": [
+    {
+      "Name": "Fireball",
+      "DisplayName": "火球术",
+      "Description": "释放一颗燃烧的火球，对目标造成魔法伤害。目标血量低于30%时伤害翻倍。",
+      "Effects": [
+        {
+          "Name": "MainDamage",
+          "Phase": "OnAnimEvent",
+          "EventTag": "Event.Montage.Ability.Fire",
+          "Type": "Damage",
+          "Condition": {
+            "Captures": [
+              { "source": "Target", "set": "CoreStats", "attr": "Health", "layer": "Current" },
+              { "source": "Target", "set": "CoreStats", "attr": "MaxHealth", "layer": "Total" }
+            ],
+            "TagConditions": [
+              { "source": "Target", "tag": "Status.Immunity.Damage" }
+            ],
+            "Code": "// 如果目标免疫伤害，跳过此效果\nif (bTarget_Status_Immunity_Damage) { return; }\n\n// 斩杀效果：目标血量低于30%时伤害翻倍\nfloat HealthPercent = Health_TargetValue / FMath::Max(MaxHealth_TargetValue, 1.f);\nif (HealthPercent < 0.3f) { DamageMultiplier = 2.0f; }"
+          },
+          "DamageConfig": {
+            "BaseDamage": 80.0,
+            "DamageType": "Magical",
+            "ScalingRatios": [
+              { "attr": "AbilityPower", "ratio": 0.75 }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "HealingWave",
+      "DisplayName": "治疗波",
+      "Description": "对友方目标释放治疗波，恢复生命值。",
+      "Effects": [
+        {
+          "Name": "MainHeal",
+          "Phase": "OnCommit",
+          "EventTag": "",
+          "Type": "Heal",
+          "Condition": {
+            "Captures": [],
+            "TagConditions": [
+              { "source": "Target", "tag": "Status.Immunity.Heal" }
+            ],
+            "Code": "// 如果目标免疫治疗，跳过\nif (bTarget_Status_Immunity_Heal) { return; }"
+          },
+          "HealConfig": {
+            "BaseHeal": 100.0,
+            "ScalingRatios": [
+              { "attr": "AbilityPower", "ratio": 0.5 }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ExecuteStrike",
+      "DisplayName": "斩杀打击",
+      "Description": "对目标造成物理伤害。目标生命值越低，造成的伤害越高（最高300%）。",
+      "Effects": [
+        {
+          "Name": "ExecuteDamage",
+          "Phase": "OnAnimEvent",
+          "EventTag": "Event.Montage.Ability.Slash",
+          "Type": "Damage",
+          "Condition": {
+            "Captures": [
+              { "source": "Target", "set": "CoreStats", "attr": "Health", "layer": "Current" },
+              { "source": "Target", "set": "CoreStats", "attr": "MaxHealth", "layer": "Total" }
+            ],
+            "TagConditions": [],
+            "Code": "// 斩杀加成：目标血量越低伤害越高\n// 公式：1.0 + 2.0 * (1.0 - 当前血量百分比)\n// 血量100% -> 100%伤害, 血量0% -> 300%伤害\nfloat HealthPercent = Health_TargetValue / FMath::Max(MaxHealth_TargetValue, 1.f);\nDamageMultiplier = 1.0f + 2.0f * (1.0f - HealthPercent);"
+          },
+          "DamageConfig": {
+            "BaseDamage": 60.0,
+            "DamageType": "Physical",
+            "ScalingRatios": [
+              { "attr": "AttackDamage", "ratio": 1.2 }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "VampireStrike",
+      "DisplayName": "吸血打击",
+      "Description": "对敌人造成物理伤害，并恢复造成伤害30%的生命值。",
+      "Effects": [
+        {
+          "Name": "DamagePart",
+          "Phase": "OnAnimEvent",
+          "EventTag": "Event.Montage.Ability.Strike",
+          "Type": "Damage",
+          "Condition": {
+            "Captures": [],
+            "TagConditions": [],
+            "Code": ""
+          },
+          "DamageConfig": {
+            "BaseDamage": 50.0,
+            "DamageType": "Physical",
+            "ScalingRatios": [
+              { "attr": "AttackDamage", "ratio": 0.8 }
+            ]
+          }
+        },
+        {
+          "Name": "LifestealPart",
+          "Phase": "OnAnimEvent",
+          "EventTag": "Event.Montage.Ability.Strike",
+          "Type": "Heal",
+          "Condition": {
+            "Captures": [],
+            "TagConditions": [],
+            "Code": "// 吸血治疗量 = 伤害的30%\nHealMultiplier = 0.3f;"
+          },
+          "HealConfig": {
+            "BaseHeal": 50.0,
+            "ScalingRatios": [
+              { "attr": "AttackDamage", "ratio": 0.8 }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ShieldBash",
+      "DisplayName": "盾击",
+      "Description": "用盾牌猛击敌人，对其施加眩晕效果。",
+      "Effects": [
+        {
+          "Name": "ApplyStun",
+          "Phase": "OnAnimEvent",
+          "EventTag": "Event.Montage.Ability.Bash",
+          "Type": "ApplyEffect",
+          "Condition": {
+            "Captures": [],
+            "TagConditions": [
+              { "source": "Target", "tag": "Status.Immunity.CC" }
+            ],
+            "Code": "// 如果目标免疫控制，跳过\nif (bTarget_Status_Immunity_CC) { return; }"
+          },
+          "ApplyEffectConfig": {
+            "EffectClass": "GE_Stun",
+            "Duration": 1.5
+          }
+        }
+      ]
+    }
+  ],
+
+  "EffectTypes": {
+    "Damage": {
+      "Description": "伤害效果 - 通过 SetByCaller 传递给 DamageExecution",
+      "RequiredConfig": "DamageConfig",
+      "ImplicitVariables": ["DamageMultiplier"]
+    },
+    "Heal": {
+      "Description": "治疗效果 - 通过 SetByCaller 传递给 HealExecution",
+      "RequiredConfig": "HealConfig",
+      "ImplicitVariables": ["HealMultiplier"]
+    },
+    "ApplyEffect": {
+      "Description": "施加效果 - 应用 GameplayEffect 到目标",
+      "RequiredConfig": "ApplyEffectConfig",
+      "ImplicitVariables": []
+    },
+    "SpawnActor": {
+      "Description": "生成Actor - 在指定位置生成Actor（如投射物、AOE区域）",
+      "RequiredConfig": "SpawnConfig",
+      "ImplicitVariables": []
+    }
+  },
+
+  "PhaseTypes": {
+    "OnActivate": "技能激活时（调用 ActivateAbility）",
+    "OnCommit": "技能确认时（调用 CommitAbility）",
+    "OnAnimEvent": "动画事件触发时（需要匹配 EventTag）",
+    "OnEnd": "技能结束时"
+  }
+}

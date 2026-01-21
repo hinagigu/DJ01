@@ -1,0 +1,210 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AbilityDefinitions",
+  "description": "DJ01 技能效果配置 Schema",
+  "type": "object",
+  
+  "properties": {
+    "Version": { "type": "string" },
+    "Description": { "type": "string" },
+    
+    "Abilities": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Ability" }
+    }
+  },
+  
+  "definitions": {
+    "Ability": {
+      "type": "object",
+      "required": ["Name", "DisplayName", "Effects"],
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "技能唯一标识符 (用于代码引用)"
+        },
+        "DisplayName": {
+          "type": "string",
+          "description": "技能显示名称"
+        },
+        "Description": {
+          "type": "string",
+          "description": "技能描述文本"
+        },
+        "Effects": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Effect" }
+        }
+      }
+    },
+    
+    "Effect": {
+      "type": "object",
+      "required": ["Name", "Phase", "Type"],
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "效果名称 (用于调试)"
+        },
+        "Phase": {
+          "type": "string",
+          "enum": ["OnActivate", "OnCommit", "OnAnimEvent", "OnEnd"],
+          "description": "效果触发阶段"
+        },
+        "EventTag": {
+          "type": "string",
+          "description": "动画事件Tag (仅 OnAnimEvent 阶段需要)"
+        },
+        "Type": {
+          "type": "string",
+          "enum": ["Damage", "Heal", "ApplyEffect", "SpawnActor"],
+          "description": "效果类型"
+        },
+        "Condition": { "$ref": "#/definitions/Condition" },
+        "DamageConfig": { "$ref": "#/definitions/DamageConfig" },
+        "HealConfig": { "$ref": "#/definitions/HealConfig" },
+        "ApplyEffectConfig": { "$ref": "#/definitions/ApplyEffectConfig" },
+        "SpawnConfig": { "$ref": "#/definitions/SpawnConfig" }
+      }
+    },
+    
+    "Condition": {
+      "type": "object",
+      "description": "效果执行条件",
+      "properties": {
+        "Captures": {
+          "type": "array",
+          "description": "需要捕获的属性列表",
+          "items": { "$ref": "#/definitions/AttributeCapture" }
+        },
+        "TagConditions": {
+          "type": "array",
+          "description": "需要检查的Tag列表",
+          "items": { "$ref": "#/definitions/TagCondition" }
+        },
+        "Code": {
+          "type": "string",
+          "description": "条件判断代码 (使用 return; 跳过效果)"
+        }
+      }
+    },
+    
+    "AttributeCapture": {
+      "type": "object",
+      "required": ["source", "set", "attr", "layer"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": ["Source", "Target"],
+          "description": "属性来源"
+        },
+        "set": {
+          "type": "string",
+          "description": "属性集名称"
+        },
+        "attr": {
+          "type": "string",
+          "description": "属性名称"
+        },
+        "layer": {
+          "type": "string",
+          "enum": ["Base", "Current", "Total"],
+          "description": "属性层级"
+        }
+      }
+    },
+    
+    "TagCondition": {
+      "type": "object",
+      "required": ["source", "tag"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": ["Source", "Target"]
+        },
+        "tag": {
+          "type": "string",
+          "description": "完整的 GameplayTag 路径"
+        }
+      }
+    },
+    
+    "DamageConfig": {
+      "type": "object",
+      "required": ["BaseDamage", "DamageType"],
+      "properties": {
+        "BaseDamage": { "type": "number" },
+        "DamageType": {
+          "type": "string",
+          "enum": ["Physical", "Magical", "Pure"]
+        },
+        "ScalingRatios": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ScalingRatio" }
+        }
+      }
+    },
+    
+    "HealConfig": {
+      "type": "object",
+      "required": ["BaseHeal"],
+      "properties": {
+        "BaseHeal": { "type": "number" },
+        "ScalingRatios": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ScalingRatio" }
+        }
+      }
+    },
+    
+    "ScalingRatio": {
+      "type": "object",
+      "required": ["attr", "ratio"],
+      "properties": {
+        "attr": {
+          "type": "string",
+          "description": "用于 Scaling 的属性名"
+        },
+        "ratio": {
+          "type": "number",
+          "description": "Scaling 系数"
+        }
+      }
+    },
+    
+    "ApplyEffectConfig": {
+      "type": "object",
+      "required": ["EffectClass"],
+      "properties": {
+        "EffectClass": {
+          "type": "string",
+          "description": "要应用的 GameplayEffect 类名"
+        },
+        "Duration": {
+          "type": "number",
+          "description": "效果持续时间 (秒)"
+        },
+        "Stacks": {
+          "type": "integer",
+          "description": "初始层数"
+        }
+      }
+    },
+    
+    "SpawnConfig": {
+      "type": "object",
+      "required": ["ActorClass"],
+      "properties": {
+        "ActorClass": {
+          "type": "string",
+          "description": "要生成的 Actor 类名"
+        },
+        "SpawnLocation": {
+          "type": "string",
+          "enum": ["Caster", "Target", "Cursor"],
+          "description": "生成位置"
+        }
+      }
+    }
+  }
+}

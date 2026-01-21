@@ -1,0 +1,31 @@
+{
+  "name": "FDJ01EffectConfig",
+  "isStruct": true,
+  "doc": "通用效果配置 (伤害或治疗)\n适用于既可以造成伤害又可以治疗的技能",
+  "properties": {
+    "EffectType": [
+      "EDJ01EffectType",
+      "效果类型"
+    ],
+    "DamageConfig": [
+      "FDJ01DamageConfig",
+      "伤害配置 (当 EffectType = Damage 时使用)"
+    ],
+    "HealConfig": [
+      "FDJ01HealConfig",
+      "治疗配置 (当 EffectType = Heal 时使用)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDJ01EffectConfig&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDJ01EffectConfig"
+        }
+      ]
+    }
+  ]
+}

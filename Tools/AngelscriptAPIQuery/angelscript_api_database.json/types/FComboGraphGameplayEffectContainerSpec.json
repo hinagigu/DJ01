@@ -1,0 +1,27 @@
+{
+  "name": "FComboGraphGameplayEffectContainerSpec",
+  "isStruct": true,
+  "doc": "A \"processed\" version of GSCGameplayEffectContainer that can be passed around and eventually applied",
+  "properties": {
+    "TargetData": [
+      "FGameplayAbilityTargetDataHandle",
+      "Computed target data"
+    ],
+    "TargetGameplayEffectSpecs": [
+      "TArray<FGameplayEffectSpecHandle>",
+      "List of gameplay effects to apply to the targets"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FComboGraphGameplayEffectContainerSpec&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FComboGraphGameplayEffectContainerSpec"
+        }
+      ]
+    }
+  ]
+}

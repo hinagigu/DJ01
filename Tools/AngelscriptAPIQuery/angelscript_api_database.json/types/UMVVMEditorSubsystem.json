@@ -1,0 +1,343 @@
+{
+  "name": "UMVVMEditorSubsystem",
+  "inherits": "UEditorSubsystem",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddBinding",
+      "return": "FMVVMBlueprintViewBinding&",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "AddEvent",
+      "return": "UMVVMBlueprintViewEvent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "AddInstancedViewModel",
+      "return": "FGuid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "AddViewModel",
+      "return": "FGuid",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "ViewModel",
+          "type": "const UClass"
+        }
+      ]
+    },
+    {
+      "name": "GetAvailableConversionFunctions",
+      "return": "TArray<UFunction>",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "const UWidgetBlueprint"
+        },
+        {
+          "name": "Source",
+          "type": "FMVVMBlueprintPropertyPath"
+        },
+        {
+          "name": "Destination",
+          "type": "FMVVMBlueprintPropertyPath"
+        }
+      ]
+    },
+    {
+      "name": "GetChildViewModels",
+      "return": "TArray<FMVVMAvailableBinding>",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Class",
+          "type": "TSubclassOf<UObject>"
+        },
+        {
+          "name": "Accessor",
+          "type": "TSubclassOf<UObject>"
+        }
+      ]
+    },
+    {
+      "name": "GetConversionFunction",
+      "return": "UFunction",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "const UWidgetBlueprint"
+        },
+        {
+          "name": "Binding",
+          "type": "FMVVMBlueprintViewBinding"
+        },
+        {
+          "name": "bSourceToDestination",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetConversionFunctionGraph",
+      "return": "UEdGraph",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "const UWidgetBlueprint"
+        },
+        {
+          "name": "Binding",
+          "type": "FMVVMBlueprintViewBinding"
+        },
+        {
+          "name": "bSourceToDestination",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetConversionFunctionNode",
+      "return": "UK2Node_CallFunction",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "const UWidgetBlueprint"
+        },
+        {
+          "name": "Binding",
+          "type": "FMVVMBlueprintViewBinding"
+        },
+        {
+          "name": "bSourceToDestination",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "GetView",
+      "return": "UMVVMBlueprintView",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "const UWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "IsSimpleConversionFunctionA",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Function",
+          "type": "const UFunction"
+        }
+      ]
+    },
+    {
+      "name": "IsValidConversionFunction",
+      "return": "bool",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "const UWidgetBlueprint"
+        },
+        {
+          "name": "Function",
+          "type": "const UFunction"
+        },
+        {
+          "name": "Source",
+          "type": "FMVVMBlueprintPropertyPath"
+        },
+        {
+          "name": "Destination",
+          "type": "FMVVMBlueprintPropertyPath"
+        }
+      ]
+    },
+    {
+      "name": "RemoveBinding",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "Binding",
+          "type": "FMVVMBlueprintViewBinding"
+        }
+      ]
+    },
+    {
+      "name": "RemoveEvent",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "Event",
+          "type": "UMVVMBlueprintViewEvent"
+        }
+      ]
+    },
+    {
+      "name": "RemoveViewModel",
+      "return": "void",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "ViewModel",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "RenameViewModel",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "ViewModel",
+          "type": "FName"
+        },
+        {
+          "name": "NewViewModel",
+          "type": "FName"
+        },
+        {
+          "name": "OutError",
+          "type": "FText&"
+        }
+      ]
+    },
+    {
+      "name": "ReparentViewModel",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "ViewModel",
+          "type": "FName"
+        },
+        {
+          "name": "NewViewModel",
+          "type": "const UClass"
+        },
+        {
+          "name": "OutError",
+          "type": "FText&"
+        }
+      ]
+    },
+    {
+      "name": "RequestView",
+      "return": "UMVVMBlueprintView",
+      "const": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "VerifyViewModelRename",
+      "return": "bool",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "ViewModel",
+          "type": "FName"
+        },
+        {
+          "name": "NewViewModel",
+          "type": "FName"
+        },
+        {
+          "name": "OutError",
+          "type": "FText&"
+        }
+      ]
+    }
+  ]
+}

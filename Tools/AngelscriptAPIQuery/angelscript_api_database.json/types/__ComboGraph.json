@@ -1,0 +1,109 @@
+{
+  "name": "__ComboGraph",
+  "properties": {},
+  "methods": [
+    {
+      "name": "GetComboGraphGameplayTasksComponent",
+      "return": "UComboGraphGameplayTasksComponent",
+      "doc": "Searches the passed in actor for a Combo Graph gameplay tasks component, will use component search",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "const AActor"
+        }
+      ]
+    },
+    {
+      "name": "GetCueParamsObjectsFromContext",
+      "return": "TArray<UObject>",
+      "doc": "Extracts Cue Params resolved Objects (set in a combo graph node) from Gameplay Effect Context",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "GetCueParamsObjectsPathsFromContext",
+      "return": "TArray<FSoftObjectPath>",
+      "doc": "Extracts Cue Params Soft Object Paths (set in a combo graph node) from Gameplay Effect Context",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "HasCueParamsObjectsFromContext",
+      "return": "bool",
+      "doc": "Checks if Gameplay Effect Context has any Cue Params resolved Objects (set in a combo graph node)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "HasCueParamsObjectsPathsFromContext",
+      "return": "bool",
+      "doc": "Checks if Gameplay Effect Context has any Cue Params Soft Object Paths (set in a combo graph node)",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "EffectContext",
+          "type": "FGameplayEffectContextHandle"
+        }
+      ]
+    },
+    {
+      "name": "SendGameplayEventToActor",
+      "return": "void",
+      "doc": "This function is functionally the same as SendGameplayEventToActor (from Ability System Blueprint Library),\nexcept it can be used on actors that do not implement IAbilitySystemInterface. In ue5, this custom version\nwon't be necessary anymore.\n\nThis function can be used to trigger an ability on the actor in question with useful payload data.\nNOTE: GetAbilitySystemComponent is called on the actor to find a good component, and if the component isn't\nfound, the event will not be sent.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "EventTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "Payload",
+          "type": "FGameplayEventData"
+        }
+      ]
+    },
+    {
+      "name": "SimulateComboInput",
+      "return": "void",
+      "doc": "Simulate user input for the passed in actor running a combo graph.\n\nThis will send a gameplay event with relevant gameplay event data.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Actor",
+          "type": "AActor"
+        },
+        {
+          "name": "InputAction",
+          "type": "UInputAction"
+        }
+      ]
+    }
+  ]
+}

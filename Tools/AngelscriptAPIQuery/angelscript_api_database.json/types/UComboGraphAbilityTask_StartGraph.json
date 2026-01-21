@@ -1,0 +1,39 @@
+{
+  "name": "UComboGraphAbilityTask_StartGraph",
+  "inherits": "UAbilityTask",
+  "doc": "This task is meant to be used to start / activate a Combo Graph Asset from within a Gameplay Ability",
+  "properties": {
+    "OnGraphStart": [
+      "FComboGraphAbilityTaskDelegate",
+      "Event invoked when the combat graph is started."
+    ],
+    "OnGraphEnd": [
+      "FComboGraphAbilityTaskDelegate",
+      "Event invoked when the combat graph ends (usually when a montage completes, meaning no further input registered, thus should end the ability)"
+    ],
+    "EventReceived": [
+      "FComboGraphAbilityTaskDelegate",
+      "Event triggered when a combo graph node is listening for specific tags (either via EventTags or from Cues / Effects Containers) and owning avatar actor is receiving those events"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCurrentNode",
+      "return": "UComboGraphNodeAnimBase",
+      "const": true,
+      "doc": "Returns the currently active node for the task",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPreviousNode",
+      "return": "UComboGraphNodeAnimBase",
+      "const": true,
+      "doc": "Returns the node that was active just before the current one",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

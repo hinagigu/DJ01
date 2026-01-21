@@ -1,0 +1,33 @@
+{
+  "name": "FComboGraphGameplayEffectContainer",
+  "isStruct": true,
+  "doc": "Struct defining a list of gameplay effects, a tag, and targeting info\n\nThese containers are defined statically in blueprints or assets and then turn into Specs at runtime",
+  "properties": {
+    "TargetGameplayEffectClasses": [
+      "TArray<TSubclassOf<UGameplayEffect>>",
+      "List of gameplay effects to apply to the targets"
+    ],
+    "bUseSetByCallerMagnitude": [
+      "bool"
+    ],
+    "SetByCallerDataTag": [
+      "FGameplayTag",
+      "UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = GameplayEffectContainer, meta = (EditCondition = \"bUseSetByCallerMagnitude\"))\nFGameplayTag SetByCallerDataTag;\n\nUPROPERTY(EditAnywhere, BlueprintReadOnly, Category = GameplayEffectContainer, meta = (EditCondition = \"bUseSetByCallerMagnitude\"))\nfloat SetByCallerMagnitude = 1.0f;"
+    ],
+    "SetByCallerMagnitude": [
+      "float32"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FComboGraphGameplayEffectContainer&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FComboGraphGameplayEffectContainer"
+        }
+      ]
+    }
+  ]
+}

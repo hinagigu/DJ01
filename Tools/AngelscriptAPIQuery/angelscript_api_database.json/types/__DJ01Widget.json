@@ -1,0 +1,255 @@
+{
+  "name": "__DJ01Widget",
+  "properties": {},
+  "methods": [
+    {
+      "name": "AddChildToCanvas",
+      "return": "bool",
+      "doc": "将控件添加到 CanvasPanel\n@param CanvasPanel - CanvasPanel 控件\n@param Child - 要添加的子控件\n@param Position - 位置\n@param Size - 大小\n@return 是否添加成功",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "CanvasPanel",
+          "type": "UWidget"
+        },
+        {
+          "name": "Child",
+          "type": "UWidget"
+        },
+        {
+          "name": "Position",
+          "default": "FVector2D ( )",
+          "type": "FVector2D"
+        },
+        {
+          "name": "Size",
+          "default": "FVector2D ( 100.000000 , 100.000000 )",
+          "type": "FVector2D"
+        }
+      ]
+    },
+    {
+      "name": "AddChildToPanel",
+      "return": "bool",
+      "doc": "将子控件添加到父控件\n@param Parent - 父控件（必须是 PanelWidget）\n@param Child - 要添加的子控件\n@return 是否添加成功",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Parent",
+          "type": "UWidget"
+        },
+        {
+          "name": "Child",
+          "type": "UWidget"
+        }
+      ]
+    },
+    {
+      "name": "CreateCanvasPanel",
+      "return": "UWidget",
+      "doc": "创建 CanvasPanel 控件\n@param WidgetBlueprint - Widget Blueprint 资产\n@param WidgetName - 控件名称\n@return 创建的 CanvasPanel",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "WidgetName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CreateImage",
+      "return": "UWidget",
+      "doc": "创建 Image 控件\n@param WidgetBlueprint - Widget Blueprint 资产\n@param WidgetName - 控件名称\n@return 创建的 Image",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "WidgetName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CreateProgressBar",
+      "return": "UWidget",
+      "doc": "创建 ProgressBar 控件\n@param WidgetBlueprint - Widget Blueprint 资产\n@param WidgetName - 控件名称\n@return 创建的 ProgressBar",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "WidgetName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CreateTextBlock",
+      "return": "UWidget",
+      "doc": "创建 TextBlock 控件\n@param WidgetBlueprint - Widget Blueprint 资产\n@param WidgetName - 控件名称\n@return 创建的 TextBlock",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "WidgetName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CreateWidget",
+      "return": "UWidget",
+      "doc": "在 WidgetTree 中创建一个新控件\n@param WidgetBlueprint - Widget Blueprint 资产\n@param WidgetClass - 要创建的控件类型\n@param WidgetName - 控件名称（用于 BindWidget）\n@return 创建的控件，如果失败返回 nullptr",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "WidgetClass",
+          "type": "TSubclassOf<UWidget>"
+        },
+        {
+          "name": "WidgetName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "CreateWidgetsFromJson",
+      "return": "bool",
+      "doc": "根据 Schema JSON 创建控件树\n@param WidgetBlueprint - Widget Blueprint 资产\n@param SchemaJson - Schema JSON 字符串\n@return 是否创建成功",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "SchemaJson",
+          "type": "FString"
+        }
+      ]
+    },
+    {
+      "name": "FindWidgetByName",
+      "return": "UWidget",
+      "doc": "按名称查找控件\n@param WidgetBlueprint - Widget Blueprint 资产\n@param WidgetName - 控件名称\n@return 找到的控件，如果没找到返回 nullptr",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "WidgetName",
+          "type": "FName"
+        }
+      ]
+    },
+    {
+      "name": "GetAllWidgets",
+      "return": "TArray<UWidget>",
+      "doc": "获取所有控件\n@param WidgetBlueprint - Widget Blueprint 资产\n@return 所有控件的数组",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "GetRootWidget",
+      "return": "UWidget",
+      "doc": "获取 Widget Blueprint 的根控件\n@param WidgetBlueprint - Widget Blueprint 资产\n@return 根控件，如果没有返回 nullptr",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "GetWidgetTree",
+      "return": "UWidgetTree",
+      "doc": "获取 Widget Blueprint 的 WidgetTree\n@param WidgetBlueprint - Widget Blueprint 资产\n@return WidgetTree 对象，如果失败返回 nullptr",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "MarkDirty",
+      "return": "void",
+      "doc": "标记 Widget Blueprint 为已修改\n@param WidgetBlueprint - Widget Blueprint 资产",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "SaveWidgetBlueprint",
+      "return": "bool",
+      "doc": "保存 Widget Blueprint\n@param WidgetBlueprint - Widget Blueprint 资产\n@return 是否保存成功",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        }
+      ]
+    },
+    {
+      "name": "SetRootWidget",
+      "return": "bool",
+      "doc": "设置 Widget Blueprint 的根控件\n@param WidgetBlueprint - Widget Blueprint 资产\n@param RootWidget - 要设置为根的控件\n@return 是否设置成功",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "WidgetBlueprint",
+          "type": "UWidgetBlueprint"
+        },
+        {
+          "name": "RootWidget",
+          "type": "UWidget"
+        }
+      ]
+    }
+  ]
+}

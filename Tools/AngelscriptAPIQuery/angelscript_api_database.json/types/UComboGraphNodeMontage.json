@@ -1,0 +1,25 @@
+{
+  "name": "UComboGraphNodeMontage",
+  "inherits": "UComboGraphNodeAnimBase",
+  "doc": "Base Class for Combo Graph nodes acting based on an Anim Montage asset.\n\nHolds runtime properties for animation and effects / cues containers.",
+  "properties": {
+    "Montage": [
+      "TSoftObjectPtr<UAnimMontage>"
+    ],
+    "StartSection": [
+      "FName"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetMontageStartSection",
+      "return": "FName",
+      "const": true,
+      "callable": false,
+      "doc": "Blueprint overridable method to return the Start Section name to use with the Combo Play Montage task. Default behavior is simply to return `StartSection` property of the combo node.",
+      "event": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

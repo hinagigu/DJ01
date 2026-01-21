@@ -1,0 +1,49 @@
+{
+  "name": "UDJ01HealthBarBase",
+  "inherits": "UCommonUserWidget",
+  "doc": "DJ01HealthBar 基类\n\n\n\n使用方式：\n1. 创建继承此类的 Widget Blueprint\n2. 在 Designer 中添加对应名称的控件\n3. 调整布局和样式",
+  "properties": {
+    "RootCanvas": [
+      "UCanvasPanel",
+      1,
+      "===== UI 组件 (BindWidget) ====="
+    ],
+    "HealthBar": [
+      "UProgressBar",
+      1,
+      ""
+    ],
+    "HealthText": [
+      "UTextBlock",
+      1,
+      "血量进度条"
+    ],
+    "HealthPercent": [
+      "float32",
+      "血量百分比"
+    ]
+  },
+  "methods": [
+    {
+      "name": "BindToASC",
+      "return": "void",
+      "doc": "绑定到 AbilitySystemComponent",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InASC",
+          "type": "UAbilitySystemComponent"
+        }
+      ]
+    },
+    {
+      "name": "UnbindFromASC",
+      "return": "void",
+      "doc": "解除绑定",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

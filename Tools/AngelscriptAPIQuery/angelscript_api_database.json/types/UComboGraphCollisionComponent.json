@@ -1,0 +1,87 @@
+{
+  "name": "UComboGraphCollisionComponent",
+  "inherits": "UActorComponent",
+  "doc": "Actor Component providing basic collision detection mechanism for registered meshes using traces.\n\nIt implements simple logic for hit detection not meant to replace more robust solutions such as Combat Components or AGR Pro (Combat Manager in v4).\n\nRather to provide a quick and easy way to handle collision for those not having or not willing to use aforementioned plugins, or not having a game-specific custom collision system already in place.\n\nRegistered meshes can be Static or Skeletal meshes, this component relies on Sockets attached to those primitives to draw traces for each socket.\n\nNo sub-stepping is involved, we simply draw traces for each frame checking for collisions between last frame position and current frame position for a given socket.",
+  "properties": {
+    "bDebug": [
+      "bool",
+      "If set to true, traces will be rendered on screen for a duration"
+    ],
+    "bShouldLogHits": [
+      "bool",
+      "If set to true, registered hits will be logged to console (successful hits or ignored ones due to configuration)"
+    ],
+    "TraceColor": [
+      "FLinearColor",
+      "In debug mode, traces will be rendered on screen using this color"
+    ],
+    "TraceHitColor": [
+      "FLinearColor",
+      "In debug mode, registered hits will be rendered on screen using this color"
+    ],
+    "DebugDrawTime": [
+      "float32",
+      "In debug mode, this is the amount in seconds that visual debug traces will persist on screen"
+    ],
+    "TraceRadius": [
+      "float32",
+      "Radius of the sphere to sweep during collision traces"
+    ],
+    "bTraceComplex": [
+      "bool",
+      "True to test against complex collision, false to test against simplified collision"
+    ],
+    "CollisionTraceChannel": [
+      "ETraceTypeQuery",
+      "Trace channel to use when we perform collision traces (Default set to \"Camera\" for ease of use, but custom collision profiles can be used for further tuning)"
+    ],
+    "ActorTypesToIgnore": [
+      "TArray<TSubclassOf<AActor>>",
+      "List of Actor classes to ignore during hit collisions"
+    ],
+    "CollisionProfilesToIgnore": [
+      "TArray<FName>",
+      "List of collision profile names to ignore during hit collision. Can be useful to ignore profile for capsule component and ensure hits only register against character meshes"
+    ],
+    "OnHitRegistered": [
+      "FComboGraphOnHitRegisteredDelegate__ComboGraphCollisionComponent",
+      "Delegate invoked when a successful hit is registered, only on server"
+    ],
+    "OnTraceStart": [
+      "FComboGraphSimpleDelegate__ComboGraphCollisionComponent",
+      "Delegate invoked when we start to check for collision traces on registered meshes"
+    ],
+    "OnTraceEnd": [
+      "FComboGraphSimpleDelegate__ComboGraphCollisionComponent",
+      "Delegate invoked when we end the collision tracing process on registered meshes"
+    ]
+  },
+  "methods": [
+    {
+      "name": "RegisterCollisionMesh",
+      "return": "void",
+      "doc": "Use this method to push a Static or Skeletal mesh into the registered meshes to consider for collision checks.\n\nMeant to be called at least once either on Owner's Actor BeginPlay or with this component OnComponentActivated event.",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMesh",
+          "type": "UPrimitiveComponent"
+        }
+      ]
+    },
+    {
+      "name": "UnregisterCollisionMesh",
+      "return": "void",
+      "doc": "Use this method to remove a Static or Skeletal mesh from the registered meshes",
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "InMesh",
+          "type": "UPrimitiveComponent"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "name": "FMVVMBlueprintViewModelContext",
+  "isStruct": true,
+  "properties": {
+    "NotifyFieldValueClass": [
+      "UClass",
+      2,
+      ""
+    ],
+    "ViewModelName": [
+      "FName",
+      2,
+      "Property name that will be generated."
+    ],
+    "CreationType": [
+      "EMVVMBlueprintViewModelContextCreationType",
+      2,
+      "When the view is spawn, create an instance of the viewmodel."
+    ],
+    "GlobalViewModelIdentifier": [
+      "FName",
+      2,
+      "Identifier of an already registered viewmodel."
+    ],
+    "ViewModelPropertyPath": [
+      "FString",
+      2,
+      "The Path to get the viewmodel instance."
+    ],
+    "Resolver": [
+      "UMVVMViewModelContextResolver",
+      2,
+      ""
+    ],
+    "InstancedViewModel": [
+      "UMVVMBlueprintInstancedViewModelBase",
+      2,
+      ""
+    ],
+    "bCreateSetterFunction": [
+      "bool",
+      2,
+      "Generate a public setter for this viewmodel.\n@note Always true when the Creation Type is Manual."
+    ],
+    "bCreateGetterFunction": [
+      "bool",
+      2,
+      "Generate a public getter for this viewmodel.\n@note Always false when using a Instanced viewmodel."
+    ],
+    "bOptional": [
+      "bool",
+      2,
+      "Optional. Will not warn if the instance is not set or found.\n@note Always true when the Creation Type is Manual."
+    ],
+    "bExposeInstanceInEditor": [
+      "bool",
+      2,
+      "Expose the viewmodel instance on every instance of the user widget for modification in editor."
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FMVVMBlueprintViewModelContext&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FMVVMBlueprintViewModelContext"
+        }
+      ]
+    }
+  ]
+}

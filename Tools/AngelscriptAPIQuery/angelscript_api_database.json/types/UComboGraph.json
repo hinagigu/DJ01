@@ -1,0 +1,58 @@
+{
+  "name": "UComboGraph",
+  "inherits": "UObject",
+  "doc": "Combo Graph Assets provide a way to visually design combo strings and link montages together.\n\nCombo Graphs are then run with custom Ability Tasks from within a Gameplay Ability.",
+  "properties": {
+    "EntryNode": [
+      "UComboGraphNodeEntry",
+      1,
+      "Represents the top level combo node direct child of entry node."
+    ],
+    "FirstNode": [
+      "UComboGraphNodeBase",
+      1,
+      "Represents the top level combo node direct child of entry node."
+    ],
+    "RootNodes": [
+      "TArray<TObjectPtr<UComboGraphNodeBase>>",
+      1,
+      "Holds any combo nodes with no direct parent\n\nNote: should usually hold only one node, the first one. If more than one,\nmeans that some combo nodes are present in graph but not linked to a valid\npath from entry node as all nodes below entry should have direct\nparent / child relationship."
+    ],
+    "AllNodes": [
+      "TArray<TObjectPtr<UComboGraphNodeBase>>",
+      1,
+      "Holds all combo nodes defined for this graph"
+    ],
+    "DefaultNodeMontageType": [
+      "TSubclassOf<UComboGraphNodeMontage>",
+      2,
+      "Node Class type used for montages assets when dropped in a graph, or dropped on an existing node pin.\n\nThis property lets you customize which class Combo Graph will use to create a new montage node in these situations.\nMainly useful if you have a custom Combo Node Montage BP or native subclass."
+    ],
+    "DefaultNodeSequenceType": [
+      "TSubclassOf<UComboGraphNodeSequence>",
+      2,
+      "Node Class type used for sequence assets when dropped in a graph, or dropped on an existing node pin.\n\nThis property lets you customize which class Combo Graph will use to create a new sequence node in these situations.\nMainly useful if you have a custom Combo Node Montage BP or native subclass."
+    ],
+    "DefaultInputAction": [
+      "UInputAction",
+      2,
+      "Default Input Action to use when creating new connections."
+    ],
+    "bCanBeCyclical": [
+      "bool",
+      2,
+      "Determine if we can have cycles or not in a graph"
+    ],
+    "ContextMapping": [
+      "TSoftObjectPtr<UInputMappingContext>",
+      2,
+      "Enhanced Input Context Mapping to use to draw edge (transition) icons in Graphs (if not set, will fallback to the one defined in Project Settings)"
+    ],
+    "IconPreference": [
+      "EComboGraphIconType",
+      2,
+      "Icon preference to draw edge (transition) icons in Graph. Can be either Keyboard or Gamepad based"
+    ]
+  },
+  "methods": []
+}

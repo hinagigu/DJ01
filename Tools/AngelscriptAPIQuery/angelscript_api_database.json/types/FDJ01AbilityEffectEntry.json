@@ -1,0 +1,31 @@
+{
+  "name": "FDJ01AbilityEffectEntry",
+  "isStruct": true,
+  "doc": "效果条目\n将效果绑定到特定的触发阶段",
+  "properties": {
+    "Phase": [
+      "EDJ01EffectPhase",
+      "触发阶段"
+    ],
+    "EventTag": [
+      "FGameplayTag",
+      "事件 Tag（当 Phase = OnAnimEvent 时使用）\n如：Event.Animation.DamageFrame"
+    ],
+    "Effect": [
+      "UDJ01AbilityEffect",
+      "效果实例\nInstanced 允许在技能资产中内联编辑"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDJ01AbilityEffectEntry&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDJ01AbilityEffectEntry"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "FComboGraphCueContainerDefinition",
+  "isStruct": true,
+  "doc": "Struct defining a list of gameplay tags, and optional source object to pass arbitrary data to GameplayCues (in GameplayCueParameters' SourceObject)",
+  "properties": {
+    "GameplayCueTags": [
+      "FGameplayTagContainer",
+      "Tags passed to the gameplay cue handler when this cue container is activated (multiple tags if matching valid gameplay cues will invoke them individually)"
+    ],
+    "CueSourceObjectType": [
+      "EComboGraphCueSourceObjectType",
+      2,
+      "Specify here which type of SourceObject you'd like to pass down to GameplayCues.\n\nAllows to pass arbitrary data down to GameplayCues, made available in GameplayCueParameters' Effect Context.\n\nExample usage: Pass down a Niagara Emitter or Cascade Particle System, or SoundCues."
+    ],
+    "NiagaraSystem": [
+      "TSoftObjectPtr<UNiagaraSystem>",
+      "A particle system (Niagara) that if defined will be passed down to Gameplay Cues as SourceObject and available in params"
+    ],
+    "CascadeSystem": [
+      "TSoftObjectPtr<UParticleSystem>",
+      "A particle system (Cascade) that if defined will be passed down to Gameplay Cues as SourceObject and available in params"
+    ],
+    "SoundEffect": [
+      "TSoftObjectPtr<USoundBase>",
+      "The Sound to play (Cue, Wave, ...) that if defined will be passed down to Gameplay Cues as SourceObject and available in params"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FComboGraphCueContainerDefinition&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FComboGraphCueContainerDefinition"
+        }
+      ]
+    }
+  ]
+}

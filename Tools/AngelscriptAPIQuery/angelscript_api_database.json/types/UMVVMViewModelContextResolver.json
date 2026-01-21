@@ -1,0 +1,38 @@
+{
+  "name": "UMVVMViewModelContextResolver",
+  "inherits": "UObject",
+  "doc": "Shared data to find or create a ViewModel at runtime.",
+  "properties": {
+    "AllowedViewModelClasses": [
+      "TArray<FSoftClassPath>",
+      2,
+      "Viewmodel class that the resolver supports."
+    ],
+    "DeniedViewModelClasses": [
+      "TArray<FSoftClassPath>",
+      2,
+      "Viewmodel class that the resolver explicitly does not support."
+    ]
+  },
+  "methods": [
+    {
+      "name": "DestroyInstance",
+      "return": "void",
+      "const": true,
+      "callable": false,
+      "event": true,
+      "unrealname": "K2_DestroyInstance",
+      "meta": null,
+      "args": [
+        {
+          "name": "ViewModel",
+          "type": "const UObject"
+        },
+        {
+          "name": "View",
+          "type": "const UMVVMView"
+        }
+      ]
+    }
+  ]
+}

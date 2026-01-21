@@ -1,0 +1,45 @@
+{
+  "name": "UDJ01AbilityEffect",
+  "inherits": "UObject",
+  "doc": "UDJ01AbilityEffect\n\n技能效果基类，类似 ActorComponent 的设计理念。\n每个效果负责一种具体行为（伤害、治疗、Buff等）。\n\n使用方式：\n1. 继承此类创建具体效果（UDJ01DamageEffect, UDJ01HealEffect 等）\n2. 在 UDJ01GameplayAbility 的 Effects 数组中添加效果\n3. 设置触发阶段，技能会在对应时机自动执行效果",
+  "properties": {
+    "DisplayName": [
+      "FText",
+      "效果显示名称（编辑器/UI显示用）"
+    ],
+    "Description": [
+      "FText",
+      "效果描述"
+    ],
+    "bEnabled": [
+      "bool",
+      "是否启用此效果"
+    ]
+  },
+  "methods": [
+    {
+      "name": "Execute",
+      "return": "bool",
+      "doc": "执行效果\n@param Context - 执行上下文，包含施法者和目标信息\n@return 是否成功执行",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": [
+        {
+          "name": "Context",
+          "type": "FDJ01EffectContext&"
+        }
+      ]
+    },
+    {
+      "name": "GetEffectDescription",
+      "return": "FString",
+      "const": true,
+      "doc": "获取效果描述文本\n用于技能提示 UI 显示",
+      "event": true,
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

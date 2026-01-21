@@ -180,6 +180,38 @@
       "items": {
         "$ref": "#/definitions/property"
       }
+    },
+    
+    "gamefeature": {
+      "type": "object",
+      "description": "GameFeature UI 注册配置 - 用于 Lyra 风格的模块化 UI 系统",
+      "properties": {
+        "is_layout": {
+          "type": "boolean",
+          "description": "是否是 Layout Widget (推送到 CommonUI Layer)",
+          "default": false
+        },
+        "layer": {
+          "type": "string",
+          "description": "目标 UI Layer Tag (如 UI.Layer.Game)，Layout Widget 使用",
+          "pattern": "^UI\\.Layer\\.[A-Za-z]+$"
+        },
+        "slot": {
+          "type": "string",
+          "description": "目标 UI Slot Tag (如 UI.Slot.MainHUD)，普通 Widget 使用",
+          "pattern": "^UI\\.Slot\\.[A-Za-z]+$"
+        },
+        "auto_activate": {
+          "type": "boolean",
+          "description": "是否自动激活 (仅 ActivatableWidget)",
+          "default": true
+        },
+        "extension_point": {
+          "type": "boolean",
+          "description": "是否作为扩展点，允许其他 Widget 动态注册",
+          "default": false
+        }
+      }
     }
   },
   
@@ -246,7 +278,7 @@
         },
         "type": {
           "type": "string",
-          "enum": ["float", "int32", "bool", "FText", "FString", "FLinearColor"]
+          "description": "属性类型，支持基础类型和模板类型如 TSubclassOf<ClassName>"
         },
         "category": {
           "type": "string",

@@ -1,0 +1,115 @@
+{
+  "name": "UDJ01ComboGraphAbility",
+  "inherits": "UDJ01GameplayAbility",
+  "doc": "UDJ01ComboGraphAbility\n\n连招技能中间层\n- 继承自 UDJ01GameplayAbility，保留项目技能系统的所有特性\n- 封装 ComboGraph 插件的使用，提供简洁的接口\n\n使用方式：\n1. 创建蓝图子类\n2. 设置 ComboGraph 资产\n3. 像普通 GA 一样授予和触发",
+  "properties": {
+    "ComboGraph": [
+      "UComboGraph",
+      "要运行的 ComboGraph 资产"
+    ],
+    "InitialInputAction": [
+      "UInputAction",
+      "初始输入 Action（用于 Conduit 节点分支）\n如果 ComboGraph 使用 Conduit 入口节点，需要设置此项"
+    ],
+    "bBroadcastInternalEvents": [
+      "bool",
+      "是否广播内部事件（如 ComboWindow 开关、状态切换）"
+    ],
+    "bEndAbilityOnGraphEnd": [
+      "bool",
+      "ComboGraph 结束时是否自动结束技能"
+    ]
+  },
+  "methods": [
+    {
+      "name": "GetCurrentComboNode",
+      "return": "UComboGraphNodeAnimBase",
+      "const": true,
+      "doc": "获取当前正在执行的节点",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "GetPreviousComboNode",
+      "return": "UComboGraphNodeAnimBase",
+      "const": true,
+      "doc": "获取上一个执行的节点",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "IsComboGraphRunning",
+      "return": "bool",
+      "const": true,
+      "doc": "ComboGraph 是否正在运行",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnComboEventReceived",
+      "return": "void",
+      "callable": false,
+      "doc": "当接收到 Gameplay Event 时调用",
+      "event": true,
+      "unrealname": "K2_OnComboEventReceived",
+      "meta": null,
+      "args": [
+        {
+          "name": "EventTag",
+          "type": "FGameplayTag"
+        },
+        {
+          "name": "EventData",
+          "type": "FGameplayEventData"
+        }
+      ]
+    },
+    {
+      "name": "OnComboGraphEnded",
+      "return": "void",
+      "callable": false,
+      "doc": "当 ComboGraph 结束时调用",
+      "event": true,
+      "unrealname": "K2_OnComboGraphEnded",
+      "meta": null,
+      "args": [
+        {
+          "name": "bWasCancelled",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "OnComboGraphStarted",
+      "return": "void",
+      "callable": false,
+      "doc": "当 ComboGraph 开始执行时调用",
+      "event": true,
+      "unrealname": "K2_OnComboGraphStarted",
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "OnComboNodeChanged",
+      "return": "void",
+      "callable": false,
+      "doc": "当节点切换时调用",
+      "event": true,
+      "unrealname": "K2_OnComboNodeChanged",
+      "meta": null,
+      "args": [
+        {
+          "name": "PreviousNode",
+          "type": "UComboGraphNodeAnimBase"
+        },
+        {
+          "name": "NewNode",
+          "type": "UComboGraphNodeAnimBase"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "name": "UComboGraphGameplayCueNotify_HitImpact",
+  "inherits": "UGameplayCueNotify_Static",
+  "doc": "Non instanced GameplayCueNotify for spawning particle and sound FX.\n\nSlightly modified version of UGameplayCueNotify_HitImpact to handle spawning of particle / sound FX from passed in Effect Context in Cue Paramaters.\n\nChecks Objects to test if it is:\n\n- A Niagara Emitter template, and will spawn emitter at location\n- A Cascade Particle system, and will spawn system at location\n- A Sound Base (Cue, Wave, ...), and will spawn sound at location\n\nCue parameters should only contain the soft object paths to the actual asset that this cue handler will async load if necessary.",
+  "properties": {
+    "bAsyncLoadAllAtOnce": [
+      "bool",
+      2,
+      "Whether to do a single async load request for all assets that are passed down through gameplay cue parameters effect context.\n\nSet it to true to issue a single async load resolved when all the assets are loaded in memory.\n\nSet it to false to load all assets in parallel issuing multiple requests and resolved individually."
+    ],
+    "NiagaraSpawnScale": [
+      "FVector",
+      2,
+      "For passed down assets that are Niagara Systems, this is the scale vector to use."
+    ],
+    "CascadeSpawnScale": [
+      "FVector",
+      2,
+      "For passed down assets that are Cascade Emitters, this is the scale vector to use."
+    ],
+    "VolumeMultiplier": [
+      "float32",
+      2,
+      "A linear scalar multiplied with the volume, in order to make the sound louder or softer."
+    ],
+    "PitchMultiplier": [
+      "float32",
+      2,
+      "PitchMultiplier - A linear scalar multiplied with the pitch."
+    ],
+    "StartTime": [
+      "float32",
+      2,
+      "How far in to the sound to begin playback at"
+    ],
+    "AttenuationSettings": [
+      "USoundAttenuation",
+      2,
+      "Override attenuation settings package to play sound with"
+    ],
+    "ConcurrencySettings": [
+      "USoundConcurrency",
+      2,
+      "Override concurrency settings package to play sound with\n\n(The actor used as the \"owner\" for concurrency settings purposes will be the target of the gameplay cue. Allows PlaySound calls to do a concurrency limit per owner.)"
+    ]
+  },
+  "methods": []
+}

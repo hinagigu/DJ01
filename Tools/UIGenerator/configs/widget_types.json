@@ -323,6 +323,16 @@
       "cpp_type": "FSlateBrush",
       "default_value": "FSlateBrush()"
     },
+    "FVector2D": {
+      "cpp_type": "FVector2D",
+      "default_value": "FVector2D::ZeroVector",
+      "header": "Math/Vector2D.h"
+    },
+    "FVector": {
+      "cpp_type": "FVector",
+      "default_value": "FVector::ZeroVector",
+      "header": "Math/Vector.h"
+    },
     "UTexture2D*": {
       "cpp_type": "TObjectPtr<UTexture2D>",
       "default_value": "nullptr"
@@ -330,6 +340,12 @@
     "UMaterialInterface*": {
       "cpp_type": "TObjectPtr<UMaterialInterface>",
       "default_value": "nullptr"
+    },
+    "TSubclassOf<UUserWidget>": {
+      "cpp_type": "TSubclassOf<UUserWidget>",
+      "default_value": "nullptr",
+      "header": "Blueprint/UserWidget.h",
+      "is_class_ref": true
     }
   },
   
@@ -369,5 +385,62 @@
       "enum_value": "EMouseCaptureMode::CaptureDuringRightMouseDown",
       "description": "右键按下时捕获鼠标"
     }
+  },
+
+  "ui_layers": {
+    "$comment": "UI.Layer GameplayTags 定义 - 用于 CommonUI 的分层系统",
+    "Game": {
+      "tag": "UI.Layer.Game",
+      "description": "游戏内常驻 HUD 层 (血条、小地图等)",
+      "z_order": 100
+    },
+    "GameMenu": {
+      "tag": "UI.Layer.GameMenu",
+      "description": "游戏内菜单层 (背包、技能树等)",
+      "z_order": 200
+    },
+    "Menu": {
+      "tag": "UI.Layer.Menu",
+      "description": "主菜单层 (暂停菜单、设置等)",
+      "z_order": 300
+    },
+    "Modal": {
+      "tag": "UI.Layer.Modal",
+      "description": "模态对话框层 (确认框、提示等)",
+      "z_order": 400
+    }
+  },
+
+  "ui_slots": {
+    "$comment": "UI.Slot GameplayTags 定义 - 用于 UIExtension 系统的插槽",
+    "MainHUD": {
+      "tag": "UI.Slot.MainHUD",
+      "description": "主 HUD 插槽"
+    },
+    "HealthBar": {
+      "tag": "UI.Slot.HealthBar",
+      "description": "血条插槽"
+    },
+    "Minimap": {
+      "tag": "UI.Slot.Minimap",
+      "description": "小地图插槽"
+    },
+    "ActionBar": {
+      "tag": "UI.Slot.ActionBar",
+      "description": "技能栏插槽"
+    },
+    "DamagePopup": {
+      "tag": "UI.Slot.DamagePopup",
+      "description": "伤害飘字插槽"
+    }
+  },
+
+  "gamefeature_integration": {
+    "$comment": "GameFeature UI 集成配置",
+    "action_class": "UGameFeatureAction_AddWidgets",
+    "layout_request_struct": "FDJ01HUDLayoutRequest",
+    "element_entry_struct": "FDJ01HUDElementEntry",
+    "primary_layout_path": "/Game/UI/Layout/WBP_PrimaryGameLayout",
+    "default_layer": "UI.Layer.Game"
   }
 }

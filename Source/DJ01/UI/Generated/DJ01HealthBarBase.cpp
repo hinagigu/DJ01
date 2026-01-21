@@ -2,7 +2,7 @@
 // DJ01HealthBarBase - 自动生成的 Widget 基类
 // 
 // 描述: 
-// 生成时间: 2025-12-30 20:12:25
+// 生成时间: 2026-01-21 13:10:07
 // 
 // ⚠️ 此文件由 UI Generator 自动生成，请勿手动修改
 // =============================================================================
@@ -12,6 +12,8 @@
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
 #include "Components/Image.h"
+#include "Components/CanvasPanelSlot.h"
+#include "Components/CanvasPanel.h"
 
 UDJ01HealthBarBase::UDJ01HealthBarBase(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

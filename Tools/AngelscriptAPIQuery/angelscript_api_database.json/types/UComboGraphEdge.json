@@ -1,0 +1,42 @@
+{
+  "name": "UComboGraphEdge",
+  "inherits": "UObject",
+  "properties": {
+    "TransitionInput": [
+      "UInputAction",
+      "The EnhancedInput Action to consider to transition to next node."
+    ],
+    "TriggerEvent": [
+      "EComboGraphTransitionInputEvent",
+      "The EnhancedInput Trigger Event type to use for the transition activation."
+    ],
+    "TransitionBehavior": [
+      "EComboGraphTransitionBehavior",
+      "Transition Behavior."
+    ],
+    "TransitionAnimNotifyName": [
+      "FName",
+      "Configure the Anim Notify name (skeleton notify) to consider when Transition Behavior is set to transition on a specific notify frame.\n\nBy the time an input trigger is received, combo transition will happen when the animation\nreaches this notify state or immediately if animation current time frame is passed the notify state."
+    ],
+    "TransitionAnimNotify": [
+      "TSoftClassPtr<UAnimNotify>",
+      "Configure the Anim Notify class to consider when Transition Behavior is set to transition on a specific notify frame.\n\nBy the time an input trigger is received, combo transition will happen when the animation\nreaches this notify state or immediately if animation current time frame is passed the notify state."
+    ],
+    "StartNode": [
+      "UComboGraphNodeBase",
+      1,
+      "Start or parent node for this edge"
+    ],
+    "EndNode": [
+      "UComboGraphNodeBase",
+      1,
+      "End or child node for this edge"
+    ],
+    "EdgeColour": [
+      "FLinearColor",
+      2,
+      ""
+    ]
+  },
+  "methods": []
+}

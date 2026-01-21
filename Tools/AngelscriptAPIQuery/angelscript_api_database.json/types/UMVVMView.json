@@ -1,0 +1,89 @@
+{
+  "name": "UMVVMView",
+  "inherits": "UUserWidgetExtension",
+  "doc": "Instance UMVVMClassExtension_View for the UUserWdiget",
+  "properties": {
+    "bLogBinding": [
+      "bool",
+      2,
+      "Should log when a binding is executed."
+    ]
+  },
+  "methods": [
+    {
+      "name": "AreBindingsInitialized",
+      "return": "bool",
+      "const": true,
+      "doc": "The bindings were initialized, manually or automatically.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "AreEventsInitialized",
+      "return": "bool",
+      "const": true,
+      "doc": "The events were initialized, manually or automatically.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "AreSourcesInitialized",
+      "return": "bool",
+      "const": true,
+      "doc": "The sources were initialized, manually or automatically.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InitializeBindings",
+      "return": "void",
+      "doc": "Initialize the bindings if they are not already initialized.\nInitializing the bindings will execute them.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InitializeEvents",
+      "return": "void",
+      "doc": "Initialize the events if they are not already initialized.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "InitializeSources",
+      "return": "void",
+      "doc": "Initialize the sources if they are not already initialized.\nInitializing the sources will also initialize the bindings if the option bInitializeBindingsOnConstruct is enabled.\n@note A sources can be a viewmodel or any other object used by a binding.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UninitializeBindings",
+      "return": "void",
+      "doc": "Uninitialize the bindings if they are already initialized.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UninitializeEvents",
+      "return": "void",
+      "doc": "Uninitialize the events if they are already initialized.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    },
+    {
+      "name": "UninitializeSources",
+      "return": "void",
+      "doc": "Uninitialize the sources if they are already initialized.\nIt will uninitialized the bindings.",
+      "ufunction": true,
+      "meta": null,
+      "args": []
+    }
+  ]
+}

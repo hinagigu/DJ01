@@ -1,0 +1,7 @@
+{
+  "name": "UDJ01WidgetBlueprintLibrary",
+  "inherits": "UBlueprintFunctionLibrary",
+  "doc": "Widget Blueprint 操作库\n提供 Python 可调用的函数来操作 Widget Blueprint\n\n使用示例 (Python):\n```python\nimport unreal\n\n# 加载 Widget Blueprint\nwidget_bp = unreal.EditorAssetLibrary.load_asset(\"/Game/UI/MyWidget\")\n\n# 获取 WidgetTree\ntree = unreal.DJ01WidgetBlueprintLibrary.get_widget_tree(widget_bp)\n\n# 添加控件\ncanvas = unreal.DJ01WidgetBlueprintLibrary.add_widget_to_tree(\n    widget_bp, unreal.CanvasPanel, \"RootCanvas\")\n\n# 设置根控件\nunreal.DJ01WidgetBlueprintLibrary.set_root_widget(widget_bp, canvas)\n```",
+  "properties": {},
+  "methods": []
+}

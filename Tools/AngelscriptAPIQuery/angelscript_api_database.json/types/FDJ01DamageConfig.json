@@ -1,0 +1,31 @@
+{
+  "name": "FDJ01DamageConfig",
+  "isStruct": true,
+  "doc": "完整的伤害配置\n用于技能/Combo节点配置",
+  "properties": {
+    "BaseDamage": [
+      "float32",
+      "基础伤害值 (固定数值)"
+    ],
+    "DamageType": [
+      "EDJ01DamageType",
+      "伤害类型"
+    ],
+    "Scalings": [
+      "TArray<FDJ01DamageScaling>",
+      "属性加成列表 (LOL风格: +80% AD, +60% AP 等)"
+    ]
+  },
+  "methods": [
+    {
+      "name": "opAssign",
+      "return": "FDJ01DamageConfig&",
+      "args": [
+        {
+          "name": "Other",
+          "type": "FDJ01DamageConfig"
+        }
+      ]
+    }
+  ]
+}

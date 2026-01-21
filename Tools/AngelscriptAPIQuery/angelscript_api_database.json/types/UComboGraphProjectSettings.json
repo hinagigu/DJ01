@@ -1,0 +1,82 @@
+{
+  "name": "UComboGraphProjectSettings",
+  "inherits": "UObject",
+  "properties": {
+    "MontageNodeColor": [
+      "FLinearColor",
+      2,
+      "Default background color for Montage nodes"
+    ],
+    "SequenceNodeColor": [
+      "FLinearColor",
+      2,
+      "Default background color for Sequence nodes"
+    ],
+    "DebugActiveColor": [
+      "FLinearColor",
+      2,
+      "Default background color for combo nodes in active states (during debug)"
+    ],
+    "DebugFadeTime": [
+      "float32",
+      2,
+      "The duration used to interpolate the background color of nodes from Active to Default color when active states change (no longer active during debug).\n\nIf set to 0.0, will disable color interpolation."
+    ],
+    "ContentMargin": [
+      "FMargin",
+      2,
+      "The padding around the main node box."
+    ],
+    "ContentInternalPadding": [
+      "FMargin",
+      2,
+      "The padding within the main node box."
+    ],
+    "PinSize": [
+      "float32",
+      2,
+      "The minimum desired sizes for pin connections."
+    ],
+    "PinPadding": [
+      "float32",
+      2,
+      "The minimum amount of padding to draw around pin connections."
+    ],
+    "ContextMapping": [
+      "TSoftObjectPtr<UInputMappingContext>",
+      2,
+      "Enhanced Input Context Mapping to use to draw edge (transition) icons in Graphs"
+    ],
+    "IconsDataTable": [
+      "TSoftObjectPtr<UDataTable>",
+      2,
+      "Path to the DataTable used to draw edge (transition) icons in Graph. Determine mappings between Keys and Icon textures.\n\nThis is set by default to an internal DataTables (that you can find in `/ComboGraph/Xelu_Icons/`) that setup texture icons for every keyboard and gamepad key.\n\nIcons are coming from Xelu's Free Controllers & Keyboard Prompts: https://thoseawesomeguys.com/prompts/\nThanks to \"Nicolae (Xelu) Berbece\" and \"Those Awesome Guys\" to make it available in the public domain licence under Creative Commons 0 (CC0)"
+    ],
+    "IconPreference": [
+      "EComboGraphIconType",
+      2,
+      "Icon preference to draw edge (transition) icons in Graph. Can be either Keyboard or Gamepad based"
+    ],
+    "IconSize": [
+      "float32",
+      2,
+      "Size of Icons when drawing edges (transitions) in Combo Graphs"
+    ],
+    "DynamicMontageSlotName": [
+      "FName",
+      2,
+      "The Slot Name to use with dynamic montages, created from sequences"
+    ],
+    "NotifyStates": [
+      "TMap<TSoftClassPtr<UAnimNotifyState>,FComboGraphNotifyStateAutoSetup>",
+      2,
+      "Map of Auto Setup Animation Notify States. The key is the Anim Notify State class, the value is the time start / end definition in percent"
+    ],
+    "bSequencesNetworkedWarning": [
+      "bool",
+      2,
+      "Flag to enable / disable message warnings (logs and on screen) about Sequences being used in a networked environment"
+    ]
+  },
+  "methods": []
+}
